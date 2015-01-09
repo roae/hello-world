@@ -1,0 +1,45 @@
+@import "admin/variables";
+@import "util";
+@import "type";
+
+//html{width:960px;}
+body{.column(9); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+h2{
+	margin: 40px 0;
+}
+h3{
+	margin: 30px 0;
+}
+
+p,
+li,
+blockquote{
+	text-align: justify;
+	line-height: 30px;
+	font-size: 16px;
+	margin-bottom:20px;
+}
+
+li{margin-bottom:0;}
+//img{border:3px solid #fff; .border-radius(3px);.box-shadow(0 1px 2px fade(#000,20));}
+
+table{border-collapse:collapse;border:1px solid #ddd;font-size:12px;color:#222;margin: 30px 0;
+	th,td{border:1px solid #ddd;padding:7px 2px;}
+	caption{color:#003A9A; font-size:18px;text-align: center;padding:10px 2px;background: #f1f1f1;#gradient > .vertical(#FAFAFA,#f1f1f1);border:1px solid #ddd;border-bottom:0;.border-radius(5px 5px 0 0);}
+	tr:nth-child(2n) td{background:#DFF5FE;}
+}
+
+.img{border:3px solid #fff; .border-radius(3px);.box-shadow(0 1px 2px fade(#000,20));margin:10px;}
+.imgMid{width:50%;}
+.imgFull{width:100%;margin:0;}
+.imgLeft{float: left;margin-right:10px;}
+.imgRight{float: right;margin-left:10px;}
+
+// From 979px and below, show a button to toggle navbar contents
+// @import "responsive-navbar.less";
+@media (min-width: 1366px) {
+	html{width:1200px;}
+}
+@media (max-width: 767px) {
+	body{.column(12);}
+}

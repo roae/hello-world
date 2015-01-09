@@ -1,0 +1,5 @@
+NameError: variable @columnMargin is undefined in /Users/roae/Documents/servidor/smartcomns/src/app/webroot/less/type.less on line 24, column 12:
+23 p {
+24 	margin: 0 @columnMargin @baseLineHeight / 2;
+25 	font-family: @baseFontFamily;
+

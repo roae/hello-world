@@ -1,0 +1,1435 @@
+/*
+    Document   : admin
+    Created on : 19-ene-2011, 8:47:53
+    Author     : roae
+    Description:
+        Hoja de estilos para el administrador.
+*/
+//@import "reset";
+@import 'admin/variables';
+@import 'util';
+@import "admin/navs";
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic,300italic,300);
+@import "admin/font-icons/font-awesome";
+@import "admin/close";
+@import "admin/component-animations";
+@import "admin/modals";
+@import "admin/label-badges";
+@import "admin/tooltip";
+
+// Fluid (940px)
+#grid > .fluid(@fluidGridColumnWidth, @fluidGridGutterWidth);
+
+// Reset utility classes due to specificity
+[class*="span"].hide,
+.row-fluid [class*="span"].hide {
+	display: none;
+}
+
+[class*="span"].pull-right,
+.row-fluid [class*="span"].pull-right {
+	float: right;
+}
+
+
+@defaultFont: "Lato", Helvetica, Arial, sans-serif;
+
+// BUTTONS COLORS
+
+@default:#D8D8D8;
+@default_hover:#B1B1B1;
+
+@primary:#3B5968;
+@primary_hover:#314956;
+
+@success:#00C07E;
+@success_hover:#009D67;
+
+@warning:#FC7136;
+@warning_hover:#CF5D2C;
+
+@info:#00A8C7;
+@info_hover:#008AA3;
+
+@danger:#D32A34;
+@danger_hover:#AD232A;
+
+@inverse:#29304A;
+@inverse_hover:#22273C;
+
+html{ height:100%; }
+body{
+	font-family: @defaultFont;
+	background: #fff;
+	font-size: 14px;
+	font-weight: 300;
+	margin: 0;
+	height: 100%;
+	color: #314956;
+}
+
+a{ color:@info; }
+/** LOGIN **/
+#LoginPage{
+	background: #353535;
+	font-family: @defaultFont;
+}
+.login{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	width: 290px;
+	padding: 50px 80px;
+
+	background: #00C07E url(admin/bg-login.png) no-repeat bottom right;
+	color: #282828;
+	text-align: center;
+	.translate(-50%,-50%);
+
+	h1{
+		font-size: 48px;
+		margin-bottom: 20px;
+		margin-top: 0;
+		font-weight: 300;
+	}
+	.input{
+		text-align: left;
+		margin-bottom: 20px;
+	}
+	input[type="text"],
+	input[type="password"]{
+		border: 2px solid #008B63;
+		font-size: 18px;
+		padding-right: 35px;
+	}
+	.error{
+		input[type="text"],
+		input[type="password"]{
+			border-color:#D32A34;
+		}
+	}
+	.btn,
+	[class^="btn_"],
+	[class*=" btn_"]{
+		float: left;
+		font-size: 24px;
+		padding: 5px 30px;
+		font-weight: 300;
+	}
+	.username{ background: #fff url(admin/login-user.png) no-repeat 260px center; }
+	.password{ background: #fff url(admin/login-pass.png) no-repeat 260px center; }
+}
+
+/*********** DASHBOARD **********/
+#cmswrap{
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+	height: auto;
+	overflow: hidden;
+}
+
+/** HEADER **/
+#logo {
+	float: left;
+	background: url(admin/logo-dashboard.png) no-repeat left center;
+	color: #FFF;
+	font-size: 30px;
+	padding-left: 30px;
+	line-height: 40px;
+	text-decoration: none;
+}
+
+header {
+	padding: 5px 10px 15px;
+	width: 100% !important;
+	height: 58px;
+	border-bottom: 2px solid #354857;
+	.box-sizing(border-box);
+	background: #00A8C7;
+	.clearfix;
+	z-index: 20 !important;
+	position: relative;
+
+	.user {
+		float: right;
+		margin-right: 10px;
+		margin-top: 5px;
+		text-align: right;
+		color: #FFF;
+		font-size: 1.3em;
+		.username {
+			display: block;
+			font-size: .8em;
+		}
+	}
+}
+
+#Crumbs { font-size: 30px; color: #353535; line-height: 40px;
+	.separator { margin: 10px; color: #FFF; font-size: 30px; }
+	a { color: #FFF; text-decoration: none; font-size: 30px;
+		&:hover { text-decoration: underline; }
+	}
+}
+
+/* Menu desplegable que aparece en el engrane en la ezquina superior derecha */
+#config {
+	background: url(admin/config.png) no-repeat center;
+	height: 25px;
+	width: 25px;
+	float: right;
+	position: relative;
+	font-size: 16px;
+	padding: 5px;
+	margin-top: 5px;
+	.border-radius(3px);
+	ul {
+		position: absolute;
+		right: 0;
+		top: 35px;
+		padding: 5px 0;
+		margin: 0;
+		min-width: 200px;
+		.border-radius( 3px );
+		display: none;
+		.box-shadow( 0 1px 2px fade( #000,50 ) );
+		background: #3B5968;
+		list-style: none;
+		li {
+			position: relative;
+			white-space: nowrap;
+		}
+		a {
+			display: block;
+			background: #3B5968;
+			color: #FFF;
+			padding: 10px 15px;
+			text-decoration: none;
+			&:hover { background: #00A8C7; }
+		}
+
+		.separator {
+			height: 0;
+			border-top: 1px solid #314956;
+			border-bottom: 1px solid #516B78;
+			margin: 3px;
+			&:first-of-type,
+			&:last-child,
+			& + .separator {
+				display: none;
+			}
+		}
+		&:before {
+			content: ".";
+			.hide-text;
+			background: #3B5968;
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			display: block;
+			top: -5px;
+			right: 12px;
+			.rotate(45deg);
+		}
+	}
+	&:hover {
+		background-color: #008AA3;
+		ul { display: block; }
+	}
+}
+
+/*
+  MENU NAVEGACION
+ =============================================================================*/
+@navWidth:200px;
+/*  Fondo del menu */
+#fndNav{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: @navWidth;
+	background: #354857;
+	z-index: -1;
+}
+/* Menu */
+nav{
+	padding: 58px 0 0;
+	width: @navWidth;
+	position: absolute;
+	top: 0;
+	left: 0;
+	ul{
+		margin:0;
+		padding:0;
+		list-style: none;
+	}
+	li{
+		position: relative;
+		/* Sub Menu */
+		ul{
+			position: absolute;
+			right: (@navWidth+5)*-1;
+			top: 0;
+			z-index: 15;
+			padding: 5px ;
+			margin:0;
+			min-width: 200px;
+			.border-radius( 3px );
+			display: none;
+			.box-shadow( 0 1px 2px fade( #000,50 ) );
+			//background: #F1F7F9;
+			background: darken(#354857,5);
+			list-style: none;
+			li{
+				//background: #F1F7F9;
+				position: relative;
+				white-space: nowrap;
+				z-index: 10;
+				//padding:0 4px;
+			}
+			.current{
+				& > a,
+				& > a:hover{
+					//background: darken(#3B5968,10);
+					background: darken(#354857,5);
+					color: #fff;
+					font-weight: bold;
+					&:after{
+						display: none;
+					}
+				}
+			}
+			a{
+				display: block;
+				//background: #F1F7F9;
+				//color: #354857;
+				padding: 10px 15px;
+				text-decoration: none;
+				font-size: 16px;
+				.border-radius(4px);
+				&:hover{
+					background:#00A8C7;
+					color: #354857;
+				}
+			}
+
+			.separator{
+				height: 0;
+				border-top: 1px solid fade(#fff,20);
+				margin: 3px;
+				&:first-of-type,
+				&:last-child,
+				& + .separator{
+					display: none;
+				}
+			}
+
+
+
+			&:before{
+				content: ".";
+				.hide-text;
+				background: darken(#354857,5);
+				width: 10px;
+				height: 10px;
+				position: absolute;
+				display: block;
+				top: 22px;
+				left: -5px;
+				.rotate(45deg);
+			}
+		}
+		&:hover{
+			ul{ display: block; }
+		}
+	}
+	li.separator{
+		//border-bottom: 1px solid fade(#fff,10);
+		border-top: 1px solid fade(#fff,20);
+		height:0;
+		margin: 5px 0;
+		&:first-of-type,
+		&:last-child,
+		& + li.separator{
+			display: none;
+		}
+	}
+	a{
+		color: lighten(#41586A,40);
+		font-size: 20px;
+		text-decoration: none;
+		padding: 15px 10px;
+		display: block;
+		.text-overflow;
+		.transition(background .3s);
+
+		&:after{
+			.icon(@angle-right);
+			position: absolute;
+			right:12px;
+		}
+		/** Si no tiene un sub menu se quita el indicador **/
+		&:only-child:after{
+			display: none;
+		}
+	}
+	li:hover > a,
+	a:hover{
+		background:#41586A;
+
+	}
+	.current,
+	.current:hover{
+		& > a,
+		& > a:hover{
+			background: #1CAF9A;//lighten(#E4E7EA,5);
+			color: #fff;
+			&:after{
+				//display: none;
+				background: #fff;
+				color:l #fff;
+				overflow: hidden;
+				width: 15px;
+				height: 15px;
+				position: absolute;
+				display: block;
+				top: 22px;
+				right: -8px;
+				.rotate(45deg);
+			}
+		}
+
+		ul{
+			display: block;
+			position: relative;
+			top:0;
+			left:0;
+			min-width: 0;
+			.border-radius( 0 );
+			.box-shadow( 0 1px 2px fade( #000,50 ) inset );
+			&::before{
+				top:-5px;
+				left:20px;
+			}
+			a{
+				&:hover{
+					background: transparent;
+					color:#fff;
+					&:after{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+	MAIN CONTENT
+==============================================================================*/
+
+#content{
+	margin-left: @navWidth;
+	//margin-top: 58px;
+	padding-bottom: 45px;
+}
+
+.pagination{
+	margin: 5px 20px;
+	padding-bottom: 80px;
+	/* Herramientas y botones de la paginación */
+	.tools{
+		padding: 10px 10px;
+		background: #fff;
+		.clearfix;
+		/* Botones alineados a la derecha */
+		.rTools{ float: right; }
+
+		/* Botones alineado a la izquierda */
+		.lTools{ float: left; margin-right: 5px; }
+
+		/* Combonox en las herramientas */
+		.select{
+			margin: 10px;
+			label{ display: inline; }
+		}
+		select{
+			padding: 3px 10px;
+			width: 150px;
+		}
+		/*
+			Formulario de busqueda
+		*/
+		.searchForm{
+			.input{
+				float: left;
+				margin: 5px 0;
+				input{ padding: 6px; }
+				select{ padding: 5px; }
+
+				& + .input{
+					margin-left: 5px;
+				}
+			}
+			.btn{
+				float: left;
+				i{margin:0;}
+			}
+		}
+		/*
+			links en forma de tabs en la barra de herramientas
+			alineadas a la izquierda.
+		*/
+		.lTabs{
+			float: left;
+			margin: 0 5px;
+			font-size: 16px;
+
+			a{
+				.border-radius(3px 3px 0 0);
+				padding: 12px 15px;
+				position: relative;
+				top: -1px;
+				margin: 0 1px;
+				background: #fff;
+				text-decoration: none;
+				white-space: nowrap;
+				&:hover{ background:@grayLighter; }
+			}
+			.selected,
+			.selected:hover{
+				border: 1px solid #D8D8D8;
+				border-bottom: 0;
+				color: @primary;
+				top: 0;
+				background: #fff;
+			}
+			input + a{ margin-left: 10px; }
+			&:first-child{ margin-left:0; }
+		}
+		/* Links de tabs de estados en comentarios */
+		.pendientes{
+			color:@default_hover;
+			&:before{
+				.icon(@question-sign);
+				margin-right:5px;
+			}
+		}
+		.aprobados{
+			color:@info;
+			&:before{
+				.icon(@thumbs-up);
+				margin-right:5px;
+			}
+		}
+		.spams{
+			color:@warning;
+			&:before{
+				.icon(@remove-sign);
+				margin-right:5px;
+			}
+		}
+		.papelera{
+			color:@danger;
+			&:before{
+				.icon(@trash);
+				margin-right:5px;
+			}
+		}
+
+		/* Botones de estados de comentarios */
+		.marcAprobar:before{ .icon(@thumbs-up); margin-right:5px; }
+
+		.marcRechazar:before{ .icon(@thumbs-down); margin-right:5px; }
+
+		.marcSpam:before{ .icon(@remove-sign); margin-right:5px; }
+
+		.marcPapelera:before{ .icon(@trash); margin-right:5px; }
+
+	}
+	/* Lista de comentarios */
+	ul.comments{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		border-top: 1px solid #D8D8D8;
+		padding-top: 2px;
+
+		li{
+			padding: 10px;
+			.transition( background .4s );
+			font-size: 14px;
+			&:hover{
+				background: fade(#39A6CA,20);
+				.row-actions,
+				.compact-row-actions{ visibility: visible; }
+			}
+		}
+
+		/* Lista de comentarios como cebra */
+		li:nth-child(even){
+			background:fade(#41586A,5);
+		}
+
+		/* Botones de cambio de estado de los comentarios */
+		.row-actions{ visibility: hidden; }
+		.compact-row-actions{
+			.row-actions;
+			float: right;
+			padding: 0;
+		}
+
+		.btn,
+		[class^="btn_"],
+		[class*=" btn_"]{
+			font-size: 12px;
+			padding: 3px 5px;
+			margin: 2px;
+		}
+
+		.aprobar:before{ .icon(@thumbs-up);margin-right: 5px; }
+
+		.rechazar:before{ .icon(@thumbs-down);margin-right: 5px; }
+
+		.spam:before{ .icon(@remove-sign);margin-right: 5px; }
+
+		.delete:before{ .icon(@trash);margin-right: 5px; }
+
+		.edit_comment:before{ .icon(@pencil);margin-right: 5px; }
+
+		.nombre{
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		.date,
+		.id,
+		.email,
+		.tel{
+			color: @default_hover;
+			font-size: 12px;
+			margin: 0 5px;
+		}
+
+	}
+	/* Botones de la paginación */
+	.paginator{
+		padding: 10px 20px;
+		.clearfix;
+		background: fade(#FFF, 90);
+		.box-sizing( border-box );
+		bottom: 0;
+		position: fixed;
+		bottom: 46px;
+		left: 0;
+		right: 0;
+		margin-left: @navWidth;
+		z-index: 10;
+		&.nofixed{
+			position: relative;
+			margin: auto;
+			left: auto;
+			bottom: auto;
+		}
+		.control{
+			float: left;
+			margin-right: 10px;
+			a{
+				.btn;
+				.btn_success;
+				margin: 0;
+				.border-radius(0);
+				text-align: center;
+			}
+			.current{
+				.btn;
+				margin: 0;
+				background: #4DCE90;
+				.border-radius(0);
+				&:hover{ background: #4DCE90; }
+			}
+
+			span:first-of-type a{ .border-radius(3px 0 0 3px); }
+			span:last-of-type a{ .border-radius(0 3px 3px 0); }
+
+			.prev{
+				.disabled{
+					.btn;
+					color: #fff;
+					margin: 0;
+					.border-radius(3px 0 0 3px);
+					&:hover{ background: #D8D8D8; }
+				}
+			}
+			.next{
+				.disabled{
+					.btn;
+					color: #fff;
+					margin: 0;
+					.border-radius(0 3px 3px 0);
+					&:hover{ background:#D8D8D8; }
+				}
+			}
+		}
+
+		.counter{ padding:5px; margin:0; }
+	}
+}
+
+/* Tabla */
+.grid{
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+
+	p{
+		line-height: 1.5em;
+		margin: 0 0 1em;
+	}
+
+	tr th:last-of-type{ border-right: 0; }
+
+	th{
+		border-style: solid;
+		border-color: #D8D8D8;
+		text-align: left;
+		position: relative;
+		padding: 0;
+		font-size: 18px;
+		font-weight: normal;
+		background: #fff;
+
+		/* Sort links default state */
+		a{
+			padding: 5px 30px 5px 10px;
+			position: relative;
+			display: block;
+			text-decoration: none;
+			height:100%;
+
+			/* Icono de ordenamienta */
+			.sortind,
+			&:after{
+				content: "";
+				background: url(admin/sort.png) no-repeat center;
+				display: inline-block;
+				position: absolute;
+				top: 50%;
+				margin-top: -5px;
+				right: 10px;
+				width: 8px;
+				height: 11px;
+				padding: 0;
+			}
+			&:hover{
+				color: #fff;
+				background-color: #37C174;
+				.sortind,
+				&:after{ background:url(admin/sort-asc.png) no-repeat top; }
+			}
+		}
+
+		/* Sort link: sort asc */
+		a.asc{
+			.sortind,
+			&:after{ background:url(admin/sort-asc.png) no-repeat top; }
+			&:hover{
+				.sortind,
+				&:after{ background:url(admin/sort-desc.png) no-repeat bottom; }
+			}
+		}
+
+		/* Sort links: sort desc */
+		a.desc{
+			.sortind,
+			&:after{ background:url(admin/sort-desc.png) no-repeat bottom; }
+			&:hover{
+				.sortind,
+				&:after{ background:url(admin/sort-asc.png) no-repeat top; }
+			}
+		}
+		span{
+			padding: 5px 10px;
+			color: #41586A;
+			white-space: nowrap;
+		}
+		input[type="checkbox"]{ margin:10px; }
+	}
+	/*
+		Se cambian los estilos de borderdes y esquinas redondeadas en
+		los links del thead y tfoot
+	 */
+	thead th{
+		border-width: 0 0 1px 0;
+		a{ .border-radius(3px 3px 0 0); }
+	}
+	tfoot th{
+		border-width: 1px 0 0 0;
+		a{.border-radius(0 0 3px 3px);}
+	}
+	/* Tabla como cebra */
+	tr:nth-child(odd) td{
+		background: fade(#41586A,5);
+	}
+	td{
+		padding: 10px;
+		.transition( background .4s );
+		font-size: 14px;
+
+		input[type="checkbox"]{ margin:0px; }
+
+		a.highlight{
+			font-size: 14px;
+			font-weight: bold;
+			color: #41586A;
+			text-decoration: none;
+			&:hover{ color:#354857; }
+		}
+		.btn,
+		[class^="btn_"],
+		[class*=" btn_"]{
+			font-size: 12px;
+			padding: 3px 5px;
+			margin: 2px;
+		}
+
+		.row-actions{ visibility: hidden; }
+		.compact-row-actions{
+			.row-actions;
+			float: right;
+			padding: 0;
+		}
+		.pagin-img{
+			float: left;
+			margin-right: 10px;
+		}
+
+		.btn-group{
+			.btn
+		}
+
+		&.center{
+			text-align: center;
+		}
+	}
+	tr:hover{
+		td{
+			background: fade(#39A6CA,20);
+			.row-actions,
+			.compact-row-actions{ visibility: visible; }
+		}
+	}
+}
+
+/* Mensaje que aparece cuando un listado esta vacio */
+.noRecords{
+	text-align: center;
+	font-size: 50px;
+	color: fade(#000,20);
+	margin: 100px;
+	display: none;
+
+	.icon{ font-size: 100px; }
+	.btn{ font-size: 20px; }
+
+	&:only-child{display: block;}
+}
+
+
+.main{
+	.column(9);
+	float: left;
+	margin:0 @columnMargin;
+}
+
+aside{
+	.column(3);
+	float: left;
+	margin:0 @columnMargin;
+}
+
+/* Contenedor de los formularios */
+.contentForm{
+	.clearfix;
+	margin: 20px 20px 100px;
+	.centered{
+		width: 50%;
+		margin: 0 auto;
+		min-width: 550px;
+
+		.main{ .column(8); }
+		aside{ .column(4); }
+	}
+	/* Recuadro de la ayuda */
+	.help{
+		font-style: italic;
+		background: #E1D763;
+		padding: 10px;
+		margin-bottom: 20px;
+		[class^="icon-"]{
+			color: #B2A83C;
+			float: right;
+			margin-left: 10px;
+		}
+	}
+}
+
+/* recuadro de ayuda*/
+.helpBox{
+	.contentForm > .help;
+}
+
+/*
+	FLASH MESSAGES
+	Estilos para todos los tipos de mensajes.
+==============================================================================*/
+#Notifier {
+	text-align: center;
+	position: relative;
+	.border-radius(0 0 4px 4px);
+	overflow: hidden;
+
+	.success,
+	.error,
+	.info,
+	.warning{
+		padding: 18px 10px 18px 30px;
+		font-size: 18px;
+		font-weight: normal;
+
+	}
+
+	.success{ background: #78B54C; color:#FFF; }
+	.error{ background: #F23F31; color:#fff; }
+	.info{ background: #2CA0B5; color:#fff; }
+	.warning{ background: #FCB63E; color:#000; }
+}
+
+/*
+	FOOTER
+	Estilos para el pie de pagina.
+==============================================================================*/
+footer {
+	background: #354857;
+	color: #FFF;
+	font-size: 14px;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	padding: 5px 10px;
+	margin-left: @navWidth;
+	position: fixed;
+	height: 36px;
+	line-height: 36px;
+	z-index: 10;
+
+	.logo {
+		float: left;
+		margin-right: 10px;
+		height: 30px;
+	}
+
+	.dateTime {
+		float: right;
+		white-space: nowrap;
+	}
+}
+
+
+/* 	=========================================================================
+	FORMS
+	Estilos de los controles de los formularios
+	========================================================================= */
+
+/*
+	BOTONES
+	Todos los tipos de botones
+==============================================================================*/
+
+/*
+	Boton por default: estos estilos se aplican a los elementos que tengan la
+	clas "btn" o alguna clase con el prefijo "btn_", por lo tanto no es necesario
+	poner la clase btn y la clase del tipo de boton.
+	Ejemplo class="btn btn_primary" da el mismo resultado con clas="btn_primary"
+ */
+.btn,
+[class^="btn_"],
+[class*=" btn_"] {
+	border:0;
+	background: @default;
+	padding: 5px 10px;
+	color: #444;
+	.border-radius(3px);
+	font-size: 16px;
+	font-weight: 300;
+	font-family: inherit;
+	display: inline-block;
+	margin: 5px;
+	text-decoration: none;
+	.transition(background .3s);
+	cursor:pointer;
+
+	&:hover{ background: @default_hover; }
+	[class^="icon-"],
+	[class*=" icon-"] {
+		margin-right:5px;
+	}
+	&[disabled]{ .opacity(60); color:fade(#fff,80); cursor: default; }
+	&[disabled]:hover{ background: @default; }
+}
+
+.btn_primary,
+.button_h{/* .button_h versiones anteriores del cms */
+	background: @primary;
+	color:#fff;
+	&:hover{ background: @primary_hover;}
+	&[disabled]:hover{ background: @primary; }
+}
+.btn_success{
+	background: @success;
+	color:#fff;
+	&:hover{ background: @success_hover; }
+	&[disabled]:hover{ background: @success; }
+}
+.btn_danger{
+	background: @danger;
+	color: #fff;
+	&:hover{ background: @danger_hover;}
+	&[disabled]:hover{ background: @danger; }
+}
+.btn_warning{
+	background: @warning;
+	color: #fff;
+	&:hover{ background: @warning_hover; }
+	&[disabled]:hover{ background: @warning; }
+}
+.btn_info{
+	background: @info;
+	color:#fff;
+	&:hover{ background:@info_hover; }
+	&[disabled]:hover{ background: @info; }
+}
+.btn_inverse{
+	background: @inverse;
+	color:#fff;
+	&:hover{ background: @inverse_hover; }
+	&[disabled]:hover{ background: @inverse; }
+}
+/*
+	Junta todos los bottones y les quita las esquinas redondeadas
+	exepto a los de las orillas
+*/
+.btn-group{
+	margin:5px;
+	white-space: nowrap;
+
+	/* sobre escritura de los estilos de la clase dafult de botones */
+	.btn,
+	[class^="btn_"],
+	[class*=" btn_"] {
+		.border-radius(0);
+		margin:0 !important;
+
+		[class^="icon-"],
+		[class*=" icon-"]{
+			margin:0;
+		}
+
+		&:first-of-type{ .border-radius(3px 0 0 3px); }
+		&:last-of-type{ .border-radius(0 3px 3px 0); }
+	}
+}
+
+/*
+	INPUTS, SELECTS, RADIO BUTTONS, CHECKBOXES
+	Todos los tipos de botones
+==============================================================================*/
+.input{
+	margin:20px 0;
+	text-align: left;
+	.help{
+		font-style: italic;
+		margin: 5px;
+		color: lighten(#314956,5);
+	}
+}
+.input label{
+	display: block;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+.textarea label{ margin-bottom:10px; }
+.required label,
+.required legend{
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select{
+	border: 1px solid fade(#000,20);
+	background: #fff;
+	padding: 10px;
+	width: 100%;
+	margin: 0;
+	.box-sizing(border-box);
+	font-family: inherit;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus
+,select:focus{ border-color:lighten(#2E88A5,20); }
+
+.error {
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select{
+		border-color:#D32A34;
+		background: lighten(#FF3856, 35);
+		&:focus{
+			border-color: darken(#D32A34,10);
+		}
+	}
+}
+.error-message{color:#FB3751;background:transparent;}
+
+
+/* Radio button simple */
+.radio{
+	margin-top:15px;
+	fieldset{
+		border:1px solid #A8B0BC;
+		position: relative;
+		legend{
+			display: block;
+			position: absolute;
+			top: -28px;
+		}
+	}
+}
+
+.radio label,
+.checkbox label{display: inline;}
+
+/*
+	Radio buttons en forma de bototes, en este no se ven los radios buttons
+	solo cambian de color los labels con forma de botones
+ */
+.radioButtons{
+	margin: 5px 0;
+	overflow: hidden;
+	input[type="radio"]{
+		display:none;
+	}
+	label{
+		.btn;margin:0 1px 0 0;
+		.border-radius(0);
+		float:left;
+	}
+	label:first-of-type{
+		.border-radius(3px 0 0 3px);
+	}
+	label:last-of-type{
+		.border-radius(0 3px 3px 0);
+	}
+	input[type="radio"]:checked + label{.btn_primary;}
+}
+
+.date{
+	select{width: 140px !important;}
+}
+
+
+/* Se agrega un asterisco al final de los label de los campos requeridos  */
+.required{
+	label:after{content:"*";}
+}
+
+/* se quitam los bordes de los botones cuando tienen el foco en firefox */
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+	border: none;
+}
+
+/* Tiny MCE width: 100%; */
+
+table.mceLayout, textarea.tinyMCE {
+	width: 100% !important;
+}
+
+.note-desktop {
+	display: none;
+}
+
+/* FIN Tiny MCE */
+
+.buttonPane {
+	padding: 10px 20px;
+	.clearfix;
+	background: fade(#fff, 80);
+	border-top: 1px solid #C6CACC;
+	.box-sizing( border-box );
+	bottom: 0;
+	position: fixed;
+	bottom: 46px;
+	left: 0;
+	right: 0;
+	margin-left: @navWidth;
+	z-index: 10;
+
+	.rButtons { float: right; }
+	.lButtons { float: left; }
+
+}
+
+/***** Termina FORM *****/
+
+/*** MODAL ****/
+
+.modal{
+
+
+}
+
+#xUpdaterWindow,
+.modalMessage{
+	[class^="icon-"],
+	[class*=" icon-"] {
+		float: left;margin: 10px 20px;
+	}
+	.icon-question{color:#EF6C55;}
+	.icon-ok-sign{color:#00C07E;}
+	.icon-remove-sign{color:#D32A34;}
+	p{
+		line-height: 20px;
+		font-size: 14px;
+		margin: 10px 10px 10px 80px;
+	}
+	.itemName{font-weight: bold;color:#00C07E;}
+	.loading{text-align: center;
+		.msgLoading{font-size: 60px;line-height: 1em;color:#D8D8D8;margin:5px; font-weight: 100;}
+		.icon-spin{color:#55A4CD;font-size: 4em;float: none;}
+	}
+}
+
+/*** MODAL ****/
+
+.file input{display: none;}
+
+@import "admin/multiupload";
+@import "admin/singleupload";
+
+
+.ajaxForm{
+	//background: url(admin/ajax-loader.gif) no-repeat center;padding:0 2px;
+	position: relative;
+	.loading{
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		background: #fff url("admin/preloader_1-32.gif") no-repeat center;
+		.opacity(50);
+	}
+}
+
+#Loading{position: fixed;top:0;left:0;background:#fff url("admin/preloader_10-64.gif") no-repeat center;opacity:0.8;display: none;width:100%;height:100%;z-index:80}
+
+.fixed{.box-shadow(0 2px 0px rgba(0,0,0,0.1))}
+
+.col2{width:490px;float:left;}
+.space{clear:both;}
+
+.TagsControl {
+	//margin: 40px 0;
+	//padding: 10px 0;
+	//border-top: 1px solid fade(#000, 20);
+	//border-bottom: 1px solid fade(#000, 20);
+}
+
+#LabelTags {
+	margin: 10px 0;
+	border: 1px solid fade(#000, 20);
+	overflow: hidden;
+	padding: 2px;
+	label {
+		.btn;
+		cursor: pointer;
+		line-height: 20px;
+		margin: 2px;
+		padding: 3px 10px;
+		display: block;
+		float: left;
+		vertical-align: middle;
+		position: relative;
+		&::before {
+			//position: absolute;
+			.icon(@remove-sign);
+			display: inline-block;
+			margin-right: 5px;
+			color: #AAA;
+		}
+		&:hover::before {
+			color: @danger;
+		}
+		&.delete {
+			background: @default_hover;
+			&::before {
+				color: @danger;
+			}
+		}
+	}
+	input[type="text"] {
+		float: left;
+		border: 0;
+		width: auto;
+		padding: 5px;
+		margin: 2px;
+	}
+	//label:hover{}
+}
+
+#checkboxTags {
+	.clearfix;
+	overflow-y: auto;
+	max-height: 200px;
+	.checkbox {
+		#grid > .fluid > .span(6);
+		float: left;
+		margin-bottom: 5px;
+	}
+}
+
+.tagForm{
+	form{
+		margin-bottom: 20px;
+	}
+
+}
+
+.CheckboxCategories{
+	.clearfix;
+	overflow-y: auto;
+	max-height: 200px;
+	.checkbox{
+		margin-bottom: 5px;
+	}
+}
+
+.panel{
+	//border: 1px solid #f1f1f1;
+	.box-shadow(0 1px 2px fade(#000,10));
+	margin: 20px 0;
+	.border-radius(4px);
+	overflow: hidden;
+	.panel-title{
+		padding: 15px 10px;
+		border-bottom:  1px solid #C6CACC;
+		background: #f9f9f9;
+		font-weight: bold;
+		font-size: 18px;
+	}
+	.panel-content{
+		.clearfix;
+		padding: 10px;
+		background: #fff;
+	}
+	& .input:first-child,
+	& .input:last-child{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+}
+
+/** PLUGIN ACL **/
+.permissions{
+
+	ul{margin:0;padding:0;list-style: none;margin:0;padding:0;}
+	h3{background:@primary; color:#fff;padding:10px 10px;text-transform: uppercase;}
+	h4{border-bottom:1px solid @success; padding:10px;font-size: 18px;}
+	.controller{display:Block;padding:5px 10px;text-decoration: none;font-weight: bold;
+		&:before{.icon(@caret-right);margin-right: 5px;color:@primary;}
+		&:hover{background:@default;}
+		&.showing{
+			&:before{.icon(@caret-down);}
+		}
+		&.loading_permissions{
+			#gradient > .striped(@default);.background-size(40px 40px);
+			.animate(progress-bar-stripes 1s linear infinite);
+			&:after{.icon(@asterisk);.icon-spin;margin-left: 10px;color:@primary;}
+		}
+	}
+	.actions{margin:10px 50px;display:none;}
+	table{width:100%;text-align: left;border-collapse: collapse;background:#fff;border-bottom:1px solid @default;font-size: 14px;}
+	th{border-bottom:1px solid @default;font-size: 16px;}
+	td,th{width:100px;text-align: center;}
+	td:first-of-type, th:first-of-type{width:auto;text-align: left;}
+	td:first-of-type{font-weight: bold;}
+	tr:nth-child(even) td{
+		background:fade(#41586A,5);
+	}
+
+	tr:hover td{ background: fade(#39A6CA,20);}
+
+	.showing + .actions{display: block;}
+
+	.TogglePermision{.btn;display:block;text-align: center;margin:0 10px;}
+
+	.grant{.btn_success;
+		&:before{.icon(@ok);}
+		&:hover{background:@danger_hover;
+			&:before{.icon(@remove);}
+		}
+	}
+	.deny{.btn_danger;
+		&:before{.icon(@remove);}
+		&:hover{background:@success_hover;
+			&:before{.icon(@ok);}
+		}
+	}
+
+	[class^="icon-"]{margin:0;}
+
+	.changing{
+		&.grant{
+			#gradient > .striped(@danger);.background-size(40px 40px);
+			.animate(progress-bar-stripes 1s linear infinite);
+			&:before{.icon(@asterisk);.icon-spin;}
+		}
+		&.deny{
+			#gradient > .striped(@success);.background-size(40px 40px);
+			.animate(progress-bar-stripes 1s linear infinite);
+			&:before{.icon(@asterisk);.icon-spin;}
+		}
+	}
+
+}
+/** TERMINA PLUGIN ACL **/
+
+@media (max-width: 1366px) {
+	.main{.column(8);}
+	aside{.column(4);}
+	#content,footer,.buttonPane{margin-left: 155px;}
+	nav{width:155px;
+		a{font-size: 16px;}
+	}
+	#fndNav{width:155px;}
+	//footer{}
+
+}
+
+.dato{
+	margin-bottom:20px;
+	label{font-weight: bold; font-size: 18px;margin-bottom:5px;display: block;}
+	.valor{display:block; line-height: 20px;}
+}

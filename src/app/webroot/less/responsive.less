@@ -1,0 +1,442 @@
+
+// DEFAULT DESKTOP
+// ---------------
+
+@media only screen and (min-width: 1366px) and (max-width: 1500px) {
+
+	#container,.main-menu{min-width:1080px;margin:0 auto;}
+	#mainMenu{
+		a{font-size:13px;}
+	}
+	#Search{
+		input{width:80px;}
+		label{opacity:1.0;}
+	}
+	#benefits{
+		h3{height:50px;}
+	}
+	#featured_text{top:40px;left:30px;}
+	.hotelBlacklist{
+		height:270px;
+		h3{font-size:18px;}
+	}
+	#cancelAnywhere{
+		.center{min-width:1080px;line-height: 57px;height:57px;}
+	}
+}
+
+
+
+
+
+// PORTRAIT TABLET TO DEFAULT DESKTOP
+// ----------------------------------
+
+@media only screen and (max-width: 990px) {
+	#BBB{
+		img{width:100px;}
+	}
+	#Crumbs{margin-top:0;}
+	#cancelAnywhere{
+		.center{min-width:720px;margin:0 20px;width: auto;line-height: 57px;height:57px;font-size: 20px;}
+	}
+	#container,.main-menu{min-width:720px;margin:0 20px;width: auto;}
+	header{//text-align: center;
+		#logo{width:500px;
+			.logoText{font-size:20px;}
+			.tagLine{font-size:14px; }
+		}
+	}
+	#Search{position: relative;width:100%;margin:0; display: block; float: left;top:0;right:0;
+		.input{display: block;margin:5px 50px 5px 5px;}
+		input{width:100%;.box-sizing(border-box);height:30px;
+			&:focus{width:100%;}
+		}
+		button{top: 13px; right:60px;}
+		//.subtitle p{font-size:14px;}
+	}
+	#benefits{
+		h3{height:50px;}
+		.icon{margin-top:-10px;}
+		.odd{clear: left;}
+	}
+	#featured_text{top:20px;left:30px;font-size:38px;
+		strong,b{font-size:52px;margin:10px 0;}
+	}
+	#mainMenu{margin-top:90px;
+		#tabs{float: none;border:0;overflow: hidden;}
+		a{padding:12px 9px 10px;font-size:12px;}
+		.last a{border-right:0;}
+	}
+	#lang{position: absolute; bottom:0; right:0; z-index:10;
+		a{padding: 6px 10px 7px;}
+	}
+	#featured{
+		 .featured_bottom{padding-left:85px;
+			 .badge{top: -10px;
+				img{width:80px;}
+			 }
+			 .btn_contact{font-size:18px;padding:0 5px;font-size:14px;right:10px;top:15px;}
+			 .title{font-size:16px;}
+			 .subtitle{font-size:12px;}
+		}
+	}
+	.content{margin-bottom:10px;padding:0 0 6px;}
+	#benefits{
+		li{.column(6); margin:10px 0.83333333333333%;}
+	}
+
+	#features{
+		.features{float: none; margin:0; width:auto;overflow: hidden; margin-bottom:30px;
+			li{.column(6);margin-bottom:40px;}
+			.subtitle{height:60px;}
+			.odd{margin:10px @columnMargin;clear:left;}
+			.even{margin:10px @columnMargin;}
+		}
+	}
+
+	#testimonialList{float: none; display: block; width:auto;margin:0;overflow: hidden; margin-bottom:30px;
+		ul{margin:0; list-style: none;font-size:12px;text-shadow: 0 1px 0 #fff;}
+		li{.column(6); margin:10px @columnMargin;float: left;display: inline;}
+
+	}
+
+	.hotelBlacklist{
+		h2{height:60px; overflow: hidden;}
+		.more,.comments{position: static; display: inline-block;}
+		.more .icon{margin-left:0;margin-right:10px;float: left;}
+	}
+	footer{
+		.articlesList,.hotelsList{display: none;}
+	}
+
+	#contactFooter,#CommentForm{float: none; display: block; width:auto;margin:0 0 50px;margin:10px @columnMargin;}
+	#tips{.column(12);
+		.tiplink{.column(6);margin:10px @columnMargin;float: left;display: inline;}
+		.info_contact{margin-top:50px;}
+	}
+	.main_content{.column(9);}
+	aside{.column(3);margin:0;padding:10px @columnMargin;background: #F5F5F5;.border-radius(4px);}
+	.article{
+		pic{width:200px;}
+		.details{margin-left:0px;margin-right:0;clear:both;}
+		.dateComments{margin-bottom:10px;}
+		p{}
+	}
+	.hotelsFilter{
+		li {padding:5px;
+			img{width:40px;margin-top:10px;margin-right:5px;}
+			.details{margin-left:40px;}
+		}
+	}
+
+	#Testimonial {
+		.hotelBlacklist{
+			h3{height: auto;}
+		}
+		#testimonialList{
+			li{.column(12);}
+		}
+	}
+	#Contact{
+		#contactForm{.column(12);}
+		#benefits{.column(12);margin-top:50px;}
+	}
+	.contact_phone .phone strong,.contact_phone .phone b{display: block;}
+}
+
+@media only screen and (min-width: 767px) and (max-width: 990px){
+	aside{.column(4);
+		#testimonialList{
+			li{float: none; display: block; width:auto;}
+			.pic{height:48px;width:65px;
+				img{max-height:48px;}
+			}
+		}
+	}
+	#mainMenu{
+		#tabs{border-bottom:1px solid #ddd;}
+	}
+	#footermenu{
+		ul{list-style: circle;}
+		li{.column(6);}
+	}
+	.main_content{.column(8);}
+
+
+}
+// UP TO LANDSCAPE PHONE
+// ---------------------
+
+@media only screen and (max-width: 767px) {
+	#BBB{
+		img{width:80px;}
+	}
+	body{border-top:50px !important;}
+	p{font-size:14px;}
+	#cancelAnywhere{display: none;
+		.center{min-width:0px;margin:0 15px;width: auto;line-height: 57px;height:57px;font-size: 20px;}
+	}
+	#container,.main-menu{width:auto;min-width:0px;margin:0 15px;}
+	#main{margin-top:10px;}
+	header{padding-top:50px;overflow:hidden;text-align: center;
+		#logo{width:auto;text-align: center;margin-bottom:10px;float: none;
+			img{float: none;}
+		}
+		.consultation{margin-top:20px;float: none;text-align: center;
+
+			.phone{
+				font-size:16px;
+				.icon{display: none;}
+			}
+			.time{
+				.icon{display: none;}
+			}
+		}
+	}
+	#mainMenu{
+		margin:0px;position: absolute;position: fixed; left:0;top:0;width:100%;.border-radius(0);z-index:100; #gradient > .vertical(#0061a8,darken(#0061a8,5));padding-bottom:1px;
+		#tabs{display: none;height:0;border-bottom:1px solid #004475;.box-shadow(0 1px 0 fade(#fff,25)); }
+		#tabs.showing{height:auto; display: block;}
+		li{width:50%;
+			a{display:block;}
+		}
+		a{display:block;border-left:1px solid darken(#0061a8,10);border-right:1px solid lighten(#0061a8,5);color:#fff;text-shadow: 0 1px 0 #000;}
+		#showMenu{display:block; float: left;z-index:10;padding:12px 9px;.animate(height 0.5s linear);border-right:1px solid darken(#0061a8,10);.box-shadow(1px 0 0 fade(#fff,15));
+			.icon{background: url('web/sprite.png') no-repeat -214px -40px; width: 16px; height: 16px;display: block;margin:0 5px;}
+			&:hover{
+				.icon{background-position: -214px -40px;}
+			}
+		}
+	}
+
+	#Search{float: none;margin:5px 60px;width:auto;
+		.input{margin:0;}
+		input{.box-shadow(0 1px 0 fade(#fff,30));border: 1px solid #004475;}
+		button{right:10px;top:8px;}
+	}
+	#lang{float: right;position: static;border-left:1px solid darken(#0061a8,10);
+		a{border-left:1px solid lighten(#0061a8,5);}
+	}
+	.flexslider{display: none;}
+	#featured_text{position: static;width:auto;#font > .shorthand(28px,normal,auto);text-shadow: 0 3px 3px fade(#000,25);margin:15px 5px;text-align: center;
+		strong,b{color:#00355c;font-size:42px;margin:5px 0;}
+	}
+	#featured{
+		.featured_bottom{padding:5px;line-height:18px;padding-top:10px;
+			.badge{left:auto; right:5px;bottom:-25px;top:auto;}
+			.btn_contact{position: static;margin-top:10px;padding:0 15px;}
+			.title{margin-bottom:5px;}
+		}
+	}
+
+
+	.hotelBlacklist{text-align: center;
+		.column(6);height: auto;padding-bottom:10px;
+	}
+
+	footer{
+		.articlesList,.hotelsList{.column(12);}
+	}
+	#tips{.column(12);}
+
+	.main_content{.column(12)}
+	aside{.column(12);background:#fff;
+		#testimonialList{
+			li{.column(6);}
+			.even{clear:left;}
+		}
+		.articlesList {
+			li{.column(6);margin:10px @columnMargin;float: left;display: inline;
+				h4{height:50px;}
+			}
+			.even{clear:left;}
+		}
+		#BBB{
+			img{width:auto;}
+		}
+
+	}
+	.staff{float: none;text-align: center;
+		img{width:auto;}
+	}
+	.hotelsFilter{display: none !important;}
+	#Philanthropy{margin-bottom:50px;}
+	#Hotels{
+		.hotelBlacklist{.column(4);}
+	}
+	#footermenu{
+		ul{list-style: circle;}
+		li{.column(6);}
+	}
+
+	.shares{padding:10px;background:#F5F5F5;text-align: center;
+		.social{display: inline-block;}
+	}
+
+	.ui-dialog{width:300px !important;}
+}
+
+@media only screen and (max-width: 540px) {
+	#BBB{display: none;}
+	h2{font-size:25px;line-height:40px;}
+	h3{font-size:16px;line-height:25px;}
+	p{font-size: 12px;}
+	#cancelAnywhere{
+		.center{margin:0 5px;}
+	}
+	#container,.main-menu{margin:0 5px;}
+	#benefits{
+		.subtitle h3{height:auto;}
+		li{.column(12); margin:10px 0.83333333333333%;}
+	}
+
+	header{padding-top:50px;overflow:hidden;text-align: center;
+		#logo{width:auto;text-align: center;margin-bottom:10px;float: none;
+			img{float: none;}
+			.logoText{font-size:16px;
+				strong,b{font-size:20px;}
+			}
+			.tagLine{font-size:12px; }
+		}
+		.consultation{margin-top:20px;font-size:12px;}
+	}
+
+	#features{
+		.features{float: none; margin:0; width:auto;overflow: hidden; margin-bottom:30px;
+			li{.column(12);margin-bottom:40px;}
+			.subtitle{height:auto;}
+			.odd{margin:10px @columnMargin;clear:left;}
+			.even{margin:10px @columnMargin;}
+		}
+	}
+
+	#testimonialList{
+		li{.column(12);}
+	}
+
+	#blackList .btn{display:block; float: none;margin:10px; text-align: center;}
+	#blacklistSlide{overflow: hidden;
+		.pagingControls{margin:15px 0 10px;text-align: center;
+			.paging{float:none;font-size:11px;line-height:12px;
+				.prev{position: relative; top:2px; left:3px;padding:2px 7px 1px;}
+				.next{position: relative; top:2px; right:3px;padding:2px 7px 1px;}
+				a{padding:3px 7px;}
+				.current,.selected{padding:3px 7px;}
+			}
+		}
+	}
+	#tips .info_contact{margin-top:20px;}
+	.staff img{width:100%;}
+	aside {
+		#testimonialList {
+			li{.column(12);}
+		}
+		.articlesList{
+			li{.column(12);}
+		}
+		#BBB{margin:10px;
+			img{width:100%;}
+		}
+	}
+	#contactFooter,#CommentForm,#contactForm{
+		.column(12);
+		fieldset,.captcha,.checkbox{width:auto;margin:0 1.5%;float: none;}
+		.textarea,.btn_principal{width:auto;margin:0 1.5%;float: none;margin-top:20px;float: none;}
+		.captcha{margin-top: 10px;}
+		.checkbox{clear:left;margin-top:40px;}
+		.btn_principal{display:block;float: none;width:100%;padding:10px 0;margin:20px 0 0;}
+	}
+	#CommentForm{margin-bottom:50px;}
+	.pagingControls{
+		text-align: center;
+		.sort{margin-bottom:20px}
+		.sort,.paging{float: none;}
+	}
+	.article{
+		.pic{float: none;text-align: center;
+			img{width:100%;max-width:280px;}
+		}
+		.details{margin-left:0;}
+	}
+	#relatedArticles {display: none;
+		.relatedArticle{.column(12);}
+	}
+	#comments {
+		.btn_comment {float: none; display: block;text-align: center;}
+	}
+	.testimonial{
+		.pic {
+			img{width:85px;}
+		}
+		.hotel{text-align: center;padding-bottom:10px;
+			.btn{position:static;display: inline-block;margin-bottom:10px;}
+			a.hotelName{margin-bottom:10px;padding:0;}
+			em{padding:0;}
+		}
+	}
+	#Testimonial {margin-bottom:50px;
+		.hotelBlacklist,#testimonialList{.column(12);}
+	}
+	#tips a{.column(12);}
+	.info_contact{margin-top:0;}
+	.contact_phone{
+		h2{font-size:25px;line-height:31px;}
+		p{font-size:18px;}
+		.phone{font-size:38px;}
+	}
+	#Hotels{
+		.hotelBlacklist{.column(6);}
+	}
+	.full_page {
+		.action{float: none;text-align: center;}
+	}
+	#Contact #benefits li {.column(12);}
+
+	.ui-dialog{width:300px;}
+	#footermenu{
+		ul{list-style: circle;}
+		li{width:auto; float:none;display:block;}
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.ui-dialog{width:250px !important;
+		p{font-size: 12px;}
+	}
+}
+
+
+
+@media only screen and (min-width: 1500px) {
+	#cancelAnywhere{
+		.center{width:1200px;min-width:1200px;margin:0 auto;}
+	}
+	#container,.main-menu{width:1200px;min-width:1200px;margin:0 auto;}
+	#mainMenu{
+		a{font-size:13px;}
+	}
+	#Search{
+		input{width:120px;}
+	}
+	#featured_text{top:50px;left:80px;font-size:48px;}
+	#mainMenu{
+		a{padding:12px 15px 10px;}
+	}
+	#lang{
+		a{padding:6px 10px 7px;}
+	}
+	#featured{
+		 .featured_bottom{padding-left:180px;
+			 .badge{top: -65px;
+				img{width:auto;}
+			 }
+			 .btn_contact{font-size:24px;padding-top:6px;top:13px;}
+		}
+	}
+	.hotelBlacklist{
+		height:275px;
+		h3{font-size:18px;}
+	}
+}
+

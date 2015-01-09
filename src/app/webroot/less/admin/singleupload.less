@@ -1,0 +1,95 @@
+.singleUpload{
+	margin:20px 0;min-height: 85px;background: #40C883; overflow: hidden;position: relative;color:#354857;text-align: center;
+	.label{display:block;font-size:14px;padding:10px;background: #009D67;color:#fff;
+		label{font-weight: normal;}
+	}
+	.marco{width:70px;height:70px;position: absolute; left:7px; top:7px;z-index:10;}
+	.btn{padding:5px 15px; margin:0;margin-left:5px;font-size: 12px;
+		span{float:left;}
+		.btnIcon{width:16px; height:16px;margin-right:5px;}
+	}
+	.ChooseFiles{margin:5px 0 10px 0;font-weight: bold; padding:10px 10px 10px 10px;
+		.btnIcon{.icon-2x;margin-right: 20px;}
+		span{line-height:17px;}
+	}
+	.chooseDisabled{display: none;}
+	.UploadHelp{float: left; overflow: hidden;padding:2px 0;.border-radius(50px);position: absolute; top:2px; right:5px;display: none;
+		.btnIcon{background: url(admin/help_upload.png) no-repeat center;margin:0;}
+	}
+	.DeleteAllUploads , .CancelAllUploads, .loading, .help,.statusBar{display: none;}
+	.hidden, .UploadInput{display: none;}
+	.notifications{
+		.message{padding:10px 10px 10px 30px; margin:0;font-weight: bold;font-weight: normal;position: relative; display: none;}
+		.close{position: absolute;right:6px; top:9px;width:17px; height:17px; display: block;cursor:pointer;
+			&:hover{color:#354857;}
+		}
+		.info{background: #DDF1FE url("admin/turquoise_button.png") no-repeat 8px center; border: 1px solid #B0CFFB;color:#003387;.box-shadow(0 0 5px #B0CFFB inset);}
+		.success{background: #C6FFD1 url("admin/green_button.png") no-repeat 8px center; border: 1px solid #00F300;color:#045500;.box-shadow(0 0 5px #00F300 inset);}
+		.error{background: #F23F31; color:#fff;}
+	}
+	.UploadiQueue{position: relative;z-index:8;text-align: left;
+		.UploadiQueueItem{position: relative;overflow: hidden;padding-bottom:10px;min-height: 60px;border-top:1px solid #2B9E5F;}
+		.loadingIndicator{width:50px; height:50px; position: absolute; top:8px; left:8px; overflow: hidden;background: url(admin/loading-wheel.gif) no-repeat center;text-align: center;z-index:9;
+			img{height:50px;}
+		}
+		.nameEllipsis{overflow:hidden; display: block; text-overflow: clip ellipsis; white-space: nowrap;margin: 10px 30px 5px 67px;}
+		.fileName{text-overflow: clip ellipsis; white-space: nowrap;font-weight: normal;}
+
+		.btn{padding:3px;}
+		.cancelItem{float: right; margin-right: 5px;padding:4px;margin-top:1;
+			.btnIcon{margin:0;width:13px; height:13px;}
+			.btnText{display: none;}
+		}
+
+		.buttons{margin-left: 60px;}
+
+		.deleteItem{padding:5px 10px 5px 10px;display: none;
+			.btnIcon{.icon(@trash);width:9px; height:11px;margin-right:5px;}
+			.btnText{float:left;margin:0 5px;}
+		}
+		.editItem{padding:5px 10px 5px 10px; display: none;
+			.btnIcon{.icon(@edit);width:9px; height:11px;margin-right: 5px;}
+			.btnText{float:left;margin:0 5px;}
+		}
+		.UploadiProgress{display:block;margin: 0 33px 0 67px;.border-radius(3px);position:relative;font-size:12px;background:#2B9E5F;font-weight: normal;
+			.UploadiProgressBar{display: block;height:22px; width:0;.border-radius(3px);
+				#gradient > .striped(#F3BA0D);.background-size(40px 40px);
+				.animate(progress-bar-stripes 1s linear infinite);
+			}
+		}
+		.fileSize{position: absolute; top:4px; left:5px;}
+		.uploadingInfo{position: absolute; right:10px; top:4px;}
+		.percentage{margin-right: 5px;}
+		.completed{
+			//.nameEllipsis{ margin-top:10px;margin-left:60px;}
+			.deleteItem,.editItem{display:inline;}
+			.cancelItem,.UploadiProgress,.UploadiProgress,.uploadingInfo{display: none;}
+			.loadingIndicator img{.opacity(100);}
+			.fileSize{left:60px;}
+		}
+		.enterEffect{opacity:1.0;}
+		.hiddeEffect{opacity:0;}
+		.data{display: none;margin:10px 10px 10px 69px;
+			.input{margin:0 0 10px;
+				input,textarea{margin:0;}
+			}
+			.btn{font-weight: bold; padding:5px 10px; border-color:#A6B0BD;}
+		}
+		.editingItem{
+			.data{display: block;}
+			.nameEllipsis,.fileSize{display: none;}
+			.deleteItem,.editItem{display:none;}
+			/*.loadingIndicator{width:100px;height:100px;margin:10px 0 0 10px;
+				img{height:100px;}
+			}*/
+		}
+		.input{
+			label{font-size:12px;}
+			input,textarea{border:1px solid lighten(#009D67,5);padding:8px 10px;
+				&:focus{}
+			}
+		}
+	}
+}
+.docOver{border-color:rgba(82,128,236,0.75);}
+.dragOver{@shadows:0 1px 1px rgba(0,0,0,0.1) inset, 0 0px 8px rgba(82,128,236,0.5);.box-shadow(@shadows);}

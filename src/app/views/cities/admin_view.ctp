@@ -1,0 +1,33 @@
+<?php /* @var $this View */
+$this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
+$this->Html->script('tiny',array('inline'=>false));
+$this->Html->addCrumb('[:System.admin_cities_list:]',array('action' => 'index'));
+$this->Html->addCrumb($record['City']['name']);
+echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
+?>
+	<div class="span4 offset4">
+		<h2>[:info_City:]</h2>
+		<fieldset>
+			<legend>[:City_name_input:]</legend>
+			<?= $record['City']['name'] ?>
+		</fieldset>
+		<div class="tools">
+			<div class="pull-left">
+				<?php
+					if($record['City']['trash']){
+						echo $this->Html->link("<i class='icon-ok'></i> [:restore:]",array('action'=>'restore',$record['City']['id']),array('class'=>'btn noHistory','escape'=>false,'rev'=>'#data'));
+					}
+					echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['City']['id']),array('class'=>'btn btn_success','escape'=>false));
+				?>
+			</div>
+			<div class="pull-right">
+				<?php
+					echo $this->Html->link("<i class='icon-remove-sign'></i> [:delete:]",array('action'=>$record['City']['trash'] ? 'destroy': 'delete',$record['City']['id']),array('class'=>'btn_danger','rel'=>'[:delete_city_name:]: '.h($record['City']['name']).'?','escape'=>false));
+				?>
+			</div>
+		</div>
+	</div>
+<?php
+echo $this->Ajax->divEnd("data");
+?>
+

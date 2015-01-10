@@ -100,11 +100,11 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing('required_field',array('desc'=>'Mensaje de error de campo requerido','js'=>true,'tab'=>'modulo'));
 	$this->I18n->addMissing('valid_email',array('desc'=>'Mensaje de error de email valido','js'=>true,'tab'=>'modulo'));
 
-	$this->I18n->addMissing('now-cancel-timeshare-anywhere',array('desc'=>'Mensaje que dice que se cancelan contratos de todos lados'));
+	$this->I18n->addMissing("[:System.back_to_list:]", array('desc'=>"boton volver a la lista que aparece cuando no encuentra ningun elemento en las busquedas","tab"=>"modulo"));
 
 	$this->I18n->addMissing('m_articles_url',array('desc'=>'url del blog','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('m_about_url',array('desc'=>'url de la pagina about','js'=>false,'tab'=>'urls'));
-	$this->I18n->addMissing('m_faq_url',array('desc'=>'url de la pagina de preguntas frecuentes','js'=>false,'tab'=>'urls'));
+
 	$this->I18n->addMissing('m_contacts_url',array('desc'=>'url de la pagina de la pagina de contacto','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('tag_url',array('desc'=>'url de la pagina de la etiqueta','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('category_url',array('desc'=>'url de la pagina de la categoria','js'=>false,'tab'=>'urls'));

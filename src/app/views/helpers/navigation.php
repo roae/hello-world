@@ -20,8 +20,6 @@ class NavigationHelper extends HtmlHelper {
 	var $__isCurrentWhen = array('admin','plugin','controller');
 
 	var $__item=array();
-
-	var $__someCurrentItem = false;
 	/**
 	 * estructura del ribbonbar
 	 * @var array
@@ -86,6 +84,7 @@ class NavigationHelper extends HtmlHelper {
 				$submenu = '';
 				if($recursive && !empty($item['menu'])){
 					#Debug::dump($item['menu']);
+					$currentChild = false;
 					$submenu = $this->menu($item['menu'],array(),$itemOptions,$currentChild);
 					if($currentChild && in_array('child',$isCurrentWhen)){
 						$attributes = $this->addClass($attributes,'current');
@@ -104,10 +103,6 @@ class NavigationHelper extends HtmlHelper {
 				}
 				$title=$this->__replaceKeys($title,$item);
 				if($link = $this->link($title,$url,$this->__item)){
-					if($this->__someCurrentItem){
-						$attributes = $this->addClass($attributes,"current");
-						$this->__someCurrentItem = false;
-					}
 					$out .= $this->tag('li',$link . $submenu,$attributes);
 				}
 				$index++;
@@ -234,9 +229,7 @@ class NavigationHelper extends HtmlHelper {
 				}
 			}
 		}
-		/*if(in_array('child',$params)){
-			$this->__someCurrentItem = true;
-		}*/
+
 		return true;
 
 	}

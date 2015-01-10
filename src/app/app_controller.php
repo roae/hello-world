@@ -114,6 +114,25 @@ class AppController extends Controller{
 					'url'=>'/admin/','isCurrentWhen'=>array('url'),
 				),*/
 				#'[:madmin_media:]'=>array('url'=>'/admin/media/','isCurrentWhen'=>array('plugin')),
+				'[:madmin_cities:]'=>array(
+					'url'=>array('controller'=>'cities','action'=>'index','admin'=>true,'plugin'=>false),
+					'isCurrentWhen'=>array('child'),
+					'menu'=>array(
+						'[:madmin_cities_list:]'=>array(
+							'url'=>array('controller'=>'cities','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'[:madmin_cities_add:]'=>array(
+							'url'=>array('controller'=>'cities','action'=>'add','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'<i class="icon-trash"></i> [:madmin_cities_trash:]'=>array(
+							'url'=>array('controller'=>'cities','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+					)
+				),
 				'[:madmin_articles:]'=>array(
 					'url'=>array('controller'=>'articles','action'=>'index','admin'=>true,'plugin'=>false),
 					'isCurrentWhen'=>array('child'),

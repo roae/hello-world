@@ -1,0 +1,21 @@
+CREATE TABLE `locations` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `vista_code` varchar(255) DEFAULT NULL,
+  `vista_service_url` varchar(255) DEFAULT NULL,
+  `phone_numbers` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `neighborhood` varchar(255) DEFAULT NULL,
+  `interior` varchar(255) DEFAULT NULL,
+  `outside` varchar(255) DEFAULT NULL,
+  `lat` varchar(255) DEFAULT NULL,
+  `lon` varchar(255) DEFAULT NULL,
+  `description` text,
+  `status` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

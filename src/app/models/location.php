@@ -1,0 +1,65 @@
+<?php
+/**
+ * Class Location
+ * @property $Location Location
+ */
+class Location extends AppModel {
+
+	var $name = "Location";
+
+	var $belongsTo = array(
+		'City',
+	);
+	var $hasOne = array( );
+	var $hasAndBelongsToMay = array( );
+	var $hasMany = array(  );
+	var $displayField="name";
+
+	var $actsAs = array(
+		'Media.Uploader' => array(
+			'Gallery' => array(
+				#'resize' => true,
+				'copies' => array(
+					'snipped' => array('width' => 100,'height'=>100,'image_ratio_crop' => true),
+					'mini' => array('width' => 75,'height'=>75,'image_ratio_crop' => true),
+					'medium' => array('width' => 280,'height'=>135,'image_ratio_crop' => true),
+					'big' => array('width' => 775,'image_ratio_crop' => false,'image_ratio_y'=>true),
+				),
+				'limit' => 10,
+				'required' => false,
+				#'image_ratio_crop' => true,
+				'allowed' => array('images'),
+				'max_file_size'=>2,// MB
+			)
+		)
+	);
+
+	var $validate = array(
+		'name'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'phone_numbers'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'city_id'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'vista_code'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'vista_service_url'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'street'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'interior'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'state'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+	);
+
+}
+?>

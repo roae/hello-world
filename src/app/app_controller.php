@@ -133,6 +133,25 @@ class AppController extends Controller{
 						),
 					)
 				),
+				'[:madmin_locations:]'=>array(
+					'url'=>array('controller'=>'locations','action'=>'index','admin'=>true,'plugin'=>false),
+					'isCurrentWhen'=>array('child'),
+					'menu'=>array(
+						'[:madmin_locations_list:]'=>array(
+							'url'=>array('controller'=>'locations','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'[:madmin_locations_add:]'=>array(
+							'url'=>array('controller'=>'locations','action'=>'add','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'<i class="icon-trash"></i> [:madmin_locations_trash:]'=>array(
+							'url'=>array('controller'=>'locations','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+					)
+				),
 				'[:madmin_articles:]'=>array(
 					'url'=>array('controller'=>'articles','action'=>'index','admin'=>true,'plugin'=>false),
 					'isCurrentWhen'=>array('child'),

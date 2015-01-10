@@ -1089,33 +1089,40 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .item-view{
-	fieldset{
-		position: relative;
-		border: 1px solid fade(#C6CACC,30);
-		.border-radius(4px);
-		padding:30px 10px 10px;
-		font-size: 18px;
-		margin:10px 0;
-		legend{
-			color:@primary;
-			position: absolute;
-			top:0;
-			left:0;
-			background: #F1F7F9;
-			.border-radius(4px 0 4px 0);
-			padding: 3px 5px;
-			border:1px solid fade(#C6CACC,30);
-			border-top:0;
-			border-left:0;
-			font-weight: normal;
-			font-size: 14px;
-		}
-	}
+
 	.tools{
 		.clearfix;
 		padding:10px;
 		//background: #F1F7F9;
 		border-top:1px solid fade(#C6CACC,50);
+	}
+}
+
+fieldset{
+	position: relative;
+	border: 1px solid fade(#C6CACC,30);
+	.border-radius(4px);
+	padding:30px 10px 10px;
+	font-size: 18px;
+	margin:10px 0;
+	legend{
+		color:@primary;
+		position: absolute;
+		top:0;
+		left:0;
+		background: #F1F7F9;
+		.border-radius(4px 0 4px 0);
+		padding: 3px 5px;
+		border:1px solid fade(#C6CACC,30);
+		border-top:0;
+		border-left:0;
+		font-weight: normal;
+		font-size: 14px;
+	}
+
+	.input{
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
 	}
 }
 
@@ -1392,3 +1399,5 @@ table.mceLayout, textarea.tinyMCE {
 	label{font-weight: bold; font-size: 18px;margin-bottom:5px;display: block;}
 	.valor{display:block; line-height: 20px;}
 }
+
+@import "locations";

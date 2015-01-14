@@ -7,10 +7,7 @@ echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
 ?>
 	<div class="span4 offset4">
 		<h2>[:info_City:]</h2>
-		<fieldset>
-			<legend>[:City_name_input:]</legend>
-			<?= $record['City']['name'] ?>
-		</fieldset>
+		<?= $this->element("admin/view-field",array('label'=>'[:City_name_input:]','data'=>$record['City']['name']));?>
 		<div class="tools">
 			<div class="pull-left">
 				<?php

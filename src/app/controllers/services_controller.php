@@ -1,13 +1,16 @@
 <?php
-class RoomsController extends AppController{
-	var $name = "Rooms";
+class ServicesController extends AppController{
+	var $name = "Services";
 	var $components = array();
 	var $helpers = array();
 
 	var $paginate = array(
 		'limit'=>30,
 		'conditions'=>array(
-			'Room.trash'=>0
+			'Service.trash'=>0
+		),
+		'contain'=>array(
+			'Icon',
 		)
 	);
 
@@ -15,20 +18,20 @@ class RoomsController extends AppController{
 		$conditions=array();
 		if(isset($this->data['Xpagin']['search'])){
 			if(is_numeric($this->data['Xpagin']['search'])){
-				$conditions=array('Room.id'=>$this->data['Xpagin']['search']);
+				$conditions=array('Service.id'=>$this->data['Xpagin']['search']);
 			}else{
-				$conditions=array("Room.name like"=>"%{$this->data['Xpagin']['search']}%");
+				$conditions=array("Service.name like"=>"%{$this->data['Xpagin']['search']}%");
 			}
 		}
-		$this->set("recordset",$this->paginate("Room",$conditions));
+		$this->set("recordset",$this->paginate("Service",$conditions));
 	}
 
 	function admin_add(){
 		if(!empty($this->data)){
-			$this->Room->set($this->data);
-			if($this->Room->validates()){
-				if($this->Room->save()){
-					$this->Notifier->success("[:Room_saved_successfully:]");
+			$this->Service->set($this->data);
+			if($this->Service->validates()){
+				if($this->Service->save()){
+					$this->Notifier->success("[:Service_saved_successfully:]");
 					$this->redirect(array('action'=>'index'));
 				}else{
 					$this->Notifier->error("[:an_error_ocurred_on_the_server:]");
@@ -37,41 +40,44 @@ class RoomsController extends AppController{
 				$this->Notifier->error("[:some_fields_invalid:]");
 			}
 		}
-		$this->set("locations",$this->Room->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0))));
 	}
 
 	function admin_edit($id){
 		if(!empty($id)){
 			if(!empty($this->data)){
-				$this->Room->set($this->data);
-				if($this->Room->validates()){
-					if($this->Room->save($this->data, false)){
-						$this->Notifier->success("[:Room_updated_successfully:]");
+				$this->Service->set($this->data);
+				if($this->Service->validates()){
+					if($this->Service->save($this->data, false)){
+						$this->Notifier->success("[:Service_updated_successfully:]");
 						$this->redirect(array('action'=>'index'));
 					}else{
-						$this->Room->rollback();
+						$this->Service->rollback();
 						$this->Notifier->error("[:an_error_ocurred_on_the_server:]");
 					}
 				}else{
 					$this->Notifier->error("[:some_fields_invalid:]");
 				}
 			}else{
-				$this->data = $this->Room->read(null, $id);
-				$this->set("locations",$this->Room->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0))));
+				$this->Service->contain(array(
+					"Icon",
+					"Gallery",
+				));
+				$this->data = $this->Service->read(null, $id);
 			}
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 	}
 
 	function admin_view($id){
 		if(!empty($id)){
-			$this->Room->contain(array(
-				"Location",
+			$this->Service->contain(array(
+				"Icon",
+				"Gallery",
 			));
-			$this->set("record",$this->Room->read(null, $id));
+			$this->set("record",$this->Service->read(null, $id));
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 	}
 
@@ -84,8 +90,8 @@ class RoomsController extends AppController{
 				$this->redirect(array('action'=>'index'));
 			}
 			if(!empty($state) || $state == 0){
-				if($this->Room->updateAll(array('Room.status' => $state), array('Room.id' => $id))){
-					$this->Notifier->success($this->Interpreter->process(($state) ? "[:Room_publish_successfully:]" : "[:Room_unpublish_successfully:]"));
+				if($this->Service->updateAll(array('Service.status' => $state), array('Service.id' => $id))){
+					$this->Notifier->success($this->Interpreter->process(($state) ? "[:Service_publish_successfully:]" : "[:Service_unpublish_successfully:]"));
 				}else{
 					$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 				}
@@ -93,7 +99,7 @@ class RoomsController extends AppController{
 				$this->Notifier->error($this->Interpreter->process("[:specify_a_state:]"));
 			}
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
 			$this->redirect(array('action'=>'index'));
@@ -108,13 +114,13 @@ class RoomsController extends AppController{
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
 				$this->redirect(Router::parse($this->referer()));
 			}
-			if($this->Room->updateAll(array('Room.trash' => 1), array('Room.id' => $id))){
-				$this->Notifier->success($this->Interpreter->process("[:Room_deleted_successfully:]"));
+			if($this->Service->updateAll(array('Service.trash' => 1), array('Service.id' => $id))){
+				$this->Notifier->success($this->Interpreter->process("[:Service_deleted_successfully:]"));
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
 			$this->redirect(Router::parse($this->referer()));
@@ -122,15 +128,15 @@ class RoomsController extends AppController{
 	}
 
 	function admin_trash(){
-		$conditions=array('Room.trash'=>1);
+		$conditions=array('Service.trash'=>1);
 		if(isset($this->data['Xpagin']['search'])){
 			if(is_numeric($this->data['Xpagin']['search'])){
-				$conditions=am($conditions,array('Room.id'=>$this->data['Xpagin']['search']));
+				$conditions=am($conditions,array('Service.id'=>$this->data['Xpagin']['search']));
 			}else{
-				$conditions=am($conditions,array("Room.name like"=>"%{$this->data['Xpagin']['search']}%"));
+				$conditions=am($conditions,array("Service.name like"=>"%{$this->data['Xpagin']['search']}%"));
 			}
 		}
-		$this->set("recordset",$this->paginate("Room",$conditions));
+		$this->set("recordset",$this->paginate("Service",$conditions));
 	}
 
 	function admin_restore($id){
@@ -141,14 +147,14 @@ class RoomsController extends AppController{
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
 				$this->redirect(array('action'=>'index'));
 			}
-			if($this->Room->updateAll(array('Room.trash' => 0), array('Room.id' => $id))){
-				$this->Notifier->success($this->Interpreter->process("[:Room_restored_successfully:]"));
+			if($this->Service->updateAll(array('Service.trash' => 0), array('Service.id' => $id))){
+				$this->Notifier->success($this->Interpreter->process("[:Service_restored_successfully:]"));
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
 			$this->redirect(Router::parse($this->referer()));
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
 			$this->redirect(array('action'=>'index'));
@@ -163,13 +169,13 @@ class RoomsController extends AppController{
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
 				$this->redirect(array('action'=>'index'));
 			}
-			if($this->Room->deleteAll(array('id' => $id))){
-				$this->Notifier->success($this->Interpreter->process("[:Room_deleted_successfully:]"));
+			if($this->Service->deleteAll(array('id' => $id))){
+				$this->Notifier->success($this->Interpreter->process("[:Service_deleted_successfully:]"));
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id_add:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id_add:]"));
 		}
 		$this->redirect(array('action'=>'index'));
 	}

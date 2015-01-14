@@ -101,7 +101,7 @@ class CitiesController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect($this->referer());
+				$this->redirect(Router::parse($this->referer()));
 			}
 			if($this->City->updateAll(array('City.trash' => 1), array('City.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:City_deleted_successfully:]"));
@@ -112,7 +112,7 @@ class CitiesController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect($this->referer());
+			$this->redirect(Router::parse($this->referer()));
 		}
 	}
 
@@ -141,7 +141,7 @@ class CitiesController extends AppController{
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect($this->referer());
+			$this->redirect(Router::parse($this->referer()));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id:]"));
 		}
@@ -150,7 +150,7 @@ class CitiesController extends AppController{
 		}
 	}
 
-	function admin_destroy(){
+	function admin_destroy($id){
 		if(!empty($id) || $this->Xpagin->isExecuter){
 			if(empty($id) && !empty($this->data['Xpagin']['record'])){
 				$id = $this->data['Xpagin']['record'];

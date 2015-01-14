@@ -57,10 +57,14 @@ class LocationsController extends AppController{
 					$this->Notifier->error("[:some_fields_invalid:]");
 				}
 			}else{
-				$this->Location->contain(array("Gallery"));
+				$this->Location->contain(array(
+					"Gallery",
+					"Service"
+				));
 				$this->data = $this->Location->read(null, $id);
 			}
 			$this->set("cities",$this->Location->City->find("list",array('conditions'=>array('City.status'=>1,'City.trash'=>0))));
+			$this->set("services",$this->Location->Service->find("list",array('conditions'=>array('Service.trash'=>0))));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
@@ -68,6 +72,12 @@ class LocationsController extends AppController{
 
 	function admin_view($id){
 		if(!empty($id)){
+			$this->Location->contain(array(
+				"Gallery",
+				"Service"=>array(
+					'Icon',
+				)
+			));
 			$this->set("record",$this->Location->read(null, $id));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
@@ -105,7 +115,7 @@ class LocationsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect($this->referer());
+				$this->redirect(Router::parse($this->referer()));
 			}
 			if($this->Location->updateAll(array('Location.trash' => 1), array('Location.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Location_deleted_successfully:]"));
@@ -116,7 +126,7 @@ class LocationsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect($this->referer());
+			$this->redirect(Router::parse($this->referer()));
 		}
 	}
 
@@ -145,7 +155,7 @@ class LocationsController extends AppController{
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect($this->referer());
+			$this->redirect(Router::parse($this->referer()));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
@@ -154,7 +164,7 @@ class LocationsController extends AppController{
 		}
 	}
 
-	function admin_destroy(){
+	function admin_destroy($id){
 		if(!empty($id) || $this->Xpagin->isExecuter){
 			if(empty($id) && !empty($this->data['Xpagin']['record'])){
 				$id = $this->data['Xpagin']['record'];
@@ -167,10 +177,13 @@ class LocationsController extends AppController{
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
+			$this->redirect(Router::parse($this->referer()));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id_add:]"));
 		}
-		$this->redirect(array('action'=>'index'));
+		if(!$this->Xpagin->isExecuter){
+			$this->redirect(array('action'=>'index'));
+		}
 	}
 
 }

@@ -1,7 +1,8 @@
 <?php
 /**
  * Class Location
- * @property $Location Location
+ * @property $Service Service
+ * @property $City City
  */
 class Location extends AppModel {
 
@@ -11,7 +12,9 @@ class Location extends AppModel {
 		'City',
 	);
 	var $hasOne = array( );
-	var $hasAndBelongsToMay = array( );
+	var $hasAndBelongsToMany = array(
+		"Service"
+	);
 	var $hasMany = array(  );
 	var $displayField="name";
 

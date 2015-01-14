@@ -42,6 +42,7 @@ echo $this->Form->create("Location");
 				</fieldset>
 			</div>
 			<div class="span3">
+				<?= $this->I18n->input("Service");?>
 				<?= $this->Uploader->input('Gallery',array('label'=>'[:location_gallery:]')) ?>
 				<div class="help">
 					<i class="icon-asterisk icon-3x"></i>

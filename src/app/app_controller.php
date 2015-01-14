@@ -152,6 +152,45 @@ class AppController extends Controller{
 						),
 					)
 				),
+				'[:madmin_rooms:]'=>array(
+					'url'=>array('controller'=>'rooms','action'=>'index','admin'=>true,'plugin'=>false),
+					'isCurrentWhen'=>array('child'),
+					'menu'=>array(
+						'[:madmin_rooms_list:]'=>array(
+							'url'=>array('controller'=>'rooms','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'[:madmin_rooms_add:]'=>array(
+							'url'=>array('controller'=>'rooms','action'=>'add','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'<i class="icon-trash"></i> [:madmin_rooms_trash:]'=>array(
+							'url'=>array('controller'=>'rooms','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+					)
+				),
+				'[:madmin_services:]'=>array(
+					'url'=>array('controller'=>'services','action'=>'index','admin'=>true,'plugin'=>false),
+					'isCurrentWhen'=>array('child'),
+					'menu'=>array(
+						'[:madmin_services_list:]'=>array(
+							'url'=>array('controller'=>'services','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'[:madmin_services_add:]'=>array(
+							'url'=>array('controller'=>'services','action'=>'add','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'<i class="icon-trash"></i> [:madmin_services_trash:]'=>array(
+							'url'=>array('controller'=>'services','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+					)
+				),
+				'|',
 				'[:madmin_articles:]'=>array(
 					'url'=>array('controller'=>'articles','action'=>'index','admin'=>true,'plugin'=>false),
 					'isCurrentWhen'=>array('child'),

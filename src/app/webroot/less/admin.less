@@ -468,7 +468,7 @@ nav{
 			.input{
 				float: left;
 				margin: 5px 0;
-				input{ padding: 6px; }
+				input{ padding: 4px 5px; }
 				select{ padding: 5px; }
 
 				& + .input{
@@ -1123,6 +1123,37 @@ fieldset{
 	.input{
 		margin-top: 10px !important;
 		margin-bottom: 10px !important;
+	}
+}
+
+.Gallery{
+	list-style: none;
+	margin:0;
+	padding:0;
+	overflow: hidden;
+	li{
+		float:left;
+		margin: 5px;
+	}
+	img{
+		display:inline-block;
+	}
+	a{
+		padding: 5px;
+		border: 1px solid @default;
+		border-radius: 4px;
+		height: 100px;
+		width: 100px;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		.box-shadow(0 1px 1px fade(@default_hover,10));
+		&:hover{
+			border:1px solid @info;
+		}
+	}
+	.imgThumb{
+		display: table;
 	}
 }
 

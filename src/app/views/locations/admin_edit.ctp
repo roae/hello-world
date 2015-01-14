@@ -1,7 +1,7 @@
 <?php /* @var $this View */
 $this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
 $this->Html->script('tiny',array('inline'=>false));
-$this->Html->addCrumb('[:System.admin_cities_list:]',array('action' => 'index'));$this->Html->addCrumb('[:System.admin_cities_add:]');
+$this->Html->addCrumb('[:System.admin_cities_list:]',array('action' => 'index'));$this->Html->addCrumb('[:System.admin_cities_edit:]');
 echo $this->Form->create("Location");
 echo $this->Form->hidden("id");
 ?>
@@ -43,6 +43,11 @@ echo $this->Form->hidden("id");
 			</fieldset>
 		</div>
 		<div class="span3">
+			<fieldset>
+				<legend>[:select_location_services:]</legend>
+				<?= $this->I18n->input("Service",array('multiple'=>'checkbox','label'=>false,'class'=>'checkbox span6'));?>
+			</fieldset>
+
 			<?= $this->Uploader->input('Gallery',array('label'=>'[:location_gallery:]')) ?>
 			<div class="help">
 				<i class="icon-asterisk icon-3x"></i>

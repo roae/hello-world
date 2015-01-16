@@ -40,13 +40,14 @@
 	}
 
 	Configure::write('Group',array(
-		'System'=>1,
-		'Admin'=>2,
-		'Registered'=>3,
-		'Anonymous'=>4,
-	));
+    		'System'=>1,
+    		'Admin'=>2,
+    		'Editor'=>3,
+    		'Registered'=>4,
+    		'Anonymous'=>5,
+    	));
 
-	Configure::write("AnonyUser",array('id'=>3,'username'=>'anony','group_id'=>Configure::read('Group.Anonymous')));
+    Configure::write("AnonyUser",array('id'=>4,'username'=>'anony','group_id'=>Configure::read('Group.Anonymous')));
 
 	Configure::write("Contact","contacto@citicinemas.com");
 

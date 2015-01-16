@@ -410,9 +410,9 @@ class AppController extends Controller{
 			$login = r('@','.',$this->Auth->user('username'));
 			$user=$this->Auth->user();
 			if($user['User']['group_id'] == Configure::read("Group.Anonymous")){
-				$menu = Cache::read("Menu.$name.$login");
+				#$menu = Cache::read("Menu.$name.$login");
 			}else{
-				$menu = $this->Session->read("Menu.$name.$login");
+				#$menu = $this->Session->read("Menu.$name.$login");
 			}
 
 			if(!empty($menu)){

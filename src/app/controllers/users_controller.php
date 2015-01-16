@@ -138,21 +138,7 @@ class UsersController extends AppController{
 		$this->layout="login";
 		if(!empty($this->data)){
 			if($this->Auth->login()){
-				if(($this->Auth->user('group_id') != Configure::read('Group.Registered'))){
-					if($this->Auth->user('username')=='cmoretti@swaptimenow.com'){
-						$this->redirect('/admin/clients');
-					}else{
-						$this->redirect($this->Auth->loginRedirect);
-					}
-				}else{
-					#pr($this->Auth->user('username'));
-					if($this->Auth->user('username')=='news@swaptimenow.com'){
-						$this->redirect('/newsletters/');
-					}else{
-						$this->redirect('/properties/');
-					}
-					$this->redirect($this->referer());
-				}
+				$this->redirect($this->Auth->loginRedirect);
 			}else{
 				$this->Notifier->error('[:username_or_password_incorrect:]');
 				$this->User->invalidate('username'," ");

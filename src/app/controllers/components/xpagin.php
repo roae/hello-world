@@ -123,15 +123,19 @@ class XpaginComponent extends Object {
 		$this->enabled = false;
 		if(is_array($url)){
 			$url = Router::url(am($controller->params['named'],$url,array("/")))."/";
-			$this->log($url,'debug');
+			#$this->log($url,'debug');
 
 		}else{
 			$named = '';
 			#$this->log($url,'debug');
 			if(!empty($controller->params['named'])){
-				foreach($controller->params['named'] as $name => $value){
+				/*foreach($controller->params['named'] as $name => $value){
 					$named .= '/' . $name . ':' . $value;
-				}
+				}*/
+				$urlParsed = Router::parse($url);
+				am($urlParsed,$urlParsed['pass']);
+				unset($urlParsed['pass']);
+				return $this->beforeRedirect($controller,$urlParsed,$status,$exit);
 			}
 			$url .= $named."/";
 			$url = (preg_match('/\/\/$/', $url))? preg_replace('/\/$/','',$url) : $url;

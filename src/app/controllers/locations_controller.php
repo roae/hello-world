@@ -115,7 +115,7 @@ class LocationsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(Router::parse($this->referer()));
+				$this->redirect(Router::reverse(Router::parse($this->referer())));
 			}
 			if($this->Location->updateAll(array('Location.trash' => 1), array('Location.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Location_deleted_successfully:]"));
@@ -126,7 +126,7 @@ class LocationsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(Router::parse($this->referer()));
+			$this->redirect(Router::reverse(Router::parse($this->referer())));
 		}
 	}
 
@@ -155,7 +155,7 @@ class LocationsController extends AppController{
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect(Router::parse($this->referer()));
+			$this->redirect(Router::reverse(Router::parse($this->referer())));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
@@ -177,7 +177,7 @@ class LocationsController extends AppController{
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect(Router::parse($this->referer()));
+			$this->redirect(Router::reverse(Router::parse($this->referer())));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id_add:]"));
 		}

@@ -14,6 +14,23 @@ class ServicesController extends AppController{
 		)
 	);
 
+	function beforeFilter(){
+		parent::beforeFilter();
+
+		# Se obtienen las acciones a las que el usuario tiene permiso de este controller
+		$this->access=array(
+			'trash'=>$this->__checkAccessUrl(array('controller'=>'services','action'=>'trash','admin'=>true,'plugin'=>false)),
+			'restore'=>$this->__checkAccessUrl(array('controller'=>'services','action'=>'restore','admin'=>true,'plugin'=>false)),
+			'destroy'=>$this->__checkAccessUrl(array('controller'=>'services','action'=>'destroy','admin'=>true,'plugin'=>false)),
+			'delete'=>$this->__checkAccessUrl(array('controller'=>'services','action'=>'destroy','admin'=>true,'plugin'=>false)),
+		);
+		$this->set("trashAccess",$this->access['trash']);
+		$this->set("restoreAccess",$this->access['restore']);
+		$this->set("destroyAccess",$this->access['destroy']);
+		$this->set("deleteAccess",$this->access['delete']);
+
+	}
+
 	function admin_index(){
 		$conditions=array();
 		if(isset($this->data['Xpagin']['search'])){
@@ -42,7 +59,7 @@ class ServicesController extends AppController{
 		}
 	}
 
-	function admin_edit($id){
+	function admin_edit($id = null){
 		if(!empty($id)){
 			if(!empty($this->data)){
 				$this->Service->set($this->data);
@@ -63,19 +80,28 @@ class ServicesController extends AppController{
 					"Gallery",
 				));
 				$this->data = $this->Service->read(null, $id);
+				if(empty($this->data) || ($this->data['Service']['trash'] && !$this->access['trash'])){
+					$this->Notifier->error("[:Service_not_found:]");
+					$this->redirect(array('action'=>'index'));
+				}
 			}
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 	}
 
-	function admin_view($id){
+	function admin_view($id = null){
 		if(!empty($id)){
 			$this->Service->contain(array(
 				"Icon",
 				"Gallery",
 			));
-			$this->set("record",$this->Service->read(null, $id));
+			$record = $this->Service->read(null, $id);
+			$this->set("record",$record);
+			if(empty($record) || ($record['Service']['trash'] && !$this->access['trash'])){
+				$this->Notifier->error("[:Service_not_found:]");
+				$this->redirect(array('action'=>'index'));
+			}
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
@@ -106,13 +132,13 @@ class ServicesController extends AppController{
 		}
 	}
 
-	function admin_delete($id){
+	function admin_delete($id = null){
 		if(!empty($id) || $this->Xpagin->isExecuter){
 			if(empty($id) && !empty($this->data['Xpagin']['record'])){
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(Router::parse($this->referer()));
+				$this->redirect($this->referer());
 			}
 			if($this->Service->updateAll(array('Service.trash' => 1), array('Service.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Service_deleted_successfully:]"));
@@ -123,7 +149,11 @@ class ServicesController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(Router::parse($this->referer()));
+			$referer = Router::parse($this->referer());
+			if($referer['action'] == 'edit'){
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -139,35 +169,34 @@ class ServicesController extends AppController{
 		$this->set("recordset",$this->paginate("Service",$conditions));
 	}
 
-	function admin_restore($id){
+	function admin_restore($id= null){
 		if(!empty($id) || $this->Xpagin->isExecuter){
 			if(empty($id) && !empty($this->data['Xpagin']['record'])){
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if($this->Service->updateAll(array('Service.trash' => 0), array('Service.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Service_restored_successfully:]"));
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect(Router::parse($this->referer()));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 
-	function admin_destroy($id){
+	function admin_destroy($id= null){
 		if(!empty($id) || $this->Xpagin->isExecuter){
 			if(empty($id) && !empty($this->data['Xpagin']['record'])){
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if($this->Service->deleteAll(array('id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Service_deleted_successfully:]"));
@@ -177,7 +206,11 @@ class ServicesController extends AppController{
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Service_id_add:]"));
 		}
-		$this->redirect(array('action'=>'index'));
+		$referer = Router::parse($this->referer());
+		if($referer['action'] == 'view'){
+			$this->redirect(array('action'=>'trash'));
+		}
+		$this->redirect($this->referer());
 	}
 
 }

@@ -30,7 +30,26 @@ echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
 		</div>
 		<div class="pull-right">
 			<?php
-			echo $this->Html->link("<i class='icon-remove-sign'></i> [:delete:]",array('action'=>$record['Service']['trash'] ? 'destroy': 'delete',$record['Service']['id']),array('class'=>'btn_danger','rel'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false));
+			if($record['Service']['trash']){
+				echo $this->Html->link(
+					"<i class='icon-remove-sign'></i> [:delete:]",
+					array('action'=>'destroy',$record['Service']['id']),
+					array('class'=>'btn_danger','data-confirm'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false)
+				);
+			}else if($trashAccess){
+				echo $this->Html->link(
+					"<i class='icon-remove-sign'></i> [:delete:]",
+					array('action'=>'delete',$record['Service']['id']),
+					array('class'=>'btn_danger','rel'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false,'rev'=>'#data')
+				);
+			}else{
+				echo $this->Html->link(
+					"<i class='icon-trash'></i> [:delete:]",
+					array('action'=>'delete',$record['Service']['id']),
+					array('class'=>'btn_danger','data-confirm'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false)
+				);
+			}
+
 			?>
 		</div>
 	</div>

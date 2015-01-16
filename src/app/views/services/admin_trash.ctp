@@ -14,7 +14,7 @@ if(!empty($recordset)){
 				,'searchForm')
 			,"lTools").
 		$this->Html->tag("div",
-			$this->Html->tag('button',$this->Html->tag("i","","icon-remove-sign")."<span>[:clean_trash:]</span>",array('type'=>'submit','name'=>'data[Xpagin][url]','value'=>$this->Html->url(array('action'=>'destroy')),'onclick'=>"return paginAction(this,'[:warning_message_delete_multiple_services:]')",'class'=>'btn btn_danger'))
+			$this->Html->tag('button',$this->Html->tag("i","","icon-remove-sign")."<span>[:delete_all:]</span>",array('type'=>'submit','name'=>'data[Xpagin][url]','value'=>$this->Html->url(array('action'=>'destroy')),'onclick'=>"return paginAction(this,'[:warning_message_delete_multiple_services:]')",'class'=>'btn btn_danger'))
 			,array('class'=>'rTools'))
 		,array('class'=>'tools floating')
 	);
@@ -69,13 +69,13 @@ if(!empty($recordset)){
 			$this->Form->button('<i class="icon-search"></i>',array('type'=>'submit','class'=>'btn'))
 			,'searchForm span4 offset4').
 		$this->Form->end().
-		$this->Html->link("[:back_to_list:]",array('action'=>'index'),array('class'=>'btn btn_primary'))
+		$this->Html->link("[:back_to_list:]",array('action'=>'trash'),array('class'=>'btn btn_primary'))
 	);
 }else{
 	echo $this->Html->div("noRecords",
 		$this->Html->tag("i","","icon-trash icon").
 		$this->Html->tag("div","[:System.no_services_yet_in_trash:]").
-		$this->Html->link($this->Html->tag("i","","icon-plus")."[:go_city_list:]",array('action'=>'index'),array('class'=>'btn btn_success','escape'=>false))
+		$this->Html->link($this->Html->tag("i","","icon-plus")."[:go_services_list:]",array('action'=>'index'),array('class'=>'btn btn_success','escape'=>false))
 	);
 }
 echo $this->Ajax->divEnd("data");

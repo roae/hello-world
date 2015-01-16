@@ -74,7 +74,7 @@ if(!empty($recordset)){
 	echo $this->element("pagination-control-bar");
 	$this->I18n->end();
 
-}else if(isset($this->data['Xpagin']['search'])){
+}else if(isset($this->data['Xpagin']['search']) && !empty($this->data['Xpagin']['search'])){
 	echo $this->Html->div("noRecords",
 		$this->Html->tag("i","","icon-search icon").
 		$this->Html->tag("div","[:System.services_not_found:] ".$this->Html->tag("strong",h($this->data['Xpagin']['search']))).

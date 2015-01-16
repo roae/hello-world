@@ -402,13 +402,15 @@ class AppController extends Controller{
 	function __buildMenu($name){
 		if(isset($this->menus[$name])){
 			#Si es ajax o un RequestAction no se construye el menu
-			if($this->params['isAjax'] || isset ($this->params['requested'])){ return; }
+			if($this->params['isAjax'] || isset ($this->params['requested'])){
+				return;
+			}
 
 			#Se remplaza la arroba porque session no permite guardar datos con @
 			$login = r('@','.',$this->Auth->user('username'));
 			$user=$this->Auth->user();
 			if($user['User']['group_id'] == Configure::read("Group.Anonymous")){
-				$menu = Cache::read("Menu.$name.$login".Configure::read('I18n.Locale'));
+				$menu = Cache::read("Menu.$name.$login");
 			}else{
 				$menu = $this->Session->read("Menu.$name.$login");
 			}
@@ -418,11 +420,12 @@ class AppController extends Controller{
 			}else{
 				foreach($this->menus[$name] as $key=>$menu){
 					$this->__hideNotAllowMenuItems($this->menus[$name][$key]);
+					pr($this->menus[$name]);
 				}
 				if($user['User']['group_id'] == Configure::read("Group.Anonymous")){
 					Cache::write("Menu.$name.$login",$this->menus[$name]);
 				}else{
-					$this->Session->write("Menu.$name.$login".Configure::read('I18n.Locale'),$this->menus[$name]);
+					$this->Session->write("Menu.$name.$login",$this->menus[$name]);
 				}
 			}
 		}
@@ -452,6 +455,18 @@ class AppController extends Controller{
 			}else{
 				continue;
 			}
+			if(!empty($menus[$key]['menu'])){
+				$hayElemento = false;
+				foreach($menus[$key]['menu'] as $i=>$menu){
+					if(is_array($menu)){
+						$hayElemento = true;
+					}
+				}
+				if(!$hayElemento){
+					$menus[$key]['menu'] = array();
+				}
+			}
+
 			#Eliminar menus que se quedaron sin submenus y sin link
 			if(empty($menus[$key]['menu'])&&empty($menus[$key]['url'])){
 				unset($menus[$key]);

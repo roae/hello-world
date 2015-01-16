@@ -6,7 +6,7 @@ echo $this->Form->create("Service");
 ?>
 	<div class="contentForm">
 		<div class="row-fluid">
-			<div class="span6 offset4">
+			<div class="span8 offset2">
 				<div class="span6">
 					<?php
 					echo $this->I18n->input("name");
@@ -32,7 +32,7 @@ echo $this->Form->create("Service");
 		</div>
 		<div class="rButtons">
 			<?php
-			echo $this->Html->link('<i class="icon-remove"></i>[:cancel:]',array('action'=>'index'),array('class'=>'btn_danger','escape'=>false));
+			echo $this->Html->link('<i class="icon-remove"></i>[:cancel:]',array('action'=>'index'),array('class'=>'btn','escape'=>false));
 			echo $this->Form->button('<i class="icon-ok"></i>[:save:]',array('type'=>'submit','class'=>'btn_success'));
 			?>
 		</div>

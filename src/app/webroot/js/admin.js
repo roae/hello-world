@@ -96,36 +96,6 @@ $(function(){
 		$.xUpdater.setHash(hash);
 	});
 
-	$(".edit_comment").on("click",function(){
-		var $li=$(this).parent();
-		var $loading=$(".loading",$li);
-		var $edit=$(".edit",$li);
-		var $datos=$(".datos",$li);
-		$loading.css("display","block");
-		if($edit.empty()){
-			$.ajax({
-				url:$(this).attr("href"),
-				success:function(html){
-					$datos.css("display","none");
-					$edit.css("display","block");
-					$edit.html(html);
-				}
-			})
-		}else{
-			$datos.css("display","none");
-			$edit.css("display","block");
-		}
-
-	});
-	$(".FormEditComment").on("submit",function(){
-		$.ajax({
-			url:$(this).attr("action"),
-			success:function(html,status,http){
-
-			}
-		})
-	});
-
 	if($("#Notifier").length){
 		setTimeout(function(){
 			$("#Notifier").slideUp("slow");
@@ -148,6 +118,26 @@ $(function(){
 		},
 		".link:has(a.fwd)"
 	);
+
+	$(document ).on("click","[data-confirm]",function(e){
+		var $this = $(this);
+		var $win=$.create(_bootstrapDialogTmpl);
+		$win.addClass("modalMessage")
+		$(".modal-header",$win).remove();
+		$(".modal-body",$win).createAppend([
+			'i',{'class':'icon-question icon-3x'},'',
+			'p',{},$this.data("confirm")
+		]);
+		$(".modal-footer",$win)
+			.append($("<button/>",{'class':'btn','data-dismiss':'modal','aria-hidden':true,'html':__("no")}))
+			.append($("<button/>",{'class':'btn btn_primary','data-toggle':'modal','data-target':"#window",'html':__("yes")}).on('click',function(){
+				window.location = $this.attr("href");
+			}));
+		$("body").append($win);
+		$win.modal("show");
+		return false;
+
+	});
 
 });
 

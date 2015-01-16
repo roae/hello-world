@@ -1,4 +1,8 @@
 <?php
+/**
+ * Class UsersController
+ * @property $User USer
+ */
 class UsersController extends AppController{
 	var $name = 'Users';
 	var $uses=array(
@@ -92,7 +96,7 @@ class UsersController extends AppController{
 			$this->data['User']['password']=$this->Auth->password($this->data['User']['password']);
 			$this->data['User']['id'] = $id;
 			$this->User->set($this->data);
-			if($this->User->save()){
+			if($this->User->validates(array('fieldList'=>array('password','password_confirm'))) && $this->User->save($this->data,false)){
 				$this->Notifier->success("[:admin_user_password_change_success:]");
 				$this->redirect(array('action'=>'index'));
 			}else{

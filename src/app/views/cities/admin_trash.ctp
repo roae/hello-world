@@ -67,7 +67,7 @@ if(!empty($recordset)){
 			$this->Form->button('<i class="icon-search"></i>',array('type'=>'submit','class'=>'btn'))
 			,'searchForm span4 offset4').
 		$this->Form->end().
-		$this->Html->link("[:back_to_list:]",array('action'=>'index'),array('class'=>'btn btn_primary'))
+		$this->Html->link("[:back_to_list:]",array('action'=>'trash'),array('class'=>'btn btn_primary'))
 	);
 }else{
 	echo $this->Html->div("noRecords",

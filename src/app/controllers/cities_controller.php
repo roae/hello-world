@@ -11,6 +11,23 @@ class CitiesController extends AppController{
 		)
 	);
 
+	function beforeFilter(){
+		parent::beforeFilter();
+
+		# Se obtienen las acciones a las que el usuario tiene permiso de este controller
+		$this->access=array(
+			'trash'=>$this->__checkAccessUrl(array('controller'=>'cities','action'=>'trash','admin'=>true,'plugin'=>false)),
+			'restore'=>$this->__checkAccessUrl(array('controller'=>'cities','action'=>'restore','admin'=>true,'plugin'=>false)),
+			'destroy'=>$this->__checkAccessUrl(array('controller'=>'cities','action'=>'destroy','admin'=>true,'plugin'=>false)),
+			'delete'=>$this->__checkAccessUrl(array('controller'=>'cities','action'=>'destroy','admin'=>true,'plugin'=>false)),
+		);
+		$this->set("trashAccess",$this->access['trash']);
+		$this->set("restoreAccess",$this->access['restore']);
+		$this->set("destroyAccess",$this->access['destroy']);
+		$this->set("deleteAccess",$this->access['delete']);
+
+	}
+
 	function admin_index(){
 		$conditions=array();
 		if(isset($this->data['Xpagin']['search'])){
@@ -56,6 +73,10 @@ class CitiesController extends AppController{
 				}
 			}else{
 				$this->data = $this->City->read(null, $id);
+				if(empty($this->data) || ($this->data['City']['trash'] && !$this->access['trash'])){
+					$this->Notifier->error("[:City_not_found:]");
+					$this->redirect(array('action'=>'index'));
+				}
 			}
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id:]"));
@@ -64,7 +85,12 @@ class CitiesController extends AppController{
 
 	function admin_view($id){
 		if(!empty($id)){
-			$this->set("record",$this->City->read(null, $id));
+			$record = $this->City->read(null, $id);
+			if(empty($record) || ($record['City']['trash'] && !$this->access['trash'])){
+				$this->Notifier->error("[:City_not_found:]");
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->set("record",$record);
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id:]"));
 		}
@@ -112,7 +138,11 @@ class CitiesController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(Router::parse($this->referer()));
+			$referer = Router::parse($this->referer());
+			if($referer['action'] == 'edit'){
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -141,12 +171,11 @@ class CitiesController extends AppController{
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect(Router::parse($this->referer()));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -166,7 +195,11 @@ class CitiesController extends AppController{
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_City_id_add:]"));
 		}
-		$this->redirect(array('action'=>'index'));
+		$referer = Router::parse($this->referer());
+		if($referer['action'] == 'view'){
+			$this->redirect(array('action'=>'trash'));
+		}
+		$this->redirect($this->referer());
 	}
 
 }

@@ -24,8 +24,9 @@ echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
 			<?php
 			if($record['Service']['trash']){
 				echo $this->Html->link("<i class='icon-ok'></i> [:restore:]",array('action'=>'restore',$record['Service']['id']),array('class'=>'btn noHistory','escape'=>false,'rev'=>'#data'));
+			}else{
+				echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['Service']['id']),array('class'=>'btn btn_success','escape'=>false));
 			}
-			echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['Service']['id']),array('class'=>'btn btn_success','escape'=>false));
 			?>
 		</div>
 		<div class="pull-right">
@@ -34,19 +35,19 @@ echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
 				echo $this->Html->link(
 					"<i class='icon-remove-sign'></i> [:delete:]",
 					array('action'=>'destroy',$record['Service']['id']),
-					array('class'=>'btn_danger','data-confirm'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false)
+					array('class'=>'btn_danger','data-confirm'=>'[:delete_service_name:]: '.h($record['Service']['name']).'?','escape'=>false)
 				);
 			}else if($trashAccess){
 				echo $this->Html->link(
 					"<i class='icon-remove-sign'></i> [:delete:]",
 					array('action'=>'delete',$record['Service']['id']),
-					array('class'=>'btn_danger','rel'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false,'rev'=>'#data')
+					array('class'=>'btn_danger action','rel'=>'[:delete_service_name:]: '.h($record['Service']['name']).'?','escape'=>false,'rev'=>'#data')
 				);
 			}else{
 				echo $this->Html->link(
 					"<i class='icon-trash'></i> [:delete:]",
 					array('action'=>'delete',$record['Service']['id']),
-					array('class'=>'btn_danger','data-confirm'=>'[:delete_city_name:]: '.h($record['Service']['name']).'?','escape'=>false)
+					array('class'=>'btn_danger','data-confirm'=>'[:delete_service_name:]: '.h($record['Service']['name']).'?','escape'=>false)
 				);
 			}
 

@@ -420,7 +420,6 @@ class AppController extends Controller{
 			}else{
 				foreach($this->menus[$name] as $key=>$menu){
 					$this->__hideNotAllowMenuItems($this->menus[$name][$key]);
-					pr($this->menus[$name]);
 				}
 				if($user['User']['group_id'] == Configure::read("Group.Anonymous")){
 					Cache::write("Menu.$name.$login",$this->menus[$name]);

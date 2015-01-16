@@ -34,7 +34,7 @@ echo $this->Form->hidden("id");
 			echo $this->Html->link(
 				"<i class='icon-trash'></i> [:delete:]",
 				am(array('action'=>'delete',$this->data['Service']['id']),$this->params['named']),
-				array('class'=>'btn_danger','data-confirm'=>'[:delete_city_name:]: '.h($this->data['Service']['name']).'?','escape'=>false)
+				array('class'=>'btn_danger','data-confirm'=>'[:delete_service_name:]: '.h($this->data['Service']['name']).'?','escape'=>false)
 			);
 			?>
 		</div>

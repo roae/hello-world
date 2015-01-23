@@ -195,7 +195,7 @@ class RoomsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id_add:]"));
 		}
 		$referer = Router::parse($this->referer());
-		if($referer['action'] == 'edit'){
+		if($referer['action'] == 'view'){
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->redirect($this->referer());

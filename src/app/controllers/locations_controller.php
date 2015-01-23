@@ -11,6 +11,23 @@ class LocationsController extends AppController{
 		)
 	);
 
+	function beforeFilter(){
+		parent::beforeFilter();
+
+		# Se obtienen las acciones a las que el usuario tiene permiso de este controller
+		$this->access=array(
+			'trash'=>$this->__checkAccessUrl(array('controller'=>'movies','action'=>'trash','admin'=>true,'plugin'=>false)),
+			'restore'=>$this->__checkAccessUrl(array('controller'=>'movies','action'=>'restore','admin'=>true,'plugin'=>false)),
+			'destroy'=>$this->__checkAccessUrl(array('controller'=>'movies','action'=>'destroy','admin'=>true,'plugin'=>false)),
+			'delete'=>$this->__checkAccessUrl(array('controller'=>'movies','action'=>'destroy','admin'=>true,'plugin'=>false)),
+		);
+		$this->set("trashAccess",$this->access['trash']);
+		$this->set("restoreAccess",$this->access['restore']);
+		$this->set("destroyAccess",$this->access['destroy']);
+		$this->set("deleteAccess",$this->access['delete']);
+
+	}
+
 	function admin_index(){
 		$conditions=array();
 		if(isset($this->data['Xpagin']['search'])){
@@ -91,7 +108,7 @@ class LocationsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if(!empty($state) || $state == 0){
 				if($this->Location->updateAll(array('Location.status' => $state), array('Location.id' => $id))){
@@ -106,7 +123,7 @@ class LocationsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -116,7 +133,7 @@ class LocationsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(Router::reverse(Router::parse($this->referer())));
+				$this->redirect($this->referer());
 			}
 			if($this->Location->updateAll(array('Location.trash' => 1), array('Location.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Location_deleted_successfully:]"));
@@ -127,7 +144,11 @@ class LocationsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(Router::reverse(Router::parse($this->referer())));
+			$referer = Router::parse($this->referer());
+			if($referer['action'] == 'edit'){
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -149,7 +170,7 @@ class LocationsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if($this->Location->updateAll(array('Location.trash' => 0), array('Location.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Location_restored_successfully:]"));
@@ -161,7 +182,7 @@ class LocationsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -171,7 +192,7 @@ class LocationsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if($this->Location->deleteAll(array('id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Location_deleted_successfully:]"));
@@ -183,7 +204,11 @@ class LocationsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id_add:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$referer = Router::parse($this->referer());
+			if($referer['action'] == 'view'){
+				$this->redirect(array('action'=>'trash'));
+			}
+			$this->redirect($this->referer());
 		}
 	}
 

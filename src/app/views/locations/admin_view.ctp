@@ -1,6 +1,4 @@
 <?php /* @var $this View */
-$this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
-$this->Html->script('tiny',array('inline'=>false));
 $this->Html->addCrumb('[:System.admin_locations_list:]',array('action' => 'index'));
 $this->Html->addCrumb($record['Location']['name']);
 echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
@@ -38,13 +36,33 @@ echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
 		<?php
 		if($record['Location']['trash']){
 			echo $this->Html->link("<i class='icon-ok'></i> [:restore:]",array('action'=>'restore',$record['Location']['id']),array('class'=>'btn noHistory','escape'=>false,'rev'=>'#data'));
+		}else{
+			echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['Location']['id']),array('class'=>'btn btn_success','escape'=>false));
 		}
-		echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['Location']['id']),array('class'=>'btn btn_success','escape'=>false));
 		?>
 	</div>
 	<div class="pull-right">
 		<?php
-		echo $this->Html->link("<i class='icon-remove-sign'></i> [:delete:]",array('action'=>$record['Location']['trash'] ? 'destroy': 'delete',$record['Location']['id']),array('class'=>'btn_danger','rel'=>'[:delete_city_name:]: '.h($record['Location']['name']).'?','escape'=>false));
+		if($record['Location']['trash']){
+			echo $this->Html->link(
+				"<i class='icon-remove-sign'></i> [:delete:]",
+				array('action'=>'destroy',$record['Location']['id']),
+				array('class'=>'btn_danger','data-confirm'=>'[:delete_location_name:]: '.h($record['Location']['name']).'?','escape'=>false)
+			);
+		}else if($trashAccess){
+			echo $this->Html->link(
+				"<i class='icon-remove-sign'></i> [:delete:]",
+				array('action'=>'delete',$record['Location']['id']),
+				array('class'=>'btn_danger action','rel'=>'[:delete_location_name:]: '.h($record['Location']['name']).'?','escape'=>false,'rev'=>'#data')
+			);
+		}else{
+			echo $this->Html->link(
+				"<i class='icon-trash'></i> [:delete:]",
+				array('action'=>'delete',$record['Location']['id']),
+				array('class'=>'btn_danger','data-confirm'=>'[:delete_location_name:]: '.h($record['Location']['name']).'?','escape'=>false)
+			);
+		}
+
 		?>
 	</div>
 </div>

@@ -21,11 +21,18 @@ echo $this->Form->hidden("id");
 	</div>
 	<div class="buttonPane">
 		<div class="lButtons">
-			<?php #echo $this->I18n->input('status',array('type'=>'radio','options'=>array(1=>'[:System.published:]',0=>'[:System.unpublished:]'),'legend'=>false,'value'=>1,'div'=>array('class'=>'radioButtons'),'fieldset'=>false)); ?>
+			<?php
+			#echo $this->I18n->input('status',array('type'=>'radio','options'=>array(1=>'[:System.published:]',0=>'[:System.unpublished:]'),'legend'=>false,'value'=>1,'div'=>array('class'=>'radioButtons'),'fieldset'=>false));
+			echo $this->Html->link(
+				"<i class='icon-trash'></i> [:delete:]",
+				am(array('action'=>'delete',$this->data['Room']['id']),$this->params['description']),
+				array('class'=>'btn_danger','data-confirm'=>'[:delete_service_name:]: '.h($this->data['Room']['description']).'?','escape'=>false)
+			);
+			?>
 		</div>
 		<div class="rButtons">
 			<?php
-			echo $this->Html->link('<i class="icon-remove"></i>[:cancel:]',array('action'=>'index'),array('class'=>'btn_danger','escape'=>false));
+			echo $this->Html->link('<i class="icon-remove"></i>[:cancel:]',array('action'=>'index'),array('class'=>'btn','escape'=>false));
 			echo $this->Form->button('<i class="icon-ok"></i>[:save:]',array('type'=>'submit','class'=>'btn_success'));
 			?>
 		</div>

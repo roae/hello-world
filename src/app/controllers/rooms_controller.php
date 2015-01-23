@@ -8,8 +8,28 @@ class RoomsController extends AppController{
 		'limit'=>30,
 		'conditions'=>array(
 			'Room.trash'=>0
+		),
+		'contain'=>array(
+			'Location',
 		)
 	);
+
+	function beforeFilter(){
+		parent::beforeFilter();
+
+		# Se obtienen las acciones a las que el usuario tiene permiso de este controller
+		$this->access=array(
+			'trash'=>$this->__checkAccessUrl(array('controller'=>'rooms','action'=>'trash','admin'=>true,'plugin'=>false)),
+			'restore'=>$this->__checkAccessUrl(array('controller'=>'rooms','action'=>'restore','admin'=>true,'plugin'=>false)),
+			'destroy'=>$this->__checkAccessUrl(array('controller'=>'rooms','action'=>'destroy','admin'=>true,'plugin'=>false)),
+			'delete'=>$this->__checkAccessUrl(array('controller'=>'rooms','action'=>'destroy','admin'=>true,'plugin'=>false)),
+		);
+		$this->set("trashAccess",$this->access['trash']);
+		$this->set("restoreAccess",$this->access['restore']);
+		$this->set("destroyAccess",$this->access['destroy']);
+		$this->set("deleteAccess",$this->access['delete']);
+
+	}
 
 	function admin_index(){
 		$conditions=array();
@@ -17,7 +37,7 @@ class RoomsController extends AppController{
 			if(is_numeric($this->data['Xpagin']['search'])){
 				$conditions=array('Room.id'=>$this->data['Xpagin']['search']);
 			}else{
-				$conditions=array("Room.name like"=>"%{$this->data['Xpagin']['search']}%");
+				$conditions=array("Room.description like"=>"%{$this->data['Xpagin']['search']}%");
 			}
 		}
 		$this->set("recordset",$this->paginate("Room",$conditions));
@@ -81,7 +101,7 @@ class RoomsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if(!empty($state) || $state == 0){
 				if($this->Room->updateAll(array('Room.status' => $state), array('Room.id' => $id))){
@@ -96,7 +116,7 @@ class RoomsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -106,7 +126,7 @@ class RoomsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(Router::parse($this->referer()));
+				$this->redirect($this->referer());
 			}
 			if($this->Room->updateAll(array('Room.trash' => 1), array('Room.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Room_deleted_successfully:]"));
@@ -117,7 +137,11 @@ class RoomsController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(Router::parse($this->referer()));
+			$referer = Router::parse($this->referer());
+			if($referer['action'] == 'edit'){
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -139,19 +163,18 @@ class RoomsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if($this->Room->updateAll(array('Room.trash' => 0), array('Room.id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Room_restored_successfully:]"));
 			}else{
 				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
 			}
-			$this->redirect(Router::parse($this->referer()));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 
@@ -161,7 +184,7 @@ class RoomsController extends AppController{
 				$id = $this->data['Xpagin']['record'];
 			}else if(empty($id)){
 				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect($this->referer());
 			}
 			if($this->Room->deleteAll(array('id' => $id))){
 				$this->Notifier->success($this->Interpreter->process("[:Room_deleted_successfully:]"));
@@ -171,7 +194,11 @@ class RoomsController extends AppController{
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Room_id_add:]"));
 		}
-		$this->redirect(array('action'=>'index'));
+		$referer = Router::parse($this->referer());
+		if($referer['action'] == 'edit'){
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->redirect($this->referer());
 	}
 
 }

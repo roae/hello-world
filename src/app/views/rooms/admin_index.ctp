@@ -14,8 +14,6 @@ if(!empty($recordset)){
 				,'searchForm')
 			,"lTools").
 		$this->Html->tag("div",
-			#$this->Html->tag('button',$this->Html->tag("i","","icon-circle")."<span>[:publish:]</span>",array('type'=>'submit','title'=>'data[Xpagin][url]','value'=>$this->Html->url(array('action'=>'status',1)),'onclick'=>'return paginAction(this,"[:message_confirm_publish_mutiple_rooms:]")','class'=>'btn btn_primary')).
-			#$this->Html->tag('button',$this->Html->tag("i","","icon-circle-blank")."<span>[:unpublish:]</span>",array('type'=>'submit','title'=>'data[Xpagin][url]','value'=>$this->Html->url(array('action'=>'status',0)),'onclick'=>'return paginAction(this,"[:message_confirm_unpublish_mutiple_rooms:]")','class'=>'btn')).
 			$this->Html->tag('button',$this->Html->tag("i","","icon-remove-sign")."<span>[:delete_room:]</span>",array('type'=>'submit','name'=>'data[Xpagin][url]','value'=>$this->Html->url(array('action'=>'delete')),'onclick'=>"return paginAction(this,'[:warning_message_delete_multiple_rooms:]')",'class'=>'btn btn_danger')).
 			$this->Html->link($this->Html->tag("i","","icon-plus")."<span>[:add_room:]</span>",array('action'=>'add'),array('escape'=>false,'class'=>'btn btn_success'))
 			,array('class'=>'rTools'))
@@ -24,6 +22,7 @@ if(!empty($recordset)){
 	$th = array(
 		$this->Form->checkbox("Xpagin.all",array('class'=>'checkAll','id'=>'')),
 		$this->Paginator->sort('<span>[:Room_description:]</span><span class="sortind"></span>','Room.description',array('title'=>'[:sort_by:] [:Room_description:]','escape'=>false)),
+		$this->Paginator->sort('<span>[:Room_location:]</span><span class="sortind"></span>','Room.location_id',array('title'=>'[:sort_by:] [:Room_location:]','escape'=>false)),
 		$this->Paginator->sort('<span>[:Room_created:]</span><span class="sortind"></span>','Room.created',array('title'=>'[:sort_by:] [:Room_created:]','escape'=>false)),
 		$this->Paginator->sort('<span>ID</span><span class="sortind"></span>','Room.id',array('title'=>'[:sort_by:] [:Room_id:]','escape'=>false)),
 		'-'
@@ -43,9 +42,8 @@ if(!empty($recordset)){
 		$tr[]=array(
 			$this->Form->checkbox("Xpagin.record][",array('class'=>'check','id'=>'','value'=>$record['Room']['id'])),
 			$this->Paginator->link($record['Room']['description'],array('action' => 'view',$record['Room']['id']),array('rev'=>'','escape'=>false,'class'=>'highlight','name'=>'[:edit:] '.$record['Room']['description'])),
-			#($record['Room']['status'])? $this->Html->tag("span","[:yes:]","label label-success"):$this->Html->tag("span","[:no:]","label label-warning"),
+			$record['Location']['name'],
 			$this->Html->tag("span",$this->Time->format('d-[:M:]-Y',$record['Room']['created']),array('title'=>$this->Time->format('[:F:] d, Y  h:m a',$record['Room']['created']))),
-			#$this->Time->format('d/m/Y h:m a',$record['Room']['modified']),
 			array($record['Room']['id'],array('class'=>'center')),
 			$actions
 		);
@@ -53,7 +51,7 @@ if(!empty($recordset)){
 	echo $this->Html->tag("table",
 		$this->Html->tag("colgroup",
 			$this->Html->tag("col",null,array('span'=>1,'width'=>'15px')).
-			$this->Html->tag("col",null,array('span'=>1)).
+			$this->Html->tag("col",null,array('span'=>2)).
 			$this->Html->tag("col",null,array('span'=>1,'width'=>'140px')).
 			#$this->Html->tag("col",null,array('span'=>1,'width'=>'140px')).
 			$this->Html->tag("col",null,array('span'=>1,'width'=>'30px')).

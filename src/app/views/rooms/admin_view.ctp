@@ -1,6 +1,4 @@
 <?php /* @var $this View */
-$this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
-$this->Html->script('tiny',array('inline'=>false));
 $this->Html->addCrumb('[:System.admin_rooms_list:]',array('action' => 'index'));
 $this->Html->addCrumb($record['Room']['description']." - ".$record['Location']['name']);
 echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
@@ -16,13 +14,33 @@ echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));
 			<?php
 			if($record['Room']['trash']){
 				echo $this->Html->link("<i class='icon-ok'></i> [:restore:]",array('action'=>'restore',$record['Room']['id']),array('class'=>'btn noHistory','escape'=>false,'rev'=>'#data'));
+			}else{
+				echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['Room']['id']),array('class'=>'btn btn_success','escape'=>false));
 			}
-			echo $this->Html->link("<i class='icon-pencil'></i> [:edit:]",array('action'=>'edit',$record['Room']['id']),array('class'=>'btn btn_success','escape'=>false));
 			?>
 		</div>
 		<div class="pull-right">
 			<?php
-			echo $this->Html->link("<i class='icon-remove-sign'></i> [:delete:]",array('action'=>$record['Room']['trash'] ? 'destroy': 'delete',$record['Room']['id']),array('class'=>'btn_danger','rel'=>'[:delete_location_description:]: '.h($record['Room']['description']).'?','escape'=>false));
+			if($record['Room']['trash']){
+				echo $this->Html->link(
+					"<i class='icon-remove-sign'></i> [:delete:]",
+					array('action'=>'destroy',$record['Room']['id']),
+					array('class'=>'btn_danger','data-confirm'=>'[:delete_room_name:]: '.h($record['Room']['description']).'?','escape'=>false)
+				);
+			}else if($trashAccess){
+				echo $this->Html->link(
+					"<i class='icon-remove-sign'></i> [:delete:]",
+					array('action'=>'delete',$record['Room']['id']),
+					array('class'=>'btn_danger action','rel'=>'[:delete_room_name:]: '.h($record['Room']['description']).'?','escape'=>false,'rev'=>'#data')
+				);
+			}else{
+				echo $this->Html->link(
+					"<i class='icon-trash'></i> [:delete:]",
+					array('action'=>'delete',$record['Room']['id']),
+					array('class'=>'btn_danger','data-confirm'=>'[:delete_room_name:]: '.h($record['Room']['description']).'?','escape'=>false)
+				);
+			}
+
 			?>
 		</div>
 	</div>

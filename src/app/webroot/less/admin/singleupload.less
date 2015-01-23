@@ -1,6 +1,6 @@
 .singleUpload{
-	margin:20px 0;min-height: 85px;background: #40C883; overflow: hidden;position: relative;color:#354857;text-align: center;
-	.label{display:block;font-size:14px;padding:10px;background: #009D67;color:#fff;
+	margin:20px 0;min-height: 85px;background: #f1f1f1; overflow: hidden;position: relative;color:@primary;text-align: center;
+	.label{display:block;font-size:14px;padding:10px;background: #e8e8e8; color:@primary;.border-radius(0);
 		label{font-weight: normal;}
 	}
 	.marco{width:70px;height:70px;position: absolute; left:7px; top:7px;z-index:10;}
@@ -8,7 +8,7 @@
 		span{float:left;}
 		.btnIcon{width:16px; height:16px;margin-right:5px;}
 	}
-	.ChooseFiles{margin:5px 0 10px 0;font-weight: bold; padding:10px 10px 10px 10px;
+	.ChooseFiles{margin:15px 0 15px 0;font-weight: bold; padding:10px 10px 10px 10px;
 		.btnIcon{.icon-2x;margin-right: 20px;}
 		span{line-height:17px;}
 	}
@@ -28,7 +28,7 @@
 		.error{background: #F23F31; color:#fff;}
 	}
 	.UploadiQueue{position: relative;z-index:8;text-align: left;
-		.UploadiQueueItem{position: relative;overflow: hidden;padding-bottom:10px;min-height: 60px;border-top:1px solid #2B9E5F;}
+		.UploadiQueueItem{position: relative;overflow: hidden;padding-bottom:10px;min-height: 60px;border-top:1px solid #e1e1e1;}
 		.loadingIndicator{width:50px; height:50px; position: absolute; top:8px; left:8px; overflow: hidden;background: url(admin/loading-wheel.gif) no-repeat center;text-align: center;z-index:9;
 			img{height:50px;}
 		}
@@ -85,7 +85,7 @@
 		}
 		.input{
 			label{font-size:12px;}
-			input,textarea{border:1px solid lighten(#009D67,5);padding:8px 10px;
+			input,textarea{padding:5px 5px;
 				&:focus{}
 			}
 		}

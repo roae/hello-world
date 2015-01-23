@@ -42,7 +42,10 @@ echo $this->Form->create("Location");
 				</fieldset>
 			</div>
 			<div class="span3">
-				<?= $this->I18n->input("Service");?>
+				<fieldset>
+					<legend>[:select_location_services:]</legend>
+					<?= $this->I18n->input("Service",array('multiple'=>'checkbox','label'=>false,'class'=>'checkbox span6'));?>
+				</fieldset>
 				<?= $this->Uploader->input('Gallery',array('label'=>'[:location_gallery:]')) ?>
 				<div class="help">
 					<i class="icon-asterisk icon-3x"></i>

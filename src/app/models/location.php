@@ -13,7 +13,8 @@ class Location extends AppModel {
 	);
 	var $hasOne = array( );
 	var $hasAndBelongsToMany = array(
-		"Service"
+		"Service",
+		#'Movie',
 	);
 	var $hasMany = array(  );
 	var $displayField="name";

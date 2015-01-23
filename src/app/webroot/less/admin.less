@@ -19,6 +19,7 @@
 @import "admin/buttons";
 @import "admin/button-groups";
 @import "admin/tooltip";
+@import "admin/datepicker";
 
 // Fluid (940px)
 #grid > .fluid(@fluidGridColumnWidth, @fluidGridGutterWidth);
@@ -900,6 +901,14 @@ aside{
 			margin-left: 10px;
 		}
 	}
+	hr{
+		width: 100%;
+		float: left;
+		height: 0;
+		border: 0;
+		border-bottom: 1px solid #f1f1f1;
+		margin: 20px 0;
+	}
 }
 
 /* recuadro de ayuda*/
@@ -981,6 +990,7 @@ footer {
 		margin: 5px;
 		color: lighten(#314956,5);
 	}
+
 }
 .input label{
 	display: block;
@@ -1006,6 +1016,7 @@ select{
 	font-family: inherit;
 	font-weight: 300;
 	font-size: 14px;
+	outline: none;
 }
 
 input[type="text"]:focus,
@@ -1086,6 +1097,7 @@ input[type="button"]::-moz-focus-inner,
 input[type="submit"]::-moz-focus-inner,
 input[type="file"] > input[type="button"]::-moz-focus-inner {
 	border: none;
+	outline: none;
 }
 
 .item-view{
@@ -1105,6 +1117,7 @@ fieldset{
 	padding:30px 10px 10px;
 	font-size: 18px;
 	margin:10px 0;
+	min-height: 22px;
 	legend{
 		color:@primary;
 		position: absolute;
@@ -1432,3 +1445,4 @@ table.mceLayout, textarea.tinyMCE {
 }
 
 @import "locations";
+@import "movies.less";

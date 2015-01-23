@@ -21,7 +21,7 @@ $this->element('i18n_missingkeys');?>
 	echo $this->Html->script("modernizr-2.0.6.min.js");
 	?>
 </head>
-<body>
+<body ng-app="Citicinemas">
 	<div id="cmswrap">
 		<header>
 			<?= $this->Html->link("Dashboard",array('controller'=>'pages','action'=>'display','admin_home','admin'=>true,'plugin'=>false),array('id'=>'logo'))?>
@@ -66,7 +66,10 @@ $this->element('i18n_missingkeys');?>
 			'ext/jquery.xupdater.min',
 			'ext/jquery.floating.min',
 			'ext/jquery.slug',
-			'ext/angular',
+			'ext/angular.min',
+			'ext/angular-animate.min',
+			#'ext/ui-bootstrap-custom-0.12.0.min',
+			#'ext/ui-bootstrap-custom-tpls-0.12.0.min',
 		    'ext/underscore-min',
 			'admin.min'
 		)

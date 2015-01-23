@@ -191,6 +191,26 @@ class AppController extends Controller{
 					)
 				),
 				'|',
+				'[:madmin_movies:]'=>array(
+					'url'=>array('controller'=>'movies','action'=>'index','admin'=>true,'plugin'=>false),
+					'isCurrentWhen'=>array('child'),
+					'menu'=>array(
+						'[:madmin_movies_list:]'=>array(
+							'url'=>array('controller'=>'movies','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'[:madmin_movies_add:]'=>array(
+							'url'=>array('controller'=>'movies','action'=>'add','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'<i class="icon-trash"></i> [:madmin_movies_trash:]'=>array(
+							'url'=>array('controller'=>'movies','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+					)
+				),
+				'|',
 				'[:madmin_articles:]'=>array(
 					'url'=>array('controller'=>'articles','action'=>'index','admin'=>true,'plugin'=>false),
 					'isCurrentWhen'=>array('child'),

@@ -1,3 +1,5 @@
+var Citicinemas = angular.module("Citicinemas", []);
+
 $(function(){
 
 	$(document ).on("click",".check",function(){

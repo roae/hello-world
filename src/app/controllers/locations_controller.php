@@ -38,7 +38,8 @@ class LocationsController extends AppController{
 			}
 		}
 
-		$this->set("cities",$this->Location->City->find("list",array('conditions'=>array('City.status'=>1,'City.trash'=>0))));
+		$this->set("cities",$this->Location->City->find("list",array('conditions'=>array('City.trash'=>0))));
+		$this->set("services",$this->Location->Service->find("list",array('conditions'=>array('Service.trash'=>0))));
 	}
 
 	function admin_edit($id){
@@ -63,7 +64,7 @@ class LocationsController extends AppController{
 				));
 				$this->data = $this->Location->read(null, $id);
 			}
-			$this->set("cities",$this->Location->City->find("list",array('conditions'=>array('City.status'=>1,'City.trash'=>0))));
+			$this->set("cities",$this->Location->City->find("list",array('conditions'=>array('City.trash'=>0))));
 			$this->set("services",$this->Location->Service->find("list",array('conditions'=>array('Service.trash'=>0))));
 		}else{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));

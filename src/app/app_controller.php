@@ -224,6 +224,11 @@ class AppController extends Controller{
 							'isCurrentWhen'=>array('action'),
 						),
 						'|',
+						'<i class="icon-trash"></i> [:madmin_articles_trash:]'=>array(
+							'url'=>array('controller'=>'articles','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
 						'[:madmin_tags:]'=>array(
 							'url'=>array('controller'=>'terms','class'=>'Tag','admin'=>true,'plugin'=>false),
 							'isCurrentWhen'=>array('url'),

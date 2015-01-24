@@ -1,6 +1,4 @@
 <?php /* @var $this View */
-$this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
-$this->Html->script('tiny',array('inline'=>false));
 $this->Html->addCrumb('[:System.admin_cities_list:]',array('action' => 'index'));
 $this->Html->addCrumb($record['City']['name']);
 echo $this->Ajax->div("data",array('class'=>'row-fluid item-view'));

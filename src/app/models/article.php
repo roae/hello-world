@@ -156,9 +156,7 @@ class Article extends AppModel {
 		if(
 			isset($this->data['Term']) ||
 			isset($this->data['Article']['titulo_es_mx']) ||
-			isset($this->data['Article']['titulo_en_us']) ||
-			isset($this->data['Article']['contenido_es_mx']) ||
-			isset($this->data['Article']['contenido_en_us'])
+			isset($this->data['Article']['contenido_es_mx'])
 		){
 			$this->generateRelated($this->data);
 		}

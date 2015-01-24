@@ -21,8 +21,25 @@ class ArticlesController extends AppController{
 
 	var $components= array("Captcha","Email");
 
+	function beforeFilter(){
+		parent::beforeFilter();
+
+		# Se obtienen las acciones a las que el usuario tiene permiso de este controller
+		$this->access=array(
+			'trash'=>$this->__checkAccessUrl(array('controller'=>'articles','action'=>'trash','admin'=>true,'plugin'=>false)),
+			'restore'=>$this->__checkAccessUrl(array('controller'=>'articles','action'=>'restore','admin'=>true,'plugin'=>false)),
+			'destroy'=>$this->__checkAccessUrl(array('controller'=>'articles','action'=>'destroy','admin'=>true,'plugin'=>false)),
+			'delete'=>$this->__checkAccessUrl(array('controller'=>'articles','action'=>'destroy','admin'=>true,'plugin'=>false)),
+		);
+		$this->set("trashAccess",$this->access['trash']);
+		$this->set("restoreAccess",$this->access['restore']);
+		$this->set("destroyAccess",$this->access['destroy']);
+		$this->set("deleteAccess",$this->access['delete']);
+
+	}
+
 	function admin_index(){
-		$conditions=array();
+		$conditions = array();
 		if(isset($this->data['Article']['search'])){
 			if(is_numeric($this->data['Article']['search'])){
 				$conditions=array('Article.id'=>$this->data['Article']['search']);
@@ -30,7 +47,7 @@ class ArticlesController extends AppController{
 				$conditions=array("Article.titulo like"=>"%{$this->data['Article']['search']}%");
 			}
 		}
-		$this->set("recordset", $this->paginate("Article",$conditions));
+		$this->set("recordset", $this->paginate("Article",am(array('Article.trash'=>0),$conditions)));
 	}
 
 	function admin_add(){
@@ -80,23 +97,22 @@ class ArticlesController extends AppController{
 		$this->set("categories",$this->Article->Term->generatetreelist(array('Term.class'=>'Category'),null,null,"-- "));
 	}
 
-	function admin_delete($id=null){
-		if(!empty($id) || $this->Xpagin->isExecuter){
-			if(empty($id) && !empty($this->data['Xpagin']['record'])){
-				$id = $this->data['Xpagin']['record'];
-			}else if(empty($id)){
-				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
+	function admin_view($id){
+		if(!empty($id)){
+			$this->Article->contain(array(
+				'Foto',
+				'Tag',
+				'Category'
+			));
+			$record = $this->Article->read(null, $id);
+			if(empty($record) || ($record['Article']['trash'] && !$this->access['trash'])){
+				$this->Notifier->error("[:Article_not_found:]");
 				$this->redirect(array('action'=>'index'));
 			}
-			if($this->Article->deleteAll(array('id' => $id))){
-				$this->Notifier->success($this->Interpreter->process("[:Article_deleted_successfully:]"));
-			}else{
-				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
-			}
+			$this->set("record",$record);
 		}else{
-			$this->Notifier->error($this->Interpreter->process("[:specify_a_Article_id_add:]"));
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Article_id:]"));
 		}
-		$this->redirect(array('action'=>'index'));
 	}
 
 	function admin_status($state=null, $id=null){
@@ -122,6 +138,87 @@ class ArticlesController extends AppController{
 		if(!$this->Xpagin->isExecuter){
 			$this->redirect("/admin/articles/index");
 		}
+	}
+
+	function admin_delete($id){
+		if(!empty($id) || $this->Xpagin->isExecuter){
+			if(empty($id) && !empty($this->data['Xpagin']['record'])){
+				$id = $this->data['Xpagin']['record'];
+			}else if(empty($id)){
+				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
+				$this->redirect(Router::parse($this->referer()));
+			}
+			if($this->Article->updateAll(array('Article.trash' => 1), array('Article.id' => $id))){
+				$this->Notifier->success($this->Interpreter->process("[:Article_deleted_successfully:]"));
+			}else{
+				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
+			}
+		}else{
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Article_id:]"));
+		}
+		if(!$this->Xpagin->isExecuter){
+			$referer = Router::parse($this->referer());
+			if($referer['action'] == 'edit'){
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->redirect($this->referer());
+		}
+	}
+
+	function admin_trash(){
+		$conditions=array('Article.trash'=>1);
+		if(isset($this->data['Xpagin']['search'])){
+			if(is_numeric($this->data['Xpagin']['search'])){
+				$conditions=am($conditions,array('Article.id'=>$this->data['Xpagin']['search']));
+			}else{
+				$conditions=am($conditions,array("Article.name like"=>"%{$this->data['Xpagin']['search']}%"));
+			}
+		}
+		$this->set("recordset",$this->paginate("Article",$conditions));
+	}
+
+	function admin_restore($id){
+		if(!empty($id) || $this->Xpagin->isExecuter){
+			if(empty($id) && !empty($this->data['Xpagin']['record'])){
+				$id = $this->data['Xpagin']['record'];
+			}else if(empty($id)){
+				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
+				$this->redirect(array('action'=>'index'));
+			}
+			if($this->Article->updateAll(array('Article.trash' => 0), array('Article.id' => $id))){
+				$this->Notifier->success($this->Interpreter->process("[:Article_restored_successfully:]"));
+			}else{
+				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
+			}
+		}else{
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Article_id:]"));
+		}
+		if(!$this->Xpagin->isExecuter){
+			$this->redirect($this->referer());
+		}
+	}
+
+	function admin_destroy($id){
+		if(!empty($id) || $this->Xpagin->isExecuter){
+			if(empty($id) && !empty($this->data['Xpagin']['record'])){
+				$id = $this->data['Xpagin']['record'];
+			}else if(empty($id)){
+				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
+				$this->redirect(array('action'=>'index'));
+			}
+			if($this->Article->deleteAll(array('id' => $id))){
+				$this->Notifier->success($this->Interpreter->process("[:Article_deleted_successfully:]"));
+			}else{
+				$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
+			}
+		}else{
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Article_id_add:]"));
+		}
+		$referer = Router::parse($this->referer());
+		if($referer['action'] == 'view'){
+			$this->redirect(array('action'=>'trash'));
+		}
+		$this->redirect($this->referer());
 	}
 
 

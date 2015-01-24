@@ -6,31 +6,13 @@ echo $this->Form->create("Article");
 ?>
 <div class="contentForm">
 	<div class="main">
-		<div  class="tabs">
-			<ul>
-				<li><a href="#es">[:System.spanish:]</a></li>
-				<li><a href="#en">[:System.english:]</a></li>
-			</ul>
-			<div id="en">
-				<?php echo $this->I18n->inputs(
-					array(
-						"titulo"=>array('langs'=>'en_us'),
-						"contenido"=>array('type'=>'textarea','class'=>'tiny','style'=>'height:1200px;','langs'=>'en_us','interpreter'=>'no'),
-						'fieldset'=>false
-					)
-				); ?>
-
-			</div>
-			<div id="es">
-				<?php echo $this->I18n->inputs(
-						array(
-							"titulo"=>array('langs'=>'es_mx'),
-							"contenido"=>array('type'=>'textarea','class'=>'tiny','style'=>'height:1200px;','langs'=>'es_mx','interpreter'=>'no'),
-							'fieldset'=>false
-						)
-				); ?>
-			</div>
-		</div>
+		<?php echo $this->I18n->inputs(
+				array(
+					"titulo"=>array('langs'=>'es_mx'),
+					"contenido"=>array('type'=>'textarea','class'=>'tiny','style'=>'height:1200px;','langs'=>'es_mx','interpreter'=>'no'),
+					'fieldset'=>false
+				)
+		); ?>
 	</div>
 	<aside>
 		<?= $this->Uploader->input('Foto',array('label'=>'Imagen del articulo','div'=>array('style'=>'width:auto;'))); ?>
@@ -47,32 +29,16 @@ echo $this->Form->create("Article");
 		<div class="panel">
 			<div class="panel-title">[:seo-fields:]</div>
 			<div class="panel-content">
-				<div  class="tabs">
-					<ul>
-						<li><a href="#seo_es">[:System.seo_spanish:]</a></li>
-						<li><a href="#seo_en">[:System.seo_english:]</a></li>
-					</ul>
-					<div id="seo_en">
-						<?php echo $this->I18n->inputs(
-							array(
-								"slug"=>array('langs'=>'en_us'),
-								'keywords'=>array('langs'=>'en_us'),
-								'description'=>array('type'=>'textarea','langs'=>'en_us'),
-								'fieldset'=>false
-							)
-						); ?>
-					</div>
-					<div id="seo_es">
-						<?php echo $this->I18n->inputs(
-							array(
-								"slug"=>array('langs'=>'es_mx'),
-								'keywords'=>array('langs'=>'es_mx'),
-								'description'=>array('type'=>'textarea','langs'=>'es_mx'),
-								'fieldset'=>false
-							)
-						); ?>
-					</div>
-				</div>
+
+				<?php echo $this->I18n->inputs(
+					array(
+						"slug"=>array('langs'=>'es_mx'),
+						'keywords'=>array('langs'=>'es_mx'),
+						'description'=>array('type'=>'textarea','langs'=>'es_mx'),
+						'fieldset'=>false
+					)
+				); ?>
+
 				<div class="help">
 					<i class="icon-asterisk icon-3x"></i>
 					[:System.seo_help:]

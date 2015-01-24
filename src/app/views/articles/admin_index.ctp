@@ -28,22 +28,31 @@ if(!empty($recordset)){
 			$this->Paginator->sort('<span>[:Article_created:]</span><span class="sortind"></span>','Article.created',array('title'=>'[:sort_by:] [:Article_created:]','escape'=>false)),
 			$this->Paginator->sort('<span>[:Article_modified:]</span><span class="sortind"></span>','Article.modified',array('title'=>'[:sort_by:] [:Article_modified:]','escape'=>false)),
 			$this->Paginator->sort('<span>ID</span><span class="sortind"></span>','Article.id',array('title'=>'[:sort_by:] [:Article_id:]','escape'=>false)),
+			'-',
 		);
 		$tr=array();
 		foreach((array)$recordset as $count=>$record){
-			$actions=$this->Html->div('row-actions',
-				$this->Paginator->link("[:editar:]",array('action'=>'edit',$record['Article']['id']),array('rev'=>'','class'=>'btn btn_primary')).
-				$this->Paginator->link(($record['Article']['status'])? "[:unpublish:]" : "[:publish:]",array('action'=>'status',($record['Article']['status'])?0:1,$record['Article']['id']),array('class'=>'action btn','rel'=>'[:change_status_article_titulo:]: <span class="itemName">'.h($record['Article']['titulo']).'</span>?')).
-				$this->Paginator->link("[:delete:]",array('action'=>'delete',$record['Article']['id']),array('class'=>'action btn btn_danger','rel'=>'[:delete_article_titulo:]: '.h($record['Article']['titulo']).'?'))
+			$actions=$this->Html->div('btn-group',
+				$this->Paginator->link($this->Html->tag("i","","icon-pencil")."[:editar:]",array('action'=>'edit',$record['Article']['id']),array('rev'=>'','class'=>'btn btn-info','escape'=>false)).
+				$this->Form->button("<span class='caret'></span>",array('type'=>'button','class'=>'btn btn-info  dropdown-toggle','data-toggle'=>'dropdown')).
+				$this->Html->tag("ul",
+					$this->Html->tag("li",
+						$this->Paginator->link( $record['Article']['status']? $this->Html->tag("i","","icon-circle-blank")."[:unpublish:]" : $this->Html->tag("i","","icon-circle")."[:publish:]",array('action'=>'status',($record['Article']['status'])?0:1,$record['Article']['id']),array('class'=>'action '.($record['Article']['status'] ? "warning" : "success"),'rel'=>"[:change_status_article_titulo:]: <span class='itemName'>".h($record['Article']['titulo']).'</span>?','escape'=>false))
+					).
+					#$this->Html->tag("li",$this->Paginator->link("[:add_location:]",array('controller'=>'locations','action'=>'add','article'=>$record['Article']['id']))).
+					$this->Html->tag("li","","divider").
+					$this->Html->tag("li",$this->Paginator->link("<span class='icon-trash'></span> [:delete:]",array('action'=>'delete',$record['Article']['id']),array('class'=>'action danger','rel'=>'[:System.delete_article_name:]: '.h($record['Article']['titulo']).'?','escape'=>false)))
+					,array('class'=>"dropdown-menu",'role'=>'menu'))
 			);
 			$img=isset($record['Foto']['thumb']) ? $this->Html->image($record['Foto']['thumb'],array('class'=>'pagin-img')): '';
 			$tr[]=array(
 				$this->Form->checkbox("Xpagin.record][",array('class'=>'check','id'=>'','value'=>$record['Article']['id'])),
-				$this->Paginator->link($img.$record['Article']['titulo'],array('action' => 'edit',$record['Article']['id']),array('rev'=>'','escape'=>false,'class'=>'highlight','titulo'=>'[:edit:] '.$record['Article']['titulo'])).$this->Html->div('details',$this->Text->truncate($record['Article']['contenido'], 250, array('html'=>true,'ending'=>'[...]','exact'=>false))).$actions,
+				$this->Paginator->link($img.$record['Article']['titulo'],array('action' => 'view',$record['Article']['id']),array('rev'=>'','escape'=>false,'class'=>'highlight')).$this->Html->div('details',$this->Text->truncate($record['Article']['contenido'], 250, array('html'=>true,'ending'=>'[...]','exact'=>false))),
 				($record['Article']['status'])? $this->Html->tag("span","[:yes:]","label label-success"):$this->Html->tag("span","[:no:]","label label-warning"),
 				$this->Time->format('d/m/Y h:m a',$record['Article']['created']),
 				$this->Time->format('d/m/Y h:m a',$record['Article']['modified']),
-				array($record['Article']['id'],array('class'=>'center'))
+				array($record['Article']['id'],array('class'=>'center')),
+				$actions
 			);
 		}
 	echo $this->Html->tag("table",
@@ -52,9 +61,18 @@ if(!empty($recordset)){
 				$this->Html->tag("col",null,array('span'=>2)).
 				$this->Html->tag("col",null,array('span'=>1,'width'=>'140px')).
 				$this->Html->tag("col",null,array('span'=>1,'width'=>'140px')).
-				$this->Html->tag("col",null,array('span'=>1,'width'=>'30px'))
+				$this->Html->tag("col",null,array('span'=>1,'width'=>'30px')).
+				$this->Html->tag("col",null,array('span'=>1,'width'=>'150px'))
 			).$this->Html->tag("thead",$this->Html->tableHeaders($th),array('class'=>'floating')).$this->Html->tag("tbody",$this->Html->tableCells($tr,array('class'=>'odd'),array('class'=>'even'))).$this->Html->tag("tfoot",$this->Html->tableHeaders($th)),array('class'=>'grid','cellspacing'=>'0','border'=>0)
 		);
+
+	echo $this->Html->tag("div",
+		$this->Html->tag("div",
+			$this->Html->tag("div",
+				$this->Html->link($this->Html->tag("i","","icon-trash")."<span>[:trash_cities:]</span>",array('action'=>'trash'),array('class'=>'btn','escape'=>false))
+				,array('class'=>'rTools'))
+			,array('class'=>'tools'))
+	);
 
 	echo $this->element("pagination-control-bar");
 	$this->I18n->end();

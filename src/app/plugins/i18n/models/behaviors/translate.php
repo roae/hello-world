@@ -224,16 +224,18 @@ class TranslateBehavior extends ModelBehavior {
 			App::import('Core', 'Sanitize');
 			foreach ( $this->settings[$Model->alias] as $field ) {
 				if ( isset($Model->data[$Model->alias][$field . '_' . $locale]) || isset($Model->data[$Model->alias][$field]) ) {
+
 					$content = isset($Model->data[$Model->alias][$field]) ? $Model->data[$Model->alias][$field] : $Model->data[$Model->alias][$field . '_' . $locale];
 					$query.="('" . $locale . "','" . $Model->name . "'," . $Model->id . ",'" . $field . "','" . Sanitize::escape($content) . "'),";
 
-					foreach ( $idiomas as $locale => $idioma ) {
-						if ( isset($Model->data[$Model->alias][$field . '_' . $locale]) ) {
-							$query.="('" . $locale . "','" . $Model->name . "'," . $Model->id . ",'" . $field . "','" . Sanitize::escape($Model->data[$Model->alias][$field . '_' . $locale]) . "'),";
+					foreach ( $idiomas as $_locale => $idioma ) {
+						if ( isset($Model->data[$Model->alias][$field . '_' . $_locale]) ) {
+							$query.="('" . $_locale . "','" . $Model->name . "'," . $Model->id . ",'" . $field . "','" . Sanitize::escape($Model->data[$Model->alias][$field . '_' . $_locale]) . "'),";
 						}
 					}
 					$tradujo = true;
 				}
+
 			}
 			if ( $tradujo ) {
 				$query = substr($query, 0, -1);

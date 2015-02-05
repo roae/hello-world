@@ -245,6 +245,9 @@ class AppController extends Controller{
 			),
 			'config'=>array(
 				'[:security:]'=>array('url'=>array('plugin'=>'acl','controller'=>'acos','action'=>'index','admin'=>true)),
+				'|',
+				'[:settings:]'=>array('url'=>array('plugin'=>false,'controller'=>'settings','action'=>'index','admin'=>true)),
+				'|',
 				'[:users_list:]'=>array('url'=>array('controller'=>'users','action'=>'index','admin'=>true,'plugin'=>false)),
 				'[:user_add:]'=>array('url'=>array('controller'=>'users','action'=>'add','admin'=>true,'plugin'=>false)),
 				'|',

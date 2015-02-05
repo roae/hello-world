@@ -67,7 +67,10 @@
 			array('pass'=>array('class'),'class'=>'[0-9a-zA-Z_\-]+')
 		);
 
-
+		Router::connect("/[billboard]-:slug/*",
+			array('controller'=>'shows','action'=>'index'),
+			array('pass'=>array('slug'),'slug'=>'[0-9a-zA-Z_\-]+')
+		);
 
 		I18nRouter::connect("/[m_contacts_url]",array('controller'=>'contacts','action'=>'add','restricted'=>false));
 

@@ -315,6 +315,9 @@ class AppController extends Controller{
 			$this->pageDescription="[:".$this->params['action']."_".$this->params['controller']."_".$pass."_page_description:]";
 		}
 
+		Configure::write("LocationSelected",$this->Cookie->read("Location"));
+		$this->set("LocationSelected",$this->Cookie->read("Location"));
+
 	}
 
 	function __userManagement(){
@@ -545,7 +548,7 @@ class AppController extends Controller{
 	}
 
 	function afterFilter() {
-		$actions=array('admin_add','admin_edit','admin_delete','admin:status');
+		$actions=array('admin_add','admin_edit','admin_delete','admin_status','admin_trash');
 		if(!empty($this->data) && in_array($this->params['action'], $actions)){
 			clearCache();
 		}

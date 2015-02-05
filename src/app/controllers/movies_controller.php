@@ -223,5 +223,9 @@ class MoviesController extends AppController{
 		$this->redirect($this->referer());
 	}
 
+	function get(){
+		return $this->Movie->find($this->params['type'], $this->params['query']);
+	}
+
 }
 ?>

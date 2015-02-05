@@ -38,12 +38,12 @@ $this->element('i18n_missingkeys');
 	</head>
 	<body <?php echo $class ?>>
 		<header>
-			<div class="Wrapper">
+			<!--<div class="Wrapper">
 				<?= $this->Html->link($this->Html->image("logo.jpg",array('alt'=>'[:logo_alt:]')),"/",array('escape'=>false,'title'=>'[:title_logo:]','id'=>'Logo'));?>
 				<nav>
 					<?= $this->Navigation->menu($defaultMenu['menu'],array('id'=>'menu'))?>
 				</nav>
-			</div>
+			</div>-->
 		</header>
 		<?= $content_for_layout ?>
 		<!--I18nScripts-->

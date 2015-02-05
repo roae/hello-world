@@ -212,5 +212,30 @@ class LocationsController extends AppController{
 		}
 	}
 
+	function get(){
+		return $this->Location->find($this->params['type'], $this->params['query']);
+	}
+
+	/**
+	 * Guarda el id del complejo en una Cookie llamada Location que caduca en 1 año
+	 * @param null $id Location
+	 */
+	function set_location($id = null){
+		if(isset($this->data['Location']['id']) || !empty($id)){
+			$id = isset($this->data['Location']['id'])? $this->data['Location']['id'] : $id;
+			$this->Location->id = $id;
+			$data=$this->Location->read(array('id','name'));
+			if(!empty($data)){
+				$this->Cookie->write("Location",$data['Location'],false,mktime(0,0,0,date("m"),date("d"),date("Y")+1));
+			}else{
+				$this->Notifier->error("[:location-id-no-existe:]");
+			}
+		}else{
+			$this->Notifier->error("[:no-indico-location-id:]");
+		}
+		$this->redirect(($this->referer()));
+
+	}
+
 }
 ?>

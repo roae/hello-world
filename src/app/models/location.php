@@ -57,7 +57,7 @@ class Location extends AppModel {
 		'street'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		),
-		'interior'=>array(
+		'outside'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		),
 		'state'=>array(

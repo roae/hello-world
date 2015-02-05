@@ -85,9 +85,8 @@ $(function(){
 	$("#LocationDireccion").bind('focus',function(){
 		address=$(this).val();
 	});
-	$("#LocationDireccion").bind('blur',function(){
-		sinc_direct();
-
+	$("input, select",$("#LocationStreet" ).closest("fieldset")).bind('blur',function(){
+		sync_direct();
 	});
 
 	$("#sincronizar").click(function(){

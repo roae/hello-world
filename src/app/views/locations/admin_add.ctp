@@ -28,7 +28,7 @@ echo $this->Form->create("Location");
 					<?php
 					echo $this->I18n->inputs(array(
 						'street'=>array('div'=>array('class'=>'input text required span6')),
-						'interior'=>array('div'=>array('class'=>'input text required span3')),
+						'interior'=>array('div'=>array('class'=>'input text span3')),
 						'outside'=>array('div'=>array('class'=>'input text span3')),
 						'neighborhood'=>array('div'=>array('class'=>'input text required span6')),
 						'zip'=>array('div'=>array('class'=>'input text required span3')),

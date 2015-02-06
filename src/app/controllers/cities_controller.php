@@ -3,7 +3,7 @@ class CitiesController extends AppController{
 	var $name = "Cities";
 	var $components = array();
 	var $helpers = array();
-	var $uses = array("VistaService","City");
+	var $uses = array("City");
 
 	var $paginate = array(
 		'limit'=>30,

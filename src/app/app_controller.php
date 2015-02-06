@@ -324,7 +324,7 @@ class AppController extends Controller{
 		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting
 			$this->RequestHandler->respondAs('xml'); // for setting headers
 			$this->RequestHandler->renderAs($this, 'xml'); // for specifying templates for rendering
-		} elseif ($this->RequestHandler->ext == 'json'|| $this->RequestHandler->isAjax()){ // 'action' ajax requests and all 'action.json' requests receive JSON
+		} elseif ($this->RequestHandler->ext == 'json'){ // 'action' ajax requests and all 'action.json' requests receive JSON
 			$this->RequestHandler->respondAs('json');
 			$this->RequestHandler->renderAs($this, 'json');
 		}

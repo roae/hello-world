@@ -100,6 +100,11 @@ Router::connect( '/admin', array( 'controller' => 'pages', 'action' => 'display'
 Router::connect( "/contacts.captcha", array( 'controller' => 'contacts', 'action' => 'captcha' ) );
 
 Router::mapResources( 'locations' );
+Router::mapResources( 'shows' );
+Router::mapResources( 'movies' );
+Router::mapResources( 'users' );
+Router::mapResources( 'cities' );
+
 Router::parseExtensions( 'json','xml' );
 
 /*

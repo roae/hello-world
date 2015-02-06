@@ -203,5 +203,10 @@ class CitiesController extends AppController{
 		$this->redirect($this->referer());
 	}
 
+	function index(){
+		$city = $this->City->find("all",array('conditions'=>array('trash'=>0,'status'=>1)));
+		$this->set(compact("city"));
+	}
+
 }
 ?>

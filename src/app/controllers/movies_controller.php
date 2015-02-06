@@ -227,5 +227,18 @@ class MoviesController extends AppController{
 		return $this->Movie->find($this->params['type'], $this->params['query']);
 	}
 
+	function view($id = null){
+		$this->Movie->contain(array(
+			"Poster",
+			"Gallery",
+			"Projection",
+			'MovieLocation'=>array(
+				'Location'
+			)
+		));
+		$movie = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.id'=>$id)));
+		$this->set(compact("movie"));
+	}
+
 }
 ?>

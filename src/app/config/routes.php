@@ -27,80 +27,90 @@
  * to use (in this case, /app/views/pages/home.ctp)...
  */
 
-	App::import("Lib","I18n.I18nRouter",true,array(),'i18n_router.php');
+App::import( "Lib", "I18n.I18nRouter", true, array(), 'i18n_router.php' );
 
-	#App::import('Lib', 'routes/SubDomainPrefixRoute');
-	#Router::connect('*',array(),array('routeClass'=>'SubDomainPrefixRoute'));
+#App::import('Lib', 'routes/SubDomainPrefixRoute');
+#Router::connect('*',array(),array('routeClass'=>'SubDomainPrefixRoute'));
 
-	/*if(preg_match('/^answers/', env("HTTP_HOST"))){
-		Router::connect('/', array('controller' => 'questions', 'action' => 'index'));
-	}else{*/
-		Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-		Router::connect('/error404', array('controller' => 'pages', 'action' => 'display', 'error','404'));
+/*if(preg_match('/^answers/', env("HTTP_HOST"))){
+	Router::connect('/', array('controller' => 'questions', 'action' => 'index'));
+}else{*/
+Router::connect( '/', array( 'controller' => 'pages', 'action' => 'display', 'home' ) );
+Router::connect( '/error404', array( 'controller' => 'pages', 'action' => 'display', 'error', '404' ) );
 
 
-		#Router::connectNamed(array('c','hotel','page','sort','direction','limit','group','order'));
+#Router::connectNamed(array('c','hotel','page','sort','direction','limit','group','order'));
 
-		I18nRouter::connect("/[m_about_url]",array('controller'=>'pages','action'=>'display','about'));
+I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
 
-		I18nRouter::connect('/[m_articles_url]/:id-:slug/*',
-				array('controller'=>'articles','action'=>'view','restricted'=>false),
-				array('pass' => array('id', 'slug'),'id'=>'[0-9]+')
-		);
-		I18nRouter::connect('/[m_articles_url]/[tag_url]/:tag_slug/*',
-			array('controller'=>'articles','action'=>'index','restricted'=>false),
-			array('pass' => array('tag_slug'),'tag_slug'=>'[0-9a-zA-Z_\-]+')
-		);
-		I18nRouter::connect('/[m_articles_url]/[category_url]/:category_slug/*',
-			array('controller'=>'articles','action'=>'index','restricted'=>false),
-			array('pass' => array('category_slug'),'category_slug'=>'[0-9a-zA-Z_\-]+')
-		);
-		I18nRouter::connect("/[m_articles_url]/*",array('controller'=>'articles','action'=>'index','restricted'=>false));
+I18nRouter::connect( '/[m_articles_url]/:id-:slug/*',
+	array( 'controller' => 'articles', 'action' => 'view', 'restricted' => false ),
+	array( 'pass' => array( 'id', 'slug' ), 'id' => '[0-9]+' )
+);
+I18nRouter::connect( '/[m_articles_url]/[tag_url]/:tag_slug/*',
+	array( 'controller' => 'articles', 'action' => 'index', 'restricted' => false ),
+	array( 'pass' => array( 'tag_slug' ), 'tag_slug' => '[0-9a-zA-Z_\-]+' )
+);
+I18nRouter::connect( '/[m_articles_url]/[category_url]/:category_slug/*',
+	array( 'controller' => 'articles', 'action' => 'index', 'restricted' => false ),
+	array( 'pass' => array( 'category_slug' ), 'category_slug' => '[0-9a-zA-Z_\-]+' )
+);
+I18nRouter::connect( "/[m_articles_url]/*", array( 'controller' => 'articles',
+	'action' => 'index',
+	'restricted' => false
+) );
 
-		Router::connect("/admin/terms/:class/:action/*",
-			array('controller'=>'terms','admin'=>true),
-			array('pass'=>array('class'),'class'=>'[0-9a-zA-Z_\-]+')
-		);
+Router::connect( "/admin/terms/:class/:action/*",
+	array( 'controller' => 'terms', 'admin' => true ),
+	array( 'pass' => array( 'class' ), 'class' => '[0-9a-zA-Z_\-]+' )
+);
 
-		Router::connect("/admin/terms/:class/*",
-			array('controller'=>'terms','action'=>'index','admin'=>true),
-			array('pass'=>array('class'),'class'=>'[0-9a-zA-Z_\-]+')
-		);
+Router::connect( "/admin/terms/:class/*",
+	array( 'controller' => 'terms', 'action' => 'index', 'admin' => true ),
+	array( 'pass' => array( 'class' ), 'class' => '[0-9a-zA-Z_\-]+' )
+);
 
-		Router::connect("/[billboard]-:slug/*",
-			array('controller'=>'shows','action'=>'index'),
-			array('pass'=>array('slug'),'slug'=>'[0-9a-zA-Z_\-]+')
-		);
+Router::connect( "/[billboard]-:slug/*",
+	array( 'controller' => 'shows', 'action' => 'index' ),
+	array( 'pass' => array( 'slug' ), 'slug' => '[0-9a-zA-Z_\-]+' )
+);
 
-		I18nRouter::connect("/[m_contacts_url]",array('controller'=>'contacts','action'=>'add','restricted'=>false));
+I18nRouter::connect( "/[m_contacts_url]", array( 'controller' => 'contacts',
+	'action' => 'add',
+	'restricted' => false
+) );
 
-		I18nRouter::connect("/[thanks_url]",array('controller'=>'pages','action'=>'display','thanks'));
+I18nRouter::connect( "/[thanks_url]", array( 'controller' => 'pages', 'action' => 'display', 'thanks' ) );
 
-		I18nRouter::connect("/[search_url]",array('controller'=>'pages','action'=>'display','buscador'));
+I18nRouter::connect( "/[search_url]", array( 'controller' => 'pages', 'action' => 'display', 'buscador' ) );
 
-		I18nRouter::connect("/[privacy_policies_url]",array('controller'=>'pages','action'=>'display','privacy_policies'));
+I18nRouter::connect( "/[privacy_policies_url]", array( 'controller' => 'pages',
+	'action' => 'display',
+	'privacy_policies'
+) );
 
-		I18nRouter::connect("/[sitemap_url]",array('controller'=>'pages','action'=>'display','sitemap'));
+I18nRouter::connect( "/[sitemap_url]", array( 'controller' => 'pages', 'action' => 'display', 'sitemap' ) );
 
-		/**
-	 * ...and connect the rest of 'Pages' controller's urls.
-	 */
-		Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display','restricted'=>false));
-		Router::connect('/admin', array('controller' => 'pages', 'action' => 'display','admin_home','admin'=>true));
+/**
+ * ...and connect the rest of 'Pages' controller's urls.
+ */
+Router::connect( '/pages/*', array( 'controller' => 'pages', 'action' => 'display', 'restricted' => false ) );
+Router::connect( '/admin', array( 'controller' => 'pages', 'action' => 'display', 'admin_home', 'admin' => true ) );
 
-		Router::connect("/contacts.captcha",array('controller'=>'contacts','action'=>'captcha'));
+Router::connect( "/contacts.captcha", array( 'controller' => 'contacts', 'action' => 'captcha' ) );
 
-	/*
-	 * Carga todos los archivos routes de los plugins
-	 */
+Router::mapResources( 'locations' );
+Router::parseExtensions( 'json','xml' );
 
-		$f = new Folder(APP . 'plugins');
-		$files = $f->read();
-		foreach($files[0] as $file)
-		{
-			if(file_exists(APP . 'plugins' . DS . $file . DS . 'config' . DS . 'routes.php'))
-			{
-				require_once APP . 'plugins' . DS . $file . DS . 'config' . DS . 'routes.php';
-			}
-		}
-	#}
+/*
+ * Carga todos los archivos routes de los plugins
+ */
+
+$f = new Folder( APP.'plugins' );
+$files = $f->read();
+foreach( $files[0] as $file ){
+	if( file_exists( APP.'plugins'.DS.$file.DS.'config'.DS.'routes.php' ) ){
+		require_once APP.'plugins'.DS.$file.DS.'config'.DS.'routes.php';
+	}
+}
+#}

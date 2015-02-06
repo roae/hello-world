@@ -11,7 +11,7 @@
  * @property AclComponent $Acl
  * @property CookieComponent $Cookie
  * @property EmailComponent $Email
- * @property RequestHandlerComponent $RequestHandler
+ * @property $RequestHandler RequestHandlerComponent
  * @property SecurityComponent $Security
  * @property SessionComponent $Session
  * @property NotifierComponent $Notifier
@@ -320,6 +320,14 @@ class AppController extends Controller{
 
 		Configure::write("LocationSelected",$this->Cookie->read("Location"));
 		$this->set("LocationSelected",$this->Cookie->read("Location"));
+
+		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting
+			$this->RequestHandler->respondAs('xml'); // for setting headers
+			$this->RequestHandler->renderAs($this, 'xml'); // for specifying templates for rendering
+		} elseif ($this->RequestHandler->ext == 'json'|| $this->RequestHandler->isAjax()){ // 'action' ajax requests and all 'action.json' requests receive JSON
+			$this->RequestHandler->respondAs('json');
+			$this->RequestHandler->renderAs($this, 'json');
+		}
 
 	}
 

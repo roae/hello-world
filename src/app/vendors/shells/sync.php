@@ -227,6 +227,7 @@ class SyncShell extends Shell{
 
 		$Email->reset();
 		$Email->to = $this->config['sync_error_email'];
+		$Email->from = "noreply@citicinemas.com";
 		$Email->subject = "Errores en la sincronización de la cartelera";
 		$Email->sendAs = 'html';
 		$Controller->set("errors",$this->errors);

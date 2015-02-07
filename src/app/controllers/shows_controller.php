@@ -33,5 +33,15 @@ class ShowsController extends AppController{
 		return $this->Show->find($this->params['type'], $this->params['query']);
 	}
 
+	function admin_syncstatus(){
+
+	}
+
+	function admin_sync(){
+		shell_exec("/Users/roae/Documents/servidor/citicinemas/src/app/vendors/cakeshell sync -cli /usr/bin -console /Users/roae/Documents/servidor/citicinemas/src/cake/console -app /Users/roae/Documents/servidor/citicinemas/src/app");
+		$this->Notifier->success("[:sync_start:]");
+		$this->redirect($this->referer());
+	}
+
 }
 ?>

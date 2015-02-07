@@ -1,0 +1,21 @@
+@import 'admin/variables';
+#Sync{
+	fieldset{
+		border:0;
+		text-align: center;
+	}
+	.syncFail{
+		//line-height: 30px;
+		font-size: 30px;
+		color: #999;
+		&::before{
+			color:@danger;
+			font-size: 30px;
+			.icon(@remove-sign);
+		}
+	}
+	.date{
+		margin-left: 30px;
+		margin-bottom: 30px;
+	}
+}

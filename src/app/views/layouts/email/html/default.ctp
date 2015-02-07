@@ -17,17 +17,26 @@
 			a img {border:none;}
 			.image_fix {display:block;}
 			p {margin: 1em 0;color:#616161 !important;font-family: Helvetica,Arial,sans-serif !important;font-size:12px;line-height:18px !important;}
-			h1, h2, h3, h4, h5, h6 {color: #6b959d !important; font-family: Georgia,Helvetica,Arial,sans-serif !important;font-style: italic;margin: 0 0 5px !important;}
+			h1{
+				color:#555;
+			}
+			h1, h2, h3, h4, h5, h6 {color: #444; !important; font-family: Helvetica,Arial,sans-serif !important;margin: 0 0 5px !important; line-height: 1.5em;}
 			h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: blue !important;}
 			h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {color: red !important;}
 			h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {color: purple !important;}
 			table td {border-collapse: collapse;}
-			a {color: #005f71;;}
-			h2{font-size:16px;font-weight:normal; font-style: normal;margin:0;}
+			a {color: #005f71;}
+			li{
+				margin-bottom: 10px;
+			}
+			h2.error{
+				color: #f00;
+			}
+			/*h2{font-size:16px;font-weight:normal; font-style: normal;margin:0;}*/
 		</style>
 	</head>
-	<body bgcolor="#cdece7">
-		<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" bgcolor="#cdece7" width="100%">
+	<body bgcolor="#EEEEEE">
+		<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" bgcolor="#EEEEEE" width="100%">
 			<tr>
 				<td>
 					<table cellpadding="" cellspacing="0" border="0" align="center">

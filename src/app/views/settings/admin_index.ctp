@@ -16,7 +16,7 @@ echo $this->Form->create("Setting");
 					<legend>[:sync_billboard:]</legend>
 				<?php
 				foreach(range(1,23) as $hour){
-					$hours[$hour.":00"] = $hour.":00";
+					$hours[$hour] = $hour.":00";
 				}
 				echo $this->Form->hidden("0.id");
 				echo $this->I18n->input("0.value",array('options'=>$hours,'label'=>'[:hora-sincronizacion-cartelera:]'));

@@ -246,6 +246,8 @@ class AppController extends Controller{
 			'config'=>array(
 				'[:security:]'=>array('url'=>array('plugin'=>'acl','controller'=>'acos','action'=>'index','admin'=>true)),
 				'|',
+				'[:syncstatus:]'=>array('url'=>array('plugin'=>false,'controller'=>'shows','action'=>'syncstatus','admin'=>true)),
+				'|',
 				'[:settings:]'=>array('url'=>array('plugin'=>false,'controller'=>'settings','action'=>'index','admin'=>true)),
 				'|',
 				'[:users_list:]'=>array('url'=>array('controller'=>'users','action'=>'index','admin'=>true,'plugin'=>false)),

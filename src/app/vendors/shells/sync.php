@@ -1,6 +1,4 @@
 <?php
-App::Import('Core','Xml');
-App::Import("Component","Email");
 /**
  * Class SyncShell
  *
@@ -11,6 +9,7 @@ App::Import("Component","Email");
  * @property $Movie Movie
  * @property $Projection Projection
  * @property $Show Show
+ * @property $Settings Settings
  *
  * Components
  * @property $Email EmailComponent
@@ -30,23 +29,43 @@ class SyncShell extends Shell{
 		'Location',
 		'Movie',
 		'Projection',
-		'Show'
+		'Show',
+		'Setting',
 	);
+
+	var $locationsNoScheduled = array();
+
+	var $locationsFail = array();
+
+	var $errors = array();
+
+	var $projectionsNotFound = array();
+
+	var $config = array();
 
 	function startUp(){
 		$this->Dispatch->clear();
-		$this->hr();
-		$this->out("");
+		$this->hr(1);
 		$this->out("Bienvenido a la sincronización de carteleras");
-		$this->out("Fecha: ".date("F j, Y, g:i:s a"));
-		$this->out("");
-		$this->hr();
+		$this->out("Fecha: ".date("F j, Y, h:i:s a"));
+		$this->hr(1);
 	}
 
 	/**
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
+		$this->config = $this->Setting->getConfig();
+		#$this->out(print_r($config));
+		$syncStatus = Cache::read("sync_billboard_status");
+		#$this->out(print_r($syncStatus));
+
+		if(!empty($syncStatus)){
+			$last_sync_date = strtotime($syncStatus['date']);
+			#$this->out(date("d F Y H:i:s a",$last_sync_date));
+		}
+
+		#if(empty($syncStatus) || ($syncStatus['fail'] &&))
 		try{
 			$starDate = mktime(0,0,0,date("m"),date("d"),date("Y"));
 			$endDate = mktime(23,59,59,date("m"),date("d"),date("Y"));
@@ -67,8 +86,7 @@ class SyncShell extends Shell{
 
 			foreach((array) $locations as $record){
 				if(!empty($record['Location']['vista_service_url'])){
-					$this->hr();
-					$this->out("");
+					$this->hr(1);
 					$this->out("Complejo: ".$record['Location']['name']);
 					$this->out("- Conectando: ".$record['Location']['vista_service_url']);
 
@@ -77,7 +95,8 @@ class SyncShell extends Shell{
 						$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
 						$connection = true;
 					} catch (Exception $e) {
-						# TODO: Send Email
+						$this->locationsFail[] = $record['Location']['id'];
+						$this->errors['location_connection'][] = $record['Location'];
 						$this->err($e->getMessage());
 					}
 
@@ -91,6 +110,22 @@ class SyncShell extends Shell{
 			$this->err($e->getMessage());
 		}
 
+		if(!empty($this->errors)){
+			#Enviar notificacion de los errores por mail
+			$this->__sendNotification();
+		}
+
+		#guardar el resultado de la sincronizacion en cache
+		$syncStatus['fail'] = !empty($this->errors);
+		$syncStatus['date'] = date("Y-m-d H:i:s");
+		$syncStatus['locations_fail'] = implode("|",$this->locationsFail);
+		$syncStatus['locations_no_scheduled'] = implode("|",$this->locationsNoScheduled);
+		$syncStatus['projections_not_found'] = implode("|",$this->projectionsNotFound);
+
+		Cache::write("sync_billboard_status",$syncStatus);
+
+		$this->hr(1);
+		$this->out("Fin de la ejecución: ".date("F j, Y, h:i:s a"));
 		$this->_stop(1);
 
 	}
@@ -116,10 +151,13 @@ class SyncShell extends Shell{
 			$this->out("-- Ok");
 			$this->hr();
 		}catch (Exception $e){
-			# TODO: Send Email
+			$this->locationsFail[] = $location['id'];
+			$this->errors['location_connection'][] = $location;
+
 			$this->err($e->getMessage());
 		}
 		$r = explode("|",$response->ReturnData);
+		App::Import('Core','Xml');
 		$xml = new Xml($r[6]);
 		$data = $xml->toArray();
 		#$this->log($location,'sync');
@@ -162,52 +200,40 @@ class SyncShell extends Shell{
 					}
 				}else{
 					$this->out("- El código ".$session['Film_strCode']." no se ha asignado a una pelicula");
+					$this->projectionsNotFound[] =  $session['Film_strCode'].">".$session['Film_strTitle'];
+					$this->errors['projections_not_found'][] = $session['Film_strCode'].">".$session['Film_strTitle'];
 				}
 
 			}
 
 			$this->Show->commit();
 
+		}else{
+			# Error: No se encontraron horarios
+			$$this->locationsNoScheduled[] = $location['id'];
+			$this->errors['location_no_scheduled'][] = $location;
 		}
+
+	}
+
+	function __sendNotification(){
+		App::import('Core', 'Controller');
+		App::import('Controller', 'App');
+		$Controller = & new Controller();
+
+		App::import('Component', 'Email');
+		$Email = new EmailComponent();
+		$Email->initialize($Controller);
+
+		$Email->reset();
+		$Email->to = $this->config['sync_error_email'];
+		$Email->subject = "Errores en la sincronización de la cartelera";
+		$Email->sendAs = 'html';
+		$Controller->set("errors",$this->errors);
+		$Email->template = "sync_error";
+		$Email->send();
+
 	}
 
 }
-
-/*$params = array(
-			'ClientID'=>'209.126.208.164',
-			'TransIdTemp'=>'12122121',
-			'CmdName'=>'GetSellingDataXMLStream',
-			'param1'=>'ALL',
-			#'Param1'=>"ALL|SESSIONS|FILMS|PRICES|PRICESALL|PRICESINCLZERO | CONCESSIONS | CINEMAOPERATORS | CARDDEFINITIONS | PRICEPACKAGES | ITEMALT | BOM | CONCESSIONSINCLZERO | BOMINCLZERO | ITEMALTINCLZERO | CONCESSIONSALL | POSBUTTONS | CONCESSIONBUTTONS | CONCESSIONTABS | CURRENCYPAYMENTTYPES",
-			'Param2'=>'',
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $client->__soapCall("Execute",array($params));
-		$r = explode("|",$response->ReturnData);
-		$this->log($r[6],"server");
-		#$xml = new Xml($r[6]);
-		#$this->log($xml->toString(),"server");
-		#$this->set("GetSellingDataXMLStream",$xml->toArray());
-
-
-		$params = array(
-			'ClientID'=>'209.126.208.164',
-			'TransIdTemp'=>'12122121',
-			'CmdName'=>'GetSessionDisplayData',
-			'Param1'=>"",
-			'Param2'=>'|DATESTART|201501270000|DATEEND|201501272359|OPENONLY|Y|MAXRECORDS| 0 | ATMONLY | N |',
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $client->__soapCall("Execute",array($params));
-		$r = explode("|",$response->ReturnData);
-		#$this->log($r[6],"GetSessionDisplayData");
-		$xml = new Xml($r[6]);
-		$this->set("GetSessionDisplayData",$xml->toArray());
-*/
 ?>

@@ -8,6 +8,10 @@ echo $this->Form->create("Setting");
 		<h1>[:site-settings:]</h1>
 		<div class="row-fluid">
 			<div class="span8">
+				<?php
+				echo $this->Form->hidden("2.id");
+				echo $this->I18n->input("2.value",array('type'=>'checkbox','label'=>'[:website-mantenance:]'));
+				?>
 				<fieldset>
 					<legend>[:sync_billboard:]</legend>
 				<?php
@@ -19,6 +23,9 @@ echo $this->Form->create("Setting");
 
 				echo $this->Form->hidden("1.id");
 				echo $this->I18n->input("1.value",array('type'=>'text','label'=>'[:email-error-cartelera:]','after'=>'<span class="help">[:email-error-cartelera-help:]</span>'));
+
+				echo $this->Form->hidden("9.id");
+				echo $this->I18n->input("9.value",array('type'=>'text','label'=>'[:sync_error_interval:]'));
 
 				?>
 				</fieldset>
@@ -47,11 +54,11 @@ echo $this->Form->create("Setting");
 					foreach(range(1,23) as $hour){
 						$hours[$hour.":00"] = $hour.":00";
 					}
-					echo $this->Form->hidden("7.id");
-					echo $this->I18n->input("7.value",array('type'=>'text','label'=>'[:contact-email:]','after'=>'<span class="help">[:contact-email-help:]</span>'));
+					echo $this->Form->hidden("6.id");
+					echo $this->I18n->input("6.value",array('type'=>'text','label'=>'[:contact-email:]','after'=>'<span class="help">[:contact-email-help:]</span>'));
 
-					echo $this->Form->hidden("8.id");
-					echo $this->I18n->input("8.value",array('type'=>'text','label'=>'[:contact-email-cc:]','after'=>'<span class="help">[:contact-email-cc-help:]</span>'));
+					echo $this->Form->hidden("7.id");
+					echo $this->I18n->input("7.value",array('type'=>'text','label'=>'[:contact-email-cc:]','after'=>'<span class="help">[:contact-email-cc-help:]</span>'));
 
 					?>
 				</fieldset>

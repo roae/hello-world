@@ -37,9 +37,16 @@ class ShowsController extends AppController{
 
 	}
 
-	function admin_sync(){
-		shell_exec("/Users/roae/Documents/servidor/citicinemas/src/app/vendors/cakeshell sync -cli /usr/bin -console /Users/roae/Documents/servidor/citicinemas/src/cake/console -app /Users/roae/Documents/servidor/citicinemas/src/app");
-		$this->Notifier->success("[:sync_start:]");
+	function admin_sync($location = null){
+
+		if(is_numeric($location)){
+			exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." >> ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual");
+			$this->Notifier->success("[:sync_start:]");
+		}else{
+			$this->Notifier->error("[:invalid-location-id:]");
+		}
+		//echo exec('whoami');
+
 		$this->redirect($this->referer());
 	}
 

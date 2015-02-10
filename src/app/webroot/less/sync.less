@@ -14,6 +14,25 @@
 			.icon(@remove-sign);
 		}
 	}
+	.syncFail{
+		//line-height: 30px;
+		font-size: 30px;
+		color: #999;
+		&::before{
+			color:@danger;
+			font-size: 30px;
+			.icon(@remove-sign);
+		}
+	}
+	.syncSuccess{
+		font-size: 30px;
+		color: #999;
+		&::before{
+			color:@success;
+			font-size: 30px;
+			.icon(@ok-sign);
+		}
+	}
 	.date{
 		margin-left: 30px;
 		margin-bottom: 30px;

@@ -1,6 +1,8 @@
 <?php /* @var $this View */
 $this->Html->addCrumb('[:System.admin_syncstatus:]');
-
+pr(APP."vendors".DS."cakeshell");
+pr(CAKE_CORE_INCLUDE_PATH.DS.CAKE."console");
+pr(APP);
 ?>
 	<div class="contentForm">
 		<div class="row-fluid">
@@ -31,7 +33,7 @@ $this->Html->addCrumb('[:System.admin_syncstatus:]');
 						</div>
 						<?
 					}
-					echo $this->Html->link("[:syncbillboard:]",array('action'=>'sync'),array('escape'=>false,'class'=>'btn btn-info'));
+					echo $this->Html->link("<i class='icon-rocket'></i> [:syncbillboard:]",array('action'=>'sync'),array('escape'=>false,'class'=>'btn btn-info'));
 					?>
 				</fieldset>
 			</div>

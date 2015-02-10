@@ -48,6 +48,28 @@ class SyncShell extends Shell{
 	}
 
 	/**
+	 * Verifica si se debe ejecutar la sincronizacion
+	 * @return bool
+	 */
+	function __sincronizar(){
+		$this->config = $this->Setting->getConfig();
+		$syncStatus = Cache::read("sync_billboard_status");
+		$this->hr();
+		$this->out(date("Y-m-d H:i:s",mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")))." - ".date("Y-m-d H:i:s",strtotime("now")));
+		$sync_hour = mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y"));
+		if(($sync_hour <= strtotime("now")) && mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")) > strtotime($syncStatus['date'])){
+			return true;
+		}
+		$this->out(date("Y-m-d H:i:s",strtotime($syncStatus['date']))." - ".date("Y-m-d H:i:s",strtotime("-".$this->config['sync_error_interval']." min")));
+		if(!empty($syncStatus) && $syncStatus['fail'] && strtotime($syncStatus['date']) <= strtotime("-".$this->config['sync_error_interval']." min")){
+			return true;
+		}
+
+		return empty($syncStatus);
+
+	}
+
+	/**
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
@@ -238,14 +260,14 @@ class SyncShell extends Shell{
 		$Email->template = "sync_error";
 
 		/* Opciones SMTP*/
-		/*$Email->smtpOptions = array(
+		$Email->smtpOptions = array(
 			'port'=>'25',
 			'timeout'=>'30',
 			'host' => 'mail.h1webstudio.com',
 			'username'=>'erochin@h1webstudio.com',
 			'password'=>'Rochin12!-');
 
-		$Email->delivery = 'smtp';*/
+		$Email->delivery = 'smtp';
 
 		$Email->send();
 
@@ -253,20 +275,7 @@ class SyncShell extends Shell{
 
 	}
 
-	function __sincronizar(){
-		$this->config = $this->Setting->getConfig();
-		$syncStatus = Cache::read("sync_billboard_status");
-		if(mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")) <= strtotime("now")){
-			return true;
-		}
-		#$this->out(date("Y-m-d H:i:s",strtotime($syncStatus['date']))." - ".date("Y-m-d H:i:s",strtotime("-".$this->config['sync_error_interval']." min")));
-		if(!empty($syncStatus) && $syncStatus['fail'] && strtotime($syncStatus['date']) <= strtotime("-".$this->config['sync_error_interval']." min")){
-			return true;
-		}
 
-		return empty($syncStatus);
-
-	}
 
 }
 ?>

@@ -1,5 +1,5 @@
 <h1 class="error">Errores en la sincronizaci&oacute;n de la cartelera </h1>
-<small>Fecha: <?= date("d [:F:] Y H:m:s");?></small>
+<small>Fecha: <?= date("d [:F:] Y H:i:s");?></small>
 <?php
 if(isset($errors['locations_connection'])){
 	echo "<hr />";

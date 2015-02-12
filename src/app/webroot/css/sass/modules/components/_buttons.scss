@@ -1,0 +1,42 @@
+#header-location-select {
+  display: inline-block;
+  margin-top: 28px;
+
+  a {
+    padding: 15px 80px 15px 60px;
+    border-radius: 50px;
+    font-size: 1.125em;
+    font-weight: 300;
+    color: #fff;
+    background: $red url(../img/custom-select-arrow.png) no-repeat 95% center;
+    background-size: 20px;
+
+    .current {
+      position: relative;
+      font-weight: bold;
+      font-style: italic;
+      color: $yellow;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -30px;
+        width: 1px;
+        height: 25px;
+        background-color: darken($red, 5%);
+      }
+    }
+
+    &:hover { background-color: darken($red, 2%); }
+
+    &:active {
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  .places {
+    display: none;
+  }
+}

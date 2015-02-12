@@ -1,0 +1,31 @@
+#main-header {
+  width : 100%;
+  background : #fff;
+  padding : 15px 10px;
+
+  #logo {
+    margin-right: 80px;
+    float: left;
+  }
+
+  .account-container {
+    float: right;
+    margin-top: 25px;
+
+    li {
+      display: inline-block;
+
+      &:first-child { margin-right: 25px; }
+
+      a {
+        display: inline-block;
+        padding: 3px;
+        color: $gray;
+
+        &:hover {
+          color: lighten($gray, 15%);
+        }
+      }
+    }
+  }
+}

@@ -43,6 +43,8 @@ class SyncShell extends Shell{
 
 	var $config = array();
 
+	var $syncStatus = array();
+
 	function startUp(){
 		$this->Dispatch->clear();
 	}
@@ -54,13 +56,20 @@ class SyncShell extends Shell{
 	function __sincronizar(){
 		$this->config = $this->Setting->getConfig();
 		$syncStatus = Cache::read("sync_billboard_status");
-		$this->hr();
-		$this->out(date("Y-m-d H:i:s",mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")))." - ".date("Y-m-d H:i:s",strtotime("now")));
+
+		if($syncStatus['running']){
+			$this->out("Running");
+			return false;
+		}
+		$this->syncStatus = $syncStatus;
+		#$this->out(print_r($syncStatus));
+		#$this->hr();
+		#$this->out(date("Y-m-d H:i:s",mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")))." - ".date("Y-m-d H:i:s",strtotime("now")));
 		$sync_hour = mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y"));
 		if(($sync_hour <= strtotime("now")) && mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")) > strtotime($syncStatus['date'])){
 			return true;
 		}
-		$this->out(date("Y-m-d H:i:s",strtotime($syncStatus['date']))." - ".date("Y-m-d H:i:s",strtotime("-".$this->config['sync_error_interval']." min")));
+		#$this->out(date("Y-m-d H:i:s",strtotime($syncStatus['date']))." - ".date("Y-m-d H:i:s",strtotime("-".$this->config['sync_error_interval']." min")));
 		if(!empty($syncStatus) && $syncStatus['fail'] && strtotime($syncStatus['date']) <= strtotime("-".$this->config['sync_error_interval']." min")){
 			return true;
 		}
@@ -69,21 +78,32 @@ class SyncShell extends Shell{
 
 	}
 
+	function __getArgLocation(){
+		return isset($this->args[0])? $this->args[0] : null;
+	}
+
 	/**
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
-		if($this->__sincronizar()){
+		$location_id = $this->__getArgLocation();
+
+		if($this->__sincronizar() || $location_id){
 			$this->hr(1);
 			$this->out("Bienvenido a la sincronización de carteleras");
 			$this->out("Fecha: ".date("F j, Y, h:i:s a"));
 			$this->hr(1);
+			//$this->syncStatus = array();
+			$this->syncStatus['fail'] = false;
+			$this->syncStatus['date'] = date("Y-m-d H:i:s");
+			$this->syncStatus['running'] = true;
 
 			try{
 				$starDate = mktime(0,0,0,date("m"),date("d"),date("Y"));
 				$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
 				$this->out("Periodo: ".date("Y-m-d H:i:s",$starDate)." | ".date("Y-m-d H:i:s",$endDate));
 
+				$conditions = ($location_id == "all")? array() : array('Location.id'=>$location_id);
 				$locations = $this->Location->find("all",array(
 					'conditions'=>array(
 						'Location.status'=>1,
@@ -94,10 +114,24 @@ class SyncShell extends Shell{
 						'Location.name',
 						'Location.vista_code',
 						'Location.vista_service_url',
-					)
+					),
+					'conditions'=>$conditions
 				));
 
 				foreach((array) $locations as $record){
+
+					$this->syncStatus['locations'][$record['Location']['id']]=array(
+						'fail'=>false,
+						'date'=>date("Y-m-d H:i:s"),
+						'id'=>$record['Location']['id'],
+						'connection'=>true,
+						'scheduled'=>true,
+						'manual'=>!empty($location_id),
+						'running'=>true
+					);
+
+					$this->__cacheSyncStatus();
+
 					if(!empty($record['Location']['vista_service_url'])){
 						$this->hr(1);
 						$this->out("Complejo: ".$record['Location']['name']);
@@ -111,6 +145,12 @@ class SyncShell extends Shell{
 							$this->locationsFail[] = $record['Location']['id'];
 							$this->errors['locations_connection'][] = $record['Location'];
 							$this->err($e->getMessage());
+
+							$this->syncStatus['fail'] = true;
+							$this->syncStatus['locations'][$record['Location']['id']]['fail'] = true;
+							$this->syncStatus['locations'][$record['Location']['id']]['connection'] = false;
+							$this->syncStatus['locations'][$record['Location']['id']]['running'] = false;
+							$this->__cacheSyncStatus();
 						}
 
 						if($connection){
@@ -120,6 +160,7 @@ class SyncShell extends Shell{
 					}
 				}
 			}catch(Exception $e){
+				$this->syncStatus['fail'] = true;
 				$this->errors['exec'] = $e->getMessage();
 				$this->err($e->getMessage());
 			}
@@ -131,13 +172,12 @@ class SyncShell extends Shell{
 			}
 
 			#guardar el resultado de la sincronizacion en cache
-			$syncStatus['fail'] = !empty($this->errors);
-			$syncStatus['date'] = date("Y-m-d H:i:s");
-			$syncStatus['locations_fail'] = implode("|",$this->locationsFail);
-			$syncStatus['locations_no_scheduled'] = implode("|",$this->locationsNoScheduled);
-			$syncStatus['projections_not_found'] = implode("|",$this->projectionsNotFound);
 
-			Cache::write("sync_billboard_status",$syncStatus);
+			$this->syncStatus['running'] = false;
+			$this->syncStatus['projections_not_found'] = $this->errors['projections_not_found'];
+			$this->syncStatus['exec_errors'] = $this->errors['exec'];
+
+			$this->__cacheSyncStatus();
 
 			$this->hr(1);
 			$this->out("Fin de la ejecución: ".date("F j, Y, h:i:s a"));
@@ -169,8 +209,11 @@ class SyncShell extends Shell{
 		}catch (Exception $e){
 			$this->locationsFail[] = $location['id'];
 			$this->errors['locations_connection'][] = $location;
-
 			$this->err($e->getMessage());
+
+			$this->syncStatus['fail'] = true;
+			$this->syncStatus['locations'][$location['id']]['fail'] = true;
+			$this->syncStatus['locations'][$location['id']]['connection']=false;
 		}
 		$r = explode("|",$response->ReturnData);
 		App::Import('Core','Xml');
@@ -181,8 +224,9 @@ class SyncShell extends Shell{
 		}catch (Exception $e){
 			$this->locationsFail[] = $location['id'];
 			$this->errors['xml'][] = $location;
-
 			$this->err($e->getMessage());
+			$this->syncStatus['locations'][$location['id']]['fail'] = true;
+			#$this->syncStatus[$location['id']]['connection']=false;
 		}
 
 
@@ -226,6 +270,9 @@ class SyncShell extends Shell{
 					}
 				}else{
 					$this->out("- El código ".$session['Film_strCode']." no se ha asignado a una pelicula");
+					$this->syncStatus['fail'] = true;
+					$this->syncStatus['locations'][$location['id']]['fail'] = true;
+					$this->syncStatus['locations'][$location['id']]['projections_not_found']=true;
 					$this->projectionsNotFound[] =  $session['Film_strCode'].">".$session['Film_strTitle'];
 					$this->errors['projections_not_found'][$session['Film_strCode']] = $session['Film_strTitle'];
 				}
@@ -238,7 +285,13 @@ class SyncShell extends Shell{
 			# Error: No se encontraron horarios
 			$$this->locationsNoScheduled[] = $location['id'];
 			$this->errors['location_no_scheduled'][] = $location;
+
+			$this->syncStatus['locations'][$location['id']]['fail'] = true;
+			$this->syncStatus['locations'][$location['id']]['scheduled']=false;
+			$this->syncStatus['fail'] = true;
 		}
+
+		$this->syncStatus['locations'][$location['id']]['running'] = false;
 
 	}
 
@@ -273,6 +326,11 @@ class SyncShell extends Shell{
 
 		#$this->out(print_r($Email->smtpError));
 
+	}
+
+	function __cacheSyncStatus(){
+		$this->log($this->syncStatus,"sync");
+		Cache::write("sync_billboard_status",$this->syncStatus);
 	}
 
 

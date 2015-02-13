@@ -2,24 +2,8 @@
 .idea
 .idea/*
 
-src/app/tmp/*
-
-!src/app/tmp/cache
-!src/app/tmp/logs
-!src/app/tmp/sessions
-!src/app/tmp/tests
-
-src/app/tmp/cache/*
-!src/app/tmp/cache/models
-src/app/tmp/cache/models/*
-!src/app/tmp/cache/persistent
-src/app/tmp/cache/persistent/*
-!src/app/tmp/cache/views
-src/app/tmp/cache/views/*
-
-src/app/tmp/logs/*
-src/app/tmp/sessions/*
-src/app/tmp/tests/*
+src/sync_manual
+src/sync_auto
 
 src/app/config/core.php
 src/app/config/database.php

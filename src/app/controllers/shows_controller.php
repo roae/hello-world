@@ -33,22 +33,31 @@ class ShowsController extends AppController{
 		return $this->Show->find($this->params['type'], $this->params['query']);
 	}
 
-	function admin_syncstatus(){
-
-	}
-
-	function admin_sync($location = null){
-
-		if(is_numeric($location)){
-			exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." >> ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual");
-			$this->Notifier->success("[:sync_start:]");
+	function admin_sync($location = "all"){
+		exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." >> ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual &");
+		Cache::write("sync_billboard_status.running",true);
+		if($location == "all"){
+			$locations = $this->Show->Location->find("list",array('trash'=>0,'status'=>1));
+			foreach($locations as $id => $record){
+				Cache::write("sync_billboard_status.locations.$id.running",true);
+			}
 		}else{
-			$this->Notifier->error("[:invalid-location-id:]");
+			Cache::write("sync_billboard_status.locations.$location_id.running",true);
 		}
-		//echo exec('whoami');
-
 		$this->redirect($this->referer());
 	}
+
+	function admin_syncstatus(){
+		#pr("rochin");
+		if(!$this->RequestHandler->isAjax()){
+			$this->set("locations",$this->Show->Location->find("list",array('trash'=>0,'status'=>1)));
+		}else{
+			$this->RequestHandler->respondAs('json');
+			//$this->RequestHandler->renderAs($this, 'json');
+		}
+	}
+
+
 
 }
 ?>

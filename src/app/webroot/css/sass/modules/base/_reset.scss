@@ -10,6 +10,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   outline : none;
+  line-height: 1.5;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -43,7 +44,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
   font-family: 'Open Sans', sans-serif;
-  background : $light-gray;
+  background : #fff;
 }
 
 ol,
@@ -103,9 +104,12 @@ h2 {
 a {
   text-decoration: none;
 
-  -webkit-transition: background-color 0.2s ease-in-out;
-  -moz-transition: background-color 0.2s ease-in-out;
-  transition: background-color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out,
+                      opacity 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out,
+                   opacity 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out,
+              opacity 0.2s ease-in-out;
 }
 
 .block:after {

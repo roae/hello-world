@@ -26,6 +26,8 @@ src/app/config/database.php
 
 src/app/webroot/tmp/*
 src/app/webroot/media/*
+src/app/webroot/.sass-cache
+src/app/webroot/node_modules
 
 docs/*
 recursos/*

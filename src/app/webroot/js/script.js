@@ -251,4 +251,54 @@ function nextSlide(){
 			}
 		});
 	};
+
+	//Website
+
+	if( $('body').hasClass('home') ) {
+
+		var $slider = $('#main-slider'),
+				$movies = $slider.find('.movie'),
+				$pagination = $slider.find('.pagination'),
+				current_movie = 1,
+				total_movies = 3;
+
+		$pagination.find('a').on('click', function(event) {
+
+			event.preventDefault();
+
+			var self = $(this),
+					selected_index = self.parent().index();
+
+			console.log('index: ' + selected_index);
+
+			if( current_movie != (selected_index + 1) ) {
+
+				$movies.fadeOut(200);
+				$($movies[selected_index]).fadeIn(400);
+
+				current_movie = selected_index + 1;
+
+				$pagination.find('a').removeClass('current');
+				self.addClass('current');
+
+			}
+
+		});
+
+	}
+
+	$('#main-slider').waypoint(function(direction) {
+
+	  	var $header = $('#main-header');
+
+	  	if( direction == 'down' ) {
+	  		$header.addClass('sticky');
+	  		$('body').css('padding-top', '118px');
+	  	} else {
+	  		$header.removeClass('sticky');
+	  		$('body').css('padding-top', '0');
+	  	}
+
+	});
+
 })(jQuery);

@@ -1,21 +1,42 @@
-#main-header {
-  width : 100%;
-  top: -48px;
-  background : #fff;
-  padding : 10px;
+body {
+  padding-top: 108px !important;
+}
 
-  transition: top 0.2s ease-in-out;
-  -webkit-transition: top 0.2s ease-in-out;
-  -moz-transition: top 0.2s ease-in-out;
+#main-header {
+  position: fixed;
+  width : 100%;
+  height: 108px;
+  top: 0;
+  left: 0;
+  padding : 10px;
+  text-align: center;
+  background : #fff;
+  z-index: 999999;
+
+  transition: height 0.2s ease-in-out;
+  -webkit-transition: height 0.2s ease-in-out;
+  -moz-transition: height 0.2s ease-in-out;
 
   #logo {
     margin-right: 80px;
     float: left;
+
+    img {
+      height: 82px;
+
+      transition: height 0.2s ease-in-out;
+      -webkit-transition: height 0.2s ease-in-out;
+      -moz-transition: height 0.2s ease-in-out;
+    }
   }
 
   .account-container {
     float: right;
     margin-top: 25px;
+
+    transition: margin 0.2s ease-in-out;
+    -webkit-transition: margin 0.2s ease-in-out;
+    -moz-transition: margin 0.2s ease-in-out;
 
     li {
       display: inline-block;
@@ -27,6 +48,10 @@
         padding: 3px;
         color: $gray;
 
+        transition: font-size 0.2s ease-in-out;
+        -webkit-transition: font-size 0.2s ease-in-out;
+        -moz-transition: font-size 0.2s ease-in-out;
+
         &:hover {
           color: lighten($gray, 15%);
         }
@@ -35,21 +60,11 @@
   }
 
   &.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 48px;
-    padding: 0;
-    z-index: 999999;
+    height: 68px;
 
     #logo {
-      margin-top: 6px;
-      //margin-right: 150px;
-
       img {
-        width: auto !important;
-        height: 36px;
+        height: 46px;
       }
     }
 
@@ -57,7 +72,6 @@
       margin-top: 11px;
 
       a {
-        border-radius: 0;
         padding-top: 12px;
         padding-bottom: 12px;
       }

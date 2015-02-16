@@ -25,17 +25,30 @@
 
 	<?php foreach($billboard as $show) { ?>
 
-		<article class="movie">
-			<a href="">
-				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
+		<li class="movie link">
+			<div class="image-container">
+				<div class="sinopsis">
+					<strong><?= $show['Movie']['title'] ?></strong>
 
-				<div class="info">
-					<header>
-						<h1><?= $show['Movie']['title'] ?></h1>
-					</header>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a risus consectetur, bibendum orci sit amet, 	ultrices enim. Aliquam erat volutpat.
+					</p>
+
+					<a class="watch-trailer" href="">Ver trailer</a>
+					<a class="buy-tickets" href="">Comprar boletos</a>
 				</div>
-			</a>
-		</article>
+
+				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
+			</div>
+
+			<div class="info">
+				<header>
+					<h2>
+						<a class="fwd" href=""><?= $show['Movie']['title'] ?></a>
+					</h2>
+				</header>
+			</div>
+		</li>
 
 	<?php } ?>
 

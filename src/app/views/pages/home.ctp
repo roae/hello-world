@@ -1,7 +1,8 @@
 <section class="home-highlights" id="main-slider">
   <div class="movie big-hero">
     <header>
-      <div class="movie-info">
+      <div class="movie-info-bg"></div>
+      <div class="col-container movie-info">
         <h1>Big Hero 6</h1>
 
         <p>
@@ -30,7 +31,8 @@
 
   <div class="movie birdman">
     <header>
-      <div class="movie-info">
+      <div class="movie-info-bg"></div>
+      <div class="col-container movie-info">
         <h1>Birdman</h1>
 
         <p>
@@ -59,7 +61,8 @@
 
   <div class="movie escobar">
     <header>
-      <div class="movie-info">
+      <div class="movie-info-bg"></div>
+      <div class="col-container movie-info">
         <h1>Escobar</h1>
 
         <p>
@@ -124,7 +127,9 @@
         <h1>En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h1>
       </header>
 
-      <?= $this->element("shows/billboard"); ?>
+      <ul class="movies-list">
+        <?= $this->element("shows/billboard"); ?>
+      </ul>
     </div>
   </div>
 

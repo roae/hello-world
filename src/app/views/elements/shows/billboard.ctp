@@ -34,8 +34,8 @@
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a risus consectetur, bibendum orci sit amet, 	ultrices enim. Aliquam erat volutpat.
 					</p>
 
-					<a class="watch-trailer" href="">Ver trailer</a>
-					<a class="buy-tickets" href="">Comprar boletos</a>
+					<a class="watch-trailer" href="">Ver detalles</a>
+					<a class="buy-tickets" href="">Horarios</a>
 				</div>
 
 				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>

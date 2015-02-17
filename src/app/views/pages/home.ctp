@@ -89,20 +89,22 @@
     </header>
   </div>
 
-  <div class="pagination">
-    <ul>
-      <li>
-        <a class="current" href="">1</a>
-      </li>
+  <div class="col-container pagination-container">
+    <div class="pagination">
+      <ul>
+        <li>
+          <a class="current" href="">1</a>
+        </li>
 
-      <li>
-        <a href="">2</a>
-      </li>
+        <li>
+          <a href="">2</a>
+        </li>
 
-      <li>
-        <a href="">3</a>
-      </li>
-    </ul>
+        <li>
+          <a href="">3</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -138,13 +140,15 @@
   </section>
 </section>
 
-<section class="next-premiers">
+<section class="next-premieres">
 
   <header class="col-container">
-    <h1>Próximos estrenos</h1>
+    <h2>Próximos estrenos</h2>
   </header>
 
+  <a class="arrow previous" href="">Previous</a>
   <div class="movies">
-    <?= $this->element("shows/billboard"); ?>
+      <?= $this->element("shows/billboard"); ?>
   </div>
+  <a class="arrow next" href="">Next</a>
 </section>

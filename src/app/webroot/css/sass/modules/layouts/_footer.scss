@@ -171,7 +171,8 @@
         }
 
         .keep-reading {
-          margin-top: 15px;
+          display: inline-block;
+          margin-top: 10px;
           margin-right: 20px;
           font-size: 14px;
           color: $yellow;
@@ -220,17 +221,17 @@
         font-family: 'Open Sans', sans-serif;
 
         &[type=text] {
-          width: 60%;
+          width: 45%;
           margin-right: 3%;
           padding-left: 15px;
-          border: 2px solid lighten($dark-gray, 40%);
+          border: 1px solid lighten($dark-gray, 40%);
           background-color: lighten($dark-gray, 20%);
 
           &:focus { background-color: lighten($dark-gray, 25%); }
         }
 
         &[type=submit] {
-          width: 35%;
+          width: 45%;
           background-color: $red;
 
           transition: background-color 0.2s ease-in-out;
@@ -312,6 +313,7 @@
 
       .certificates {
         float: right;
+        margin-top: -6px;
       }
     }
   }

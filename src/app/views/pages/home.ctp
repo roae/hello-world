@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/css/owl.carousel.css">
+<link rel="stylesheet" href="/css/owl.theme.css">
+
 <section class="home-highlights" id="main-slider">
   <div class="movie big-hero">
     <header>
@@ -146,9 +149,9 @@
     <h2>Próximos estrenos</h2>
   </header>
 
-  <a class="arrow previous" href="">Previous</a>
   <div class="movies">
+    <div class="movies-list owl-carousel">
       <?= $this->element("shows/billboard"); ?>
+    </div>
   </div>
-  <a class="arrow next" href="">Next</a>
 </section>

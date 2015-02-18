@@ -442,7 +442,7 @@ body {
 
 #main-header .account-container {
   float: right;
-  margin-top: 28px;
+  margin-top: 26px;
   transition: margin 0.2s ease-in-out;
   -webkit-transition: margin 0.2s ease-in-out;
 }
@@ -463,50 +463,68 @@ body {
 
 #main-header .account-container li a {
   display: inline-block;
-  padding: 3px;
+  padding: 6px 3px 6px 28px;
+  font-size: 14px;
   color: #818386;
+  background-repeat: no-repeat;
+  background-position: 0 center;
+  background-size: 16px;
   transition: font-size 0.2s ease-in-out;
   -webkit-transition: font-size 0.2s ease-in-out;
 }
 
-/* line 55, sass/modules/layouts/_header.scss */
+/* line 59, sass/modules/layouts/_header.scss */
+
+#main-header .account-container li a.signin {
+  background-image: url(../img/login-icon.png);
+}
+
+/* line 60, sass/modules/layouts/_header.scss */
+
+#main-header .account-container li a.signup {
+  padding-left: 18px;
+  background-image: url(../img/signup-icon.png);
+  background-size: 7px;
+}
+
+/* line 66, sass/modules/layouts/_header.scss */
 
 #main-header .account-container li a:hover {
   color: #a8a9ab;
 }
 
-/* line 62, sass/modules/layouts/_header.scss */
+/* line 73, sass/modules/layouts/_header.scss */
 
 #main-header.sticky {
   height: 68px;
 }
 
-/* line 66, sass/modules/layouts/_header.scss */
+/* line 77, sass/modules/layouts/_header.scss */
 
 #main-header.sticky #logo img {
   height: 46px;
 }
 
-/* line 71, sass/modules/layouts/_header.scss */
+/* line 82, sass/modules/layouts/_header.scss */
 
 #main-header.sticky #header-location-select {
   margin-top: 11px;
 }
 
-/* line 74, sass/modules/layouts/_header.scss */
+/* line 85, sass/modules/layouts/_header.scss */
 
 #main-header.sticky #header-location-select a {
   padding-top: 12px;
   padding-bottom: 12px;
 }
 
-/* line 80, sass/modules/layouts/_header.scss */
+/* line 91, sass/modules/layouts/_header.scss */
 
 #main-header.sticky .account-container {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
-/* line 83, sass/modules/layouts/_header.scss */
+/* line 94, sass/modules/layouts/_header.scss */
 
 #main-header.sticky .account-container a {
   font-size: 14px;
@@ -1402,24 +1420,32 @@ select {
 
 .home .billboard .movie .info h2 {
   margin-top: 0;
-  font-size: 14px;
+  margin-bottom: 5px;
+  font-size: 15px;
   font-weight: normal;
   transition: color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out;
 }
 
-/* line 292, sass/modules/pages/_home.scss */
+/* line 293, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .info h2 a {
   color: #818386;
 }
 
-/* line 299, sass/modules/pages/_home.scss */
+/* line 296, sass/modules/pages/_home.scss */
+
+.home .billboard .movie .info span {
+  display: block;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* line 306, sass/modules/pages/_home.scss */
 
 .next-premieres {
   position: relative;
   width: 100%;
-  height: 441px;
   padding: 25px 15px;
   margin-top: 40px;
   text-align: center;
@@ -1427,118 +1453,64 @@ select {
   overflow: hidden;
 }
 
-/* line 309, sass/modules/pages/_home.scss */
+/* line 315, sass/modules/pages/_home.scss */
+
+.next-premieres .info {
+  text-align: left;
+}
+
+/* line 317, sass/modules/pages/_home.scss */
 
 .next-premieres h2 {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 25px;
-  text-align: left;
   color: #272b2e;
 }
 
-/* line 317, sass/modules/pages/_home.scss */
+/* line 324, sass/modules/pages/_home.scss */
 
 .next-premieres .movies {
-  position: absolute;
-  width: 100%;
-  top: 80px;
-  left: 0;
-  padding-left: 80px;
-  transition: left 0.2s ease-in-out;
-  -webkit-transition: left 0.2s ease-in-out;
+  position: relative;
 }
 
-/* line 329, sass/modules/pages/_home.scss */
-
-.next-premieres .arrow {
-  position: absolute;
-  top: 0;
-  display: block;
-  width: 17px;
-  height: 100%;
-  padding: 0 35px;
-  text-indent: -1000px;
-  background-position: center center;
-  background-size: 17px;
-  background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 999;
-  transition: background-color 0.2s ease-in-out;
-  -webkit-transition: background-color 0.2s ease-in-out;
-}
-
-/* line 348, sass/modules/pages/_home.scss */
-
-.next-premieres .arrow.previous {
-  left: 0;
-  background-image: url(../img/white-left-arrow.png);
-}
-
-/* line 353, sass/modules/pages/_home.scss */
-
-.next-premieres .arrow.next {
-  right: 0;
-  background-image: url(../img/white-right-arrow.png);
-}
-
-/* line 358, sass/modules/pages/_home.scss */
-
-.next-premieres .arrow:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-/* line 361, sass/modules/pages/_home.scss */
+/* line 328, sass/modules/pages/_home.scss */
 
 .next-premieres .movie {
-  display: inline-block;
-  width: 180px;
-  margin-right: 20px;
-  vertical-align: top;
-  cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
-  -webkit-transition: opacity 0.2s ease-in-out;
+  padding: 0 15px;
 }
 
-/* line 368, sass/modules/pages/_home.scss */
+/* line 331, sass/modules/pages/_home.scss */
 
 .next-premieres .movie .sinopsis {
   display: none;
 }
 
-/* line 375, sass/modules/pages/_home.scss */
+/* line 333, sass/modules/pages/_home.scss */
 
-.next-premieres .movie:hover img {
+.next-premieres .movie img {
+  width: 100%;
+}
+
+/* line 335, sass/modules/pages/_home.scss */
+
+.next-premieres .movie h2 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+/* line 341, sass/modules/pages/_home.scss */
+
+.next-premieres .movie span {
+  display: block;
+  text-align: left;
+  font-size: 13px;
+  color: #818386;
   opacity: 0.7;
 }
 
-/* line 377, sass/modules/pages/_home.scss */
-
-.next-premieres .movie:hover a {
-  color: #272b2e;
-}
-
-/* line 380, sass/modules/pages/_home.scss */
-
-.next-premieres .movie:active {
-  position: relative;
-  top: 1px;
-}
-
-/* line 385, sass/modules/pages/_home.scss */
-
-.next-premieres .movie img {
-  max-width: 100%;
-}
-
-/* line 387, sass/modules/pages/_home.scss */
-
-.next-premieres .movie h2 {
-  font-size: 16px;
-}
-
-/* line 391, sass/modules/pages/_home.scss */
+/* line 349, sass/modules/pages/_home.scss */
 
 .next-premieres .movie a {
   font-size: 14px;

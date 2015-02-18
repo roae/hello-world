@@ -32,7 +32,7 @@ body {
 
   .account-container {
     float: right;
-    margin-top: 28px;
+    margin-top: 26px;
 
     transition: margin 0.2s ease-in-out;
     -webkit-transition: margin 0.2s ease-in-out;
@@ -45,12 +45,23 @@ body {
 
       a {
         display: inline-block;
-        padding: 3px;
+        padding: 6px 3px 6px 28px;
+        font-size: 14px;
         color: $gray;
+        background-repeat: no-repeat;
+        background-position: 0 center;
+        background-size: 16px;
 
         transition: font-size 0.2s ease-in-out;
         -webkit-transition: font-size 0.2s ease-in-out;
         -moz-transition: font-size 0.2s ease-in-out;
+
+        &.signin { background-image: url(../img/login-icon.png); }
+        &.signup {
+          padding-left: 18px;
+          background-image: url(../img/signup-icon.png);
+          background-size: 7px;
+        }
 
         &:hover {
           color: lighten($gray, 15%);
@@ -78,7 +89,7 @@ body {
     }
 
     .account-container {
-      margin-top: 10px;
+      margin-top: 7px;
 
       a {
         font-size: 14px;

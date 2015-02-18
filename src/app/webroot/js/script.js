@@ -285,40 +285,18 @@ function nextSlide(){
 
 		});
 
-		var $premiere = $('.next-premieres').find('.movies'),
-				$arrows = $premiere.parent().find('.arrow'),
-				screen_width = $(window).width(),
-				movie_width = 200 + 4,
-				total_premiere_movies = $premiere.find('li').length,
-				current_premiere_movie = 1,
-				move_px = 0,
-				moved_px = 0;
-
-		$premiere.css('width', (movie_width * total_premiere_movies) + 80 + 'px');
-
-		$arrows.on('click', function(event) {
-
-			event.preventDefault();
-
-			var self = $(this),
-					is_left = self.hasClass('previous');
-
-			if( is_left ) {
-				if( $premiere.css('left') != '0px' ) {
-					move_px += movie_width * 2 + 80;
-					moved_px -= movie_width * 2 + 80;
-					current_premiere_movie -= 2;
-				}
-			} else {
-				if( $premiere.width() > (screen_width + moved_px) ) {
-					move_px -= movie_width * 2 + 80;
-					moved_px += movie_width * 2 + 80;
-					current_premiere_movie += 2;
-				}
-			}
-
-			$premiere.css('left', move_px + 'px');
-
+		$('.next-premieres').find('.movies-list').owlCarousel({
+			items : 6,
+			pagination : true,
+    	paginationNumbers: false,
+    	itemsCustom : false,
+	    itemsDesktop : [1199,4],
+	    itemsDesktopSmall : [980,3],
+	    itemsTablet: [768,3],
+	    itemsTabletSmall: false,
+	    itemsMobile : [479,1],
+	    singleItem : false,
+	    itemsScaleUp : false,
 		});
 
 	}

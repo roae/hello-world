@@ -9,7 +9,7 @@
 		'fields'=>array('Show.id'),
 		'contain'=>array(
 			'Movie'=>array(
-				'fields'=>array('Movie.id','Movie.title'),
+				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration'),
 				'Poster'
 			)
 		),
@@ -25,7 +25,7 @@
 
 	<?php foreach($billboard as $show) { ?>
 
-		<li class="movie link">
+		<div class="movie link">
 			<div class="image-container">
 				<div class="sinopsis">
 					<strong><?= $show['Movie']['title'] ?></strong>
@@ -47,8 +47,11 @@
 						<a class="fwd" href=""><?= $show['Movie']['title'] ?></a>
 					</h2>
 				</header>
+
+				<span class="duration"><?= ($show['Movie']['duration'] != '') ? $show['Movie']['duration'].' mins' : '' ?></span>
+				<span class="genre"><?= $show['Movie']['genre'] ?></span>
 			</div>
-		</li>
+		</div>
 
 	<?php } ?>
 

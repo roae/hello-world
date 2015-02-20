@@ -256,6 +256,8 @@ function nextSlide(){
 
 	if( $('body').hasClass('home') ) {
 
+		$('.mobile-apps').removeClass('small');
+
 		var $slider = $('#main-slider'),
 				$movies = $slider.find('.movie'),
 				$pagination = $slider.find('.pagination'),
@@ -301,7 +303,7 @@ function nextSlide(){
 
 	}
 
-	$('#main-slider').waypoint(function(direction) {
+	$('.the-content').waypoint(function(direction) {
 
 	  	var $header = $('#main-header');
 

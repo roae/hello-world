@@ -658,19 +658,21 @@ body {
 
 #main-footer .mobile-apps.small p {
   width: 50%;
+  margin-left: 0;
+  margin-bottom: 0;
   font-size: 1.125em;
   font-weight: 300;
   line-height: 1.75;
   color: #c3c7cb;
 }
 
-/* line 96, sass/modules/layouts/_footer.scss */
+/* line 98, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small p:after {
   height: 0;
 }
 
-/* line 99, sass/modules/layouts/_footer.scss */
+/* line 101, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small .actions {
   position: absolute;
@@ -679,33 +681,33 @@ body {
   margin-top: -32px;
 }
 
-/* line 105, sass/modules/layouts/_footer.scss */
+/* line 107, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small .actions li {
   display: inline-block;
   margin-right: 15px;
 }
 
-/* line 109, sass/modules/layouts/_footer.scss */
+/* line 111, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small .actions li:last-child {
   margin-right: 0;
 }
 
-/* line 113, sass/modules/layouts/_footer.scss */
+/* line 115, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small .actions a:hover {
   opacity: 0.8;
 }
 
-/* line 115, sass/modules/layouts/_footer.scss */
+/* line 117, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small .actions a:active {
   position: relative;
   top: 1px;
 }
 
-/* line 120, sass/modules/layouts/_footer.scss */
+/* line 122, sass/modules/layouts/_footer.scss */
 
 #main-footer .mobile-apps.small .actions a img {
   max-width: 180px;
@@ -713,7 +715,7 @@ body {
   border-radius: 10px;
 }
 
-/* line 131, sass/modules/layouts/_footer.scss */
+/* line 133, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu {
   padding: 60px 15px;
@@ -722,7 +724,7 @@ body {
   background-color: #272b2e;
 }
 
-/* line 137, sass/modules/layouts/_footer.scss */
+/* line 139, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu h2 {
   font-size: 14px;
@@ -732,7 +734,7 @@ body {
   color: #a3abb1;
 }
 
-/* line 145, sass/modules/layouts/_footer.scss */
+/* line 147, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news {
   display: inline-block;
@@ -741,7 +743,7 @@ body {
   vertical-align: top;
 }
 
-/* line 151, sass/modules/layouts/_footer.scss */
+/* line 153, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article {
   display: inline-block;
@@ -752,19 +754,19 @@ body {
   overflow: hidden;
 }
 
-/* line 159, sass/modules/layouts/_footer.scss */
+/* line 161, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article:nth-of-type(1) {
   padding-left: 0;
 }
 
-/* line 160, sass/modules/layouts/_footer.scss */
+/* line 162, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article:nth-of-type(2) {
   padding-right: 0;
 }
 
-/* line 162, sass/modules/layouts/_footer.scss */
+/* line 164, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article h3 {
   margin-bottom: 15px;
@@ -772,14 +774,14 @@ body {
   color: #fff;
 }
 
-/* line 168, sass/modules/layouts/_footer.scss */
+/* line 170, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article p {
   font-size: 14px;
   color: #dee8ee;
 }
 
-/* line 173, sass/modules/layouts/_footer.scss */
+/* line 175, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article .keep-reading {
   display: inline-block;
@@ -789,13 +791,13 @@ body {
   color: #f7c700;
 }
 
-/* line 180, sass/modules/layouts/_footer.scss */
+/* line 182, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article .keep-reading:hover {
   color: #deb200;
 }
 
-/* line 187, sass/modules/layouts/_footer.scss */
+/* line 189, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .footer-menu-options {
   display: inline-block;
@@ -805,7 +807,7 @@ body {
   vertical-align: top;
 }
 
-/* line 194, sass/modules/layouts/_footer.scss */
+/* line 196, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .footer-menu-options li {
   display: inline-block;
@@ -813,20 +815,20 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 200, sass/modules/layouts/_footer.scss */
+/* line 202, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .footer-menu-options a {
   font-size: 14px;
   color: #f7c700;
 }
 
-/* line 204, sass/modules/layouts/_footer.scss */
+/* line 206, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .footer-menu-options a:hover {
   color: #deb200;
 }
 
-/* line 210, sass/modules/layouts/_footer.scss */
+/* line 212, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .subscription {
   display: inline-block;
@@ -834,7 +836,7 @@ body {
   margin-top: 40px;
 }
 
-/* line 215, sass/modules/layouts/_footer.scss */
+/* line 217, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .subscription input {
   display: inline-block;
@@ -845,7 +847,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-/* line 223, sass/modules/layouts/_footer.scss */
+/* line 225, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .subscription input[type=text] {
   width: 45%;
@@ -855,13 +857,13 @@ body {
   background-color: #565f65;
 }
 
-/* line 230, sass/modules/layouts/_footer.scss */
+/* line 232, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .subscription input[type=text]:focus {
   background-color: #626c73;
 }
 
-/* line 233, sass/modules/layouts/_footer.scss */
+/* line 235, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .subscription input[type=submit] {
   width: 45%;
@@ -870,13 +872,13 @@ body {
   -webkit-transition: background-color 0.2s ease-in-out;
 }
 
-/* line 241, sass/modules/layouts/_footer.scss */
+/* line 243, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .subscription input[type=submit]:hover {
   background-color: #b30014;
 }
 
-/* line 246, sass/modules/layouts/_footer.scss */
+/* line 248, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks {
   display: inline-block;
@@ -887,20 +889,20 @@ body {
   vertical-align: bottom;
 }
 
-/* line 256, sass/modules/layouts/_footer.scss */
+/* line 258, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li {
   display: inline-block;
   margin-right: 8px;
 }
 
-/* line 260, sass/modules/layouts/_footer.scss */
+/* line 262, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li:last-child {
   margin-right: 0;
 }
 
-/* line 262, sass/modules/layouts/_footer.scss */
+/* line 264, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a {
   display: inline-block;
@@ -912,56 +914,56 @@ body {
   overflow: hidden;
 }
 
-/* line 271, sass/modules/layouts/_footer.scss */
+/* line 273, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a:hover {
   opacity: 0.8;
 }
 
-/* line 272, sass/modules/layouts/_footer.scss */
+/* line 274, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a:active {
   position: relative;
   top: 1px;
 }
 
-/* line 278, sass/modules/layouts/_footer.scss */
+/* line 280, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a.fb {
   background-image: url(../img/social-networks/fb-icon.png);
 }
 
-/* line 278, sass/modules/layouts/_footer.scss */
+/* line 280, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a.tw {
   background-image: url(../img/social-networks/tw-icon.png);
 }
 
-/* line 278, sass/modules/layouts/_footer.scss */
+/* line 280, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a.vim {
   background-image: url(../img/social-networks/vim-icon.png);
 }
 
-/* line 278, sass/modules/layouts/_footer.scss */
+/* line 280, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a.yt {
   background-image: url(../img/social-networks/yt-icon.png);
 }
 
-/* line 278, sass/modules/layouts/_footer.scss */
+/* line 280, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .social-networks li a.gp {
   background-image: url(../img/social-networks/gp-icon.png);
 }
 
-/* line 288, sass/modules/layouts/_footer.scss */
+/* line 290, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright {
   padding: 30px 15px;
 }
 
-/* line 291, sass/modules/layouts/_footer.scss */
+/* line 293, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright .copyright {
   display: block;
@@ -969,7 +971,7 @@ body {
   font-size: 14px;
 }
 
-/* line 298, sass/modules/layouts/_footer.scss */
+/* line 300, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright .col-container > a {
   padding-right: 10px;
@@ -979,26 +981,26 @@ body {
   color: #a8a9ab;
 }
 
-/* line 305, sass/modules/layouts/_footer.scss */
+/* line 307, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright .col-container > a:nth-of-type(1) {
   padding-left: 0;
 }
 
-/* line 306, sass/modules/layouts/_footer.scss */
+/* line 308, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright .col-container > a:nth-of-type(2) {
   padding-left: 6px;
   border-right: none;
 }
 
-/* line 311, sass/modules/layouts/_footer.scss */
+/* line 313, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright .col-container > a:hover {
   color: #8e9092;
 }
 
-/* line 314, sass/modules/layouts/_footer.scss */
+/* line 316, sass/modules/layouts/_footer.scss */
 
 #main-footer section.copyright .col-container .certificates {
   float: right;
@@ -1516,6 +1518,221 @@ select {
   font-size: 14px;
   color: #818386;
   line-height: 1.5;
+}
+
+/* line 3, sass/modules/pages/_billboard.scss */
+
+.billboard-container .top-message {
+  position: relative;
+  padding: 90px 15px 70px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* line 9, sass/modules/pages/_billboard.scss */
+
+.billboard-container .top-message:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -75px;
+  width: 150px;
+  height: 1px;
+  background-color: #dee8ee;
+}
+
+/* line 20, sass/modules/pages/_billboard.scss */
+
+.billboard-container .top-message p {
+  margin-top: 0;
+  color: #818386;
+}
+
+/* line 26, sass/modules/pages/_billboard.scss */
+
+.billboard-container h1 {
+  margin-bottom: 15px;
+  font-size: 42px;
+  font-weight: 300;
+  color: #cc0017;
+}
+
+/* line 33, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list {
+  position: relative;
+  display: inline-block;
+  width: 70%;
+  vertical-align: top;
+}
+
+/* line 39, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list li {
+  display: table-row;
+  padding: 10px 0;
+}
+
+/* line 45, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .image-container,
+.billboard-container .billboard-list .schedules {
+  display: table-cell;
+  vertical-align: top;
+}
+
+/* line 50, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .image-container {
+  width: 200px;
+}
+
+/* line 54, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list img {
+  width: 100%;
+}
+
+/* line 58, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules {
+  padding-left: 20px;
+  padding-bottom: 40px;
+}
+
+/* line 62, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .movie-title {
+  margin-bottom: 40px;
+}
+
+/* line 66, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules h2 {
+  font-size: 27px;
+  font-weight: 300;
+}
+
+/* line 71, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule-title {
+  padding-left: 20%;
+  margin-left: 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* line 79, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .clasification-duration {
+  font-size: 14px;
+  color: #818386;
+}
+
+/* line 84, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .real-name {
+  padding-left: 10px;
+  font-family: 'georgia', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #818386;
+}
+
+/* line 92, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule {
+  font-size: 0;
+  padding: 12px 12px 8px;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* line 98, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule:hover {
+  background-color: #eaf1f3;
+}
+
+/* line 101, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule .label,
+.billboard-container .billboard-list .schedules .schedule ul {
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: top;
+}
+
+/* line 107, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule .label {
+  position: relative;
+  width: 20%;
+  font-size: 14px;
+}
+
+/* line 112, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule .label strong {
+  font-weight: bold;
+}
+
+/* line 114, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule .label:after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background-color: #818386;
+}
+
+/* line 125, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule ul {
+  width: 80%;
+}
+
+/* line 129, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule li {
+  display: inline-block;
+  padding: 0;
+}
+
+/* line 134, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule a {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #cc0017;
+  border-radius: 3px;
+}
+
+/* line 143, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule a:hover {
+  background-color: #b30014;
+}
+
+/* line 147, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule.premiere a {
+  color: #5e4c00;
+  background-color: #f7c700;
+}
+
+/* line 151, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .schedules .schedule.premiere a:hover {
+  background-color: #deb200;
 }
 
 /* line 2, sass/modules/base/_responsive.scss */

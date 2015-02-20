@@ -29,7 +29,7 @@ $this->Html->script("admin/locations.min",false);
 		<div class="location">
 			<?
 			if(isset($this->data['MovieLocation'][$index]['id'])){
-				echo $this->Form->hidden("MovieLocation.$index.id");
+				echo $this->Form->hidden("MovieLocation.$index.id",array('value'=>$this->data['MovieLocation'][$index]['id']));
 			}
 			?>
 			<!-- complejo -->

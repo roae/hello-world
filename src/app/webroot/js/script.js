@@ -84,7 +84,7 @@ $(function(){
 		elementAppear();
 	});
 
-	$(".floating").Floating();
+	//$(".floating").Floating();
 
 	allMods = $(".appear");
 
@@ -289,7 +289,7 @@ function nextSlide(){
 		});
 
 		$('.next-premieres').find('.movies-list').owlCarousel({
-			items : 6,
+			items : 8,
 			pagination : true,
     	paginationNumbers: false,
     	itemsCustom : false,

@@ -13,7 +13,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
 
-/* line 8, sass/modules/base/_reset.scss */
+/* line 6, sass/modules/base/_reset.scss */
 
 *,
 *:before,
@@ -25,7 +25,7 @@
   line-height: 1.5;
 }
 
-/* line 28, sass/modules/base/_reset.scss */
+/* line 16, sass/modules/base/_reset.scss */
 
 html,
 body,
@@ -119,7 +119,7 @@ video {
 
 /* HTML5 display-role reset for older browsers */
 
-/* line 40, sass/modules/base/_reset.scss */
+/* line 39, sass/modules/base/_reset.scss */
 
 article,
 aside,
@@ -143,21 +143,21 @@ body {
   background: #fff;
 }
 
-/* line 51, sass/modules/base/_reset.scss */
+/* line 50, sass/modules/base/_reset.scss */
 
 ol,
 ul {
   list-style: none;
 }
 
-/* line 56, sass/modules/base/_reset.scss */
+/* line 55, sass/modules/base/_reset.scss */
 
 blockquote,
 q {
   quotes: none;
 }
 
-/* line 63, sass/modules/base/_reset.scss */
+/* line 60, sass/modules/base/_reset.scss */
 
 blockquote:before,
 blockquote:after,
@@ -1014,7 +1014,7 @@ label {
   vertical-align: top;
 }
 
-/* line 8, sass/modules/layouts/_forms.scss */
+/* line 6, sass/modules/layouts/_forms.scss */
 
 input,
 textarea,
@@ -1124,9 +1124,9 @@ select {
   background-color: transparent;
   background-repeat: repeat-y;
   /* Safari 4-5, Chrome 1-9 */
-  background: -webkit-gradient(linear, right top, left top, from(black), to(transparent));
+  background: -webkit-gradient(linear, right top, left top, from(#000), to(transparent));
   /* Safari 5.1, Chrome 10+ */
-  background: -webkit-linear-gradient(right, black, transparent);
+  background: -webkit-linear-gradient(right, #000, transparent);
   /* Firefox 3.6+ */
   /* IE 10 */
   /* Opera 11.10+ */
@@ -1138,7 +1138,6 @@ select {
   position: relative;
   padding-top: 30px;
   padding-left: 640px;
-  z-index: 999;
 }
 
 /* line 60, sass/modules/pages/_home.scss */
@@ -1219,11 +1218,11 @@ select {
 
 .home .home-highlights .pagination {
   position: absolute;
-  right: 0;
+  left: 60%;
   bottom: 0;
-  width: 440px;
+  width: 100%;
   padding: 20px 30px 20px 0;
-  border-top: 1px solid #8e9092;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* line 123, sass/modules/pages/_home.scss */
@@ -1246,7 +1245,7 @@ select {
   overflow: hidden;
 }
 
-/* line 139, sass/modules/pages/_home.scss */
+/* line 138, sass/modules/pages/_home.scss */
 
 .home .home-highlights .pagination a.current,
 .home .home-highlights .pagination a:hover {
@@ -1370,13 +1369,12 @@ select {
   padding: 15px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.85);
-  z-index: 9999;
   border-radius: 3px;
   transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
 }
 
-/* line 234, sass/modules/pages/_home.scss */
+/* line 233, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .sinopsis strong {
   display: block;
@@ -1384,7 +1382,7 @@ select {
   font-weight: bold;
 }
 
-/* line 240, sass/modules/pages/_home.scss */
+/* line 239, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .sinopsis p {
   margin-bottom: 10px;
@@ -1392,7 +1390,7 @@ select {
   color: #dee8ee;
 }
 
-/* line 246, sass/modules/pages/_home.scss */
+/* line 245, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .sinopsis a {
   display: block;
@@ -1406,45 +1404,45 @@ select {
   -webkit-transition: border 0.2s ease-in-out;
 }
 
-/* line 259, sass/modules/pages/_home.scss */
+/* line 258, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .sinopsis a:hover {
   border-color: #8e9092;
 }
 
-/* line 264, sass/modules/pages/_home.scss */
+/* line 263, sass/modules/pages/_home.scss */
 
 .home .billboard .movie:hover .sinopsis {
   opacity: 1;
 }
 
-/* line 266, sass/modules/pages/_home.scss */
+/* line 265, sass/modules/pages/_home.scss */
 
 .home .billboard .movie:hover .info {
   opacity: 0.2;
 }
 
-/* line 272, sass/modules/pages/_home.scss */
+/* line 271, sass/modules/pages/_home.scss */
 
 .home .billboard .movie:active {
   position: relative;
   top: 1px;
 }
 
-/* line 277, sass/modules/pages/_home.scss */
+/* line 276, sass/modules/pages/_home.scss */
 
 .home .billboard .movie img {
   border-radius: 3px;
 }
 
-/* line 279, sass/modules/pages/_home.scss */
+/* line 278, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .info {
   padding: 10px;
   text-align: left;
 }
 
-/* line 283, sass/modules/pages/_home.scss */
+/* line 282, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .info h2 {
   margin-top: 0;
@@ -1455,13 +1453,13 @@ select {
   -webkit-transition: color 0.2s ease-in-out;
 }
 
-/* line 293, sass/modules/pages/_home.scss */
+/* line 292, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .info h2 a {
   color: #818386;
 }
 
-/* line 296, sass/modules/pages/_home.scss */
+/* line 295, sass/modules/pages/_home.scss */
 
 .home .billboard .movie .info span {
   display: block;
@@ -1469,7 +1467,7 @@ select {
   opacity: 0.7;
 }
 
-/* line 306, sass/modules/pages/_home.scss */
+/* line 305, sass/modules/pages/_home.scss */
 
 .next-premieres {
   position: relative;
@@ -1481,13 +1479,13 @@ select {
   overflow: hidden;
 }
 
-/* line 315, sass/modules/pages/_home.scss */
+/* line 314, sass/modules/pages/_home.scss */
 
 .next-premieres .info {
   text-align: left;
 }
 
-/* line 317, sass/modules/pages/_home.scss */
+/* line 316, sass/modules/pages/_home.scss */
 
 .next-premieres h2 {
   font-size: 20px;
@@ -1496,31 +1494,31 @@ select {
   color: #272b2e;
 }
 
-/* line 324, sass/modules/pages/_home.scss */
+/* line 323, sass/modules/pages/_home.scss */
 
 .next-premieres .movies {
   position: relative;
 }
 
-/* line 328, sass/modules/pages/_home.scss */
+/* line 327, sass/modules/pages/_home.scss */
 
 .next-premieres .movie {
   padding: 0 15px;
 }
 
-/* line 331, sass/modules/pages/_home.scss */
+/* line 330, sass/modules/pages/_home.scss */
 
 .next-premieres .movie .sinopsis {
   display: none;
 }
 
-/* line 333, sass/modules/pages/_home.scss */
+/* line 332, sass/modules/pages/_home.scss */
 
 .next-premieres .movie img {
   width: 100%;
 }
 
-/* line 335, sass/modules/pages/_home.scss */
+/* line 334, sass/modules/pages/_home.scss */
 
 .next-premieres .movie h2 {
   margin-bottom: 10px;
@@ -1528,7 +1526,7 @@ select {
   font-weight: normal;
 }
 
-/* line 341, sass/modules/pages/_home.scss */
+/* line 340, sass/modules/pages/_home.scss */
 
 .next-premieres .movie span {
   display: block;
@@ -1538,7 +1536,7 @@ select {
   opacity: 0.7;
 }
 
-/* line 349, sass/modules/pages/_home.scss */
+/* line 348, sass/modules/pages/_home.scss */
 
 .next-premieres .movie a {
   font-size: 14px;
@@ -1686,7 +1684,7 @@ select {
   padding: 10px 0;
 }
 
-/* line 107, sass/modules/pages/_billboard.scss */
+/* line 106, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .image-container,
 .billboard-container .billboard-list .schedules {
@@ -1711,7 +1709,7 @@ select {
 
 .billboard-container .billboard-list .schedules {
   padding-left: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }
 
 /* line 125, sass/modules/pages/_billboard.scss */
@@ -1769,7 +1767,7 @@ select {
   background-color: #eaf1f3;
 }
 
-/* line 164, sass/modules/pages/_billboard.scss */
+/* line 163, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule .label,
 .billboard-container .billboard-list .schedules .schedule ul {
@@ -1821,7 +1819,7 @@ select {
 
 .billboard-container .billboard-list .schedules .schedule a {
   display: inline-block;
-  margin-bottom: 4px;
+  margin: 0 2px 4px;
   padding: 4px 10px;
   font-size: 14px;
   color: #fff;
@@ -1877,8 +1875,8 @@ select {
   height: 200px;
   background-color: transparent;
   background-repeat: repeat-y;
-  background: -webkit-gradient(linear, left bottom, left bottom, from(black), to(transparent));
-  background: -webkit-linear-gradient(bottom, black, transparent);
+  background: -webkit-gradient(linear, left bottom, left bottom, from(#000), to(transparent));
+  background: -webkit-linear-gradient(bottom, #000, transparent);
 }
 
 /* line 34, sass/modules/pages/_movie-detail.scss */
@@ -2287,7 +2285,7 @@ body #mini-menu {
     padding: 0px;
   }
 
-  /* line 300, sass/modules/base/_responsive.scss */
+  /* line 298, sass/modules/base/_responsive.scss */
 
   .food-of-the-month .foods .food .date,
   .food-of-the-month .foods .food .breakfast,
@@ -2297,7 +2295,7 @@ body #mini-menu {
     display: block;
   }
 
-  /* line 307, sass/modules/base/_responsive.scss */
+  /* line 306, sass/modules/base/_responsive.scss */
 
   .food-of-the-month .foods .food .breakfast,
   .food-of-the-month .foods .food .dinner {
@@ -2326,7 +2324,7 @@ body #mini-menu {
     float: none !important;
   }
 
-  /* line 330, sass/modules/base/_responsive.scss */
+  /* line 329, sass/modules/base/_responsive.scss */
 
   .why-us .reasons li p,
   .why-us .reasons li h2 {
@@ -2378,7 +2376,7 @@ body #mini-menu {
     /*preguntarle a julio por que tubedificultades aqui*/
   }
 
-  /* line 366, sass/modules/base/_responsive.scss */
+  /* line 365, sass/modules/base/_responsive.scss */
 
   .main-container .school-life .info .text,
   .main-container .school-life .info .main-image {
@@ -2400,7 +2398,7 @@ body #mini-menu {
     margin: 0 auto;
   }
 
-  /* line 390, sass/modules/base/_responsive.scss */
+  /* line 389, sass/modules/base/_responsive.scss */
 
   .main-container .school-life .info .gallery h3,
   .main-container .school-life .info .gallery p {
@@ -2408,7 +2406,7 @@ body #mini-menu {
     padding: 0 10%;
   }
 
-  /* line 403, sass/modules/base/_responsive.scss */
+  /* line 402, sass/modules/base/_responsive.scss */
 
   .school-levels .col-3-4,
   .school-levels .col-1-4 {
@@ -2418,7 +2416,7 @@ body #mini-menu {
 
   /*footer aqui te tengo */
 
-  /* line 412, sass/modules/base/_responsive.scss */
+  /* line 411, sass/modules/base/_responsive.scss */
 
   footer .shortcuts,
   footer .contact {
@@ -2650,7 +2648,7 @@ body #mini-menu {
     background-size: cover;
   }
 
-  /* line 683, sass/modules/base/_responsive.scss */
+  /* line 681, sass/modules/base/_responsive.scss */
 
   .info .step img,
   .info .step h3,
@@ -2676,7 +2674,7 @@ body #mini-menu {
     margin-bottom: 8px !important;
   }
 
-  /* line 707, sass/modules/base/_responsive.scss */
+  /* line 705, sass/modules/base/_responsive.scss */
 
   .contact input,
   .contact textarea,
@@ -2748,7 +2746,7 @@ body #mini-menu {
     width: 50% !important;
   }
 
-  /* line 779, sass/modules/base/_responsive.scss */
+  /* line 778, sass/modules/base/_responsive.scss */
 
   footer .shortcuts,
   footer .school-levels {

@@ -14,35 +14,10 @@
 		<div class="the-billboard">
 
 			<div class="billboard-list">
-
-				<span class="complex-label">Complejo</span>
-				<h2 class="complex floating">La Isla</h2>
+				<h2 class="complex">La Isla</h2>
 
 				<ul>
 				<?php
-					$locationSelected = Configure::read("LocationSelected");
-					$conditions = array();
-
-					if(Configure::read("LocationSelected.id")){
-						$conditions = array('Show.location_id'=>Configure::read("LocationSelected.id"));
-					}
-
-					$query = array(
-						'fields'=>array('Show.id'),
-						'contain'=>array(
-							'Movie'=>array(
-								'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration'),
-								'Poster'
-							)
-						),
-						'group'=>array(
-							'movie_id'
-						),
-						'conditions'=>$conditions
-					);
-
-					$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get','type'=>'all','query'=>$query));
-
 					foreach($billboard as $item) {
 				?>
 
@@ -59,89 +34,21 @@
 								<span class="clasification-duration">(B15 | 126 mins)</span>
 								<strong class="real-name">Nombre real</strong>
 							</div>
-
-							<?php
-								/*foreach($item['Show'] as $type=>$shows):
-
-									echo $this->Html->tag("h4", Inflector::humanize($type));
-									$schedule = array();
-
-									foreach($shows as $show){
-										$schedule[]= $this->Time->format("H:i",$show['schedule']);
-									}
-
-									echo $this->Html->tag("div", implode(" | ",$schedule));
-
-								endforeach;*/
-							?>
-
 							<strong class="schedule-title">Horarios</strong>
+							<? foreach($item['Show'] as $type => $shows): ?>
+								<div class="schedule">
+									<span class="label"><strong><?= Inflector::humanize($type) ?></strong></span>
 
-							<div class="schedule">
-								<span class="label"><strong>SUB</strong>/DIG</span>
-
-								<ul>
-									<li>
-										<a href="">16:45</a>
-									</li>
-
-									<li>
-										<a href="">16:55</a>
-									</li>
-
-									<li>
-										<a href="">16:55</a>
-									</li>
-
-									<li>
-										<a href="">18:20</a>
-									</li>
-
-									<li>
-										<a href="">18:40</a>
-									</li>
-
-									<li>
-										<a href="">20:35</a>
-									</li>
-
-									<li>
-										<a href="">22:15</a>
-									</li>
-								</ul>
-							</div>
-
-							<div class="schedule">
-								<span class="label"><strong>DOB</strong>/DIG</span>
-
-								<ul>
-									<li>
-										<a href="">18:20</a>
-									</li>
-
-									<li>
-										<a href="">20:35</a>
-									</li>
-
-									<li>
-										<a href="">23:20</a>
-									</li>
-								</ul>
-							</div>
-
-							<div class="schedule">
-								<span class="label"><strong>SUB</strong>/3D</span>
-
-								<ul>
-									<li>
-										<a href="">15:10</a>
-									</li>
-
-									<li>
-										<a href="">19:10</a>
-									</li>
-								</ul>
-							</div>
+									<ul>
+										<?
+										$schedule = array();
+										foreach($shows as $show){
+											echo $this->Html->tag("li",$this->Html->link($this->Time->format("H:i",$show['schedule']),array('controller'=>'shows','action'=>'buy','session_id'=>$show['session_id'])));
+										}
+										?>
+									</ul>
+								</div>
+							<? endforeach; ?>
 
 							<strong class="schedule-title">PREMIERE</strong>
 
@@ -152,11 +59,9 @@
 									<li>
 										<a href="">18:20</a>
 									</li>
-
 									<li>
 										<a href="">20:35</a>
 									</li>
-
 									<li>
 										<a href="">23:20</a>
 									</li>
@@ -174,7 +79,7 @@
 			<div class="billboard-aside">
 
 				<div class="filter">
-					<div class="input floating">
+					<div class="input">
 						<span class="label">Fecha de cartelera</span>
 						<div class="filter-select">
 							<a href="">09/02/2014 <strong>(Hoy)</strong></a>

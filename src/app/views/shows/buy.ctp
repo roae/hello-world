@@ -1,0 +1,1 @@
+<?= $this->element("shows/seats",array('sessionSeatData'=>$sessionSeatData));?>

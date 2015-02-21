@@ -59,9 +59,15 @@ I18nRouter::connect( "/[m_articles_url]/*", array( 'controller' => 'articles',
 	'action' => 'index',
 	'restricted' => false
 ) );
-I18nRouter::connect( '/[movies_url]/:id-:slug/*',
+
+I18nRouter::connect('/[movies_url]/:id-:slug/*',
 	array( 'controller' => 'movies', 'action' => 'view', 'restricted' => false ),
 	array( 'pass' => array( 'id', 'slug' ), 'id' => '[0-9]+' )
+);
+
+I18nRouter::connect('/[shows_buy_url]/:session_id/*',
+	array( 'controller' => 'shows', 'action' => 'buy', 'restricted' => false ),
+	array( 'pass' => array( 'session_id' ), 'session_id' => '[0-9]+' )
 );
 
 Router::connect( "/admin/terms/:class/:action/*",

@@ -55,7 +55,7 @@
         position: relative;
         padding-top: 30px;
         padding-left: 640px;
-        z-index: 999;
+        //z-index: 999;
 
         * { font-weight: 300; }
 
@@ -114,11 +114,11 @@
 
     .pagination {
       position: absolute;
-      right: 0;
+      left: 60%;
       bottom: 0;
-      width: 440px;
+      width: 100%;
       padding: 20px 30px 20px 0;
-      border-top: 1px solid lighten($gray, 5%);
+      border-top: 1px solid transparentize(#fff, 0.5);
 
       li {
         display: inline-block;
@@ -224,7 +224,6 @@
         padding: 15px;
         color: #fff;
         background-color: rgba(0, 0, 0, 0.85);
-        z-index: 9999;
         border-radius: 3px;
 
         transition: opacity 0.2s ease-in-out;

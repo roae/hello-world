@@ -53,28 +53,6 @@
         font-size: 14px;
         color: $gray;
       }
-
-      .selected-complex {
-        display: block;
-        padding: 8px 15px;
-        margin-bottom: 10px;
-        font-size: 14px;
-        color: $dark-gray;
-        background-color: #cfd5d7;
-        border-radius: 3px;
-
-        &.selected {
-          color: #fff;
-          background: $green url(../img/complex-selected-icon.png) no-repeat 95% center;
-        }
-
-        &:hover { opacity: 0.7; }
-
-        &:active {
-          position: relative;
-          top: 1px;
-        }
-      }
     }
   }
 
@@ -103,6 +81,14 @@
       padding: 10px 0;
     }
 
+    .schedules {
+      padding-bottom:80px;
+      li {
+        display: inline-block;
+        padding: 0;
+      }
+    }
+
     .image-container,
     .schedules {
       display: table-cell;
@@ -114,107 +100,10 @@
     }
 
     img {
+      display: block;
       width: 100%;
       border-radius: 3px;
     }
 
-    .schedules {
-      padding-left: 20px;
-      padding-bottom: 80px;
-
-      .movie-title {
-        margin-bottom: 40px;
-      }
-
-      h3 {
-        font-size: 27px;
-        font-weight: 300;
-      }
-
-      .schedule-title {
-        padding-left: 20%;
-        margin-left: 8px;
-        margin-bottom: 5px;
-        font-size: 14px;
-        font-weight: bold;
-      }
-
-      .clasification-duration {
-        font-size: 14px;
-        color: $gray;
-      }
-
-      .real-name {
-        padding-left: 10px;
-        font-family: 'georgia', serif;
-        font-style: italic;
-        font-size: 14px;
-        color: $gray;
-      }
-
-      .schedule {
-        font-size: 0;
-        padding: 12px 12px 8px;
-
-        transition: background-color 0.2s ease-in-out;
-
-        &:hover { background-color: #eaf1f3; }
-
-        .label,
-        ul {
-          display: inline-block;
-          font-size: 16px;
-          vertical-align: top;
-        }
-
-        .label {
-          position: relative;
-          width: 20%;
-          font-size: 14px;
-
-          strong {  font-weight: bold; }
-
-          &:after {
-            content: '';
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            width: 10px;
-            height: 1px;
-            background-color: $gray;
-          }
-        }
-
-        ul {
-          width: 80%;
-        }
-
-        li {
-          display: inline-block;
-          padding: 0;
-        }
-
-        a {
-          display: inline-block;
-          margin: 0 2px 4px;
-          padding: 4px 10px;
-          font-size: 14px;
-          color: #fff;
-          background-color: $red;
-          border-radius: 3px;
-
-          &:hover { background-color: darken($red, 5%); }
-        }
-
-        &.premiere {
-          a {
-            color: darken($yellow, 40%);
-            background-color: $yellow;
-
-            &:hover { background-color: darken($yellow, 5%) }
-          }
-        }
-      }
-    }
   }
 }

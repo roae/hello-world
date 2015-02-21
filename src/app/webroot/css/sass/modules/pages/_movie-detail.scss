@@ -3,7 +3,7 @@
     position: relative;
     height: 440px;
     color: #fff;
-    background: $light-gray url(../img/birdman-cover.jpg) no-repeat center bottom;
+    background: $light-gray url(../img/birdman-cover.jpg) no-repeat center center;
     background-size: cover;
 
     .col-container {
@@ -20,14 +20,20 @@
       width: 100%;
       height: 200px;
 
-      background-color: transparent;
-      background-repeat: repeat-y;
+      //background-color: transparent;
+      //background-repeat: repeat-y;
 
-      background: -webkit-gradient(linear, left bottom, left bottom, from(#000), to(transparent));
-      background: -webkit-linear-gradient(bottom, #000, transparent);
-      background: -moz-linear-gradient(bottom, #000, transparent);
-      background: -ms-linear-gradient(bottom, #000, transparent);
-      background: -o-linear-gradient(bottom, #000, transparent);
+     @include gradientVertical(transparent,#000 );
+    }
+
+    .likes {
+      position: absolute;
+      bottom: 15px;
+      right: 0;
+      padding-left: 24px;
+      font-size: 14px;
+      background: url(../img/like.png) no-repeat left center;
+      background-size: 16px;
     }
   }
 
@@ -67,9 +73,15 @@
       vertical-align: top;
 
       h2 {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         font-size: 27px;
         font-weight: 300;
+        color: $gray;
+      }
+
+      p {
+        font-size: 15px;
+        line-height: 1.5;
         color: $gray;
       }
     }
@@ -82,7 +94,129 @@
 
       img {
         border-radius: 3px;
+        border: 2px solid #fff;
       }
+    }
+
+    .movie-gallery-container {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      overflow: hidden;
+
+      ul {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2000px;
+      }
+
+      li {
+        display: inline-block;
+
+        img {
+          height: 120px;
+        }
+      }
+
+      a {
+        display: inline-block;
+      }
+    }
+
+    .buy-tickets {
+      width: 80%;
+      margin: 0 auto;
+
+      h2 {
+        margin-bottom: 5px;
+        color: $red;
+      }
+
+      h3 {
+        margin-bottom: 20px;
+        font-size: 27px;
+        font-weight: 300;
+      }
+
+      p { font-size: 16px; }
+
+      .filter {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .label { display: block; }
+
+        .input,
+        .selected-complex {
+          display: inline-block;
+          width: 48%;
+
+          &:nth-of-type(1) { margin-right: 3%; }
+        }
+      }
+
+      .label {
+        display: inline-block;
+      }
+
+      .schedules {
+        padding-left: 0;
+
+        .schedule {
+          ul { width: 79%; }
+        }
+      }
+    }
+  }
+
+  .movie-detailed-info {
+    display: inline-block;
+    width: 34%;
+    padding-left: 80px;
+    vertical-align: top;
+
+    .watch-trailer {
+      display: block;
+      padding: 8px 14px;
+      margin-top: 5px;
+      margin-bottom: 40px;
+      border: 2px solid $green;
+      text-align: center;
+      color: $green;
+      background: url(../img/green-camera-icon.png) no-repeat 15px center;
+      border-radius: 30px;
+
+      transition: border-color 0.2s ease-in-out;
+      -webkit-transition: border-color 0.2s ease-in-out;
+      -moz-transition: border-color 0.2s ease-in-out;
+
+      &:hover { border-color: lighten($green, 15%); }
+    }
+
+    .info {
+      font-size: 14px;
+      margin-bottom: 15px;
+
+      strong {
+        display: block;
+        margin-bottom: 3px;
+        font-weight: bold;
+      }
+
+      .value {
+        display: block;
+        margin-bottom: 2px;
+        color: $gray;
+      }
+    }
+
+    .vertical-banner {
+      margin-top: 20px;
+
+      img { border-radius: 3px; }
     }
   }
 }

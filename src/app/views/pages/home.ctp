@@ -128,9 +128,7 @@
 
     <?php $this->element("locations/select");?>
     <div class="movies">
-      <header>
-        <h1>En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h1>
-      </header>
+      <h2 class="titleBillboard">En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h2>
 
       <ul class="movies-list">
         <?= $this->element("shows/billboard"); ?>
@@ -146,7 +144,7 @@
 <section class="next-premieres">
 
   <header class="col-container">
-    <h2>Próximos estrenos</h2>
+    <h2 class="titleCommingSoon">[:proximamente-en-cartelera:]</h2>
   </header>
 
   <div class="movies">

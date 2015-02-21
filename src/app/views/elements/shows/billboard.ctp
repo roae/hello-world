@@ -9,7 +9,7 @@
 		'fields'=>array('Show.id'),
 		'contain'=>array(
 			'Movie'=>array(
-				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration'),
+				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis'),
 				'Poster'
 			)
 		),
@@ -25,29 +25,23 @@
 
 	<?php foreach($billboard as $show) { ?>
 
-		<div class="movie link">
+		<div class="movie">
 			<div class="image-container">
-				<div class="sinopsis">
-					<strong><?= $show['Movie']['title'] ?></strong>
-
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a risus consectetur, bibendum orci sit amet, 	ultrices enim. Aliquam erat volutpat.
-					</p>
-
-					<?= $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "id" => $show["Movie"]["id"], "slug" => Inflector::slug($show["Movie"]["title"], "-")), array("class" => "watch-trailer")) ?>
+				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
+				<div class="details link">
+					<strong class="title"><?= $show['Movie']['title'] ?></strong>
+					<div class="sinopsis">
+						<?= $show['Movie']['synopsis']?>
+					</div>
+					<?= $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "id" => $show["Movie"]["id"], "slug" => Inflector::slug($show["Movie"]["title"], "-")), array("class" => "watch-trailer fwd")) ?>
 					<a class="buy-tickets" href="">Horarios</a>
 				</div>
-
-				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
 			</div>
 
 			<div class="info">
-				<header>
-					<h2>
-						<a class="fwd" href=""><?= $show['Movie']['title'] ?></a>
-					</h2>
-				</header>
-
+				<h2>
+					<?= $this->Html->link($show['Movie']['title'], array("controller" => "movies", "action" => "view", "id" => $show["Movie"]["id"], "slug" => Inflector::slug($show["Movie"]["title"], "-"))) ?>
+				</h2>
 				<span class="duration"><?= ($show['Movie']['duration'] != '') ? $show['Movie']['duration'].' mins' : '' ?></span>
 				<span class="genre"><?= $show['Movie']['genre'] ?></span>
 			</div>

@@ -221,6 +221,7 @@ class SyncShell extends Shell{
 		try{
 			$xml = new Xml($r[6]);
 			$data = $xml->toArray();
+			$this->log($data,"GetSessionDisplayData");
 		}catch (Exception $e){
 			$this->locationsFail[] = $location['id'];
 			$this->errors['xml'][] = $location;
@@ -260,7 +261,10 @@ class SyncShell extends Shell{
 						'location_id'=>$location['id'],
 						'movie_id'=>$projection['Movie']['id'],
 						'projection_id'=>$projection['Projection']['id'],
-						'schedule'=>"{$year}-{$month}-{$day} $hours:$mins:$seconds"
+						'schedule'=>"{$year}-{$month}-{$day} $hours:$mins:$seconds",
+						'sales_channels'=> str_replace("^~^","|",$session['Session_strSalesChannels']),
+						'session_id'=> $session['Session_lngSessionId'],
+						'screen_name'=>$session['Screen_strName'],
 					);
 					$this->Show->create();
 					if(!$this->Show->save($show)){

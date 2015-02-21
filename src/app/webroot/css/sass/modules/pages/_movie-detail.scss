@@ -1,0 +1,88 @@
+.movie-detail-container {
+  .big-cover {
+    position: relative;
+    height: 440px;
+    color: #fff;
+    background: $light-gray url(../img/birdman-cover.jpg) no-repeat center bottom;
+    background-size: cover;
+
+    .col-container {
+      position: relative;
+      height: 440px;
+      z-index: 2;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 200px;
+
+      background-color: transparent;
+      background-repeat: repeat-y;
+
+      background: -webkit-gradient(linear, left bottom, left bottom, from(#000), to(transparent));
+      background: -webkit-linear-gradient(bottom, #000, transparent);
+      background: -moz-linear-gradient(bottom, #000, transparent);
+      background: -ms-linear-gradient(bottom, #000, transparent);
+      background: -o-linear-gradient(bottom, #000, transparent);
+    }
+  }
+
+  header {
+    position: absolute;
+    bottom: 15px;
+    left: 260px;
+  }
+
+  h1 {
+    position: relative;
+    padding-bottom: 15px;
+    font-size: 42px;
+    font-weight: 300;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      width: 100px;
+      height: 1px;
+      background-color: #fff;
+    }
+  }
+
+  .movie-information {
+    position: relative;
+
+    .col-container {
+      padding: 20px;
+    }
+
+    .sinopsis {
+      display: inline-block;
+      width: 65%;
+      vertical-align: top;
+
+      h2 {
+        margin-bottom: 10px;
+        font-size: 27px;
+        font-weight: 300;
+        color: $gray;
+      }
+    }
+
+    .cover-container {
+      float: left;
+      margin-top: -120px;
+      margin-right: 20px;
+      margin-bottom: 5px;
+
+      img {
+        border-radius: 3px;
+      }
+    }
+  }
+}

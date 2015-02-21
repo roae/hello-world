@@ -34,7 +34,7 @@
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a risus consectetur, bibendum orci sit amet, 	ultrices enim. Aliquam erat volutpat.
 					</p>
 
-					<a class="watch-trailer" href="">Ver detalles</a>
+					<?= $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "id" => $show["Movie"]["id"], "slug" => Inflector::slug($show["Movie"]["title"], "-")), array("class" => "watch-trailer")) ?>
 					<a class="buy-tickets" href="">Horarios</a>
 				</div>
 

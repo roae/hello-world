@@ -30,11 +30,73 @@
     color: $red;
   }
 
+  .the-billboard { font-size: 0; }
+
+  .billboard-aside {
+    display: inline-block;
+    width: 27%;
+    margin-left: 3%;
+    font-size: 16px;
+    vertical-align: top;
+    text-align: center;
+
+    .filter {
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+      background-color: #f3f8f9;
+      border-radius: 3px;
+
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: $gray;
+      }
+
+      .selected-complex {
+        display: block;
+        padding: 8px 15px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: $dark-gray;
+        background-color: #cfd5d7;
+        border-radius: 3px;
+
+        &.selected {
+          color: #fff;
+          background: $green url(../img/complex-selected-icon.png) no-repeat 95% center;
+        }
+
+        &:hover { opacity: 0.7; }
+
+        &:active {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+
   .billboard-list {
     position: relative;
     display: inline-block;
     width: 70%;
     vertical-align: top;
+    font-size: 16px;
+
+    .complex-label {
+      font-size: 14px;
+      color: $gray;
+    }
+
+    .complex {
+      padding-top: 5px;
+      margin-bottom: 20px;
+      font-size: 32px;
+      font-weight: 300;
+      color: $dark-gray;
+    }
 
     li {
       display: table-row;
@@ -53,6 +115,7 @@
 
     img {
       width: 100%;
+      border-radius: 3px;
     }
 
     .schedules {
@@ -63,7 +126,7 @@
         margin-bottom: 40px;
       }
 
-      h2 {
+      h3 {
         font-size: 27px;
         font-weight: 300;
       }
@@ -134,7 +197,7 @@
         a {
           display: inline-block;
           margin-bottom: 4px;
-          padding: 4px 8px;
+          padding: 4px 10px;
           font-size: 14px;
           color: #fff;
           background-color: $red;
@@ -145,7 +208,7 @@
 
         &.premiere {
           a {
-            color: darken($yellow, 30%);
+            color: darken($yellow, 40%);
             background-color: $yellow;
 
             &:hover { background-color: darken($yellow, 5%) }

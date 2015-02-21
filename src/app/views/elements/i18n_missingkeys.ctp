@@ -103,6 +103,8 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing("[:System.back_to_list:]", array('desc'=>"boton volver a la lista que aparece cuando no encuentra ningun elemento en las busquedas","tab"=>"modulo"));
 
 	$this->I18n->addMissing('m_articles_url',array('desc'=>'url del blog','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('movies_url',array('desc'=>'url de detalle de pelicula','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('billboard_url',array('desc'=>'url de cartelera','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('m_about_url',array('desc'=>'url de la pagina about','js'=>false,'tab'=>'urls'));
 
 	$this->I18n->addMissing('m_contacts_url',array('desc'=>'url de la pagina de la pagina de contacto','js'=>false,'tab'=>'urls'));

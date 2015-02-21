@@ -20,3 +20,25 @@ select {
 select {
   height : 40px;
 }
+
+.filter-select {
+  & > a {
+    display: block;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #fff;
+    background: #55595c url(../img/custom-select-arrow.png) no-repeat 95% center;
+    background-size: 20px;
+    border-radius: 3px;
+
+    strong {
+      font-weight: bold;
+      color: $yellow;
+    }
+  }
+
+  ul {
+    display: none;
+  }
+}

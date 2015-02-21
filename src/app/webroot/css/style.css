@@ -289,7 +289,7 @@ a {
   position: relative;
   font-weight: bold;
   font-style: italic;
-  color: #f7c700;
+  color: #fecc00;
 }
 
 /* line 24, sass/modules/components/_buttons.scss */
@@ -411,14 +411,14 @@ body {
 
 #main-header {
   position: fixed;
-  width: 100%;
+  width: 100% !important;
   height: 108px;
   top: 0;
   left: 0;
   padding: 10px;
   text-align: center;
   background: #fff;
-  z-index: 999999;
+  z-index: 10;
   transition: height 0.2s ease-in-out;
   -webkit-transition: height 0.2s ease-in-out;
 }
@@ -788,13 +788,13 @@ body {
   margin-top: 10px;
   margin-right: 20px;
   font-size: 14px;
-  color: #f7c700;
+  color: #fecc00;
 }
 
 /* line 182, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .news article .keep-reading:hover {
-  color: #deb200;
+  color: #e5b800;
 }
 
 /* line 189, sass/modules/layouts/_footer.scss */
@@ -819,13 +819,13 @@ body {
 
 #main-footer .footer-menu .footer-menu-options a {
   font-size: 14px;
-  color: #f7c700;
+  color: #fecc00;
 }
 
 /* line 206, sass/modules/layouts/_footer.scss */
 
 #main-footer .footer-menu .footer-menu-options a:hover {
-  color: #deb200;
+  color: #e5b800;
 }
 
 /* line 212, sass/modules/layouts/_footer.scss */
@@ -1040,6 +1040,32 @@ select {
   height: 40px;
 }
 
+/* line 25, sass/modules/layouts/_forms.scss */
+
+.filter-select > a {
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #fff;
+  background: #55595c url(../img/custom-select-arrow.png) no-repeat 95% center;
+  background-size: 20px;
+  border-radius: 3px;
+}
+
+/* line 35, sass/modules/layouts/_forms.scss */
+
+.filter-select > a strong {
+  font-weight: bold;
+  color: #fecc00;
+}
+
+/* line 41, sass/modules/layouts/_forms.scss */
+
+.filter-select ul {
+  display: none;
+}
+
 /* PAGES */
 
 /* line 2, sass/modules/pages/_home.scss */
@@ -1247,14 +1273,14 @@ select {
   padding: 15px;
   text-align: center;
   letter-spacing: 2px;
-  color: #5e4c00;
-  background-color: #ffe578;
+  color: #655100;
+  background-color: #ffe67f;
 }
 
 /* line 160, sass/modules/pages/_home.scss */
 
 .home .top-promo a:hover {
-  background-color: #ffea91;
+  background-color: #ffeb98;
 }
 
 /* line 164, sass/modules/pages/_home.scss */
@@ -1560,21 +1586,107 @@ select {
 
 /* line 33, sass/modules/pages/_billboard.scss */
 
+.billboard-container .the-billboard {
+  font-size: 0;
+}
+
+/* line 35, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside {
+  display: inline-block;
+  width: 27%;
+  margin-left: 3%;
+  font-size: 16px;
+  vertical-align: top;
+  text-align: center;
+}
+
+/* line 43, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside .filter {
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: #f3f8f9;
+  border-radius: 3px;
+}
+
+/* line 50, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside .filter .label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #818386;
+}
+
+/* line 57, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside .filter .selected-complex {
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #272b2e;
+  background-color: #cfd5d7;
+  border-radius: 3px;
+}
+
+/* line 66, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside .filter .selected-complex.selected {
+  color: #fff;
+  background: #51b347 url(../img/complex-selected-icon.png) no-repeat 95% center;
+}
+
+/* line 71, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside .filter .selected-complex:hover {
+  opacity: 0.7;
+}
+
+/* line 73, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-aside .filter .selected-complex:active {
+  position: relative;
+  top: 1px;
+}
+
+/* line 81, sass/modules/pages/_billboard.scss */
+
 .billboard-container .billboard-list {
   position: relative;
   display: inline-block;
   width: 70%;
   vertical-align: top;
+  font-size: 16px;
 }
 
-/* line 39, sass/modules/pages/_billboard.scss */
+/* line 88, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .complex-label {
+  font-size: 14px;
+  color: #818386;
+}
+
+/* line 93, sass/modules/pages/_billboard.scss */
+
+.billboard-container .billboard-list .complex {
+  padding-top: 5px;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 300;
+  color: #272b2e;
+}
+
+/* line 101, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list li {
   display: table-row;
   padding: 10px 0;
 }
 
-/* line 45, sass/modules/pages/_billboard.scss */
+/* line 107, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .image-container,
 .billboard-container .billboard-list .schedules {
@@ -1582,39 +1694,40 @@ select {
   vertical-align: top;
 }
 
-/* line 50, sass/modules/pages/_billboard.scss */
+/* line 112, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .image-container {
   width: 200px;
 }
 
-/* line 54, sass/modules/pages/_billboard.scss */
+/* line 116, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list img {
   width: 100%;
+  border-radius: 3px;
 }
 
-/* line 58, sass/modules/pages/_billboard.scss */
+/* line 121, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules {
   padding-left: 20px;
   padding-bottom: 40px;
 }
 
-/* line 62, sass/modules/pages/_billboard.scss */
+/* line 125, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .movie-title {
   margin-bottom: 40px;
 }
 
-/* line 66, sass/modules/pages/_billboard.scss */
+/* line 129, sass/modules/pages/_billboard.scss */
 
-.billboard-container .billboard-list .schedules h2 {
+.billboard-container .billboard-list .schedules h3 {
   font-size: 27px;
   font-weight: 300;
 }
 
-/* line 71, sass/modules/pages/_billboard.scss */
+/* line 134, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule-title {
   padding-left: 20%;
@@ -1624,14 +1737,14 @@ select {
   font-weight: bold;
 }
 
-/* line 79, sass/modules/pages/_billboard.scss */
+/* line 142, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .clasification-duration {
   font-size: 14px;
   color: #818386;
 }
 
-/* line 84, sass/modules/pages/_billboard.scss */
+/* line 147, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .real-name {
   padding-left: 10px;
@@ -1641,7 +1754,7 @@ select {
   color: #818386;
 }
 
-/* line 92, sass/modules/pages/_billboard.scss */
+/* line 155, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule {
   font-size: 0;
@@ -1650,13 +1763,13 @@ select {
   transition: background-color 0.2s ease-in-out;
 }
 
-/* line 98, sass/modules/pages/_billboard.scss */
+/* line 161, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule:hover {
   background-color: #eaf1f3;
 }
 
-/* line 101, sass/modules/pages/_billboard.scss */
+/* line 164, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule .label,
 .billboard-container .billboard-list .schedules .schedule ul {
@@ -1665,7 +1778,7 @@ select {
   vertical-align: top;
 }
 
-/* line 107, sass/modules/pages/_billboard.scss */
+/* line 170, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule .label {
   position: relative;
@@ -1673,13 +1786,13 @@ select {
   font-size: 14px;
 }
 
-/* line 112, sass/modules/pages/_billboard.scss */
+/* line 175, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule .label strong {
   font-weight: bold;
 }
 
-/* line 114, sass/modules/pages/_billboard.scss */
+/* line 177, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule .label:after {
   content: '';
@@ -1691,48 +1804,154 @@ select {
   background-color: #818386;
 }
 
-/* line 125, sass/modules/pages/_billboard.scss */
+/* line 188, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule ul {
   width: 80%;
 }
 
-/* line 129, sass/modules/pages/_billboard.scss */
+/* line 192, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule li {
   display: inline-block;
   padding: 0;
 }
 
-/* line 134, sass/modules/pages/_billboard.scss */
+/* line 197, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule a {
   display: inline-block;
   margin-bottom: 4px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   font-size: 14px;
   color: #fff;
   background-color: #cc0017;
   border-radius: 3px;
 }
 
-/* line 143, sass/modules/pages/_billboard.scss */
+/* line 206, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule a:hover {
   background-color: #b30014;
 }
 
-/* line 147, sass/modules/pages/_billboard.scss */
+/* line 210, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule.premiere a {
-  color: #5e4c00;
-  background-color: #f7c700;
+  color: #322800;
+  background-color: #fecc00;
 }
 
-/* line 151, sass/modules/pages/_billboard.scss */
+/* line 214, sass/modules/pages/_billboard.scss */
 
 .billboard-container .billboard-list .schedules .schedule.premiere a:hover {
-  background-color: #deb200;
+  background-color: #e5b800;
+}
+
+/* line 2, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .big-cover {
+  position: relative;
+  height: 440px;
+  color: #fff;
+  background: #dee8ee url(../img/birdman-cover.jpg) no-repeat center bottom;
+  background-size: cover;
+}
+
+/* line 9, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .big-cover .col-container {
+  position: relative;
+  height: 440px;
+  z-index: 2;
+}
+
+/* line 15, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .big-cover:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background-color: transparent;
+  background-repeat: repeat-y;
+  background: -webkit-gradient(linear, left bottom, left bottom, from(black), to(transparent));
+  background: -webkit-linear-gradient(bottom, black, transparent);
+}
+
+/* line 34, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container header {
+  position: absolute;
+  bottom: 15px;
+  left: 260px;
+}
+
+/* line 40, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container h1 {
+  position: relative;
+  padding-bottom: 15px;
+  font-size: 42px;
+  font-weight: 300;
+}
+
+/* line 46, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container h1:after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100px;
+  height: 1px;
+  background-color: #fff;
+}
+
+/* line 57, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .movie-information {
+  position: relative;
+}
+
+/* line 60, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .movie-information .col-container {
+  padding: 20px;
+}
+
+/* line 64, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .movie-information .sinopsis {
+  display: inline-block;
+  width: 65%;
+  vertical-align: top;
+}
+
+/* line 69, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .movie-information .sinopsis h2 {
+  margin-bottom: 10px;
+  font-size: 27px;
+  font-weight: 300;
+  color: #818386;
+}
+
+/* line 77, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .movie-information .cover-container {
+  float: left;
+  margin-top: -120px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+/* line 83, sass/modules/pages/_movie-detail.scss */
+
+.movie-detail-container .movie-information .cover-container img {
+  border-radius: 3px;
 }
 
 /* line 2, sass/modules/base/_responsive.scss */

@@ -84,6 +84,7 @@ $(function(){
 		elementAppear();
 	});
 
+	$(".floating").Floating();
 
 	allMods = $(".appear");
 

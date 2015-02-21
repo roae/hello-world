@@ -174,7 +174,7 @@
 			<div class="billboard-aside">
 
 				<div class="filter">
-					<div class="input floating">
+					<div class="input">
 						<span class="label">Fecha de cartelera</span>
 						<div class="filter-select">
 							<a href="">09/02/2014 <strong>(Hoy)</strong></a>

@@ -4,31 +4,34 @@
 <section class="home-highlights" id="main-slider">
   <div class="movie big-hero">
     <header>
-      <div class="movie-info-bg"></div>
-      <div class="col-container movie-info">
-        <h1>Big Hero 6</h1>
+      <div class="col-container">
+        <div class="movie-info-bg"></div>
+        <div class="movie-info">
+          <h1>Big Hero 6</h1>
 
-        <p>
-          Una comedia de aventuras y acción sobre un experto en robótica llamado Hiro Hamada, quien se encuentra dentro de un complot criminal que amenaza con ...
-        </p>
+          <p>
+            Una comedia de aventuras y acción sobre un experto en robótica llamado Hiro Hamada, quien se encuentra dentro de un complot criminal que amenaza con ...
+          </p>
 
-        <ul class="features">
-          <li>
-            <strong>Director(es):</strong> Don Hall, Chris William
-          </li>
-          <li>
-            <strong>Género:</strong> Animación
-          </li>
-          <li>
-            <strong>Duración:</strong> 109min
-          </li>
-          <li>
-            <strong>Clasificación:</strong> A
-          </li>
-        </ul>
+          <ul class="features">
+            <li>
+              <strong>Director(es):</strong> Don Hall, Chris William
+            </li>
+            <li>
+              <strong>Género:</strong> Animación
+            </li>
+            <li>
+              <strong>Duración:</strong> 109min
+            </li>
+            <li>
+              <strong>Clasificación:</strong> A
+            </li>
+          </ul>
 
-        <a class="see-trailer" href="">Ver trailer</a>
+          <a class="see-trailer" href="">Ver trailer</a>
+        </div>
       </div>
+
     </header>
   </div>
 

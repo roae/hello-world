@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     compass: {
       dist: {
         options: {
+          require: 'susy',
           sassDir: 'css/sass',
           cssDir: 'css'
         }

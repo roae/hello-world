@@ -298,7 +298,7 @@
             opacity: 0.7;
           }
         }
-        &:nth-of-type(6n){
+        &:nth-of-type(5n+1){
           clear:left;
         }
       }

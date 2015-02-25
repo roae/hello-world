@@ -25,49 +25,16 @@
         </p>
 
         <div class="movie-gallery-container">
-          <ul class="movie-gallery">
-            <li>
-              <a href="">
-                <img src="http://placehold.it/250x250">
-              </a>
-            </li>
-
-            <li>
-              <a href="">
-                <img src="http://placehold.it/190x250">
-              </a>
-            </li>
-
-            <li>
-              <a href="">
-                <img src="http://placehold.it/250x450">
-              </a>
-            </li>
-
-            <li>
-              <a href="">
-                <img src="http://placehold.it/250x250">
-              </a>
-            </li>
-
-            <li>
-              <a href="">
-                <img src="http://placehold.it/250x250">
-              </a>
-            </li>
-
-            <li>
-              <a href="">
-                <img src="http://placehold.it/250x450">
-              </a>
-            </li>
-
-            <li>
-              <a href="">
-                <img src="http://placehold.it/250x250">
-              </a>
-            </li>
-          </ul>
+          <img src="http://placehold.it/250x250">
+          <img src="http://placehold.it/190x250">
+          <img src="http://placehold.it/250x450">
+          <img src="http://placehold.it/250x250">
+          <img src="http://placehold.it/250x250">
+          <img src="http://placehold.it/250x450">
+          <img src="http://placehold.it/250x250">
+          <img src="http://placehold.it/250x450">
+          <img src="http://placehold.it/250x250">
+          <img src="http://placehold.it/250x250">
         </div>
 
         <div class="buy-tickets">

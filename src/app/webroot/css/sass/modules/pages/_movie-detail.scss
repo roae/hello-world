@@ -56,7 +56,7 @@
       left: 0;
       width: 100px;
       height: 1px;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.5);
     }
   }
 
@@ -69,7 +69,7 @@
 
     .sinopsis {
       display: inline-block;
-      width: 65%;
+      width: span(11);
       vertical-align: top;
 
       h2 {
@@ -106,28 +106,15 @@
       margin-bottom: 40px;
       overflow: hidden;
 
-      ul {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 2000px;
-      }
-
-      li {
-        display: inline-block;
-
-        img {
-          height: 120px;
-        }
-      }
-
-      a {
-        display: inline-block;
+      img {
+        height: 120px;
+        margin-right: 2px;
       }
     }
 
     .buy-tickets {
-      width: 80%;
+      width: span(12);
+      margin-left: span(2) + gutter();
       margin: 0 auto;
 
       h2 {
@@ -174,9 +161,8 @@
 
   .movie-detailed-info {
     display: inline-block;
-    width: 34%;
-    padding-left: 80px;
-    vertical-align: top;
+    width: span(4);
+    margin-left: span(1) + gutter();
 
     .watch-trailer {
       display: block;

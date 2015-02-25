@@ -20,5 +20,11 @@ class City extends AppModel {
 		)
 	);
 
+	function beforeSave() {
+		$this->data['City']['slug'] = Inflector::slug(low($this->data['City']['name']), '-');
+
+		return true;
+	}
+
 }
 ?>

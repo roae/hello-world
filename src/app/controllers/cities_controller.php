@@ -208,5 +208,9 @@ class CitiesController extends AppController{
 		$this->set(compact("city"));
 	}
 
+	function get(){
+		return $this->City->find($this->params['type'], $this->params['query']);
+	}
+
 }
 ?>

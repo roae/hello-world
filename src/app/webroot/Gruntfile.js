@@ -42,10 +42,11 @@ module.exports = function(grunt) {
   });
 
   // Load tasks
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  /*grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-csso');
-  grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-notify');*/
+  require('jit-grunt')(grunt);
 
   // Register tasks
   grunt.registerTask('default', ['compass', 'csso', 'watch']);

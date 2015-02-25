@@ -1,4 +1,5 @@
 #header-location-select {
+  position: relative;
   display: inline-block;
   margin-top: 30px;
 
@@ -6,14 +7,14 @@
   -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
 
-  a {
+  & > a {
+    position: relative;
     padding: 15px 80px 15px 60px;
     border-radius: 50px;
     font-size: 1.125em;
     font-weight: 300;
     color: #fff;
-    background: $red url(../img/custom-select-arrow.png) no-repeat 95% center;
-    background-size: 20px;
+    background-color: $red;
 
     .current {
       position: relative;
@@ -40,8 +41,75 @@
     }
   }
 
+  .sub-menu-trigger {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    display: block;
+    width: 42px;
+    height: 42px;
+    margin-top: -21px;
+    text-indent: -1000px;
+    background: url(../img/custom-select-arrow.png) no-repeat center center;
+    background-size: 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+
+    @include transition(background-color 0.2s ease-in-out);
+  }
+
   .places {
     display: none;
+    position: absolute;
+    top: 31px;
+    right: 0;
+    width: 247px;
+    padding-top: 5px;
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      right: 18px;
+      width: 16px;
+      height: 16px;
+      background-color: #fff;
+
+      @include transform(rotate(45deg));
+    }
+
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0 1px 1px);
+
+    li {
+      display: block;
+
+      &:last-child a {
+        border-radius: 0 0 10px 10px;
+      }
+    }
+
+    a {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 16px;
+      color: $dark-gray;
+      background-color: #fff;
+      z-index: 1;
+
+      &:hover { background-color: $yellow; }
+    }
+  }
+
+  .sub-menu-container {
+    &:hover {
+      .places { display: block; }
+    }
   }
 }
 

@@ -1,14 +1,36 @@
 <?php
 class ShowsController extends AppController{
 	var $name = "Shows";
-	var $uses = array("Show");
+	var $uses = array(
+		"Show",
+	);
 
-	function index(){
-		$shows=$this->Show->find("all",array(
+	function index() {
+		$slug = $this->params['slug'];
+		$data = $this->Show->Location->City->findBySlug($slug);
+
+		if( ! empty($data) ) {
+			$this->Cookie->write("City", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+
+			Configure::write("CitySelected", $data['City']);
+		} else {
+			$this->cakeError('error404');
+		}
+
+		if( Configure::read("LocationSelected") ) {
+			$locations = array(
+				Configure::read("LocationSelected.id")
+			);
+		} else {
+			$locations = $this->Show->Location->find("list");
+			$locations = array_keys($locations);
+		}
+
+		$shows = $this->Show->find("all", array(
 			'conditions'=>array(
 				'Show.schedule >='=>date("Y-m-d H:i:s"),
 				'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
-				'Show.location_id'=>Configure::read("LocationSelected.id"),
+				'Show.location_id'=> $locations,
 			),
 			'contain'=>array(
 				'Projection',

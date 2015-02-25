@@ -5,7 +5,7 @@
 
 		<div class="top-message">
 			<header>
-				<h1>Cartelera de <?= Configure::read("LocationSelected.name")?></h1>
+				<h1>Cartelera de <?= Configure::read("CitySelected.name") ?></h1>
 			</header>
 
 			<p>Selecciona un horario para comprar tus boletos</p>
@@ -24,7 +24,7 @@
 					<li class="movie">
 
 						<div class="image-container">
-							<?= $this->Html->image($this->Uploader->generatePath($item['Movie']['Poster'],'medium'));?>
+							<?= $this->Html->link($this->Html->image($this->Uploader->generatePath($item['Movie']['Poster'],'medium')), array('controller' => 'movies', 'action' => 'view', 'id' => $item['Movie']['id'], 'slug' => Inflector::slug(low($item['Movie']['title']), '-')), array('escape' => false));?>
 						</div>
 
 						<div class="schedules">

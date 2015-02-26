@@ -12,7 +12,7 @@ Citicinemas.controller("ProjectionsCtrl", function($scope){
 	};
 	//console.dir($scope.ValidationErrors)
 
-	$scope.formats = ["Digital","3D","4D","48FMS","35MM"];
+	$scope.formats = ["2D","3D","4D","48FMS","35MM"];
 
 	$scope.langs = ["ESP","DOB","SUB"];
 

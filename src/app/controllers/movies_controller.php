@@ -227,7 +227,7 @@ class MoviesController extends AppController{
 		return $this->Movie->find($this->params['type'], $this->params['query']);
 	}
 
-	function view($id = null){
+	function view($slug = null){
 		$this->Movie->contain(array(
 			"Poster",
 			"Gallery",
@@ -237,7 +237,7 @@ class MoviesController extends AppController{
 			)
 		));
 
-		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.id'=>$id)));
+		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
 
 		$this->set(compact("record"));
 	}

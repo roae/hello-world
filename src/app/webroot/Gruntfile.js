@@ -25,6 +25,30 @@ module.exports = function(grunt) {
       },
     },
 
+	ngAnnotate: {
+		options:{
+
+		},
+		app_citicinemas: {
+			files:[
+				{
+					expand: true,
+					src: ['js/admin/projections.js'],
+					ext: '.annotated.js',
+					extDot:'last'
+				}
+			]
+		}
+	},
+
+    uglify: {
+      dist: {
+        files: {
+          'js/admin/projections.min.js': ['js/admin/projections.annotated.js']
+        }
+      }
+    },
+
     // Watch files for changes
     watch: {
       css: {
@@ -37,6 +61,10 @@ module.exports = function(grunt) {
           livereload: true,
         },
       },
+      scripts: {
+        files: ['js/admin/projections.js'],
+        tasks: ['uglify']
+      }
     }
 
   });
@@ -49,5 +77,5 @@ module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
   // Register tasks
-  grunt.registerTask('default', ['compass', 'csso', 'watch']);
+  grunt.registerTask('default', ['compass', 'csso', 'ngAnnotate' ,'uglify', 'watch']);
 };

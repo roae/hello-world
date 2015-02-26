@@ -15,3 +15,5 @@ src/app/webroot/node_modules
 
 docs/*
 recursos/*
+
+*.annotated.js

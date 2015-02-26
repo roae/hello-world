@@ -161,7 +161,7 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 12, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
+/* line 12, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
 .col-container:after {
   content: " ";
   display: block;
@@ -1200,25 +1200,22 @@ select {
 .home .home-highlights .pagination-container {
   position: relative;
   bottom: 0;
-  /*//left: 50%;
-  width: 100%;
-  //margin-left: -540px;*/
 }
-/* line 101, sass/modules/pages/_home.scss */
+/* line 97, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination {
   position: absolute;
-  left: 61.875%;
+  left: 55.625%;
   bottom: -500px;
   width: 100%;
   padding: 20px 30px 20px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
-/* line 109, sass/modules/pages/_home.scss */
+/* line 105, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination li {
   display: inline-block;
   margin-right: 5px;
 }
-/* line 114, sass/modules/pages/_home.scss */
+/* line 110, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination a {
   display: inline-block;
   width: 12px;
@@ -1229,20 +1226,20 @@ select {
   border: 2px solid #fff;
   overflow: hidden;
 }
-/* line 124, sass/modules/pages/_home.scss */
+/* line 120, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination a.current, .home .home-highlights .pagination a:hover {
   border: none;
   background-color: #fff;
 }
-/* line 130, sass/modules/pages/_home.scss */
+/* line 126, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination a:hover {
   opacity: 0.5;
 }
-/* line 135, sass/modules/pages/_home.scss */
+/* line 131, sass/modules/pages/_home.scss */
 .home .top-promo {
   margin-bottom: 20px;
 }
-/* line 138, sass/modules/pages/_home.scss */
+/* line 134, sass/modules/pages/_home.scss */
 .home .top-promo a {
   display: block;
   padding: 15px;
@@ -1251,16 +1248,16 @@ select {
   color: #655100;
   background-color: #ffe67f;
 }
-/* line 146, sass/modules/pages/_home.scss */
+/* line 142, sass/modules/pages/_home.scss */
 .home .top-promo a:hover {
   background-color: #ffeb98;
 }
-/* line 150, sass/modules/pages/_home.scss */
+/* line 146, sass/modules/pages/_home.scss */
 .home .billboard {
   overflow: hidden;
   text-align: center;
 }
-/* line 154, sass/modules/pages/_home.scss */
+/* line 150, sass/modules/pages/_home.scss */
 .home .billboard h1 {
   margin-top: 20px;
   margin-bottom: 5px;
@@ -1268,7 +1265,7 @@ select {
   font-weight: 300;
   color: #cc0017;
 }
-/* line 162, sass/modules/pages/_home.scss */
+/* line 158, sass/modules/pages/_home.scss */
 .home .billboard .description {
   display: block;
   width: 50%;
@@ -1278,24 +1275,24 @@ select {
   font-weight: 300;
   color: #818386;
 }
-/* line 172, sass/modules/pages/_home.scss */
+/* line 168, sass/modules/pages/_home.scss */
 .home .billboard .movies {
   font-size: 0;
   text-align: left;
   margin-bottom: 50px;
 }
-/* line 179, sass/modules/pages/_home.scss */
+/* line 175, sass/modules/pages/_home.scss */
 .home .billboard .movies .titleBillboard {
   margin-bottom: 20px;
   font-size: 34px;
   font-weight: 100;
   color: #272b2e;
 }
-/* line 185, sass/modules/pages/_home.scss */
+/* line 181, sass/modules/pages/_home.scss */
 .home .billboard .movies .titleBillboard strong {
   font-weight: bold;
 }
-/* line 194, sass/modules/pages/_home.scss */
+/* line 190, sass/modules/pages/_home.scss */
 .home .billboard .movie {
   width: 19%;
   float: left;
@@ -1306,20 +1303,20 @@ select {
   color: #818386;
   vertical-align: top;
 }
-/* line 201, sass/modules/pages/_home.scss */
+/* line 197, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container {
   position: relative;
 }
-/* line 204, sass/modules/pages/_home.scss */
+/* line 200, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container img {
   width: 100%;
   display: block;
 }
-/* line 210, sass/modules/pages/_home.scss */
+/* line 206, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container:hover .details {
   opacity: 1;
 }
-/* line 214, sass/modules/pages/_home.scss */
+/* line 210, sass/modules/pages/_home.scss */
 .home .billboard .movie .details {
   position: absolute;
   left: 0;
@@ -1338,7 +1335,7 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
 }
-/* line 232, sass/modules/pages/_home.scss */
+/* line 228, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .title {
   display: block;
   margin-bottom: 10px;
@@ -1347,7 +1344,7 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 239, sass/modules/pages/_home.scss */
+/* line 235, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .sinopsis {
   height: 150px;
   overflow-y: auto;
@@ -1355,7 +1352,7 @@ select {
   font-size: 13px;
   color: #dee8ee;
 }
-/* line 247, sass/modules/pages/_home.scss */
+/* line 243, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a {
   display: block;
   padding: 5px 10px;
@@ -1368,25 +1365,25 @@ select {
   -webkit-transition: border 0.2s ease-in-out;
   -moz-transition: border 0.2s ease-in-out;
 }
-/* line 260, sass/modules/pages/_home.scss */
+/* line 256, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:hover {
   border-color: #8e9092;
 }
-/* line 262, sass/modules/pages/_home.scss */
+/* line 258, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:active {
   position: relative;
   top: 1px;
 }
-/* line 269, sass/modules/pages/_home.scss */
+/* line 265, sass/modules/pages/_home.scss */
 .home .billboard .movie img {
   border-radius: 3px;
 }
-/* line 271, sass/modules/pages/_home.scss */
+/* line 267, sass/modules/pages/_home.scss */
 .home .billboard .movie .info {
   padding: 10px;
   text-align: left;
 }
-/* line 275, sass/modules/pages/_home.scss */
+/* line 271, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 {
   margin-top: 0;
   margin-bottom: 5px;
@@ -1396,26 +1393,26 @@ select {
   -webkit-transition: color 0.2s ease-in-out;
   -moz-transition: color 0.2s ease-in-out;
 }
-/* line 285, sass/modules/pages/_home.scss */
+/* line 281, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a {
   color: #818386;
 }
-/* line 288, sass/modules/pages/_home.scss */
+/* line 284, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a:hover {
   color: #686a6c;
 }
-/* line 294, sass/modules/pages/_home.scss */
+/* line 290, sass/modules/pages/_home.scss */
 .home .billboard .movie .info span {
   display: block;
   font-size: 13px;
   opacity: 0.7;
 }
-/* line 301, sass/modules/pages/_home.scss */
+/* line 297, sass/modules/pages/_home.scss */
 .home .billboard .movie:nth-of-type(5n+1) {
   clear: left;
 }
 
-/* line 309, sass/modules/pages/_home.scss */
+/* line 305, sass/modules/pages/_home.scss */
 .next-premieres {
   position: relative;
   width: 100%;
@@ -1425,40 +1422,40 @@ select {
   background-color: #eff4f7;
   overflow: hidden;
 }
-/* line 318, sass/modules/pages/_home.scss */
+/* line 314, sass/modules/pages/_home.scss */
 .next-premieres .info {
   text-align: left;
 }
-/* line 320, sass/modules/pages/_home.scss */
+/* line 316, sass/modules/pages/_home.scss */
 .next-premieres .titleCommingSoon {
   font-size: 34px;
   font-weight: 100;
   margin: 40px 0 50px;
   color: #272b2e;
 }
-/* line 327, sass/modules/pages/_home.scss */
+/* line 323, sass/modules/pages/_home.scss */
 .next-premieres .movies {
   position: relative;
 }
-/* line 331, sass/modules/pages/_home.scss */
+/* line 327, sass/modules/pages/_home.scss */
 .next-premieres .movie {
   padding: 0 15px;
 }
-/* line 334, sass/modules/pages/_home.scss */
+/* line 330, sass/modules/pages/_home.scss */
 .next-premieres .movie .details {
   display: none;
 }
-/* line 336, sass/modules/pages/_home.scss */
+/* line 332, sass/modules/pages/_home.scss */
 .next-premieres .movie img {
   width: 100%;
 }
-/* line 338, sass/modules/pages/_home.scss */
+/* line 334, sass/modules/pages/_home.scss */
 .next-premieres .movie h2 {
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: normal;
 }
-/* line 344, sass/modules/pages/_home.scss */
+/* line 340, sass/modules/pages/_home.scss */
 .next-premieres .movie span {
   display: block;
   text-align: left;
@@ -1466,7 +1463,7 @@ select {
   color: #818386;
   opacity: 0.7;
 }
-/* line 352, sass/modules/pages/_home.scss */
+/* line 348, sass/modules/pages/_home.scss */
 .next-premieres .movie a {
   font-size: 14px;
   color: #818386;
@@ -1539,54 +1536,62 @@ select {
   font-size: 16px;
 }
 /* line 66, sass/modules/pages/_billboard.scss */
+.billboard-container .billboard-list .complex-name .complex-label {
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 300;
+  color: #fff;
+  background: #272b2e;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  display: inline-block;
+}
+/* line 78, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a {
   color: #272b2e;
 }
-/* line 69, sass/modules/pages/_billboard.scss */
+/* line 81, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:hover {
   color: #cc0017;
 }
-/* line 73, sass/modules/pages/_billboard.scss */
+/* line 86, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:active {
   position: relative;
   top: 1px;
 }
-/* line 81, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .complex-label {
-  font-size: 14px;
-  color: #818386;
+/* line 93, sass/modules/pages/_billboard.scss */
+.billboard-container .billboard-list .movieAnchor {
+  position: absolute;
+  top: -80px;
+  width: 100px;
+  height: 10px;
+  display: block;
 }
-/* line 86, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .complex {
-  padding-top: 5px;
-  margin-bottom: 20px;
-  font-size: 32px;
-  font-weight: 300;
-  color: #272b2e;
-}
-/* line 95, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list > ul > li {
-  padding: 25px 0;
-  border-bottom: 1px solid #f1f1f1;
+/* line 104, sass/modules/pages/_billboard.scss */
+.billboard-container .billboard-list .movie {
+  padding: 25px 0 64px;
   overflow: hidden;
+  position: relative;
 }
-/* line 102, sass/modules/pages/_billboard.scss */
+/* line 111, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules {
   width: 70.90909%;
   padding-bottom: 0;
   float: left;
 }
-/* line 107, sass/modules/pages/_billboard.scss */
+/* line 116, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules li {
   display: inline-block;
   padding: 0;
 }
-/* line 113, sass/modules/pages/_billboard.scss */
+/* line 123, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .image-container {
   float: left;
   width: 26.36364%;
 }
-/* line 118, sass/modules/pages/_billboard.scss */
+/* line 128, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img {
   display: block;
   width: 100%;
@@ -1596,11 +1601,11 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 125, sass/modules/pages/_billboard.scss */
+/* line 135, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:hover {
   opacity: 0.7;
 }
-/* line 126, sass/modules/pages/_billboard.scss */
+/* line 136, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:active {
   position: relative;
   top: 1px;

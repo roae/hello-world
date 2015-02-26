@@ -99,7 +99,7 @@ class SyncShell extends Shell{
 			$this->syncStatus['running'] = true;
 
 			try{
-				$starDate = mktime(0,0,0,date("m"),date("d"),date("Y"));
+				$starDate = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
 				$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
 				$this->out("Periodo: ".date("Y-m-d H:i:s",$starDate)." | ".date("Y-m-d H:i:s",$endDate));
 

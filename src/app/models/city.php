@@ -11,7 +11,7 @@ class City extends AppModel {
 	var $belongsTo = array( );
 	var $hasOne = array( );
 	var $hasAndBelongsToMay = array( );
-	var $hasMany = array(  );
+	var $hasMany = array( 'Location' );
 	var $displayField="name";
 
 	var $validate = array(

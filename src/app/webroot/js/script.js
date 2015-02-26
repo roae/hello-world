@@ -291,15 +291,15 @@ function nextSlide(){
 		$('.next-premieres').find('.movies-list').owlCarousel({
 			items : 8,
 			pagination : true,
-    	paginationNumbers: false,
-    	itemsCustom : false,
-	    itemsDesktop : [1199,4],
-	    itemsDesktopSmall : [980,3],
-	    itemsTablet: [768,3],
-	    itemsTabletSmall: false,
-	    itemsMobile : [479,1],
-	    singleItem : false,
-	    itemsScaleUp : false,
+	    	paginationNumbers: false,
+	    	itemsCustom : false,
+		    itemsDesktop : [1199,4],
+		    itemsDesktopSmall : [980,3],
+		    itemsTablet: [768,3],
+		    itemsTabletSmall: false,
+		    itemsMobile : [479,1],
+		    singleItem : false,
+		    itemsScaleUp : false,
 		});
 
 	}
@@ -310,10 +310,10 @@ function nextSlide(){
 
 	  	if( direction == 'down' ) {
 	  		$header.addClass('sticky');
-	  		$('body').css('padding-top', '118px');
+	  		//$('body').css('padding-top', '118px');
 	  	} else {
 	  		$header.removeClass('sticky');
-	  		$('body').css('padding-top', '0');
+	  		//$('body').css('padding-top', '0');
 	  	}
 
 	});

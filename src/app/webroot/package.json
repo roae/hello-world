@@ -12,6 +12,8 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-csso": "~0.5.2",
     "grunt-notify": "~0.2.16",
-    "jit-grunt": "^0.9.1"
+    "jit-grunt": "^0.9.1",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-ng-annotate": "~0.10.0"
   }
 }

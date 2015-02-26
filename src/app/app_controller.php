@@ -320,11 +320,13 @@ class AppController extends Controller{
 			$this->pageDescription="[:".$this->params['action']."_".$this->params['controller']."_".$pass."_page_description:]";
 		}
 
-		Configure::write("CitySelected",$this->Cookie->read("City"));
-		Configure::write("LocationSelected",$this->Cookie->read("Location"));
+		#pr($this->Cookie->read("CitySelected"));
 
-		$this->set("LocationSelected",$this->Cookie->read("Location"));
-		$this->set("CitySelected",$this->Cookie->read("City"));
+		Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
+		Configure::write("LocationsSelected",$this->Cookie->read("Location"));
+
+		$this->set("LocationsSelected",$this->Cookie->read("Location"));
+		$this->set("CitySelected",$this->Cookie->read("CitySelected"));
 
 		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting
 			$this->RequestHandler->respondAs('xml'); // for setting headers

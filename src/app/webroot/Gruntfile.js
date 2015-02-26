@@ -25,6 +25,14 @@ module.exports = function(grunt) {
       },
     },
 
+    uglify: {
+      dist: {
+        files: {
+          'js/admin/projections.min.js': ['js/admin/projections.js']
+        }
+      }
+    },
+
     // Watch files for changes
     watch: {
       css: {
@@ -36,6 +44,10 @@ module.exports = function(grunt) {
           spawn: false,
           livereload: true,
         },
+      },
+      scripts: {
+        files: ['js/admin/projections.js'],
+        tasks: ['uglify']
       },
     }
 
@@ -49,5 +61,5 @@ module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
   // Register tasks
-  grunt.registerTask('default', ['compass', 'csso', 'watch']);
+  grunt.registerTask('default', ['compass', 'csso', 'uglify', 'watch']);
 };

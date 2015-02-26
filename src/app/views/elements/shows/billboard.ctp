@@ -9,7 +9,7 @@
 		'fields'=>array('Show.id'),
 		'contain'=>array(
 			'Movie'=>array(
-				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis'),
+				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
 				'Poster'
 			)
 		),
@@ -33,14 +33,16 @@
 					<div class="sinopsis">
 						<?= $show['Movie']['synopsis']?>
 					</div>
-					<?= $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "id" => $show["Movie"]["id"], "slug" => Inflector::slug($show["Movie"]["title"], "-")), array("class" => "watch-trailer fwd")) ?>
-					<a class="buy-tickets" href="">Horarios</a>
+					<?
+					echo $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"]), array("class" => "watch-trailer fwd"));
+					echo $this->Html->link("[:ver_horarios:]",array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(low($CitySelected['name']),'-'),'#'=>$show['Movie']['slug']),array('class'=>'buy-tickets'));
+					?>
 				</div>
 			</div>
 
 			<div class="info">
 				<h2>
-					<?= $this->Html->link($show['Movie']['title'], array("controller" => "movies", "action" => "view", "id" => $show["Movie"]["id"], "slug" => Inflector::slug($show["Movie"]["title"], "-"))) ?>
+					<?= $this->Html->link($show['Movie']['title'], array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"])) ?>
 				</h2>
 				<span class="duration"><?= ($show['Movie']['duration'] != '') ? $show['Movie']['duration'].' mins' : '' ?></span>
 				<span class="genre"><?= $show['Movie']['genre'] ?></span>

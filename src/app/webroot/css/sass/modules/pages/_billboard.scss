@@ -63,22 +63,27 @@
     vertical-align: top;
     font-size: 16px;
 
-    .complex-label {
-      font-size: 14px;
-      color: $gray;
-    }
-
-    .complex {
-      padding-top: 5px;
-      margin-bottom: 20px;
-      font-size: 32px;
-      font-weight: 300;
-      color: $dark-gray;
+    .complex-name {
+      .complex-label{
+        padding: 5px 10px;
+        margin-bottom: 20px;
+        font-size: 32px;
+        font-weight: 300;
+        color: #fff;
+        background: $dark-gray;
+        @include border-radius(4px);
+        display: inline-block;
+      }
     }
 
     li {
       display: table-row;
       padding: 10px 0;
+    }
+
+    .movieAnchor{
+      position: relative;
+      top: -80px;
     }
 
     .schedules {

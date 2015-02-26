@@ -160,5 +160,10 @@ class Movie extends AppModel {
 		return 0;
 	}
 
+	function beforeSave(){
+		$this->data['Movie']['slug'] = Inflector::slug(low($this->data['Movie']['title']),"-");
+		return true;
+	}
+
 }
 ?>

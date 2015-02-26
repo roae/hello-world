@@ -16,7 +16,9 @@ class Location extends AppModel {
 		"Service",
 		#'Movie',
 	);
-	var $hasMany = array(  );
+	var $hasMany = array(
+		'Show',
+	);
 	var $displayField="name";
 
 	var $actsAs = array(
@@ -63,6 +65,29 @@ class Location extends AppModel {
 		'state'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		),
+	);
+
+	var $publicFields = array(
+		'id',
+		'name',
+		'city_id',
+		'phone_numbers',
+		'state',
+		'zip',
+		'street',
+		'neighborhood',
+		'interior',
+		'outside',
+		'mark_lat',
+		'mark_lng',
+		'map_lat',
+		'map_lng',
+		'mark_lat',
+		'map_zoom',
+		'mark_lat',
+		'sv_lat',
+		'sv_lng',
+		'description',
 	);
 
 }

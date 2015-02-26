@@ -10,13 +10,14 @@
       )
     )
   ));
+  #pr($cities);
+  #pr(Configure::read("CitySelected"));
 
   $places_label = 'Selecciona tu ciudad';
   $places_url = '#';
-
-  if( Configure::read("CitySelected.name") ) {
-    $places_label = 'Ver cartelera de <span class="current">'.Configure::read("CitySelected.name").'</span>';
-    $places_url = array('controller' => 'shows', 'action' => 'index', 'slug' => Inflector::slug(low(Configure::read("CitySelected.name")), '-'));
+  if( isset($CitySelected['name']) && $CitySelected['name'] ) {
+    $places_label = 'Ver cartelera de <span class="current">'.$CitySelected['name'].'</span>';
+    $places_url = array('controller' => 'shows', 'action' => 'index', 'slug' => Inflector::slug(low($CitySelected['name']), '-'));
   }
 ?>
 

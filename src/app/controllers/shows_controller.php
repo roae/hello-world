@@ -6,53 +6,89 @@ class ShowsController extends AppController{
 	);
 
 	function index() {
+		if(!isset($this->params['slug'])){
+			$this->cakeError("error404");
+		}
+
+		$this->__setCitySelected();
+
+
+		$recordset = $this->Show->Location->find("all", array(
+			'fields'=>$this->Show->Location->publicFields,
+			'conditions'=>array(
+				'Location.trash'=>0,
+				'Location.status'=>1,
+				'Location.city_id'=>Configure::read("CitySelected.id"),
+			),
+			'contain'=>array(
+				'Show'=>array(
+					'conditions'=>array(
+						'Show.schedule >='=>date("Y-m-d H:i:s"),
+						'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+						#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+					),
+					'Projection',
+					'Movie'=>array(
+						'Poster'
+					)
+				)
+			),
+		));
+		#pr($recordset);
+		$billboard = array();
+		foreach($recordset as $i => $record){
+			$billboard[$i]['Location'] = $record['Location'];
+			foreach($record['Show'] as $show){
+				$movieId= $show['Movie']['id'];
+				$billboard[$i]['Show'][$movieId]['Movie'] = $show['Movie'];
+				//$recordset[$i]['Show'][$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
+				$billboard[$i]['Show'][$movieId]['Show'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+			}
+		}
+
+		$this->set("billboard",$billboard);
+
+	}
+
+	function __setCitySelected(){
 		$slug = $this->params['slug'];
-		$data = $this->Show->Location->City->findBySlug($slug);
+		if( $slug != Configure::read("CitySelected.slug") ) {
+			$data = $this->Show->Location->City->findBySlug($slug);
+		}else{
+			$data['City'] = Configure::read("CitySelected");
+		}
+
 
 		if( ! empty($data) ) {
-			$this->Cookie->write("City", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-
+			$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
 			Configure::write("CitySelected", $data['City']);
+			$this->set("CitySelected",$data['City']);
+			Configure::write("LocationsSelected",null);
 		} else {
 			$this->cakeError('error404');
 		}
 
-		if( Configure::read("LocationSelected") ) {
+		if( Configure::read("LocationsSelected") ) {
 			$locations = array(
-				Configure::read("LocationSelected.id")
+				Configure::read("LocationsSelected.id")
 			);
 		} else {
-			$locations = $this->Show->Location->find("list");
-			$locations = array_keys($locations);
+			$_locations = $this->Show->Location->find("all",array('conditions'=>array(
+				'Location.trash'=>0,
+				'Location.status'=>1,
+				'Location.city_id'=>$data['City']['id'],
+			)));
+			$locations = array();
+			foreach($_locations as $record){
+				$locations[$record['Location']['id']] = $record;
+			}
+
+			Configure::write("LocationsSelected",$locations);
+			$this->Cookie->write("LocationsSelected", $locations, false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+			$this->set("LocationsSelected",$locations);
+
+			$locations = Set::classicExtract($locations,"{n}.Location.id");
 		}
-
-		$shows = $this->Show->find("all", array(
-			'conditions'=>array(
-				'Show.schedule >='=>date("Y-m-d H:i:s"),
-				'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
-				'Show.location_id'=> $locations,
-			),
-			'contain'=>array(
-				'Projection',
-				'Movie'=>array(
-					'Poster'
-				)
-			)
-		));
-		//pr($shows);
-		$billboard = array();
-		foreach($shows as $show){
-			$movieId= $show['Movie']['id'];
-			$billboard[$movieId]['Movie'] = $show['Movie'];
-			#$billboard[$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
-			$billboard[$movieId]['Show'][$show['Projection']['lang']."_".$show['Projection']['format']][]= am($show['Show'],$show['Projection']);
-		}
-		$this->set("billboard",$billboard);
-		#pr(Configure::read("LocationSelected"));
-
-		//$this->set("sessionSeatData",$this->__getSeats());
-
-		//pr($billboard);
 	}
 
 	function get(){

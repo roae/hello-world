@@ -38,8 +38,8 @@
         position: relative;
         margin-top:30px;
 
-        @include span(6);
-        margin-left: span(10)+gutter();
+        @include span(7);
+        margin-left: span(9)+gutter();
 
 
         * { font-weight: 300; }
@@ -258,14 +258,12 @@
             -moz-transition: border 0.2s ease-in-out;
 
             &:hover { border-color: lighten($gray, 5%); }
+
+            &:active {
+              position: relative;
+              top: 1px;
+            }
           }
-        }
-
-
-
-        &:active {
-          position: relative;
-          top: 1px;
         }
 
         img { border-radius: 3px; }
@@ -286,6 +284,7 @@
 
             a {
               color: $gray;
+
               &:hover{
                 color: darken($gray, 10%)
               }
@@ -298,8 +297,9 @@
             opacity: 0.7;
           }
         }
+
         &:nth-of-type(5n+1){
-          clear:left;
+          clear: left;
         }
       }
     }

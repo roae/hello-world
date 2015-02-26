@@ -37,11 +37,13 @@
         <?= $record['Movie']['synopsis'] ?>
 
         <div class="movie-gallery-container">
-          <?php foreach ($record['Gallery'] as $image) { ?>
+          <div class="movie-gallery-carousel">
+            <?php foreach ($record['Gallery'] as $image) { ?>
 
-            <?= $this->Html->image($image['mini'], '') ?>
+              <?= $this->Html->image($image['thumb'], '') ?>
 
-          <?php } ?>
+            <?php } ?>
+          </div>
         </div>
 
         <div class="buy-tickets">
@@ -178,64 +180,88 @@
         </div>
 
         <aside class="movie-detailed-info">
-          <a class="watch-trailer trailer-trigger" href="<?= $record['Movie']['trailer'] ?>">Ver trailer</a>
+          <?php if( $record['Movie']['trailer'] != '' ): ?>
+            <a class="watch-trailer trailer-trigger" href="<?= $record['Movie']['trailer'] ?>">Ver trailer</a>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Duración:</strong>
-            <span class="value"><?= $record['Movie']['duration'] ?> mins.</span>
-          </div>
+          <?php if( $record['Movie']['duration'] != '' ): ?>
+            <div class="info">
+              <strong>Duración:</strong>
+              <span class="value"><?= $record['Movie']['duration'] ?> mins.</span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Clasificación:</strong>
-            <span class="value"><?= $record['Movie']['clasification'] ?></span>
-          </div>
+          <?php if( $record['Movie']['clasification'] != '' ): ?>
+            <div class="info">
+              <strong>Clasificación:</strong>
+              <span class="value"><?= $record['Movie']['clasification'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Género:</strong>
-            <span class="value"><?= $record['Movie']['genre'] ?></span>
-          </div>
+          <?php if( $record['Movie']['genre'] != '' ): ?>
+            <div class="info">
+              <strong>Género:</strong>
+              <span class="value"><?= $record['Movie']['genre'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Director(es):</strong>
-            <span class="value"><?= $record['Movie']['director'] ?></span>
-          </div>
+          <?php if( $record['Movie']['director'] != '' ): ?>
+            <div class="info">
+              <strong>Director(es):</strong>
+              <span class="value"><?= $record['Movie']['director'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Actor(es):</strong>
-            <span class="value">
-              <?= $record['Movie']['actors'] ?>
-            </span>
-          </div>
+          <?php if( $record['Movie']['actors'] != '' ): ?>
+            <div class="info">
+              <strong>Actor(es):</strong>
+              <span class="value">
+                <?= $record['Movie']['actors'] ?>
+              </span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Idioma:</strong>
-            <span class="value"><?= $record['Movie']['language'] ?></span>
-          </div>
+          <?php if( $record['Movie']['language'] != '' ): ?>
+            <div class="info">
+              <strong>Idioma:</strong>
+              <span class="value"><?= $record['Movie']['language'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Nacionalidad:</strong>
-            <span class="value"><?= $record['Movie']['nationality'] ?></span>
-          </div>
+          <?php if( $record['Movie']['nationality'] != '' ): ?>
+            <div class="info">
+              <strong>Nacionalidad:</strong>
+              <span class="value"><?= $record['Movie']['nationality'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Música:</strong>
-            <span class="value"><?= $record['Movie']['music_director'] ?></span>
-          </div>
+          <?php if( $record['Movie']['music_director'] != '' ): ?>
+            <div class="info">
+              <strong>Música:</strong>
+              <span class="value"><?= $record['Movie']['music_director'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Fotografía:</strong>
-            <span class="value"><?= $record['Movie']['photografy_director'] ?></span>
-          </div>
+          <?php if( $record['Movie']['photografy_director'] != '' ): ?>
+            <div class="info">
+              <strong>Fotografía:</strong>
+              <span class="value"><?= $record['Movie']['photografy_director'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Año:</strong>
-            <span class="value"><?= $record['Movie']['year'] ?></span>
-          </div>
+          <?php if( $record['Movie']['year'] != '' ): ?>
+            <div class="info">
+              <strong>Año:</strong>
+              <span class="value"><?= $record['Movie']['year'] ?></span>
+            </div>
+          <?php endif; ?>
 
-          <div class="info">
-            <strong>Sitio web oficial:</strong>
-            <span class="value"><?= $this->Html->link('[:movie_website:]', $record['Movie']['website']) ?></span>
-          </div>
+          <?php if( $record['Movie']['website'] != '' ): ?>
+            <div class="info">
+              <strong>Sitio web oficial:</strong>
+              <span class="value"><?= $this->Html->link('[:movie_website:]', $record['Movie']['website']) ?></span>
+            </div>
+          <?php endif; ?>
 
           <div class="vertical-banner">
             <?= $this->Html->image("refill-vertical-small.png",array('alt'=>'[:logo_alt:]')) ?>

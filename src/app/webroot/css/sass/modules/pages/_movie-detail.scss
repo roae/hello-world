@@ -5,8 +5,9 @@
     color: #fff;
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: lighten($gray, 30%);
+    background-color: #f08b24;
     background-size: cover;
+    background-blend-mode: luminosity;
 
     .col-container {
       position: relative;
@@ -43,7 +44,7 @@
     }
 
     &:before {
-      content: '';
+      //content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -110,11 +111,14 @@
 
     .cover-container {
       float: left;
+      width: span(5);
       margin-top: -120px;
       margin-right: 20px;
       margin-bottom: 5px;
 
       img {
+        display: block;
+        width: 100%;
         border-radius: 3px;
         border: 2px solid #fff;
       }
@@ -128,8 +132,21 @@
       margin-bottom: 40px;
       overflow: hidden;
 
+      .movie-gallery-carousel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 10000px;
+        cursor: pointer;
+
+        @include transition(opacity 0.2s ease-in-out);
+
+        &:hover { opacity: 0.7; }
+      }
+
       img {
-        height: 120px;
+        float: left;
+        height: 75px;
         margin-right: 2px;
       }
     }
@@ -224,7 +241,7 @@
         margin-bottom: 2px;
         color: $gray;
 
-        &:empty ~ strong { display: none; }
+        &:empty + strong { display: none; }
       }
 
       a { color: $yellow; }

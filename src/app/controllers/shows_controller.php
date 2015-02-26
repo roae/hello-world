@@ -53,41 +53,37 @@ class ShowsController extends AppController{
 	function __setCitySelected(){
 		$slug = $this->params['slug'];
 		if( $slug != Configure::read("CitySelected.slug") ) {
+
 			$data = $this->Show->Location->City->findBySlug($slug);
-		}else{
-			$data['City'] = Configure::read("CitySelected");
-		}
 
+			if( ! empty($data) ) {
+				$this->Cookie->write("CitySelected", $data['City'], true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+				Configure::write("CitySelected", $data['City']);
+				$this->set("CitySelected",$data['City']);
 
-		if( ! empty($data) ) {
-			$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-			Configure::write("CitySelected", $data['City']);
-			$this->set("CitySelected",$data['City']);
-			Configure::write("LocationsSelected",null);
-		} else {
-			$this->cakeError('error404');
-		}
+				$_locations = $this->Show->Location->find("all",array(
+					'conditions'=>array(
+						'Location.trash'=>0,
+						'Location.status'=>1,
+						'Location.city_id'=>$data['City']['id'],
+					),
+					'fields'=>$this->Show->Location->publicFields
+				));
+				#pr($_locations);
+				$locations = array();
+				foreach($_locations as $record){
+					$locations[$record['Location']['id']] = $record;
+				}
 
-		if( Configure::read("LocationsSelected") ) {
-			$locations = array(
-				Configure::read("LocationsSelected.id")
-			);
-		} else {
-			$_locations = $this->Show->Location->find("all",array('conditions'=>array(
-				'Location.trash'=>0,
-				'Location.status'=>1,
-				'Location.city_id'=>$data['City']['id'],
-			)));
-			$locations = array();
-			foreach($_locations as $record){
-				$locations[$record['Location']['id']] = $record;
+				$this->Cookie->write("LocationsSelected", serialize($locations), true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+				$this->set("LocationsSelected",$locations);
+				Configure::write("LocationsSelected",serialize($locations));
+				#pr($this->Cookie->read("LocationsSelected"));
+
+			} else {
+				$this->cakeError('error404');
 			}
 
-			Configure::write("LocationsSelected",$locations);
-			$this->Cookie->write("LocationsSelected", $locations, false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-			$this->set("LocationsSelected",$locations);
-
-			$locations = Set::classicExtract($locations,"{n}.Location.id");
 		}
 	}
 

@@ -62,7 +62,6 @@
     vertical-align: top;
     font-size: 16px;
 
-<<<<<<< HEAD
     .complex-name {
       .complex-label{
         padding: 5px 10px;
@@ -75,7 +74,6 @@
         display: inline-block;
       }
     }
-=======
     h3 {
       a {
         color: $dark-gray;
@@ -83,7 +81,7 @@
         &:hover {
           color: $red;
         }
->>>>>>> 7d10b81c6f397273e6795a7441604d0342521e25
+
 
         &:active {
           position: relative;
@@ -92,39 +90,22 @@
       }
     }
 
-<<<<<<< HEAD
     .movieAnchor{
-      position: relative;
+      position: absolute;
       top: -80px;
+      width: 100px;
+      height: 10px;
+      display:block;
     }
 
-    .schedules {
-      padding-bottom:80px;
-      li {
-        display: inline-block;
-        padding: 0;
-=======
     @include with-layout(11) {
-      .complex-label {
-        font-size: 14px;
-        color: $gray;
->>>>>>> 7d10b81c6f397273e6795a7441604d0342521e25
-      }
 
-      .complex {
-        padding-top: 5px;
-        margin-bottom: 20px;
-        font-size: 32px;
-        font-weight: 300;
-        color: $dark-gray;
-      }
 
-      & > ul {
-        & > li {
-          padding: 25px 0;
-          border-bottom: 1px solid #f1f1f1;
+      .movie {
+          padding: 25px 0 64px;
+          //border-bottom: 1px solid #f1f1f1;
           overflow: hidden;
-        }
+          position: relative;
       }
 
       .schedules {
@@ -135,6 +116,7 @@
         li {
           display: inline-block;
           padding: 0;
+
         }
       }
 

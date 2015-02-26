@@ -75,9 +75,9 @@ class ShowsController extends AppController{
 					$locations[$record['Location']['id']] = $record;
 				}
 
-				$this->Cookie->write("LocationsSelected", serialize($locations), true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-				$this->set("LocationsSelected",serialize($locations));
-				Configure::write("LocationsSelected",serialize($locations));
+				$this->Cookie->write("LocationsSelected", json_encode($locations), true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+				$this->set("LocationsSelected",$locations);
+				Configure::write("LocationsSelected",$locations);
 				#pr($this->Cookie->read("LocationsSelected"));
 
 			} else {

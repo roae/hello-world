@@ -357,6 +357,14 @@ function nextSlide(){
 
 			blured_lightbox_content.append(blured_lightbox_title, blured_lightbox_iframe);
 
+			blured_lightbox.on('click', function() {
+				functions.remove_blur();
+
+				blured_lightbox.fadeOut(200, function() {
+					blured_lightbox.remove();
+				});
+			});
+
 			$('body').append(blured_lightbox.append(blured_lightbox_loader, blured_lightbox_content));
 
 		});
@@ -373,6 +381,16 @@ function nextSlide(){
 				});
 			}
 		});
+
+	}
+
+	if( $('.movie-gallery-container').length ) {
+
+		$('.movie-gallery-carousel').carouFredSel({
+			width: '100%',
+			scroll: 2
+		});
+
 
 	}
 

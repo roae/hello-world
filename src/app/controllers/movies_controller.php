@@ -236,8 +236,10 @@ class MoviesController extends AppController{
 				'Location'
 			)
 		));
-		$movie = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.id'=>$id)));
-		$this->set(compact("movie"));
+
+		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.id'=>$id)));
+
+		$this->set(compact("record"));
 	}
 
 }

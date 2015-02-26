@@ -29,7 +29,9 @@
 
 						<div class="schedules">
 							<div class="movie-title">
-								<?= $this->Html->tag("h3", $item['Movie']['title'])?>
+								<h3>
+									<?= $this->Html->link($item['Movie']['title'], array('controller' => 'movies', 'action' => 'view', 'id' => $item['Movie']['id'], 'slug' => Inflector::slug(low($item['Movie']['title']), '-')), array('escape' => false)); ?>
+								</h3>
 
 								<span class="clasification-duration">(B15 | 126 mins)</span>
 								<strong class="real-name">Nombre real</strong>

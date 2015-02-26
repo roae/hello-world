@@ -3,7 +3,9 @@
     position: relative;
     height: 440px;
     color: #fff;
-    background: $light-gray url(../img/birdman-cover.jpg) no-repeat center center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: lighten($gray, 30%);
     background-size: cover;
 
     .col-container {
@@ -12,7 +14,24 @@
       z-index: 2;
     }
 
-    &:before {
+    h1 {
+      position: relative;
+      padding-bottom: 15px;
+      font-size: 42px;
+      font-weight: 300;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        width: 100px;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    &:after {
       content: '';
       position: absolute;
       left: 0;
@@ -20,10 +39,30 @@
       width: 100%;
       height: 200px;
 
-      //background-color: transparent;
-      //background-repeat: repeat-y;
-
      @include gradientVertical(transparent,#000 );
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(240, 139, 36, 0.3);
+    }
+
+    &.image-not-founded {
+      height: 135px;
+
+      .col-container { height: 135px; }
+
+      h1 { color: $dark-gray; }
+
+      &:before,
+      &:after {
+        background: transparent;
+      }
     }
 
     .likes {
@@ -41,23 +80,6 @@
     position: absolute;
     bottom: 15px;
     left: 260px;
-  }
-
-  h1 {
-    position: relative;
-    padding-bottom: 15px;
-    font-size: 42px;
-    font-weight: 300;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 0;
-      width: 100px;
-      height: 1px;
-      background-color: rgba(255, 255, 255, 0.5);
-    }
   }
 
   .movie-information {
@@ -180,6 +202,11 @@
       -moz-transition: border-color 0.2s ease-in-out;
 
       &:hover { border-color: lighten($green, 15%); }
+
+      &:active {
+        position: relative;
+        top: 1px;
+      }
     }
 
     .info {
@@ -196,7 +223,11 @@
         display: block;
         margin-bottom: 2px;
         color: $gray;
+
+        &:empty ~ strong { display: none; }
       }
+
+      a { color: $yellow; }
     }
 
     .vertical-banner {

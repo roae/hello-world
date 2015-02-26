@@ -34,8 +34,8 @@
 
   .billboard-aside {
     display: inline-block;
-    width: 27%;
-    margin-left: 3%;
+    width: span(4);
+    margin-left: span(1) + gutter();
     font-size: 16px;
     vertical-align: top;
     text-align: center;
@@ -44,7 +44,6 @@
       padding: 20px;
       margin-bottom: 20px;
       text-align: left;
-      background-color: #f3f8f9;
       border-radius: 3px;
 
       .label {
@@ -59,50 +58,76 @@
   .billboard-list {
     position: relative;
     display: inline-block;
-    width: 70%;
+    width: span(11) + gutter();
     vertical-align: top;
     font-size: 16px;
 
-    .complex-label {
-      font-size: 14px;
-      color: $gray;
-    }
+    h3 {
+      a {
+        color: $dark-gray;
 
-    .complex {
-      padding-top: 5px;
-      margin-bottom: 20px;
-      font-size: 32px;
-      font-weight: 300;
-      color: $dark-gray;
-    }
+        &:hover {
+          color: $red;
+        }
 
-    li {
-      display: table-row;
-      padding: 10px 0;
-    }
-
-    .schedules {
-      padding-bottom:80px;
-      li {
-        display: inline-block;
-        padding: 0;
+        &:active {
+          position: relative;
+          top: 1px;
+        }
       }
     }
 
-    .image-container,
-    .schedules {
-      display: table-cell;
-      vertical-align: top;
-    }
+    @include with-layout(11) {
+      .complex-label {
+        font-size: 14px;
+        color: $gray;
+      }
 
-    .image-container {
-      width: 200px;
-    }
+      .complex {
+        padding-top: 5px;
+        margin-bottom: 20px;
+        font-size: 32px;
+        font-weight: 300;
+        color: $dark-gray;
+      }
 
-    img {
-      display: block;
-      width: 100%;
-      border-radius: 3px;
+      & > ul {
+        & > li {
+          padding: 25px 0;
+          border-bottom: 1px solid #f1f1f1;
+          overflow: hidden;
+        }
+      }
+
+      .schedules {
+        width: span(8);
+        padding-bottom: 0;
+        float: left;
+
+        li {
+          display: inline-block;
+          padding: 0;
+        }
+      }
+
+      .image-container {
+        float: left;
+        width: span(3) + gutter();
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        border-radius: 3px;
+
+        @include transition(opacity 0.2s ease-in-out);
+
+        &:hover { opacity: 0.7; }
+        &:active {
+          position: relative;
+          top: 1px;
+        }
+      }
     }
 
   }

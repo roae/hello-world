@@ -394,8 +394,17 @@ function nextSlide(){
 			width: '100%',
 			scroll: 2,
 			auto: {
+				pauseOnHover: true,
 				button: $('.pause-flag')
 			}
+		});
+
+		$('.litebox').liteBox({
+		  revealSpeed: 400,
+		  background: 'rgba(0,0,0,.8)',
+		  overlayClose: true,
+		  escKey: true,
+		  navKey: true
 		});
 
 	}

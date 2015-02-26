@@ -91,16 +91,12 @@
 
     .pagination-container {
       position: relative;
-
       bottom: 0;
-      /*//left: 50%;
-      width: 100%;
-      //margin-left: -540px;*/
     }
 
     .pagination {
       position: absolute;
-      left: span(10)+gutter();
+      left: span(9)+gutter();
       bottom: -500px;
       width: 100%;
       padding: 20px 30px 20px 0;

@@ -76,7 +76,7 @@ class ShowsController extends AppController{
 				}
 
 				$this->Cookie->write("LocationsSelected", serialize($locations), true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-				$this->set("LocationsSelected",$locations);
+				$this->set("LocationsSelected",serialize($locations));
 				Configure::write("LocationsSelected",serialize($locations));
 				#pr($this->Cookie->read("LocationsSelected"));
 

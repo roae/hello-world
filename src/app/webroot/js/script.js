@@ -318,4 +318,62 @@ function nextSlide(){
 
 	});
 
+	if( $('.trailer-trigger').length ) {
+
+		var functions = {
+			remove_blur: function() {
+				$('#main-header, .the-content, #main-footer').removeClass('blured');
+			},
+			add_blur: function() {
+				$('#main-header, .the-content, #main-footer').addClass('blured');
+			}
+		};
+
+		$('.trailer-trigger').on('click', function(event) {
+
+			event.preventDefault();
+
+			if( $('#blured-lightbox').length ) {
+				$('#blured-lightbox').remove();
+			}
+
+			var self = $(this),
+					video_url = self.attr('href'),
+					blured_lightbox = $('<div id="blured-lightbox"></div>'),
+					blured_lightbox_content = $('<div class="blured-lightbox-content"></div>'),
+					blured_lightbox_loader = $('<span class="blured-lightbox-loader"></span>');
+					blured_lightbox_title = $('<strong></strong>'),
+					blured_lightbox_iframe = $('<iframe frameborder="0" allowfullscreen></iframe>'),
+					video_id = '';
+
+			if( video_url.indexOf('?v=') !== -1 ) {
+				video_id = video_url.substr(video_url.indexOf('=') + 1);
+			}
+
+			functions.add_blur();
+
+			blured_lightbox_title.html($('.blured-title').text());
+			blured_lightbox_iframe.attr('src', '//www.youtube.com/embed/' + video_id + '?rel=0&showinfo=0&autohide=1&autoplay=1');
+
+			blured_lightbox_content.append(blured_lightbox_title, blured_lightbox_iframe);
+
+			$('body').append(blured_lightbox.append(blured_lightbox_loader, blured_lightbox_content));
+
+		});
+
+		$(window).on('keyup', function(event) {
+			if( event.keyCode == 27 ) {
+
+				var blured_lightbox = $('#blured-lightbox');
+
+				functions.remove_blur();
+
+				blured_lightbox.fadeOut(200, function() {
+					blured_lightbox.remove();
+				});
+			}
+		});
+
+	}
+
 })(jQuery);

@@ -1,9 +1,23 @@
 <div class="movie-detail-container">
-  <div class="big-cover">
+
+  <?php
+    $bg_url = '';
+    $class = '';
+
+    if( isset($record['Gallery'][0]['url']) ) {
+      $bg_url = $record['Gallery'][0]['url'];
+    } else {
+      $class = 'image-not-founded';
+    }
+  ?>
+
+  <div class="big-cover <?= $class ?>" style="background-image: url(<?= $bg_url ?>)">
     <div class="col-container">
       <header>
-        <h1>Birdman</h1>
-        <p>Birdman Or (The Unexpected Virtue of Ignorance)</p>
+        <h1 class="blured-title">
+          <?= Inflector::humanize(low($record['Movie']['title'])) ?>
+        </h1>
+        <p><?= Inflector::humanize(low($record['Movie']['original_title'])) ?></p>
       </header>
 
       <span class="likes">65</span>
@@ -15,26 +29,19 @@
 
       <div class="sinopsis">
         <div class="cover-container">
-          <?= $this->Html->image("birdman-small-cover.png",array('alt'=>'[:logo_alt:]')) ?>
+          <?= $this->Html->image($record['Poster']['medium'], array('alt'=>'[:logo_alt:]')) ?>
         </div>
 
         <h2>Sinopsis</h2>
 
-        <p>
-          Birdman es la primera aventura como director en el género de la comedia, del experto en desgarradores dramas Alejandro Gónzalez Iñárritu. La historia trata de la carrera de un actor y de cómo ésta se ha desmoronado. El actor recuerda con anhelo los años en los que interpretó papeles de extraordinario éxito como el de un superhéroe, que hoy por hoy sigue siendo un referente. Ahora desea más que nunca volver de nuevo a su carrera, subido en los escenarios de Broadway, mientras que lucha por recuperarse a sí mismo, como persona, y también recuperar a sus seres más queridos, su familia.
-        </p>
+        <?= $record['Movie']['synopsis'] ?>
 
         <div class="movie-gallery-container">
-          <img src="http://placehold.it/250x250">
-          <img src="http://placehold.it/190x250">
-          <img src="http://placehold.it/250x450">
-          <img src="http://placehold.it/250x250">
-          <img src="http://placehold.it/250x250">
-          <img src="http://placehold.it/250x450">
-          <img src="http://placehold.it/250x250">
-          <img src="http://placehold.it/250x450">
-          <img src="http://placehold.it/250x250">
-          <img src="http://placehold.it/250x250">
+          <?php foreach ($record['Gallery'] as $image) { ?>
+
+            <?= $this->Html->image($image['mini'], '') ?>
+
+          <?php } ?>
         </div>
 
         <div class="buy-tickets">
@@ -171,58 +178,63 @@
         </div>
 
         <aside class="movie-detailed-info">
-          <a class="watch-trailer" href="">Ver trailer</a>
+          <a class="watch-trailer trailer-trigger" href="<?= $record['Movie']['trailer'] ?>">Ver trailer</a>
 
           <div class="info">
             <strong>Duración:</strong>
-            <span class="value">119 mins.</span>
+            <span class="value"><?= $record['Movie']['duration'] ?> mins.</span>
           </div>
 
           <div class="info">
             <strong>Clasificación:</strong>
-            <span class="value">B15</span>
+            <span class="value"><?= $record['Movie']['clasification'] ?></span>
           </div>
 
           <div class="info">
             <strong>Género:</strong>
-            <span class="value">Comedia</span>
+            <span class="value"><?= $record['Movie']['genre'] ?></span>
           </div>
 
           <div class="info">
             <strong>Director(es):</strong>
-            <span class="value">Alejandro González Iñarritu</span>
+            <span class="value"><?= $record['Movie']['director'] ?></span>
           </div>
 
           <div class="info">
             <strong>Actor(es):</strong>
             <span class="value">
-              Michael Keaton, Emma Stone, Zach Galifianakis, Edward Norton, Naomi Watts, Amy Ryan, Lindsay Duncan, Andrea Riseborough
+              <?= $record['Movie']['actors'] ?>
             </span>
           </div>
 
           <div class="info">
             <strong>Idioma:</strong>
-            <span class="value">Inglés</span>
+            <span class="value"><?= $record['Movie']['language'] ?></span>
           </div>
 
           <div class="info">
             <strong>Nacionalidad:</strong>
-            <span class="value">Estados Unidos</span>
+            <span class="value"><?= $record['Movie']['nationality'] ?></span>
           </div>
 
           <div class="info">
             <strong>Música:</strong>
-            <span class="value">Antonio Sánchez</span>
+            <span class="value"><?= $record['Movie']['music_director'] ?></span>
           </div>
 
           <div class="info">
             <strong>Fotografía:</strong>
-            <span class="value">Emmanuel Lubezki</span>
+            <span class="value"><?= $record['Movie']['photografy_director'] ?></span>
           </div>
 
           <div class="info">
             <strong>Año:</strong>
-            <span class="value">2014</span>
+            <span class="value"><?= $record['Movie']['year'] ?></span>
+          </div>
+
+          <div class="info">
+            <strong>Sitio web oficial:</strong>
+            <span class="value"><?= $this->Html->link('[:movie_website:]', $record['Movie']['website']) ?></span>
           </div>
 
           <div class="vertical-banner">

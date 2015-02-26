@@ -181,6 +181,7 @@
 
         <aside class="movie-detailed-info">
           <?php if( $record['Movie']['trailer'] != '' ): ?>
+            <a class="pause-flag" href="#"></a>
             <a class="watch-trailer trailer-trigger" href="<?= $record['Movie']['trailer'] ?>">Ver trailer</a>
           <?php endif; ?>
 

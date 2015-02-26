@@ -357,11 +357,14 @@ function nextSlide(){
 
 			blured_lightbox_content.append(blured_lightbox_title, blured_lightbox_iframe);
 
+			$('.pause-flag').trigger('click');
+
 			blured_lightbox.on('click', function() {
 				functions.remove_blur();
 
 				blured_lightbox.fadeOut(200, function() {
 					blured_lightbox.remove();
+					$('.pause-flag').trigger('click');
 				});
 			});
 
@@ -378,6 +381,7 @@ function nextSlide(){
 
 				blured_lightbox.fadeOut(200, function() {
 					blured_lightbox.remove();
+					$('.pause-flag').trigger('click');
 				});
 			}
 		});
@@ -388,9 +392,11 @@ function nextSlide(){
 
 		$('.movie-gallery-carousel').carouFredSel({
 			width: '100%',
-			scroll: 2
+			scroll: 2,
+			auto: {
+				button: $('.pause-flag')
+			}
 		});
-
 
 	}
 

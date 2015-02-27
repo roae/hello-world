@@ -20,7 +20,7 @@
 		<p><?= Inflector::humanize(low($record['Movie']['original_title'])) ?></p>
 	  </header>
 
-	  <span class="likes">65</span>
+	  <!--span class="likes">65</span-->
 	</div>
   </div>
 
@@ -30,6 +30,8 @@
 	  <div class="sinopsis">
 		<div class="cover-container">
 		  <?= $this->Html->image($record['Poster']['medium'], array('alt'=>'[:logo_alt:]')) ?>
+
+		  <a class="like" href="">Me gusta</a>
 		</div>
 
 		<h2>Sinopsis</h2>

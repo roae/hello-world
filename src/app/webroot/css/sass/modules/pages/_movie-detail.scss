@@ -7,6 +7,8 @@
     background-repeat: no-repeat;
     background-color: #f08b24;
     background-size: cover;
+
+    -moz-background-blend-mode: luminosity;
     background-blend-mode: luminosity;
 
     .col-container {
@@ -65,16 +67,6 @@
         background: transparent;
       }
     }
-
-    .likes {
-      position: absolute;
-      bottom: 15px;
-      right: 0;
-      padding-left: 24px;
-      font-size: 14px;
-      background: url(../img/like.png) no-repeat left center;
-      background-size: 16px;
-    }
   }
 
   header {
@@ -115,6 +107,7 @@
       margin-top: -120px;
       margin-right: 20px;
       margin-bottom: 5px;
+      text-align: center;
 
       img {
         display: block;
@@ -122,15 +115,55 @@
         border-radius: 3px;
         border: 2px solid #fff;
       }
+
+      .like {
+        display: inline-block;
+        padding: 7px 15px 7px 40px;
+        margin-top: 30px;
+        border: 1px solid lighten($gray, 20%);
+        text-align: center;
+        color: $dark-gray;
+        background: url(../img/like.png) no-repeat 15px center;
+        background-size: 16px;
+        border-radius: 3px;
+
+        @include transition(border-color 0.2s ease-in-out);
+
+        &:hover { border-color: transparentize($gray, 0.8); }
+
+        &:active {
+          position: relative;
+          top: 1px;
+        }
+      }
     }
 
     .movie-gallery-container {
       position: relative;
       width: 100%;
-      height: 120px;
+      height: 75px;
       margin-top: 40px;
       margin-bottom: 40px;
       overflow: hidden;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 200px;
+        height: 100%;
+        z-index: 5;
+      }
+
+      &:before {
+        left: 0;
+        @include gradientHorizontal(#fff, transparent);
+      }
+      &:after {
+        right: 0;
+        @include gradientHorizontal(transparent, #fff);
+      }
 
       .movie-gallery-carousel {
         position: absolute;

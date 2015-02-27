@@ -423,11 +423,14 @@ a {
 
 /* line 1, sass/modules/components/_blured-lightbox.scss */
 .blured {
+  -moz-filter: blur(3px);
   -webkit-filter: blur(3px);
+  filter: url(../img/blur.svg#blur);
   filter: blur(3px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
 }
 
-/* line 6, sass/modules/components/_blured-lightbox.scss */
+/* line 9, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox {
   position: fixed;
   top: 0;
@@ -437,7 +440,7 @@ a {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
 }
-/* line 15, sass/modules/components/_blured-lightbox.scss */
+/* line 18, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-content {
   position: absolute;
   top: 15%;
@@ -445,7 +448,7 @@ a {
   width: 40%;
   height: 60%;
 }
-/* line 23, sass/modules/components/_blured-lightbox.scss */
+/* line 26, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-loader {
   position: absolute;
   top: 50%;
@@ -479,7 +482,7 @@ a {
     opacity: 0;
   }
 }
-/* line 33, sass/modules/components/_blured-lightbox.scss */
+/* line 36, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong {
   display: block;
   padding: 20px 15px;
@@ -488,7 +491,7 @@ a {
   font-weight: 300;
   color: #fff;
 }
-/* line 42, sass/modules/components/_blured-lightbox.scss */
+/* line 45, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox iframe {
   width: 100%;
   height: 300px;
@@ -1620,22 +1623,23 @@ select {
   background-repeat: no-repeat;
   background-color: #f08b24;
   background-size: cover;
+  -moz-background-blend-mode: luminosity;
   background-blend-mode: luminosity;
 }
-/* line 12, sass/modules/pages/_movie-detail.scss */
+/* line 14, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover .col-container {
   position: relative;
   height: 440px;
   z-index: 2;
 }
-/* line 18, sass/modules/pages/_movie-detail.scss */
+/* line 20, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover h1 {
   position: relative;
   padding-bottom: 15px;
   font-size: 42px;
   font-weight: 300;
 }
-/* line 24, sass/modules/pages/_movie-detail.scss */
+/* line 26, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover h1:after {
   content: '';
   position: absolute;
@@ -1645,7 +1649,7 @@ select {
   height: 1px;
   background-color: rgba(255, 255, 255, 0.5);
 }
-/* line 35, sass/modules/pages/_movie-detail.scss */
+/* line 37, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover:after {
   content: '';
   position: absolute;
@@ -1660,7 +1664,7 @@ select {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
   background-repeat: repeat-x;
 }
-/* line 46, sass/modules/pages/_movie-detail.scss */
+/* line 48, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover:before {
   position: absolute;
   top: 0;
@@ -1669,90 +1673,135 @@ select {
   height: 100%;
   background-color: rgba(240, 139, 36, 0.3);
 }
-/* line 56, sass/modules/pages/_movie-detail.scss */
+/* line 58, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded {
   height: 135px;
 }
-/* line 59, sass/modules/pages/_movie-detail.scss */
+/* line 61, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded .col-container {
   height: 135px;
 }
-/* line 61, sass/modules/pages/_movie-detail.scss */
+/* line 63, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded h1 {
   color: #272b2e;
 }
-/* line 63, sass/modules/pages/_movie-detail.scss */
+/* line 65, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded:before, .movie-detail-container .big-cover.image-not-founded:after {
   background: transparent;
 }
-/* line 69, sass/modules/pages/_movie-detail.scss */
-.movie-detail-container .big-cover .likes {
-  position: absolute;
-  bottom: 15px;
-  right: 0;
-  padding-left: 24px;
-  font-size: 14px;
-  background: url(../img/like.png) no-repeat left center;
-  background-size: 16px;
-}
-/* line 80, sass/modules/pages/_movie-detail.scss */
+/* line 72, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container header {
   position: absolute;
   bottom: 15px;
   left: 260px;
 }
-/* line 86, sass/modules/pages/_movie-detail.scss */
+/* line 78, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information {
   position: relative;
 }
-/* line 89, sass/modules/pages/_movie-detail.scss */
+/* line 81, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .col-container {
   padding: 20px;
 }
-/* line 93, sass/modules/pages/_movie-detail.scss */
+/* line 85, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis {
   display: inline-block;
   width: 67.5%;
   vertical-align: top;
 }
-/* line 98, sass/modules/pages/_movie-detail.scss */
+/* line 90, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis h2 {
   margin-bottom: 15px;
   font-size: 27px;
   font-weight: 300;
   color: #818386;
 }
-/* line 105, sass/modules/pages/_movie-detail.scss */
+/* line 97, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis p {
   font-size: 15px;
   line-height: 1.5;
   color: #818386;
 }
-/* line 112, sass/modules/pages/_movie-detail.scss */
+/* line 104, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .cover-container {
   float: left;
   width: 30%;
   margin-top: -120px;
   margin-right: 20px;
   margin-bottom: 5px;
+  text-align: center;
 }
-/* line 119, sass/modules/pages/_movie-detail.scss */
+/* line 112, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .cover-container img {
   display: block;
   width: 100%;
   border-radius: 3px;
   border: 2px solid #fff;
 }
-/* line 127, sass/modules/pages/_movie-detail.scss */
+/* line 119, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .cover-container .like {
+  display: inline-block;
+  padding: 7px 15px 7px 40px;
+  margin-top: 30px;
+  border: 1px solid #b5b6b8;
+  text-align: center;
+  color: #272b2e;
+  background: url(../img/like.png) no-repeat 15px center;
+  background-size: 16px;
+  border-radius: 3px;
+  -moz-transition: border-color 0.2s ease-in-out;
+  -o-transition: border-color 0.2s ease-in-out;
+  -webkit-transition: border-color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
+}
+/* line 132, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .cover-container .like:hover {
+  border-color: rgba(129, 131, 134, 0.2);
+}
+/* line 134, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .cover-container .like:active {
+  position: relative;
+  top: 1px;
+}
+/* line 141, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 75px;
   margin-top: 40px;
   margin-bottom: 40px;
   overflow: hidden;
 }
-/* line 135, sass/modules/pages/_movie-detail.scss */
+/* line 149, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .movie-gallery-container:before, .movie-detail-container .movie-information .movie-gallery-container:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 5;
+}
+/* line 159, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .movie-gallery-container:before {
+  left: 0;
+  background-image: -moz-linear-gradient(left, #fff, transparent);
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
+  background-image: -webkit-linear-gradient(left, #fff, transparent);
+  background-image: -o-linear-gradient(left, #fff, transparent);
+  background-image: linear-gradient(to right, #ffffff, rgba(0, 0, 0, 0));
+  background-repeat: repeat-x;
+}
+/* line 163, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .movie-gallery-container:after {
+  right: 0;
+  background-image: -moz-linear-gradient(left, transparent, #fff);
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
+  background-image: -webkit-linear-gradient(left, transparent, #fff);
+  background-image: -o-linear-gradient(left, transparent, #fff);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ffffff);
+  background-repeat: repeat-x;
+}
+/* line 168, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel {
   position: absolute;
   left: 0;
@@ -1764,79 +1813,79 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 144, sass/modules/pages/_movie-detail.scss */
+/* line 177, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel:hover {
   opacity: 0.7;
 }
-/* line 147, sass/modules/pages/_movie-detail.scss */
+/* line 180, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container a {
   float: left;
   margin-right: 2px;
 }
-/* line 152, sass/modules/pages/_movie-detail.scss */
+/* line 185, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container img {
   height: 75px;
 }
-/* line 157, sass/modules/pages/_movie-detail.scss */
+/* line 190, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets {
   width: 73.75%;
   margin-left: 11.875%;
   margin: 0 auto;
 }
-/* line 162, sass/modules/pages/_movie-detail.scss */
+/* line 195, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h2 {
   margin-bottom: 5px;
   color: #cc0017;
 }
-/* line 167, sass/modules/pages/_movie-detail.scss */
+/* line 200, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h3 {
   margin-bottom: 20px;
   font-size: 27px;
   font-weight: 300;
 }
-/* line 173, sass/modules/pages/_movie-detail.scss */
+/* line 206, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets p {
   font-size: 16px;
 }
-/* line 175, sass/modules/pages/_movie-detail.scss */
+/* line 208, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-/* line 179, sass/modules/pages/_movie-detail.scss */
+/* line 212, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .label {
   display: block;
 }
-/* line 181, sass/modules/pages/_movie-detail.scss */
+/* line 214, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .input,
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex {
   display: inline-block;
   width: 48%;
 }
-/* line 186, sass/modules/pages/_movie-detail.scss */
+/* line 219, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .input:nth-of-type(1),
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex:nth-of-type(1) {
   margin-right: 3%;
 }
-/* line 190, sass/modules/pages/_movie-detail.scss */
+/* line 223, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .label {
   display: inline-block;
 }
-/* line 194, sass/modules/pages/_movie-detail.scss */
+/* line 227, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules {
   padding-left: 0;
 }
-/* line 198, sass/modules/pages/_movie-detail.scss */
+/* line 231, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules .schedule ul {
   width: 79%;
 }
-/* line 204, sass/modules/pages/_movie-detail.scss */
+/* line 237, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info {
   display: inline-block;
   width: 23.75%;
   margin-left: 5.625%;
 }
-/* line 209, sass/modules/pages/_movie-detail.scss */
+/* line 242, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer {
   display: block;
   padding: 8px 14px;
@@ -1851,45 +1900,45 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   -moz-transition: border-color 0.2s ease-in-out;
 }
-/* line 224, sass/modules/pages/_movie-detail.scss */
+/* line 257, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:hover {
   border-color: #83cb7c;
 }
-/* line 226, sass/modules/pages/_movie-detail.scss */
+/* line 259, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:active {
   position: relative;
   top: 1px;
 }
-/* line 232, sass/modules/pages/_movie-detail.scss */
+/* line 265, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info {
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 236, sass/modules/pages/_movie-detail.scss */
+/* line 269, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info strong {
   display: block;
   margin-bottom: 3px;
   font-weight: bold;
 }
-/* line 242, sass/modules/pages/_movie-detail.scss */
+/* line 275, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value {
   display: block;
   margin-bottom: 2px;
   color: #818386;
 }
-/* line 247, sass/modules/pages/_movie-detail.scss */
+/* line 280, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value:empty + strong {
   display: none;
 }
-/* line 250, sass/modules/pages/_movie-detail.scss */
+/* line 283, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info a {
   color: #fecc00;
 }
-/* line 253, sass/modules/pages/_movie-detail.scss */
+/* line 286, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner {
   margin-top: 20px;
 }
-/* line 256, sass/modules/pages/_movie-detail.scss */
+/* line 289, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner img {
   border-radius: 3px;
 }

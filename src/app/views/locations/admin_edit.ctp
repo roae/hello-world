@@ -62,8 +62,8 @@ echo $this->Form->hidden("id");
 		#echo $this->I18n->input('status',array('type'=>'radio','options'=>array(1=>'[:System.published:]',0=>'[:System.unpublished:]'),'legend'=>false,'value'=>1,'div'=>array('class'=>'radioButtons'),'fieldset'=>false));
 		echo $this->Html->link(
 			"<i class='icon-trash'></i> [:delete:]",
-			am(array('action'=>'delete',$this->data['Service']['id']),$this->params['named']),
-			array('class'=>'btn_danger','data-confirm'=>'[:delete_service_name:]: '.h($this->data['Service']['name']).'?','escape'=>false)
+			am(array('action'=>'delete',$this->data['Location']['id']),$this->params['named']),
+			array('class'=>'btn_danger','data-confirm'=>'[:delete_location_name:]: '.h($this->data['Location']['name']).'?','escape'=>false)
 		);
 		?>
 	</div>

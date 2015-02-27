@@ -9,8 +9,9 @@ echo $this->Form->hidden("id");
 		<div class="row-fluid">
 			<div class="span4 offset4">
 				<?php
-				echo $this->I18n->input("description");
+				echo $this->I18n->input("description",array('after'=>$this->Html->tag("span",'[:Room_description-help:]','help')));
 				echo $this->I18n->input("location_id",array('empty'=>'[:select_location:]'));
+				echo $this->I18n->input("room_type",array('options'=>Configure::read("RoomTypes"),'multiple'=>'checkbox'));
 				?>
 				<div class="help">
 					<i class="icon-asterisk icon-3x"></i>
@@ -25,7 +26,7 @@ echo $this->Form->hidden("id");
 			#echo $this->I18n->input('status',array('type'=>'radio','options'=>array(1=>'[:System.published:]',0=>'[:System.unpublished:]'),'legend'=>false,'value'=>1,'div'=>array('class'=>'radioButtons'),'fieldset'=>false));
 			echo $this->Html->link(
 				"<i class='icon-trash'></i> [:delete:]",
-				am(array('action'=>'delete',$this->data['Room']['id']),$this->params['description']),
+				am(array('action'=>'delete',$this->data['Room']['id']),$this->params['named']),
 				array('class'=>'btn_danger','data-confirm'=>'[:delete_service_name:]: '.h($this->data['Room']['description']).'?','escape'=>false)
 			);
 			?>

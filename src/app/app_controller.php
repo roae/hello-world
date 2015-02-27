@@ -322,18 +322,12 @@ class AppController extends Controller{
 
 		#pr($this->Cookie->read("CitySelected"));
 
-		//Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
-		#pr($this->Cookie->read("LocationsSelected"));
-		if(is_string($this->Cookie->read("LocationsSelected"))){
-			#Configure::write("LocationsSelected",unserialize($this->Cookie->read("LocationsSelected")));
-		}
-
-
-		if(is_string($this->Cookie->read("LocationsSelected"))){
-			#$this->set("LocationsSelected",unserialize($this->Cookie->read("LocationsSelected")));
-			$this->set("LocationsSelected",$this->Cookie->read("LocationsSelected"));
-		}
+		Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
 		$this->set("CitySelected",$this->Cookie->read("CitySelected"));
+
+		Configure::write("LocationsSelected",$this->Cookie->read("LocationsSelected"));
+		$this->set("LocationsSelected",Configure::read("LocationsSelected"));
+
 
 		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting
 			$this->RequestHandler->respondAs('xml'); // for setting headers

@@ -10,7 +10,7 @@ echo $this->Form->create("Room");
 				<?php
 				echo $this->I18n->input("description",array('after'=>$this->Html->tag("span",'[:Room_description-help:]','input-help')));
 				echo $this->I18n->input("location_id",array('empty'=>'[:select_location:]'));
-				echo $this->I18n->input("room_type",array('empty'=>'[:select_room_type:]','options'=>Configure::read("RoomTypes")));
+				echo $this->I18n->input("room_type",array('options'=>Configure::read("RoomTypes"),'multiple'=>'checkbox'));
 				?>
 				<div class="help">
 					<i class="icon-asterisk icon-3x"></i>

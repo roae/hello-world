@@ -9,7 +9,8 @@
  * @property $Movie Movie
  * @property $Projection Projection
  * @property $Show Show
- * @property $Settings Settings
+ * @property $Setting Setting
+ * @property $Room Room
  *
  * Components
  * @property $Email EmailComponent
@@ -31,6 +32,7 @@ class SyncShell extends Shell{
 		'Projection',
 		'Show',
 		'Setting',
+		'Room'
 	);
 
 	var $locationsNoScheduled = array();
@@ -257,6 +259,30 @@ class SyncShell extends Shell{
 				));
 
 				if(!empty($projection)){
+					$roomType = $this->Room->find("first",array(
+						'fields'=>array(
+							'Room.id',
+							'Room.room_type'
+						),
+						'conditions'=>array(
+							'Room.description'=>$session['Screen_strName'],
+							'Room.location_id'=>$location['id']
+						)
+					));
+					#$this->log($roomType,"roomtype");
+					if(!isset($roomType['Room']['id'])){
+						#$this->log("rochin","roomtype");
+						$this->Room->create();
+						$this->Room->save(array('Room'=>array(
+							'description'=>$session['Screen_strName'],
+							'location_id'=>$location['id'],
+							'status'=>1,
+							'trash'=>0
+						)));
+
+						#$this->log($this->Room->validationErrors,"roomtype");
+					}
+					//$this->log($roomType,"roomtype");
 					$show = array(
 						'location_id'=>$location['id'],
 						'movie_id'=>$projection['Movie']['id'],
@@ -265,6 +291,7 @@ class SyncShell extends Shell{
 						'sales_channels'=> str_replace("^~^","|",$session['Session_strSalesChannels']),
 						'session_id'=> $session['Session_lngSessionId'],
 						'screen_name'=>$session['Screen_strName'],
+						'room_type'=> $roomType['Room']['room_type'],
 						'seat_alloctype'=>$session['Session_bytSeatAllocType'],
 					);
 					$this->Show->create();

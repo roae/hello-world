@@ -69,7 +69,6 @@ class RoomsController extends AppController{
 						$this->Notifier->success("[:Room_updated_successfully:]");
 						$this->redirect(array('action'=>'index'));
 					}else{
-						$this->Room->rollback();
 						$this->Notifier->error("[:an_error_ocurred_on_the_server:]");
 					}
 				}else{
@@ -77,6 +76,7 @@ class RoomsController extends AppController{
 				}
 			}else{
 				$this->data = $this->Room->read(null, $id);
+				$this->data['Room']['room_type'] = explode("|",$this->data['Room']['room_type']);
 				$this->set("locations",$this->Room->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0))));
 			}
 		}else{

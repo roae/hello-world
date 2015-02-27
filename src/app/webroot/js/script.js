@@ -392,10 +392,15 @@ function nextSlide(){
 
 		$('.movie-gallery-carousel').carouFredSel({
 			width: '100%',
-			scroll: 2,
+			scroll: {
+				items: 0,
+				duration: 10000,
+				easing: 'linear'
+			},
+			duration: 10000,
 			auto: {
-				pauseOnHover: true,
-				button: $('.pause-flag')
+				button: $('.pause-flag'),
+				timeoutDuration: 0
 			}
 		});
 

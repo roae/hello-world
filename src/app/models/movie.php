@@ -51,7 +51,8 @@ class Movie extends AppModel {
 
 	var $validate = array(
 		'title'=>array(
-			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+			'unico'=>array('rule'=>array('isUnique','title'),'message'=>'[:movie_already_existe:]'),
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]')
 		)
 	);
 

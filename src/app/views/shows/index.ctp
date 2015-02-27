@@ -36,7 +36,7 @@
 								<strong class="real-name">Nombre real</strong>
 								</div>
 								<strong class="schedule-title">Horarios</strong>
-								<? foreach($item['Normal'] as $type => $shows): ?>
+								<? foreach(isset($item['Normal']) ? $item['Normal'] : array() as $type => $shows): ?>
 									<div class="schedule">
 										<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
 										<ul>

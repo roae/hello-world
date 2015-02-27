@@ -41,8 +41,14 @@ class ShowsController extends AppController{
 			foreach($record['Show'] as $show){
 				$movieId= $show['Movie']['id'];
 				$billboard[$i]['Show'][$movieId]['Movie'] = $show['Movie'];
+				unset($show['Movie'],$show['Poster']);
 				//$recordset[$i]['Show'][$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
-				$billboard[$i]['Show'][$movieId]['Show'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+				if(empty($show['room_type'])){
+					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+				}else{
+					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+				}
+
 			}
 		}
 

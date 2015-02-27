@@ -36,38 +36,38 @@
 								<strong class="real-name">Nombre real</strong>
 								</div>
 								<strong class="schedule-title">Horarios</strong>
-								<? foreach($item['Show'] as $type => $shows): ?>
+								<? foreach($item['Normal'] as $type => $shows): ?>
 									<div class="schedule">
-										<span class="label"><strong><?= Inflector::humanize($type) ?></strong></span>
-
+										<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
 										<ul>
 											<?
 											$schedule = array();
 											foreach($shows as $show){
-												echo $this->Html->tag("li",$this->Html->link($this->Time->format("H:i",$show['schedule']),array('controller'=>'shows','action'=>'buy','session_id'=>$show['session_id'])));
+												echo $this->Html->tag("li",$this->Html->link($this->Time->format("H:i",$show['schedule']),array('controller'=>'shows','action'=>'buy','session_id'=>$show['session_id']),array('title'=>$show['screen_name'])));
 											}
 											?>
 										</ul>
 									</div>
 								<? endforeach; ?>
+								<? if(isset($item['Premier'])){ ?>
+									<strong class="schedule-title">[:PREMIERE:]</strong>
+									<? foreach($item['Premier'] as $type => $shows): ?>
+										<div class="schedule premiere">
+											<span class="label"><strong><?= str_replace("|","/",$type) ?></span>
+											<ul>
+												<?
+												$schedule = array();
+												foreach($shows as $show){
+													echo $this->Html->tag("li",$this->Html->link($this->Time->format("H:i",$show['schedule']),array('controller'=>'shows','action'=>'buy','session_id'=>$show['session_id']),array('title'=>$show['screen_name'])));
+												}
+												?>
+											</ul>
+										</div>
+								<?
+									endforeach;
+								}
+								?>
 
-								<strong class="schedule-title">PREMIERE</strong>
-
-								<div class="schedule premiere">
-									<span class="label"><strong>SUB</strong>/DIG</span>
-
-									<ul>
-										<li>
-											<a href="">18:20</a>
-										</li>
-										<li>
-											<a href="">20:35</a>
-										</li>
-										<li>
-											<a href="">23:20</a>
-										</li>
-									</ul>
-								</div>
 							</div>
 
 						</li>

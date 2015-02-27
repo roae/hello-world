@@ -265,6 +265,7 @@ class SyncShell extends Shell{
 						'sales_channels'=> str_replace("^~^","|",$session['Session_strSalesChannels']),
 						'session_id'=> $session['Session_lngSessionId'],
 						'screen_name'=>$session['Screen_strName'],
+						'seat_alloctype'=>$session['Session_bytSeatAllocType'],
 					);
 					$this->Show->create();
 					if(!$this->Show->save($show)){

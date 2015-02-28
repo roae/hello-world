@@ -1478,8 +1478,6 @@ select {
   width: 70.90909%;
   padding-bottom: 0;
   float: left;
-  padding-left: 20px;
-  padding-bottom: 40px;
 }
 /* line 116, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules li {
@@ -1487,111 +1485,11 @@ select {
   padding: 0;
 }
 /* line 124, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .movie-title {
-  margin-bottom: 40px;
-}
-/* line 128, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules h3 {
-  font-size: 27px;
-  font-weight: 300;
-}
-/* line 133, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule-title {
-  padding-left: 20%;
-  margin-left: 8px;
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-}
-/* line 142, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .clasification-duration {
-  font-size: 14px;
-  color: #818386;
-}
-/* line 147, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .real-name {
-  padding-left: 10px;
-  font-family: 'georgia', serif;
-  font-style: italic;
-  font-size: 14px;
-  color: #818386;
-}
-/* line 155, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule {
-  font-size: 0;
-  padding: 12px 12px 8px;
-  transition: background-color 0.2s ease-in-out;
-}
-/* line 161, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule:hover {
-  background-color: #eaf1f3;
-}
-/* line 163, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label,
-.billboard-container .billboard-list .schedules .schedule ul {
-  display: inline-block;
-  font-size: 16px;
-  vertical-align: top;
-}
-/* line 170, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label {
-  position: relative;
-  width: 20%;
-  font-size: 14px;
-}
-/* line 175, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label strong {
-  font-weight: bold;
-}
-/* line 177, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label:after {
-  content: '';
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  width: 10px;
-  height: 1px;
-  background-color: #818386;
-}
-/* line 188, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule ul {
-  width: 80%;
-}
-/* line 192, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule li {
-  display: inline-block;
-  padding: 0;
-}
-/* line 197, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule a {
-  display: inline-block;
-  margin: 0 4px 4px;
-  padding: 4px 10px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #cc0017;
-  border-radius: 3px;
-}
-/* line 206, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule a:hover {
-  background-color: #b30014;
-}
-/* line 210, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule.premiere a {
-  color: #322800;
-  background-color: #fecc00;
-}
-/* line 214, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule.premiere a:hover {
-  background-color: #e5b800;
-}
-/* line 221, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .image-container {
   float: left;
   width: 26.36364%;
 }
-/* line 226, sass/modules/pages/_billboard.scss */
+/* line 129, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img {
   display: block;
   width: 100%;
@@ -1601,14 +1499,120 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 233, sass/modules/pages/_billboard.scss */
+/* line 136, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:hover {
   opacity: 0.7;
 }
-/* line 234, sass/modules/pages/_billboard.scss */
+/* line 137, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:active {
   position: relative;
   top: 1px;
+}
+
+/* line 147, sass/modules/pages/_billboard.scss */
+.schedules {
+  padding-left: 20px;
+  padding-bottom: 40px;
+}
+/* line 151, sass/modules/pages/_billboard.scss */
+.schedules .movie-title {
+  margin-bottom: 40px;
+}
+/* line 155, sass/modules/pages/_billboard.scss */
+.schedules h3 {
+  font-size: 27px;
+  font-weight: 300;
+}
+/* line 160, sass/modules/pages/_billboard.scss */
+.schedules .schedule-title {
+  padding-left: 20%;
+  margin-left: 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+/* line 169, sass/modules/pages/_billboard.scss */
+.schedules .clasification-duration {
+  font-size: 14px;
+  color: #818386;
+}
+/* line 174, sass/modules/pages/_billboard.scss */
+.schedules .real-name {
+  padding-left: 10px;
+  font-family: 'georgia', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #818386;
+}
+/* line 182, sass/modules/pages/_billboard.scss */
+.schedules .schedule {
+  font-size: 0;
+  padding: 12px 12px 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+/* line 188, sass/modules/pages/_billboard.scss */
+.schedules .schedule:hover {
+  background-color: #eaf1f3;
+}
+/* line 190, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label,
+.schedules .schedule ul {
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: top;
+}
+/* line 197, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label {
+  position: relative;
+  width: 20%;
+  font-size: 14px;
+}
+/* line 202, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label strong {
+  font-weight: bold;
+}
+/* line 204, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label:after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background-color: #818386;
+}
+/* line 215, sass/modules/pages/_billboard.scss */
+.schedules .schedule ul {
+  width: 80%;
+}
+/* line 219, sass/modules/pages/_billboard.scss */
+.schedules .schedule li {
+  display: inline-block;
+  padding: 0;
+}
+/* line 224, sass/modules/pages/_billboard.scss */
+.schedules .schedule a {
+  display: inline-block;
+  margin: 0 4px 4px;
+  padding: 4px 10px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #cc0017;
+  border-radius: 3px;
+}
+/* line 233, sass/modules/pages/_billboard.scss */
+.schedules .schedule a:hover {
+  background-color: #b30014;
+}
+/* line 237, sass/modules/pages/_billboard.scss */
+.schedules .schedule.premiere a {
+  color: #322800;
+  background-color: #fecc00;
+}
+/* line 241, sass/modules/pages/_billboard.scss */
+.schedules .schedule.premiere a:hover {
+  background-color: #e5b800;
 }
 
 /* line 2, sass/modules/pages/_movie-detail.scss */
@@ -1781,21 +1785,21 @@ select {
 /* line 159, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before {
   left: 0;
-  background-image: -moz-linear-gradient(left, #fff, transparent);
+  background-image: -moz-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
-  background-image: -webkit-linear-gradient(left, #fff, transparent);
-  background-image: -o-linear-gradient(left, #fff, transparent);
-  background-image: linear-gradient(to right, #ffffff, rgba(0, 0, 0, 0));
+  background-image: -webkit-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
   background-repeat: repeat-x;
 }
 /* line 163, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:after {
   right: 0;
-  background-image: -moz-linear-gradient(left, transparent, #fff);
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
-  background-image: -webkit-linear-gradient(left, transparent, #fff);
-  background-image: -o-linear-gradient(left, transparent, #fff);
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ffffff);
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
+  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff);
   background-repeat: repeat-x;
 }
 /* line 168, sass/modules/pages/_movie-detail.scss */
@@ -1938,6 +1942,314 @@ select {
 /* line 289, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner img {
   border-radius: 3px;
+}
+
+/* line 1, sass/modules/pages/_session-buy.scss */
+#SessionCheckout {
+  /* BOLETOS */
+}
+/* line 2, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover {
+  position: relative;
+  height: 260px;
+  color: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #f08b24;
+  background-size: cover;
+}
+/* line 14, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover .col-container {
+  position: relative;
+  height: 260px;
+  z-index: 2;
+}
+/* line 20, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover h1 {
+  position: relative;
+  padding-bottom: 15px;
+  font-size: 42px;
+  font-weight: 300;
+}
+/* line 26, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover h1:after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+/* line 37, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background-image: -moz-linear-gradient(top, transparent, #000);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, left, right);
+  background-image: -webkit-linear-gradient(top, transparent, #000);
+  background-image: -o-linear-gradient(top, transparent, #000);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+  background-repeat: repeat-x;
+}
+/* line 48, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(240, 139, 36, 0.3);
+}
+/* line 58, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded {
+  height: 135px;
+}
+/* line 61, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded .col-container {
+  height: 135px;
+}
+/* line 63, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded h1 {
+  color: #272b2e;
+}
+/* line 65, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded:before, #SessionCheckout .big-cover.image-not-founded:after {
+  background: transparent;
+}
+/* line 72, sass/modules/pages/_session-buy.scss */
+#SessionCheckout header {
+  position: absolute;
+  bottom: 15px;
+  left: 24.375%;
+  margin-left: 20px;
+}
+/* line 79, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-information {
+  position: relative;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 100px;
+}
+/* line 86, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-details {
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 88, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-details .info {
+  margin-top: 10px;
+  font-size: 18px;
+}
+/* line 91, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-details .info strong {
+  display: inline-block;
+  width: 120px;
+}
+/* line 95, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-details .info .value {
+  font-weight: 200;
+}
+/* line 98, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-details .info .premier {
+  background: #e5c90c;
+  padding: 1px 3px;
+}
+/* line 104, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .schedule {
+  width: 23.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  text-align: center;
+  background: #00cc67;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+/* line 110, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .schedule .title {
+  font-size: 24px;
+  color: #004422;
+}
+/* line 114, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .schedule .value {
+  display: block;
+  font-weight: 100;
+  color: #fff;
+  font-size: 46px;
+}
+/* line 120, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .schedule .btn {
+  background: #006935;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 3px 10px;
+  margin-top: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 130, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .cover-container {
+  width: 23.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-top: -150px;
+}
+/* line 133, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .cover-container img {
+  width: 100%;
+  display: block;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 142, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection {
+  padding-bottom: 50px;
+  margin-bottom: 100px;
+}
+/* line 145, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection .title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+/* line 148, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection .title strong {
+  color: #f18932;
+  font-size: 30px;
+  font-weight: 300;
+  position: relative;
+}
+/* line 153, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection .title strong:before {
+  position: absolute;
+  top: 5px;
+  left: -50px;
+  border: 3px solid #f9cca7;
+  width: 40px;
+  height: 40px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  content: "1";
+  line-height: 33px;
+}
+/* line 169, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table {
+  width: 61.25%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-left: 5.625%;
+  font-size: 18px;
+  color: #565656;
+}
+/* line 175, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table tbody td, #SessionCheckout .ticketsSelection table tbody th {
+  border-top: 1px solid #f1f1f1;
+  padding: 20px 5px;
+  color: #686868;
+  font-weight: normal;
+}
+/* line 181, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table tbody th {
+  color: #434343;
+  font-size: 24px;
+  text-align: left;
+}
+/* line 187, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table .buttons {
+  padding: 10px;
+}
+/* line 190, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table .cantidad {
+  line-height: 40px;
+  float: left;
+  display: inline-block;
+  padding: 0 10px;
+}
+/* line 196, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table .less {
+  float: left;
+  border: 2px solid #D10014;
+  color: #fff;
+  background: #fff;
+  font-size: 40px;
+  font-family: Arial;
+  width: 40px;
+  height: 40px;
+  line-height: 30px;
+  position: relative;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+/* line 208, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table .less:before {
+  content: " ";
+  border-top: 3px solid #D10014;
+  width: 15px;
+  display: block;
+  position: absolute;
+  top: 17px;
+  left: 11px;
+}
+/* line 218, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table .plus {
+  float: left;
+  border: 2px solid #00CC67;
+  color: #fff;
+  background: #fff;
+  font-size: 40px;
+  font-family: Arial;
+  width: 40px;
+  height: 40px;
+  line-height: 30px;
+  position: relative;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+/* line 230, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .ticketsSelection table .plus:before {
+  content: " ";
+  border-top: 3px solid #00CC67;
+  width: 15px;
+  display: block;
+  position: absolute;
+  top: 17px;
+  left: 11px;
+}
+/* line 243, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .total {
+  margin-top: 40px;
+  width: 30%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  color: #777777;
+  text-align: center;
+  font-size: 18px;
+}
+/* line 249, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .total .title {
+  font-size: 30px;
+}
+/* line 252, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .total .value {
+  color: #00cc67;
+  font-size: 48px;
+  display: block;
 }
 
 /* line 2, sass/modules/base/_responsive.scss */

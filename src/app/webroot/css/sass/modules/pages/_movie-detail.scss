@@ -158,11 +158,11 @@
 
       &:before {
         left: 0;
-        @include gradientHorizontal(#fff, transparent);
+        @include gradientHorizontal(#fff, rgba(255,255,255,0));
       }
       &:after {
         right: 0;
-        @include gradientHorizontal(transparent, #fff);
+        @include gradientHorizontal(rgba(255,255,255,0), #fff);
       }
 
       .movie-gallery-carousel {

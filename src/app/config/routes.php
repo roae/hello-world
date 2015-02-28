@@ -65,9 +65,9 @@ I18nRouter::connect('/[movies_url]/:slug/*',
 	array( 'pass' => array( 'slug' ) )
 );
 
-I18nRouter::connect('/[shows_buy_url]/:session_id/*',
+I18nRouter::connect('/[shows_buy_url]/:movie_slug/:show_id/*',
 	array( 'controller' => 'shows', 'action' => 'buy', 'restricted' => false ),
-	array( 'pass' => array( 'session_id' ), 'session_id' => '[0-9]+' )
+	array( 'pass' => array( 'movie_slug','show_id' ), 'session_id' => '[0-9]+' )
 );
 
 Router::connect( "/admin/terms/:class/:action/*",

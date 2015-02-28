@@ -259,6 +259,30 @@
 
       &:last-child { margin-right: 0; }
     }
+
+    a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      text-indent: -1000px;
+      background-repeat: no-repeat;
+      background-position: left top;
+      overflow: hidden;
+
+      &.tw { background-image: url(../img/article-tw-icon.png); }
+      &.fb { background-image: url(../img/article-fb-icon.png); }
+      &.pn { background-image: url(../img/article-pn-icon.png); }
+      &.gp { background-image: url(../img/article-gp-icon.png); }
+
+      @include transition(opacity 0.2s ease-in-out);
+
+      &:hover { opacity: 0.7; }
+
+      &:active {
+        position: relative;
+        top: 1px;
+      }
+    }
   }
 
   .related-posts {

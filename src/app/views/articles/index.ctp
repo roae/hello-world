@@ -68,6 +68,8 @@
 
   </ul>
 
-  <?= $this->Paginator->numbers(array('separator' => null)) ?>
+  <div class="articles-pagination">
+    <?= $this->Paginator->numbers(array('separator' => null)) ?>
+  </div>
 
 </div>

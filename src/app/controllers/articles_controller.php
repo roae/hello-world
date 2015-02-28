@@ -246,7 +246,7 @@ class ArticlesController extends AppController{
 
 		$this->paginate=array(
 			'fields'=>array('Article.id','Article.autor','Article.created','Article.titulo','Article.contenido','Article.slug','Article.description',"Article.comments"),
-			'limit'=>1,
+			'limit'=>5,
 			'contain'=>array('Foto', 'Tag', 'Category'),
 			'conditions'=>$conditions,
 			'joins'=>array(

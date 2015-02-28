@@ -35,8 +35,17 @@
 						<?= $show['Movie']['synopsis']?>
 					</div>
 					<?
-					echo $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"]), array("class" => "watch-trailer fwd"));
-					echo $this->Html->link("[:ver_horarios:]",array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(low($CitySelected['name']),'-'),'#'=>$show['Movie']['slug']),array('class'=>'buy-tickets'));
+						echo $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"]), array("class" => "watch-trailer fwd"));
+
+						$schedules_url = '#';
+						$schedules_slug_data = $show['Movie']['slug'];
+
+						if( isset($CitySelected['name']) && $CitySelected['name'] ) {
+							$schedules_slug_data = '';
+							$schedules_url = array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(low($CitySelected['name']),'-'),'#' => $show['Movie']['slug']);
+						}
+
+						echo $this->Html->link("[:ver_horarios:]", $schedules_url,array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
 					?>
 				</div>
 			</div>

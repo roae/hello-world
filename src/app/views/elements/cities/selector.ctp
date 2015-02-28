@@ -15,15 +15,17 @@
 
   $places_label = 'Selecciona tu ciudad';
   $places_url = '#';
+
   if( isset($CitySelected['name']) && $CitySelected['name'] ) {
     $places_label = 'Ver cartelera de <span class="current">'.$CitySelected['name'].'</span>';
     $places_url = array('controller' => 'shows', 'action' => 'index', 'slug' => Inflector::slug(low($CitySelected['name']), '-'));
   }
+
 ?>
 
 <div id="header-location-select">
 
-  <?= $this->Html->link($places_label, $places_url, array('escape' => false)); ?>
+  <?= $this->Html->link($places_label, $places_url, array('escape' => false, 'class' => 'city-selector')); ?>
 
   <div class="sub-menu-container">
     <span class="sub-menu-trigger">Open</span>

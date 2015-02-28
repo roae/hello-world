@@ -1,26 +1,24 @@
-.billboard-container {
+.top-message {
+  position: relative;
+  padding: 90px 15px 70px;
+  margin-bottom: 40px;
+  text-align: center;
 
-  .top-message {
-    position: relative;
-    padding: 90px 15px 70px;
-    margin-bottom: 40px;
-    text-align: center;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -75px;
+    width: 150px;
+    height: 1px;
+    background-color: $light-gray;
+  }
 
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      margin-left: -75px;
-      width: 150px;
-      height: 1px;
-      background-color: $light-gray;
-    }
-
-    p {
-      margin-top: 0;
-      color: $gray;
-    }
+  p {
+    width: 50%;
+    margin: 0 auto;
+    color: $gray;
   }
 
   h1 {
@@ -29,6 +27,9 @@
     font-weight: 300;
     color: $red;
   }
+}
+
+.billboard-container {
 
   .the-billboard { font-size: 0; }
 
@@ -140,12 +141,14 @@
         }
 
         .clasification-duration {
+          padding-right: 10px;
           font-size: 14px;
           color: $gray;
+
+          &:empty { padding-right: 0; }
         }
 
         .real-name {
-          padding-left: 10px;
           font-family: 'georgia', serif;
           font-style: italic;
           font-size: 14px;

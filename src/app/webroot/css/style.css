@@ -9,17 +9,6 @@
 */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
 /* line 6, sass/modules/base/_reset.scss */
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  line-height: 1.5;
-}
-
-/* line 16, sass/modules/base/_reset.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -40,35 +29,38 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
   line-height: 1.5;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 /* HTML5 display-role reset for older browsers */
-/* line 39, sass/modules/base/_reset.scss */
+/* line 32, sass/modules/base/_reset.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* line 44, sass/modules/base/_reset.scss */
+/* line 37, sass/modules/base/_reset.scss */
 body {
   line-height: 1;
   font-family: 'Open Sans', sans-serif;
   background: #fff;
 }
 
-/* line 50, sass/modules/base/_reset.scss */
+/* line 43, sass/modules/base/_reset.scss */
 ol,
 ul {
   list-style: none;
 }
 
-/* line 55, sass/modules/base/_reset.scss */
+/* line 48, sass/modules/base/_reset.scss */
 blockquote,
 q {
   quotes: none;
 }
 
-/* line 60, sass/modules/base/_reset.scss */
+/* line 53, sass/modules/base/_reset.scss */
 blockquote:before,
 blockquote:after,
 q:before,
@@ -77,50 +69,50 @@ q:after {
   content: none;
 }
 
-/* line 68, sass/modules/base/_reset.scss */
+/* line 61, sass/modules/base/_reset.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 73, sass/modules/base/_reset.scss */
+/* line 66, sass/modules/base/_reset.scss */
 h1 {
   font-size: 2em;
 }
 
-/* line 77, sass/modules/base/_reset.scss */
+/* line 70, sass/modules/base/_reset.scss */
 h2 {
   font-size: 1.25em;
 }
 
-/* line 81, sass/modules/base/_reset.scss */
+/* line 74, sass/modules/base/_reset.scss */
 .italic {
   font-style: italic;
 }
 
-/* line 85, sass/modules/base/_reset.scss */
+/* line 78, sass/modules/base/_reset.scss */
 .bold {
   font-weight: bold;
 }
 
-/* line 89, sass/modules/base/_reset.scss */
+/* line 82, sass/modules/base/_reset.scss */
 .underline {
   text-decoration: underline;
 }
 
-/* line 93, sass/modules/base/_reset.scss */
+/* line 86, sass/modules/base/_reset.scss */
 .banner {
   padding: 150px 10px;
   text-align: center;
   color: #fff;
 }
-/* line 98, sass/modules/base/_reset.scss */
+/* line 91, sass/modules/base/_reset.scss */
 .banner h1 {
   width: 50%;
   margin: 0 auto;
 }
 
-/* line 104, sass/modules/base/_reset.scss */
+/* line 97, sass/modules/base/_reset.scss */
 a {
   text-decoration: none;
   -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
@@ -128,7 +120,7 @@ a {
   transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-/* line 115, sass/modules/base/_reset.scss */
+/* line 108, sass/modules/base/_reset.scss */
 .block:after {
   visibility: hidden;
   display: block;
@@ -138,18 +130,18 @@ a {
   height: 0;
 }
 
-/* line 123, sass/modules/base/_reset.scss */
+/* line 116, sass/modules/base/_reset.scss */
 .block {
   display: inline-block;
 }
 
 /* start commented backslash hack \*/
-/* line 125, sass/modules/base/_reset.scss */
+/* line 118, sass/modules/base/_reset.scss */
 * html .block {
   height: 1%;
 }
 
-/* line 126, sass/modules/base/_reset.scss */
+/* line 119, sass/modules/base/_reset.scss */
 .block {
   display: block;
 }
@@ -161,7 +153,7 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 12, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
+/* line 12, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
 .col-container:after {
   content: " ";
   display: block;
@@ -1416,15 +1408,15 @@ select {
   line-height: 1.5;
 }
 
-/* line 3, sass/modules/pages/_billboard.scss */
-.billboard-container .top-message {
+/* line 1, sass/modules/pages/_billboard.scss */
+.top-message {
   position: relative;
   padding: 90px 15px 70px;
   margin-bottom: 40px;
   text-align: center;
 }
-/* line 9, sass/modules/pages/_billboard.scss */
-.billboard-container .top-message:after {
+/* line 7, sass/modules/pages/_billboard.scss */
+.top-message:after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -1434,23 +1426,25 @@ select {
   height: 1px;
   background-color: #dee8ee;
 }
-/* line 20, sass/modules/pages/_billboard.scss */
-.billboard-container .top-message p {
-  margin-top: 0;
+/* line 18, sass/modules/pages/_billboard.scss */
+.top-message p {
+  width: 50%;
+  margin: 0 auto;
   color: #818386;
 }
-/* line 26, sass/modules/pages/_billboard.scss */
-.billboard-container h1 {
+/* line 24, sass/modules/pages/_billboard.scss */
+.top-message h1 {
   margin-bottom: 15px;
   font-size: 42px;
   font-weight: 300;
   color: #cc0017;
 }
-/* line 33, sass/modules/pages/_billboard.scss */
+
+/* line 34, sass/modules/pages/_billboard.scss */
 .billboard-container .the-billboard {
   font-size: 0;
 }
-/* line 35, sass/modules/pages/_billboard.scss */
+/* line 36, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside {
   display: inline-block;
   width: 23.75%;
@@ -1459,21 +1453,21 @@ select {
   vertical-align: top;
   text-align: center;
 }
-/* line 43, sass/modules/pages/_billboard.scss */
+/* line 44, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter {
   padding: 20px;
   margin-bottom: 20px;
   text-align: left;
   border-radius: 3px;
 }
-/* line 49, sass/modules/pages/_billboard.scss */
+/* line 50, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .label {
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
   color: #818386;
 }
-/* line 58, sass/modules/pages/_billboard.scss */
+/* line 59, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list {
   position: relative;
   display: inline-block;
@@ -1481,7 +1475,7 @@ select {
   vertical-align: top;
   font-size: 16px;
 }
-/* line 66, sass/modules/pages/_billboard.scss */
+/* line 67, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .complex-name .complex-label {
   padding: 5px 10px;
   margin-bottom: 20px;
@@ -1494,20 +1488,20 @@ select {
   border-radius: 4px;
   display: inline-block;
 }
-/* line 78, sass/modules/pages/_billboard.scss */
+/* line 79, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a {
   color: #272b2e;
 }
-/* line 81, sass/modules/pages/_billboard.scss */
+/* line 82, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:hover {
   color: #cc0017;
 }
-/* line 86, sass/modules/pages/_billboard.scss */
+/* line 87, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:active {
   position: relative;
   top: 1px;
 }
-/* line 93, sass/modules/pages/_billboard.scss */
+/* line 94, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .movieAnchor {
   position: absolute;
   top: -80px;
@@ -1515,13 +1509,13 @@ select {
   height: 10px;
   display: block;
 }
-/* line 104, sass/modules/pages/_billboard.scss */
+/* line 105, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .movie {
   padding: 25px 0 64px;
   overflow: hidden;
   position: relative;
 }
-/* line 111, sass/modules/pages/_billboard.scss */
+/* line 112, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules {
   width: 70.90909%;
   padding-bottom: 0;
@@ -1529,21 +1523,21 @@ select {
   padding-left: 20px;
   padding-bottom: 40px;
 }
-/* line 116, sass/modules/pages/_billboard.scss */
+/* line 117, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules li {
   display: inline-block;
   padding: 0;
 }
-/* line 124, sass/modules/pages/_billboard.scss */
+/* line 125, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .movie-title {
   margin-bottom: 40px;
 }
-/* line 128, sass/modules/pages/_billboard.scss */
+/* line 129, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules h3 {
   font-size: 27px;
   font-weight: 300;
 }
-/* line 133, sass/modules/pages/_billboard.scss */
+/* line 134, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule-title {
   padding-left: 20%;
   margin-left: 8px;
@@ -1552,47 +1546,51 @@ select {
   font-weight: bold;
   display: block;
 }
-/* line 142, sass/modules/pages/_billboard.scss */
+/* line 143, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .clasification-duration {
+  padding-right: 10px;
   font-size: 14px;
   color: #818386;
 }
-/* line 147, sass/modules/pages/_billboard.scss */
+/* line 148, sass/modules/pages/_billboard.scss */
+.billboard-container .billboard-list .schedules .clasification-duration:empty {
+  padding-right: 0;
+}
+/* line 151, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .real-name {
-  padding-left: 10px;
   font-family: 'georgia', serif;
   font-style: italic;
   font-size: 14px;
   color: #818386;
 }
-/* line 155, sass/modules/pages/_billboard.scss */
+/* line 158, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule {
   font-size: 0;
   padding: 12px 12px 8px;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 161, sass/modules/pages/_billboard.scss */
+/* line 164, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule:hover {
   background-color: #eaf1f3;
 }
-/* line 163, sass/modules/pages/_billboard.scss */
+/* line 166, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule .label,
 .billboard-container .billboard-list .schedules .schedule ul {
   display: inline-block;
   font-size: 16px;
   vertical-align: top;
 }
-/* line 170, sass/modules/pages/_billboard.scss */
+/* line 173, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule .label {
   position: relative;
   width: 20%;
   font-size: 14px;
 }
-/* line 175, sass/modules/pages/_billboard.scss */
+/* line 178, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule .label strong {
   font-weight: bold;
 }
-/* line 177, sass/modules/pages/_billboard.scss */
+/* line 180, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule .label:after {
   content: '';
   position: absolute;
@@ -1602,16 +1600,16 @@ select {
   height: 1px;
   background-color: #818386;
 }
-/* line 188, sass/modules/pages/_billboard.scss */
+/* line 191, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule ul {
   width: 80%;
 }
-/* line 192, sass/modules/pages/_billboard.scss */
+/* line 195, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule li {
   display: inline-block;
   padding: 0;
 }
-/* line 197, sass/modules/pages/_billboard.scss */
+/* line 200, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule a {
   display: inline-block;
   margin: 0 4px 4px;
@@ -1621,25 +1619,25 @@ select {
   background-color: #cc0017;
   border-radius: 3px;
 }
-/* line 206, sass/modules/pages/_billboard.scss */
+/* line 209, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule a:hover {
   background-color: #b30014;
 }
-/* line 210, sass/modules/pages/_billboard.scss */
+/* line 213, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule.premiere a {
   color: #322800;
   background-color: #fecc00;
 }
-/* line 214, sass/modules/pages/_billboard.scss */
+/* line 217, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules .schedule.premiere a:hover {
   background-color: #e5b800;
 }
-/* line 221, sass/modules/pages/_billboard.scss */
+/* line 224, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .image-container {
   float: left;
   width: 26.36364%;
 }
-/* line 226, sass/modules/pages/_billboard.scss */
+/* line 229, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img {
   display: block;
   width: 100%;
@@ -1649,11 +1647,11 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 233, sass/modules/pages/_billboard.scss */
+/* line 236, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:hover {
   opacity: 0.7;
 }
-/* line 234, sass/modules/pages/_billboard.scss */
+/* line 237, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:active {
   position: relative;
   top: 1px;
@@ -1986,6 +1984,116 @@ select {
 /* line 291, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner img {
   border-radius: 3px;
+}
+
+/* line 3, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article {
+  position: relative;
+  width: 86.25%;
+  padding: 50px 0;
+  margin-left: 5.625%;
+  border-bottom: 1px solid #dee8ee;
+  overflow: hidden;
+}
+/* line 11, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .date {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #b5b6b8;
+}
+/* line 17, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .date a {
+  color: #cc0017;
+}
+/* line 22, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+/* line 27, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article p {
+  margin-bottom: 40px;
+  line-height: 2;
+  color: #818386;
+}
+/* line 33, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .tags {
+  width: 73.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 36, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .tags li {
+  float: left;
+}
+/* line 38, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .tags a {
+  padding: 3px 8px;
+  border-right: 1px solid #dee8ee;
+  color: #cc0017;
+  font-size: 12px;
+}
+/* line 46, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .tags li:last-child a {
+  border-right: none;
+}
+/* line 50, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .see-more {
+  display: block;
+  width: 23.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  padding: 8px 15px;
+  text-align: center;
+  color: #fff;
+  border-radius: 30px;
+  background-color: #cc0017;
+}
+/* line 59, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .see-more:hover {
+  background-color: #b30014;
+}
+/* line 61, sass/modules/pages/_articles.scss */
+#articles-container .the-articles article .see-more:active {
+  position: relative;
+  top: 1px;
+}
+/* line 68, sass/modules/pages/_articles.scss */
+#articles-container .the-articles li {
+  margin-top: -1px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* line 74, sass/modules/pages/_articles.scss */
+#articles-container .the-articles li.with-image {
+  position: relative;
+}
+/* line 77, sass/modules/pages/_articles.scss */
+#articles-container .the-articles li.with-image:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 87, sass/modules/pages/_articles.scss */
+#articles-container .the-articles li.with-image article {
+  color: #fff;
+  border-bottom: none;
+}
+/* line 92, sass/modules/pages/_articles.scss */
+#articles-container .the-articles li.with-image p {
+  color: #fff;
+}
+/* line 98, sass/modules/pages/_articles.scss */
+#articles-container .the-articles li:last-child article {
+  border-bottom: none;
 }
 
 /* line 2, sass/modules/base/_responsive.scss */

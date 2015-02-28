@@ -16,6 +16,7 @@ class City extends AppModel {
 
 	var $validate = array(
 		'name'=>array(
+			'unico'=>array('rule'=>array('isUnique','title'),'message'=>'[:city_already_existe:]'),
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		)
 	);

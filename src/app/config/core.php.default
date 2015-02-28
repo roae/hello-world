@@ -64,6 +64,8 @@
 		'Locale'=>'es_mx', # Idioma default
     ));
 
+    Configure::write("RoomTypes",array('premier'=>'Sala Premier','mega'=>'Mega-Pantalla'));
+
 
 /**
  * CakePHP Log Level:

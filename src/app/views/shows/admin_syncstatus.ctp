@@ -17,7 +17,7 @@ if($this->params['isAjax']){
 <div class="contentForm" id="Sync" ng-controller="SyncCtrl">
 
 	<div class="row-fluid">
-		<?php if(!empty($syncStatus)){ ?>
+		<?php //if(!empty($syncStatus)){ ?>
 			<div class="span6 generalStatus">
 				<div ng-class="{syncFail:SyncStatus.fail && !SyncStatus.running,syncSuccess:!SyncStatus.fail && !SyncStatus.running,syncRunning:SyncStatus.running}">
 					<i class="icon"></i>
@@ -56,7 +56,7 @@ if($this->params['isAjax']){
 					</ul>
 				</div>
 			</div>
-		<?php } ?>
+
 	</div>
 </div>
 <?php

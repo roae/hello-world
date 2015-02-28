@@ -43,7 +43,7 @@ class ShowsController extends AppController{
 				$billboard[$i]['Show'][$movieId]['Movie'] = $show['Movie'];
 				unset($show['Movie'],$show['Poster']);
 				//$recordset[$i]['Show'][$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
-				if(empty($show['room_type'])){
+				if(empty($show['room_type']) || strpos($show['room_type'],'premier') === false){
 					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
 				}else{
 					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
@@ -63,7 +63,7 @@ class ShowsController extends AppController{
 			$data = $this->Show->Location->City->findBySlug($slug);
 
 			if( ! empty($data) ) {
-				$this->Cookie->write("CitySelected", $data['City'], true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+				$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
 				Configure::write("CitySelected", $data['City']);
 				$this->set("CitySelected",$data['City']);
 
@@ -81,7 +81,7 @@ class ShowsController extends AppController{
 					$locations[$record['Location']['id']] = $record;
 				}
 
-				$this->Cookie->write("LocationsSelected", json_encode($locations), true, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+				$this->Cookie->write("LocationsSelected", json_encode($locations), false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
 				$this->set("LocationsSelected",$locations);
 				Configure::write("LocationsSelected",$locations);
 				#pr($this->Cookie->read("LocationsSelected"));
@@ -97,7 +97,7 @@ class ShowsController extends AppController{
 		return $this->Show->find($this->params['type'], $this->params['query']);
 	}
 
-	function admin_sync($location = "all"){
+	 function admin_sync($location = "all"){
 		exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." >> ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual &");
 		Cache::write("sync_billboard_status.running",true);
 		if($location == "all"){
@@ -106,8 +106,9 @@ class ShowsController extends AppController{
 				Cache::write("sync_billboard_status.locations.$id.running",true);
 			}
 		}else{
-			Cache::write("sync_billboard_status.locations.$location_id.running",true);
+			Cache::write("sync_billboard_status.locations.$location.running",true);
 		}
+		pr($this->params);
 		$this->redirect($this->referer());
 	}
 

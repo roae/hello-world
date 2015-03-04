@@ -318,16 +318,17 @@ function nextSlide(){
 
 	});
 
+	var functions = {
+		remove_blur: function() {
+			$('#main-header, .the-content, #main-footer').removeClass('blured');
+		},
+		add_blur: function() {
+			$('#main-header, .the-content, #main-footer').addClass('blured');
+		}
+	};
+
 	if( $('.trailer-trigger').length ) {
 
-		var functions = {
-			remove_blur: function() {
-				$('#main-header, .the-content, #main-footer').removeClass('blured');
-			},
-			add_blur: function() {
-				$('#main-header, .the-content, #main-footer').addClass('blured');
-			}
-		};
 
 		$('.trailer-trigger').on('click', function(event) {
 
@@ -340,7 +341,7 @@ function nextSlide(){
 			var self = $(this),
 					video_url = self.attr('href'),
 					blured_lightbox = $('<div id="blured-lightbox"></div>'),
-					blured_lightbox_content = $('<div class="blured-lightbox-content"></div>'),
+					blured_lightbox_content = $('<div class="blured-lightbox-content video"></div>'),
 					blured_lightbox_loader = $('<span class="blured-lightbox-loader"></span>');
 					blured_lightbox_title = $('<strong></strong>'),
 					blured_lightbox_iframe = $('<iframe frameborder="0" allowfullscreen></iframe>'),
@@ -372,21 +373,20 @@ function nextSlide(){
 
 		});
 
-		$(window).on('keyup', function(event) {
-			if( event.keyCode == 27 ) {
-
-				var blured_lightbox = $('#blured-lightbox');
-
-				functions.remove_blur();
-
-				blured_lightbox.fadeOut(200, function() {
-					blured_lightbox.remove();
-					$('.pause-flag').trigger('click');
-				});
-			}
-		});
-
 	}
+
+	$(window).on('keyup', function(event) {
+		if( event.keyCode == 27 ) {
+
+			var blured_lightbox = $('#blured-lightbox');
+
+			functions.remove_blur();
+
+			blured_lightbox.fadeOut(200, function() {
+				blured_lightbox.remove();
+			});
+		}
+	});
 
 	if( $('.movie-gallery-container').length ) {
 
@@ -412,6 +412,79 @@ function nextSlide(){
 		  navKey: true
 		});
 
+	}
+
+	$('#header-location-select').find('.city-selector').on('click', function(event) {
+		var self = $(this);
+
+		if( self.attr('href') == '#' ) {
+			event.preventDefault();
+			schedules_blured_lightbox(self);
+		}
+	});
+
+	$('.home .buy-tickets').on('click', function(event) {
+
+		var self = $(this);
+
+		if( self.attr('href') == '#' ) {
+			event.preventDefault();
+			schedules_blured_lightbox(self, self.data('slug'));
+		}
+
+	});
+
+	function schedules_blured_lightbox(self, slug) {
+
+		event.preventDefault();
+
+		var functions = {
+			remove_blur: function() {
+				$('#main-header, .the-content, #main-footer').removeClass('blured');
+			},
+			add_blur: function() {
+				$('#main-header, .the-content, #main-footer').addClass('blured');
+			}
+		};
+
+		if( $('#blured-lightbox').length ) {
+			$('#blured-lightbox').remove();
+		}
+
+		var blured_lightbox = $('<div id="blured-lightbox"></div>'),
+				blured_lightbox_content = $('<div class="blured-lightbox-content"></div>'),
+				blured_lightbox_title = $('<strong class="dark geolocation">Selecciona tu ciudad</strong>'),
+				blured_lightbox_places = $('<ul></ul>'),
+				places_list = $('#header-location-select').find('.places li');
+
+		functions.add_blur();
+
+		if( slug ) {
+			slug = '#' + slug;
+		} else {
+			slug = '';
+		}
+
+		//blured_lightbox_title.html($('.blured-title').text());
+
+		places_list.each(function(i, e) {
+			var place = $(e),
+					link = place.find('a');
+
+			blured_lightbox_places.append('<li><a href="' + link.attr('href') + slug + '">' + link.text() + '</a></li>');
+		});
+
+		blured_lightbox_content.append(blured_lightbox_title, blured_lightbox_places);
+
+		blured_lightbox.on('click', function() {
+			functions.remove_blur();
+
+			blured_lightbox.fadeOut(200, function() {
+				blured_lightbox.remove();
+			});
+		});
+
+		$('body').append(blured_lightbox.append(blured_lightbox_content));
 	}
 
 })(jQuery);

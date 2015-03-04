@@ -32,8 +32,8 @@
 								<h3>
 									<?= $this->Html->link($item['Movie']['title'], array('controller' => 'movies', 'action' => 'view', 'slug' => $item['Movie']['slug']), array('escape' => false)); ?>
 								</h3>
-								<span class="clasification-duration">(B15 | 126 mins)</span>
-								<strong class="real-name">Nombre real</strong>
+								<span class="clasification-duration"><?php if( $item['Movie']['clasification'] != '' || $item['Movie']['duration'] ): ?>(<?= ($item['Movie']['clasification'] != '') ? $item['Movie']['clasification'].' | ' : '' ?><?= ($item['Movie']['duration'] != '') ? $item['Movie']['duration'].' mins' : '' ?>)<?php endif; ?></span>
+								<strong class="real-name"><?= $item['Movie']['original_title'] ?></strong>
 								</div>
 								<strong class="schedule-title">Horarios</strong>
 								<? foreach(isset($item['Normal']) ? $item['Normal'] : array() as $type => $shows): ?>

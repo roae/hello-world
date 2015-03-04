@@ -1,7 +1,7 @@
 #!/bin/bash
 TERM=dumb
 export TERM
-cmd="/Users/roae/Documents/servidor/citicinemas/src/cake/console/cake"
+cmd="/Users/julioinzunza/Sites/sitio-web-citicinemas/src/cake/console/cake"
 while [ $# -ne 0 ]; do
     if [ "$1" = "-cli" ] || [ "$1" = "-console" ]; then
         PATH=$PATH:$2

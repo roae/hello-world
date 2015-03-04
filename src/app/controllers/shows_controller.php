@@ -23,7 +23,7 @@ class ShowsController extends AppController{
 			'contain'=>array(
 				'Show'=>array(
 					'conditions'=>array(
-						'Show.schedule >='=>date("Y-m-d H:i:s",mktime(0,59,59,date("m"),date("d"),date("Y"))),
+						'Show.schedule >='=>date("Y-m-d H:i:s"),
 						'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
 						#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
 					),
@@ -44,9 +44,9 @@ class ShowsController extends AppController{
 				unset($show['Movie'],$show['Poster']);
 				//$recordset[$i]['Show'][$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
 				if(empty($show['room_type']) || strpos($show['room_type'],'premier') === false){
-					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show['Projection'],$show);
+					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
 				}else{
-					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show['Projection'],$show);
+					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
 				}
 
 			}
@@ -136,7 +136,7 @@ class ShowsController extends AppController{
 		));
 		$record = $this->Show->read();
 		$this->set("record",$record);
-		#pr($record['Show']['session_id']);
+		pr($record['Show']['session_id']);
 		#pr($record['Location']['vista_service_url']);
 		/**
 		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
@@ -150,7 +150,7 @@ class ShowsController extends AppController{
 		$response = $VistaServer->__soapCall("Execute",array($params));
 
 		pr($response);/**/
-		/**
+		/**/
 		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
 		$params = array(
 			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
@@ -165,7 +165,7 @@ class ShowsController extends AppController{
 			$transId = $result[6];
 			#pr($transId);
 		}
-		/**
+		/**/
 		$starDate = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
 		$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
 		$params = array(
@@ -181,11 +181,11 @@ class ShowsController extends AppController{
 			pr(h($result[6]));
 			#pr($transId);
 		}/**/
-		/**
+		/**/
 		$params = array(
 			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSellingDataXMLStream',
-			'Param1'=>"PRICES",
+			'CmdName'=>'GetSellingDataXML',
+			'Param1'=>"PRICES|PRICESALL", # PRICES es el bueno
 			'Param2'=>"",
 			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
 		);

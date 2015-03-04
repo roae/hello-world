@@ -42,7 +42,7 @@ class Location extends AppModel {
 
 	var $validate = array(
 		'name'=>array(
-			'unico'=>array('rule'=>array('isUnique','title'),'message'=>'[:location_already_existe:]'),
+			'unico'=>array('rule'=>array('isUnique','name'),'message'=>'[:location_already_existe:]'),
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		),
 		'phone_numbers'=>array(

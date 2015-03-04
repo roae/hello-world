@@ -418,7 +418,7 @@ function nextSlide(){
 		var self = $(this);
 
 		if( self.attr('href') == '#' ) {
-			event.preventDefault();
+			event.stopPropagation();
 			schedules_blured_lightbox(self);
 		}
 	});
@@ -430,13 +430,14 @@ function nextSlide(){
 		if( self.attr('href') == '#' ) {
 			event.preventDefault();
 			schedules_blured_lightbox(self, self.data('slug'));
+			return false;
 		}
 
 	});
 
 	function schedules_blured_lightbox(self, slug) {
 
-		event.preventDefault();
+		//event.preventDefault();
 
 		var functions = {
 			remove_blur: function() {

@@ -7,7 +7,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,700);
 /* line 6, sass/modules/base/_reset.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -158,6 +158,11 @@ a {
   content: " ";
   display: block;
   clear: both;
+}
+
+/* line 6, sass/modules/base/_style.scss */
+body {
+  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* COMPONENTS */
@@ -1800,7 +1805,7 @@ select {
   position: relative;
   top: 1px;
 }
-/* line 142, sass/modules/pages/_movie-detail.scss */
+/* line 141, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container {
   position: relative;
   width: 100%;
@@ -1809,7 +1814,7 @@ select {
   margin-bottom: 40px;
   overflow: hidden;
 }
-/* line 150, sass/modules/pages/_movie-detail.scss */
+/* line 149, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before, .movie-detail-container .movie-information .movie-gallery-container:after {
   content: '';
   position: absolute;
@@ -1818,7 +1823,7 @@ select {
   height: 100%;
   z-index: 5;
 }
-/* line 160, sass/modules/pages/_movie-detail.scss */
+/* line 159, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before {
   left: 0;
   background-image: -moz-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
@@ -1828,7 +1833,7 @@ select {
   background-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
   background-repeat: repeat-x;
 }
-/* line 164, sass/modules/pages/_movie-detail.scss */
+/* line 163, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:after {
   right: 0;
   background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
@@ -1838,7 +1843,7 @@ select {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff);
   background-repeat: repeat-x;
 }
-/* line 169, sass/modules/pages/_movie-detail.scss */
+/* line 168, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel {
   position: absolute;
   left: 0;
@@ -1850,79 +1855,79 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 178, sass/modules/pages/_movie-detail.scss */
+/* line 177, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel:hover {
   opacity: 0.7;
 }
-/* line 181, sass/modules/pages/_movie-detail.scss */
+/* line 180, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container a {
   float: left;
   margin-right: 2px;
 }
-/* line 186, sass/modules/pages/_movie-detail.scss */
+/* line 185, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container img {
   height: 75px;
 }
-/* line 191, sass/modules/pages/_movie-detail.scss */
+/* line 190, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets {
   width: 73.75%;
   margin-left: 11.875%;
   margin: 0 auto;
 }
-/* line 196, sass/modules/pages/_movie-detail.scss */
+/* line 195, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h2 {
   margin-bottom: 5px;
   color: #cc0017;
 }
-/* line 201, sass/modules/pages/_movie-detail.scss */
+/* line 200, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h3 {
   margin-bottom: 20px;
   font-size: 27px;
   font-weight: 300;
 }
-/* line 207, sass/modules/pages/_movie-detail.scss */
+/* line 206, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets p {
   font-size: 16px;
 }
-/* line 209, sass/modules/pages/_movie-detail.scss */
+/* line 208, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-/* line 213, sass/modules/pages/_movie-detail.scss */
+/* line 212, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .label {
   display: block;
 }
-/* line 215, sass/modules/pages/_movie-detail.scss */
+/* line 214, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .input,
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex {
   display: inline-block;
   width: 48%;
 }
-/* line 220, sass/modules/pages/_movie-detail.scss */
+/* line 219, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .input:nth-of-type(1),
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex:nth-of-type(1) {
   margin-right: 3%;
 }
-/* line 224, sass/modules/pages/_movie-detail.scss */
+/* line 223, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .label {
   display: inline-block;
 }
-/* line 228, sass/modules/pages/_movie-detail.scss */
+/* line 227, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules {
   padding-left: 0;
 }
-/* line 232, sass/modules/pages/_movie-detail.scss */
+/* line 231, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules .schedule ul {
   width: 79%;
 }
-/* line 238, sass/modules/pages/_movie-detail.scss */
+/* line 237, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info {
   display: inline-block;
   width: 23.75%;
   margin-left: 5.625%;
 }
-/* line 243, sass/modules/pages/_movie-detail.scss */
+/* line 242, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer {
   display: block;
   padding: 8px 14px;
@@ -1937,45 +1942,45 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   -moz-transition: border-color 0.2s ease-in-out;
 }
-/* line 258, sass/modules/pages/_movie-detail.scss */
+/* line 257, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:hover {
   border-color: #83cb7c;
 }
-/* line 260, sass/modules/pages/_movie-detail.scss */
+/* line 259, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:active {
   position: relative;
   top: 1px;
 }
-/* line 266, sass/modules/pages/_movie-detail.scss */
+/* line 265, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info {
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 270, sass/modules/pages/_movie-detail.scss */
+/* line 269, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info strong {
   display: block;
   margin-bottom: 3px;
   font-weight: bold;
 }
-/* line 276, sass/modules/pages/_movie-detail.scss */
+/* line 275, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value {
   display: block;
   margin-bottom: 2px;
   color: #818386;
 }
-/* line 281, sass/modules/pages/_movie-detail.scss */
+/* line 280, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value:empty + strong {
   display: none;
 }
-/* line 284, sass/modules/pages/_movie-detail.scss */
+/* line 283, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info a {
   color: #fecc00;
 }
-/* line 287, sass/modules/pages/_movie-detail.scss */
+/* line 286, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner {
   margin-top: 20px;
 }
-/* line 290, sass/modules/pages/_movie-detail.scss */
+/* line 289, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner img {
   border-radius: 3px;
 }

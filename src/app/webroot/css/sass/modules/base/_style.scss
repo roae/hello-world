@@ -2,3 +2,7 @@
 .col-container{
 	@include container(16 center static);
 }
+
+body{
+  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

@@ -36,6 +36,12 @@ module.exports = function(grunt) {
 					src: ['js/admin/projections.js'],
 					ext: '.annotated.js',
 					extDot:'last'
+				},
+				{
+					expand: true,
+					src: ['js/admin/sync.js'],
+					ext: '.annotated.js',
+					extDot:'last'
 				}
 			]
 		}
@@ -44,7 +50,8 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'js/admin/projections.min.js': ['js/admin/projections.annotated.js']
+          'js/admin/projections.min.js': ['js/admin/projections.annotated.js'],
+	      'js/admin/sync.min.js': ['js/admin/sync.annotated.js']
         }
       }
     },

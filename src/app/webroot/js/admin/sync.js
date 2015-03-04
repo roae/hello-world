@@ -16,6 +16,7 @@ Citicinemas.controller("SyncCtrl", function($scope,$timeout){
 		//$scope.SyncStatus.running =  true;
 		$.ajax({
 			url: '/admin/shows/sync/'+location_id,
+			method:'GET',
 			type:'json',
 			success: function(data){
 				$scope.SyncStatus =  data;
@@ -30,6 +31,7 @@ Citicinemas.controller("SyncCtrl", function($scope,$timeout){
 				$scope.refreshing = true;
 				$.ajax({
 					url:"/admin/shows/syncstatus/",
+					method:'GET',
 					type:'json',
 					success:function(data){
 						//console.log(data);

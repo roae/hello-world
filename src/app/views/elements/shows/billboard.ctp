@@ -1,9 +1,7 @@
 <?php
 	/* @var $this View */
-	#$locationSelected = Configure::read("LocationSelected");
 	$conditions = array();
 	if(isset($LocationsSelected) && !empty($LocationsSelected)){
-		#$locations = unserialize($LocationsSelected);
 		$conditions = array('Show.location_id'=>array_keys($LocationsSelected));
 	}
 	$query = array(

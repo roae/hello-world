@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Class ShowsController
+ * @property $Show Show
+ */
 class ShowsController extends AppController{
 	var $name = "Shows";
 	var $uses = array(

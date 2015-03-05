@@ -325,8 +325,15 @@ class AppController extends Controller{
 		Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
 		$this->set("CitySelected",$this->Cookie->read("CitySelected"));
 
-		Configure::write("LocationsSelected",$this->Cookie->read("LocationsSelected"));
-		$this->set("LocationsSelected",Configure::read("LocationsSelected"));
+		$LocationsSelected = stripslashes($this->Cookie->read("LocationsSelected"));
+
+		$first = substr($LocationsSelected, 0, 1);
+		if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
+
+			$LocationsSelected = json_decode($LocationsSelected, true);
+		}
+		Configure::write("LocationsSelected",$LocationsSelected);
+		$this->set("LocationsSelected",$LocationsSelected);
 
 
 		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting

@@ -1,4 +1,18 @@
 #articles-container {
+  .top-message{
+    padding: 90px 0 70px;
+    text-align: center;
+    color: #818386;
+    margin-top: 0;
+
+    h1{
+      color: #cc0017;
+      font-size: 42px;
+      font-weight: 300;
+      margin-bottom: 15px;
+    }
+
+  }
   .the-articles {
     margin-bottom: 40px;
 

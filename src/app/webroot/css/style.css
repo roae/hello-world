@@ -1523,120 +1523,13 @@ select {
   width: 70.90909%;
   padding-bottom: 0;
   float: left;
-  padding-left: 20px;
-  padding-bottom: 40px;
 }
-/* line 116, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules li {
-  display: inline-block;
-  padding: 0;
-}
-/* line 124, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .movie-title {
-  margin-bottom: 40px;
-}
-/* line 128, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules h3 {
-  font-size: 27px;
-  font-weight: 300;
-}
-/* line 133, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule-title {
-  padding-left: 20%;
-  margin-left: 8px;
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-}
-/* line 142, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .clasification-duration {
-  font-size: 14px;
-  color: #818386;
-}
-/* line 147, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .real-name {
-  padding-left: 10px;
-  font-family: 'georgia', serif;
-  font-style: italic;
-  font-size: 14px;
-  color: #818386;
-}
-/* line 155, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule {
-  font-size: 0;
-  padding: 12px 12px 8px;
-  transition: background-color 0.2s ease-in-out;
-}
-/* line 161, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule:hover {
-  background-color: #eaf1f3;
-}
-/* line 163, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label,
-.billboard-container .billboard-list .schedules .schedule ul {
-  display: inline-block;
-  font-size: 16px;
-  vertical-align: top;
-}
-/* line 170, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label {
-  position: relative;
-  width: 20%;
-  font-size: 14px;
-}
-/* line 175, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label strong {
-  font-weight: bold;
-}
-/* line 177, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule .label:after {
-  content: '';
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  width: 10px;
-  height: 1px;
-  background-color: #818386;
-}
-/* line 188, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule ul {
-  width: 80%;
-}
-/* line 192, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule li {
-  display: inline-block;
-  padding: 0;
-}
-/* line 197, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule a {
-  display: inline-block;
-  margin: 0 4px 4px;
-  padding: 4px 10px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #cc0017;
-  border-radius: 3px;
-}
-/* line 206, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule a:hover {
-  background-color: #b30014;
-}
-/* line 210, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule.premiere a {
-  color: #322800;
-  background-color: #fecc00;
-}
-/* line 214, sass/modules/pages/_billboard.scss */
-.billboard-container .billboard-list .schedules .schedule.premiere a:hover {
-  background-color: #e5b800;
-}
-/* line 221, sass/modules/pages/_billboard.scss */
+/* line 118, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .image-container {
   float: left;
   width: 26.36364%;
 }
-/* line 226, sass/modules/pages/_billboard.scss */
+/* line 123, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img {
   display: block;
   width: 100%;
@@ -1646,14 +1539,125 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 233, sass/modules/pages/_billboard.scss */
+/* line 130, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:hover {
   opacity: 0.7;
 }
-/* line 234, sass/modules/pages/_billboard.scss */
+/* line 131, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:active {
   position: relative;
   top: 1px;
+}
+
+/* line 141, sass/modules/pages/_billboard.scss */
+.schedules {
+  padding-left: 20px;
+  padding-bottom: 40px;
+}
+/* line 143, sass/modules/pages/_billboard.scss */
+.schedules li {
+  display: inline-block;
+  padding: 0;
+}
+/* line 151, sass/modules/pages/_billboard.scss */
+.schedules .movie-title {
+  margin-bottom: 40px;
+}
+/* line 155, sass/modules/pages/_billboard.scss */
+.schedules h3 {
+  font-size: 27px;
+  font-weight: 300;
+}
+/* line 160, sass/modules/pages/_billboard.scss */
+.schedules .schedule-title {
+  padding-left: 20%;
+  margin-left: 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+/* line 169, sass/modules/pages/_billboard.scss */
+.schedules .clasification-duration {
+  font-size: 14px;
+  color: #818386;
+}
+/* line 174, sass/modules/pages/_billboard.scss */
+.schedules .real-name {
+  padding-left: 10px;
+  font-family: 'georgia', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #818386;
+}
+/* line 182, sass/modules/pages/_billboard.scss */
+.schedules .schedule {
+  font-size: 0;
+  padding: 12px 12px 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+/* line 188, sass/modules/pages/_billboard.scss */
+.schedules .schedule:hover {
+  background-color: #eaf1f3;
+}
+/* line 190, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label,
+.schedules .schedule ul {
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: top;
+}
+/* line 197, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label {
+  position: relative;
+  width: 20%;
+  font-size: 14px;
+}
+/* line 202, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label strong {
+  font-weight: bold;
+}
+/* line 204, sass/modules/pages/_billboard.scss */
+.schedules .schedule .label:after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background-color: #818386;
+}
+/* line 215, sass/modules/pages/_billboard.scss */
+.schedules .schedule ul {
+  width: 80%;
+}
+/* line 219, sass/modules/pages/_billboard.scss */
+.schedules .schedule li {
+  display: inline-block;
+  padding: 0;
+}
+/* line 224, sass/modules/pages/_billboard.scss */
+.schedules .schedule a {
+  display: inline-block;
+  margin: 0 4px 4px;
+  padding: 4px 10px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #cc0017;
+  border-radius: 3px;
+}
+/* line 233, sass/modules/pages/_billboard.scss */
+.schedules .schedule a:hover {
+  background-color: #b30014;
+}
+/* line 237, sass/modules/pages/_billboard.scss */
+.schedules .schedule.premiere a {
+  color: #322800;
+  background-color: #fecc00;
+}
+/* line 241, sass/modules/pages/_billboard.scss */
+.schedules .schedule.premiere a:hover {
+  background-color: #e5b800;
 }
 
 /* line 2, sass/modules/pages/_movie-detail.scss */

@@ -14,6 +14,8 @@
     "grunt-notify": "~0.2.16",
     "jit-grunt": "^0.9.1",
     "grunt-contrib-uglify": "~0.8.0",
-    "grunt-ng-annotate": "~0.10.0"
+    "grunt-ng-annotate": "~0.10.0",
+    "time-grunt": "~1.1.0",
+    "grunt-newer": "~1.1.0"
   }
 }

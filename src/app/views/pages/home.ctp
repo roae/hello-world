@@ -3,43 +3,40 @@
 
 <section class="home-highlights" id="main-slider">
   <div class="movie big-hero">
-    <header>
-      <div class="col-container">
-        <div class="movie-info-bg"></div>
-        <div class="movie-info">
-          <h1>Big Hero 6</h1>
+    <div class="col-container">
+      <div class="movie-info-bg"></div>
+      <div class="movie-info">
+        <h3 class="title">Big Hero 6</h3>
 
-          <p>
-            Una comedia de aventuras y acción sobre un experto en robótica llamado Hiro Hamada, quien se encuentra dentro de un complot criminal que amenaza con ...
-          </p>
+        <p>
+          Una comedia de aventuras y acción sobre un experto en robótica llamado Hiro Hamada, quien se encuentra dentro de un complot criminal que amenaza con ...
+        </p>
 
-          <ul class="features">
-            <li>
-              <strong>Director(es):</strong> Don Hall, Chris William
-            </li>
-            <li>
-              <strong>Género:</strong> Animación
-            </li>
-            <li>
-              <strong>Duración:</strong> 109min
-            </li>
-            <li>
-              <strong>Clasificación:</strong> A
-            </li>
-          </ul>
+        <ul class="features">
+          <li>
+            <strong>Director(es):</strong> Don Hall, Chris William
+          </li>
+          <li>
+            <strong>Género:</strong> Animación
+          </li>
+          <li>
+            <strong>Duración:</strong> 109min
+          </li>
+          <li>
+            <strong>Clasificación:</strong> A
+          </li>
+        </ul>
 
-          <a class="see-trailer" href="">Ver trailer</a>
-        </div>
+        <a class="see-trailer" href="">Ver trailer</a>
       </div>
-
-    </header>
+    </div>
   </div>
 
   <div class="movie birdman">
-    <header>
+    <div class="col-container">
       <div class="movie-info-bg"></div>
-      <div class="col-container movie-info">
-        <h1>Birdman</h1>
+      <div class="movie-info">
+        <h3 class="title">Birdman</h3>
 
         <p>
         Un actor (Keaton), famoso por interpretar a un superhéroe icónico, lucha para montar una obra de Broadway. En los días previos a la noche de apertura, se enfrenta ...
@@ -62,14 +59,14 @@
 
         <a class="see-trailer" href="">Ver trailer</a>
       </div>
-    </header>
+    </div>
   </div>
 
   <div class="movie escobar">
-    <header>
+    <div class="col-container">
       <div class="movie-info-bg"></div>
-      <div class="col-container movie-info">
-        <h1>Escobar</h1>
+      <div class="movie-info">
+        <h3 class="title">Escobar</h3>
 
         <p>
           Andrea Di Stefano dirige esta co-producción franco-belga-española en la que Josh Hutcherson ('Los Juegos del Hambre') interperta a Nick, un joven surfero ...
@@ -92,7 +89,7 @@
 
         <a class="see-trailer" href="">Ver trailer</a>
       </div>
-    </header>
+    </div>
   </div>
 
   <div class="col-container pagination-container">

@@ -43,7 +43,7 @@
 											<?
 											$schedule = array();
 											foreach($shows as $show){
-												echo $this->Html->tag("li",$this->Html->link($this->Time->format("H:i",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'])));
+												echo $this->Html->tag("li",$this->Html->link($this->Time->format("h:i <\s\m\a\l\l>a</\s\m\a\l\l>",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'],'escape'=>false)));
 											}
 											?>
 										</ul>
@@ -58,7 +58,7 @@
 												<?
 												$schedule = array();
 												foreach($shows as $show){
-													echo $this->Html->tag("li",$this->Html->link($this->Time->format("H:i",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'])));
+													echo $this->Html->tag("li",$this->Html->link($this->Time->format("h:i <\s\m\a\l\l>a</\s\m\a\l\l>",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'],'escape'=>false)));
 												}
 												?>
 											</ul>

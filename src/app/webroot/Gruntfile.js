@@ -81,8 +81,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-csso');
   grunt.loadNpmTasks('grunt-notify');*/
+  require('time-grunt')(grunt);
   require('jit-grunt')(grunt);
 
   // Register tasks
-  grunt.registerTask('default', ['compass', 'csso', 'ngAnnotate' ,'uglify', 'watch']);
+  grunt.registerTask('default', ['compass', 'csso', 'newer:ngAnnotate' ,'newer:uglify', 'watch']);
 };

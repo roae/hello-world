@@ -325,13 +325,15 @@ class AppController extends Controller{
 		Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
 		$this->set("CitySelected",$this->Cookie->read("CitySelected"));
 
-		$LocationsSelected = stripslashes($this->Cookie->read("LocationsSelected"));
+		$LocationsSelected = $this->Cookie->read("LocationsSelected");
+		if(is_string($LocationsSelected)){
+			$first = substr($LocationsSelected, 0, 1);
+			if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
 
-		$first = substr($LocationsSelected, 0, 1);
-		if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
-
-			$LocationsSelected = json_decode($LocationsSelected, true);
+				$LocationsSelected = json_decode(stripcslashes($LocationsSelected), true);
+			}
 		}
+
 		Configure::write("LocationsSelected",$LocationsSelected);
 		$this->set("LocationsSelected",$LocationsSelected);
 

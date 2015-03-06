@@ -173,7 +173,6 @@
 
   .real-name {
     padding-left: 10px;
-    font-family: 'georgia', serif;
     font-style: italic;
     font-size: 14px;
     color: $gray;
@@ -198,6 +197,7 @@
       position: relative;
       width: 20%;
       font-size: 14px;
+      margin-top: 5px;
 
       strong {  font-weight: bold; }
 
@@ -222,13 +222,19 @@
     }
 
     a {
+      font-family: "Open Sans";
+      text-transform: uppercase;
       display: inline-block;
-      margin:0 4px 4px;
+      margin:0 4px 10px;
       padding: 4px 10px;
-      font-size: 14px;
+      font-size: 16px;
       color: #fff;
       background-color: $red;
       border-radius: 3px;
+      font-weight: 500;
+      small{
+        font-size: 11px;
+      }
 
       &:hover { background-color: darken($red, 5%); }
     }

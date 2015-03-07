@@ -49,9 +49,9 @@ class ShowsController extends AppController{
 				unset($show['Movie'],$show['Poster']);
 				//$recordset[$i]['Show'][$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
 				if(empty($show['room_type']) || strpos($show['room_type'],'premier') === false){
-					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show['Projection'],$show);
 				}else{
-					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show['Projection'],$show);
 				}
 
 			}
@@ -103,7 +103,7 @@ class ShowsController extends AppController{
 	}
 
 	 function admin_sync($location = "all"){
-		exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." >> ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual &");
+		exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." > ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual &");
 		Cache::write("sync_billboard_status.running",true);
 		if($location == "all"){
 			$locations = $this->Show->Location->find("list",array('trash'=>0,'status'=>1));
@@ -141,8 +141,6 @@ class ShowsController extends AppController{
 		));
 		$record = $this->Show->read();
 		$this->set("record",$record);
-		pr($record['Show']['session_id']);
-		#pr($record['Location']['vista_service_url']);
 		/**
 		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
 		$params = array(
@@ -156,7 +154,13 @@ class ShowsController extends AppController{
 
 		pr($response);/**/
 		/**/
-		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+		$connection = false;
+		try {
+			$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+			$connection = true;
+		} catch (Exception $e) {
+			pr($e->getMessage());
+		}
 		$params = array(
 			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
 			'CmdName'=>'TransNew',
@@ -168,9 +172,9 @@ class ShowsController extends AppController{
 		if($response->ExecuteResult == 0){
 			$result = explode("|",$response->ReturnData);
 			$transId = $result[6];
-			#pr($transId);
+			//pr($transId);
 		}
-		/**/
+		/**
 		$starDate = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
 		$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
 		$params = array(
@@ -186,12 +190,12 @@ class ShowsController extends AppController{
 			pr(h($result[6]));
 			#pr($transId);
 		}/**/
-		/**/
+		/**
 		$params = array(
 			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSellingDataXML',
+			'CmdName'=>'GetSellingDataXMLStream',
 			'Param1'=>"PRICES|PRICESALL", # PRICES es el bueno
-			'Param2'=>"",
+			'Param2'=>"20",
 			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
 		);
 		$response = $VistaServer->__soapCall("Execute",array($params));
@@ -200,7 +204,25 @@ class ShowsController extends AppController{
 			pr(h($result[6]));
 			#pr($transId);
 		}/**/
-
+		pr(str_replace(":","",str_replace(" ","",str_replace("-","",$record['Show']['schedule']))));
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
+			'CmdName'=>'OrderTickets',
+			'Param1'=>$record['Show']['session_id'],
+			'Param2'=>str_replace(":","",str_replace(" ","",str_replace("-","",$record['Show']['schedule']))),
+			'Param3'=>"N",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+		$response = $VistaServer->__soapCall("Execute",array($params));
+		debug($response);
+		if($response->ExecuteResult == 0){
+			$result = explode("|",$response->ReturnData);
+			#pr(h($result[6]));
+			pr($response->ReturnData);
+			#pr($transId);
+		}
 
 
 		#$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));

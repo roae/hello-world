@@ -169,7 +169,7 @@ class SyncShell extends Shell{
 
 			if(!empty($this->errors)){
 				#Enviar notificacion de los errores por mail
-				$this->out("Sending");
+				$this->out("Enviando notificación a la dirección ".$this->config['sync_error_email']);
 				$this->__sendNotification();
 			}
 
@@ -338,7 +338,7 @@ class SyncShell extends Shell{
 
 		$Email->reset();
 		$Email->to = $this->config['sync_error_email'];
-		$Email->from = "erochin@h1webstudio.com";
+		$Email->from = "noreply@citicinemas.com";
 		$Email->subject = "Errores en la sincronización de la cartelera";
 		$Email->sendAs = 'html';
 		$Controller->set("errors",$this->errors);

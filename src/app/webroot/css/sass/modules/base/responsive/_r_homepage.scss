@@ -133,5 +133,97 @@
 }
 
 @media (max-width: 480px) {
+  #main-header {
+    #logo {
+      margin-top: 20px;
+    }
+     .account-container {
+      margin-top: 16px;
+      margin-right: 20px;
+    }
+  }
 
+  #header-location-select {
+    margin-top: 24px;
+    float: right;
+    & > a {
+      font-size: 15px;
+      float: none;
+    }
+  }
+
+  .home .home-highlights {
+    .movie .movie-info {
+      margin-top: 60px;
+      margin-left: 0;
+      width: 100%;
+      padding: 20px;
+    }
+    .pagination {
+      left: 20px;
+    }
+  }
+
+  .home {
+    .billboard {
+      h1 {
+        font-size: 2em;
+      }
+      .description {
+        width: 90%;
+      }
+      .movie {
+        width: 32.33%;
+      }
+      .movie:nth-of-type(4n+1) {
+        clear: none;
+      }
+      .movie:nth-of-type(3n+1) {
+        clear: left;
+      }
+    }
+  }
+  #main-footer {
+    .mobile-apps {
+      padding: 20px 15px 40px;
+      h2 {
+        font-size: 2em;
+      }
+      p {
+        width: 100%;
+        font-size: 17px;
+      }
+    }
+    .footer-menu {
+      .footer-menu-options {
+        width: 22%;
+        margin: 0 1%;
+      }
+      .news {
+        width: 70%;
+        article {
+          margin-bottom: 20px;
+        }
+      }
+      .subscription {
+        width: 100%;
+      }
+      .social-networks {
+        width: 100%;
+      }
+    }
+    .copyright {
+      width: 100%;
+      clear: both;
+      text-align: center;
+    }
+    section.copyright .col-container .certificates {
+      float: none;
+      margin-top: 0;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
 }
+
+

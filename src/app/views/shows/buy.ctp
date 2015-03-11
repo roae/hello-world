@@ -85,10 +85,10 @@
 		<table>
 			<thead>
 				<tr>
-					<td></td>
-					<td>Precio</td>
-					<td>Cantidad</td>
-					<td>Subtotal</td>
+					<th></th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th>Subtotal</th>
 				</tr>
 			</thead>
 			<tbody>

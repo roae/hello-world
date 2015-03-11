@@ -130,6 +130,7 @@ class ShowsController extends AppController{
 	function buy(){
 		$this->Show->id = $this->params['show_id'];
 		$this->Show->contain(array(
+			'TicketPrice',
 			'Movie'=>array(
 				'Gallery',
 				'Poster',
@@ -141,88 +142,7 @@ class ShowsController extends AppController{
 		));
 		$record = $this->Show->read();
 		$this->set("record",$record);
-		/**
-		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
-			'CmdName'=>'GetSessionDisplayData',
-			'Param1'=>"",
-			'Param2'=>"|COUNTS|".$record['Show']['session_id']."|",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
 
-		pr($response);/**/
-		/**/
-		$connection = false;
-		try {
-			$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
-			$connection = true;
-		} catch (Exception $e) {
-			pr($e->getMessage());
-		}
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
-			'CmdName'=>'TransNew',
-			'Param1'=>"",
-			'Param2'=>"",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			$transId = $result[6];
-			//pr($transId);
-		}
-		/**
-		$starDate = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
-		$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSessionDisplayData',
-			'Param1'=>"",
-			'Param2'=>"|DATESTART|".date("YmdHi",$starDate)."|DATEEND|".date("YmdHi",$endDate)."|",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			pr(h($result[6]));
-			#pr($transId);
-		}/**/
-		/**
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSellingDataXMLStream',
-			'Param1'=>"PRICES|PRICESALL", # PRICES es el bueno
-			'Param2'=>"20",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			pr(h($result[6]));
-			#pr($transId);
-		}/**/
-		pr(str_replace(":","",str_replace(" ","",str_replace("-","",$record['Show']['schedule']))));
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'OrderTickets',
-			'Param1'=>$record['Show']['session_id'],
-			'Param2'=>str_replace(":","",str_replace(" ","",str_replace("-","",$record['Show']['schedule']))),
-			'Param3'=>"N",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		debug($response);
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			#pr(h($result[6]));
-			pr($response->ReturnData);
-			#pr($transId);
-		}
 
 
 		#$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));

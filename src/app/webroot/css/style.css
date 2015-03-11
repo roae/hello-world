@@ -2847,8 +2847,8 @@ select {
 #complex-container .complex img {
   display: block;
   width: 30%;
-  margin-left: 20px;
-  float: right;
+  margin-right: 20px;
+  float: left;
 }
 /* line 50, sass/modules/pages/_complex.scss */
 #complex-container .complex .address {

@@ -100,6 +100,8 @@ I18nRouter::connect( "/[privacy_policies_url]", array( 'controller' => 'pages',
 ) );
 
 I18nRouter::connect( "/[sitemap_url]", array( 'controller' => 'pages', 'action' => 'display', 'sitemap' ) );
+I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
+I18nRouter::connect( "/[m_complex_url]", array( 'controller' => 'pages', 'action' => 'display', 'complex' ) );
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.

@@ -1,35 +1,5 @@
 .billboard-container {
 
-  .top-message {
-    position: relative;
-    padding: 90px 15px 70px;
-    margin-bottom: 40px;
-    text-align: center;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      margin-left: -75px;
-      width: 150px;
-      height: 1px;
-      background-color: $light-gray;
-    }
-
-    p {
-      margin-top: 0;
-      color: $gray;
-    }
-  }
-
-  h1 {
-    margin-bottom: 15px;
-    font-size: 42px;
-    font-weight: 300;
-    color: $red;
-  }
-
   .the-billboard { font-size: 0; }
 
   .billboard-aside {
@@ -247,5 +217,35 @@
         &:hover { background-color: darken($yellow, 5%) }
       }
     }
+  }
+}
+
+.top-message {
+  position: relative;
+  padding: 90px 15px 70px;
+  margin-bottom: 40px;
+  text-align: center;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -75px;
+    width: 150px;
+    height: 1px;
+    background-color: $light-gray;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+    font-size: 42px;
+    font-weight: 300;
+    color: $red;
+  }
+
+  p {
+    margin-top: 0;
+    color: $gray;
   }
 }

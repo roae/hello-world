@@ -97,7 +97,7 @@
 				?>
 				<tr>
 					<th><?= $ticketPrice['description']?></th>
-					<td><?= $this->Number->currency($ticketPrice['price']) ?> c/u</td>
+					<td>$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
 					<td class="buttons">
 						<button type="button" class="less">-</button>
 						<span class="cantidad">0</span>

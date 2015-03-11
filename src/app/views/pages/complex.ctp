@@ -6,8 +6,6 @@
 
   <div class="complex-info">
     <aside>
-      <strong class="title">Complejos</strong>
-
       <ul>
         <li>
           <a class="selected" href="">Culiacán</a>

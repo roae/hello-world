@@ -1,37 +1,64 @@
 #SessionCheckout{
   .big-cover {
+
     position: relative;
-    height: 260px;
+
     color: #fff;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #f08b24;
-    background-size: cover;
+
+    background-color: #fff;
+
 
     //-moz-background-blend-mode: luminosity;
     //background-blend-mode: luminosity;
 
+    .bg{
+      -moz-filter: blur(10px);
+      -webkit-filter: blur(10px);
+      filter: url(../img/blur.svg#blur);
+      filter: blur(10px);
+      filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='10');
+      height: 220px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
     .col-container {
       position: relative;
-      height: 260px;
       z-index: 2;
+    }
+    header{
+      position: absolute;
+      bottom: 15px;
+      padding-left: span(4)+gutter();
+      overflow: hidden;
+      width: 100%;
     }
 
     h1 {
       position: relative;
       padding-bottom: 15px;
-      font-size: 42px;
-      font-weight: 300;
+      padding-left:20px;
+      font-size: 50px;
+      font-weight: 100;
+      @include text-overflow();
+
 
       &:after {
         content: '';
         position: absolute;
         bottom: 8px;
-        left: 0;
+        left: 20px;
         width: 100px;
         height: 1px;
         background-color: rgba(255, 255, 255, 0.5);
       }
+    }
+    p{
+      font-size: 24px;
+      font-weight: 200;
+      padding-left:20px;
+      @include text-overflow();
     }
 
     &:after {
@@ -40,7 +67,7 @@
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 200px;
+      height: 300px;
 
       @include gradientVertical(transparent,#000 );
     }
@@ -69,12 +96,7 @@
     }
   }
 
-  header{
-    position: absolute;
-    bottom: 15px;
-    left: span(4)+gutter();
-    margin-left: 20px;
-  }
+
 
   .movie-information{
     position: relative;
@@ -116,6 +138,7 @@
       font-weight: 100;
       color:#fff;
       font-size: 46px;
+      margin-bottom: 10px;
     }
     .btn{
       background: #006935;
@@ -177,10 +200,11 @@
           padding:20px 5px;
           color: #686868;
           font-weight: normal;
+          vertical-align: middle;
         }
         th{
           color: #434343;
-          font-size: 24px;
+          font-size: 20px;
           text-align: left;
         }
       }
@@ -192,6 +216,7 @@
         float: left;
         display: inline-block;
         padding: 0 10px;
+        font-size: 24px;
       }
       .less{
         float: left;
@@ -230,11 +255,22 @@
         &:before{
           content: " ";
           border-top: 3px solid #00CC67;
+          height:0;
           width: 15px;
           display: block;
           position: absolute;
           top: 17px;
           left: 11px;
+        }
+        &:after{
+          content: " ";
+          border-left: 3px solid #00CC67;
+          width: 0;
+          height: 15px;
+          display: block;
+          position: absolute;
+          top: 11px;
+          left: 17px;
         }
       }
     }

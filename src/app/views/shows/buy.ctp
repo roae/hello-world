@@ -1,3 +1,4 @@
+<?php /* @var $this View  */?>
 <div class="session-buy-container" id="SessionCheckout">
 
 	<?php
@@ -11,7 +12,8 @@
 	}
 	?>
 
-	<div class="big-cover <?= $class ?>" style="background-image: url(<?= $bg_url ?>)">
+	<div class="big-cover <?= $class ?>">
+		<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 		<div class="col-container">
 			<header>
 				<h1 class="blured-title">
@@ -75,10 +77,7 @@
 
 	<section class="ticketsSelection col-container">
 		<div class="title">
-			<!--<span class="step">1</span>-->
-
 			<strong>[:buy-step-1:]</strong>
-
 			<div class="step-text">
 				[:buy-step-1-text:]
 			</div>
@@ -86,28 +85,19 @@
 		<table>
 			<thead>
 				<tr>
-					<td></td>
-					<td>Precio</td>
-					<td>Cantidad</td>
-					<td>Subtotal</td>
+					<th></th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th>Subtotal</th>
 				</tr>
 			</thead>
 			<tbody>
+			<?php
+			foreach($record['TicketPrice'] as $ticketPrice){
+				?>
 				<tr>
-					<th>Adulto</th>
-					<td>$51.00 c/u</td>
-					<td class="buttons">
-						<button type="button" class="less">-</button>
-						<span class="cantidad">2</span>
-						<button type="button" class="plus">+</button>
-					</td>
-					<td>
-						$102.00
-					</td>
-				</tr>
-				<tr>
-					<th>3ra Edad</th>
-					<td>$45.00 c/u</td>
+					<th><?= $ticketPrice['description']?></th>
+					<td>$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
 					<td class="buttons">
 						<button type="button" class="less">-</button>
 						<span class="cantidad">0</span>
@@ -117,18 +107,9 @@
 						$0.00
 					</td>
 				</tr>
-				<tr>
-					<th>Niños</th>
-					<td>$32.00 c/u</td>
-					<td class="buttons">
-						<button type="button" class="less">-</button>
-						<span class="cantidad">1</span>
-						<button type="button" class="plus">+</button>
-					</td>
-					<td>
-						$32.00
-					</td>
-				</tr>
+				<?php
+			}
+			?>
 			</tbody>
 		</table>
 

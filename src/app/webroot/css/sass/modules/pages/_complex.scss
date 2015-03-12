@@ -1,5 +1,5 @@
 #complex-container {
-  aside {
+  /*aside {
     @include span(3);
 
     .title {
@@ -29,12 +29,12 @@
       }
     }
 
-  }
+  }*/
 
   .complex {
     @include span(12);
 
-    margin-left: span(1) + gutter();
+    margin-left: span(2) + gutter();
 
     .map {
       margin-bottom: 20px;
@@ -59,6 +59,7 @@
 
       p {
         margin-bottom: 10px;
+        font-size: 24px;
       }
 
       .tel {

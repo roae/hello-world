@@ -5,25 +5,6 @@
   </header>
 
   <div class="complex-info">
-    <aside>
-      <ul>
-        <li>
-          <a class="selected" href="">Culiacán</a>
-        </li>
-
-        <li>
-          <a href="">Durango</a>
-        </li>
-
-        <li>
-          <a href="">Torreón</a>
-        </li>
-
-        <li>
-          <a href="">Puerto Peñasco</a>
-        </li>
-      </ul>
-    </aside>
 
     <div class="complex">
 
@@ -39,10 +20,9 @@
 
           <p>Av. Cancun 1555 Nte. Fracc. Isla Musala Culiacan Sinaloa 80000</p>
 
-          <span class="tel">(667) 146-4405</span>
-          <span class="tel">(667) 146-4406</span>
-          <span class="tel">(667) 146-4407</span>
-          <span class="tel">(667) 146-4408</span>
+          <span class="tel">
+            (667) 146-4405, (667) 146-4406, (667) 146-4407, (667) 146-4408
+          </span>
         </div>
 
         <div class="address">
@@ -52,9 +32,9 @@
 
           <p>Cerro de Montelargo 4000 1880 Colinas de San Miguel Culiacan Sinaloa 80000</p>
 
-          <span class="tel">(667) 146-0311</span>
-          <span class="tel">(667) 146-0312</span>
-          <span class="tel">(667) 146-0313</span>
+          <span class="tel">
+            (667) 146-0311, (667) 146-0312, (667) 146-0313
+          </span>
         </div>
       </div>
     </div>

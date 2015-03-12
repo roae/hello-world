@@ -56,11 +56,6 @@
         color: $gray;
       }
     }
-    .sticky{
-      position: fixed;
-      top: 100px;
-      z-index: 8;
-    }
   }
 
   .billboard-list {
@@ -69,10 +64,6 @@
     width: span(11) + gutter();
     vertical-align: top;
     font-size: 16px;
-
-    .complex{
-      position: relative;
-    }
 
     .complex-name {
       .complex-label{
@@ -84,12 +75,6 @@
         background: $dark-gray;
         @include border-radius(4px);
         display: inline-block;
-      }
-    }
-    .sticky{
-      .complex-label{
-        @include border-radius(0 0 4px 4px);
-        @include box-shadow(0 1px 1px rgba(0,0,0,0.5));
       }
     }
     h3 {
@@ -150,24 +135,6 @@
           position: relative;
           top: 1px;
         }
-      }
-    }
-    // Mensaje que aparece cuando no hay funciones en el complejo
-    .no-movies{
-      padding:20px 30px;
-      margin: 20px 0 50px;
-      border-left: 3px solid $light-gray;
-      //margin:50px 0;
-      //text-align: center;
-      font-size: 14px;
-      color: $gray;
-      .big{
-        font-size: 24px;
-        color: darken($gray,5%);
-      }
-      .btn{
-        display: inline-block;
-        margin:20px 0 0;
       }
     }
 

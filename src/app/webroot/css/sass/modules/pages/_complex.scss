@@ -1,0 +1,69 @@
+#complex-container {
+  aside {
+    @include span(3);
+
+    .title {
+      display: block;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    li {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      color: #fff;
+      background-color: $dark-gray;
+      border-radius: 3px;
+
+      &:hover { background-color: darken($dark-gray, 5%); }
+
+      &.selected {
+        color: $dark-gray;
+        background-color: $light-gray;
+      }
+    }
+
+  }
+
+  .complex {
+    @include span(12);
+
+    margin-left: span(1) + gutter();
+
+    .map {
+      margin-bottom: 20px;
+    }
+
+    img {
+      display: block;
+      width: span(5);
+      margin-right: 20px;
+      float: left;
+    }
+
+    .address {
+      margin-bottom: 30px;
+      overflow: hidden;
+
+      .title {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      .tel {
+        display: block;
+      }
+    }
+  }
+}

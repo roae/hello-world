@@ -318,6 +318,74 @@ function nextSlide(){
 
 	});
 
+	if($('.complex:has(.movies)' ).length){
+		// Waypoint para empezar a mover el nombre de los complejos
+		$('.complex').waypoint({
+			handler:function(direction) {
+				var $complexName = $(".complex-name",$(this.element));
+				$complexName.toggleClass("sticky");
+				if(direction == "down"){
+					$(".movies",$(this.element) ).css({marginTop:$complexName.outerHeight()});
+					$complexName.css({position: "fixed",top: "68px",zIndex: 8});
+				}else{
+					$complexName.css({position: "static"});
+					$(".movies",$(this.element) ).css({marginTop:"auto"});
+				}
+				//console.log(direction);
+			},
+			continuous:false,
+			offset:80
+		});
+
+		// Waypoint para detener el elemento sticky del complejo anterior
+
+		$('.complex:has(.movies)').waypoint({
+			handler:function(direction) {
+				if(direction == "down"){
+					if($(this.element).prev().hasClass("complex")){
+						$(".complex-name",$(this.element).prev() ).css({position:'absolute',bottom:0,top:'auto'});
+					}
+				}else{
+					if($(this.element).prev().hasClass("complex")) {
+						$( ".complex-name", $( this.element ).prev() ).css( {position: 'fixed', top: '68px',bottom:'auto'} );
+					}
+				}
+			},
+			continuous:false,
+			offset:140
+		});
+	}
+
+
+	if($(".billboard-list" ).outerHeight() > $(".billboard-aside" ).outerHeight()){
+		$(".billboard-aside .vertical-banner" ).waypoint({
+			handler: function(direction){
+				if(direction == "down"){
+					$(this.element ).css({width: $(this.element ).outerWidth() }).css({position: "fixed",top: "100px",zIndex: 8});
+				}else{
+					$(this.element ).css({position:'static'});
+				}
+
+			},
+			continuous:false,
+			offset:'100px'
+		});
+
+		$("#main-footer" ).waypoint({
+			handler: function(direction){
+				console.log(direction);
+				if(direction == "down"){
+					$(".billboard-aside .vertical-banner").css({position: "absolute",bottom:0,top:"auto"});
+				}else{
+					$(".billboard-aside .vertical-banner").css({position: "fixed",bottom:"auto",top:"100px"});
+				}
+
+			},
+			continuous:false,
+			offset: $(".billboard-aside .vertical-banner").outerHeight()+100
+		});
+	}
+
 	var functions = {
 		remove_blur: function() {
 			$('#main-header, .the-content, #main-footer').removeClass('blured');

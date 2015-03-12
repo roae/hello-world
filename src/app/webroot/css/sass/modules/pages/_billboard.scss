@@ -81,6 +81,16 @@
         display: inline-block;
       }
     }
+    .sticky{
+      .complex-label{
+        padding: 3px 5px;
+        font-size: 24px;
+        transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+      }
+
+    }
     h3 {
       a {
         color: $dark-gray;

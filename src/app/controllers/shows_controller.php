@@ -17,7 +17,11 @@ class ShowsController extends AppController{
 
 		$this->__setCitySelected();
 
+		$this->set("billboard",$this->__getBillboardSchedules());
 
+	}
+
+	function __getBillboardSchedules(){
 		$recordset = $this->Show->Location->find("all", array(
 			'fields'=>$this->Show->Location->publicFields,
 			'conditions'=>array(
@@ -56,9 +60,7 @@ class ShowsController extends AppController{
 
 			}
 		}
-
-		$this->set("billboard",$billboard);
-
+		return $billboard;
 	}
 
 	function __setCitySelected(){
@@ -273,6 +275,54 @@ class ShowsController extends AppController{
 		}
 
 		return $sessionSeatData;
+	}
+
+	function rest($locations = null){
+		$conditions = array();
+		if(isset($this->params['named']['locations'])){
+			$conditions = array('Show.location_id'=>explode("-",$this->params['named']['locations']));
+		}else if(isset($this->params['named']['city'])){
+			$locations = $this->Show->Location->find("list",array(
+				'conditions'=>array(
+					'Location.trash'=>0,
+					'Location.status'=>1,
+					'Location.id'=>$this->params['named']['city'])
+				)
+			);
+			if(!empty($locations)){
+				$conditions = array('Show.location_id'=>array_keys($locations));
+			}
+		}
+		if(isset($this->params['named']['schedule']) && $this->params['named']['schedule']){
+			if(isset($this->params['named']['city']) || isset($this->params['named']['locations'])){
+				if(isset($this->params['named']['city'])){
+					Configure::write("CitySelected.id",$this->params['named']['city']);
+				}
+				if(isset($this->params['named']['locations'])){
+					Configure::write("CitySelected.id",$this->params['named']['city']);
+				}
+				$this->set("billboard",$this->__getBillboardSchedules());
+			}else{
+				$this->set("billboard","City or Locations not found");
+			}
+
+		}else{
+			$query = array(
+				'fields'=>array('Show.id'),
+				'contain'=>array(
+					'Movie'=>array(
+						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
+						'Poster'
+					)
+				),
+				'group'=>array(
+					'movie_id'
+				),
+				'conditions'=>$conditions
+			);
+			$this->set("billboard",$this->Show->find("all",$query));
+		}
+
 	}
 
 }

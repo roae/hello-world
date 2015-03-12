@@ -56,12 +56,26 @@ module.exports = function(grunt) {
       }
     },
 
+    less:{
+      dist:{
+        options:{
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files:{
+          //"less/l10ntools.less": "css/l10ntools.css"
+          "../plugins/i18n/webroot/css/l10ntools.css":"../plugins/i18n/webroot/less/l10ntools.less"
+        }
+      }
+    },
+
     // Watch files for changes
     watch: {
       css: {
-        files: ['css/sass/**/**/*', 'css/sass/*'],
+        files: ['css/sass/**/**/*', 'css/sass/*','../plugins/i18n/webroot/less/*'],
         // Run compass, autoprefixer, and CSSO
-        tasks: ['compass', 'csso'],
+        tasks: ['compass', 'csso','less'],
         options: {
           interrupt: true,
           spawn: false,
@@ -85,5 +99,5 @@ module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
   // Register tasks
-  grunt.registerTask('default', ['compass', 'csso', 'newer:ngAnnotate' ,'newer:uglify', 'watch']);
+  grunt.registerTask('default', ['newer:compass', 'newer:csso', 'newer:ngAnnotate' ,'newer:uglify','newer:less', 'watch']);
 };

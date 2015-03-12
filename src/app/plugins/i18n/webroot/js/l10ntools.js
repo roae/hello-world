@@ -449,7 +449,7 @@ $(function(){
 						'span',{className:'ribbonSecTitle'},__("System.Styles"),
 						'a',{className:'stylePrev',id:'ribbonPrevStyle',href:'#'},'',
 						'a',{className:'styleNext',id:'ribbonNextStyle',href:'#'},'',
-						'div',{className:'carrousel'},[
+						'div',{className:'stylesCarrousel'},[
 							'div',{'class':'slideContainer'},[
 								'div',{'class':'slide',id:'ribbonSlide'},[
 									'a',{className:'style tool',href:'#',title:__("System.Normal",true),rel:'normal'},[

@@ -9,6 +9,11 @@ class ShowsController extends AppController{
 	var $uses = array(
 		"Show",
 	);
+	/**
+	 * Conditions de peliculas usados para sacar los horarios
+	 * @var array
+	 */
+	var $__showConditions = array();
 
 	function index() {
 		if(!isset($this->params['slug'])){
@@ -16,6 +21,12 @@ class ShowsController extends AppController{
 		}
 
 		$this->__setCitySelected();
+
+		$this->__showConditions = array(
+			'Show.schedule >='=>date("Y-m-d H:i:s"),
+			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+			#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+		);
 
 		$this->set("billboard",$this->__getBillboardSchedules());
 
@@ -31,11 +42,7 @@ class ShowsController extends AppController{
 			),
 			'contain'=>array(
 				'Show'=>array(
-					'conditions'=>array(
-						'Show.schedule >='=>date("Y-m-d H:i:s"),
-						'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
-						#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
-					),
+					'conditions'=>$this->__showConditions,
 					'Projection',
 					'Movie'=>array(
 						'Poster'
@@ -268,13 +275,27 @@ class ShowsController extends AppController{
 			#pr($sessionSeatData);
 			#pr($rData);
 		}else{
-
 			pr("error");
 			pr($response);
-
 		}
 
 		return $sessionSeatData;
+	}
+
+	function get_movie_schedule($movie_id = null){
+		if(empty($movie_id) && isset($this->params['movie_id'])){
+			$movie_id = $this->params['movie_id'];
+		}else{
+			return  false;
+		}
+
+		$this->__showConditions = array(
+			'Show.schedule >='=>date("Y-m-d H:i:s"),
+			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+			'Show.movie_id'=>$movie_id
+		);
+
+		return $this->__getBillboardSchedules();
 	}
 
 	function rest($locations = null){
@@ -301,6 +322,11 @@ class ShowsController extends AppController{
 				if(isset($this->params['named']['locations'])){
 					Configure::write("CitySelected.id",$this->params['named']['city']);
 				}
+				$this->__showConditions = array(
+					'Show.schedule >='=>date("Y-m-d H:i:s"),
+					'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+					#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+				);
 				$this->set("billboard",$this->__getBillboardSchedules());
 			}else{
 				$this->set("billboard","City or Locations not found");

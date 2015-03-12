@@ -16,6 +16,7 @@ class Movie extends AppModel {
 	var $hasMany = array(
 		'Projection',
 		'MovieLocation',
+		'Show'
 	);
 	var $displayField="title";
 

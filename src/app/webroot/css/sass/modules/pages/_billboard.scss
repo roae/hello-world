@@ -65,6 +65,10 @@
     vertical-align: top;
     font-size: 16px;
 
+    .complex{
+      position: relative;
+    }
+
     .complex-name {
       .complex-label{
         padding: 5px 10px;
@@ -135,6 +139,24 @@
           position: relative;
           top: 1px;
         }
+      }
+    }
+    // Mensaje que aparece cuando no hay funciones en el complejo
+    .no-movies{
+      padding:20px 30px;
+      margin: 20px 0 50px;
+      border-left: 3px solid $light-gray;
+      //margin:50px 0;
+      //text-align: center;
+      font-size: 14px;
+      color: $gray;
+      .big{
+        font-size: 24px;
+        color: darken($gray,5%);
+      }
+      .btn{
+        display: inline-block;
+        margin:20px 0 0;
       }
     }
 

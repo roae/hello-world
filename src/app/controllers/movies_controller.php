@@ -231,15 +231,16 @@ class MoviesController extends AppController{
 		$this->Movie->contain(array(
 			"Poster",
 			"Gallery",
-			"Projection",
+			/*"Projection",
 			'MovieLocation'=>array(
 				'Location'
-			)
+			)*/
 		));
 
 		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
+		$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get_movie_schedule','movie_id'=>$record['Movie']['id']));
 
-		$this->set(compact("record"));
+		$this->set(compact("record","billboard"));
 	}
 
 }

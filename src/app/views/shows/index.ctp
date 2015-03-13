@@ -15,9 +15,12 @@
 					<div class="complex-name floating">
 						<span class="complex-label"><?= $record['Location']['name'] ?></span>
 					</div>
-
+					<?php
+					if(isset($record['Show'])){
+					?>
 					<ul class="movies">
 					<?php
+
 						foreach($record['Show'] as $item) {
 					?>
 
@@ -53,7 +56,7 @@
 									<strong class="schedule-title">[:PREMIERE:]</strong>
 									<? foreach($item['Premier'] as $type => $shows): ?>
 										<div class="schedule premiere">
-											<span class="label"><strong><?= str_replace("|","/",$type) ?></span>
+											<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
 											<ul>
 												<?
 												$schedule = array();
@@ -74,6 +77,13 @@
 
 					<?php } ?>
 					</ul>
+					<?php }else{ ?>
+						<div class="no-movies">
+							<div class="big">[:no-movies-to-show-in-location:]</div>
+							<div>[:try-other-day:]</div>
+							<?= $this->Html->link("Ver horario de mañana","#",array('class'=>'btn'));?>
+						</div>
+					<?php } ?>
 
 				</div>
 				<?php endforeach; ?>

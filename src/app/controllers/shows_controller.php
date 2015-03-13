@@ -9,6 +9,11 @@ class ShowsController extends AppController{
 	var $uses = array(
 		"Show",
 	);
+	/**
+	 * Conditions de peliculas usados para sacar los horarios
+	 * @var array
+	 */
+	var $__showConditions = array();
 
 	function index() {
 		if(!isset($this->params['slug'])){
@@ -17,7 +22,17 @@ class ShowsController extends AppController{
 
 		$this->__setCitySelected();
 
+		$this->__showConditions = array(
+			'Show.schedule >='=>date("Y-m-d H:i:s"),
+			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+			#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+		);
 
+		$this->set("billboard",$this->__getBillboardSchedules());
+
+	}
+
+	function __getBillboardSchedules(){
 		$recordset = $this->Show->Location->find("all", array(
 			'fields'=>$this->Show->Location->publicFields,
 			'conditions'=>array(
@@ -27,11 +42,7 @@ class ShowsController extends AppController{
 			),
 			'contain'=>array(
 				'Show'=>array(
-					'conditions'=>array(
-						'Show.schedule >='=>date("Y-m-d H:i:s"),
-						'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
-						#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
-					),
+					'conditions'=>$this->__showConditions,
 					'Projection',
 					'Movie'=>array(
 						'Poster'
@@ -56,9 +67,7 @@ class ShowsController extends AppController{
 
 			}
 		}
-
-		$this->set("billboard",$billboard);
-
+		return $billboard;
 	}
 
 	function __setCitySelected(){
@@ -266,13 +275,80 @@ class ShowsController extends AppController{
 			#pr($sessionSeatData);
 			#pr($rData);
 		}else{
-
 			pr("error");
 			pr($response);
-
 		}
 
 		return $sessionSeatData;
+	}
+
+	function get_movie_schedule($movie_id = null){
+		if(empty($movie_id) && isset($this->params['movie_id'])){
+			$movie_id = $this->params['movie_id'];
+		}else{
+			return  false;
+		}
+
+		$this->__showConditions = array(
+			'Show.schedule >='=>date("Y-m-d H:i:s"),
+			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+			'Show.movie_id'=>$movie_id
+		);
+
+		return $this->__getBillboardSchedules();
+	}
+
+	function rest($locations = null){
+		$conditions = array();
+		if(isset($this->params['named']['locations'])){
+			$conditions = array('Show.location_id'=>explode("-",$this->params['named']['locations']));
+		}else if(isset($this->params['named']['city'])){
+			$locations = $this->Show->Location->find("list",array(
+				'conditions'=>array(
+					'Location.trash'=>0,
+					'Location.status'=>1,
+					'Location.id'=>$this->params['named']['city'])
+				)
+			);
+			if(!empty($locations)){
+				$conditions = array('Show.location_id'=>array_keys($locations));
+			}
+		}
+		if(isset($this->params['named']['schedule']) && $this->params['named']['schedule']){
+			if(isset($this->params['named']['city']) || isset($this->params['named']['locations'])){
+				if(isset($this->params['named']['city'])){
+					Configure::write("CitySelected.id",$this->params['named']['city']);
+				}
+				if(isset($this->params['named']['locations'])){
+					Configure::write("CitySelected.id",$this->params['named']['city']);
+				}
+				$this->__showConditions = array(
+					'Show.schedule >='=>date("Y-m-d H:i:s"),
+					'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+					#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+				);
+				$this->set("billboard",$this->__getBillboardSchedules());
+			}else{
+				$this->set("billboard","City or Locations not found");
+			}
+
+		}else{
+			$query = array(
+				'fields'=>array('Show.id'),
+				'contain'=>array(
+					'Movie'=>array(
+						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
+						'Poster'
+					)
+				),
+				'group'=>array(
+					'movie_id'
+				),
+				'conditions'=>$conditions
+			);
+			$this->set("billboard",$this->Show->find("all",$query));
+		}
+
 	}
 
 }

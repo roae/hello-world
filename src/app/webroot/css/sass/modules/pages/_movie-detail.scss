@@ -5,7 +5,7 @@
     color: #fff;
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: #f08b24;
+    background-color: #f1f1f1;
     background-size: cover;
 
     //-moz-background-blend-mode: luminosity;
@@ -23,6 +23,7 @@
       padding-left: span(4)+gutter();
       overflow: hidden;
       width: 100%;
+      text-shadow: 0px 0px 10px #000
     }
 
     h1 {
@@ -32,6 +33,7 @@
       font-weight: 100;
       @include text-overflow();
       padding-left: 20px;
+
 
       &:after {
         content: '';
@@ -96,16 +98,21 @@
       display: inline-block;
       vertical-align: top;
     }
+    h2 {
+      margin: 15px 0;
+      font-size: 27px;
+      font-weight: 300;
+      color: $gray;
+      text-align: center;
+    }
     @include with-layout(11) {
       .sinopsis {
         @extend .block;
         //@include span(11);
 
         h2 {
-          margin-bottom: 15px;
-          font-size: 27px;
-          font-weight: 300;
-          color: $gray;
+          margin-top:0;
+          text-align: left;
         }
 
         p {
@@ -243,6 +250,33 @@
           }
         }
 
+        .complex-name{
+          margin-bottom: 20px;
+          font-size: 32px;
+          font-weight: 300;
+          color: $dark-gray;
+          display: inline-block;
+        }
+
+        // Mensaje que aparece cuando no hay funciones de la pelicula
+        .no-schedules{
+          padding:10px 30px;
+          margin: 10px 0 30px;
+          border-left: 3px solid $light-gray;
+          //margin:50px 0;
+          //text-align: center;
+          font-size: 14px;
+          color: $gray;
+          .big{
+            font-size: 20px;
+            color: darken($gray,5%);
+          }
+          .btn{
+            display: inline-block;
+            margin:20px 0 0;
+          }
+        }
+
       }
     }
 
@@ -303,4 +337,5 @@
       img { border-radius: 3px; }
     }
   }
+
 }

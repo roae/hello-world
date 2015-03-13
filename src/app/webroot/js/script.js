@@ -488,4 +488,27 @@ function nextSlide(){
 		$('body').append(blured_lightbox.append(blured_lightbox_content));
 	}
 
+	var login_functions = {
+		remove_blur: function() {
+			$('#main-header, .the-content, #main-footer').removeClass('blured');
+		},
+		add_blur: function() {
+			$('#main-header, .the-content, #main-footer').addClass('blured');
+		}
+	};
+
+	$('.account-container').find('.signin').on('click', function(event) {
+		event.preventDefault();
+
+		$('#login-container').addClass('show');
+		login_functions.add_blur();
+	});
+
+	$(window).on('keyup', function(event) {
+		if( event.keyCode == 27 ) {
+			$('#login-container').removeClass('show');
+			login_functions.remove_blur();
+		}
+	});
+
 })(jQuery);

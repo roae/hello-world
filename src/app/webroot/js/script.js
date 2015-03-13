@@ -288,7 +288,9 @@ function nextSlide(){
 
 		});
 
-		$('.next-premieres').find('.movies-list').owlCarousel({
+		$('.next-premieres .movies-list' ).owlCarousel({
+			center:true,
+			loop:true,
 			items : 8,
 			pagination : true,
 	    	paginationNumbers: false,

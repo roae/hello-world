@@ -141,15 +141,4 @@
   </section>
 </section>
 
-<section class="next-premieres">
-
-  <header class="col-container">
-    <h2 class="titleCommingSoon">[:proximamente-en-cartelera:]</h2>
-  </header>
-
-  <div class="movies">
-    <div class="movies-list owl-carousel">
-      <?= $this->element("shows/billboard"); ?>
-    </div>
-  </div>
-</section>
+<?= $this->element("movies/commingsoon"); ?>

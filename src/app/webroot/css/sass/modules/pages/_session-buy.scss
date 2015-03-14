@@ -166,30 +166,7 @@
   .ticketsSelection{
     padding-bottom: 50px;
     margin-bottom: 100px;
-    .title{
-      text-align: center;
-      margin-bottom: 50px;
-      strong{
-        color: #f18932;
-        font-size: 30px;
-        font-weight: 300;
-        position: relative;
-        &:before{
-          position: absolute;
-          top:5px;
-          left: -50px;
-          border: 3px solid #f9cca7;
-          width: 40px;
-          height: 40px;
-          @include border-radius(50%);
-          display: inline-block;
-          margin-right: 10px;
-          content:"1";
-          line-height: 33px;
-        }
-      }
 
-    }
     table{
       @include span(10);
       margin-left: span(1)+gutter();
@@ -291,6 +268,182 @@
       font-size: 48px;
       display:block;
     }
+  }
+
+  .seatsSelection{
+    border-top: 1px solid #f1f1f1;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+    .stepTitle{
+      strong{
+        &:before{
+          content:"2";
+        }
+      }
+    }
+
+    .room-container{
+      border: 0;
+      margin: 10px auto 100px;
+      font-family: "Open Sans","Raleway","Helvetica Neue",Helvetica,Arial;
+      text-align: center;
+      color:#313131;
+
+      .layout{
+        display: inline-block;
+      }
+
+      .screen{
+        margin:20px 50px;
+        background:#f1f1f1;
+        padding: 10px 0;
+        position: relative;
+        overflow: hidden;
+        font-size: 20px;
+        font-weight: 100;
+        &:before{
+          content:" ";
+          width: 100px;
+          height: 100px;
+          display:block;
+          position: absolute;
+          top:0;
+          left:-75px;
+          background: #fff;
+          @include rotate(60deg);
+        }
+        &:after{
+          content:" ";
+          width: 100px;
+          height: 100px;
+          display:block;
+          position: absolute;
+          top:0;
+          right:-75px;
+          background: #fff;
+          @include rotate(25deg);
+        }
+      }
+
+      /*td{
+        width: 50px;
+      }*/
+      .room-layout-row{
+        white-space: nowrap;
+        &:nth-of-type(odd){
+          bockgroun: #f1f1f1;
+        }
+      }
+      .row{
+        display: inline-block;
+        width: 50px;
+      }
+      .seat{
+        margin: 5px 1px;
+        display:inline-block;
+        width: 50px;
+        height: 42px;
+        text-align: center;
+        padding-top:4px;
+
+      }
+      .empty{
+        width: 58px;
+        display: inline-block;
+      }
+      .status-0 {
+        .seat {
+          background: url("../img/seat-0.png") center;
+          background-size: 100% 100%;
+          border-top: 0;
+          cursor: pointer;
+          &:hover{
+            background: url("../img/seat-hover.png") center;
+            background-size: 100% 100%;
+          }
+        }
+        &.Multi-End .seat{
+          background: url("../img/Multi-End-0.png") center;
+          background-size: 100% 100%;
+          &:hover{
+            background: url("../img/Multi-End-hover.png") center;
+            background-size: 100% 100%;
+          }
+        }
+        &.Multi-Start .seat{
+          background: url("../img/Multi-Start-0.png") center;
+          background-size: 100% 100%;
+          &:hover{
+            background: url("../img/Multi-Start-hover.png") center;
+            background-size: 100% 100%;
+          }
+        }
+      }
+      .status-1 {
+        .seat {
+          background: url("../img/seat-1.png") center;
+          background-size: 100% 100%;
+          border-top: 0;
+          color:#fff;
+        }
+        &.Multi-End .seat{
+          background: url("../img/Multi-End-1.png") center;
+          background-size: 100% 100%;
+        }
+        &.Multi-Start .seat{
+          background: url("../img/Multi-Start-1.png") center;
+          background-size: 100% 100%;
+        }
+      }
+
+      .Multi-Start{
+        @include box-sizing(content-box);
+        .seat{
+          padding-right: 15px;
+        }
+        margin-right: 10px;
+
+      }
+
+      .Multi-End{
+        width: 50px;
+        .seat{
+          padding-left: 15px;
+          //margin-left: 10px;
+        }
+
+      }
+    }
+
+
+
+
+  }
+
+  .stepTitle{
+    text-align: center;
+    margin-bottom: 50px;
+    strong{
+      color: #f18932;
+      font-size: 30px;
+      font-weight: 300;
+      position: relative;
+      &:before{
+        position: absolute;
+        top:-5px;
+        left: -50px;
+        border: 3px solid #f9cca7;
+        width: 40px;
+        height: 40px;
+        @include border-radius(50%);
+        display: inline-block;
+        margin-right: 10px;
+        content:"1";
+        line-height: 33px;
+      }
+    }
+
   }
 
 }

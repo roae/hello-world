@@ -151,10 +151,9 @@ class ShowsController extends AppController{
 		));
 		$record = $this->Show->read();
 		$this->set("record",$record);
-
-
-
-		#$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
+		if($record['Show']['seat_alloctype']){
+			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
+		}
 	}
 
 	function __getSeats($server,$session_id){

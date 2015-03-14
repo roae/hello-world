@@ -70,12 +70,29 @@ module.exports = function(grunt) {
       }
     },
 
+    notify: {
+      css:{
+        options: {
+          title: "Css Files Build",
+          message:'LESS / SASS task complete',
+          duration: 3
+        }
+      },
+      scripts:{
+        options: {
+          title: "JS Files Build",
+          message:'Uglify task complete',
+          duration: 3
+        }
+      }
+    },
+
     // Watch files for changes
     watch: {
       css: {
         files: ['css/sass/**/**/*', 'css/sass/*','../plugins/i18n/webroot/less/*'],
         // Run compass, autoprefixer, and CSSO
-        tasks: ['compass', 'csso','less'],
+        tasks: ['compass', 'csso','less','notify:css'],
         options: {
           interrupt: true,
           spawn: false,
@@ -84,7 +101,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['js/admin/projections.js'],
-        tasks: ['uglify']
+        tasks: ['uglify','notify:scripts']
       }
     }
 
@@ -93,11 +110,12 @@ module.exports = function(grunt) {
   // Load tasks
   /*grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-csso');
-  grunt.loadNpmTasks('grunt-notify');*/
+  grunt.loadNpmTasks('grunt-csso');*/
+  grunt.loadNpmTasks('grunt-notify');
   require('time-grunt')(grunt);
   require('jit-grunt')(grunt);
 
   // Register tasks
   grunt.registerTask('default', ['newer:compass', 'newer:csso', 'newer:ngAnnotate' ,'newer:uglify','newer:less', 'watch']);
+  grunt.task.run('notify_hooks');
 };

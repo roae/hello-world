@@ -76,7 +76,7 @@
 	</div>
 
 	<section class="ticketsSelection col-container">
-		<div class="title">
+		<div class="stepTitle">
 			<strong>[:buy-step-1:]</strong>
 			<div class="step-text">
 				[:buy-step-1-text:]
@@ -120,7 +120,13 @@
 		</div>
 	</section>
 
+	<?php
+	if(isset($sessionSeatData)){
+		echo $this->element("shows/seats",array('sessionSeatData'=>$sessionSeatData));
+	}
+	?>
+
+
 
 </div>
 
-<? #echo $this->element("shows/seats",array('sessionSeatData'=>$sessionSeatData));?>

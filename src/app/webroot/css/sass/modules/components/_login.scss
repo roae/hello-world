@@ -10,6 +10,17 @@
 
   &.show { display: block; }
 
+  #login-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    text-indent: -1000px;
+    background: url(../img/lightbox-close-icon.png) no-repeat left top;
+    overflow: hidden;
+  }
+
   .login {
     $login-width: 480px;
 
@@ -46,6 +57,7 @@
         border-radius: 3px;
 
         &.gp { background-color: #de4b39; }
+        &.tw { background-color: #5ea9dd; }
       }
     }
 

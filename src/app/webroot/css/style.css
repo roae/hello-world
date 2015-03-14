@@ -352,6 +352,17 @@ body {
   z-index: 50;
 }
 /* line 18, sass/modules/components/_blured-lightbox.scss */
+#blured-lightbox .blured-lightbox-close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 32px;
+  height: 32px;
+  text-indent: -1000px;
+  background: url(../img/lightbox-close-icon.png) no-repeat left top;
+  overflow: hidden;
+}
+/* line 29, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-content {
   position: absolute;
   top: 15%;
@@ -362,12 +373,12 @@ body {
   padding: 20px;
   border-radius: 3px;
 }
-/* line 28, sass/modules/components/_blured-lightbox.scss */
+/* line 39, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-content.video {
   padding: 0;
   background-color: transparent;
 }
-/* line 34, sass/modules/components/_blured-lightbox.scss */
+/* line 45, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-loader {
   position: absolute;
   top: 50%;
@@ -404,7 +415,7 @@ body {
     opacity: 0;
   }
 }
-/* line 45, sass/modules/components/_blured-lightbox.scss */
+/* line 56, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong {
   display: block;
   padding: 20px 15px;
@@ -413,27 +424,27 @@ body {
   font-weight: 300;
   color: #fff;
 }
-/* line 53, sass/modules/components/_blured-lightbox.scss */
+/* line 64, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong.dark {
   color: #272b2e;
 }
-/* line 57, sass/modules/components/_blured-lightbox.scss */
+/* line 68, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong.geolocation {
   padding-top: 45px;
   margin-top: 10px;
   margin-bottom: 20px;
   background: url(../img/geolocation-icon.png) no-repeat center top;
 }
-/* line 65, sass/modules/components/_blured-lightbox.scss */
+/* line 76, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox iframe {
   width: 100%;
   height: 300px;
 }
-/* line 71, sass/modules/components/_blured-lightbox.scss */
+/* line 82, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul li {
   display: block;
 }
-/* line 73, sass/modules/components/_blured-lightbox.scss */
+/* line 84, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul a {
   display: block;
   width: 70%;
@@ -449,11 +460,11 @@ body {
   -webkit-transition: background-color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 86, sass/modules/components/_blured-lightbox.scss */
+/* line 97, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul a:hover {
   background-color: #b30014;
 }
-/* line 88, sass/modules/components/_blured-lightbox.scss */
+/* line 99, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul a:active {
   position: relative;
   top: 1px;
@@ -475,6 +486,17 @@ body {
   display: block;
 }
 /* line 13, sass/modules/components/_login.scss */
+#login-container #login-close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 32px;
+  height: 32px;
+  text-indent: -1000px;
+  background: url(../img/lightbox-close-icon.png) no-repeat left top;
+  overflow: hidden;
+}
+/* line 24, sass/modules/components/_login.scss */
 #login-container .login {
   position: absolute;
   left: 50%;
@@ -485,7 +507,7 @@ body {
   background-color: #fff;
   overflow: hidden;
 }
-/* line 25, sass/modules/components/_login.scss */
+/* line 36, sass/modules/components/_login.scss */
 #login-container .login .title {
   display: block;
   margin-bottom: 30px;
@@ -494,15 +516,15 @@ body {
   text-align: center;
   color: #cc0017;
 }
-/* line 34, sass/modules/components/_login.scss */
+/* line 45, sass/modules/components/_login.scss */
 #login-container .login .social-connect {
   text-align: center;
 }
-/* line 37, sass/modules/components/_login.scss */
+/* line 48, sass/modules/components/_login.scss */
 #login-container .login .social-connect li {
   display: inline-block;
 }
-/* line 41, sass/modules/components/_login.scss */
+/* line 52, sass/modules/components/_login.scss */
 #login-container .login .social-connect a {
   padding: 10px 25px;
   font-size: 14px;
@@ -510,15 +532,19 @@ body {
   background-color: #3b5998;
   border-radius: 3px;
 }
-/* line 48, sass/modules/components/_login.scss */
+/* line 59, sass/modules/components/_login.scss */
 #login-container .login .social-connect a.gp {
   background-color: #de4b39;
 }
-/* line 52, sass/modules/components/_login.scss */
+/* line 60, sass/modules/components/_login.scss */
+#login-container .login .social-connect a.tw {
+  background-color: #5ea9dd;
+}
+/* line 64, sass/modules/components/_login.scss */
 #login-container .login form {
   margin-top: 40px;
 }
-/* line 55, sass/modules/components/_login.scss */
+/* line 67, sass/modules/components/_login.scss */
 #login-container .login form .title {
   position: relative;
   display: block;
@@ -528,7 +554,7 @@ body {
   text-align: center;
   color: #5e6364;
 }
-/* line 64, sass/modules/components/_login.scss */
+/* line 76, sass/modules/components/_login.scss */
 #login-container .login form .title:before, #login-container .login form .title:after {
   content: '';
   position: absolute;
@@ -537,19 +563,19 @@ body {
   height: 1px;
   background-color: #5e6364;
 }
-/* line 74, sass/modules/components/_login.scss */
+/* line 86, sass/modules/components/_login.scss */
 #login-container .login form .title:before {
   left: 0;
 }
-/* line 75, sass/modules/components/_login.scss */
+/* line 87, sass/modules/components/_login.scss */
 #login-container .login form .title:after {
   right: 0;
 }
-/* line 79, sass/modules/components/_login.scss */
+/* line 91, sass/modules/components/_login.scss */
 #login-container .login .input {
   margin-bottom: 10px;
 }
-/* line 82, sass/modules/components/_login.scss */
+/* line 94, sass/modules/components/_login.scss */
 #login-container .login .input a {
   display: block;
   margin-top: 5px;
@@ -557,14 +583,14 @@ body {
   text-align: right;
   color: #3498db;
 }
-/* line 91, sass/modules/components/_login.scss */
+/* line 103, sass/modules/components/_login.scss */
 #login-container .login label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: bold;
 }
-/* line 98, sass/modules/components/_login.scss */
+/* line 110, sass/modules/components/_login.scss */
 #login-container .login input {
   width: 100%;
   border-radius: 3px;
@@ -572,11 +598,11 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-/* line 106, sass/modules/components/_login.scss */
+/* line 118, sass/modules/components/_login.scss */
 #login-container .login input:focus {
   outline: none;
 }
-/* line 109, sass/modules/components/_login.scss */
+/* line 121, sass/modules/components/_login.scss */
 #login-container .login button {
   float: right;
   height: 40px;
@@ -594,7 +620,7 @@ body {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 124, sass/modules/components/_login.scss */
+/* line 136, sass/modules/components/_login.scss */
 #login-container .login button:hover {
   opacity: 0.7;
 }

@@ -3232,69 +3232,76 @@ select {
 /* line 17, sass/modules/pages/_complex.scss */
 #complex-container aside li {
   display: block;
-  margin-bottom: 15px;
 }
-/* line 22, sass/modules/pages/_complex.scss */
+/* line 21, sass/modules/pages/_complex.scss */
 #complex-container aside a {
   display: block;
-  padding: 10px;
+  padding: 18px 10px;
   text-align: center;
   color: #272b2e;
 }
-/* line 28, sass/modules/pages/_complex.scss */
+/* line 27, sass/modules/pages/_complex.scss */
 #complex-container aside a:hover {
   background-color: #cddce5;
 }
-/* line 30, sass/modules/pages/_complex.scss */
+/* line 29, sass/modules/pages/_complex.scss */
 #complex-container aside a.selected {
   background-color: #c3d5e0;
 }
-/* line 37, sass/modules/pages/_complex.scss */
+/* line 36, sass/modules/pages/_complex.scss */
 #complex-container .complex {
   width: 73.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 40, sass/modules/pages/_complex.scss */
+/* line 39, sass/modules/pages/_complex.scss */
 #complex-container .complex #map {
   width: 100%;
   height: 250px;
   margin-bottom: 20px;
 }
-/* line 46, sass/modules/pages/_complex.scss */
-#complex-container .complex img {
-  display: block;
+/* line 45, sass/modules/pages/_complex.scss */
+#complex-container .complex .cover {
   width: 30%;
-  margin-right: 20px;
   float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-right: 5%;
 }
-/* line 53, sass/modules/pages/_complex.scss */
+/* line 51, sass/modules/pages/_complex.scss */
+#complex-container .complex .text {
+  width: 61.25%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 55, sass/modules/pages/_complex.scss */
 #complex-container .complex .address {
   display: none;
   margin-bottom: 30px;
   overflow: hidden;
 }
-/* line 58, sass/modules/pages/_complex.scss */
+/* line 60, sass/modules/pages/_complex.scss */
 #complex-container .complex .address.show {
   display: block;
 }
-/* line 60, sass/modules/pages/_complex.scss */
+/* line 62, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .title {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
 }
-/* line 66, sass/modules/pages/_complex.scss */
+/* line 68, sass/modules/pages/_complex.scss */
 #complex-container .complex .address p {
   margin-bottom: 10px;
   font-size: 24px;
 }
-/* line 71, sass/modules/pages/_complex.scss */
+/* line 73, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .services {
   margin-top: 20px;
 }
-/* line 74, sass/modules/pages/_complex.scss */
+/* line 76, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .services .service {
   display: inline-block;
   width: 32px;
@@ -3306,7 +3313,7 @@ select {
   background-size: cover;
   overflow: hidden;
 }
-/* line 87, sass/modules/pages/_complex.scss */
+/* line 89, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .tel {
   display: block;
 }

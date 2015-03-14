@@ -8,12 +8,12 @@ src/sync_auto
 src/app/config/core.php
 src/app/config/database.php
 
-src/app/webroot/tmp/*
-src/app/webroot/media/*
+#src/app/webroot/tmp/*
+#src/app/webroot/media/*
 src/app/webroot/.sass-cache
 src/app/webroot/node_modules
 
 docs/*
 recursos/*
-
 *.annotated.js
+src/app/webroot/css/style.min.css

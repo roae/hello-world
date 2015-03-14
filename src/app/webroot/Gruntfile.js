@@ -113,7 +113,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-csso');*/
   grunt.loadNpmTasks('grunt-notify');
   //grunt.loadNpmTasks('grunt-newer');
-  require('time-grunt')(grunt);
+  //require('time-grunt')(grunt);
   require('jit-grunt')(grunt);
 
   // Register tasks

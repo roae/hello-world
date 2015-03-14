@@ -35,5 +35,16 @@
 			}
 			?>
 		</div>
+		<div class="instructions">
+			<span class="available">
+				[:disponibles:]
+			</span>
+			<span class="unavailable">
+				[:ocupados:]
+			</span>
+			<span class="yourseats">
+				[:tus-asientos:]
+			</span>
+		</div>
 	</div>
 </div>

@@ -270,6 +270,31 @@
     }
   }
 
+  .loyaltyCard{
+    @include span(10);
+    margin-left: span(1)+gutter();
+    margin-top: 40px;
+    label{
+      display:block;
+    }
+
+    @include with-layout(10) {
+      .input{
+        overflow: hidden;
+        input{
+          @include span(6);
+          margin-left: 0;
+          @include border-radius(5px);
+        }
+        .btn-primary{
+          font-size: 18px;
+          @include span(4);
+          margin:0;
+        }
+      }
+    }
+  }
+
   .seatsSelection{
     border-top: 1px solid #f1f1f1;
     padding-top: 100px;
@@ -354,45 +379,45 @@
       }
       .status-0 {
         .seat {
-          background: url("../img/seat-0.png") center;
+          background: inline-image("seat-0.png") center;
           background-size: 100% 100%;
           border-top: 0;
           cursor: pointer;
           &:hover{
-            background: url("../img/seat-hover.png") center;
+            background: inline-image("seat-hover.png") center;
             background-size: 100% 100%;
           }
         }
         &.Multi-End .seat{
-          background: url("../img/Multi-End-0.png") center;
+          background: inline-image("../img/Multi-End-0.png") center;
           background-size: 100% 100%;
           &:hover{
-            background: url("../img/Multi-End-hover.png") center;
+            background: inline-image("Multi-End-hover.png") center;
             background-size: 100% 100%;
           }
         }
         &.Multi-Start .seat{
-          background: url("../img/Multi-Start-0.png") center;
+          background: inline-image("Multi-Start-0.png") center;
           background-size: 100% 100%;
           &:hover{
-            background: url("../img/Multi-Start-hover.png") center;
+            background: inline-image("Multi-Start-hover.png") center;
             background-size: 100% 100%;
           }
         }
       }
       .status-1 {
         .seat {
-          background: url("../img/seat-1.png") center;
+          background: inline-image("seat-1.png") center;
           background-size: 100% 100%;
           border-top: 0;
           color:#fff;
         }
         &.Multi-End .seat{
-          background: url("../img/Multi-End-1.png") center;
+          background: inline-image("Multi-End-1.png") center;
           background-size: 100% 100%;
         }
         &.Multi-Start .seat{
-          background: url("../img/Multi-Start-1.png") center;
+          background: inline-image("Multi-Start-1.png") center;
           background-size: 100% 100%;
         }
       }
@@ -413,6 +438,48 @@
           //margin-left: 10px;
         }
 
+      }
+      .instructions{
+        padding: 20px 0;
+        font-weight: 100;
+        vertical-align: middle;
+        line-height: 20px;
+        .available{
+          margin-right: 30px;
+          &:before{
+            content: " ";
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background: #c8c8c8;
+            @include border-radius(50%);
+            display: inline-block;
+          }
+        }
+        .unavailable{
+          margin-right: 30px;
+          &:before{
+            content: " ";
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background: #F50A29;
+            @include border-radius(50%);
+            display: inline-block;
+          }
+        }
+        .yourseats{
+          margin-right: 30px;
+          &:before{
+            content: " ";
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background: #EFBA62;
+            @include border-radius(50%);
+            display: inline-block;
+          }
+        }
       }
     }
 

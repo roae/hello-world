@@ -118,6 +118,14 @@
 			<span class="value">$134.00</span>
 			<span class="taxes">Incluye IVA</span>
 		</div>
+		<div class="loyaltyCard">
+			<div class="input text">
+				<label for="">[:loyalty-card-text:]</label>
+				<input type="text" id="loyalty"/>
+				<button typ="button" id="loyaltyButton" class="btn-primary">[:add-card:]</button>
+			</div>
+			<div>[:que-es-loyalty:]</div>
+		</div>
 	</section>
 
 	<?php

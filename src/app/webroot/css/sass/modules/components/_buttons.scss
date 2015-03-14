@@ -1,10 +1,13 @@
-.btn{
+.btn,
+[class^="btn-"],
+[class*="btn-"]{
   padding: 8px 15px;
   margin-bottom: 10px;
   font-size: 14px;
   color: $dark-gray;
   background-color: #cfd5d7;
   border-radius: 3px;
+  border:0;
 
   &:hover { opacity: 0.7; }
 
@@ -13,6 +16,12 @@
     top: 1px;
   }
 }
+
+.btn-primary{
+  background: $red;
+  color:#fff;
+}
+
 #header-location-select {
   position: relative;
   display: inline-block;

@@ -9,6 +9,7 @@ module.exports = function(grunt) {
           require: 'susy',
           sassDir: 'css/sass',
           cssDir: 'css',
+          imagesDir: 'img',
           require: 'susy'
         }
       }

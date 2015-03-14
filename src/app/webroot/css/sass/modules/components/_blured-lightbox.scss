@@ -15,6 +15,17 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
 
+  .blured-lightbox-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    text-indent: -1000px;
+    background: url(../img/lightbox-close-icon.png) no-repeat left top;
+    overflow: hidden;
+  }
+
   .blured-lightbox-content {
     position: absolute;
     top: 15%;

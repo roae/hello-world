@@ -411,6 +411,7 @@ function nextSlide(){
 					blured_lightbox = $('<div id="blured-lightbox"></div>'),
 					blured_lightbox_content = $('<div class="blured-lightbox-content video"></div>'),
 					blured_lightbox_loader = $('<span class="blured-lightbox-loader"></span>');
+					blured_lightbox_close = $('<a class="blured-lightbox-close">Close</a>');
 					blured_lightbox_title = $('<strong></strong>'),
 					blured_lightbox_iframe = $('<iframe frameborder="0" allowfullscreen></iframe>'),
 					video_id = '';
@@ -437,7 +438,7 @@ function nextSlide(){
 				});
 			});
 
-			$('body').append(blured_lightbox.append(blured_lightbox_loader, blured_lightbox_content));
+			$('body').append(blured_lightbox.append(blured_lightbox_loader, blured_lightbox_close, blured_lightbox_content));
 
 		});
 
@@ -577,6 +578,13 @@ function nextSlide(){
 			$('#login-container').removeClass('show');
 			login_functions.remove_blur();
 		}
+	});
+
+	$('#login-close').on('click', function(event) {
+		event.preventDefault();
+
+		$('#login-container').removeClass('show');
+		login_functions.remove_blur();
 	});
 
 })(jQuery);

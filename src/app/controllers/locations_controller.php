@@ -238,9 +238,10 @@ class LocationsController extends AppController{
 	}
 
 	function index(){
-		$this->Location->contain(array('Gallery','Service'));
+		$this->Location->contain(array('Gallery','Service' => 'Icon', 'City'));
 		$locations = $this->Location->find("all",array('conditions'=>array('Location.trash'=>0,'Location.status'=>1),'fields'=>$this->Location->publicFields));
 		$this->set(compact("locations"));
+		$this->set("cities", $this->Location->City->find("list",array('conditions'=>array('City.trash' => 0,"City.status"=>1 ))));
 	}
 
 	function view($id){

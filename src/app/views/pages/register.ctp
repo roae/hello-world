@@ -15,6 +15,10 @@
         </li>
 
         <li class="social-network">
+          <a class="twitter" href="">Twitter</a>
+        </li>
+
+        <li class="social-network">
           <a class="google" href="">Google+</a>
         </li>
       </ul>

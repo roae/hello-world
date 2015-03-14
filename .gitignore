@@ -17,3 +17,4 @@ docs/*
 recursos/*
 
 *.annotated.js
+*.min.css

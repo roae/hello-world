@@ -589,4 +589,72 @@ function nextSlide(){
 		login_functions.remove_blur();
 	});
 
+	if( $('#complex-container').length ) {
+
+		var location_container = $('#complex-container'),
+    		map = new GMaps({
+		      div: '#map',
+		      lat: 24.82301520608666,
+		      lng: -107.36934023201599,
+		      zoom: 12,
+		      scrollwheel: false
+		    }),
+    		addresses = location_container.find('.address'),
+    		cities = location_container.find('.city-trigger');
+
+    addresses.each(function(i, e) {
+
+    	var $e = $(e);
+
+    	if( $e.css('display') == 'block' ) {
+		    map.addMarker({
+		      lat: $e.data('lat'),
+		      lng: $e.data('lng'),
+		      title: 'Lima'
+		    });
+    	}
+
+    });
+
+    cities.on('click', function(event) {
+    	event.preventDefault();
+
+    	var self = $(this),
+    			city_id = self.data('id');
+
+    	cities.removeClass('selected');
+    	self.addClass('selected');
+
+			addresses.fadeOut(200, function() {
+
+				var current_addresses = location_container.find('.city-' + city_id),
+						last_lat = 0,
+						last_lng = 0;
+
+				map.removeMarkers();
+
+				current_addresses.each(function(i, e) {
+		    	var $e = $(e),
+		    			lat = $e.data('lat'),
+		    			lng = $e.data('lng');
+
+			    map.addMarker({
+			      lat: lat,
+			      lng: lng,
+			      title: 'Lima'
+			    });
+
+			    if( lat != '' && lat != null ) {
+				    last_lat = lat;
+				    last_lng = lng;
+			    }
+		    });
+
+		    map.setCenter(last_lat, last_lng);
+				current_addresses.fadeIn(100);
+			});
+    });
+
+	}
+
 })(jQuery);

@@ -18,13 +18,15 @@
       a {
         display: inline-block;
         padding: 10px 25px;
+        font-size: 14px;
+        color: #fff;
         background-color: #3b5998;
         border-radius: 3px;
-        color: #fff;
 
         @include transition(opacity 0.2s ease-in-out);
 
         &.google { background-color: #de4b39; }
+        &.twitter { background-color: #5ea9dd; }
 
         &:hover { opacity: 0.7; }
       }

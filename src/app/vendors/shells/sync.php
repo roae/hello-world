@@ -250,7 +250,7 @@ class SyncShell extends Shell{
 			$this->Show->deleteAll(array('Show.location_id'=>$location['id']));
 			foreach($data['VistaData']['Sessions']['Session'] as $session){
 				#$this->out(print_r(Set::extract('/Movie[Movie_ID=/'.$session['Movie_ID'].'/i]',$data['VistaData']['Movies'])));
-				$movie = Set::extract('/Movie[Movie_ID=/'.$session['Movie_ID'].'/i]',$data['VistaData']['Movies']);
+				$movie = Set::extract("/Movie[Movie_ID=/{$session['Movie_ID']}/i]",$data['VistaData']['Movies']);
 				if(isset($movie[0]['Movie'])){
 					$movies[$session['Movie_ID']] = $movie[0]['Movie']['Movie_Name'];
 				}
@@ -315,7 +315,7 @@ class SyncShell extends Shell{
 
 					$this->Show->create();
 					if($this->Show->save($show)){
-						$session_prices = Set::extract('/Price[Price_group_code=/'.$session['Price_group_code'].'/]',$data['VistaData']['Prices']);
+						$session_prices = Set::extract("/Price[Price_group_code=/{$session['Price_group_code']}/]",$data['VistaData']['Prices']);
 						$prices = array();
 						foreach($session_prices as $record){
 							if(strpos($record['Price']['TType_strSalesChannels'],"WWW")){

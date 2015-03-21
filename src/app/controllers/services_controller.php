@@ -214,7 +214,7 @@ class ServicesController extends AppController{
 	}
 
 	function index() {
-		$services = $this->Service->find('all');
+		$services = $this->Service->find('all',array('contain'=>array('Icon','Gallery')));
 		$this->set("recordset", $services);
 	}
 

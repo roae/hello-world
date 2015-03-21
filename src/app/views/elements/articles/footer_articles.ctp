@@ -2,7 +2,7 @@
   $articles = $this->requestAction(array(
     'controller'=>'articles',
     'action'=>'get',
-    'type'=>'list',
+    'type'=>'all',
     'query'=>array(
       'fields' => array('Article.id', 'Article.titulo', 'Article.contenido', 'Article.slug'),
       'conditions'=>array(
@@ -12,20 +12,13 @@
       'limit' => 2
     )
   ));
-
-  foreach ($articles as $key => $article) {
+  foreach ($articles as $key => $record) {
 ?>
 
   <article>
-    <header>
-      <h3><?= $article ?></h3>
-    </header>
-
-    <p>
-      Cuando Anastasia "Ana" Steele, una estudiante de Literatura de la Universidad de Washington ...
-    </p>
-
-    <?= $this->Html->link('Continuar leyendo', array('controller' => 'articles', 'action' => 'view', 'id' => $key, 'slug' => $article), array('class' => 'keep-reading')) ?>
+    <h3><?= $record['Article']['titulo'] ?></h3>
+    <?= $this->Text->truncate($record['Article']['contenido'],100);?>
+    <?= $this->Html->link('Continuar leyendo', array('controller' => 'articles', 'action' => 'view', 'id' => $record['Article']['id'], 'slug' => $record['Article']['slug']), array('class' => 'keep-reading')) ?>
   </article>
 
 <?php } ?>

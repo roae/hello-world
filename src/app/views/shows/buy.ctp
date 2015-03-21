@@ -69,7 +69,7 @@
 			</div>
 			<div class="schedule">
 				<div class="title">[:function:]</div>
-				<span class="value"><?= $this->Time->format("h:m a",$record['Show']['schedule']); ?></span>
+				<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
 				<?= $this->Html->link("[:cambiar-horario:]",array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug'],'#'=>$record['Movie']['slug']),array('class'=>'btn')); ?>
 			</div>
 		</div>

@@ -521,18 +521,18 @@ class SyncShell extends Shell{
 		$Email->template = "sync_error";
 
 		/* Opciones SMTP*/
-		$Email->smtpOptions = array(
+		/*$Email->smtpOptions = array(
 			'port'=>'25',
 			'timeout'=>'30',
 			'host' => 'mail.h1webstudio.com',
 			'username'=>'erochin@h1webstudio.com',
 			'password'=>'Rochin12!-');
 
-		$Email->delivery = 'smtp';
+		$Email->delivery = 'smtp';*/
 
 		$Email->send();
 
-		#$this->out(print_r($Email->smtpError));
+		$this->out(print_r($Email->smtpError));
 
 	}
 

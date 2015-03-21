@@ -1,46 +1,54 @@
 <?php
-  $cities = $this->requestAction(array(
-    'controller'=>'cities',
-    'action'=>'get',
-    'type'=>'list',
-    'query'=>array(
-      'conditions'=>array(
-        'City.trash'=>0,
-        'City.status'=>1,
-      )
-    )
-  ));
-  #pr($cities);
-  #pr(Configure::read("CitySelected"));
+/*$cities = $this->requestAction( array(
+	'controller' => 'cities',
+	'action' => 'get',
+	'type' => 'list',
+	'query' => array(
+		'conditions' => array(
+			'City.trash' => 0,
+			'City.status' => 1,
+		)
+	)
+) );
+$this->set("cities",$cities);*/
+$cities = Configure::read("CitiesList");
+#pr($cities);
+#pr(Configure::read("CitySelected"));
 
-  $places_label = 'Selecciona tu ciudad';
-  $places_url = '#';
+$places_label = 'Selecciona tu ciudad';
+$places_url = '#';
 
-  if( isset($CitySelected['name']) && $CitySelected['name'] ) {
-    $places_label = 'Ver cartelera de <span class="current">'.$CitySelected['name'].'</span>';
-    $places_url = array('controller' => 'shows', 'action' => 'index', 'slug' => Inflector::slug(low($CitySelected['name']), '-'));
-  }
+if( isset( $CitySelected['name'] ) && $CitySelected['name'] ){
+	$places_label = 'Ver cartelera de <span class="current">'.$CitySelected['name'].'</span>';
+	$places_url = array( 'controller' => 'shows',
+		'action' => 'index',
+		'slug' => Inflector::slug( low( $CitySelected['name'] ), '-' )
+	);
+}
 
 ?>
 
 <div id="header-location-select">
 
-  <?= $this->Html->link($places_label, $places_url, array('escape' => false, 'class' => 'city-selector')); ?>
+	<?= $this->Html->link( $places_label, $places_url, array( 'escape' => false, 'class' => 'city-selector' ) ); ?>
 
-  <div class="sub-menu-container">
-    <span class="sub-menu-trigger">Open</span>
+	<div class="sub-menu-container">
+		<span class="sub-menu-trigger">Open</span>
 
-    <ul class="places">
+		<ul class="places">
 
-      <?php foreach ($cities as $key => $value) { ?>
+			<?php foreach( $cities as $key => $value ){ ?>
 
-        <li>
-          <?= $this->Html->link($value, array('controller' => 'shows', 'action' => 'index', 'slug' => Inflector::slug(low($value), '-'))) ?>
-        </li>
+				<li>
+					<?= $this->Html->link( $value, array( 'controller' => 'shows',
+						'action' => 'index',
+						'slug' => Inflector::slug( low( $value ), '-' )
+					) ) ?>
+				</li>
 
-      <?php } ?>
+			<?php } ?>
 
-    </ul>
-  </div>
+		</ul>
+	</div>
 
 </div>

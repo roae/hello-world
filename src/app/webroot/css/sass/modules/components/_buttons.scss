@@ -136,25 +136,3 @@
     }
   }
 }
-
-.selected-complex {
-  display: block;
-  padding: 8px 15px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: $dark-gray;
-  background-color: #cfd5d7;
-  border-radius: 3px;
-
-  &.selected {
-    color: #fff;
-    background: $green url(../img/complex-selected-icon.png) no-repeat 95% center;
-  }
-
-  &:hover { opacity: 0.7; }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
-}

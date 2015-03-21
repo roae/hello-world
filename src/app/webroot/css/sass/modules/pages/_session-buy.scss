@@ -316,7 +316,12 @@
       color:#313131;
 
       .layout{
-        display: inline-block;
+        margin:0 auto;
+        //border-collapse: separate;
+        //border-spacing: 2px;
+        tr:nth-child(odd) td{
+          background: #f1f1f1;
+        }
       }
 
       .screen{
@@ -327,6 +332,7 @@
         overflow: hidden;
         font-size: 20px;
         font-weight: 100;
+        padding-top:20px;
         &:before{
           content:" ";
           width: 100px;
@@ -334,7 +340,7 @@
           display:block;
           position: absolute;
           top:0;
-          left:-75px;
+          left:-35px;
           background: #fff;
           @include rotate(60deg);
         }
@@ -345,7 +351,7 @@
           display:block;
           position: absolute;
           top:0;
-          right:-75px;
+          right:-35px;
           background: #fff;
           @include rotate(25deg);
         }
@@ -354,91 +360,150 @@
       /*td{
         width: 50px;
       }*/
+      img{
+        width: 100%;
+        display:block;
+        visibility: hidden;
+      }
+
       .room-layout-row{
         white-space: nowrap;
-        &:nth-of-type(odd){
-          bockgroun: #f1f1f1;
-        }
-      }
-      .row{
-        display: inline-block;
-        width: 50px;
-      }
-      .seat{
-        margin: 5px 1px;
-        display:inline-block;
-        width: 50px;
-        height: 42px;
-        text-align: center;
-        padding-top:4px;
 
       }
+      .row{
+        line-height: 100%;
+        width: $widthSeat;
+      }
+
+      td{
+        width: $widthSeat;
+        max-width: $maxWidthSeat;
+        min-width: $minWidthSeat;
+        border: 5px 2px;
+        border-color:#fff;
+        position: relative;
+        vertical-align: middle;
+      }
+      .seat{
+        display:block;
+        text-align: center;
+        margin:14px 1px;
+      }
+      .number{
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 12px;
+      }
+      /*.individual{
+        width: auto;
+      }*/
       .empty{
-        width: 58px;
-        display: inline-block;
+        width: $widthSeat;
+        max-width: $maxWidthSeat;
+        min-width: $minWidthSeat;
       }
       .status-0 {
         .seat {
-          background: inline-image("seat-0.png") center;
-          background-size: 100% 100%;
+          background: inline-image("seat-0.png") center no-repeat;
+          background-size: 100% auto;
           border-top: 0;
           cursor: pointer;
           &:hover{
-            background: inline-image("seat-hover.png") center;
-            background-size: 100% 100%;
+            background: inline-image("seat-hover.png") center no-repeat;
+            background-size: 100% auto;
           }
         }
         &.Multi-End .seat{
-          background: inline-image("../img/Multi-End-0.png") center;
-          background-size: 100% 100%;
+          background: inline-image("../img/Multi-End-0.png") center no-repeat;
+          background-size: 100% auto;
           &:hover{
-            background: inline-image("Multi-End-hover.png") center;
-            background-size: 100% 100%;
+            background: inline-image("Multi-End-hover.png") center no-repeat;
+            background-size: 100% auto;
           }
         }
         &.Multi-Start .seat{
-          background: inline-image("Multi-Start-0.png") center;
-          background-size: 100% 100%;
+          background: inline-image("Multi-Start-0.png") center no-repeat;
+          background-size: 100% auto;
           &:hover{
-            background: inline-image("Multi-Start-hover.png") center;
-            background-size: 100% 100%;
+            background: inline-image("Multi-Start-hover.png") center no-repeat;
+            background-size: 100% auto;
           }
         }
       }
       .status-1 {
         .seat {
-          background: inline-image("seat-1.png") center;
-          background-size: 100% 100%;
+          background: inline-image("seat-1.png") center no-repeat;
+          background-size: 100% auto;
           border-top: 0;
           color:#fff;
         }
         &.Multi-End .seat{
-          background: inline-image("Multi-End-1.png") center;
-          background-size: 100% 100%;
+          background: inline-image("Multi-End-1.png") center no-repeat;
+          background-size: 100% auto;
         }
         &.Multi-Start .seat{
-          background: inline-image("Multi-Start-1.png") center;
-          background-size: 100% 100%;
+          background: inline-image("Multi-Start-1.png") center no-repeat;
+          background-size: 100% auto;
+        }
+      }
+
+      .status-3 {
+        .seat {
+          background: inline-image("seat-0.png") center no-repeat;
+          background-size: 100% auto;
+          border-top: 0;
+          @include opacity(.5);
+        }
+        &.Multi-End .seat{
+          background: inline-image("Multi-End-0.png") center no-repeat;
+          background-size: 100% auto;
+        }
+        &.Multi-Start .seat{
+          background: inline-image("Multi-Start-0.png") center no-repeat;
+          background-size: 100% auto;
         }
       }
 
       .Multi-Start{
         @include box-sizing(content-box);
-        .seat{
+        .number{
           padding-right: 15px;
         }
-        margin-right: 10px;
+        //margin-right: 10px;
 
       }
 
       .Multi-End{
-        width: 50px;
-        .seat{
+        //width: 50px;
+        .number{
           padding-left: 15px;
           //margin-left: 10px;
         }
 
       }
+
+      .individual + .Multi-End{
+        //margin-left:10px;
+      }
+
+      .loveSeats{
+        .row{
+          //width: 50px;
+        }
+        .seat{
+          font-size: 16px;
+          //width: 50px;
+          height: 42px;
+          padding-top:4px;
+        }
+        .empty{
+          //width: 50px;
+        }
+      }
+
       .instructions{
         padding: 20px 0;
         font-weight: 100;

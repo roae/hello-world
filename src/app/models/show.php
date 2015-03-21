@@ -20,6 +20,10 @@ class Show extends AppModel{
 		)
 	);
 
+	var $virtualFields = array(
+		'date'=>'Date(Show.schedule)'
+	);
+
 	var $validate = array(
 		'location_id' => array(
 			'requerido' => array( 'rule' => 'notEmpty', 'required' => true, 'allowEmpty' => false, 'message' => '[:required_field:]'),

@@ -52,7 +52,8 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'js/admin/projections.min.js': ['js/admin/projections.annotated.js'],
-	      'js/admin/sync.min.js': ['js/admin/sync.annotated.js']
+	      'js/admin/sync.min.js': ['js/admin/sync.annotated.js'],
+	      'js/ext/jquery.select.min.js': ['js/ext/jquery.select.js']
         }
       }
     },

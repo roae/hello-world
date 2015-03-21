@@ -44,7 +44,8 @@ class AppController extends Controller{
 	var $uses=array(
 		'User',
 		'Group',
-		'Contact'
+		'Contact',
+		'City',
 	);
 
 	var $components = array(
@@ -321,7 +322,13 @@ class AppController extends Controller{
 			$this->pageDescription="[:".$this->params['action']."_".$this->params['controller']."_".$pass."_page_description:]";
 		}
 
-		#pr($this->Cookie->read("CitySelected"));
+		$citiesList = Cache::read("CitiesList");
+		if(!$citiesList){
+			$citiesList = $this->City->find("list",array('conditions'=>array('City.status'=>1,'City.trash'=>0)));
+			Cache::write("CitiesList",$citiesList);
+		}
+		Configure::write("CitiesList",$citiesList);
+
 
 		Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
 		$this->set("CitySelected",$this->Cookie->read("CitySelected"));
@@ -337,6 +344,13 @@ class AppController extends Controller{
 
 		Configure::write("LocationsSelected",$LocationsSelected);
 		$this->set("LocationsSelected",$LocationsSelected);
+
+		$locationsList = Cache::read("LocationsList");
+		if(!$locationsList){
+			$locationsList = $this->City->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0,'city_id'=>Configure::read("CitySelected.id"))));
+			Cache::write("LocationsList",$locationsList);
+		}
+		Configure::write("LocationsList",$locationsList);
 
 
 		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting

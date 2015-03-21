@@ -21,11 +21,27 @@ class ShowsController extends AppController{
 		}
 
 		$this->__setCitySelected();
-
+		$date = date("Y-m-d");
+		$start = date("Y-m-d")." 0:0:0";
+		/*if($this->Session->read("BillboardFilter.date")){
+			$date = $this->Session->read("BillboardFilter.date");
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+		}*/
+		if(isset($this->params['named']['date'])){
+			$date = $this->params['named']['date'];
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+		}
+		$end = $date." 23:59:59";
 		$this->__showConditions = array(
-			'Show.schedule >='=>date("Y-m-d H:i:s"),
-			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
-			#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+			'Show.schedule >='=>$start,
+			'Show.schedule <='=>$end,
+
 		);
 
 		$this->set("billboard",$this->__getBillboardSchedules());
@@ -70,41 +86,49 @@ class ShowsController extends AppController{
 		return $billboard;
 	}
 
-	function __setCitySelected(){
-		$slug = $this->params['slug'];
-		if( $slug != Configure::read("CitySelected.slug") ) {
+	function __setCitySelected($data = null){
+		if(empty($data)){
+			$slug = $this->params['slug'];
+			$data['City'] = Configure::read("CitySelected");
+			if( $slug != Configure::read("CitySelected.slug") ) {
 
-			$data = $this->Show->Location->City->findBySlug($slug);
+				$data = $this->Show->Location->City->findBySlug($slug);
+			}
+		}
 
-			if( ! empty($data) ) {
-				$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-				Configure::write("CitySelected", $data['City']);
-				$this->set("CitySelected",$data['City']);
+		if( ! empty($data) ) {
+			$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+			Configure::write("CitySelected", $data['City']);
+			$this->set("CitySelected",$data['City']);
 
-				$_locations = $this->Show->Location->find("all",array(
-					'conditions'=>array(
-						'Location.trash'=>0,
-						'Location.status'=>1,
-						'Location.city_id'=>$data['City']['id'],
-					),
-					'fields'=>$this->Show->Location->publicFields
-				));
-				#pr($_locations);
-				$locations = array();
-				foreach($_locations as $record){
-					$locations[$record['Location']['id']] = $record;
-				}
-
-				$this->Cookie->write("LocationsSelected", json_encode($locations), false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-				$this->set("LocationsSelected",$locations);
-				Configure::write("LocationsSelected",$locations);
-				#pr($this->Cookie->read("LocationsSelected"));
-
-			} else {
-				$this->cakeError('error404');
+			$_locations = $this->Show->Location->find("all",array(
+				'conditions'=>array(
+					'Location.trash'=>0,
+					'Location.status'=>1,
+					'Location.city_id'=>$data['City']['id'],
+				),
+				'fields'=>$this->Show->Location->publicFields
+			));
+			#pr($_locations);
+			$locations = array();
+			$locationsList = array();
+			foreach($_locations as $record){
+				$locations[$record['Location']['id']] = $record;
+				$locationsList[$record['Location']['id']] = $record['Location']['name'];
 			}
 
+			$this->Cookie->write("LocationsSelected", json_encode($locations), false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+			$this->set("LocationsSelected",$locations);
+			Configure::write("LocationsSelected",$locations);
+			Configure::write("LocationsList",$locationsList);
+			Cache::write("LocationsList",$locationsList);
+			#pr($this->Cookie->read("LocationsSelected"));
+
+		} else {
+			$this->cakeError('error404');
 		}
+
+
 	}
 
 	function get(){
@@ -195,9 +219,11 @@ class ShowsController extends AppController{
 			$sessionSeatData['screen_boundary_position_right'] = $rData[$index]; $index++;
 			$sessionSeatData['number_relationships_types'] = $rData[$index]; $index++;
 
-			foreach(range(1,$sessionSeatData['number_relationships_types']) as $i){
-				$sessionSeatData['relationships_types'][$rData[$index]] = $rData[$index+1];
-				$index+=2;
+			if($sessionSeatData['number_relationships_types']){
+				foreach(range(1,$sessionSeatData['number_relationships_types']) as $i){
+					$sessionSeatData['relationships_types'][$rData[$index]] = $rData[$index+1];
+					$index+=2;
+				}
 			}
 			$total_areas = $sessionSeatData['total_areas'] = $rData[$index];
 			foreach(range(1,$total_areas) as $i){
@@ -215,19 +241,22 @@ class ShowsController extends AppController{
 				$sessionSeatData['areas'][$area_number]['area_description'] = $rData[$index]; $index++;
 				$sessionSeatData['areas'][$area_number]['area_description_alt'] = $rData[$index]; $index++;
 				$total_rows = $sessionSeatData['areas'][$area_number]['total_rows'] = $rData[$index]; $index++;
-
+				#pr($sessionSeatData);
 				for($i = 1; $i<=$total_rows; $i++){
+					#pr($index);
 					if(!isset($rData[$index])){
 						$index++;
 					}
+					#pr($index);
 					if(!preg_match('/([0-9A-Fa-f]{2})([\s\d]){5}(\d)(\d)/', $rData[$index+2])){
+
 						/*
 							Se verifica que 2 posiciones mas adelante del arreglo sea un asiento
 							esto por que en ocaciones viene un numero de asiento fisico con un | (pipe),
 							se pone el elemento en la cadena de asientos de la fila anterior, se elimina el elemento
 							y se vuelve a ejecutar la fila anterior
 						*/
-
+						#pr($rData[$index+2]);
 						$rData[$index-1] .= " ".$rData[$index];
 						unset($rData[$index]);
 						$index -= 3;
@@ -348,6 +377,37 @@ class ShowsController extends AppController{
 			$this->set("billboard",$this->Show->find("all",$query));
 		}
 
+	}
+
+	function get_date($movie_id = null){
+		$conditions = array();
+		$dates = $this->Show->find("list",array(
+			'fields'=>array('Show.date'),
+			'group'=>'Show.date',
+			'order'=>'Show.schedule ASC'
+		));
+		if(isset($this->params['requested'])){
+			return $dates;
+		}
+
+	}
+
+	function set_filter(){
+		if(!empty($this->data)){
+			$data = $this->Session->read("BillboardFilter");
+			$this->Session->write("BillboardFilter",$this->data['Filter']);
+
+			if(!empty($this->data['Filter']['location'])){
+				foreach($this->data['Filter']['location'] as $location_id){
+					$locationsSeleted = Configure::read("LocationsSelected");
+					if(!isset($locationsSeleted)){
+
+					}
+				}
+			}
+
+		}
+		$this->redirect($this->referer());
 	}
 
 }

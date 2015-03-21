@@ -84,7 +84,7 @@ $(function(){
 		elementAppear();
 	});
 
-	//$(".floating").Floating();
+	$(".input.select").Select();
 
 	allMods = $(".appear");
 
@@ -158,6 +158,38 @@ $(function(){
 
 			return false;
 		});
+	}
+	if($("#BillboardFilter").length){
+		//$(document).on("submit","#BillboardFilter",billboardRequest);
+
+		/*$("#BillboardFilter select,#BillboardFilter input" ).on("change",function(){
+			billboardRequest();
+		});*/
+		$("#BillboardFilter select" ).on("change",function(){
+			var date = $(this ).val();
+			$.xUpdater.setHash("#Billboard="+window.location.pathname+"date:"+date);
+		});
+	}
+	function billboardRequest(){
+		//console.log($("#BillboardFilter").serialize());
+		$.ajax({
+			url:$("#BillboardFilter").attr("action"),
+			data:$("#BillboardFilter").serialize(),
+			type:'POST',
+			success:function(html,status,http){
+				eval('var Xnotifier = '+http.getResponseHeader('X-Notifier')+';');
+				$("#Billboard").html(html);
+				if(Xnotifier){
+					$("#Billboard").prepend($("<div />",{'id':'Notifier'}).append($("<div />",{'class':Xnotifier.class}).append($("<span />",{'class':'icon'})).append(Xnotifier.message)));
+				}
+				//$('#CommentForm .text,#CommentForm .textarea').Label();
+			},
+			beforeSend:function(http){
+				http.setRequestHeader("X-update","Billboard");
+			}
+		});
+
+		return false;
 	}
 });
 

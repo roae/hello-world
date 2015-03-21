@@ -1484,7 +1484,7 @@ select {
 /* line 239, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .sinopsis {
   height: 150px;
-  overflow-y: auto;
+  overflow-y: hidden;
   margin-bottom: 10px;
   font-size: 13px;
   color: #dee8ee;
@@ -4197,5 +4197,257 @@ body #mini-menu {
     height: 140px;
     margin: 0px auto;
     background-size: cover;
+  }
+}
+@media (max-width: 1040px) {
+  /* line 2, sass/modules/base/responsive/_r_homepage.scss */
+  .col-container {
+    width: 100%;
+  }
+
+  /* line 9, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights .movie .movie-info .title {
+    font-size: 54px;
+  }
+  /* line 12, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights .movie .movie-info p {
+    font-size: 15px;
+  }
+
+  /* line 20, sass/modules/base/responsive/_r_homepage.scss */
+  .billboard {
+    padding: 0 1%;
+  }
+
+  /* line 24, sass/modules/base/responsive/_r_homepage.scss */
+  .next-premieres .titleCommingSoon {
+    margin: 20px auto 40px;
+  }
+
+  /* line 28, sass/modules/base/responsive/_r_homepage.scss */
+  .mobile-apps {
+    padding: 80px 15px;
+  }
+  /* line 30, sass/modules/base/responsive/_r_homepage.scss */
+  .mobile-apps h2 {
+    font-size: 3.25em;
+  }
+  /* line 33, sass/modules/base/responsive/_r_homepage.scss */
+  .mobile-apps p {
+    margin: 30px auto 60px;
+    font-size: 1.15em;
+  }
+}
+@media (max-width: 768px) {
+  /* line 42, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header.sticky {
+    height: 80px;
+  }
+  /* line 45, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header #logo {
+    margin-right: 15px;
+  }
+  /* line 47, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header #logo img {
+    height: 70px;
+  }
+  /* line 51, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .account-container {
+    margin-top: 20px;
+  }
+
+  /* line 55, sass/modules/base/responsive/_r_homepage.scss */
+  #header-location-select {
+    margin-top: 24px;
+  }
+  /* line 57, sass/modules/base/responsive/_r_homepage.scss */
+  #header-location-select > a {
+    padding: 13px 70px 12px 35px;
+    border-radius: 50px;
+    font-size: 1em;
+  }
+
+  /* line 65, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights, .home .move {
+    height: 600px;
+  }
+  /* line 71, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights .movie .movie-info-bg {
+    width: 100%;
+  }
+  /* line 74, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights .movie .movie-info {
+    margin-top: 80px;
+    width: 60%;
+    margin-right: 0;
+    margin-left: 38%;
+  }
+  /* line 83, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .description {
+    width: 60%;
+    margin-bottom: 40px;
+  }
+  /* line 87, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie {
+    width: 24%;
+  }
+  /* line 90, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie:nth-of-type(5n+1) {
+    clear: none;
+  }
+  /* line 93, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie:nth-of-type(4n+1) {
+    clear: left;
+  }
+
+  /* line 98, sass/modules/base/responsive/_r_homepage.scss */
+  .middle-promo img {
+    width: 100%;
+  }
+
+  /* line 100, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .mobile-apps {
+    padding: 70px 15px;
+  }
+  /* line 102, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .mobile-apps h2 {
+    font-size: 3em;
+  }
+  /* line 105, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .mobile-apps p {
+    width: 70%;
+  }
+  /* line 110, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .footer-menu-options {
+    width: 26%;
+    margin: 0 1%;
+  }
+  /* line 113, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .footer-menu-options li {
+    width: 100%;
+  }
+  /* line 115, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .footer-menu-options li:nth-of-type(2n) {
+    margin-left: 0;
+  }
+  /* line 120, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .news {
+    width: 60%;
+    margin: 0 1%;
+  }
+  /* line 123, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .news article {
+    width: 100%;
+  }
+  /* line 125, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .news article:nth-of-type(2) {
+    margin-left: 0;
+  }
+  /* line 131, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .social-networks li {
+    margin-right: 20px;
+  }
+}
+@media (max-width: 480px) {
+  /* line 137, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header #logo {
+    margin-top: 20px;
+  }
+  /* line 140, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .account-container {
+    margin-top: 16px;
+    margin-right: 20px;
+  }
+
+  /* line 146, sass/modules/base/responsive/_r_homepage.scss */
+  #header-location-select {
+    margin-top: 24px;
+    float: right;
+  }
+  /* line 149, sass/modules/base/responsive/_r_homepage.scss */
+  #header-location-select > a {
+    font-size: 15px;
+    float: none;
+  }
+
+  /* line 156, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights .movie .movie-info {
+    margin-top: 60px;
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+  /* line 162, sass/modules/base/responsive/_r_homepage.scss */
+  .home .home-highlights .pagination {
+    left: 20px;
+  }
+
+  /* line 169, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard h1 {
+    font-size: 2em;
+  }
+  /* line 172, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .description {
+    width: 90%;
+  }
+  /* line 175, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie {
+    width: 32.33%;
+  }
+  /* line 178, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie:nth-of-type(4n+1) {
+    clear: none;
+  }
+  /* line 181, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie:nth-of-type(3n+1) {
+    clear: left;
+  }
+
+  /* line 187, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .mobile-apps {
+    padding: 20px 15px 40px;
+  }
+  /* line 189, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .mobile-apps h2 {
+    font-size: 2em;
+  }
+  /* line 192, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .mobile-apps p {
+    width: 100%;
+    font-size: 17px;
+  }
+  /* line 198, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .footer-menu-options {
+    width: 22%;
+    margin: 0 1%;
+  }
+  /* line 202, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .news {
+    width: 70%;
+  }
+  /* line 204, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .news article {
+    margin-bottom: 20px;
+  }
+  /* line 208, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .subscription {
+    width: 100%;
+  }
+  /* line 211, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .social-networks {
+    width: 100%;
+  }
+  /* line 215, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .copyright {
+    width: 100%;
+    clear: both;
+    text-align: center;
+  }
+  /* line 220, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer section.copyright .col-container .certificates {
+    float: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
   }
 }

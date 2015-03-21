@@ -238,7 +238,7 @@
 
           .sinopsis{
             height: 150px;
-            overflow-y: auto;
+            overflow-y: hidden;
             margin-bottom: 10px;
             font-size: 13px;
             color: $light-gray;

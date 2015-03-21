@@ -266,7 +266,7 @@ class AppController extends Controller{
 				'[:m_articles:]'=>array('url'=>array('controller'=>'articles','action'=>'index'),'restricted'=>false,'title'=>'[:m_articles_title:]','desc'=>'link blog menu'),
 				'[:m_contact:]'=>array('url'=>array('controller'=>'contacts','action'=>'add'),'restricted'=>false,'title'=>'[:m_contact_title:]','desc'=>'contacto menu','class'=>'contact'),
 				'[:m_locations:]'=>array('url'=>array('controller'=>'locations','action'=>'index'),'restricted'=>false,'title'=>'[:m_location_title:]','desc'=>'complejos menu','class'=>'locations'),
-				'[:m_services:]'=>array('url'=>array('controller'=>'pages','action'=>'display', 'services'),'restricted'=>false,'title'=>'[:m_services_title:]','desc'=>'servicios menu','class'=>'services'),
+				'[:m_services:]'=>array('url'=>array('controller'=>'services','action'=>'index'),'restricted'=>false,'title'=>'[:m_services_title:]','desc'=>'servicios menu','class'=>'services'),
 			)
 		)
 	);

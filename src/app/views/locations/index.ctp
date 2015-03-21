@@ -20,6 +20,11 @@
           foreach ($locations as $tmp_location) :
             $location = $tmp_location['Location'];
             $services = $tmp_location['Service'];
+            $gallery = $tmp_location['Gallery'];
+
+            if( count($gallery) ) {
+              $gallery = $gallery[0];
+            }
 
             $selected_location = ( array_key_exists($location['id'], $LocationsSelected) ) ? true : false;
         ?>
@@ -27,31 +32,39 @@
           <div class="address city-<?= $location['city_id'] ?>" data-lat="<?= $location['mark_lat'] ?>" data-lng="<?= $location['mark_lng'] ?>" style="<?= ($selected_location) ? 'display: block' : '' ?>">
             <strong class="title"><?= $location['name'] ?></strong>
 
-            <img class="cover" src="http://placehold.it/350x350">
-
-            <p class="address-info">
-              <?= $location['street']." #".$location['outside']." ".$location['interior']." ".$location['neighborhood']." C.P. ".$location['zip'] ?>
-            </p>
-
-            <p class="description">
-              <?= $location['description'] ?>
-            </p>
-
             <?php
-              $phones = explode(',', $location['phone_numbers']);
-              foreach ($phones as $phone):
+              if( count($gallery) )  {
             ?>
-              <span class="tel"><?= $phone ?></span>
-            <?php endforeach; ?>
 
-            <ul class="services">
+              <img class="cover" src="<?= $gallery['medium'] ?>">
 
-              <?php foreach($services as $service) : ?>
+            <?php } ?>
 
-                <li class="service" style="background-image: url(<?= $service['Icon']['thumb'] ?>)"><?= $service['name'] ?></li>
+            <div class="text">
+              <p class="address-info">
+                <?= $location['street']." #".$location['outside']." ".$location['interior']." ".$location['neighborhood']." C.P. ".$location['zip'] ?>
+              </p>
 
+              <p class="description">
+                <?= $location['description'] ?>
+              </p>
+
+              <?php
+                $phones = explode(',', $location['phone_numbers']);
+                foreach ($phones as $phone):
+              ?>
+                <span class="tel"><?= $phone ?></span>
               <?php endforeach; ?>
-            </ul>
+
+              <ul class="services">
+
+                <?php foreach($services as $service) : ?>
+
+                  <li class="service" style="background-image: url(<?= $service['Icon']['thumb'] ?>)"><?= $service['name'] ?></li>
+
+                <?php endforeach; ?>
+              </ul>
+            </div>
           </div>
 
         <?php endforeach; ?>

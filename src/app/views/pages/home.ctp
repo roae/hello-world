@@ -129,10 +129,7 @@
     <?php $this->element("locations/select");?>
     <div class="movies">
       <h2 class="titleBillboard">En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h2>
-
-      <ul class="movies-list">
-        <?= $this->element("shows/billboard"); ?>
-      </ul>
+       <?= $this->element("shows/billboard"); ?>
     </div>
   </div>
 

@@ -327,7 +327,7 @@ class ShowsController extends AppController{
 	}
 
 	function rest($locations = null){
-		$conditions = array();
+		$conditions = $movieLocationConditions = array();
 		if(isset($this->params['named']['locations'])){
 			$conditions = array('Show.location_id'=>explode("-",$this->params['named']['locations']));
 		}else if(isset($this->params['named']['city'])){
@@ -340,6 +340,7 @@ class ShowsController extends AppController{
 			);
 			if(!empty($locations)){
 				$conditions = array('Show.location_id'=>array_keys($locations));
+				$movieLocationConditions =array('MovieLocation.location_id'=>array_keys($locations));
 			}
 		}
 		if(isset($this->params['named']['schedule']) && $this->params['named']['schedule']){
@@ -366,7 +367,18 @@ class ShowsController extends AppController{
 				'contain'=>array(
 					'Movie'=>array(
 						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
-						'Poster'
+						'Poster',
+						'MovieLocation'=>array(
+							'conditions'=>$movieLocationConditions,
+							'limit'=>1,
+							'fields'=>array(
+								'MovieLocation.presale',
+								'MovieLocation.presale_start',
+								'MovieLocation.presale_end',
+								'MovieLocation.comming_soon',
+								'MovieLocation.premiere_end'
+							)
+						)
 					)
 				),
 				'group'=>array(
@@ -374,7 +386,16 @@ class ShowsController extends AppController{
 				),
 				'conditions'=>$conditions
 			);
-			$this->set("billboard",$this->Show->find("all",$query));
+			$billboard = $this->Show->find("all",$query);
+			foreach($billboard as $key => $item){
+				#unset($item['Movie']['MovieLocation'][0]['movie_id'],$item['Movie']['MovieLocation'][0]['id'],[''])
+				$billboard[$key]['Movie'] = am($item['Movie'],$item['Movie']['MovieLocation'][0]);
+				unset($billboard[$key]['Movie']['MovieLocation']);
+			}
+			if(isset($this->params['requested'])){
+				return $billboard;
+			}
+			$this->set("billboard",$billboard);
 		}
 
 	}

@@ -197,6 +197,7 @@
         font-size: 14px;
         color: $gray;
         vertical-align: top;
+        position: relative;
 
         .image-container {
           position: relative;
@@ -264,6 +265,7 @@
               top: 1px;
             }
           }
+
         }
 
         img { border-radius: 3px; }
@@ -300,6 +302,16 @@
 
         &:nth-of-type(5n+1){
           clear: left;
+        }
+        .presale{
+          background: #FECC00;
+          padding: 3px 10px;
+          position: absolute;
+          top: 10px;
+          left:-5px;
+          color:#353637;
+          font-weight: bold;
+          font-size: 18px;
         }
       }
     }

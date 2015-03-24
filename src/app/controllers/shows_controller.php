@@ -405,7 +405,10 @@ class ShowsController extends AppController{
 		$dates = $this->Show->find("list",array(
 			'fields'=>array('Show.date'),
 			'group'=>'Show.date',
-			'order'=>'Show.schedule ASC'
+			'order'=>'Show.schedule ASC',
+			'conditions'=>array(
+				'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+			)
 		));
 		if(isset($this->params['requested'])){
 			return $dates;

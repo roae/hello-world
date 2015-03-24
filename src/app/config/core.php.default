@@ -66,6 +66,13 @@
 
     Configure::write("RoomTypes",array('premier'=>'Sala Premier','mega'=>'Mega-Pantalla'));
 
+    Configure::write("AdTypes",array(
+    		'VERTICAL'=>'Vertical',
+    		'HORIZONTAL'=>'Horizontal',
+    		'VERTICALMINI'=>'VerticalMini',
+    		'CUADRO'=>'Cuadro'
+    	));
+
 
 /**
  * CakePHP Log Level:

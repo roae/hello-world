@@ -212,6 +212,31 @@ class AppController extends Controller{
 					)
 				),
 				'|',
+				'[:madmin_ads:]'=>array(
+					'url'=>array('controller'=>'ads','action'=>'index','admin'=>true,'plugin'=>false),
+					'isCurrentWhen'=>array('child'),
+					'menu'=>array(
+						'[:madmin_ads_list:]'=>array(
+							'url'=>array('controller'=>'ads','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'[:madmin_ads_add:]'=>array(
+							'url'=>array('controller'=>'ads','action'=>'add','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'<i class="icon-trash"></i> [:madmin_ads_trash:]'=>array(
+							'url'=>array('controller'=>'ads','action'=>'trash','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('action'),
+						),
+						'|',
+						'[:madmin_ads_groups:]'=>array(
+							'url'=>array('controller'=>'ads_groups','action'=>'index','admin'=>true,'plugin'=>false),
+							'isCurrentWhen'=>array('url'),
+						),
+					),
+				),
+				'|',
 				'[:madmin_articles:]'=>array(
 					'url'=>array('controller'=>'articles','action'=>'index','admin'=>true,'plugin'=>false),
 					'isCurrentWhen'=>array('child'),

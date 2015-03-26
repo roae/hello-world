@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="/css/owl.carousel.css">
-<link rel="stylesheet" href="/css/owl.theme.css">
-
 <section class="home-highlights" id="main-slider">
   <div class="movie big-hero">
     <div class="col-container">
@@ -133,8 +130,8 @@
     </div>
   </div>
 
-  <section class="middle-promo">
-    <?= $this->Html->image("refill.png",array('alt'=>'[:logo_alt:]')) ?>
+  <section class="horizontal-banner">
+   <?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
   </section>
 </section>
 

@@ -27,8 +27,8 @@ Class Ad extends AppModel{
 					'big' => array('width' => 775,'image_ratio_crop' => false,'image_ratio_y'=>true),
 				),*/
 				'limit' => 1,
-				'height'=>540,
-				'width'=>235,
+				'height'=>620,
+				'width'=>270,
 				'required' => false,
 				'image_ratio_crop' => true,
 				'allowed' => array('images'),
@@ -41,7 +41,7 @@ Class Ad extends AppModel{
 				),*/
 				'limit' => 1,
 				'height'=>380,
-				'width'=>235,
+				'width'=>270,
 				'required' => false,
 				'image_ratio_crop' => true,
 				'allowed' => array('images'),
@@ -52,8 +52,8 @@ Class Ad extends AppModel{
 					'mini' => array('width' => 75,'height'=>75,'image_ratio_crop' => true),
 					'big' => array('width' => 775,'image_ratio_crop' => false,'image_ratio_y'=>true),
 				),*/
-				'height'=>235,
-				'width'=>235,
+				'height'=>270,
+				'width'=>270,
 				'limit' => 1,
 				'required' => false,
 				'image_ratio_crop' => true,

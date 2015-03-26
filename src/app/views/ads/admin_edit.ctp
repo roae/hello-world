@@ -12,6 +12,7 @@ echo $this->Form->hidden("id");
 					echo $this->I18n->input("title");
 					echo $this->I18n->input("ads_group_id",array('options'=>$ads_groups));
 					echo $this->I18n->input("type",array('options'=>Configure::read("AdTypes")));
+					echo $this->I18n->input("link");
 					?>
 				</div>
 				<div class="span5 offset1 banners">

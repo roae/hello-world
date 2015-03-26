@@ -92,6 +92,7 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.flydom.js',"ext/jq
 
 				</div>
 				<?php endforeach;
+			echo $this->Html->tag("div","","endBillboard");
 			$this->I18n->end();
 			echo $this->Ajax->divEnd("Billboard");
 			?>
@@ -102,11 +103,16 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.flydom.js',"ext/jq
 				<?= $this->element("shows/filter"); ?>
 
 				<div class="vertical-banner">
-					<?= $this->Html->image("refill-vertical.png",array('alt'=>'[:logo_alt:]')) ?>
+					<?= $this->element("ads/show",array('type'=>'VERTICAL'));?>
 				</div>
 			</div>
 
 		</div>
+		<section class="horizontal-banner">
+			<?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
+		</section>
 
 	</div>
 </section>
+<?= $this->element("movies/commingsoon"); ?>
+

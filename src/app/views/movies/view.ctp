@@ -147,7 +147,7 @@
 					<?php endif; ?>
 
 					<div class="vertical-banner">
-						<?= $this->Html->image( "refill-vertical-small.png", array( 'alt' => '[:logo_alt:]' ) ) ?>
+						<?= $this->element("ads/show",array('type'=>'VERTICALMINI'));?>
 					</div>
 				</aside>
 

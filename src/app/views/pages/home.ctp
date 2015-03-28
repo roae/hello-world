@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="/css/owl.carousel.css">
-<link rel="stylesheet" href="/css/owl.theme.css">
-
 <section class="home-highlights" id="main-slider">
   <div class="movie big-hero">
     <div class="col-container">
@@ -129,15 +126,12 @@
     <?php $this->element("locations/select");?>
     <div class="movies">
       <h2 class="titleBillboard">En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h2>
-
-      <ul class="movies-list">
-        <?= $this->element("shows/billboard"); ?>
-      </ul>
+       <?= $this->element("shows/billboard"); ?>
     </div>
   </div>
 
-  <section class="middle-promo">
-    <?= $this->Html->image("refill.png",array('alt'=>'[:logo_alt:]')) ?>
+  <section class="horizontal-banner">
+   <?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
   </section>
 </section>
 

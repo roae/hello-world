@@ -1,30 +1,39 @@
 <?php
 	/* @var $this View */
-	$conditions = array();
+	#$conditions = $movieLocationConditions = array();
+	$restParams = array();
 	if(isset($LocationsSelected) && !empty($LocationsSelected)){
-		$conditions = array('Show.location_id'=>array_keys($LocationsSelected));
+		#$conditions = array('Show.location_id'=>array_keys($LocationsSelected));
+		#$movieLocationConditions =array('MovieLocation.location_id'=>array_keys($LocationsSelected));
+		$restParams = array('named'=>array('locations'=>implode("-",array_keys($LocationsSelected))));
 	}
-	$query = array(
+	/*$query = array(
 		'fields'=>array('Show.id'),
 		'contain'=>array(
 			'Movie'=>array(
 				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
-				'Poster'
+				'Poster',
+				'MovieLocation'=>array(
+					'conditions'=>$movieLocationConditions,
+					'limit'=>1
+				),
 			)
 		),
 		'group'=>array(
 			'movie_id'
 		),
 		'conditions'=>$conditions
-	);
+	);*/
 
-	$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get','type'=>'all','query'=>$query));
-	//pr($billboard);
+	$billboard = $this->requestAction(am(array('controller'=>'shows','action'=>'rest'),$restParams));
+	#pr($billboard);
 ?>
+<ul class="movies-list">
+	<?php foreach($billboard as $show) {
+	?>
 
-	<?php foreach($billboard as $show) { ?>
+		<li class="movie">
 
-		<div class="movie">
 			<div class="image-container">
 				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
 				<div class="details link">
@@ -55,11 +64,17 @@
 				<span class="duration"><?= ($show['Movie']['duration'] != '') ? $show['Movie']['duration'].' mins' : '' ?></span>
 				<span class="genre"><?= $show['Movie']['genre'] ?></span>
 			</div>
-		</div>
+			<?php
+			if($show['Movie']['presale']){
+				echo $this->Html->tag("span","[:presale:]",'presale');
+			}
+			?>
+		</li>
 
 	<?php } ?>
-
+</ul>
 <?php
+
 	if(Configure::read("LocationSelected.id")) {
 		echo $this->Html->link("Ver cartelera completa",array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(Configure::read("LocationSelected.name"),"-")));
 	}

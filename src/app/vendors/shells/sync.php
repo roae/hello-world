@@ -67,12 +67,12 @@ class SyncShell extends Shell{
 		#$this->out(print_r($syncStatus));
 		#$this->hr();
 		#$this->out(date("Y-m-d H:i:s",mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")))." - ".date("Y-m-d H:i:s",strtotime("now")));
-		$sync_hour = mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y"));
+		/*$sync_hour = mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y"));
 		if(($sync_hour <= strtotime("now")) && mktime($this->config['sync_hour'],0,0,date("m"),date("d"),date("Y")) > strtotime($syncStatus['date'])){
 			return true;
-		}
+		}*/
 		#$this->out(date("Y-m-d H:i:s",strtotime($syncStatus['date']))." - ".date("Y-m-d H:i:s",strtotime("-".$this->config['sync_error_interval']." min")));
-		if(!empty($syncStatus) && $syncStatus['fail'] && strtotime($syncStatus['date']) <= strtotime("-".$this->config['sync_error_interval']." min")){
+		if(!empty($syncStatus) && $syncStatus['fail'] && strtotime($syncStatus['date']) <= strtotime("-".$this->config['sync_interval']." min")){
 			return true;
 		}
 
@@ -88,13 +88,14 @@ class SyncShell extends Shell{
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
+		$this->out("Fecha: ".date("F j, Y, h:i:s a"));
 		$location_id = $this->__getArgLocation();
 
 		if($this->__sincronizar() || $location_id){
 			$this->hr(1);
 			$this->out("Bienvenido a la sincronización de carteleras");
 			$this->out("Fecha: ".date("F j, Y, h:i:s a"));
-			$this->hr(1);
+			#$this->hr(1);
 			//$this->syncStatus = array();
 			$this->syncStatus['fail'] = false;
 			$this->syncStatus['date'] = date("Y-m-d H:i:s");
@@ -103,7 +104,7 @@ class SyncShell extends Shell{
 			try{
 				$starDate = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
 				$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
-				$this->out("Periodo: ".date("Y-m-d H:i:s",$starDate)." | ".date("Y-m-d H:i:s",$endDate));
+				#$this->out("Periodo: ".date("Y-m-d H:i:s",$starDate)." | ".date("Y-m-d H:i:s",$endDate));
 
 				$conditions = ($location_id == "all")? array() : array('Location.id'=>$location_id);
 				$locations = $this->Location->find("all",array(
@@ -186,6 +187,7 @@ class SyncShell extends Shell{
 
 			$this->hr(1);
 			$this->out("Fin de la ejecución: ".date("F j, Y, h:i:s a"));
+			$this->hr(1);
 		}
 
 		$this->_stop(1);
@@ -244,11 +246,35 @@ class SyncShell extends Shell{
 
 		$movies = array();
 		#$this->log($location,'sync');
+
 		if(isset($data['VistaData']) && !empty($data['VistaData'])){
 			#$this->out("VistaData exist");
+			//$this->out("rochin");
 			$this->Show->begin();
-			$this->Show->deleteAll(array('Show.location_id'=>$location['id']));
+			$idSessions = Set::classicExtract($data['VistaData']['Sessions']['Session'],'{n}.Session_ID');
+			//$this->out(print_r($idSessions));
+			$sessionsList = $this->Show->find("list",array('conditions'=>array('Show.location_id'=>$location['id']),'fields'=>array('Show.session_id')));
+
+			/*$this->out($sessionsList);
+			$this->hr();
+			$this->out("SessionID");
+			$this->out($idSessions);
+			$this->hr();
+			$this->out("DIFF");
+			$this->out(Set::diff($sessionsList,$idSessions));*/
+			foreach($idSessions as $sessionID){
+				if($key = array_search($sessionID,$sessionsList)){
+					$added[$key] = $sessionID;
+				}
+			}
+
+			$this->Show->deleteAll(array('Show.location_id'=>$location['id'],'Show.session_id NOT'=>$idSessions));
+
 			foreach($data['VistaData']['Sessions']['Session'] as $session){
+				$showID = array_search($session['Session_ID'],$added);
+				/*if($showID){
+
+				}*/
 				#$this->out(print_r(Set::extract('/Movie[Movie_ID=/'.$session['Movie_ID'].'/i]',$data['VistaData']['Movies'])));
 				$movie = Set::extract("/Movie[Movie_ID=/{$session['Movie_ID']}/i]",$data['VistaData']['Movies']);
 				if(isset($movie[0]['Movie'])){
@@ -313,21 +339,41 @@ class SyncShell extends Shell{
 					);
 
 
-					$this->Show->create();
-					if($this->Show->save($show)){
-						$session_prices = Set::extract("/Price[Price_group_code=/{$session['Price_group_code']}/]",$data['VistaData']['Prices']);
-						$prices = array();
-						foreach($session_prices as $record){
-							if(strpos($record['Price']['TType_strSalesChannels'],"WWW")){
-								$this->Show->TicketPrice->create();
-								#$this->out($record['Price']['Ticket_Price']);
-								#$this->out($record['Price']['Ticket_Price']/100);
-								$this->Show->TicketPrice->save(array(
-									'show_id'=>$this->Show->id,
-									'code'=>$record['Price']['Ticket_type_code'],
-									'description'=>$record['Price']['Ticket_type_description'],
-									'price'=>$record['Price']['Ticket_Price']/100*1.0
-								));
+					if(!$showID){
+						$this->Show->create();
+					}else{
+						$show['id']=$showID;
+					}
+
+					if($this->Show->save($show)){ # si ya existe la session, no se guarda el show, solo se actualizan los precios
+						if(!$showID) {
+							$showID = $this->Show->id;
+						}
+						if($showID){
+							$session_prices = Set::extract("/Price[Price_group_code=/{$session['Price_group_code']}/]",$data['VistaData']['Prices']);
+							$ticketsAdded = Set::classicExtract($session_prices,"{n}.Price.Ticket_type_code");
+							$tickets = $this->Show->TicketPrice->find("list",array('conditions'=>array('TicketPrice.show_id'=>$showID),'fields'=>array('TicketPrice.code')));
+
+							$this->Show->TicketPrice->deleteAll(array('Price.show_id'=>$location['id'],'Price.code NOT'=>$ticketsAdded));
+
+							foreach($session_prices as $record){
+								if(strpos($record['Price']['TType_strSalesChannels'],"WWW")){
+									$ticketID = array_search($record['Price']['Ticket_type_code'],$tickets);
+									if(!$ticketID){
+										$this->Show->TicketPrice->create();
+										$ticketID = null;
+									}
+
+									#$this->out($record['Price']['Ticket_Price']);
+									#$this->out($record['Price']['Ticket_Price']/100);
+									$this->Show->TicketPrice->save(array(
+										'id'=>$ticketID,
+										'show_id'=>$showID,
+										'code'=>$record['Price']['Ticket_type_code'],
+										'description'=>$record['Price']['Ticket_type_description'],
+										'price'=>$record['Price']['Ticket_Price']/100*1.0
+									));
+								}
 							}
 						}
 					}else{
@@ -520,16 +566,16 @@ class SyncShell extends Shell{
 		$Controller->set("errors",$this->errors);
 		$Email->template = "sync_error";
 
-		/* Opciones SMTP*/
-		/*$Email->smtpOptions = array(
+		/* Opciones SMTP*
+		$Email->smtpOptions = array(
 			'port'=>'25',
 			'timeout'=>'30',
 			'host' => 'mail.h1webstudio.com',
 			'username'=>'erochin@h1webstudio.com',
 			'password'=>'Rochin12!-');
 
-		$Email->delivery = 'smtp';*/
-
+		$Email->delivery = 'smtp';
+		/**/
 		$Email->send();
 
 		$this->out(print_r($Email->smtpError));

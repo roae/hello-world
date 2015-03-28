@@ -39,5 +39,6 @@ class Show extends AppModel{
 			'Fecha' => array( 'rule' => '/^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}$/i', 'required' => true, 'allowEmpty' => false, 'message' => '[:invalid_date:]'),
 		),
 	);
+
 }
 ?>

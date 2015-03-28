@@ -18,14 +18,19 @@ echo $this->Form->create("Setting");
 				foreach(range(1,23) as $hour){
 					$hours[$hour] = $hour.":00";
 				}
-				echo $this->Form->hidden("0.id");
+				/*echo $this->Form->hidden("0.id");
 				echo $this->I18n->input("0.value",array('options'=>$hours,'label'=>'[:hora-sincronizacion-cartelera:]'));
-
+				*/
 				echo $this->Form->hidden("1.id");
 				echo $this->I18n->input("1.value",array('type'=>'text','label'=>'[:email-error-cartelera:]','after'=>'<span class="help">[:email-error-cartelera-help:]</span>'));
 
+				/*
 				echo $this->Form->hidden("9.id");
 				echo $this->I18n->input("9.value",array('type'=>'text','label'=>'[:sync_error_interval:]'));
+				*/
+
+				echo $this->Form->hidden("10.id");
+				echo $this->I18n->input("10.value",array('type'=>'text','label'=>'[:sync_interval:]'));
 
 				?>
 				</fieldset>

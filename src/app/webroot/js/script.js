@@ -289,7 +289,7 @@ function nextSlide(){
 
 	if( $('body').hasClass('home') ) {
 
-		$('.mobile-apps').removeClass('small');
+		//$('.mobile-apps').removeClass('small');
 
 		var $slider = $('#main-slider'),
 				$movies = $slider.find('.movie'),
@@ -320,23 +320,23 @@ function nextSlide(){
 
 		});
 
-		$('.next-premieres .movies-list' ).owlCarousel({
-			center:true,
-			loop:true,
-			items : 8,
-			pagination : true,
-	    	paginationNumbers: false,
-	    	itemsCustom : false,
-		    itemsDesktop : [1199,4],
-		    itemsDesktopSmall : [980,3],
-		    itemsTablet: [768,3],
-		    itemsTabletSmall: false,
-		    itemsMobile : [479,1],
-		    singleItem : false,
-		    itemsScaleUp : false,
-		});
-
 	}
+
+	$('.next-premieres .movies-list' ).owlCarousel({
+		center:true,
+		loop:true,
+		items : 8,
+		pagination : true,
+		paginationNumbers: false,
+		itemsCustom : false,
+		itemsDesktop : [1199,4],
+		itemsDesktopSmall : [980,3],
+		itemsTablet: [768,3],
+		itemsTabletSmall: false,
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	});
 
 	$('.the-content').waypoint(function(direction) {
 
@@ -405,9 +405,8 @@ function nextSlide(){
 			offset:'100px'
 		});
 
-		$("#main-footer" ).waypoint({
+		$(".billboard-list .endBillboard" ).waypoint({
 			handler: function(direction){
-				console.log(direction);
 				if(direction == "down"){
 					$(".billboard-aside .vertical-banner").css({position: "absolute",bottom:0,top:"auto"});
 				}else{

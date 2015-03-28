@@ -1,9 +1,9 @@
 .blured {
-  -moz-filter: blur(3px);
-  -webkit-filter: blur(3px);
+  -moz-filter: blur(5px);
+  -webkit-filter: blur(5px);
   filter: url(../img/blur.svg#blur);
-  filter: blur(3px);
-  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+  filter: blur(5px);
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='5runt');
 }
 
 #blured-lightbox {
@@ -14,6 +14,17 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
+
+  .blured-lightbox-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    text-indent: -1000px;
+    background: url(../img/lightbox-close-icon.png) no-repeat left top;
+    overflow: hidden;
+  }
 
   .blured-lightbox-content {
     position: absolute;
@@ -37,6 +48,7 @@
     left: 50%;
     margin-left: -20px;
     margin-top: -20px;
+    @include box-shadow(0 1px 10px rgba(0,0,0,0.5));
 
     @include loader();
   }

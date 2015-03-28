@@ -213,5 +213,10 @@ class ServicesController extends AppController{
 		$this->redirect($this->referer());
 	}
 
+	function index() {
+		$services = $this->Service->find('all',array('contain'=>array('Icon','Gallery')));
+		$this->set("recordset", $services);
+	}
+
 }
 ?>

@@ -1,6 +1,6 @@
 /* SIZES */
 
-$max-width : 1080px;
+$max-width : 1140px;
 
 $main-title-size : 2em;
 $sub-title-size : 1.25em;
@@ -16,8 +16,11 @@ $green: #51b347;
 
 /* SUSY  */
 $susy: (
- 	container: 1140px,
+ 	container: $max-width,
 	columns: 16,  // The number of columns in your grid
 	gutters: 1/4, // The size of a gutter in relation to a single column
 	gutter-position: 'split',
 );
+$widthSeat: 50px;
+$maxWidthSeat: 50px;
+$minWidthSeat: 24px;

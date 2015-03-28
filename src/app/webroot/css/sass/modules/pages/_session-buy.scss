@@ -1,37 +1,65 @@
 #SessionCheckout{
   .big-cover {
+
     position: relative;
-    height: 260px;
+
     color: #fff;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #f08b24;
-    background-size: cover;
+
+    background-color: #fff;
+
 
     //-moz-background-blend-mode: luminosity;
     //background-blend-mode: luminosity;
 
+    .bg{
+      -moz-filter: blur(10px);
+      -webkit-filter: blur(10px);
+      filter: url(../img/blur.svg#blur);
+      filter: blur(10px);
+      filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='10');
+      height: 220px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
     .col-container {
       position: relative;
-      height: 260px;
       z-index: 2;
+    }
+    header{
+      position: absolute;
+      bottom: 15px;
+      padding-left: span(4)+gutter();
+      overflow: hidden;
+      width: 100%;
+      text-shadow: 0px 0px 10px #000
     }
 
     h1 {
       position: relative;
       padding-bottom: 15px;
-      font-size: 42px;
-      font-weight: 300;
+      padding-left:20px;
+      font-size: 50px;
+      font-weight: 100;
+      @include text-overflow();
+
 
       &:after {
         content: '';
         position: absolute;
         bottom: 8px;
-        left: 0;
+        left: 20px;
         width: 100px;
         height: 1px;
         background-color: rgba(255, 255, 255, 0.5);
       }
+    }
+    p{
+      font-size: 24px;
+      font-weight: 200;
+      padding-left:20px;
+      @include text-overflow();
     }
 
     &:after {
@@ -40,7 +68,7 @@
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 200px;
+      height: 300px;
 
       @include gradientVertical(transparent,#000 );
     }
@@ -69,12 +97,7 @@
     }
   }
 
-  header{
-    position: absolute;
-    bottom: 15px;
-    left: span(4)+gutter();
-    margin-left: 20px;
-  }
+
 
   .movie-information{
     position: relative;
@@ -116,6 +139,7 @@
       font-weight: 100;
       color:#fff;
       font-size: 46px;
+      margin-bottom: 10px;
     }
     .btn{
       background: #006935;
@@ -142,30 +166,7 @@
   .ticketsSelection{
     padding-bottom: 50px;
     margin-bottom: 100px;
-    .title{
-      text-align: center;
-      margin-bottom: 50px;
-      strong{
-        color: #f18932;
-        font-size: 30px;
-        font-weight: 300;
-        position: relative;
-        &:before{
-          position: absolute;
-          top:5px;
-          left: -50px;
-          border: 3px solid #f9cca7;
-          width: 40px;
-          height: 40px;
-          @include border-radius(50%);
-          display: inline-block;
-          margin-right: 10px;
-          content:"1";
-          line-height: 33px;
-        }
-      }
 
-    }
     table{
       @include span(10);
       margin-left: span(1)+gutter();
@@ -177,10 +178,11 @@
           padding:20px 5px;
           color: #686868;
           font-weight: normal;
+          vertical-align: middle;
         }
         th{
           color: #434343;
-          font-size: 24px;
+          font-size: 20px;
           text-align: left;
         }
       }
@@ -192,6 +194,7 @@
         float: left;
         display: inline-block;
         padding: 0 10px;
+        font-size: 24px;
       }
       .less{
         float: left;
@@ -230,11 +233,22 @@
         &:before{
           content: " ";
           border-top: 3px solid #00CC67;
+          height:0;
           width: 15px;
           display: block;
           position: absolute;
           top: 17px;
           left: 11px;
+        }
+        &:after{
+          content: " ";
+          border-left: 3px solid #00CC67;
+          width: 0;
+          height: 15px;
+          display: block;
+          position: absolute;
+          top: 11px;
+          left: 17px;
         }
       }
     }
@@ -254,6 +268,314 @@
       font-size: 48px;
       display:block;
     }
+  }
+
+  .loyaltyCard{
+    @include span(10);
+    margin-left: span(1)+gutter();
+    margin-top: 40px;
+    label{
+      display:block;
+    }
+
+    @include with-layout(10) {
+      .input{
+        overflow: hidden;
+        input{
+          @include span(6);
+          margin-left: 0;
+          @include border-radius(5px);
+        }
+        .btn-primary{
+          font-size: 18px;
+          @include span(4);
+          margin:0;
+        }
+      }
+    }
+  }
+
+  .seatsSelection{
+    border-top: 1px solid #f1f1f1;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+    .stepTitle{
+      strong{
+        &:before{
+          content:"2";
+        }
+      }
+    }
+
+    .room-container{
+      border: 0;
+      margin: 10px auto 100px;
+      font-family: "Open Sans","Raleway","Helvetica Neue",Helvetica,Arial;
+      text-align: center;
+      color:#313131;
+
+      .layout{
+        margin:0 auto;
+        //border-collapse: separate;
+        //border-spacing: 2px;
+        tr:nth-child(odd) td{
+          background: #f1f1f1;
+        }
+      }
+
+      .screen{
+        margin:20px 50px;
+        background:#f1f1f1;
+        padding: 10px 0;
+        position: relative;
+        overflow: hidden;
+        font-size: 20px;
+        font-weight: 100;
+        padding-top:20px;
+        &:before{
+          content:" ";
+          width: 100px;
+          height: 100px;
+          display:block;
+          position: absolute;
+          top:0;
+          left:-35px;
+          background: #fff;
+          @include rotate(60deg);
+        }
+        &:after{
+          content:" ";
+          width: 100px;
+          height: 100px;
+          display:block;
+          position: absolute;
+          top:0;
+          right:-35px;
+          background: #fff;
+          @include rotate(25deg);
+        }
+      }
+
+      /*td{
+        width: 50px;
+      }*/
+      img{
+        width: 100%;
+        display:block;
+        visibility: hidden;
+      }
+
+      .room-layout-row{
+        white-space: nowrap;
+
+      }
+      .row{
+        line-height: 100%;
+        width: $widthSeat;
+      }
+
+      td{
+        width: $widthSeat;
+        max-width: $maxWidthSeat;
+        min-width: $minWidthSeat;
+        border: 5px 2px;
+        border-color:#fff;
+        position: relative;
+        vertical-align: middle;
+      }
+      .seat{
+        display:block;
+        text-align: center;
+        margin:14px 1px;
+      }
+      .number{
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 12px;
+      }
+      /*.individual{
+        width: auto;
+      }*/
+      .empty{
+        width: $widthSeat;
+        max-width: $maxWidthSeat;
+        min-width: $minWidthSeat;
+      }
+      .status-0 {
+        .seat {
+          background: inline-image("seat-0.png") center no-repeat;
+          background-size: 100% auto;
+          border-top: 0;
+          cursor: pointer;
+          &:hover{
+            background: inline-image("seat-hover.png") center no-repeat;
+            background-size: 100% auto;
+          }
+        }
+        &.Multi-End .seat{
+          background: inline-image("../img/Multi-End-0.png") center no-repeat;
+          background-size: 100% auto;
+          &:hover{
+            background: inline-image("Multi-End-hover.png") center no-repeat;
+            background-size: 100% auto;
+          }
+        }
+        &.Multi-Start .seat{
+          background: inline-image("Multi-Start-0.png") center no-repeat;
+          background-size: 100% auto;
+          &:hover{
+            background: inline-image("Multi-Start-hover.png") center no-repeat;
+            background-size: 100% auto;
+          }
+        }
+      }
+      .status-1 {
+        .seat {
+          background: inline-image("seat-1.png") center no-repeat;
+          background-size: 100% auto;
+          border-top: 0;
+          color:#fff;
+        }
+        &.Multi-End .seat{
+          background: inline-image("Multi-End-1.png") center no-repeat;
+          background-size: 100% auto;
+        }
+        &.Multi-Start .seat{
+          background: inline-image("Multi-Start-1.png") center no-repeat;
+          background-size: 100% auto;
+        }
+      }
+
+      .status-3 {
+        .seat {
+          background: inline-image("seat-0.png") center no-repeat;
+          background-size: 100% auto;
+          border-top: 0;
+          @include opacity(.5);
+        }
+        &.Multi-End .seat{
+          background: inline-image("Multi-End-0.png") center no-repeat;
+          background-size: 100% auto;
+        }
+        &.Multi-Start .seat{
+          background: inline-image("Multi-Start-0.png") center no-repeat;
+          background-size: 100% auto;
+        }
+      }
+
+      .Multi-Start{
+        @include box-sizing(content-box);
+        .number{
+          padding-right: 15px;
+        }
+        //margin-right: 10px;
+
+      }
+
+      .Multi-End{
+        //width: 50px;
+        .number{
+          padding-left: 15px;
+          //margin-left: 10px;
+        }
+
+      }
+
+      .individual + .Multi-End{
+        //margin-left:10px;
+      }
+
+      .loveSeats{
+        .row{
+          //width: 50px;
+        }
+        .seat{
+          font-size: 16px;
+          //width: 50px;
+          height: 42px;
+          padding-top:4px;
+        }
+        .empty{
+          //width: 50px;
+        }
+      }
+
+      .instructions{
+        padding: 20px 0;
+        font-weight: 100;
+        vertical-align: middle;
+        line-height: 20px;
+        .available{
+          margin-right: 30px;
+          &:before{
+            content: " ";
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background: #c8c8c8;
+            @include border-radius(50%);
+            display: inline-block;
+          }
+        }
+        .unavailable{
+          margin-right: 30px;
+          &:before{
+            content: " ";
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background: #F50A29;
+            @include border-radius(50%);
+            display: inline-block;
+          }
+        }
+        .yourseats{
+          margin-right: 30px;
+          &:before{
+            content: " ";
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            background: #EFBA62;
+            @include border-radius(50%);
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+
+
+
+  }
+
+  .stepTitle{
+    text-align: center;
+    margin-bottom: 50px;
+    strong{
+      color: #f18932;
+      font-size: 30px;
+      font-weight: 300;
+      position: relative;
+      &:before{
+        position: absolute;
+        top:-5px;
+        left: -50px;
+        border: 3px solid #f9cca7;
+        width: 40px;
+        height: 40px;
+        @include border-radius(50%);
+        display: inline-block;
+        margin-right: 10px;
+        content:"1";
+        line-height: 33px;
+      }
+    }
+
   }
 
 }

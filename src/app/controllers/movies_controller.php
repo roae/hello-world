@@ -10,6 +10,9 @@ class MoviesController extends AppController{
 	var $helpers = array();
 
 	var $paginate = array(
+		'order'=>array(
+			'Movie.id'=>'DESC'
+		),
 		'limit'=>30,
 		'conditions'=>array(
 			'Movie.trash'=>0
@@ -231,15 +234,34 @@ class MoviesController extends AppController{
 		$this->Movie->contain(array(
 			"Poster",
 			"Gallery",
-			"Projection",
+			/*"Projection",
 			'MovieLocation'=>array(
 				'Location'
-			)
+			)*/
 		));
 
 		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
+		$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get_movie_schedule','movie_id'=>$record['Movie']['id']));
 
-		$this->set(compact("record"));
+		$this->set(compact("record","billboard"));
+	}
+
+	function premiere(){
+		$conditions = array();
+		if(isset($LocationsSelected) && !empty($LocationsSelected)){
+			$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
+		}
+
+		return $this->Movie->MovieLocation->find("all",array(
+			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_end >'=>date("Y-m-d"))),
+			'contain'=>array(
+				'Movie'=>array(
+					'Poster'
+				)
+			),
+			'group'=>'MovieLocation.movie_id'
+
+		));
 	}
 
 }

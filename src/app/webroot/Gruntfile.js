@@ -9,6 +9,7 @@ module.exports = function(grunt) {
           require: 'susy',
           sassDir: 'css/sass',
           cssDir: 'css',
+          imagesDir: 'img',
           require: 'susy'
         }
       }
@@ -51,7 +52,39 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'js/admin/projections.min.js': ['js/admin/projections.annotated.js'],
-	      'js/admin/sync.min.js': ['js/admin/sync.annotated.js']
+	      'js/admin/sync.min.js': ['js/admin/sync.annotated.js'],
+	      'js/ext/jquery.select.min.js': ['js/ext/jquery.select.js']
+        }
+      }
+    },
+
+    less:{
+      dist:{
+        options:{
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files:{
+          //"less/l10ntools.less": "css/l10ntools.css"
+          "../plugins/i18n/webroot/css/l10ntools.css":"../plugins/i18n/webroot/less/l10ntools.less"
+        }
+      }
+    },
+
+    notify: {
+      css:{
+        options: {
+          title: "Css Files Build",
+          message:'LESS / SASS task complete',
+          duration: 3
+        }
+      },
+      scripts:{
+        options: {
+          title: "JS Files Build",
+          message:'Uglify task complete',
+          duration: 3
         }
       }
     },
@@ -59,9 +92,9 @@ module.exports = function(grunt) {
     // Watch files for changes
     watch: {
       css: {
-        files: ['css/sass/**/**/*', 'css/sass/*'],
+        files: ['css/sass/**/**/*', 'css/sass/*','../plugins/i18n/webroot/less/*'],
         // Run compass, autoprefixer, and CSSO
-        tasks: ['compass', 'csso'],
+        tasks: ['compass', 'csso','less','notify:css'],
         options: {
           interrupt: true,
           spawn: false,
@@ -70,7 +103,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['js/admin/projections.js'],
-        tasks: ['uglify']
+        tasks: ['uglify','notify:scripts']
       }
     }
 
@@ -79,11 +112,13 @@ module.exports = function(grunt) {
   // Load tasks
   /*grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-csso');
-  grunt.loadNpmTasks('grunt-notify');*/
-  require('time-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-csso');*/
+  grunt.loadNpmTasks('grunt-notify');
+  //grunt.loadNpmTasks('grunt-newer');
+  //require('time-grunt')(grunt);
   require('jit-grunt')(grunt);
 
   // Register tasks
-  grunt.registerTask('default', ['compass', 'csso', 'newer:ngAnnotate' ,'newer:uglify', 'watch']);
+  grunt.registerTask('default', ['compass', 'csso', 'ngAnnotate' ,'uglify','less', 'watch']);
+  grunt.task.run('notify_hooks');
 };

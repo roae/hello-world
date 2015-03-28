@@ -100,6 +100,10 @@ I18nRouter::connect( "/[privacy_policies_url]", array( 'controller' => 'pages',
 ) );
 
 I18nRouter::connect( "/[sitemap_url]", array( 'controller' => 'pages', 'action' => 'display', 'sitemap' ) );
+I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
+I18nRouter::connect( "/[m_locations_url]", array( 'controller' => 'locations', 'action' => 'index') );
+I18nRouter::connect( "/[m_services_url]", array( 'controller' => 'services', 'action' => 'index' ) );
+I18nRouter::connect( "/[m_register_url]", array( 'controller' => 'pages', 'action' => 'display', 'register' ) );
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.
@@ -116,6 +120,9 @@ Router::mapResources( 'users' );
 Router::mapResources( 'cities' );
 
 Router::parseExtensions( 'json','xml' );
+
+Router::connect( '/billboard/*', array( 'controller' => 'shows', 'action' => 'rest') );
+Router::connect( '/billboard-full/*', array( 'controller' => 'shows', 'action' => 'rest_schedules') );
 
 /*
  * Carga todos los archivos routes de los plugins

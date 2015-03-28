@@ -17,6 +17,7 @@
 @import "modules/components/buttons";
 @import "modules/components/navigation";
 @import "modules/components/blured-lightbox";
+@import "modules/components/login";
 
 /* LAYOUTS */
 
@@ -32,6 +33,10 @@
 @import "modules/pages/movie-detail";
 @import "modules/pages/session-buy";
 @import "modules/pages/articles";
+@import "modules/pages/about";
+@import "modules/pages/complex";
+@import "modules/pages/services";
+@import "modules/pages/register";
 
 @import "modules/base/responsive";
 

@@ -1,4 +1,6 @@
-
+<?php
+$this->Html->script(array('ext/jquery.history.js','ext/jquery.flydom.js',"ext/jquery.xupdater.js"),array('inline'=>false));
+?>
 
 <section class="billboard-container">
 	<div class="col-container">
@@ -9,15 +11,21 @@
 		</div>
 
 		<div class="the-billboard">
-			<div class="billboard-list">
-			<?php foreach($billboard as $record): ?>
+
+			<?php
+			echo $this->Ajax->div("Billboard",array('class'=>'billboard-list'));
+			$this->I18n->start();
+			foreach($billboard as $record): ?>
 				<div class="complex">
 					<div class="complex-name floating">
 						<span class="complex-label"><?= $record['Location']['name'] ?></span>
 					</div>
-
+					<?php
+					if(isset($record['Show'])){
+					?>
 					<ul class="movies">
 					<?php
+
 						foreach($record['Show'] as $item) {
 					?>
 
@@ -53,7 +61,7 @@
 									<strong class="schedule-title">[:PREMIERE:]</strong>
 									<? foreach($item['Premier'] as $type => $shows): ?>
 										<div class="schedule premiere">
-											<span class="label"><strong><?= str_replace("|","/",$type) ?></span>
+											<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
 											<ul>
 												<?
 												$schedule = array();
@@ -74,42 +82,24 @@
 
 					<?php } ?>
 					</ul>
+					<?php }else{ ?>
+						<div class="no-movies">
+							<div class="big">[:no-movies-to-show-in-location:]</div>
+							<div>[:try-other-day:]</div>
+							<?= $this->Html->link("Ver horario de mañana","#",array('class'=>'btn'));?>
+						</div>
+					<?php } ?>
 
 				</div>
-				<?php endforeach; ?>
-			</div>
+				<?php endforeach;
+			$this->I18n->end();
+			echo $this->Ajax->divEnd("Billboard");
+			?>
+
 
 			<div class="billboard-aside">
 
-				<div class="filter">
-					<div class="input">
-						<span class="label">Fecha de cartelera</span>
-						<div class="filter-select">
-							<a href="">09/02/2014 <strong>(Hoy)</strong></a>
-
-							<ul>
-								<li>
-									<a href="">Opción #1</a>
-								</li>
-
-								<li>
-									<a href="">Opción #2</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<span class="label">Ciudad</span>
-					<div class="filter-select">
-						<a href="">Culiacán</a>
-					</div>
-
-					<span class="label">Complejos seleccionados</span>
-
-					<a class="selected-complex selected" href="">La Isla</a>
-					<a class="selected-complex" href="">Galerías San Miguel</a>
-
-				</div>
+				<?= $this->element("shows/filter"); ?>
 
 				<div class="vertical-banner">
 					<?= $this->Html->image("refill-vertical.png",array('alt'=>'[:logo_alt:]')) ?>

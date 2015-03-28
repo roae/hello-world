@@ -9,6 +9,11 @@ class ShowsController extends AppController{
 	var $uses = array(
 		"Show",
 	);
+	/**
+	 * Conditions de peliculas usados para sacar los horarios
+	 * @var array
+	 */
+	var $__showConditions = array();
 
 	function index() {
 		if(!isset($this->params['slug'])){
@@ -16,8 +21,34 @@ class ShowsController extends AppController{
 		}
 
 		$this->__setCitySelected();
+		$date = date("Y-m-d");
+		$start = date("Y-m-d")." 0:0:0";
+		/*if($this->Session->read("BillboardFilter.date")){
+			$date = $this->Session->read("BillboardFilter.date");
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+		}*/
+		if(isset($this->params['named']['date'])){
+			$date = $this->params['named']['date'];
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+		}
+		$end = $date." 23:59:59";
+		$this->__showConditions = array(
+			'Show.schedule >='=>$start,
+			'Show.schedule <='=>$end,
 
+		);
 
+		$this->set("billboard",$this->__getBillboardSchedules());
+
+	}
+
+	function __getBillboardSchedules(){
 		$recordset = $this->Show->Location->find("all", array(
 			'fields'=>$this->Show->Location->publicFields,
 			'conditions'=>array(
@@ -27,11 +58,7 @@ class ShowsController extends AppController{
 			),
 			'contain'=>array(
 				'Show'=>array(
-					'conditions'=>array(
-						'Show.schedule >='=>date("Y-m-d H:i:s"),
-						'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
-						#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
-					),
+					'conditions'=>$this->__showConditions,
 					'Projection',
 					'Movie'=>array(
 						'Poster'
@@ -49,53 +76,59 @@ class ShowsController extends AppController{
 				unset($show['Movie'],$show['Poster']);
 				//$recordset[$i]['Show'][$movieId]['Show'][]= am($show['show'],array('Projection'=>$show['Projection']));
 				if(empty($show['room_type']) || strpos($show['room_type'],'premier') === false){
-					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+					$billboard[$i]['Show'][$movieId]['Normal'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show['Projection'],$show);
 				}else{
-					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show,$show['Projection']);
+					$billboard[$i]['Show'][$movieId]['Premier'][$show['Projection']['lang']."|".$show['Projection']['format']][]= am($show['Projection'],$show);
 				}
 
 			}
 		}
-
-		$this->set("billboard",$billboard);
-
+		return $billboard;
 	}
 
-	function __setCitySelected(){
-		$slug = $this->params['slug'];
-		if( $slug != Configure::read("CitySelected.slug") ) {
+	function __setCitySelected($data = null){
+		if(empty($data)){
+			$slug = $this->params['slug'];
+			$data['City'] = Configure::read("CitySelected");
+			if( $slug != Configure::read("CitySelected.slug") ) {
 
-			$data = $this->Show->Location->City->findBySlug($slug);
+				$data = $this->Show->Location->City->findBySlug($slug);
+			}
+		}
 
-			if( ! empty($data) ) {
-				$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-				Configure::write("CitySelected", $data['City']);
-				$this->set("CitySelected",$data['City']);
+		if( ! empty($data) ) {
+			$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+			Configure::write("CitySelected", $data['City']);
+			$this->set("CitySelected",$data['City']);
 
-				$_locations = $this->Show->Location->find("all",array(
-					'conditions'=>array(
-						'Location.trash'=>0,
-						'Location.status'=>1,
-						'Location.city_id'=>$data['City']['id'],
-					),
-					'fields'=>$this->Show->Location->publicFields
-				));
-				#pr($_locations);
-				$locations = array();
-				foreach($_locations as $record){
-					$locations[$record['Location']['id']] = $record;
-				}
-
-				$this->Cookie->write("LocationsSelected", json_encode($locations), false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
-				$this->set("LocationsSelected",$locations);
-				Configure::write("LocationsSelected",$locations);
-				#pr($this->Cookie->read("LocationsSelected"));
-
-			} else {
-				$this->cakeError('error404');
+			$_locations = $this->Show->Location->find("all",array(
+				'conditions'=>array(
+					'Location.trash'=>0,
+					'Location.status'=>1,
+					'Location.city_id'=>$data['City']['id'],
+				),
+				'fields'=>$this->Show->Location->publicFields
+			));
+			#pr($_locations);
+			$locations = array();
+			$locationsList = array();
+			foreach($_locations as $record){
+				$locations[$record['Location']['id']] = $record;
+				$locationsList[$record['Location']['id']] = $record['Location']['name'];
 			}
 
+			$this->Cookie->write("LocationsSelected", json_encode($locations), false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
+			$this->set("LocationsSelected",$locations);
+			Configure::write("LocationsSelected",$locations);
+			Configure::write("LocationsList",$locationsList);
+			Cache::write("LocationsList",$locationsList);
+			#pr($this->Cookie->read("LocationsSelected"));
+
+		} else {
+			$this->cakeError('error404');
 		}
+
+
 	}
 
 	function get(){
@@ -103,7 +136,7 @@ class ShowsController extends AppController{
 	}
 
 	 function admin_sync($location = "all"){
-		exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." >> ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual &");
+		exec(APP."vendors".DS."cakeshell sync $location -cli /usr/bin -console ".CAKE_CORE_INCLUDE_PATH.DS.CAKE."console -app ".APP." > ".CAKE_CORE_INCLUDE_PATH.DS."sync_manual &");
 		Cache::write("sync_billboard_status.running",true);
 		if($location == "all"){
 			$locations = $this->Show->Location->find("list",array('trash'=>0,'status'=>1));
@@ -130,6 +163,7 @@ class ShowsController extends AppController{
 	function buy(){
 		$this->Show->id = $this->params['show_id'];
 		$this->Show->contain(array(
+			'TicketPrice',
 			'Movie'=>array(
 				'Gallery',
 				'Poster',
@@ -141,69 +175,9 @@ class ShowsController extends AppController{
 		));
 		$record = $this->Show->read();
 		$this->set("record",$record);
-		pr($record['Show']['session_id']);
-		#pr($record['Location']['vista_service_url']);
-		/**
-		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
-			'CmdName'=>'GetSessionDisplayData',
-			'Param1'=>"",
-			'Param2'=>"|COUNTS|".$record['Show']['session_id']."|",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-
-		pr($response);/**/
-		/**/
-		$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
-			'CmdName'=>'TransNew',
-			'Param1'=>"",
-			'Param2'=>"",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			$transId = $result[6];
-			#pr($transId);
+		if($record['Show']['seat_alloctype']){
+			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
 		}
-		/**/
-		$starDate = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
-		$endDate = mktime(23,59,59,date("m"),date("d"),date("Y")+1);
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSessionDisplayData',
-			'Param1'=>"",
-			'Param2'=>"|DATESTART|".date("YmdHi",$starDate)."|DATEEND|".date("YmdHi",$endDate)."|",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			pr(h($result[6]));
-			#pr($transId);
-		}/**/
-		/**/
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSellingDataXML',
-			'Param1'=>"PRICES|PRICESALL", # PRICES es el bueno
-			'Param2'=>"",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			pr(h($result[6]));
-			#pr($transId);
-		}/**/
-
-
-
-		#$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
 	}
 
 	function __getSeats($server,$session_id){
@@ -245,9 +219,11 @@ class ShowsController extends AppController{
 			$sessionSeatData['screen_boundary_position_right'] = $rData[$index]; $index++;
 			$sessionSeatData['number_relationships_types'] = $rData[$index]; $index++;
 
-			foreach(range(1,$sessionSeatData['number_relationships_types']) as $i){
-				$sessionSeatData['relationships_types'][$rData[$index]] = $rData[$index+1];
-				$index+=2;
+			if($sessionSeatData['number_relationships_types']){
+				foreach(range(1,$sessionSeatData['number_relationships_types']) as $i){
+					$sessionSeatData['relationships_types'][$rData[$index]] = $rData[$index+1];
+					$index+=2;
+				}
 			}
 			$total_areas = $sessionSeatData['total_areas'] = $rData[$index];
 			foreach(range(1,$total_areas) as $i){
@@ -265,19 +241,22 @@ class ShowsController extends AppController{
 				$sessionSeatData['areas'][$area_number]['area_description'] = $rData[$index]; $index++;
 				$sessionSeatData['areas'][$area_number]['area_description_alt'] = $rData[$index]; $index++;
 				$total_rows = $sessionSeatData['areas'][$area_number]['total_rows'] = $rData[$index]; $index++;
-
+				#pr($sessionSeatData);
 				for($i = 1; $i<=$total_rows; $i++){
+					#pr($index);
 					if(!isset($rData[$index])){
 						$index++;
 					}
+					#pr($index);
 					if(!preg_match('/([0-9A-Fa-f]{2})([\s\d]){5}(\d)(\d)/', $rData[$index+2])){
+
 						/*
 							Se verifica que 2 posiciones mas adelante del arreglo sea un asiento
 							esto por que en ocaciones viene un numero de asiento fisico con un | (pipe),
 							se pone el elemento en la cadena de asientos de la fila anterior, se elimina el elemento
 							y se vuelve a ejecutar la fila anterior
 						*/
-
+						#pr($rData[$index+2]);
 						$rData[$index-1] .= " ".$rData[$index];
 						unset($rData[$index]);
 						$index -= 3;
@@ -324,13 +303,111 @@ class ShowsController extends AppController{
 			#pr($sessionSeatData);
 			#pr($rData);
 		}else{
-
 			pr("error");
 			pr($response);
-
 		}
 
 		return $sessionSeatData;
+	}
+
+	function get_movie_schedule($movie_id = null){
+		if(empty($movie_id) && isset($this->params['movie_id'])){
+			$movie_id = $this->params['movie_id'];
+		}else{
+			return  false;
+		}
+
+		$this->__showConditions = array(
+			'Show.schedule >='=>date("Y-m-d H:i:s"),
+			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+			'Show.movie_id'=>$movie_id
+		);
+
+		return $this->__getBillboardSchedules();
+	}
+
+	function rest($locations = null){
+		$conditions = array();
+		if(isset($this->params['named']['locations'])){
+			$conditions = array('Show.location_id'=>explode("-",$this->params['named']['locations']));
+		}else if(isset($this->params['named']['city'])){
+			$locations = $this->Show->Location->find("list",array(
+				'conditions'=>array(
+					'Location.trash'=>0,
+					'Location.status'=>1,
+					'Location.id'=>$this->params['named']['city'])
+				)
+			);
+			if(!empty($locations)){
+				$conditions = array('Show.location_id'=>array_keys($locations));
+			}
+		}
+		if(isset($this->params['named']['schedule']) && $this->params['named']['schedule']){
+			if(isset($this->params['named']['city']) || isset($this->params['named']['locations'])){
+				if(isset($this->params['named']['city'])){
+					Configure::write("CitySelected.id",$this->params['named']['city']);
+				}
+				if(isset($this->params['named']['locations'])){
+					Configure::write("CitySelected.id",$this->params['named']['city']);
+				}
+				$this->__showConditions = array(
+					'Show.schedule >='=>date("Y-m-d H:i:s"),
+					'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+					#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+				);
+				$this->set("billboard",$this->__getBillboardSchedules());
+			}else{
+				$this->set("billboard","City or Locations not found");
+			}
+
+		}else{
+			$query = array(
+				'fields'=>array('Show.id'),
+				'contain'=>array(
+					'Movie'=>array(
+						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
+						'Poster'
+					)
+				),
+				'group'=>array(
+					'movie_id'
+				),
+				'conditions'=>$conditions
+			);
+			$this->set("billboard",$this->Show->find("all",$query));
+		}
+
+	}
+
+	function get_date($movie_id = null){
+		$conditions = array();
+		$dates = $this->Show->find("list",array(
+			'fields'=>array('Show.date'),
+			'group'=>'Show.date',
+			'order'=>'Show.schedule ASC'
+		));
+		if(isset($this->params['requested'])){
+			return $dates;
+		}
+
+	}
+
+	function set_filter(){
+		if(!empty($this->data)){
+			$data = $this->Session->read("BillboardFilter");
+			$this->Session->write("BillboardFilter",$this->data['Filter']);
+
+			if(!empty($this->data['Filter']['location'])){
+				foreach($this->data['Filter']['location'] as $location_id){
+					$locationsSeleted = Configure::read("LocationsSelected");
+					if(!isset($locationsSeleted)){
+
+					}
+				}
+			}
+
+		}
+		$this->redirect($this->referer());
 	}
 
 }

@@ -1,3 +1,4 @@
+<?php /* @var $this View  */?>
 <div class="session-buy-container" id="SessionCheckout">
 
 	<?php
@@ -11,7 +12,8 @@
 	}
 	?>
 
-	<div class="big-cover <?= $class ?>" style="background-image: url(<?= $bg_url ?>)">
+	<div class="big-cover <?= $class ?>">
+		<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 		<div class="col-container">
 			<header>
 				<h1 class="blured-title">
@@ -67,18 +69,15 @@
 			</div>
 			<div class="schedule">
 				<div class="title">[:function:]</div>
-				<span class="value"><?= $this->Time->format("h:m a",$record['Show']['schedule']); ?></span>
+				<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
 				<?= $this->Html->link("[:cambiar-horario:]",array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug'],'#'=>$record['Movie']['slug']),array('class'=>'btn')); ?>
 			</div>
 		</div>
 	</div>
 
 	<section class="ticketsSelection col-container">
-		<div class="title">
-			<!--<span class="step">1</span>-->
-
+		<div class="stepTitle">
 			<strong>[:buy-step-1:]</strong>
-
 			<div class="step-text">
 				[:buy-step-1-text:]
 			</div>
@@ -86,28 +85,19 @@
 		<table>
 			<thead>
 				<tr>
-					<td></td>
-					<td>Precio</td>
-					<td>Cantidad</td>
-					<td>Subtotal</td>
+					<th></th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th>Subtotal</th>
 				</tr>
 			</thead>
 			<tbody>
+			<?php
+			foreach($record['TicketPrice'] as $ticketPrice){
+				?>
 				<tr>
-					<th>Adulto</th>
-					<td>$51.00 c/u</td>
-					<td class="buttons">
-						<button type="button" class="less">-</button>
-						<span class="cantidad">2</span>
-						<button type="button" class="plus">+</button>
-					</td>
-					<td>
-						$102.00
-					</td>
-				</tr>
-				<tr>
-					<th>3ra Edad</th>
-					<td>$45.00 c/u</td>
+					<th><?= $ticketPrice['description']?></th>
+					<td>$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
 					<td class="buttons">
 						<button type="button" class="less">-</button>
 						<span class="cantidad">0</span>
@@ -117,18 +107,9 @@
 						$0.00
 					</td>
 				</tr>
-				<tr>
-					<th>Niños</th>
-					<td>$32.00 c/u</td>
-					<td class="buttons">
-						<button type="button" class="less">-</button>
-						<span class="cantidad">1</span>
-						<button type="button" class="plus">+</button>
-					</td>
-					<td>
-						$32.00
-					</td>
-				</tr>
+				<?php
+			}
+			?>
 			</tbody>
 		</table>
 
@@ -137,9 +118,23 @@
 			<span class="value">$134.00</span>
 			<span class="taxes">Incluye IVA</span>
 		</div>
+		<div class="loyaltyCard">
+			<div class="input text">
+				<label for="">[:loyalty-card-text:]</label>
+				<input type="text" id="loyalty"/>
+				<button typ="button" id="loyaltyButton" class="btn-primary">[:add-card:]</button>
+			</div>
+			<div>[:que-es-loyalty:]</div>
+		</div>
 	</section>
+
+	<?php
+	if(isset($sessionSeatData)){
+		echo $this->element("shows/seats",array('sessionSeatData'=>$sessionSeatData));
+	}
+	?>
+
 
 
 </div>
 
-<? #echo $this->element("shows/seats",array('sessionSeatData'=>$sessionSeatData));?>

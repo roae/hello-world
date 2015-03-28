@@ -84,7 +84,7 @@ $(function(){
 		elementAppear();
 	});
 
-	//$(".floating").Floating();
+	$(".input.select").Select();
 
 	allMods = $(".appear");
 
@@ -158,6 +158,38 @@ $(function(){
 
 			return false;
 		});
+	}
+	if($("#BillboardFilter").length){
+		//$(document).on("submit","#BillboardFilter",billboardRequest);
+
+		/*$("#BillboardFilter select,#BillboardFilter input" ).on("change",function(){
+			billboardRequest();
+		});*/
+		$("#BillboardFilter select" ).on("change",function(){
+			var date = $(this ).val();
+			$.xUpdater.setHash("#Billboard="+window.location.pathname+"date:"+date);
+		});
+	}
+	function billboardRequest(){
+		//console.log($("#BillboardFilter").serialize());
+		$.ajax({
+			url:$("#BillboardFilter").attr("action"),
+			data:$("#BillboardFilter").serialize(),
+			type:'POST',
+			success:function(html,status,http){
+				eval('var Xnotifier = '+http.getResponseHeader('X-Notifier')+';');
+				$("#Billboard").html(html);
+				if(Xnotifier){
+					$("#Billboard").prepend($("<div />",{'id':'Notifier'}).append($("<div />",{'class':Xnotifier.class}).append($("<span />",{'class':'icon'})).append(Xnotifier.message)));
+				}
+				//$('#CommentForm .text,#CommentForm .textarea').Label();
+			},
+			beforeSend:function(http){
+				http.setRequestHeader("X-update","Billboard");
+			}
+		});
+
+		return false;
 	}
 });
 
@@ -288,7 +320,9 @@ function nextSlide(){
 
 		});
 
-		$('.next-premieres').find('.movies-list').owlCarousel({
+		$('.next-premieres .movies-list' ).owlCarousel({
+			center:true,
+			loop:true,
 			items : 8,
 			pagination : true,
 	    	paginationNumbers: false,
@@ -318,6 +352,74 @@ function nextSlide(){
 
 	});
 
+	if($('.complex:has(.movies)' ).length){
+		// Waypoint para empezar a mover el nombre de los complejos
+		$('.complex').waypoint({
+			handler:function(direction) {
+				var $complexName = $(".complex-name",$(this.element));
+				$complexName.toggleClass("sticky");
+				if(direction == "down"){
+					$(".movies",$(this.element) ).css({marginTop:$complexName.outerHeight()});
+					$complexName.css({position: "fixed",top: "68px",zIndex: 8});
+				}else{
+					$complexName.css({position: "static"});
+					$(".movies",$(this.element) ).css({marginTop:"auto"});
+				}
+				//console.log(direction);
+			},
+			continuous:false,
+			offset:80
+		});
+
+		// Waypoint para detener el elemento sticky del complejo anterior
+
+		$('.complex:has(.movies)').waypoint({
+			handler:function(direction) {
+				if(direction == "down"){
+					if($(this.element).prev().hasClass("complex")){
+						$(".complex-name",$(this.element).prev() ).css({position:'absolute',bottom:0,top:'auto'});
+					}
+				}else{
+					if($(this.element).prev().hasClass("complex")) {
+						$( ".complex-name", $( this.element ).prev() ).css( {position: 'fixed', top: '68px',bottom:'auto'} );
+					}
+				}
+			},
+			continuous:false,
+			offset:140
+		});
+	}
+
+
+	if($(".billboard-list" ).outerHeight() > $(".billboard-aside" ).outerHeight()){
+		$(".billboard-aside .vertical-banner" ).waypoint({
+			handler: function(direction){
+				if(direction == "down"){
+					$(this.element ).css({width: $(this.element ).outerWidth() }).css({position: "fixed",top: "100px",zIndex: 8});
+				}else{
+					$(this.element ).css({position:'static'});
+				}
+
+			},
+			continuous:false,
+			offset:'100px'
+		});
+
+		$("#main-footer" ).waypoint({
+			handler: function(direction){
+				console.log(direction);
+				if(direction == "down"){
+					$(".billboard-aside .vertical-banner").css({position: "absolute",bottom:0,top:"auto"});
+				}else{
+					$(".billboard-aside .vertical-banner").css({position: "fixed",bottom:"auto",top:"100px"});
+				}
+
+			},
+			continuous:false,
+			offset: $(".billboard-aside .vertical-banner").outerHeight()+100
+		});
+	}
+
 	var functions = {
 		remove_blur: function() {
 			$('#main-header, .the-content, #main-footer').removeClass('blured');
@@ -343,6 +445,7 @@ function nextSlide(){
 					blured_lightbox = $('<div id="blured-lightbox"></div>'),
 					blured_lightbox_content = $('<div class="blured-lightbox-content video"></div>'),
 					blured_lightbox_loader = $('<span class="blured-lightbox-loader"></span>');
+					blured_lightbox_close = $('<a class="blured-lightbox-close">Close</a>');
 					blured_lightbox_title = $('<strong></strong>'),
 					blured_lightbox_iframe = $('<iframe frameborder="0" allowfullscreen></iframe>'),
 					video_id = '';
@@ -369,7 +472,7 @@ function nextSlide(){
 				});
 			});
 
-			$('body').append(blured_lightbox.append(blured_lightbox_loader, blured_lightbox_content));
+			$('body').append(blured_lightbox.append(blured_lightbox_loader, blured_lightbox_close, blured_lightbox_content));
 
 		});
 
@@ -486,6 +589,104 @@ function nextSlide(){
 		});
 
 		$('body').append(blured_lightbox.append(blured_lightbox_content));
+	}
+
+	var login_functions = {
+		remove_blur: function() {
+			$('#main-header, .the-content, #main-footer').removeClass('blured');
+		},
+		add_blur: function() {
+			$('#main-header, .the-content, #main-footer').addClass('blured');
+		}
+	};
+
+	$('.account-container').find('.signin').on('click', function(event) {
+		event.preventDefault();
+
+		$('#login-container').addClass('show');
+		login_functions.add_blur();
+	});
+
+	$(window).on('keyup', function(event) {
+		if( event.keyCode == 27 ) {
+			$('#login-container').removeClass('show');
+			login_functions.remove_blur();
+		}
+	});
+
+	$('#login-close').on('click', function(event) {
+		event.preventDefault();
+
+		$('#login-container').removeClass('show');
+		login_functions.remove_blur();
+	});
+
+	if( $('#complex-container').length ) {
+
+		var location_container = $('#complex-container'),
+    		map = new GMaps({
+		      div: '#map',
+		      lat: 24.82301520608666,
+		      lng: -107.36934023201599,
+		      zoom: 12,
+		      scrollwheel: false
+		    }),
+    		addresses = location_container.find('.address'),
+    		cities = location_container.find('.city-trigger');
+
+    addresses.each(function(i, e) {
+
+    	var $e = $(e);
+
+    	if( $e.css('display') == 'block' ) {
+		    map.addMarker({
+		      lat: $e.data('lat'),
+		      lng: $e.data('lng'),
+		      title: 'Lima'
+		    });
+    	}
+
+    });
+
+    cities.on('click', function(event) {
+    	event.preventDefault();
+
+    	var self = $(this),
+    			city_id = self.data('id');
+
+    	cities.removeClass('selected');
+    	self.addClass('selected');
+
+			addresses.fadeOut(200, function() {
+
+				var current_addresses = location_container.find('.city-' + city_id),
+						last_lat = 0,
+						last_lng = 0;
+
+				map.removeMarkers();
+
+				current_addresses.each(function(i, e) {
+		    	var $e = $(e),
+		    			lat = $e.data('lat'),
+		    			lng = $e.data('lng');
+
+			    map.addMarker({
+			      lat: lat,
+			      lng: lng,
+			      title: 'Lima'
+			    });
+
+			    if( lat != '' && lat != null ) {
+				    last_lat = lat;
+				    last_lng = lng;
+			    }
+		    });
+
+		    map.setCenter(last_lat, last_lng);
+				current_addresses.fadeIn(100);
+			});
+    });
+
 	}
 
 })(jQuery);

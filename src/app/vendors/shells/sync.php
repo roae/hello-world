@@ -157,7 +157,8 @@ class SyncShell extends Shell{
 
 						if($connection){
 							$this->out("-- Ok ");
-							$this->__UpdateBillboard($record['Location'],$starDate,$endDate);
+							#$this->__GetSessionDisplayData($record['Location'],$starDate,$endDate);
+							$this->__GetSellingDataXMLStream($record['Location']);
 						}
 					}
 				}
@@ -169,8 +170,10 @@ class SyncShell extends Shell{
 
 			if(!empty($this->errors)){
 				#Enviar notificacion de los errores por mail
-				$this->out("Sending");
+				$this->out("Enviando notificación a la dirección ".$this->config['sync_error_email']);
 				$this->__sendNotification();
+			}else{
+				$this->out("Sincronización sin errores");
 			}
 
 			#guardar el resultado de la sincronizacion en cache
@@ -184,17 +187,189 @@ class SyncShell extends Shell{
 			$this->hr(1);
 			$this->out("Fin de la ejecución: ".date("F j, Y, h:i:s a"));
 		}
+
 		$this->_stop(1);
 
 	}
 
 	/**
 	 * Obtiene todas las peliculas que se muestran en cada complejo y las guarda en la tabla playings
-	 * @param $location Array Informacion del complejo
-	 * @param $dateStart DateTime
-	 * @param $dateEnd DateTime
+	 * Usando la función GetSellingDataXMLStream (en esta funcion viene la información de precios)
+	 * @param $location Array Información del complejo
 	 */
-	function __UpdateBillboard($location,$starDate,$endDate){
+	function __GetSellingDataXMLStream($location){
+		$params = array(
+			'ClientID'=>'WEB',
+			'TransIdTemp'=>"".rand(0,10000000),
+			'CmdName'=>'GetSellingDataXMLStream',
+			'Param1'=>"PRICES|FILMS", # PRICES es el bueno
+			'Param2'=>"".(30*24), #TODO: poner la variable de configuracion de los dias
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+
+		$this->out("- Obteniendo los datos de la cartelera");
+		try{
+			$response = $this->VistaServer->__soapCall("Execute",array($params));
+			$this->out("-- Ok");
+			$this->hr();
+		}catch (Exception $e){
+			$this->locationsFail[] = $location['id'];
+			$this->errors['locations_connection'][] = $location;
+			$this->err($e->getMessage());
+
+			$this->syncStatus['fail'] = true;
+			$this->syncStatus['locations'][$location['id']]['fail'] = true;
+			$this->syncStatus['locations'][$location['id']]['connection']=false;
+		}
+		#$this->out(print_r($response->ReturnData));
+		$r = explode("|",$response->ReturnData);
+		App::Import('Core','Xml');
+
+		try{
+			#$this->out($r[6]);
+			$xml = new Xml($r[6]);
+			$data = $xml->toArray();
+			#$this->out("XML to Array");
+			#$this->log($data,"GetSellingDataXMLStream");
+		}catch (Exception $e){
+			$this->locationsFail[] = $location['id'];
+			$this->errors['xml'][] = $location;
+			$this->err($e->getMessage());
+			$this->syncStatus['locations'][$location['id']]['fail'] = true;
+			#$this->syncStatus[$location['id']]['connection']=false;
+		}
+
+		$movies = array();
+		#$this->log($location,'sync');
+		if(isset($data['VistaData']) && !empty($data['VistaData'])){
+			#$this->out("VistaData exist");
+			$this->Show->begin();
+			$this->Show->deleteAll(array('Show.location_id'=>$location['id']));
+			foreach($data['VistaData']['Sessions']['Session'] as $session){
+				#$this->out(print_r(Set::extract('/Movie[Movie_ID=/'.$session['Movie_ID'].'/i]',$data['VistaData']['Movies'])));
+				$movie = Set::extract("/Movie[Movie_ID=/{$session['Movie_ID']}/i]",$data['VistaData']['Movies']);
+				if(isset($movie[0]['Movie'])){
+					$movies[$session['Movie_ID']] = $movie[0]['Movie']['Movie_Name'];
+				}
+
+				$year = substr($session['Date_time'],0,4);
+				$month= substr($session['Date_time'],4,2);
+				$day = substr($session['Date_time'],6,2);
+				$hours = substr($session['Date_time'],8,2);
+				$mins = substr($session['Date_time'],10,2);
+				$seconds = substr($session['Date_time'],12,2);
+				#usleep(80000);
+				$this->out($session['Cinema_ID']." | ".$session['Movie_ID']. " - ".$movies[$session['Movie_ID']]." |".$year."-".$month."-".$day." ".$hours.":".$mins."| ".$session['Screen_strName']);
+
+				# Se Obtiene el id de la projeccion y el id de la pelicula por el campo Projection.vista_code [Film_strCode]
+				$projection=$this->Projection->find("first",array(
+					'conditions'=>array('Projection.vista_code'=>$session['Movie_ID']),
+					'fields'=>array('Projection.id'),
+					'contain'=>array(
+						'Movie'=>array(
+							'fields'=>array('Movie.id')
+						)
+					)
+				));
+
+				if(!empty($projection)){
+					$roomType = $this->Room->find("first",array(
+						'fields'=>array(
+							'Room.id',
+							'Room.room_type'
+						),
+						'conditions'=>array(
+							'Room.description'=>$session['Screen_strName'],
+							'Room.location_id'=>$location['id']
+						)
+					));
+					#$this->log($roomType,"roomtype");
+					if(!isset($roomType['Room']['id'])){
+						#$this->log("rochin","roomtype");
+						$this->Room->create();
+						$this->Room->save(array('Room'=>array(
+							'description'=>$session['Screen_strName'],
+							'location_id'=>$location['id'],
+							'status'=>1,
+							'trash'=>0
+						)));
+
+						#$this->log($this->Room->validationErrors,"roomtype");
+					}
+					//$this->log($roomType,"roomtype");
+					$show = array(
+						'location_id'=>$location['id'],
+						'movie_id'=>$projection['Movie']['id'],
+						'projection_id'=>$projection['Projection']['id'],
+						'schedule'=>"{$year}-{$month}-{$day} $hours:$mins:$seconds",
+						'sales_channels'=> str_replace("^~^","|",$session['Session_strSalesChannels']),
+						'session_id'=> $session['Session_ID'],
+						'screen_name'=>$session['Screen_strName'],
+						'room_type'=> $roomType['Room']['room_type'],
+						'seat_alloctype'=>$session['Seat_allocation_on'] == "Y",
+					);
+
+
+					$this->Show->create();
+					if($this->Show->save($show)){
+						$session_prices = Set::extract("/Price[Price_group_code=/{$session['Price_group_code']}/]",$data['VistaData']['Prices']);
+						$prices = array();
+						foreach($session_prices as $record){
+							if(strpos($record['Price']['TType_strSalesChannels'],"WWW")){
+								$this->Show->TicketPrice->create();
+								#$this->out($record['Price']['Ticket_Price']);
+								#$this->out($record['Price']['Ticket_Price']/100);
+								$this->Show->TicketPrice->save(array(
+									'show_id'=>$this->Show->id,
+									'code'=>$record['Price']['Ticket_type_code'],
+									'description'=>$record['Price']['Ticket_type_description'],
+									'price'=>$record['Price']['Ticket_Price']/100*1.0
+								));
+							}
+						}
+					}else{
+						$this->out("Error: No se guardo el horario");
+						$this->out(print_r($show));
+						$this->out(print_r($this->Show->invalidFields()));
+					}
+				}else{
+					$this->out("- El código ".$session['Film_strCode']." no se ha asignado a una pelicula");
+					$this->syncStatus['fail'] = true;
+					$this->syncStatus['locations'][$location['id']]['fail'] = true;
+					$this->syncStatus['locations'][$location['id']]['projections_not_found']=true;
+					$this->projectionsNotFound[] =  $session['Movie_ID'].">".$movies[$session['Movie_ID']];
+					$this->errors['projections_not_found'][$session['Movie_ID']] = $movies[$session['Movie_ID']];
+				}
+
+			}
+
+			$this->Show->commit();
+
+		}else{
+			# Error: No se encontraron horarios
+			$$this->locationsNoScheduled[] = $location['id'];
+			$this->errors['location_no_scheduled'][] = $location;
+
+			$this->syncStatus['locations'][$location['id']]['fail'] = true;
+			$this->syncStatus['locations'][$location['id']]['scheduled']=false;
+			$this->syncStatus['fail'] = true;
+		}
+
+		$this->syncStatus['locations'][$location['id']]['running'] = false;
+
+	}
+
+	/**
+	 * Obtiene todas las peliculas que se muestran en cada complejo y las guarda en la tabla playings
+	 * Usando la funcion GetSessionDisplayData del servicio
+	 * @param $location Array Informacion del complejo
+	 * @param $starDate DateTime
+	 * @param $endDate DateTime
+	 */
+	function __GetSessionDisplayData($location,$starDate,$endDate){
 		$params = array(
 			'ClientID'=>'WEB','TransIdTemp'=>"".rand(0,10000000),
 			'CmdName'=>'GetSessionDisplayData',
@@ -221,9 +396,10 @@ class SyncShell extends Shell{
 		App::Import('Core','Xml');
 
 		try{
+			$this->out($r[6]);
 			$xml = new Xml($r[6]);
 			$data = $xml->toArray();
-			$this->log($data,"GetSessionDisplayData");
+			#$this->log($data,"GetSessionDisplayData");
 		}catch (Exception $e){
 			$this->locationsFail[] = $location['id'];
 			$this->errors['xml'][] = $location;
@@ -338,25 +514,25 @@ class SyncShell extends Shell{
 
 		$Email->reset();
 		$Email->to = $this->config['sync_error_email'];
-		$Email->from = "erochin@h1webstudio.com";
+		$Email->from = "noreply@citicinemas.com";
 		$Email->subject = "Errores en la sincronización de la cartelera";
 		$Email->sendAs = 'html';
 		$Controller->set("errors",$this->errors);
 		$Email->template = "sync_error";
 
 		/* Opciones SMTP*/
-		$Email->smtpOptions = array(
+		/*$Email->smtpOptions = array(
 			'port'=>'25',
 			'timeout'=>'30',
 			'host' => 'mail.h1webstudio.com',
 			'username'=>'erochin@h1webstudio.com',
 			'password'=>'Rochin12!-');
 
-		$Email->delivery = 'smtp';
+		$Email->delivery = 'smtp';*/
 
 		$Email->send();
 
-		#$this->out(print_r($Email->smtpError));
+		$this->out(print_r($Email->smtpError));
 
 	}
 

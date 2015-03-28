@@ -36,10 +36,13 @@
 
       .movie-info {
         position: relative;
-        margin-top:100px;
+        margin-top: 100px;
 
         @include span(7);
-        margin-left: span(9)+gutter();
+
+        margin-left: span(9) + gutter();
+
+        z-index: 2;
 
 
         * { font-weight: 300; }
@@ -235,7 +238,7 @@
 
           .sinopsis{
             height: 150px;
-            overflow-y: auto;
+            overflow-y: hidden;
             margin-bottom: 10px;
             font-size: 13px;
             color: $light-gray;

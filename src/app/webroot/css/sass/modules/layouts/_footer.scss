@@ -1,12 +1,14 @@
 #main-footer {
   background-color: #fff;
+  position: relative;
+  z-index: 9;
 
   .mobile-apps {
     position: relative;
     padding: 100px 15px;
     color: #fff;
     text-align: center;
-    background: $dark-gray url(../img/mobile-apps-bg.png) no-repeat center center;
+    background: $dark-gray url(../img/mobile-apps-bg.jpg) no-repeat center center;
     background-size: cover;
 
     .col-container { position: relative; }

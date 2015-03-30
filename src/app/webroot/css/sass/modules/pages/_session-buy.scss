@@ -407,62 +407,62 @@
       }
       .status-0 {
         .seat {
-          background: inline-image("seat-0.png") center no-repeat;
+          background: url("seat-0.png") center no-repeat;
           background-size: 100% auto;
           border-top: 0;
           cursor: pointer;
           &:hover{
-            background: inline-image("seat-hover.png") center no-repeat;
+            background: url("seat-hover.png") center no-repeat;
             background-size: 100% auto;
           }
         }
         &.Multi-End .seat{
-          background: inline-image("../img/Multi-End-0.png") center no-repeat;
+          background: url("../img/Multi-End-0.png") center no-repeat;
           background-size: 100% auto;
           &:hover{
-            background: inline-image("Multi-End-hover.png") center no-repeat;
+            background: url("Multi-End-hover.png") center no-repeat;
             background-size: 100% auto;
           }
         }
         &.Multi-Start .seat{
-          background: inline-image("Multi-Start-0.png") center no-repeat;
+          background: url("Multi-Start-0.png") center no-repeat;
           background-size: 100% auto;
           &:hover{
-            background: inline-image("Multi-Start-hover.png") center no-repeat;
+            background: url("Multi-Start-hover.png") center no-repeat;
             background-size: 100% auto;
           }
         }
       }
       .status-1 {
         .seat {
-          background: inline-image("seat-1.png") center no-repeat;
+          background: url("seat-1.png") center no-repeat;
           background-size: 100% auto;
           border-top: 0;
           color:#fff;
         }
         &.Multi-End .seat{
-          background: inline-image("Multi-End-1.png") center no-repeat;
+          background: url("Multi-End-1.png") center no-repeat;
           background-size: 100% auto;
         }
         &.Multi-Start .seat{
-          background: inline-image("Multi-Start-1.png") center no-repeat;
+          background: url("Multi-Start-1.png") center no-repeat;
           background-size: 100% auto;
         }
       }
 
       .status-3 {
         .seat {
-          background: inline-image("seat-0.png") center no-repeat;
+          background: url("seat-0.png") center no-repeat;
           background-size: 100% auto;
           border-top: 0;
           @include opacity(.5);
         }
         &.Multi-End .seat{
-          background: inline-image("Multi-End-0.png") center no-repeat;
+          background: url("Multi-End-0.png") center no-repeat;
           background-size: 100% auto;
         }
         &.Multi-Start .seat{
-          background: inline-image("Multi-Start-0.png") center no-repeat;
+          background: url("Multi-Start-0.png") center no-repeat;
           background-size: 100% auto;
         }
       }
@@ -579,4 +579,5 @@
   }
 
 }
+
 

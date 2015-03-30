@@ -1275,27 +1275,18 @@ select {
   width: 100%;
   height: 650px;
   color: #fff;
-  background: url(../img/movies/big-hero-6.jpg) no-repeat center top;
   background-size: cover;
 }
 /* line 19, sass/modules/pages/_home.scss */
-.home .home-highlights .movie.birdman {
-  background-image: url(../img/movies/birdman.jpg);
-}
-/* line 20, sass/modules/pages/_home.scss */
-.home .home-highlights .movie.escobar {
-  background-image: url(../img/movies/escobar.jpg);
-}
-/* line 22, sass/modules/pages/_home.scss */
 .home .home-highlights .movie:first-child {
   display: block;
 }
-/* line 24, sass/modules/pages/_home.scss */
+/* line 21, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info-bg {
   position: absolute;
   top: 0;
   right: 0;
-  width: 70%;
+  width: 90%;
   height: 100%;
   padding-top: 30px;
   padding-right: 30px;
@@ -1307,44 +1298,45 @@ select {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #000000);
   background-repeat: repeat-x;
 }
-/* line 37, sass/modules/pages/_home.scss */
+/* line 34, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info {
   position: relative;
   margin-top: 100px;
-  width: 42.5%;
+  width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
-  margin-left: 55.625%;
+  margin-left: 49.375%;
   z-index: 2;
+  text-shadow: 0px 0px 10px #000;
 }
-/* line 48, sass/modules/pages/_home.scss */
+/* line 43, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info * {
   font-weight: 300;
 }
-/* line 50, sass/modules/pages/_home.scss */
+/* line 45, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info .title {
   font-size: 58px;
   margin-bottom: 20px;
 }
-/* line 55, sass/modules/pages/_home.scss */
+/* line 50, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info p {
   font-size: 16px;
   margin-bottom: 15px;
 }
-/* line 60, sass/modules/pages/_home.scss */
+/* line 55, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info li {
   margin-bottom: 7px;
   font-size: 12px;
   color: #d4dde5;
 }
-/* line 65, sass/modules/pages/_home.scss */
+/* line 60, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info li strong {
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-/* line 72, sass/modules/pages/_home.scss */
+/* line 67, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info .see-trailer {
   display: inline-block;
   margin-top: 50px;
@@ -1361,35 +1353,35 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   -moz-transition: border-color 0.2s ease-in-out;
 }
-/* line 87, sass/modules/pages/_home.scss */
+/* line 82, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info .see-trailer:hover {
   border-color: #9b9d9f;
 }
-/* line 88, sass/modules/pages/_home.scss */
+/* line 83, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info .see-trailer:active {
   position: relative;
   top: 1px;
 }
-/* line 96, sass/modules/pages/_home.scss */
+/* line 91, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination-container {
   position: relative;
   height: 100%;
 }
-/* line 101, sass/modules/pages/_home.scss */
+/* line 96, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination {
   position: absolute;
-  left: 55.625%;
+  left: 49.375%;
   bottom: 0;
   width: 100%;
   padding: 20px 30px 20px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
-/* line 109, sass/modules/pages/_home.scss */
+/* line 104, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination li {
   display: inline-block;
   margin-right: 5px;
 }
-/* line 114, sass/modules/pages/_home.scss */
+/* line 109, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination a {
   display: inline-block;
   width: 12px;
@@ -1400,20 +1392,20 @@ select {
   border: 2px solid #fff;
   overflow: hidden;
 }
-/* line 124, sass/modules/pages/_home.scss */
+/* line 119, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination a.current, .home .home-highlights .pagination a:hover {
   border: none;
   background-color: #fff;
 }
-/* line 130, sass/modules/pages/_home.scss */
+/* line 125, sass/modules/pages/_home.scss */
 .home .home-highlights .pagination a:hover {
   opacity: 0.5;
 }
-/* line 135, sass/modules/pages/_home.scss */
+/* line 130, sass/modules/pages/_home.scss */
 .home .top-promo {
   margin-bottom: 20px;
 }
-/* line 138, sass/modules/pages/_home.scss */
+/* line 133, sass/modules/pages/_home.scss */
 .home .top-promo a {
   display: block;
   padding: 15px;
@@ -1422,16 +1414,16 @@ select {
   color: #655100;
   background-color: #ffe67f;
 }
-/* line 146, sass/modules/pages/_home.scss */
+/* line 141, sass/modules/pages/_home.scss */
 .home .top-promo a:hover {
   background-color: #ffeb98;
 }
-/* line 150, sass/modules/pages/_home.scss */
+/* line 145, sass/modules/pages/_home.scss */
 .home .billboard {
   overflow: hidden;
   text-align: center;
 }
-/* line 154, sass/modules/pages/_home.scss */
+/* line 149, sass/modules/pages/_home.scss */
 .home .billboard h1 {
   margin-top: 20px;
   margin-bottom: 5px;
@@ -1439,7 +1431,7 @@ select {
   font-weight: 300;
   color: #cc0017;
 }
-/* line 162, sass/modules/pages/_home.scss */
+/* line 157, sass/modules/pages/_home.scss */
 .home .billboard .description {
   display: block;
   width: 50%;
@@ -1449,24 +1441,24 @@ select {
   font-weight: 300;
   color: #818386;
 }
-/* line 172, sass/modules/pages/_home.scss */
+/* line 167, sass/modules/pages/_home.scss */
 .home .billboard .movies {
   font-size: 0;
   text-align: left;
   margin-bottom: 50px;
 }
-/* line 179, sass/modules/pages/_home.scss */
+/* line 174, sass/modules/pages/_home.scss */
 .home .billboard .movies .titleBillboard {
   margin-bottom: 20px;
   font-size: 34px;
   font-weight: 100;
   color: #272b2e;
 }
-/* line 185, sass/modules/pages/_home.scss */
+/* line 180, sass/modules/pages/_home.scss */
 .home .billboard .movies .titleBillboard strong {
   font-weight: bold;
 }
-/* line 194, sass/modules/pages/_home.scss */
+/* line 189, sass/modules/pages/_home.scss */
 .home .billboard .movie {
   width: 19%;
   float: left;
@@ -1478,20 +1470,20 @@ select {
   vertical-align: top;
   position: relative;
 }
-/* line 202, sass/modules/pages/_home.scss */
+/* line 197, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container {
   position: relative;
 }
-/* line 205, sass/modules/pages/_home.scss */
+/* line 200, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container img {
   width: 100%;
   display: block;
 }
-/* line 211, sass/modules/pages/_home.scss */
+/* line 206, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container:hover .details {
   opacity: 1;
 }
-/* line 215, sass/modules/pages/_home.scss */
+/* line 210, sass/modules/pages/_home.scss */
 .home .billboard .movie .details {
   position: absolute;
   left: 0;
@@ -1510,7 +1502,7 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
 }
-/* line 233, sass/modules/pages/_home.scss */
+/* line 228, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .title {
   display: block;
   margin-bottom: 10px;
@@ -1519,7 +1511,7 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 240, sass/modules/pages/_home.scss */
+/* line 235, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .sinopsis {
   height: 150px;
   overflow-y: hidden;
@@ -1527,7 +1519,7 @@ select {
   font-size: 13px;
   color: #dee8ee;
 }
-/* line 248, sass/modules/pages/_home.scss */
+/* line 243, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a {
   display: block;
   padding: 5px 10px;
@@ -1540,25 +1532,25 @@ select {
   -webkit-transition: border 0.2s ease-in-out;
   -moz-transition: border 0.2s ease-in-out;
 }
-/* line 261, sass/modules/pages/_home.scss */
+/* line 256, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:hover {
   border-color: #8e9092;
 }
-/* line 263, sass/modules/pages/_home.scss */
+/* line 258, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:active {
   position: relative;
   top: 1px;
 }
-/* line 271, sass/modules/pages/_home.scss */
+/* line 266, sass/modules/pages/_home.scss */
 .home .billboard .movie img {
   border-radius: 3px;
 }
-/* line 273, sass/modules/pages/_home.scss */
+/* line 268, sass/modules/pages/_home.scss */
 .home .billboard .movie .info {
   padding: 10px;
   text-align: left;
 }
-/* line 277, sass/modules/pages/_home.scss */
+/* line 272, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 {
   margin-top: 0;
   margin-bottom: 5px;
@@ -1568,25 +1560,25 @@ select {
   -webkit-transition: color 0.2s ease-in-out;
   -moz-transition: color 0.2s ease-in-out;
 }
-/* line 287, sass/modules/pages/_home.scss */
+/* line 282, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a {
   color: #818386;
 }
-/* line 290, sass/modules/pages/_home.scss */
+/* line 285, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a:hover {
   color: #686a6c;
 }
-/* line 296, sass/modules/pages/_home.scss */
+/* line 291, sass/modules/pages/_home.scss */
 .home .billboard .movie .info span {
   display: block;
   font-size: 13px;
   opacity: 0.7;
 }
-/* line 303, sass/modules/pages/_home.scss */
+/* line 298, sass/modules/pages/_home.scss */
 .home .billboard .movie:nth-of-type(5n+1) {
   clear: left;
 }
-/* line 306, sass/modules/pages/_home.scss */
+/* line 301, sass/modules/pages/_home.scss */
 .home .billboard .movie .presale {
   background: #FECC00;
   padding: 3px 10px;
@@ -1598,7 +1590,7 @@ select {
   font-size: 18px;
 }
 
-/* line 321, sass/modules/pages/_home.scss */
+/* line 316, sass/modules/pages/_home.scss */
 .next-premieres {
   position: relative;
   width: 100%;
@@ -1608,40 +1600,40 @@ select {
   background-color: #eff4f7;
   overflow: hidden;
 }
-/* line 330, sass/modules/pages/_home.scss */
+/* line 325, sass/modules/pages/_home.scss */
 .next-premieres .info {
   text-align: left;
 }
-/* line 332, sass/modules/pages/_home.scss */
+/* line 327, sass/modules/pages/_home.scss */
 .next-premieres .titleCommingSoon {
   font-size: 34px;
   font-weight: 100;
   margin: 40px 0 50px;
   color: #272b2e;
 }
-/* line 339, sass/modules/pages/_home.scss */
+/* line 334, sass/modules/pages/_home.scss */
 .next-premieres .movies {
   position: relative;
 }
-/* line 343, sass/modules/pages/_home.scss */
+/* line 338, sass/modules/pages/_home.scss */
 .next-premieres .movie {
   padding: 0 15px;
 }
-/* line 346, sass/modules/pages/_home.scss */
+/* line 341, sass/modules/pages/_home.scss */
 .next-premieres .movie .details {
   display: none;
 }
-/* line 348, sass/modules/pages/_home.scss */
+/* line 343, sass/modules/pages/_home.scss */
 .next-premieres .movie img {
   width: 100%;
 }
-/* line 350, sass/modules/pages/_home.scss */
+/* line 345, sass/modules/pages/_home.scss */
 .next-premieres .movie h2 {
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: normal;
 }
-/* line 356, sass/modules/pages/_home.scss */
+/* line 351, sass/modules/pages/_home.scss */
 .next-premieres .movie span {
   display: block;
   text-align: left;
@@ -1649,7 +1641,7 @@ select {
   color: #818386;
   opacity: 0.7;
 }
-/* line 364, sass/modules/pages/_home.scss */
+/* line 359, sass/modules/pages/_home.scss */
 .next-premieres .movie a {
   font-size: 14px;
   color: #818386;

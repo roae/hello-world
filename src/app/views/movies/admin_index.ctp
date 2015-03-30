@@ -32,6 +32,7 @@ if(!empty($recordset)){
 	$tr=array();
 	foreach((array)$recordset as $count=>$record){
 		$actions=$this->Html->div('btn-group',
+			$this->Paginator->link($this->Html->tag("i","","icon-home"),array('action'=>'home_status',($record['Movie']['home'])?0:1,$record['Movie']['id']),array('class'=>'btn noHistory '.($record['Movie']['home']? "btn-success": ""),'escape'=>false)).
 			$this->Paginator->link($this->Html->tag("i","","icon-pencil")."[:editar:]",array('action'=>'edit',$record['Movie']['id']),array('rev'=>'','class'=>'btn btn-info','escape'=>false)).
 			$this->Form->button("<span class='caret'></span>",array('type'=>'button','class'=>'btn btn-info  dropdown-toggle','data-toggle'=>'dropdown')).
 			$this->Html->tag("ul",
@@ -40,6 +41,7 @@ if(!empty($recordset)){
 				$this->Html->tag("li","","divider").
 				$this->Html->tag("li",$this->Paginator->link("<span class='icon-trash'></span> [:delete:]",array('action'=>'delete',$record['Movie']['id']),array('class'=>'action danger','rel'=>'[:System.delete_movie_name:]: '.h($record['Movie']['title']).'?','escape'=>false)))
 				,array('class'=>"dropdown-menu",'role'=>'menu'))
+
 		);
 		$tr[]=array(
 			$this->Form->checkbox("Xpagin.record][",array('class'=>'check','id'=>'','value'=>$record['Movie']['id'])),

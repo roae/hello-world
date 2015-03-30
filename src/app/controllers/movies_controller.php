@@ -141,7 +141,35 @@ class MoviesController extends AppController{
 			$this->Notifier->error($this->Interpreter->process("[:specify_a_Movie_id:]"));
 		}
 		if(!$this->Xpagin->isExecuter){
-			$this->redirect($this-referer());
+			$this->redirect($this->referer());
+		}
+	}
+
+	function admin_home_status($state=null, $id=null){
+		if(!empty($id) || $this->Xpagin->isExecuter){
+			if(empty($id) && !empty($this->data['Xpagin']['record'])){
+				$id = $this->data['Xpagin']['record'];
+			}else if(empty($id)){
+				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
+				$this->redirect($this-referer());
+			}
+
+			if(!empty($state) || $state == 0){
+
+				if($this->Movie->updateAll(array('Movie.home' => $state), array('Movie.id' => $id))){
+					//pr("Rochin");
+					$this->Notifier->success($this->Interpreter->process(($state) ? "[:Movie_publish_home_successfully:]" : "[:Movie_unpublish_home_successfully:]"));
+				}else{
+					$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
+				}
+			}else{
+				$this->Notifier->error($this->Interpreter->process("[:specify_a_state:]"));
+			}
+		}else{
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Movie_id:]"));
+		}
+		if(!$this->Xpagin->isExecuter){
+			$this->redirect($this->referer());
 		}
 	}
 

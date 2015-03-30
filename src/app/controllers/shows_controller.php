@@ -62,7 +62,8 @@ class ShowsController extends AppController{
 					'Projection',
 					'Movie'=>array(
 						'Poster'
-					)
+					),
+					'order'=>'Show.schedule ASC'
 				)
 			),
 		));
@@ -384,7 +385,7 @@ class ShowsController extends AppController{
 				'group'=>array(
 					'movie_id'
 				),
-				'conditions'=>$conditions
+				'conditions'=>am(array('Movie.trash'=>0,'Movie.status'=>1),$conditions)
 			);
 			$billboard = $this->Show->find("all",$query);
 			foreach($billboard as $key => $item){

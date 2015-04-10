@@ -269,6 +269,9 @@ class MoviesController extends AppController{
 		));
 
 		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
+		if(empty($record)){
+			$this->cakeError("error404");
+		}
 		$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get_movie_schedule','movie_id'=>$record['Movie']['id']));
 
 		$this->set(compact("record","billboard"));

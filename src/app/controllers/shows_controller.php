@@ -22,7 +22,8 @@ class ShowsController extends AppController{
 
 		$this->__setCitySelected();
 		$date = date("Y-m-d");
-		$start = date("Y-m-d")." 0:0:0";
+		//$start = date("Y-m-d h:i:s");
+		$start = strtotime("-30 min");
 		/*if($this->Session->read("BillboardFilter.date")){
 			$date = $this->Session->read("BillboardFilter.date");
 			$start = $date." ".date("H:i:s");
@@ -41,7 +42,6 @@ class ShowsController extends AppController{
 		$this->__showConditions = array(
 			'Show.schedule >='=>$start,
 			'Show.schedule <='=>$end,
-
 		);
 
 		$this->set("billboard",$this->__getBillboardSchedules());
@@ -58,7 +58,10 @@ class ShowsController extends AppController{
 			),
 			'contain'=>array(
 				'Show'=>array(
-					'conditions'=>$this->__showConditions,
+					'conditions'=>am(
+						$this->__showConditions,
+						array('Movie.trash'=>0,'Movie.status'=>1)
+					),
 					'Projection',
 					'Movie'=>array(
 						'Poster'
@@ -179,6 +182,16 @@ class ShowsController extends AppController{
 		if($record['Show']['seat_alloctype']){
 			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
 		}
+	}
+
+	function seatlayout($show_id = null){
+		$this->Show->id = $show_id;
+		$this->Show->contain(array('Location'));
+		$record = $this->Show->read();
+			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
+		/*if($this->RequestHandler->isAjax()){
+
+		}*/
 	}
 
 	function __getSeats($server,$session_id){

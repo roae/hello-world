@@ -1,0 +1,121 @@
+@media (max-width: 480px) {
+  .movie-detail-container {
+    .big-cover {
+      height: 320px;
+      .fixed {
+        top: 220px;
+        h1 {
+          padding-bottom: 10px;
+          font-size: 30px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+    .movie-information {
+      .main-content,
+      .movie-detailed-info {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    .movie-information {
+      .sinopsis {
+        font-size: 15px;
+        padding-left: 5%;
+        padding-right: 5%;
+        .cover-container {
+          width: 25%;
+          .like {
+            font-size: 14px;
+            background-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .movie-detail-container {
+    .movie-information {
+      .movie-detailed-info,
+      .buy-tickets {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+    }
+  }
+  .movie-detail-container .movie-information {
+    .buy-tickets {
+      h2 {
+        line-height: 1.25;
+        font-size: 24px;
+        }
+      .complex-name {
+        margin-bottom: 8px;
+        font-size: 28px;
+      }
+    }
+
+    .movie-gallery-container {
+      margin: 20px auto 60px;
+    }
+
+    }
+  .movie-detail-container .movie-information .buy-tickets .filter .input,
+  .movie-detail-container .movie-information .buy-tickets .filter .selected-complex {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .movie-detail-container {
+    .big-cover {
+      height: 320px;
+      .fixed {
+        padding-left: 27%;
+        h1 {
+          padding-bottom: 8px;
+          font-size: 26px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    .movie-information {
+      .main-content,
+      .movie-detailed-info {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    .movie-information {
+      h2:first-of-type {
+        clear: both;
+      }
+      .sinopsis {
+        .cover-container {
+          width: 28%;
+          .like {
+            font-size: 11px;
+            background-size: 11px;
+            padding: 7px 5px 7px 18px;
+            background-position: 5px center;
+          }
+        }
+        p {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
-<?php /* @var $this View  */?>
+<?php /* @var $this View  */
+$this->Html->script("buy.min.js",array('inline'=>false));
+echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
+?>
 <div class="session-buy-container" id="SessionCheckout">
-
 	<?php
 	$bg_url = '';
 	$class = '';
@@ -76,6 +78,7 @@
 	</div>
 
 	<section class="ticketsSelection col-container">
+		<a name="tickets" id="ticketsAnchor"></a>
 		<div class="stepTitle">
 			<strong>[:buy-step-1:]</strong>
 			<div class="step-text">
@@ -93,17 +96,21 @@
 			</thead>
 			<tbody>
 			<?php
-			foreach($record['TicketPrice'] as $ticketPrice){
+			foreach($record['TicketPrice'] as $key => $ticketPrice){
 				?>
 				<tr>
 					<th><?= $ticketPrice['description']?></th>
-					<td>$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
+					<td data-price="<?= $ticketPrice['price'] ?>" class="price">$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
 					<td class="buttons">
 						<button type="button" class="less">-</button>
-						<span class="cantidad">0</span>
+						<span class="cantidad" data-qty="0">0</span>
 						<button type="button" class="plus">+</button>
+						<?php
+						echo $this->Form->hidden("$key.code",array('value'=>$ticketPrice['code']));
+						echo $this->Form->hidden("$key.qty",array('value'=>0));
+						?>
 					</td>
-					<td>
+					<td class="subtotal">
 						$0.00
 					</td>
 				</tr>
@@ -115,7 +122,7 @@
 
 		<div class="total">
 			<span class="title">Total</span>
-			<span class="value">$134.00</span>
+			<span class="value">$0.00</span>
 			<span class="taxes">Incluye IVA</span>
 		</div>
 		<div class="loyaltyCard">
@@ -127,14 +134,48 @@
 			<div>[:que-es-loyalty:]</div>
 		</div>
 	</section>
+<?php if(isset($sessionSeatData)){ ?>
+	<div class="seatsSelection col-container">
+		<div class="stepTitle">
+			<strong>[:buy-step-2:]</strong>
+			<div class="step-text">
+				[:buy-step-2-text:]
+			</div>
+		</div>
+		<div class="room-container">
 
-	<?php
-	if(isset($sessionSeatData)){
-		echo $this->element("shows/seats",array('sessionSeatData'=>$sessionSeatData));
-	}
-	?>
+			<div id="SeatLayout" data-show="<?= $record['Show']['id']?>">
+				<div class="loadingSeats">
+					<i class="icon-loading"></i>
+					<div>[:cargando-asientos:]</div>
+				</div>
+			</div>
 
+			<div class="message">
+				<div class="content">
+					<p>
+						No nos has dicho cuantos boletos quieres :)
+					</p>
+					<a href="#tickets" class="btn">[:select-tickets:]</a>
+				</div>
+			</div>
 
+			<div class="instructions">
+			<span class="available">
+				[:disponibles:]
+			</span>
+			<span class="unavailable">
+				[:ocupados:]
+			</span>
+			<span class="yourseats">
+				[:tus-asientos:]
+			</span>
+			</div>
+		</div>
+	</div>
 
+<?php
+}
+?>
 </div>
 

@@ -22,7 +22,8 @@ class ShowsController extends AppController{
 
 		$this->__setCitySelected();
 		$date = date("Y-m-d");
-		$start = date("Y-m-d")." 0:0:0";
+		//$start = date("Y-m-d h:i:s");
+		$start = strtotime("-30 min");
 		/*if($this->Session->read("BillboardFilter.date")){
 			$date = $this->Session->read("BillboardFilter.date");
 			$start = $date." ".date("H:i:s");
@@ -41,7 +42,6 @@ class ShowsController extends AppController{
 		$this->__showConditions = array(
 			'Show.schedule >='=>$start,
 			'Show.schedule <='=>$end,
-
 		);
 
 		$this->set("billboard",$this->__getBillboardSchedules());
@@ -58,11 +58,15 @@ class ShowsController extends AppController{
 			),
 			'contain'=>array(
 				'Show'=>array(
-					'conditions'=>$this->__showConditions,
+					'conditions'=>am(
+						$this->__showConditions,
+						array('Movie.trash'=>0,'Movie.status'=>1)
+					),
 					'Projection',
 					'Movie'=>array(
 						'Poster'
-					)
+					),
+					'order'=>'Show.schedule ASC'
 				)
 			),
 		));
@@ -178,6 +182,16 @@ class ShowsController extends AppController{
 		if($record['Show']['seat_alloctype']){
 			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
 		}
+	}
+
+	function seatlayout($show_id = null){
+		$this->Show->id = $show_id;
+		$this->Show->contain(array('Location'));
+		$record = $this->Show->read();
+			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
+		/*if($this->RequestHandler->isAjax()){
+
+		}*/
 	}
 
 	function __getSeats($server,$session_id){
@@ -327,7 +341,7 @@ class ShowsController extends AppController{
 	}
 
 	function rest($locations = null){
-		$conditions = array();
+		$conditions = $movieLocationConditions = array();
 		if(isset($this->params['named']['locations'])){
 			$conditions = array('Show.location_id'=>explode("-",$this->params['named']['locations']));
 		}else if(isset($this->params['named']['city'])){
@@ -340,6 +354,7 @@ class ShowsController extends AppController{
 			);
 			if(!empty($locations)){
 				$conditions = array('Show.location_id'=>array_keys($locations));
+				$movieLocationConditions =array('MovieLocation.location_id'=>array_keys($locations));
 			}
 		}
 		if(isset($this->params['named']['schedule']) && $this->params['named']['schedule']){
@@ -350,9 +365,19 @@ class ShowsController extends AppController{
 				if(isset($this->params['named']['locations'])){
 					Configure::write("CitySelected.id",$this->params['named']['city']);
 				}
+				$date = date("Y-m-d");
+				$start = strtotime("-30 min");
+				if(isset($this->params['named']['date'])){
+					$date = $this->params['named']['date'];
+					$start = $date." ".date("H:i:s");
+					if($date != date("Y-m-d")){
+						$start = $date." 0:0:0";
+					}
+				}
+				$end = $date." 23:59:59";
 				$this->__showConditions = array(
-					'Show.schedule >='=>date("Y-m-d H:i:s"),
-					'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+					'Show.schedule >='=>$start,
+					'Show.schedule <='=>$end,
 					#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
 				);
 				$this->set("billboard",$this->__getBillboardSchedules());
@@ -366,15 +391,35 @@ class ShowsController extends AppController{
 				'contain'=>array(
 					'Movie'=>array(
 						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
-						'Poster'
+						'Poster',
+						'MovieLocation'=>array(
+							'conditions'=>$movieLocationConditions,
+							'limit'=>1,
+							'fields'=>array(
+								'MovieLocation.presale',
+								'MovieLocation.presale_start',
+								'MovieLocation.presale_end',
+								'MovieLocation.comming_soon',
+								'MovieLocation.premiere_end'
+							)
+						)
 					)
 				),
 				'group'=>array(
 					'movie_id'
 				),
-				'conditions'=>$conditions
+				'conditions'=>am(array('Movie.trash'=>0,'Movie.status'=>1),$conditions)
 			);
-			$this->set("billboard",$this->Show->find("all",$query));
+			$billboard = $this->Show->find("all",$query);
+			foreach($billboard as $key => $item){
+				#unset($item['Movie']['MovieLocation'][0]['movie_id'],$item['Movie']['MovieLocation'][0]['id'],[''])
+				$billboard[$key]['Movie'] = am($item['Movie'],$item['Movie']['MovieLocation'][0]);
+				unset($billboard[$key]['Movie']['MovieLocation']);
+			}
+			if(isset($this->params['requested'])){
+				return $billboard;
+			}
+			$this->set("billboard",$billboard);
 		}
 
 	}
@@ -384,7 +429,10 @@ class ShowsController extends AppController{
 		$dates = $this->Show->find("list",array(
 			'fields'=>array('Show.date'),
 			'group'=>'Show.date',
-			'order'=>'Show.schedule ASC'
+			'order'=>'Show.schedule ASC',
+			'conditions'=>array(
+				'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+			)
 		));
 		if(isset($this->params['requested'])){
 			return $dates;

@@ -18,6 +18,7 @@
 @import "modules/components/navigation";
 @import "modules/components/blured-lightbox";
 @import "modules/components/login";
+@import "modules/components/banners";
 
 /* LAYOUTS */
 
@@ -41,3 +42,6 @@
 @import "modules/base/responsive";
 
 @import "modules/base/responsive/r_homepage";
+@import "modules/base/responsive/r_detail";
+
+

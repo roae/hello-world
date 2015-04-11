@@ -3,19 +3,19 @@
   .the-billboard {
     font-size: 0;
     position: relative;
+    overflow: hidden;
   }
 
   .billboard-aside {
     display: inline-block;
-    width: span(4);
-    margin-left: span(1) + gutter();
+    @include span(4);
+    margin-left: span(1)+gutter();
     font-size: 16px;
     vertical-align: top;
     text-align: center;
 
     .filter {
-      padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
       text-align: left;
       border-radius: 3px;
 
@@ -74,8 +74,7 @@
 
   .billboard-list {
     position: relative;
-    display: inline-block;
-    width: span(11) + gutter();
+    @include span(11);
     vertical-align: top;
     font-size: 16px;
 

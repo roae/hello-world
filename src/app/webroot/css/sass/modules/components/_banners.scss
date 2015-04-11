@@ -1,0 +1,17 @@
+.horizontal-banner{
+  text-align: center;
+  margin-bottom: 40px;
+  img{
+    width: 100%;
+    max-width: 960px;
+  }
+}
+
+.vertical-banner,
+.verticalmin-banner,
+.cuadro-banner{
+  img{
+    width: 100%;
+    display: block;
+  }
+}

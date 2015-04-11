@@ -53,7 +53,9 @@ module.exports = function(grunt) {
         files: {
           'js/admin/projections.min.js': ['js/admin/projections.annotated.js'],
 	      'js/admin/sync.min.js': ['js/admin/sync.annotated.js'],
-	      'js/ext/jquery.select.min.js': ['js/ext/jquery.select.js']
+	      'js/ext/jquery.select.min.js': ['js/ext/jquery.select.js'],
+	      'js/ext/jquery.xupdater.min.js': ['js/ext/jquery.xupdater.js'],
+	      'js/buy.min.js': ['js/buy.js'],
         }
       }
     },
@@ -102,7 +104,11 @@ module.exports = function(grunt) {
         },
       },
       scripts: {
-        files: ['js/admin/projections.js'],
+        files: [
+	        'js/admin/projections.js',
+	        'js/ext/jquery.xupdater.js',
+	        'js/buy.js',
+        ],
         tasks: ['uglify','notify:scripts']
       }
     }

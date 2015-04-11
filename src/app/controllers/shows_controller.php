@@ -365,9 +365,19 @@ class ShowsController extends AppController{
 				if(isset($this->params['named']['locations'])){
 					Configure::write("CitySelected.id",$this->params['named']['city']);
 				}
+				$date = date("Y-m-d");
+				$start = strtotime("-30 min");
+				if(isset($this->params['named']['date'])){
+					$date = $this->params['named']['date'];
+					$start = $date." ".date("H:i:s");
+					if($date != date("Y-m-d")){
+						$start = $date." 0:0:0";
+					}
+				}
+				$end = $date." 23:59:59";
 				$this->__showConditions = array(
-					'Show.schedule >='=>date("Y-m-d H:i:s"),
-					'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
+					'Show.schedule >='=>$start,
+					'Show.schedule <='=>$end,
 					#'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
 				);
 				$this->set("billboard",$this->__getBillboardSchedules());

@@ -1,12 +1,20 @@
 #complex-container {
 
-  aside {
-    @include span(3);
+  #map {
+    width: 100%;
+    height: 250px;
+  }
 
-    margin-left: span(1) + gutter();
+  .cities-location {
+    background-color: $light-gray;
+  }
+
+  aside {
     padding: 0;
+    margin-bottom: 25px;
     background-color: $light-gray;
     border-radius: 3px;
+    overflow: hidden;
 
     .title {
       display: block;
@@ -14,13 +22,11 @@
       font-weight: bold;
     }
 
-    li {
-      display: block;
-    }
+    li { float: left; }
 
     a {
       display: block;
-      padding: 18px 10px;
+      padding: 18px 25px;
       text-align: center;
       color: $dark-gray;
 
@@ -36,11 +42,7 @@
   .complex {
     @include span(12);
 
-    #map {
-      width: 100%;
-      height: 250px;
-      margin-bottom: 20px;
-    }
+    margin-left: span(2) + gutter();
 
     .cover {
       @include span(5);

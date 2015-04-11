@@ -84,7 +84,9 @@ $(function(){
 		elementAppear();
 	});
 
-	$(".input.select").Select();
+	if( $.fn.Select ) {
+		$(".input.select").Select();
+	}
 
 	allMods = $(".appear");
 
@@ -322,21 +324,23 @@ function nextSlide(){
 
 	}
 
-	$('.next-premieres .movies-list' ).owlCarousel({
-		center:true,
-		loop:true,
-		items : 8,
-		pagination : true,
-		paginationNumbers: false,
-		itemsCustom : false,
-		itemsDesktop : [1199,4],
-		itemsDesktopSmall : [980,3],
-		itemsTablet: [768,3],
-		itemsTabletSmall: false,
-		itemsMobile : [479,1],
-		singleItem : false,
-		itemsScaleUp : false,
-	});
+	if( $.fn.owlCarousel ) {
+		$('.next-premieres .movies-list' ).owlCarousel({
+			center:true,
+			loop:true,
+			items : 8,
+			pagination : true,
+			paginationNumbers: false,
+			itemsCustom : false,
+			itemsDesktop : [1199,4],
+			itemsDesktopSmall : [980,3],
+			itemsTablet: [768,3],
+			itemsTabletSmall: false,
+			itemsMobile : [479,1],
+			singleItem : false,
+			itemsScaleUp : false,
+		});
+	}
 
 	$('.the-content').waypoint(function(direction) {
 
@@ -687,5 +691,24 @@ function nextSlide(){
     });
 
 	}
+
+	$('.service-gallery').each(function() {
+		$(this).magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			tLoading: 'Cargando imagen #%curr%...',
+			mainClass: 'mfp-img-mobile',
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+			},
+			image: {
+				titleSrc: function(item) {
+					return item.el.attr('title');
+				}
+			}
+		});
+	});
 
 })(jQuery);

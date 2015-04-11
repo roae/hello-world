@@ -15,19 +15,17 @@
 
       <?= $service['Service']['description'] ?>
 
-        <ul class="service-gallery">
+        <div class="service-gallery" id="popup-gallery">
 
           <?php foreach ($service['Gallery'] as $picture) { ?>
 
-          <li class="service-picture">
-            <a href="http://placehold.it/1024x480">
-              <img src="http://placehold.it/64x64">
+            <a class="service-picture" href="<?= $picture['url'] ?>">
+              <img src="<?= $picture['mini'] ?>">
             </a>
-          </li>
 
           <?php } ?>
 
-        </ul>
+        </div>
       </li>
 
       <?php } ?>

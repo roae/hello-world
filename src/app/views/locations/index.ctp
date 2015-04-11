@@ -1,18 +1,30 @@
-<section class="col-container" id="complex-container">
-  <header class="top-message">
-    <h1>Complejos</h1>
-    <p>Lorem ipsum dolor sit amet</p>
-  </header>
+<section id="complex-container">
 
-  <?php
+  <div id="map"></div>
 
-  ?>
+  <div class="cities-location">
+    <aside class="col-container">
+      <ul>
 
-  <div class="complex-info">
+        <?php
+          foreach ($cities as $id => $city):
+        ?>
+
+          <li>
+            <a class="city-trigger <?= ( $id == $CitySelected['id'] ) ? 'selected' : '' ?>" data-id="<?= $id ?>" href=""><?= $city ?></a>
+          </li>
+
+        <?php
+          endforeach;
+        ?>
+
+      </ul>
+    </aside>
+  </div>
+
+  <div class="complex-info col-container">
 
     <div class="complex">
-
-      <div id="map"></div>
 
       <div class="addresses">
 
@@ -71,24 +83,6 @@
 
       </div>
     </div>
-
-    <aside>
-      <ul>
-
-        <?php
-          foreach ($cities as $id => $city):
-        ?>
-
-          <li>
-            <a class="city-trigger <?= ( $id == $CitySelected['id'] ) ? 'selected' : '' ?>" data-id="<?= $id ?>" href=""><?= $city ?></a>
-          </li>
-
-        <?php
-          endforeach;
-        ?>
-
-      </ul>
-    </aside>
   </div>
 
 </section>

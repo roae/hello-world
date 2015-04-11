@@ -29,12 +29,14 @@
     .service-picture {
       display: inline-block;
       width: 64px;
+      margin-right: 3px;
 
       @include transition(opacity 0.2s ease-in-out);
 
-      &:hover {
-        opacity: 0.7;
-      }
+      img { max-width: 100%; }
+
+      &:hover { opacity: 0.7; }
+      &:focus { outline: none; }
     }
   }
 }

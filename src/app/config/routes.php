@@ -124,6 +124,7 @@ Router::parseExtensions( 'json','xml' );
 Router::connect( '/billboard/*', array( 'controller' => 'shows', 'action' => 'rest') );
 Router::connect( '/billboard-full/*', array( 'controller' => 'shows', 'action' => 'rest_schedules') );
 
+Router::connect( '/movie/*',  array( 'controller' => 'movies', 'action' => 'view') );
 /*
  * Carga todos los archivos routes de los plugins
  */

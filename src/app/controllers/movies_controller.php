@@ -267,12 +267,22 @@ class MoviesController extends AppController{
 				'Location'
 			)*/
 		));
+		if ($this->RequestHandler->ext != 'json'){
+			$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
+			if(empty($record)){
+				$this->cakeError("error404");
+			}
+			$id = $record['Movie']['id'];
+		}else{
+			$id = $slug;
+			$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.id'=>$id)));
 
-		$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
-		if(empty($record)){
-			$this->cakeError("error404");
+			if(empty($record)){
+				$this->cakeError("error404");
+			}
 		}
-		$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get_movie_schedule','movie_id'=>$record['Movie']['id']));
+
+		$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get_movie_schedule','movie_id'=>$id));
 
 		$this->set(compact("record","billboard"));
 	}

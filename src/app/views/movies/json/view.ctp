@@ -1,1 +1,1 @@
-<?= $this->Javascript->object($movie) ?>
+<?= $this->Javascript->object(am($record,array('Billboard'=>$billboard))) ?>

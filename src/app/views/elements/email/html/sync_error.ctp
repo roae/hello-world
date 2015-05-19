@@ -3,7 +3,7 @@
 <?php
 if(isset($errors['locations_connection'])){
 	echo "<hr />";
-	echo $this->Html->tag("h2","Problemas con la conecci&oacute;n de los siguientes complejos:","error");
+	echo $this->Html->tag("h2","Problemas con la conexi&oacute;n de los siguientes complejos:","error");
 	$li = "";
 	foreach($errors['locations_connection'] as $location){
 		$li.=$this->Html->tag("h3",$location['name']);

@@ -1,6 +1,7 @@
 
 /* HELPERS */
 @import "compass/css3";
+@import "compass/css3/user-interface";
 @import "compass/utilities/general/hacks";
 @import "susy";
 @import "modules/helpers/vars";
@@ -38,6 +39,7 @@
 @import "modules/pages/complex";
 @import "modules/pages/services";
 @import "modules/pages/register";
+@import "modules/pages/profile";
 
 @import "modules/base/responsive";
 

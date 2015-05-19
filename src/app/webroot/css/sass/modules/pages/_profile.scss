@@ -1,0 +1,116 @@
+#UserProfile{
+  padding-bottom: 100px;
+
+  .top-message{
+    padding: 50px 0;
+    margin-bottom: 0;
+    &:after{
+      display:none;
+    }
+  }
+  .userCard{
+    text-align: center;
+    @include span(5);
+    figure{
+      width: 160px;
+      height: 160px;
+      @include border-radius(50%);
+      overflow: hidden;
+      display: inline-block;
+    }
+    .name{
+      color: #cc0017;
+      font-size: 30px;
+      font-weight: 100;
+      display: block;
+    }
+    .username{
+      display: block;
+      font-size: 16px;
+      color: #707070;
+    }
+    .btn{
+      margin: 10px;
+      display: inline-block;
+    }
+    .logout{
+      font-size: 14px;
+      color: #cc0017;
+      text-decoration: underline;
+    }
+  }
+  .userInfo{
+    @include span(10);
+    margin-left: span(1)+gutter();
+    .title{
+      color:#5c5c5c;
+      font-size: 30px;
+      font-weight: 100;
+      display:block;
+      padding: 10px;
+      border-bottom: 1px solid #ECECEC;
+      margin-bottom: 20px;
+    }
+    .personal{
+      overflow: hidden;
+      .data{
+        @include span(8);
+        height: 70px;
+        font-size: 16px;
+      }
+      .label{
+        color: #353535;
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: block;
+      }
+      .value{
+        display:block;
+        color: #5c5c5c;
+        font-weight: 200;
+      }
+    }
+    .pass{
+      .asterisk{
+        font-size: 50px;
+        color:#878787;
+        line-height: 50px;
+      }
+      .btn{
+        float: right;
+      }
+      .noPass{
+        font-weight: 200;
+        color: #5c5c5c;
+        strong{
+          font-weight: 500;
+        }
+        margin-bottom: 30px;
+      }
+
+    }
+  }
+  .input{
+    overflow: hidden;
+    margin-bottom: 30px;
+    label{
+      @include span(5);
+      margin-top: 5px;
+    }
+    input{
+      @include span(10);
+    }
+
+  }
+  .buttons{
+    .cancel{
+      color:#cc0017;
+      text-decoration: none;
+      float: right;
+    }
+
+    button{
+      float: right;
+    }
+  }
+}

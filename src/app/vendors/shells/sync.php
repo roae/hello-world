@@ -180,8 +180,8 @@ class SyncShell extends Shell{
 			#guardar el resultado de la sincronizacion en cache
 
 			$this->syncStatus['running'] = false;
-			$this->syncStatus['projections_not_found'] = $this->errors['projections_not_found'];
-			$this->syncStatus['exec_errors'] = $this->errors['exec'];
+			$this->syncStatus['projections_not_found'] = isset($this->errors['projections_not_found'])? $this->errors['projections_not_found'] : array();
+			$this->syncStatus['exec_errors'] = isset($this->errors['exec'])? $this->errors['exec'] : array();
 
 			$this->__cacheSyncStatus();
 
@@ -245,9 +245,9 @@ class SyncShell extends Shell{
 		}
 
 		$movies = array();
-		#$this->log($location,'sync');
-
-		if(isset($data['VistaData']) && !empty($data['VistaData'])){
+		#$this->log($location,'sync')
+		#print_r($data);
+		if(isset($data['VistaData']['Sessions']) && !empty($data['VistaData']['Sessions'])){
 			#$this->out("VistaData exist");
 			//$this->out("rochin");
 			$this->Show->begin();
@@ -262,6 +262,7 @@ class SyncShell extends Shell{
 			$this->hr();
 			$this->out("DIFF");
 			$this->out(Set::diff($sessionsList,$idSessions));*/
+			$added  = array();
 			foreach($idSessions as $sessionID){
 				if($key = array_search($sessionID,$sessionsList)){
 					$added[$key] = $sessionID;
@@ -354,7 +355,7 @@ class SyncShell extends Shell{
 							$ticketsAdded = Set::classicExtract($session_prices,"{n}.Price.Ticket_type_code");
 							$tickets = $this->Show->TicketPrice->find("list",array('conditions'=>array('TicketPrice.show_id'=>$showID),'fields'=>array('TicketPrice.code')));
 
-							$this->Show->TicketPrice->deleteAll(array('Price.show_id'=>$location['id'],'Price.code NOT'=>$ticketsAdded));
+							$this->Show->TicketPrice->deleteAll(array('TicketPrice.show_id'=>$location['id'],'TicketPrice.code NOT'=>$ticketsAdded));
 
 							foreach($session_prices as $record){
 								if(strpos($record['Price']['TType_strSalesChannels'],"WWW")){
@@ -382,7 +383,7 @@ class SyncShell extends Shell{
 						$this->out(print_r($this->Show->invalidFields()));
 					}
 				}else{
-					$this->out("- El código ".$session['Film_strCode']." no se ha asignado a una pelicula");
+					$this->out("- El código ".$session['Movie_ID']." no se ha asignado a una pelicula");
 					$this->syncStatus['fail'] = true;
 					$this->syncStatus['locations'][$location['id']]['fail'] = true;
 					$this->syncStatus['locations'][$location['id']]['projections_not_found']=true;
@@ -396,7 +397,8 @@ class SyncShell extends Shell{
 
 		}else{
 			# Error: No se encontraron horarios
-			$$this->locationsNoScheduled[] = $location['id'];
+			$this->out("No se descargaron horarios en este complejo");
+			$this->locationsNoScheduled[] = $location['id'];
 			$this->errors['location_no_scheduled'][] = $location;
 
 			$this->syncStatus['locations'][$location['id']]['fail'] = true;
@@ -560,7 +562,7 @@ class SyncShell extends Shell{
 
 		$Email->reset();
 		$Email->to = $this->config['sync_error_email'];
-		$Email->from = "noreply@citicinemas.com";
+		$Email->from = "erochin@h1webstudio.com";
 		$Email->subject = "Errores en la sincronización de la cartelera";
 		$Email->sendAs = 'html';
 		$Controller->set("errors",$this->errors);

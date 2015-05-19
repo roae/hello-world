@@ -71,6 +71,104 @@ body {
     }
   }
 
+  .loggeduser-container{
+    float: right;
+    margin-top: 26px;
+    @include transition(margin 0.2s ease-in-out);
+    .user{
+      cursor: pointer;
+      position: relative;
+      figure{
+        float: right;
+        @include border-radius(50%);
+        overflow: hidden;
+        margin-left: 10px;
+        margin-top: 2px;
+        img{
+          width: 40px;
+          height: 40px;
+          display: block;
+        }
+
+        .capitals{
+          font-size: 20px;
+          display: block;
+          width:40px;
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          background: #FECC00;
+
+        }
+
+      }
+      .username{
+        float: right;
+      }
+      .name{
+        font-weight: 300;
+        font-size: 16px;
+        color:#cc0017;
+        display:block;
+      }
+      .small{
+        font-size: 14px;
+        color:#797979;
+        display:block;
+      }
+      .userMenu{
+        position: absolute;
+        right: 0;
+        top: 45px;
+        @include border-radius(4px);
+        display: none;
+        text-align: left;
+        background: #232323;
+        @include box-shadow(0 1px 2px rgba(0,0,0,0.2));
+        padding: 0;
+        ul{
+          position: relative;
+          &:before{
+            background-color: #232323;
+            content: "";
+            height: 16px;
+            position: absolute;
+            right: 10px;
+            top: -4px;
+            transform: rotate(45deg);
+            width: 16px;
+            display: block;
+          }
+        }
+
+
+        li{
+
+          a{
+            color:#a5a5a5;
+            white-space: nowrap;
+            padding: 0;
+            display: block;
+            padding: 10px 20px;
+            &:hover{
+              color: lighten(#a5a5a5,10%);
+            }
+            &.logout{
+              background: #cc0017;
+              color: #fff;
+              @include border-radius(0 0 4px 4px);
+            }
+          }
+        }
+      }
+      &:hover{
+        .userMenu{
+          display: block;
+        }
+      }
+    }
+  }
+
   &.sticky {
     height: 68px;
     @include box-shadow(rgba(black, 0.1) 0 1px 2px);
@@ -96,6 +194,9 @@ body {
       a {
         font-size: 14px;
       }
+    }
+    .loggeduser-container{
+      margin-top: 5px;
     }
   }
 }

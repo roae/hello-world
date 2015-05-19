@@ -92,5 +92,17 @@ class NotifierComponent extends Object{
 	function success($message,$options = array()){
 		$this->send($message,'success',$options);
 	}
+
+	/**
+	 *	Envía un mensaje de exito al view.
+	 *
+	 *	@param string $message Mensaje de notificación que se envía.
+	 *	@param array $options Lista de opciones HTML
+	 *	@access public
+	 *	@return void
+	 */
+	function info($message,$options = array()){
+		$this->send($message,'info',$options);
+	}
 }
 ?>

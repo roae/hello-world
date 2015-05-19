@@ -115,6 +115,7 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing('sitemap_url',array('desc'=>'url de la pagina de mapa del sitio','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('search_url',array('desc'=>'url de la pagina del buscador','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('thanks_url',array('desc'=>'url de la pagina de agradecimiento de contacto','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('m_register_url',array('desc'=>'url de la pagina de registro','js'=>false,'tab'=>'urls'));
 
 
 	foreach(range(1,12) as $i){

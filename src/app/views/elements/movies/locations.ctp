@@ -51,7 +51,12 @@ $this->Html->script("admin/locations.min",false);
 							type="text"
 							id="MovieLocation<?= $index ?>PremiereEnd"
 							class="premiereEndDate"
-							<?= ($premier_end? 'value="'.($premier_end ? $this->Time->format("d/F/y",$premier_end) : "").'"' : "")?>
+							data-provide="datepicker"
+							data-autoclose="true"
+							data-todayHighlight="true"
+							data-date-format="dd/M/yyyy"
+							data-clear-btn="[:clear:]"
+							<?= ($premier_end? 'value="'.($premier_end ? $this->Time->format("d/M/Y",$premier_end) : "").'"' : "")?>
 						/>
 						<input
 							type="hidden"
@@ -64,8 +69,33 @@ $this->Html->script("admin/locations.min",false);
 				<!-- proximamente -->
 				<div class="commingSoon">
 					<div class="checkbox">
-						<input type="checkbox" id="MovieLocation<?= $index ?>CommingSoon" value="1" name="data[MovieLocation][<?= $index ?>][comming_soon]" <?= (isset($this->data['MovieLocation'][$index]['comming_soon']) ? "checked" : "")?>/>
+						<input type="checkbox" class="commingSoonCheckbox" id="MovieLocation<?= $index ?>CommingSoon" value="1" name="data[MovieLocation][<?= $index ?>][comming_soon]" <?= (isset($this->data['MovieLocation'][$index]['comming_soon']) ? "checked" : "")?>/>
 						<label for="MovieLocation<?= $index ?>CommingSoon">[:Movie_comming_soon:]</label>
+					</div>
+					<div class="premierDate">
+						<div class="input text <?= $invalid? "error" : ""?>">
+							<label for="MovieLocation<?= $index ?>PremiereDate">[:select-premier-date:]</label>
+							<?
+							$premier_date = ( isset($this->data['MovieLocation'][$index]['premiere_end']) && !preg_match('/0{4}-0{2}-0{2}/',$this->data['MovieLocation'][$index]['premiere_date']))? $this->data['MovieLocation'][$index]['premiere_date'] : false;
+							?>
+							<input
+								type="text"
+								id="MovieLocation<?= $index ?>PremiereDate"
+								class="premiereDate"
+								data-provide="datepicker"
+								data-autoclose="true"
+								data-todayHighlight="true"
+								data-date-format="dd/M/yyyy"
+								data-clear-btn="[:clear:]"
+								<?= ($premier_date? 'value="'.($premier_date ? $this->Time->format("d/M/Y",$premier_date) : "").'"' : "")?>
+								/>
+							<input
+								type="hidden"
+								name="data[MovieLocation][<?= $index ?>][premiere_date]"
+								<?= ($premier_date ? 'value="'.$premier_date.'"' : "")?>
+								/>
+						</div>
+						<button type="button" class="btn"><i class="icon-calendar"></i></button>
 					</div>
 				</div>
 				<!-- preventa -->
@@ -86,7 +116,13 @@ $this->Html->script("admin/locations.min",false);
 							<input
 								type="text"
 								class="input-sm form-control"
-								<?= ($presale_start ? 'value="'.$this->Time->format("d/M/y",$presale_start).'"' : "")?>
+								data-provide="datepicker"
+								data-autoclose="true"
+								data-todayHighlight="true"
+								data-date-format="dd/M/yyyy"
+								data-clear-btn="[:clear:]"
+								<?= ($presale_start? 'value="'.($presale_start ? $this->Time->format("d/M/Y",$presale_start) : "").'"' : "")?>
+
 							/>
 							<input type="hidden"
 							       name="data[MovieLocation][<?= $index ?>][presale_start]"
@@ -100,7 +136,12 @@ $this->Html->script("admin/locations.min",false);
 							<input
 								type="text"
 								class="input-sm form-control <?= $invalid ? "error" : "" ?>"
-								<?= ($presale_end ? 'value="'.$this->Time->format("d/M/y",$presale_end).'"' : "")?>
+								data-provide="datepicker"
+								data-autoclose="true"
+								data-todayHighlight="true"
+								data-date-format="dd/M/yyyy"
+								data-clear-btn="[:clear:]"
+								<?= ($presale_end? 'value="'.($presale_end ? $this->Time->format("d/M/Y",$presale_end) : "").'"' : "")?>
 								/>
 							<input type="hidden"
 							       name="data[MovieLocation][<?= $index ?>][presale_end]"

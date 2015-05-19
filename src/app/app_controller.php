@@ -81,6 +81,12 @@ class AppController extends Controller{
      */
 	public $loggedUser = null;
 
+	/**
+	 * Perfil del usuario logeado
+	 *
+	 */
+	public $loggedProfile = null;
+
     /**
 	 * Determina si el usuario puede usar remember me en el login
 	 */
@@ -398,6 +404,8 @@ class AppController extends Controller{
 		}
 		Configure::write('loggedUser',$this->loggedUser);
 		$this->set('loggedUser', $this->loggedUser);
+		$this->loggedProfile = $this->Session->read("LoggedProfile");
+		$this->set("loggedProfile",$this->loggedProfile);
 	}
 
 	function isAuthorized(){ #return true;

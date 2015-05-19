@@ -103,7 +103,7 @@ I18nRouter::connect( "/[sitemap_url]", array( 'controller' => 'pages', 'action' 
 I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
 I18nRouter::connect( "/[m_locations_url]", array( 'controller' => 'locations', 'action' => 'index') );
 I18nRouter::connect( "/[m_services_url]", array( 'controller' => 'services', 'action' => 'index' ) );
-I18nRouter::connect( "/[m_register_url]", array( 'controller' => 'pages', 'action' => 'display', 'register' ) );
+I18nRouter::connect( "/[m_register_url]/*", array( 'controller' => 'users', 'action' => 'singin' ) );
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.

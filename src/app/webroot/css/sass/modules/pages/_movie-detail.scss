@@ -75,11 +75,35 @@
     }
 
     &.image-not-founded {
-      height: 135px;
+      height: 150px;
 
-      .col-container { height: 135px; }
+      header{
+        position: static;
+      }
 
-      h1 { color: $dark-gray; }
+      .col-container {
+        height: 135px;
+      }
+
+      h1 {
+        color: #CC0017;
+        text-shadow: 0 0 0 transparent;
+        margin-top: 20px;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 8px;
+          left: 20px;
+          width: 100px;
+          height: 1px;
+          background-color: $light-gray;
+        }
+      }
+
+      p{
+        color:$dark-gray;
+        text-shadow: 0 0 0 transparent;
+      }
 
       &:before,
       &:after {
@@ -132,7 +156,6 @@
             display: block;
             width: 100%;
             border-radius: 3px;
-            border: 2px solid #fff;
           }
 
           .like {

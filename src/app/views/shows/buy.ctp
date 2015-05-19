@@ -106,8 +106,10 @@ echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 						<span class="cantidad" data-qty="0">0</span>
 						<button type="button" class="plus">+</button>
 						<?php
-						echo $this->Form->hidden("$key.code",array('value'=>$ticketPrice['code']));
-						echo $this->Form->hidden("$key.qty",array('value'=>0));
+						echo $this->Form->hidden("BuyTicket.$key.description",array('value'=>$ticketPrice['description']));
+						echo $this->Form->hidden("BuyTicket.$key.code",array('value'=>$ticketPrice['code']));
+						echo $this->Form->hidden("BuyTicket.$key.qty",array('value'=> isset($this->data['BuyTicket'][$key]['qty'])? $this->data['BuyTicket'][$key]['qty'] : 0 ,'class'=>'qtyInput','rel'=>'qty'));
+						echo $this->Form->hidden("BuyTicket.$key.price",array('value'=>$ticketPrice['price']*100));
 						?>
 					</td>
 					<td class="subtotal">
@@ -135,7 +137,7 @@ echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 		</div>
 	</section>
 <?php if(isset($sessionSeatData)){ ?>
-	<div class="seatsSelection col-container">
+	<section class="seatsSelection col-container">
 		<div class="stepTitle">
 			<strong>[:buy-step-2:]</strong>
 			<div class="step-text">
@@ -172,10 +174,63 @@ echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 			</span>
 			</div>
 		</div>
+	</section>
+
+	<section class="paymentInfo col-container">
+		<div class="stepTitle">
+			<strong>[:buy-step-3:]</strong>
+			<div class="step-text">
+				[:buy-step-3-text:]
+			</div>
+		</div>
+
+		<div class="paymentForm">
+			<fieldset class="paymentTypes">
+				<input id="BuyPaymentType0" type="radio" <?= !isset($this->data['Buy']['payment_type']) || (isset($this->data['Buy']['payment_type']) && $this->data['Buy']['payment_type']==0) ? 'checked="checked"': ""?> value="0" name="data[Buy][payment_type]">
+				<label for="BuyPaymentType0">
+					[:credit-debit-card:]
+					<span class="icons">
+						<span class="visa-icon"></span>
+						<span class="mastercard-icon"></span>
+					</span>
+				</label>
+
+				<input id="BuyPaymentType1" type="radio" <?= (isset($this->data['Buy']['payment_type']) && $this->data['Buy']['payment_type']==1) ? 'checked="checked"': ""?> value="1" name="data[Buy][payment_type]">
+				<label for="BuyPaymentType1">
+					[:paypal-account:]
+					<span class="icons">
+						<span class="paypal-icon"></span>
+					</span>
+				</label>
+			</fieldset>
+			<?php
+			echo $this->I18n->input("card_number",array('placeholder'=>'[:16-digits-card:]','between'=>$this->Html->tag("span","",'card-number-icon')));
+			echo $this->I18n->input("name",array('placeholder'=>'[:name-in-card:]'));
+			echo $this->Html->div("input exp-date",
+				$this->Html->tag("label","[:exp-date:]",array('for'=>'BuyExpMonth')).
+				$this->I18n->month("exp",null,array('monthNames'=>false,'empty'=>'[:month:]')).
+				$this->I18n->year("exp",date("Y"),date("Y")+12,null,array('empty'=>'[:year:]'))
+			);
+			echo $this->I18n->input("cvv",array('div'=>array('class'=>'input text cvv'),'between'=>$this->Html->tag("span","",'cvv-icon'),'placeholder'=>'[:cvv-text:]'));
+			echo "<hr />";
+			echo $this->I18n->input("email",array('placeholder'=>'[:your-email:]'));
+
+			?>
+			<div class="button">
+				<button type="submit" class="btn-primary">[:completar-compra:]</button>
+			</div>
+
+		</div>
+
+	</section>
+	<div class="col-container disclaimer">
+		[:buy-disclaimer:]
 	</div>
 
 <?php
 }
+echo $this->Html->scriptBlock("var BuySeat = ".$this->Javascript->object($this->data['BuySeat']));
 ?>
 </div>
+<?php echo $this->Form->end();?>
 

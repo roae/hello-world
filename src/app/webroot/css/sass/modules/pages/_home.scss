@@ -203,8 +203,20 @@
           }
 
           &:hover {
-            .details { opacity: 1; }
+            .details {
+              opacity: 1;
+            }
           }
+        }
+
+        .presale{
+          background: #FECC00;
+          padding: 3px 10px;
+          position: absolute;
+          top: 7px;
+          left:0px;
+          color:#353637;
+          @include transition(opacity 0.2s ease-in-out);
         }
 
         .details {
@@ -221,9 +233,7 @@
           background-color: rgba(0, 0, 0, 0.85);
           border-radius: 3px;
 
-          transition: opacity 0.2s ease-in-out;
-          -webkit-transition: opacity 0.2s ease-in-out;
-          -moz-transition: opacity 0.2s ease-in-out;
+          @include transition(opacity 0.2s ease-in-out);
 
           .title {
             display: block;
@@ -234,7 +244,7 @@
 
           .sinopsis{
             height: 150px;
-            overflow-y: hidden;
+            overflow-y: auto;
             margin-bottom: 10px;
             font-size: 13px;
             color: $light-gray;
@@ -249,9 +259,7 @@
             color: #fff;
             border-radius: 5px;
 
-            transition: border 0.2s ease-in-out;
-            -webkit-transition: border 0.2s ease-in-out;
-            -moz-transition: border 0.2s ease-in-out;
+            @include transition(opacity 0.2s ease-in-out);
 
             &:hover { border-color: lighten($gray, 5%); }
 
@@ -275,9 +283,7 @@
             font-size: 15px;
             font-weight: normal;
 
-            transition: color 0.2s ease-in-out;
-            -webkit-transition: color 0.2s ease-in-out;
-            -moz-transition: color 0.2s ease-in-out;
+            @include transition(opacity 0.2s ease-in-out);
 
             a {
               color: $gray;
@@ -298,16 +304,7 @@
         &:nth-of-type(5n+1){
           clear: left;
         }
-        .presale{
-          background: #FECC00;
-          padding: 3px 10px;
-          position: absolute;
-          top: 10px;
-          left:-5px;
-          color:#353637;
-          font-weight: bold;
-          font-size: 18px;
-        }
+
       }
     }
   }
@@ -322,7 +319,10 @@
   background-color: lighten($light-gray, 5%);
   overflow: hidden;
 
-  .info { text-align: left; }
+  .info {
+    text-align: left;
+    padding: 10px;
+  }
 
   .titleCommingSoon {
     font-size: 34px;
@@ -338,9 +338,15 @@
   .movie {
     padding: 0 15px;
 
-    .details { display: none; }
+    .image-container{
+      position: relative;
+    }
 
-    img { width: 100%; }
+    img {
+      width: 100%;
+      display: block;
+      @include border-radius(3px);
+    }
 
     h2 {
       margin-bottom: 10px;
@@ -353,13 +359,25 @@
       text-align: left;
       font-size: 13px;
       color: $gray;
-      opacity: 0.7;
     }
 
     a {
       font-size: 14px;
       color: $gray;
       line-height: 1.5;
+    }
+
+    .date{
+      color:#CC0017;
+    }
+
+    .presale{
+      background: #FECC00;
+      padding: 3px 10px;
+      position: absolute;
+      top: 7px;
+      left:0px;
+      color:#353637;
     }
   }
 }

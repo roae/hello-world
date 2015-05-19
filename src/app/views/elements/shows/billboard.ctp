@@ -36,6 +36,11 @@
 
 			<div class="image-container">
 				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
+				<?php
+				if(isset($show['Movie']['presale']) && $show['Movie']['presale']){
+					echo $this->Html->tag("span","[:presale:]",'presale');
+				}
+				?>
 				<div class="details link">
 					<strong class="title"><?= $show['Movie']['title'] ?></strong>
 					<div class="sinopsis">
@@ -64,11 +69,7 @@
 				<span class="duration"><?= ($show['Movie']['duration'] != '') ? $show['Movie']['duration'].' mins' : '' ?></span>
 				<span class="genre"><?= $show['Movie']['genre'] ?></span>
 			</div>
-			<?php
-			if($show['Movie']['presale']){
-				echo $this->Html->tag("span","[:presale:]",'presale');
-			}
-			?>
+
 		</li>
 
 	<?php } ?>

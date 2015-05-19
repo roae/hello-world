@@ -1,23 +1,10 @@
 $(document ).on("ready",function(){
-	$('.input-daterange').datepicker({
-		autoclose: true,
-		todayHighlight: true,
-		format:'dd/M/yyyy',
-		language:'es',
-		clearBtn: __("clear")
-	} ).on("changeDate",function(e){
-			$( e.target ).next().val(e.format('yyyy-mm-dd'))
-	});
 
-	$('.premiereEndDate').datepicker({
-		autoclose: true,
-		todayHighlight: true,
-		format:'dd/MM/yyyy',
-		language:'es',
-		clearBtn: __("clear")
-	} ).on("changeDate",function(e){
+
+	$('.premiereEndDate,.input-daterange,.premiereDate').on("changeDate",function(e){
 		$( e.target ).next().val(e.format('yyyy-mm-dd'))
 	});
+
 
 	$(".premiere .btn" ).on("click",function(){
 		$('.premiereEndDate',$(this ).parent() ).datepicker("show");
@@ -52,6 +39,23 @@ $(document ).on("ready",function(){
 			$(".commingSoon,.presale,.premiere",$(this).closest('.location')).css({display:'none'});
 		}else{
 			$(this ).parent().addClass("selected");
+		}
+	});
+
+	$(".commingSoonCheckbox").change(function(){
+		var $commingSoon = $(this).closest('.commingSoon');
+		if($(this).is(":checked")){
+			$(".premierDate",$commingSoon).show('fast');
+		}else{
+			$(".premierDate",$commingSoon).hide('fast');
+
+			$(".premierDate input",$commingSoon ).val("").datepicker("update","")
+		}
+	});
+
+	$(".commingSoonCheckbox" ).each(function(k,v){
+		if(!$(v ).is(":checked")){
+			$(".premierDate",$(this).closest('.location')).css({display:'none'});
 		}
 	});
 

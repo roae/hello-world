@@ -289,12 +289,13 @@ class MoviesController extends AppController{
 
 	function premiere(){
 		$conditions = array();
-		if(isset($LocationsSelected) && !empty($LocationsSelected)){
+		$LocationsSelected = Configure::read("LocationsSelected");
+		if(!empty($LocationsSelected)){
 			$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
 		}
 
 		return $this->Movie->MovieLocation->find("all",array(
-			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_end >'=>date("Y-m-d"))),
+			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
 			'contain'=>array(
 				'Movie'=>array(
 					'Poster'

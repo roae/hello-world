@@ -18,7 +18,9 @@ $record = $this->requestAction(array(
 		)
 	)
 ));
-//pr($record);
-$img =  $this->Html->image($record[Configure::read("AdTypes.$type")]['url'],array('alt'=>$record['Ad']['title']));
-echo $record['Ad']['link'] ? $this->Html->link($img,$record['Ad']['link'],array('escape'=>false)) : $img ;
+if(isset($record[Configure::read("AdTypes.$type")]['url'])){
+	$img =  $this->Html->image($record[Configure::read("AdTypes.$type")]['url'],array('alt'=>$record['Ad']['title']));
+	echo $record['Ad']['link'] ? $this->Html->link($img,$record['Ad']['link'],array('escape'=>false)) : $img ;
+}
+
 ?>

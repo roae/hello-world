@@ -1,11 +1,48 @@
 #SessionCheckout{
   .big-cover {
+    height: 220px;
 
     position: relative;
 
     color: #fff;
 
-    background-color: #fff;
+    background-color: #f1f1f1;
+
+    &.image-not-founded {
+      height: 170px;
+
+      .bg{
+        height: 40px;
+      }
+
+      .col-container {
+        height: 135px;
+      }
+
+      h1 {
+        color: #CC0017;
+        text-shadow: 0 0 0 transparent;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 8px;
+          left: 20px;
+          width: 100px;
+          height: 1px;
+          background-color: $light-gray;
+        }
+      }
+
+      p{
+        color:$dark-gray;
+        text-shadow: 0 0 0 transparent;
+      }
+
+      &:before,
+      &:after {
+        background: transparent;
+      }
+    }
 
 
     //-moz-background-blend-mode: luminosity;
@@ -83,18 +120,7 @@
       background-color: rgba(240, 139, 36, 0.3);
     }
 
-    &.image-not-founded {
-      height: 135px;
 
-      .col-container { height: 135px; }
-
-      h1 { color: $dark-gray; }
-
-      &:before,
-      &:after {
-        background: transparent;
-      }
-    }
   }
 
 
@@ -118,9 +144,14 @@
       .value{
         font-weight: 200;
       }
+      .mega{
+        background: #f18932;
+        color:#fff;
+        padding: 1px 5px;
+      }
       .premier{
         background: #e5c90c;
-        padding: 1px 3px;
+        padding: 1px 5px;
       }
     }
   }
@@ -320,11 +351,12 @@
     }
   }
 
+  /* Asientos */
+
   .seatsSelection{
     border-top: 1px solid #f1f1f1;
     padding-top: 100px;
     padding-bottom: 50px;
-    margin-bottom: 100px;
     position: relative;
     .stepTitle{
       strong{
@@ -635,6 +667,151 @@
         }
       }
     }
+  }
+
+  /* Informacion de Tarjeta */
+
+  .paymentInfo{
+    border-top: 1px solid #f1f1f1;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+    position: relative;
+    .stepTitle{
+      strong{
+        &:before{
+          content:"3";
+        }
+      }
+    }
+
+    .paymentForm{
+      @include span(8);
+      margin-left: span(4)+gutter();
+      .paymentTypes{
+        margin-bottom: 30px;
+        input{
+          display: none;
+          &:checked + label{
+            background: #F0F0F0 url("web/checkedbox.png") no-repeat 10px center;
+            border: 1px solid #E3E3E3;
+          }
+
+        }
+        label{
+          font-size: 14px;
+          color:#6f6f6f;
+          @include span(8);
+          padding: 10px 10px 10px 40px;
+          background: #fff url("web/checkbox.png") no-repeat 10px center;
+          border: 1px solid #fff;
+          @include border-radius(4px);
+          @include transition(background border 0.2s ease-in-out);
+          .icons{
+            margin-top: 10px;
+            display:block;
+          }
+          .visa-icon{
+            display: inline-block;
+            background: url("web/visa.png") no-repeat;
+            width: 37px;
+            height: 27px;
+          }
+          .mastercard-icon{
+            display: inline-block;
+            background: url("web/mastercard.png") no-repeat;
+            width: 37px;
+            height: 27px;
+          }
+          .paypal-icon{
+            display: inline-block;
+            background: url("web/paypal.png") no-repeat;
+            width: 39px;
+            height: 27px;
+          }
+        }
+      }
+      .input{
+        margin-bottom: 20px;
+        label{
+          display: inline-block;
+          font-size: 18px;
+          color:$dark-gray;
+          margin-bottom: 10px;
+        }
+        input{
+          border: 2px solid #ADADAD;
+          @include border-radius(4px);
+          padding:10px;
+          font-size: 18px;
+          width: 100%;
+          @include box-sizing(border-box);
+        }
+        input[type="text"]{
+          @include input-placeholder {
+            color:#a8a8a8;
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+      }
+      .exp-date{
+        label{
+          display:block;
+        }
+        select{
+          margin-right: 10px;
+        }
+
+      }
+      .exp-date,
+      .cvv{
+        @include span(8);
+
+      }
+
+      .card-number-icon{
+        background: url("web/no-tarjeta.png") no-repeat;
+        width: 30px;
+        height: 21px;
+        display: inline-block;
+        margin: 2px 0 0 10px;
+      }
+      .cvv-icon{
+        background: url("web/cvv-icon.png") no-repeat;
+        width: 30px;
+        height: 21px;
+        display: inline-block;
+        margin: 2px 0 0 10px;
+      }
+
+      hr{
+        border:0;
+        border-top: 1px solid #E1E1E1;
+        width: 100%;
+        margin:30px 0;
+        clear: left;
+      }
+      .button{
+        text-align: center;
+        margin-top: 30px;
+      }
+      button{
+        padding: 10px 20px;
+        font-size: 24px;
+        font-weight: 100;
+      }
+
+
+
+    }
+
+
+  }
+
+  .disclaimer{
+    font-size: 12px;
+    color:#8f8f8f;
   }
 
   .stepTitle{

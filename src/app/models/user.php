@@ -6,12 +6,21 @@ class User extends AppModel {
 	var $actsAs = array('Acl.Aclx'=>array('Aro','Aco'));
 	#var $actsAs=array('Acl'=>array('type'=>'requester'));
 	var $belongsTo = array( 'Acl.Group' );
-	var $hasOne = array(  );
+	var $hasOne = array(
+		'Profile'
+	);
 	var $hasAndBelongsToMany = array();
-	var $hasMany = array( );
+	var $hasMany = array(
+		'SocialAuth',
+	);
+
+	var $_data = array();
 
 	var $validate = array(
 		'nombre'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+		),
+		'paterno'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		),
 		'username'   => array(

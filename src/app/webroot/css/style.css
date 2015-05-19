@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* HELPERS */
 /* SIZES */
 /* COLORS */
@@ -153,7 +154,7 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 12, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
+/* line 12, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
 .col-container:after {
   content: " ";
   display: block;
@@ -199,6 +200,12 @@ body {
 }
 
 /* line 25, sass/modules/components/_buttons.scss */
+.btn-success {
+  background-color: #05b558;
+  color: #fff;
+}
+
+/* line 30, sass/modules/components/_buttons.scss */
 #header-location-select {
   position: relative;
   display: inline-block;
@@ -207,7 +214,7 @@ body {
   -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
 }
-/* line 34, sass/modules/components/_buttons.scss */
+/* line 39, sass/modules/components/_buttons.scss */
 #header-location-select > a {
   position: relative;
   padding: 15px 80px 15px 60px;
@@ -217,14 +224,14 @@ body {
   color: #fff;
   background-color: #cc0017;
 }
-/* line 43, sass/modules/components/_buttons.scss */
+/* line 48, sass/modules/components/_buttons.scss */
 #header-location-select > a .current {
   position: relative;
   font-weight: bold;
   font-style: italic;
   color: #fecc00;
 }
-/* line 49, sass/modules/components/_buttons.scss */
+/* line 54, sass/modules/components/_buttons.scss */
 #header-location-select > a .current:after {
   content: '';
   position: absolute;
@@ -234,16 +241,16 @@ body {
   height: 25px;
   background-color: #b30014;
 }
-/* line 60, sass/modules/components/_buttons.scss */
+/* line 65, sass/modules/components/_buttons.scss */
 #header-location-select > a:hover {
   background-color: #c20016;
 }
-/* line 62, sass/modules/components/_buttons.scss */
+/* line 67, sass/modules/components/_buttons.scss */
 #header-location-select > a:active {
   position: relative;
   top: 1px;
 }
-/* line 68, sass/modules/components/_buttons.scss */
+/* line 73, sass/modules/components/_buttons.scss */
 #header-location-select .sub-menu-trigger {
   position: absolute;
   right: 6px;
@@ -263,7 +270,7 @@ body {
   -webkit-transition: background-color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 86, sass/modules/components/_buttons.scss */
+/* line 91, sass/modules/components/_buttons.scss */
 #header-location-select .places {
   display: none;
   position: absolute;
@@ -277,7 +284,7 @@ body {
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
 }
-/* line 96, sass/modules/components/_buttons.scss */
+/* line 101, sass/modules/components/_buttons.scss */
 #header-location-select .places:before {
   content: '';
   position: absolute;
@@ -291,15 +298,15 @@ body {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-/* line 110, sass/modules/components/_buttons.scss */
+/* line 115, sass/modules/components/_buttons.scss */
 #header-location-select .places li {
   display: block;
 }
-/* line 113, sass/modules/components/_buttons.scss */
+/* line 118, sass/modules/components/_buttons.scss */
 #header-location-select .places li:last-child a {
   border-radius: 0 0 10px 10px;
 }
-/* line 118, sass/modules/components/_buttons.scss */
+/* line 123, sass/modules/components/_buttons.scss */
 #header-location-select .places a {
   position: relative;
   display: inline-block;
@@ -311,11 +318,11 @@ body {
   background-color: #fff;
   z-index: 1;
 }
-/* line 129, sass/modules/components/_buttons.scss */
+/* line 134, sass/modules/components/_buttons.scss */
 #header-location-select .places a:hover {
   background-color: #fecc00;
 }
-/* line 135, sass/modules/components/_buttons.scss */
+/* line 140, sass/modules/components/_buttons.scss */
 #header-location-select .sub-menu-container:hover .places {
   display: block;
 }
@@ -458,7 +465,77 @@ body {
   top: 1px;
 }
 
-/* line 1, sass/modules/components/_login.scss */
+/**
+Página login
+**/
+/* line 4, sass/modules/components/_login.scss */
+#Login {
+  margin-bottom: 100px;
+}
+/* line 6, sass/modules/components/_login.scss */
+#Login form {
+  width: 36.25%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-left: 30.625%;
+}
+/* line 11, sass/modules/components/_login.scss */
+#Login .social-connect {
+  text-align: center;
+}
+/* line 14, sass/modules/components/_login.scss */
+#Login .social-connect li {
+  display: inline-block;
+}
+/* line 18, sass/modules/components/_login.scss */
+#Login .social-connect a {
+  padding: 10px 25px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #3b5998;
+  border-radius: 3px;
+}
+/* line 25, sass/modules/components/_login.scss */
+#Login .social-connect a.gp {
+  background-color: #de4b39;
+}
+/* line 26, sass/modules/components/_login.scss */
+#Login .social-connect a.tw {
+  background-color: #5ea9dd;
+}
+/* line 30, sass/modules/components/_login.scss */
+#Login .title {
+  position: relative;
+  display: block;
+  margin: 30px 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #5e6364;
+}
+/* line 39, sass/modules/components/_login.scss */
+#Login .title:before, #Login .title:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 64px;
+  height: 1px;
+  background-color: #5e6364;
+}
+/* line 49, sass/modules/components/_login.scss */
+#Login .title:before {
+  left: 0;
+}
+/* line 50, sass/modules/components/_login.scss */
+#Login .title:after {
+  right: 0;
+}
+
+/**
+ Ventana modal del login
+**/
+/* line 56, sass/modules/components/_login.scss */
 #login-container {
   display: none;
   position: fixed;
@@ -469,11 +546,11 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 20;
 }
-/* line 11, sass/modules/components/_login.scss */
+/* line 66, sass/modules/components/_login.scss */
 #login-container.show {
   display: block;
 }
-/* line 13, sass/modules/components/_login.scss */
+/* line 68, sass/modules/components/_login.scss */
 #login-container #login-close {
   position: absolute;
   top: 40px;
@@ -484,7 +561,7 @@ body {
   background: url(../img/lightbox-close-icon.png) no-repeat left top;
   overflow: hidden;
 }
-/* line 24, sass/modules/components/_login.scss */
+/* line 79, sass/modules/components/_login.scss */
 #login-container .login {
   position: absolute;
   left: 50%;
@@ -495,7 +572,7 @@ body {
   background-color: #fff;
   overflow: hidden;
 }
-/* line 36, sass/modules/components/_login.scss */
+/* line 91, sass/modules/components/_login.scss */
 #login-container .login .title {
   display: block;
   margin-bottom: 30px;
@@ -504,35 +581,7 @@ body {
   text-align: center;
   color: #cc0017;
 }
-/* line 45, sass/modules/components/_login.scss */
-#login-container .login .social-connect {
-  text-align: center;
-}
-/* line 48, sass/modules/components/_login.scss */
-#login-container .login .social-connect li {
-  display: inline-block;
-}
-/* line 52, sass/modules/components/_login.scss */
-#login-container .login .social-connect a {
-  padding: 10px 25px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #3b5998;
-  border-radius: 3px;
-}
-/* line 59, sass/modules/components/_login.scss */
-#login-container .login .social-connect a.gp {
-  background-color: #de4b39;
-}
-/* line 60, sass/modules/components/_login.scss */
-#login-container .login .social-connect a.tw {
-  background-color: #5ea9dd;
-}
-/* line 64, sass/modules/components/_login.scss */
-#login-container .login form {
-  margin-top: 40px;
-}
-/* line 67, sass/modules/components/_login.scss */
+/* line 101, sass/modules/components/_login.scss */
 #login-container .login form .title {
   position: relative;
   display: block;
@@ -542,7 +591,7 @@ body {
   text-align: center;
   color: #5e6364;
 }
-/* line 76, sass/modules/components/_login.scss */
+/* line 110, sass/modules/components/_login.scss */
 #login-container .login form .title:before, #login-container .login form .title:after {
   content: '';
   position: absolute;
@@ -551,47 +600,103 @@ body {
   height: 1px;
   background-color: #5e6364;
 }
-/* line 86, sass/modules/components/_login.scss */
+/* line 120, sass/modules/components/_login.scss */
 #login-container .login form .title:before {
   left: 0;
 }
-/* line 87, sass/modules/components/_login.scss */
+/* line 121, sass/modules/components/_login.scss */
 #login-container .login form .title:after {
   right: 0;
 }
-/* line 91, sass/modules/components/_login.scss */
-#login-container .login .input {
+
+/* line 131, sass/modules/components/_login.scss */
+#UserLoginForm {
+  margin-top: 40px;
+}
+/* line 134, sass/modules/components/_login.scss */
+#UserLoginForm .title {
+  position: relative;
+  display: block;
+  margin: 30px 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #5e6364;
+}
+/* line 143, sass/modules/components/_login.scss */
+#UserLoginForm .title:before, #UserLoginForm .title:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 64px;
+  height: 1px;
+  background-color: #5e6364;
+}
+/* line 153, sass/modules/components/_login.scss */
+#UserLoginForm .title:before {
+  left: 0;
+}
+/* line 154, sass/modules/components/_login.scss */
+#UserLoginForm .title:after {
+  right: 0;
+}
+/* line 157, sass/modules/components/_login.scss */
+#UserLoginForm .social-connect {
+  text-align: center;
+}
+/* line 160, sass/modules/components/_login.scss */
+#UserLoginForm .social-connect li {
+  display: inline-block;
+}
+/* line 164, sass/modules/components/_login.scss */
+#UserLoginForm .social-connect a {
+  padding: 10px 25px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #3b5998;
+  border-radius: 3px;
+}
+/* line 171, sass/modules/components/_login.scss */
+#UserLoginForm .social-connect a.gp {
+  background-color: #de4b39;
+}
+/* line 172, sass/modules/components/_login.scss */
+#UserLoginForm .social-connect a.tw {
+  background-color: #5ea9dd;
+}
+/* line 176, sass/modules/components/_login.scss */
+#UserLoginForm .input {
   margin-bottom: 10px;
 }
-/* line 94, sass/modules/components/_login.scss */
-#login-container .login .input a {
+/* line 179, sass/modules/components/_login.scss */
+#UserLoginForm .input a {
   display: block;
   margin-top: 5px;
   font-size: 14px;
   text-align: right;
   color: #3498db;
 }
-/* line 103, sass/modules/components/_login.scss */
-#login-container .login label {
+/* line 188, sass/modules/components/_login.scss */
+#UserLoginForm label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: bold;
 }
-/* line 110, sass/modules/components/_login.scss */
-#login-container .login input {
+/* line 195, sass/modules/components/_login.scss */
+#UserLoginForm input {
   width: 100%;
   border-radius: 3px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-/* line 118, sass/modules/components/_login.scss */
-#login-container .login input:focus {
+/* line 203, sass/modules/components/_login.scss */
+#UserLoginForm input:focus {
   outline: none;
 }
-/* line 121, sass/modules/components/_login.scss */
-#login-container .login button {
+/* line 206, sass/modules/components/_login.scss */
+#UserLoginForm button {
   float: right;
   height: 40px;
   width: 200px;
@@ -608,8 +713,8 @@ body {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 136, sass/modules/components/_login.scss */
-#login-container .login button:hover {
+/* line 221, sass/modules/components/_login.scss */
+#UserLoginForm button:hover {
   opacity: 0.7;
 }
 
@@ -762,32 +867,149 @@ body {
   color: #a8a9ab;
 }
 /* line 74, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container {
+  float: right;
+  margin-top: 26px;
+  -moz-transition: margin 0.2s ease-in-out;
+  -o-transition: margin 0.2s ease-in-out;
+  -webkit-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out;
+}
+/* line 78, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user {
+  cursor: pointer;
+  position: relative;
+}
+/* line 81, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user figure {
+  float: right;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+/* line 87, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user figure img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+/* line 93, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user figure .capitals {
+  font-size: 20px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background: #FECC00;
+}
+/* line 105, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .username {
+  float: right;
+}
+/* line 108, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .name {
+  font-weight: 300;
+  font-size: 16px;
+  color: #cc0017;
+  display: block;
+}
+/* line 114, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .small {
+  font-size: 14px;
+  color: #797979;
+  display: block;
+}
+/* line 119, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .userMenu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  display: none;
+  text-align: left;
+  background: #232323;
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 0;
+}
+/* line 129, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .userMenu ul {
+  position: relative;
+}
+/* line 131, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .userMenu ul:before {
+  background-color: #232323;
+  content: "";
+  height: 16px;
+  position: absolute;
+  right: 10px;
+  top: -4px;
+  transform: rotate(45deg);
+  width: 16px;
+  display: block;
+}
+/* line 147, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .userMenu li a {
+  color: #a5a5a5;
+  white-space: nowrap;
+  padding: 0;
+  display: block;
+  padding: 10px 20px;
+}
+/* line 153, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .userMenu li a:hover {
+  color: #bfbfbf;
+}
+/* line 156, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user .userMenu li a.logout {
+  background: #cc0017;
+  color: #fff;
+  -moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0;
+  border-radius: 0 0 4px 4px;
+}
+/* line 165, sass/modules/layouts/_header.scss */
+#main-header .loggeduser-container .user:hover .userMenu {
+  display: block;
+}
+/* line 172, sass/modules/layouts/_header.scss */
 #main-header.sticky {
   height: 68px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
 }
-/* line 79, sass/modules/layouts/_header.scss */
+/* line 177, sass/modules/layouts/_header.scss */
 #main-header.sticky #logo img {
   height: 46px;
 }
-/* line 84, sass/modules/layouts/_header.scss */
+/* line 182, sass/modules/layouts/_header.scss */
 #main-header.sticky #header-location-select {
   margin-top: 11px;
 }
-/* line 87, sass/modules/layouts/_header.scss */
+/* line 185, sass/modules/layouts/_header.scss */
 #main-header.sticky #header-location-select a {
   padding-top: 12px;
   padding-bottom: 12px;
 }
-/* line 93, sass/modules/layouts/_header.scss */
+/* line 191, sass/modules/layouts/_header.scss */
 #main-header.sticky .account-container {
   margin-top: 7px;
 }
-/* line 96, sass/modules/layouts/_header.scss */
+/* line 194, sass/modules/layouts/_header.scss */
 #main-header.sticky .account-container a {
   font-size: 14px;
+}
+/* line 198, sass/modules/layouts/_header.scss */
+#main-header.sticky .loggeduser-container {
+  margin-top: 5px;
 }
 
 /* line 1, sass/modules/layouts/_footer.scss */
@@ -1484,7 +1706,20 @@ select {
 .home .billboard .movie .image-container:hover .details {
   opacity: 1;
 }
-/* line 210, sass/modules/pages/_home.scss */
+/* line 212, sass/modules/pages/_home.scss */
+.home .billboard .movie .presale {
+  background: #FECC00;
+  padding: 3px 10px;
+  position: absolute;
+  top: 7px;
+  left: 0px;
+  color: #353637;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+/* line 222, sass/modules/pages/_home.scss */
 .home .billboard .movie .details {
   position: absolute;
   left: 0;
@@ -1499,11 +1734,12 @@ select {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.85);
   border-radius: 3px;
-  transition: opacity 0.2s ease-in-out;
-  -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
-/* line 228, sass/modules/pages/_home.scss */
+/* line 238, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .title {
   display: block;
   margin-bottom: 10px;
@@ -1512,15 +1748,15 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 235, sass/modules/pages/_home.scss */
+/* line 245, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .sinopsis {
   height: 150px;
-  overflow-y: hidden;
+  overflow-y: auto;
   margin-bottom: 10px;
   font-size: 13px;
   color: #dee8ee;
 }
-/* line 243, sass/modules/pages/_home.scss */
+/* line 253, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a {
   display: block;
   padding: 5px 10px;
@@ -1529,69 +1765,60 @@ select {
   text-align: center;
   color: #fff;
   border-radius: 5px;
-  transition: border 0.2s ease-in-out;
-  -webkit-transition: border 0.2s ease-in-out;
-  -moz-transition: border 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
-/* line 256, sass/modules/pages/_home.scss */
+/* line 264, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:hover {
   border-color: #8e9092;
 }
-/* line 258, sass/modules/pages/_home.scss */
+/* line 266, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:active {
   position: relative;
   top: 1px;
 }
-/* line 266, sass/modules/pages/_home.scss */
+/* line 274, sass/modules/pages/_home.scss */
 .home .billboard .movie img {
   border-radius: 3px;
 }
-/* line 268, sass/modules/pages/_home.scss */
+/* line 276, sass/modules/pages/_home.scss */
 .home .billboard .movie .info {
   padding: 10px;
   text-align: left;
 }
-/* line 272, sass/modules/pages/_home.scss */
+/* line 280, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 {
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 15px;
   font-weight: normal;
-  transition: color 0.2s ease-in-out;
-  -webkit-transition: color 0.2s ease-in-out;
-  -moz-transition: color 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
-/* line 282, sass/modules/pages/_home.scss */
+/* line 288, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a {
   color: #818386;
 }
-/* line 285, sass/modules/pages/_home.scss */
+/* line 291, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a:hover {
   color: #686a6c;
 }
-/* line 291, sass/modules/pages/_home.scss */
+/* line 297, sass/modules/pages/_home.scss */
 .home .billboard .movie .info span {
   display: block;
   font-size: 13px;
   opacity: 0.7;
 }
-/* line 298, sass/modules/pages/_home.scss */
+/* line 304, sass/modules/pages/_home.scss */
 .home .billboard .movie:nth-of-type(5n+1) {
   clear: left;
 }
-/* line 301, sass/modules/pages/_home.scss */
-.home .billboard .movie .presale {
-  background: #FECC00;
-  padding: 3px 10px;
-  position: absolute;
-  top: 10px;
-  left: -5px;
-  color: #353637;
-  font-weight: bold;
-  font-size: 18px;
-}
 
-/* line 316, sass/modules/pages/_home.scss */
+/* line 313, sass/modules/pages/_home.scss */
 .next-premieres {
   position: relative;
   width: 100%;
@@ -1601,9 +1828,10 @@ select {
   background-color: #eff4f7;
   overflow: hidden;
 }
-/* line 325, sass/modules/pages/_home.scss */
+/* line 322, sass/modules/pages/_home.scss */
 .next-premieres .info {
   text-align: left;
+  padding: 10px;
 }
 /* line 327, sass/modules/pages/_home.scss */
 .next-premieres .titleCommingSoon {
@@ -1621,32 +1849,48 @@ select {
   padding: 0 15px;
 }
 /* line 341, sass/modules/pages/_home.scss */
-.next-premieres .movie .details {
-  display: none;
-}
-/* line 343, sass/modules/pages/_home.scss */
-.next-premieres .movie img {
-  width: 100%;
+.next-premieres .movie .image-container {
+  position: relative;
 }
 /* line 345, sass/modules/pages/_home.scss */
+.next-premieres .movie img {
+  width: 100%;
+  display: block;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 351, sass/modules/pages/_home.scss */
 .next-premieres .movie h2 {
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: normal;
 }
-/* line 351, sass/modules/pages/_home.scss */
+/* line 357, sass/modules/pages/_home.scss */
 .next-premieres .movie span {
   display: block;
   text-align: left;
   font-size: 13px;
   color: #818386;
-  opacity: 0.7;
 }
-/* line 359, sass/modules/pages/_home.scss */
+/* line 364, sass/modules/pages/_home.scss */
 .next-premieres .movie a {
   font-size: 14px;
   color: #818386;
   line-height: 1.5;
+}
+/* line 370, sass/modules/pages/_home.scss */
+.next-premieres .movie .date {
+  color: #CC0017;
+}
+/* line 374, sass/modules/pages/_home.scss */
+.next-premieres .movie .presale {
+  background: #FECC00;
+  padding: 3px 10px;
+  position: absolute;
+  top: 7px;
+  left: 0px;
+  color: #353637;
 }
 
 /* line 3, sass/modules/pages/_billboard.scss */
@@ -2069,26 +2313,47 @@ select {
 }
 /* line 77, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded {
-  height: 135px;
+  height: 150px;
 }
 /* line 80, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .big-cover.image-not-founded header {
+  position: static;
+}
+/* line 84, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded .col-container {
   height: 135px;
 }
-/* line 82, sass/modules/pages/_movie-detail.scss */
+/* line 88, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded h1 {
-  color: #272b2e;
+  color: #CC0017;
+  text-shadow: 0 0 0 transparent;
+  margin-top: 20px;
 }
-/* line 84, sass/modules/pages/_movie-detail.scss */
+/* line 92, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .big-cover.image-not-founded h1:after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  width: 100px;
+  height: 1px;
+  background-color: #dee8ee;
+}
+/* line 103, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .big-cover.image-not-founded p {
+  color: #272b2e;
+  text-shadow: 0 0 0 transparent;
+}
+/* line 108, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded:before, .movie-detail-container .big-cover.image-not-founded:after {
   background: transparent;
 }
-/* line 93, sass/modules/pages/_movie-detail.scss */
+/* line 117, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information {
   padding-top: 30px;
   position: relative;
 }
-/* line 96, sass/modules/pages/_movie-detail.scss */
+/* line 120, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .main-content {
   width: 67.5%;
   float: left;
@@ -2097,7 +2362,7 @@ select {
   display: inline-block;
   vertical-align: top;
 }
-/* line 101, sass/modules/pages/_movie-detail.scss */
+/* line 125, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information h2 {
   margin: 15px 0;
   font-size: 27px;
@@ -2105,18 +2370,18 @@ select {
   color: #818386;
   text-align: center;
 }
-/* line 113, sass/modules/pages/_movie-detail.scss */
+/* line 137, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis h2 {
   margin-top: 0;
   text-align: left;
 }
-/* line 118, sass/modules/pages/_movie-detail.scss */
+/* line 142, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis p {
   font-size: 15px;
   line-height: 1.5;
   color: #818386;
 }
-/* line 124, sass/modules/pages/_movie-detail.scss */
+/* line 148, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container {
   width: 34.54545%;
   float: left;
@@ -2127,14 +2392,13 @@ select {
   margin-bottom: 5px;
   text-align: center;
 }
-/* line 131, sass/modules/pages/_movie-detail.scss */
+/* line 155, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container img {
   display: block;
   width: 100%;
   border-radius: 3px;
-  border: 2px solid #fff;
 }
-/* line 138, sass/modules/pages/_movie-detail.scss */
+/* line 161, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container .like {
   display: inline-block;
   padding: 7px 15px 7px 40px;
@@ -2150,16 +2414,16 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   transition: border-color 0.2s ease-in-out;
 }
-/* line 150, sass/modules/pages/_movie-detail.scss */
+/* line 173, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container .like:hover {
   border-color: rgba(129, 131, 134, 0.2);
 }
-/* line 152, sass/modules/pages/_movie-detail.scss */
+/* line 175, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container .like:active {
   position: relative;
   top: 1px;
 }
-/* line 161, sass/modules/pages/_movie-detail.scss */
+/* line 184, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container {
   position: relative;
   width: 100%;
@@ -2168,7 +2432,7 @@ select {
   margin-bottom: 100px;
   overflow: hidden;
 }
-/* line 169, sass/modules/pages/_movie-detail.scss */
+/* line 192, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before, .movie-detail-container .movie-information .movie-gallery-container:after {
   content: '';
   position: absolute;
@@ -2177,7 +2441,7 @@ select {
   height: 100%;
   z-index: 5;
 }
-/* line 179, sass/modules/pages/_movie-detail.scss */
+/* line 202, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before {
   left: 0;
   background-image: -moz-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
@@ -2187,7 +2451,7 @@ select {
   background-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
   background-repeat: repeat-x;
 }
-/* line 183, sass/modules/pages/_movie-detail.scss */
+/* line 206, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:after {
   right: 0;
   background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
@@ -2197,7 +2461,7 @@ select {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff);
   background-repeat: repeat-x;
 }
-/* line 188, sass/modules/pages/_movie-detail.scss */
+/* line 211, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel {
   position: absolute;
   left: 0;
@@ -2209,20 +2473,20 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 196, sass/modules/pages/_movie-detail.scss */
+/* line 219, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel:hover {
   opacity: 0.7;
 }
-/* line 199, sass/modules/pages/_movie-detail.scss */
+/* line 222, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container a {
   float: left;
   margin-right: 2px;
 }
-/* line 204, sass/modules/pages/_movie-detail.scss */
+/* line 227, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container img {
   height: 75px;
 }
-/* line 209, sass/modules/pages/_movie-detail.scss */
+/* line 232, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets {
   width: 80%;
   float: left;
@@ -2230,54 +2494,54 @@ select {
   margin-right: 0.90909%;
   margin-left: 8.18182%;
 }
-/* line 213, sass/modules/pages/_movie-detail.scss */
+/* line 236, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h2 {
   margin-bottom: 5px;
   color: #cc0017;
 }
-/* line 218, sass/modules/pages/_movie-detail.scss */
+/* line 241, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h3 {
   margin-bottom: 20px;
   font-size: 27px;
   font-weight: 300;
 }
-/* line 224, sass/modules/pages/_movie-detail.scss */
+/* line 247, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets p {
   font-size: 16px;
 }
-/* line 226, sass/modules/pages/_movie-detail.scss */
+/* line 249, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-/* line 230, sass/modules/pages/_movie-detail.scss */
+/* line 253, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .label {
   display: block;
 }
-/* line 232, sass/modules/pages/_movie-detail.scss */
+/* line 255, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .input,
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex {
   display: inline-block;
   width: 48%;
 }
-/* line 237, sass/modules/pages/_movie-detail.scss */
+/* line 260, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .input:nth-of-type(1),
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex:nth-of-type(1) {
   margin-right: 3%;
 }
-/* line 241, sass/modules/pages/_movie-detail.scss */
+/* line 264, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .label {
   display: inline-block;
 }
-/* line 245, sass/modules/pages/_movie-detail.scss */
+/* line 268, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules {
   padding-left: 0;
 }
-/* line 249, sass/modules/pages/_movie-detail.scss */
+/* line 272, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules .schedule ul {
   width: 79%;
 }
-/* line 253, sass/modules/pages/_movie-detail.scss */
+/* line 276, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .complex-name {
   margin-bottom: 20px;
   font-size: 32px;
@@ -2285,7 +2549,7 @@ select {
   color: #272b2e;
   display: inline-block;
 }
-/* line 262, sass/modules/pages/_movie-detail.scss */
+/* line 285, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .no-schedules {
   padding: 10px 30px;
   margin: 10px 0 30px;
@@ -2293,23 +2557,23 @@ select {
   font-size: 14px;
   color: #818386;
 }
-/* line 270, sass/modules/pages/_movie-detail.scss */
+/* line 293, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .no-schedules .big {
   font-size: 20px;
   color: #747679;
 }
-/* line 274, sass/modules/pages/_movie-detail.scss */
+/* line 297, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .no-schedules .btn {
   display: inline-block;
   margin: 20px 0 0;
 }
-/* line 285, sass/modules/pages/_movie-detail.scss */
+/* line 308, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info {
   display: inline-block;
   width: 23.75%;
   margin-left: 5.625%;
 }
-/* line 290, sass/modules/pages/_movie-detail.scss */
+/* line 313, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer {
   display: block;
   padding: 8px 14px;
@@ -2324,45 +2588,45 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   -moz-transition: border-color 0.2s ease-in-out;
 }
-/* line 305, sass/modules/pages/_movie-detail.scss */
+/* line 328, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:hover {
   border-color: #83cb7c;
 }
-/* line 307, sass/modules/pages/_movie-detail.scss */
+/* line 330, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:active {
   position: relative;
   top: 1px;
 }
-/* line 313, sass/modules/pages/_movie-detail.scss */
+/* line 336, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info {
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 317, sass/modules/pages/_movie-detail.scss */
+/* line 340, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info strong {
   display: block;
   margin-bottom: 3px;
   font-weight: bold;
 }
-/* line 323, sass/modules/pages/_movie-detail.scss */
+/* line 346, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value {
   display: block;
   margin-bottom: 2px;
   color: #818386;
 }
-/* line 328, sass/modules/pages/_movie-detail.scss */
+/* line 351, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value:empty + strong {
   display: none;
 }
-/* line 331, sass/modules/pages/_movie-detail.scss */
+/* line 354, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info a {
   color: #fecc00;
 }
-/* line 334, sass/modules/pages/_movie-detail.scss */
+/* line 357, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner {
   margin-top: 20px;
 }
-/* line 337, sass/modules/pages/_movie-detail.scss */
+/* line 360, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner img {
   border-radius: 3px;
 }
@@ -2370,14 +2634,53 @@ select {
 /* line 1, sass/modules/pages/_session-buy.scss */
 #SessionCheckout {
   /* BOLETOS */
+  /* Asientos */
+  /* Informacion de Tarjeta */
 }
 /* line 2, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover {
+  height: 220px;
   position: relative;
   color: #fff;
-  background-color: #fff;
+  background-color: #f1f1f1;
+}
+/* line 11, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded {
+  height: 170px;
 }
 /* line 14, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded .bg {
+  height: 40px;
+}
+/* line 18, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded .col-container {
+  height: 135px;
+}
+/* line 22, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded h1 {
+  color: #CC0017;
+  text-shadow: 0 0 0 transparent;
+}
+/* line 25, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded h1:after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  width: 100px;
+  height: 1px;
+  background-color: #dee8ee;
+}
+/* line 36, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded p {
+  color: #272b2e;
+  text-shadow: 0 0 0 transparent;
+}
+/* line 41, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .big-cover.image-not-founded:before, #SessionCheckout .big-cover.image-not-founded:after {
+  background: transparent;
+}
+/* line 51, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover .bg {
   -moz-filter: blur(10px);
   -webkit-filter: blur(10px);
@@ -2389,12 +2692,12 @@ select {
   background-repeat: no-repeat;
   background-size: cover;
 }
-/* line 26, sass/modules/pages/_session-buy.scss */
+/* line 63, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover .col-container {
   position: relative;
   z-index: 2;
 }
-/* line 30, sass/modules/pages/_session-buy.scss */
+/* line 67, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover header {
   position: absolute;
   bottom: 15px;
@@ -2403,7 +2706,7 @@ select {
   width: 100%;
   text-shadow: 0px 0px 10px #000;
 }
-/* line 39, sass/modules/pages/_session-buy.scss */
+/* line 76, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover h1 {
   position: relative;
   padding-bottom: 15px;
@@ -2414,7 +2717,7 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 48, sass/modules/pages/_session-buy.scss */
+/* line 85, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover h1:after {
   content: '';
   position: absolute;
@@ -2424,7 +2727,7 @@ select {
   height: 1px;
   background-color: rgba(255, 255, 255, 0.5);
 }
-/* line 58, sass/modules/pages/_session-buy.scss */
+/* line 95, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover p {
   font-size: 24px;
   font-weight: 200;
@@ -2433,7 +2736,7 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 65, sass/modules/pages/_session-buy.scss */
+/* line 102, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover:after {
   content: '';
   position: absolute;
@@ -2448,7 +2751,7 @@ select {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
   background-repeat: repeat-x;
 }
-/* line 76, sass/modules/pages/_session-buy.scss */
+/* line 113, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .big-cover:before {
   position: absolute;
   top: 0;
@@ -2457,56 +2760,46 @@ select {
   height: 100%;
   background-color: rgba(240, 139, 36, 0.3);
 }
-/* line 86, sass/modules/pages/_session-buy.scss */
-#SessionCheckout .big-cover.image-not-founded {
-  height: 135px;
-}
-/* line 89, sass/modules/pages/_session-buy.scss */
-#SessionCheckout .big-cover.image-not-founded .col-container {
-  height: 135px;
-}
-/* line 91, sass/modules/pages/_session-buy.scss */
-#SessionCheckout .big-cover.image-not-founded h1 {
-  color: #272b2e;
-}
-/* line 93, sass/modules/pages/_session-buy.scss */
-#SessionCheckout .big-cover.image-not-founded:before, #SessionCheckout .big-cover.image-not-founded:after {
-  background: transparent;
-}
-/* line 102, sass/modules/pages/_session-buy.scss */
+/* line 128, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .movie-information {
   position: relative;
   padding-bottom: 50px;
   border-bottom: 1px solid #f1f1f1;
   margin-bottom: 100px;
 }
-/* line 109, sass/modules/pages/_session-buy.scss */
+/* line 135, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .movie-details {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 111, sass/modules/pages/_session-buy.scss */
+/* line 137, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .movie-details .info {
   margin-top: 10px;
   font-size: 18px;
 }
-/* line 114, sass/modules/pages/_session-buy.scss */
+/* line 140, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .movie-details .info strong {
   display: inline-block;
   width: 120px;
 }
-/* line 118, sass/modules/pages/_session-buy.scss */
+/* line 144, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .movie-details .info .value {
   font-weight: 200;
 }
-/* line 121, sass/modules/pages/_session-buy.scss */
+/* line 147, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .movie-details .info .mega {
+  background: #f18932;
+  color: #fff;
+  padding: 1px 5px;
+}
+/* line 152, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .movie-details .info .premier {
   background: #e5c90c;
-  padding: 1px 3px;
+  padding: 1px 5px;
 }
-/* line 127, sass/modules/pages/_session-buy.scss */
+/* line 158, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .schedule {
   width: 23.75%;
   float: left;
@@ -2517,12 +2810,12 @@ select {
   padding: 20px 0;
   margin-top: 20px;
 }
-/* line 133, sass/modules/pages/_session-buy.scss */
+/* line 164, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .schedule .title {
   font-size: 24px;
   color: #004422;
 }
-/* line 137, sass/modules/pages/_session-buy.scss */
+/* line 168, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .schedule .value {
   display: block;
   font-weight: 100;
@@ -2530,7 +2823,7 @@ select {
   font-size: 46px;
   margin-bottom: 10px;
 }
-/* line 144, sass/modules/pages/_session-buy.scss */
+/* line 175, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .schedule .btn {
   background: #006935;
   font-size: 14px;
@@ -2541,7 +2834,7 @@ select {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 154, sass/modules/pages/_session-buy.scss */
+/* line 185, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .cover-container {
   width: 23.75%;
   float: left;
@@ -2549,7 +2842,7 @@ select {
   margin-right: 0.625%;
   margin-top: -150px;
 }
-/* line 157, sass/modules/pages/_session-buy.scss */
+/* line 188, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .cover-container img {
   width: 100%;
   display: block;
@@ -2557,17 +2850,17 @@ select {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 166, sass/modules/pages/_session-buy.scss */
+/* line 197, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection {
   padding-bottom: 50px;
   margin-bottom: 100px;
 }
-/* line 170, sass/modules/pages/_session-buy.scss */
+/* line 201, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection #ticketsAnchor {
   position: relative;
   top: -120px;
 }
-/* line 175, sass/modules/pages/_session-buy.scss */
+/* line 206, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table {
   width: 61.25%;
   float: left;
@@ -2577,7 +2870,7 @@ select {
   font-size: 18px;
   color: #565656;
 }
-/* line 181, sass/modules/pages/_session-buy.scss */
+/* line 212, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table tbody td, #SessionCheckout .ticketsSelection table tbody th {
   border-top: 1px solid #f1f1f1;
   padding: 20px 5px;
@@ -2585,22 +2878,22 @@ select {
   font-weight: normal;
   vertical-align: middle;
 }
-/* line 188, sass/modules/pages/_session-buy.scss */
+/* line 219, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table tbody th {
   color: #434343;
   font-size: 20px;
   text-align: left;
 }
-/* line 194, sass/modules/pages/_session-buy.scss */
+/* line 225, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .buttons {
   padding: 10px;
 }
-/* line 197, sass/modules/pages/_session-buy.scss */
+/* line 228, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .subtotal {
   text-align: center;
   width: 100px;
 }
-/* line 201, sass/modules/pages/_session-buy.scss */
+/* line 232, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .cantidad {
   line-height: 40px;
   float: left;
@@ -2610,7 +2903,7 @@ select {
   width: 42px;
   text-align: center;
 }
-/* line 210, sass/modules/pages/_session-buy.scss */
+/* line 241, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .less {
   cursor: pointer;
   float: left;
@@ -2627,7 +2920,7 @@ select {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
-/* line 223, sass/modules/pages/_session-buy.scss */
+/* line 254, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .less:before {
   content: " ";
   border: 0;
@@ -2638,12 +2931,12 @@ select {
   top: 17px;
   left: 11px;
 }
-/* line 233, sass/modules/pages/_session-buy.scss */
+/* line 264, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .less:hover {
   background: #ffd1d5;
   color: #ffd1d5;
 }
-/* line 238, sass/modules/pages/_session-buy.scss */
+/* line 269, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .plus {
   cursor: pointer;
   float: left;
@@ -2659,7 +2952,7 @@ select {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
-/* line 250, sass/modules/pages/_session-buy.scss */
+/* line 281, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .plus:before {
   content: " ";
   border: 0;
@@ -2672,7 +2965,7 @@ select {
   left: 11px;
   background: transparent;
 }
-/* line 262, sass/modules/pages/_session-buy.scss */
+/* line 293, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .plus:after {
   content: " ";
   border: 0;
@@ -2685,12 +2978,12 @@ select {
   left: 17px;
   background: transparent;
 }
-/* line 274, sass/modules/pages/_session-buy.scss */
+/* line 305, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .ticketsSelection table .plus:hover {
   background: #ccffe6;
   color: #ccffe6;
 }
-/* line 282, sass/modules/pages/_session-buy.scss */
+/* line 313, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .total {
   margin-top: 40px;
   width: 30%;
@@ -2701,17 +2994,17 @@ select {
   text-align: center;
   font-size: 18px;
 }
-/* line 288, sass/modules/pages/_session-buy.scss */
+/* line 319, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .total .title {
   font-size: 30px;
 }
-/* line 291, sass/modules/pages/_session-buy.scss */
+/* line 322, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .total .value {
   color: #00cc67;
   font-size: 48px;
   display: block;
 }
-/* line 298, sass/modules/pages/_session-buy.scss */
+/* line 329, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .loyaltyCard {
   width: 61.25%;
   float: left;
@@ -2720,15 +3013,15 @@ select {
   margin-left: 5.625%;
   margin-top: 40px;
 }
-/* line 302, sass/modules/pages/_session-buy.scss */
+/* line 333, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .loyaltyCard label {
   display: block;
 }
-/* line 307, sass/modules/pages/_session-buy.scss */
+/* line 338, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .loyaltyCard .input {
   overflow: hidden;
 }
-/* line 309, sass/modules/pages/_session-buy.scss */
+/* line 340, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .loyaltyCard .input input {
   width: 58.0%;
   float: left;
@@ -2739,7 +3032,7 @@ select {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 314, sass/modules/pages/_session-buy.scss */
+/* line 345, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .loyaltyCard .input .btn-primary {
   font-size: 18px;
   width: 38%;
@@ -2748,19 +3041,18 @@ select {
   margin-right: 1%;
   margin: 0;
 }
-/* line 323, sass/modules/pages/_session-buy.scss */
+/* line 356, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection {
   border-top: 1px solid #f1f1f1;
   padding-top: 100px;
   padding-bottom: 50px;
-  margin-bottom: 100px;
   position: relative;
 }
-/* line 331, sass/modules/pages/_session-buy.scss */
+/* line 363, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .stepTitle strong:before {
   content: "2";
 }
-/* line 337, sass/modules/pages/_session-buy.scss */
+/* line 369, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .loadingSeats {
   font-size: 30px;
   text-align: center;
@@ -2768,14 +3060,14 @@ select {
   font-weight: 100;
   margin: 100px 0;
 }
-/* line 343, sass/modules/pages/_session-buy.scss */
+/* line 375, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .loadingSeats .icon-loading {
   background: url(web/preloader_10-64.gif) no-repeat center;
   width: 64px;
   height: 64px;
   display: inline-block;
 }
-/* line 351, sass/modules/pages/_session-buy.scss */
+/* line 383, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container {
   border: 0;
   margin: 10px auto 100px;
@@ -2789,15 +3081,15 @@ select {
     width: auto;
   }*/
 }
-/* line 358, sass/modules/pages/_session-buy.scss */
+/* line 390, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .layout {
   margin: 0 auto;
 }
-/* line 362, sass/modules/pages/_session-buy.scss */
+/* line 394, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .layout tr:nth-child(odd) td {
   background: #f1f1f1;
 }
-/* line 367, sass/modules/pages/_session-buy.scss */
+/* line 399, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .screen {
   margin: 20px 50px;
   background: #f1f1f1;
@@ -2808,7 +3100,7 @@ select {
   font-weight: 100;
   padding-top: 20px;
 }
-/* line 376, sass/modules/pages/_session-buy.scss */
+/* line 408, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .screen:before {
   content: " ";
   width: 100px;
@@ -2823,7 +3115,7 @@ select {
   -webkit-transform: rotate(60deg);
   transform: rotate(60deg);
 }
-/* line 387, sass/modules/pages/_session-buy.scss */
+/* line 419, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .screen:after {
   content: " ";
   width: 100px;
@@ -2838,22 +3130,22 @@ select {
   -webkit-transform: rotate(25deg);
   transform: rotate(25deg);
 }
-/* line 403, sass/modules/pages/_session-buy.scss */
+/* line 435, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container img {
   width: 100%;
   display: block;
   visibility: hidden;
 }
-/* line 409, sass/modules/pages/_session-buy.scss */
+/* line 441, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .room-layout-row {
   white-space: nowrap;
 }
-/* line 413, sass/modules/pages/_session-buy.scss */
+/* line 445, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .row {
   line-height: 100%;
   width: 50px;
 }
-/* line 418, sass/modules/pages/_session-buy.scss */
+/* line 450, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container td {
   width: 50px;
   max-width: 50px;
@@ -2863,13 +3155,13 @@ select {
   position: relative;
   vertical-align: middle;
 }
-/* line 427, sass/modules/pages/_session-buy.scss */
+/* line 459, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .seat {
   display: block;
   text-align: center;
   margin: 14px 1px;
 }
-/* line 432, sass/modules/pages/_session-buy.scss */
+/* line 464, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .number {
   width: 100%;
   text-align: center;
@@ -2878,79 +3170,79 @@ select {
   left: 0;
   font-size: 12px;
 }
-/* line 443, sass/modules/pages/_session-buy.scss */
+/* line 475, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .empty {
   width: 50px;
   max-width: 50px;
   min-width: 24px;
 }
-/* line 449, sass/modules/pages/_session-buy.scss */
+/* line 481, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-0 .seat {
   background: url("../img/seat-0.png") center no-repeat;
   background-size: 100% auto;
   border-top: 0;
   cursor: pointer;
 }
-/* line 454, sass/modules/pages/_session-buy.scss */
+/* line 486, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-0 .seat:hover {
   background: url("../img/seat-hover.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 459, sass/modules/pages/_session-buy.scss */
+/* line 491, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-0.Multi-End .seat {
   background: url("../img/Multi-End-0.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 462, sass/modules/pages/_session-buy.scss */
+/* line 494, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-0.Multi-End .seat:hover {
   background: url("../img/Multi-End-hover.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 467, sass/modules/pages/_session-buy.scss */
+/* line 499, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-0.Multi-Start .seat {
   background: url("../img/Multi-Start-0.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 470, sass/modules/pages/_session-buy.scss */
+/* line 502, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-0.Multi-Start .seat:hover {
   background: url("../img/Multi-Start-hover.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 477, sass/modules/pages/_session-buy.scss */
+/* line 509, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-1 .seat {
   background: url("../img/seat-1.png") center no-repeat;
   background-size: 100% auto;
   border-top: 0;
   color: #fff;
 }
-/* line 483, sass/modules/pages/_session-buy.scss */
+/* line 515, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-1.Multi-End .seat {
   background: url("../img/Multi-End-1.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 487, sass/modules/pages/_session-buy.scss */
+/* line 519, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-1.Multi-Start .seat {
   background: url("../img/Multi-Start-1.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 494, sass/modules/pages/_session-buy.scss */
+/* line 526, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-selected .seat {
   background: url("../img/seat-selected.png") center no-repeat;
   background-size: 100% auto;
   border-top: 0;
   color: #fff;
 }
-/* line 500, sass/modules/pages/_session-buy.scss */
+/* line 532, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-selected.Multi-End .seat {
   background: url("../img/Multi-End-selected.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 504, sass/modules/pages/_session-buy.scss */
+/* line 536, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-selected.Multi-Start .seat {
   background: url("../img/Multi-Start-selected.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 511, sass/modules/pages/_session-buy.scss */
+/* line 543, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-3 .seat {
   background: url("../img/seat-0.png") center no-repeat;
   background-size: 100% auto;
@@ -2958,48 +3250,48 @@ select {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
-/* line 517, sass/modules/pages/_session-buy.scss */
+/* line 549, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-3.Multi-End .seat {
   background: url("../img/Multi-End-0.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 521, sass/modules/pages/_session-buy.scss */
+/* line 553, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .status-3.Multi-Start .seat {
   background: url("../img/Multi-Start-0.png") center no-repeat;
   background-size: 100% auto;
 }
-/* line 527, sass/modules/pages/_session-buy.scss */
+/* line 559, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .Multi-Start {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
-/* line 529, sass/modules/pages/_session-buy.scss */
+/* line 561, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .Multi-Start .number {
   padding-right: 15px;
 }
-/* line 538, sass/modules/pages/_session-buy.scss */
+/* line 570, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .Multi-End .number {
   padding-left: 15px;
 }
-/* line 553, sass/modules/pages/_session-buy.scss */
+/* line 585, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .loveSeats .seat {
   font-size: 16px;
   height: 42px;
   padding-top: 4px;
 }
-/* line 564, sass/modules/pages/_session-buy.scss */
+/* line 596, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions {
   padding: 20px 0;
   font-weight: 100;
   vertical-align: middle;
   line-height: 20px;
 }
-/* line 569, sass/modules/pages/_session-buy.scss */
+/* line 601, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions .available {
   margin-right: 30px;
 }
-/* line 571, sass/modules/pages/_session-buy.scss */
+/* line 603, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions .available:before {
   content: " ";
   width: 20px;
@@ -3011,11 +3303,11 @@ select {
   border-radius: 50%;
   display: inline-block;
 }
-/* line 581, sass/modules/pages/_session-buy.scss */
+/* line 613, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions .unavailable {
   margin-right: 30px;
 }
-/* line 583, sass/modules/pages/_session-buy.scss */
+/* line 615, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions .unavailable:before {
   content: " ";
   width: 20px;
@@ -3027,11 +3319,11 @@ select {
   border-radius: 50%;
   display: inline-block;
 }
-/* line 593, sass/modules/pages/_session-buy.scss */
+/* line 625, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions .yourseats {
   margin-right: 30px;
 }
-/* line 595, sass/modules/pages/_session-buy.scss */
+/* line 627, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .room-container .instructions .yourseats:before {
   content: " ";
   width: 20px;
@@ -3043,7 +3335,7 @@ select {
   border-radius: 50%;
   display: inline-block;
 }
-/* line 607, sass/modules/pages/_session-buy.scss */
+/* line 639, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .message {
   background: rgba(255, 255, 255, 0.6);
   position: absolute;
@@ -3053,7 +3345,7 @@ select {
   height: 100%;
   display: none;
 }
-/* line 616, sass/modules/pages/_session-buy.scss */
+/* line 648, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .message .content {
   position: absolute;
   top: 50%;
@@ -3073,29 +3365,211 @@ select {
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-/* line 629, sass/modules/pages/_session-buy.scss */
+/* line 661, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .message .btn {
   margin: 20px 0 0;
   display: inline-block;
 }
-/* line 632, sass/modules/pages/_session-buy.scss */
+/* line 664, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .seatsSelection .message .btn:hover {
   opacity: 1;
   background-color: #dde1e3;
 }
-/* line 640, sass/modules/pages/_session-buy.scss */
+/* line 674, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo {
+  border-top: 1px solid #f1f1f1;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  margin-bottom: 100px;
+  position: relative;
+}
+/* line 682, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .stepTitle strong:before {
+  content: "3";
+}
+/* line 688, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm {
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-left: 24.375%;
+}
+/* line 691, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes {
+  margin-bottom: 30px;
+}
+/* line 693, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes input {
+  display: none;
+}
+/* line 695, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes input:checked + label {
+  background: #F0F0F0 url("web/checkedbox.png") no-repeat 10px center;
+  border: 1px solid #E3E3E3;
+}
+/* line 701, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes label {
+  font-size: 14px;
+  color: #6f6f6f;
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  padding: 10px 10px 10px 40px;
+  background: #fff url("web/checkbox.png") no-repeat 10px center;
+  border: 1px solid #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  -webkit-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+/* line 710, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes label .icons {
+  margin-top: 10px;
+  display: block;
+}
+/* line 714, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes label .visa-icon {
+  display: inline-block;
+  background: url("web/visa.png") no-repeat;
+  width: 37px;
+  height: 27px;
+}
+/* line 720, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes label .mastercard-icon {
+  display: inline-block;
+  background: url("web/mastercard.png") no-repeat;
+  width: 37px;
+  height: 27px;
+}
+/* line 726, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .paymentTypes label .paypal-icon {
+  display: inline-block;
+  background: url("web/paypal.png") no-repeat;
+  width: 39px;
+  height: 27px;
+}
+/* line 734, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .input {
+  margin-bottom: 20px;
+}
+/* line 736, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .input label {
+  display: inline-block;
+  font-size: 18px;
+  color: #272b2e;
+  margin-bottom: 10px;
+}
+/* line 742, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .input input {
+  border: 2px solid #ADADAD;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 18px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 61, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+#SessionCheckout .paymentInfo .paymentForm .input input[type="text"]:-moz-placeholder {
+  color: #a8a8a8;
+  font-size: 14px;
+  font-weight: 300;
+}
+/* line 64, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+#SessionCheckout .paymentInfo .paymentForm .input input[type="text"]::-moz-placeholder {
+  color: #a8a8a8;
+  font-size: 14px;
+  font-weight: 300;
+}
+/* line 67, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+#SessionCheckout .paymentInfo .paymentForm .input input[type="text"]:-ms-input-placeholder {
+  color: #a8a8a8;
+  font-size: 14px;
+  font-weight: 300;
+}
+/* line 56, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_user-interface.scss */
+#SessionCheckout .paymentInfo .paymentForm .input input[type="text"]::-webkit-input-placeholder {
+  color: #a8a8a8;
+  font-size: 14px;
+  font-weight: 300;
+}
+/* line 759, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .exp-date label {
+  display: block;
+}
+/* line 762, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .exp-date select {
+  margin-right: 10px;
+}
+/* line 767, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .exp-date,
+#SessionCheckout .paymentInfo .paymentForm .cvv {
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 773, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .card-number-icon {
+  background: url("web/no-tarjeta.png") no-repeat;
+  width: 30px;
+  height: 21px;
+  display: inline-block;
+  margin: 2px 0 0 10px;
+}
+/* line 780, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .cvv-icon {
+  background: url("web/cvv-icon.png") no-repeat;
+  width: 30px;
+  height: 21px;
+  display: inline-block;
+  margin: 2px 0 0 10px;
+}
+/* line 788, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm hr {
+  border: 0;
+  border-top: 1px solid #E1E1E1;
+  width: 100%;
+  margin: 30px 0;
+  clear: left;
+}
+/* line 795, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm .button {
+  text-align: center;
+  margin-top: 30px;
+}
+/* line 799, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .paymentInfo .paymentForm button {
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: 100;
+}
+/* line 812, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .disclaimer {
+  font-size: 12px;
+  color: #8f8f8f;
+}
+/* line 817, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .stepTitle {
   text-align: center;
   margin-bottom: 50px;
 }
-/* line 643, sass/modules/pages/_session-buy.scss */
+/* line 820, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .stepTitle strong {
   color: #f18932;
   font-size: 30px;
   font-weight: 300;
   position: relative;
 }
-/* line 648, sass/modules/pages/_session-buy.scss */
+/* line 825, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .stepTitle strong:before {
   position: absolute;
   top: -5px;
@@ -3843,6 +4317,156 @@ select {
 /* line 121, sass/modules/pages/_register.scss */
 #register-container form button:hover {
   opacity: 0.7;
+}
+
+/* line 1, sass/modules/pages/_profile.scss */
+#UserProfile {
+  padding-bottom: 100px;
+}
+/* line 4, sass/modules/pages/_profile.scss */
+#UserProfile .top-message {
+  padding: 50px 0;
+  margin-bottom: 0;
+}
+/* line 7, sass/modules/pages/_profile.scss */
+#UserProfile .top-message:after {
+  display: none;
+}
+/* line 11, sass/modules/pages/_profile.scss */
+#UserProfile .userCard {
+  text-align: center;
+  width: 30%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 14, sass/modules/pages/_profile.scss */
+#UserProfile .userCard figure {
+  width: 160px;
+  height: 160px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+/* line 21, sass/modules/pages/_profile.scss */
+#UserProfile .userCard .name {
+  color: #cc0017;
+  font-size: 30px;
+  font-weight: 100;
+  display: block;
+}
+/* line 27, sass/modules/pages/_profile.scss */
+#UserProfile .userCard .username {
+  display: block;
+  font-size: 16px;
+  color: #707070;
+}
+/* line 32, sass/modules/pages/_profile.scss */
+#UserProfile .userCard .btn {
+  margin: 10px;
+  display: inline-block;
+}
+/* line 36, sass/modules/pages/_profile.scss */
+#UserProfile .userCard .logout {
+  font-size: 14px;
+  color: #cc0017;
+  text-decoration: underline;
+}
+/* line 42, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo {
+  width: 61.25%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-left: 5.625%;
+}
+/* line 45, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .title {
+  color: #5c5c5c;
+  font-size: 30px;
+  font-weight: 100;
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #ECECEC;
+  margin-bottom: 20px;
+}
+/* line 54, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .personal {
+  overflow: hidden;
+}
+/* line 56, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .personal .data {
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  height: 70px;
+  font-size: 16px;
+}
+/* line 61, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .personal .label {
+  color: #353535;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+/* line 67, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .personal .value {
+  display: block;
+  color: #5c5c5c;
+  font-weight: 200;
+}
+/* line 74, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .pass .asterisk {
+  font-size: 50px;
+  color: #878787;
+  line-height: 50px;
+}
+/* line 79, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .pass .btn {
+  float: right;
+}
+/* line 82, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .pass .noPass {
+  font-weight: 200;
+  color: #5c5c5c;
+  margin-bottom: 30px;
+}
+/* line 85, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .pass .noPass strong {
+  font-weight: 500;
+}
+/* line 93, sass/modules/pages/_profile.scss */
+#UserProfile .input {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+/* line 96, sass/modules/pages/_profile.scss */
+#UserProfile .input label {
+  width: 30%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-top: 5px;
+}
+/* line 100, sass/modules/pages/_profile.scss */
+#UserProfile .input input {
+  width: 61.25%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 106, sass/modules/pages/_profile.scss */
+#UserProfile .buttons .cancel {
+  color: #cc0017;
+  text-decoration: none;
+  float: right;
+}
+/* line 112, sass/modules/pages/_profile.scss */
+#UserProfile .buttons button {
+  float: right;
 }
 
 /* line 2, sass/modules/base/_responsive.scss */

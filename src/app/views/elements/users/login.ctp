@@ -1,19 +1,32 @@
-<div id="LoginForm">
-	<span class="tape"></span>
-<?= $this->Form->create("User",array('url'=>array('controller'=>'users','action'=>'login'))); ?>
-	[:titulo-panel-login:]
-	<?php
-		echo $this->I18n->input("username",array('after'=>'<span class="username"></span>'));
-		echo $this->I18n->input("password",array('after'=>'<span class="password"></span>'));
-	?>
-	<div class="group">
-	<?php
-		echo $this->I18n->input("rememberme",array('type'=>'checkbox'));
-		echo $this->Form->button("[:login:]",array('type'=>'submit','class'=>'button'));
-	?>
+<div id="login-container">
+
+	<a id="login-close" href="">Close</a>
+
+	<div class="login">
+
+		<strong class="title">Inicia sesión en Citicinemas usando tus redes sociales</strong>
+
+		<?= $this->Form->create("User",array('url'=>array('controller'=>'users','action'=>'login'),'id'=>'UserLoginForm')); ?>
+		<ul class="social-connect">
+			<li>
+				<?= $this->Html->link("Facebook",array('controller'=>'users','action'=>'singin','facebook'),array('class'=>'fb'))?>
+			</li>
+			<li>
+				<?= $this->Html->link("Twitter",array('controller'=>'users','action'=>'singin','twitter'),array('class'=>'tw'))?>
+			</li>
+			<li>
+				<?= $this->Html->link("Google+",array('controller'=>'users','action'=>'singin','google'),array('class'=>'gp'))?>
+			</li>
+		</ul>
+
+			<strong class="title">O ingresa tus datos</strong>
+			<?php
+			echo $this->Form->input("username",array('label'=>'[:username-or-email:]'));
+			echo $this->Form->input("password",array('label'=>'[:username-password:]'));
+			?>
+
+			<button type="submit">[:user-login:]</button>
+
+		<?= $this->Form->end();?>
 	</div>
-	[:ayuda-panel-login:]
-	<?= $this->Html->link('[:registrate:]','/[:registro_url:]/',array('class'=>'signup')); ?>
-	<!--<span class="shadow"></span>-->
-<?= $this->Form->end(); ?>
 </div>

@@ -9,6 +9,11 @@ class UsersController extends AppController{
 		'User'
 	);
 
+	var $components = array(
+		'Captcha',
+		'Email',
+	);
+
 	var $ribbonBar=array(
 		'title'=>'{image:img} [:admin_security_title:]',
 		'options'=>array(
@@ -25,6 +30,7 @@ class UsersController extends AppController{
 	}
 
 	function admin_login(){
+		$this->layout="login";
 		$this->login();
 	}
 
@@ -135,10 +141,16 @@ class UsersController extends AppController{
 	}
 
 	function login(){
-		$this->layout="login";
 		if(!empty($this->data)){
 			if($this->Auth->login()){
-				$this->redirect($this->Auth->loginRedirect);
+				if($this->Auth->user("group_id") != Configure::read("Group.Registered")){
+					#pr("/".$this->Session->read("Auth.redirect"));
+					$this->redirect("/admin/");
+				}
+				if($this->Session->check("SigninReferer")){
+					$this->redirect($this->Session->read("SigninReferer"));
+				}
+				$this->redirect($this->referer());
 			}else{
 				$this->Notifier->error('[:username_or_password_incorrect:]');
 				$this->User->invalidate('username'," ");
@@ -150,11 +162,283 @@ class UsersController extends AppController{
 
 	function logout(){
 		$this->Session->setFlash('Good-Bye');
-		$this->redirect($this->Auth->logout());
+		$this->Auth->logout();
+		$this->redirect("/");
 	}
 
 	function _permit($group_id,$action = "update"){
 		return !Configure::read('Acl.active') || $this->Acl->check($this->Auth->user(),array('model' => 'Group','foreign_key' => $group_id),$action);
+	}
+
+	function profile(){
+		$this->User->id = $this->Auth->user("id");
+		$this->User->contain(array("Profile",'SocialAuth'));
+		$this->set("record",$this->User->read());
+	}
+
+	function edit_profile(){
+		if(!empty($this->data)){
+			# Se quitan las validaciones que no se necesitan en este caso
+			unset($this->User->validate['username'],$this->User->validate['password'],$this->User->validate['password_confirm'],$this->User->validate['group_id']);
+			$this->data['User']['id'] = $this->loggedUser['User']['id'];
+			$this->data['Profile']['id'] = $this->loggedProfile['id'];
+			$this->User->set($this->data);
+			if($this->User->saveAll($this->data)){
+				//pr(am($this->data['Profile'],$this->loggedProfile));
+				$this->Session->write("LoggedProfile",am($this->data['Profile'],$this->loggedProfile));
+
+				$this->Session->write("Auth",am($this->loggedUser['User'],$this->data['User']));
+				$this->Auth->login($this->data['User']);
+				$this->Notifier->success("[:profile-changes-saved:]");
+				$this->redirect(array('action'=>'profile'));
+			}
+
+		}
+		$this->data = $this->User->find("first",array(
+			'conditions'=>array(
+				'User.id'=>$this->loggedUser['User']['id'],
+			),
+			'contain'=>array(
+				'Profile'
+			)
+		));
+	}
+
+	function set_password(){
+		$this->User->id = $this->loggedUser['User']['id'];
+		$record = $this->User->read();
+		if(!empty($this->data)){
+			$this->data['User']['password'] = $this->Auth->password($this->data['User']['password']);
+			$this->data['User'] = am($record['User'],$this->data['User']);
+			$this->User->set($this->data['User']);
+
+			if($this->User->save()){
+				$this->Notifier->success("[:password-seted-successfully:]");
+				$this->redirect(array('action'=>'profile'));
+			}
+
+		}
+		$this->set("record",$record);
+	}
+
+	function change_password(){
+		$this->User->id = $this->loggedUser['User']['id'];
+		$record = $this->User->read();
+		if(!empty($this->data)){
+			$this->data['User']['password'] = $this->Auth->password($this->data['User']['password']);
+			$this->data['User']['current_password'] = $this->Auth->password($this->data['User']['current_password']);
+			if($record['User']['password'] == $this->data['User']['current_password']){
+				$this->data['User'] = am($record['User'],$this->data['User']);
+				$this->User->set($this->data['User']);
+
+				if($this->User->save()){
+					$this->Notifier->success("[:password-changed-successfully:]");
+					$this->redirect(array('action'=>'profile'));
+				}
+			}else{
+				$this->User->invalidate("current_password","[:password-incorrect:]");
+			}
+
+
+		}
+		$this->set("record",$record);
+	}
+
+	function singin($provider = null){
+		$route = Router::parse($this->referer());
+		if($route['controller']!='users' || $route['action']!='singin'){
+			$this->Session->write("SigninReferer",$this->referer());
+		}
+
+		if(!empty($provider)){
+			$this->__socialConnect($provider);
+			//$this->__register(false);
+		}else{
+			if(!empty($this->data)){
+				$this->__register();
+			}
+		}
+	}
+
+	function __register($reCaptcha = true){
+		$this->data['User']['group_id']=Configure::read("Group.Registered");
+		$this->data['User']['code']=String::uuid();
+		$this->data['User']['email'] = $this->data['User']['username'];
+		$this->User->set($this->data);
+
+		if($this->User->validates()){
+
+			$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
+			if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR'))) || !$reCaptcha){
+				$error = false;
+				$this->User->begin();
+				if($this->User->save($this->data['User'],false)){
+					if(isset($this->data['Profile'])){
+						$this->data['Profile']['user_id'] = $this->User->id;
+						$this->User->Profile->set($this->data['Profile']);
+						if(!$this->User->Profile->save()){
+							$error = true;
+						}
+					}
+					if(isset($this->data['SocialAuth'])){
+						$this->data['SocialAuth']['user_id'] = $this->User->id;
+						$this->User->SocialAuth->set($this->data['SocialAuth']);
+						if(!$this->User->SocialAuth->save()){
+							$error = true;
+						}
+					}
+					if($error){
+						$this->User->rollback();
+					}else{
+						$this->User->commit();
+					}
+					#$this->Email->layout="invitacion";
+					$this->Email->to = $this->data['User']['username'];
+					$this->Email->subject = 'Active su usuario de Citicinemas Mobil';
+					$this->Email->from = "noreply@citicinemas.com";
+					$this->Email->name="Citicinemas Mobil";
+					$this->Email->sendAs = 'html';
+					$this->Email->template = 'confirm_user';
+					$this->set('email',$this->data['User']['username']);
+					$this->set("code",$this->data['User']['code']);
+					/* Opciones SMTP*/
+					$this->Email->smtpOptions = array(
+						'port'=>'25',
+						'timeout'=>'30',
+						'host' => 'mail.h1webstudio.com',
+						'username'=>'erochin@h1webstudio.com',
+						'password'=>'Rochin12!-');
+
+					$this->Email->delivery = 'smtp';
+					/**/
+					$this->Email->send();
+					$this->redirect(array('action'=>'profile'));
+				}else{
+					$error = true;
+				}
+				if($error){
+					$this->User->rollback();
+				}else{
+					$this->User->commit();
+				}
+			}
+
+		}else{
+			//pr($this->User->validationErrors);
+		}
+	}
+
+	function __socialConnect($provider){
+		require_once( WWW_ROOT . 'hybridauth/Hybrid/Auth.php' );
+
+		try{
+			// create an instance for Hybridauth with the configuration file path as parameter
+			Configure::write("HybridAuth.base_url",'http://'.$_SERVER['HTTP_HOST'].$this->base . "/hybridauth/");
+
+			$hybridauth = new Hybrid_Auth(Configure::read("HybridAuth"));
+			// try to authenticate the selected $provider
+			$adapter = $hybridauth->authenticate( $provider );
+			// grab the user profile
+			$user_profile = $adapter->getUserProfile();
+			//pr($user_profile);
+
+			$_provider = $this->User->SocialAuth->find("first",array(
+				'conditions'=>array(
+					'SocialAuth.provider_uid'=>$user_profile->identifier
+				),
+				'contain'=>array(
+					'User'=>array(
+						'Profile'
+					)
+				)
+			));
+
+			if(!empty($_provider)){
+				#pr($_provider);
+				$this->__login($_provider);
+				#$route = Router::url($this->Session->read("Signin"))
+				$this->redirect($this->Session->read("SigninReferer"));
+			}else{
+				$_user = $this->User->findByUsername($user_profile->email);
+			}
+			if(!empty($_user)){
+				$this->redirect(array('action'=>'login'));
+			}else{
+				$this->__setData($user_profile);
+				$this->__register(false);
+			}
+			//pr($user_profile);
+			$this->set( 'user_profile',  $user_profile );
+
+			$this->__setData($user_profile);
+		}
+		catch( Exception $e ){
+			// Display the recived error
+			switch( $e->getCode() ){
+				case 0 : $error = "Unspecified error."; break;
+				case 1 : $error = "Hybriauth configuration error."; break;
+				case 2 : $error = "Provider not properly configured."; break;
+				case 3 : $error = "Unknown or disabled provider."; break;
+				case 4 : $error = "Missing provider application credentials."; break;
+				case 5 : $error = "Authentification failed. The user has canceled the authentication or the provider refused the connection."; break;
+				case 6 : $error = "User profile request failed. Most likely the user is not connected to the provider and he should to authenticate again.";
+					$adapter->logout();
+					break;
+				case 7 : $error = "User not connected to the provider.";
+					$adapter->logout();
+					break;
+			}
+			// well, basically your should not display this to the end user, just give him a hint and move on..
+			$error .= "<br /><br /><b>Original error message:</b> " . $e->getMessage();
+			$error .= "<hr /><pre>Trace:<br />" . $e->getTraceAsString() . "</pre>";
+			$this->set( 'error',  $error );
+			pr($error);
+		}
+	}
+
+	function __providerRegistered($data){
+		if(isset($data['identifier'])){
+			$this->User->SocialAuth->findByProvierUid($data['identifier']);
+		}
+	}
+
+	function __setData($data){
+		$this->data['User']['username'] = $data->email;
+		# Se pone un password al usuario solo para que pase la validación
+		$this->data['User']['password'] = $this->Auth->password(Configure::read("Security.salt"));
+		$this->data['User']['password_confirm'] = Configure::read("Security.salt");
+		$this->data['User']['group_id'] = Configure::read("Group.Registered");
+		$this->data['User']['nombre'] = $data->firstName;
+		$this->data['User']['paterno'] = $data->lastName;
+		$this->data['User']['trash'] = 0;
+		$this->data['User']['status'] = 1;
+		$this->data['User']['confirmed'] = date("Y-m-d h:i:s");
+		$this->data['User']['signed_in'] = date("Y-m-d h:i:s");
+		$this->data['User']['signed_count'] = 1;
+
+		$this->data['Profile']['gender'] = $data->gender;
+		$this->data['Profile']['age'] = $data->age;
+		$this->data['Profile']['photo_url'] = $data->photoURL;
+		$this->data['Profile']['cel'] = $data->phone;
+		$this->data['Profile']['birthday'] = $data->birthYear."-".$data->birthMonth."-".$data->birthDay;
+
+		$this->data['SocialAuth']['provider'] = $this->params['pass'][0];
+		$this->data['SocialAuth']['provider_uid'] = $data->identifier;
+		$this->data['SocialAuth']['email'] = $data->email;
+		$this->data['SocialAuth']['display_name'] = $data->displayName;
+		$this->data['SocialAuth']['first_name'] = $data->firstName;
+		$this->data['SocialAuth']['last_name'] = $data->lastName;
+		$this->data['SocialAuth']['website_url'] = $data->webSiteURL;
+		$this->data['SocialAuth']['profile_url'] = $data->profileURL;
+
+		#$this->User->set($this->data);
+	}
+
+	function __login($data){
+		if($this->Auth->login($data)){
+			$this->Session->write("LoggedProfile",$data['Profile']);
+		}
+
 	}
 }
 ?>

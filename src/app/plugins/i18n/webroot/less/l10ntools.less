@@ -19,10 +19,13 @@ skey,.L10nKey{min-width:10px;min-height: 10px;display:inline;//z-index:90;positi
 	.clearfix{
 		.clearfix;
 	}
-	.box-sizing(content-box);
+	.box-sizing(unset);
 	*{
-		.box-sizing(content-box);
+		.box-sizing(unset);
 	}
+	/**{
+		.box-sizing(content-box);
+	}*/
 	border-top:1px solid #A8B0BC;line-height: 12px !important;letter-spacing: normal !important; text-shadow:0 1px 0 #fff;color:#2c2c2c !important;position: fixed;bottom:0;left:0;width:100%;z-index:100;height:0px; font-family: @defaultFont !important; font-size: 12px !important;
 	#gradient > .vertical(fade(#f5f5f5,60),fade(#eee,50));.box-shadow(0 -1px 2px fade(#000,20));
 	.ribbonContent{
@@ -77,7 +80,7 @@ skey,.L10nKey{min-width:10px;min-height: 10px;display:inline;//z-index:90;positi
 
 		.ribbonSeparator{
 			background:url(img/ribbon_sep.png) repeat-y;
-			width:1px;height:65px;float:left;margin:4px;
+			width:1px;height:65px;float:left;margin:4px 3px;
 		}
 		.ribbonSection{
 			float: left;font-size:11px;font-weight: bold;display: inline;text-align: left;
@@ -130,8 +133,8 @@ skey,.L10nKey{min-width:10px;min-height: 10px;display:inline;//z-index:90;positi
 				//width:270px;
 				border:1px solid #ddd; background:#fff;height: 53px;.border-radius(3px);padding:0 30px 0 28px;overflow: hidden;
 				a{
-					border:1px solid #c5c5c5;float:left;display:block;margin:2px;width:60px;overflow:hidden;padding:1px;line-height:29px;
-					.previewStyle{display:block;background:#fff;padding:0 2px;.border-radius(3px 3px 0 0);text-indent:-5px;}
+					border:1px solid #c5c5c5;float:left;display:block;margin:2px;width:60px;overflow:hidden;padding:1px;line-height:28px;
+					.previewStyle{display:block;background:#fff;padding:0 2px;.border-radius(3px 3px 0 0);text-indent:-5px;line-height: 27px;}
 					.normal{font-size:10px;font-weight:normal;}
 					.paragraph{font-size:12px;font-weight:normal;}
 					.header1{font-size:20px;font-weight:bold;}
@@ -140,7 +143,7 @@ skey,.L10nKey{min-width:10px;min-height: 10px;display:inline;//z-index:90;positi
 					.header4{font-size:12px;font-weight:bold;}
 					.header5{font-size:12px;font-weight:bold;font-style: italic;}
 					.header6{font-size:12px;font-weight:normal;font-style: italic;}
-					.styleName{background:#f1f1f1; border-top:1px solid #EDEDED;font-weight: normal; font-size: 10px;display: block;text-align: center;line-height:13px;.border-radius(0 0 3px 3px);}
+					.styleName{background:#f1f1f1; border-top:1px solid #EDEDED;font-weight: normal; font-size: 10px;display: block;text-align: center;line-height: 13px;.border-radius(0 0 3px 3px);}
 				}
 				a.active{
 					.box-shadow(0 0 3px #68A3D9);border: 1px solid #68A3D9;background:#fff;

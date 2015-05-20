@@ -67,11 +67,41 @@
     Configure::write("RoomTypes",array('premier'=>'Sala Premier','mega'=>'Mega-Pantalla'));
 
     Configure::write("AdTypes",array(
-    		'VERTICAL'=>'Vertical',
-    		'HORIZONTAL'=>'Horizontal',
-    		'VERTICALMINI'=>'VerticalMini',
-    		'CUADRO'=>'Cuadro'
-    	));
+        'VERTICAL'=>'Vertical',
+        'HORIZONTAL'=>'Horizontal',
+        'VERTICALMINI'=>'VerticalMini',
+        'CUADRO'=>'Cuadro'
+    ));
+
+    Configure::write("reCAPTCHA",array(
+        'secret'=>'6Lc1XgUTAAAAAJLEDWyPs9vdf1f1Id9gaXaMKCZQ',
+        'site-key'=>'6Lc1XgUTAAAAAMilKNVfU2vsSppdEulctFl3Uls1',
+    ));
+
+    Configure::write("HybridAuth",array(
+        'base_url' => '{url del registro}',
+        "providers" => array (
+            "Google" => array (
+                "enabled" => true,
+                "keys"    => array ( "id" => "919238149649-18jq3ar18c7k3ndh360622tcl3rvldv2.apps.googleusercontent.com", "secret" => "KkYVp2u1d5TYuPXZABqdOofP" ),
+            ),
+            "Facebook" => array (
+                "enabled" => true,
+                "keys"    => array ( "id" => "966533043359649", "secret" => "2e16996f8af503acbd8ddc11fb7dc06b" ),
+                "scope"   => "public_profile,email", // optional
+                #"display" => "popup" // optional
+            ),
+            "Twitter" => array (
+                "enabled" => true,
+                "keys"    => array ( "key" => "DIfYK6t6voncMzgGMOcIgTZYJ", "secret" => "J6k8hN6QZI49pUUJdLtaxUK3PR0kjsuCu9BMoUo6sL93ZJBv3z" )
+            ),
+        ),
+
+        // if you want to enable logging, set 'debug_mode' to true  then provide a writable file by the web server on "debug_file"
+        "debug_mode" => false,
+
+        "debug_file" => "",
+    ));
 
 
 /**

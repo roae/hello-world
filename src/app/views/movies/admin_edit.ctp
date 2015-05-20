@@ -41,6 +41,10 @@ echo $this->Form->hidden("id");
 				echo $this->element("movies/projections");
 				echo $this->Uploader->input('Gallery',array('label'=>'[:Movie_Gallery:]'));
 				?>
+				<div class="help">
+					<i class="icon-asterisk icon-3x"></i>
+					[:System.movie_help:]
+				</div>
 			</div>
 			<div class="span4">
 				<?= $this->element("movies/locations"); ?>

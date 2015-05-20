@@ -17,16 +17,69 @@ echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 	<div class="big-cover <?= $class ?>">
 		<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 		<div class="col-container">
-			<header>
+			<div class="cover-container">
+				<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>'[:logo_alt:]')) ?>
+			</div>
+			<div class="movie-information">
+				<h1 class="blured-title">
+					<?= Inflector::humanize(low($record['Movie']['title'])) ?>
+				</h1>
+				<h2 class="sub-title"><?= Inflector::humanize(low($record['Movie']['original_title'])) ?></h2>
+				<div class="movie-details">
+
+					<?php if( $record['Movie']['clasification'] != '' ): ?>
+						<div class="info">
+							<strong>[:clasification:]:</strong>
+							<span class="value"><?= $record['Movie']['clasification'] ?></span>
+						</div>
+					<?php endif; ?>
+					<div class="info">
+						<strong>[:ciudad:]</strong>
+						<span class="value"><?= $record['City']['name'] ?></span>
+					</div>
+					<div class="info">
+						<strong>[:cine:]</strong>
+						<span class="value"><?= $record['Location']['name'] ?></span>
+					</div>
+					<div class="info">
+						<strong>[:projection_version:]</strong>
+						<span class="value"><?= $record['Projection']['format']." / ".$record['Projection']['lang'] ?></span>
+						<?php
+						if(strpos($record['Show']['room_type'],"mega") !== false){
+							echo $this->Html->tag("span","[:mega-pantalla:]",'mega');
+						}
+						?>
+					</div>
+					<div class="info">
+						<strong>[:sala:]</strong>
+						<span class="value"><?= $record['Show']['screen_name'] ?></span>
+						<?php
+						if(strpos($record['Show']['room_type'],"premier") !== false){
+							echo $this->Html->tag("span","[:sala-prermier:]",'premier');
+						}
+						?>
+					</div>
+					<div class="info">
+						<strong>[:fecha:]</strong>
+						<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Show']['schedule']); ?></span>
+					</div>
+				</div>
+				<div class="schedule">
+					<div class="title">[:function:]</div>
+					<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
+					<?= $this->Html->link("[:cambiar-horario:]",array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug'],'#'=>$record['Movie']['slug']),array('class'=>'btn')); ?>
+				</div>
+			</div>
+			<!--<header>
 				<h1 class="blured-title">
 					<?= Inflector::humanize(low($record['Movie']['title'])) ?>
 				</h1>
 				<p><?= Inflector::humanize(low($record['Movie']['original_title'])) ?></p>
-			</header>
+			</header>-->
 		</div>
 	</div>
 
-	<div class="movie-information col-container">
+	<!--<div class="movie-information col-container">
 		<div class="details">
 			<div class="cover-container">
 				<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>'[:logo_alt:]')) ?>
@@ -75,7 +128,7 @@ echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 				<?= $this->Html->link("[:cambiar-horario:]",array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug'],'#'=>$record['Movie']['slug']),array('class'=>'btn')); ?>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<section class="ticketsSelection col-container">
 		<a name="tickets" id="ticketsAnchor"></a>

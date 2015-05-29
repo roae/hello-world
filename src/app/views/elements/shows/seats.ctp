@@ -24,7 +24,7 @@
 							$this->Html->tag("span",$area['rows'][$row]['seats'][$hex]['seat_number'],"number").
 							$this->Form->hidden("BuySeat.$areaKey.area_category",array('value'=>$area['area_category'])).
 							$this->Form->hidden("BuySeat.$areaKey.area_number",array('value'=>$area['area_number'])).
-							$this->Form->checkbox("BuySeat.$areaKey.grid.$k",array('value'=>$row."-".$colum,'style'=>'display:none','class'=>'seatCheck')),
+							$this->Form->checkbox("BuySeat.$areaKey.grid.$k",array('value'=>$area['rows'][$row]['row_physical_id']."-".$row."-".$colum,'style'=>'display:none','class'=>'seatCheck')),
 							"place-{$row}-{$colum} status-{$area['rows'][$row]['seats'][$hex]['seat_status']} {$class}"
 						);
 						$k ++;

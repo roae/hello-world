@@ -18,6 +18,7 @@ class Location extends AppModel {
 	);
 	var $hasMany = array(
 		'Show',
+		'Buy',
 	);
 	var $displayField="name";
 

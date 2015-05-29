@@ -109,6 +109,7 @@ module.exports = function(grunt) {
 	        'js/admin/projections.js',
 	        'js/admin/locations.js',
 	        'js/ext/jquery.xupdater.js',
+	        'js/ext/jquery.select.js',
 	        'js/buy.js',
         ],
         tasks: ['uglify','notify:scripts']

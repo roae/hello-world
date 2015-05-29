@@ -85,7 +85,7 @@ $(function(){
 	});
 
 	if( $.fn.Select ) {
-		$(".input.select").Select();
+		$("select").Select();
 	}
 
 	allMods = $(".appear");

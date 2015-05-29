@@ -85,6 +85,10 @@ I18nRouter::connect( "/[billboard_url]-:slug/*",
 	array( 'pass' => array( 'slug' ), 'slug' => '[0-9a-zA-Z_\-]+' )
 );
 
+I18nRouter::connect( "/[buy_url]/*",
+	array( 'controller' => 'buys', 'action' => 'view' )
+);
+
 I18nRouter::connect( "/[m_contacts_url]", array( 'controller' => 'contacts',
 	'action' => 'add',
 	'restricted' => false

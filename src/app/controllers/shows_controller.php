@@ -3,17 +3,23 @@
 /**
  * Class ShowsController
  * @property $Show Show
+ * @property $Buy Buy
  */
 class ShowsController extends AppController{
 	var $name = "Shows";
 	var $uses = array(
 		"Show",
+		"Buy",
 	);
 	/**
 	 * Conditions de peliculas usados para sacar los horarios
 	 * @var array
 	 */
 	var $__showConditions = array();
+
+	var $transIdTemp;
+
+	var $VistaServer;
 
 	function index() {
 		if(!isset($this->params['slug'])){
@@ -165,6 +171,7 @@ class ShowsController extends AppController{
 	}
 
 	function buy(){
+		$url_error_page = array('controller'=>'pages','action'=>'display','buy_error');
 		$this->Show->id = $this->params['show_id'];
 		$this->Show->contain(array(
 			'TicketPrice',
@@ -179,41 +186,285 @@ class ShowsController extends AppController{
 		));
 		$record = $this->Show->read();
 		$this->set("record",$record);
+
+		#$dbo = $this->Show->getDatasource();
+		#pr(current(end($dbo->_queriesLog)));
+
+
 		if($record['Show']['seat_alloctype']){
 			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
 		}
-		if(!empty($this->data) && !isset($this->params['named']['cancel'])){
-			$this->__OrderTickets($record);
-		}
-		if(isset($this->params['named']['cancel'])){
-			$this->__TransCancel($record);
+		if(!empty($record)){
+			if(!empty($this->data)){
+				# Se conecta con el servidor Vista
+				#TODO: Cachar la ecepcion cuando no se puede conectar al servicio web
+				$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+
+				if(!$this->Session->check("Tickets")){
+					$this->Session->write("Tickets",$this->data);
+				}else{
+					$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
+				}
+				# Se obtienen los tipos de boletos seleccionados
+				$isTicketsSelected = Set::extract('/BuyTicket[qty>0]',$this->data);
+				if(!empty($isTicketsSelected)){
+					$this->transIdTemp = $this->__TransNew($record['Location']['vista_service_url']);
+					if($this->transIdTemp){
+
+						if($this->__OrderTickets($record['Show'])){
+
+							$dataBuy = $record['Show'];
+							$dataBuy['trans_id_temp'] = $this->data['Buy']['trans_id_temp'] = $this->transIdTemp;
+							unset($dataBuy['created'],$dataBuy['id']);
+							#$dataBuy['BuySeat'] = $this->data['BuySeat'];
+							#$dataBuy['BuyTicket'] = $this->data['BuyTicket'];
+							if($this->Buy->save($dataBuy,false)){
+								$this->data['Buy']['id'] = $this->Buy->id;
+							}else{
+								$this->redirect($url_error_page);
+							}
+
+							if($record['Show']['seat_alloctype']){
+								if($this->__isSeatsSelected()){
+									if(!$this->__SetSeatsSelected($record['Show'])){
+										$this->__TransCancel($this->transIdTemp);
+										$this->redirect($url_error_page);
+									}
+								}else{
+									$this->Notifier->error("[:no-se-seleccionaron-asientos:]");
+								}
+
+							}
+
+							#$this->__saveBuy();
+
+							$this->Session->write("Tickets",$this->data);
+							#$this->Session->write("Tickets.transIdTemp",$this->transIdTemp);
+							$paymentTotal = $this->__getPaymentTotal();
+							$this->data['Buy']['_ccexp'] = $this->data['Buy']['ccexp']['year']."-".$this->data['Buy']['ccexp']['month']."-1";
+							//$this->data['Buy']['_ccexp'] = $ccexp;
+							$this->Buy->set($this->data);
+							# Se Validan los datos de la tarjeta
+							if($this->Buy->validates()){
+								$payment = $this->__payment($paymentTotal);
+								if($payment){
+									list($transaction_id,$confirmation_number) = $payment;
+
+									$this->data['Buy']['trans_number'] = $transaction_id;
+									$this->data['Buy']['confirmation_number'] = $confirmation_number;
+									$this->data['Buy']['creater'] = $this->loggedUser['User']['id'];
+									$this->Buy->save($this->data,false);
+									$this->Session->delete("Tickets");
+									$this->redirect(array('controller'=>'buys','action'=>'view',$this->Buy->id));
+								}else{
+									$this->__TransCancel($this->transIdTemp);
+									$this->redirect($url_error_page);
+								}
+							}else{
+								$this->Notifier->error("[:informacion-de-pago-incorrecta:]");
+							}
+						}else{
+							$this->__TransCancel($this->transIdTemp);
+							#pr("rochin");
+							$this->redirect($url_error_page);
+						}
+					}else{
+						$this->redirect(array('controller'=>'pages','action'=>'display','buy_error'));
+					}
+				}else{
+					$this->Notifier->error("[:error-no-tickets-selected:]");
+				}
+			}else{
+				if($this->Session->check("Tickets")){
+					$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+					$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
+				}
+			}
 		}
 	}
 
-	function __TransCancel($record){
-		if($this->Session->check("TransID")){
-			$transId = $this->Session->read("TransID");
-			$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
-			pr($transId);
-			$params = array(
-				'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$transId,#"20000000499",#$transId,
-				'CmdName'=>'TransCancel',
-				'Param1'=>"",#$record['Show']['session_id'],#SessionID
-				'Param2'=>"",
-				'Param3'=>"",
-				'Param4'=>"",
-				'Param5'=>"",
-				'Param6'=>"",
-			);
-			$response = $VistaServer->__soapCall("Execute",array($params));
-			pr($params);
-			pr($response);
+	function __isSeatsSelected(){
+		if(!empty($this->data['BuySeat'])){
+			foreach($this->data['BuySeat'] as $seats){
+				foreach($seats['grid'] as $seat){
+					if($seat != "0"){
+						return true;
+					}
+				}
+			}
 		}
+		return false;
 	}
+
 
 	function __OrderTickets($show){
-		pr($show['Location']['vista_service_url']);
-		$VistaServer = @new SoapClient($show['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+
+		#OrderTickets
+		$params = array(
+			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'OrderTickets',
+			'Param1'=>$show['session_id'],#SessionID
+			'Param2'=>substr(preg_replace('/-|:|\s/','',$show['schedule']),0,-2),#SessionDateTime
+			'Param3'=>$this->__getTicketsDetailsList(),#TicketsDetailsList
+			'Param4'=>$show['seat_alloctype'] ? "Y" : "N",#UserSelectedSeating
+			'Param5'=>"",#TicketPackageDefinition
+			'Param6'=>"" #TicketDetailsListFormat
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+		if($response->ExecuteResult == 0){
+			#$result = explode("|",$response->ReturnData);
+			return true;
+		}
+
+		return false;
+
+	}
+
+	function __payment($paymentTotal){
+
+		#PaymentStarting
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'PaymentStarting',
+			'Param1'=>$paymentTotal,
+			'Param2'=>"",
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+
+		#PaymentOk
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'PaymentOk',
+			'Param1'=>$this->data['Buy']['cctype'],
+			'Param2'=>$this->data['Buy']['ccnumber'],
+			'Param3'=>$this->data['Buy']['ccexp']['year'].$this->data['Buy']['ccexp']['month'],
+			'Param4'=>$this->data['Buy']['ccname'],
+			'Param5'=>"N",
+			'Param6'=>""
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+
+		#GetTransactionRefEx
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'GetTransactionRefEx',
+			'Param1'=>"N",
+			'Param2'=>"",
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+
+
+		if(!$response->ExecuteResult){
+			$result = explode("|",$response->ReturnData);
+			if(isset($result[8]) && isset($result[9])){
+				$transaction_number= $result[8];
+				$confirmation_number = $result[9];
+			}
+		}
+
+		#TransComplete
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'TransComplete',
+			'Param1'=>"0",
+			'Param2'=>"",
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+		if(!$response->ExecuteResult){
+			if(isset($transaction_number) && isset($confirmation_number)){
+				return array($transaction_number,$confirmation_number);
+			}
+		}
+		return false;
+		/**/
+	}
+
+	function __getPaymentTotal(){
+		#GetPaymentTotal
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'GetPaymentTotal',
+			'Param1'=>"",
+			'Param2'=>"",
+			'Param3'=>"Y",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+
+		if($response->ExecuteResult == 0){
+			$result = explode("|",$response->ReturnData);
+			return $result[6];
+		}
+
+		return false;
+	}
+
+	function __SetSeatsSelected($show){
+		$params = array(
+			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'SetSelectedSeatsEx',
+			'Param1'=>$show['session_id'],#SessionID
+			'Param2'=>$this->__selectedSeatString(),#SessionDateTime
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>""
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+		return !$response->ExecuteResult;
+	}
+
+	function __TransCancel($transId){
+		$params = array(
+			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$transId,#"20000000499",#$transId,
+			'CmdName'=>'TransCancel',
+			'Param1'=>"",#$record['Show']['session_id'],#SessionID
+			'Param2'=>"",
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>"",
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+
+		$this->Session->delete("Tickets");
+		#pr($params);
+		#pr($response);
+		if(!$response->ExecuteResult){
+			$this->Buy->deleteAll(array('Buy.trans_id_temp'=>$transId));
+		}
+
+	}
+
+	function __TransNew(){
 		/**/
 		$params = array(
 			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>"",
@@ -226,160 +477,31 @@ class ShowsController extends AppController{
 			'Param6'=>"WWW"
 		);
 
-		$response = $VistaServer->__soapCall("Execute",array($params));
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
 
-		pr($params);
-		pr($response);
-		/**/
-
-		/*if($this->Session->check("TransID")){
-			$transId = $this->Session->read("TransID");
-		}else{*/
-			$params = array(
-				'ClientID'=>env('SERVER_ADDR'),#"".rand(0,10000),
-				'TransIdTemp'=>"",#.rand(0,10000000),
-				'CmdName'=>'TransNew',
-				'Param1'=>"",
-				'Param2'=>"",
-				'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-			);
-
-			$response = $VistaServer->__soapCall("Execute",array($params));
-			if($response->ExecuteResult == 0){
-				$result = explode("|",$response->ReturnData);
-				$transId = $result[6];
-				$this->Session->write("TransID",$transId);
-				#pr($transId);
-			}
-			pr($params);
-			pr($response);
-		/*}*/
-
-
-		#$this->__TransCancel($show);
-
+		#pr($params);
+		#pr($response);
 		/**/
 		$params = array(
-			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$transId,
-			'CmdName'=>'OrderTickets',
-			'Param1'=>$show['Show']['session_id'],#SessionID
-			'Param2'=>substr(preg_replace('/-|:|\s/','',$show['Show']['schedule']),0,-2),#SessionDateTime
-			'Param3'=>$this->__getTicketsDetailsList(),#TicketsDetailsList
-			'Param4'=>$show['Show']['seat_alloctype'] ? "Y" : "N",#UserSelectedSeating
-			'Param5'=>"",#TicketPackageDefinition
-			'Param6'=>"" #TicketDetailsListFormat
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			//$transId = $result[6];
-			#pr($transId);
-		}else{
-			$this->__TransCancel($show);
-		}
-		/**/
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'SetSelectedSeatsEx',
-			'Param1'=>$show['Show']['session_id'],#SessionID
-			'Param2'=>$this->__selectedSeatString(),#SessionDateTime
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
-		/**/
-
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetPaymentTotal',
+			'ClientID'=>env('SERVER_ADDR'),#"".rand(0,10000),
+			'TransIdTemp'=>"",#.rand(0,10000000),
+			'CmdName'=>'TransNew',
 			'Param1'=>"",
 			'Param2'=>"",
-			'Param3'=>"Y",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
+			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
 		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
 
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
 		if($response->ExecuteResult == 0){
 			$result = explode("|",$response->ReturnData);
-			$paymentTotal = $result[6];
-		}else{
-			$this->__TransCancel($show);
+			$transId = $result[6];
+			return $transId;
+
 		}
 
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetTransactionRefEx',
-			'Param1'=>"N",
-			'Param2'=>"",
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
-
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			$transactionRef = $result[6];
-		}
-
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'PaymentStarting',
-			'Param1'=>$paymentTotal,
-			'Param2'=>"",
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
-
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'PaymentOk',
-			'Param1'=>"VISA",
-			'Param2'=>"4111111111111111",
-			'Param3'=>"201808",
-			'Param4'=>"GRANTSMITH",
-			'Param5'=>"N",
-			'Param6'=>"6699954211"
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
-
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'TransComplete',
-			'Param1'=>"0",
-			'Param2'=>"",
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
-
-
-		/**/
-		#$this->__TransCancel($show);
+		return false;
+		#pr($params);
+		#pr($response);
 
 	}
 
@@ -403,7 +525,7 @@ class ShowsController extends AppController{
 			foreach($area['grid'] as $seat){
 				if($seat != "0"){
 					$num++;
-					list($row,$column) = split("-",$seat);
+					list($row_physical,$row,$column) = split("-",$seat);
 					$r .= $area['area_category']."|".$area['area_number']."|".$row."|".$column."|";
 				}
 			}
@@ -422,7 +544,7 @@ class ShowsController extends AppController{
 	}
 
 	function __getSeats($server,$session_id){
-		$VistaServer = @new SoapClient($server,array('cache_wsdl'=>WSDL_CACHE_NONE));
+		$this->VistaServer = @new SoapClient($server,array('cache_wsdl'=>WSDL_CACHE_NONE));
 		$params = array(
 			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
 			'CmdName'=>'TransNew',
@@ -430,7 +552,7 @@ class ShowsController extends AppController{
 			'Param2'=>"",
 			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
 		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
 		if($response->ExecuteResult == 0){
 			$result = explode("|",$response->ReturnData);
 			$transId = $result[6];
@@ -447,7 +569,7 @@ class ShowsController extends AppController{
 			'Param5'=>"",
 			'Param6'=>"Y"
 		);
-		$response = $VistaServer->__soapCall("Execute",array($params));
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
 		if($response->ExecuteResult == 0){
 			#pr($response->ReturnData);
 			$rData = explode("|",$response->ReturnData);

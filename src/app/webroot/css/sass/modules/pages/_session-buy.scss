@@ -1,7 +1,6 @@
 #SessionCheckout{
   .big-cover {
     height: auto;
-    margin-bottom: 100px;
     position: relative;
     color: #fff;
     background-color: #f1f1f1;
@@ -40,6 +39,7 @@
     }
 
     .bg{
+
       height: 100%;
       background-position: center center;
       background-repeat: no-repeat;
@@ -48,6 +48,7 @@
       top:0;
       left:0;
       width: 100%;
+
     }
 
     .col-container {
@@ -127,12 +128,14 @@
           font-weight: 200;
         }
         .mega{
+          font-size: 14px;
           background: #f18932;
           color:#fff;
           padding: 1px 5px;
           @include border-radius(3px);
         }
         .premier{
+          font-size: 14px;
           background: #e5c90c;
           padding: 1px 5px;
           color:$dark-gray;
@@ -178,11 +181,21 @@
     }
   }
 
+  #Notifier{
+    .error{
+      padding: 20px 0;
+      font-size: 18px;
+      color:#fff;
+      background: $red;
+      text-align: center;
+    }
+  }
+
   /* BOLETOS */
 
   .ticketsSelection{
     padding-bottom: 50px;
-    margin-bottom: 100px;
+    margin: 100px auto;
 
     #ticketsAnchor{
       position: relative;
@@ -717,8 +730,24 @@
           }
         }
       }
+      .ccType{
+        position: absolute;
+        bottom: 25px;
+        right: 10px;
+        display: block;
+        width: 37px;
+        height: 27px;
+        &.VISA{
+          background: url("web/visa.png") no-repeat;
+        }
+        &.MASTERCARD{
+          background: url("web/mastercard.png") no-repeat;
+        }
+      }
       .input{
+        position: relative;
         margin-bottom: 20px;
+        padding-bottom: 1em;
         label{
           display: inline-block;
           font-size: 18px;
@@ -745,6 +774,11 @@
             }
           }
         }
+
+        .error-message{
+          position: absolute;
+          bottom: -0.5em;
+        }
       }
       .exp-date{
         label{
@@ -752,6 +786,9 @@
         }
         select{
           margin-right: 10px;
+        }
+        .SelectWrapper{
+          @include span(8);
         }
 
       }
@@ -792,7 +829,9 @@
         font-size: 24px;
         font-weight: 100;
       }
-
+      #CCType{
+        display:none;
+      }
 
 
     }
@@ -803,6 +842,13 @@
   .disclaimer{
     font-size: 12px;
     color:#8f8f8f;
+    margin-top: 50px;
+    ul{
+      list-style-type: circle;
+      li{
+        margin-bottom: 1.5em;
+      }
+    }
   }
 
   .stepTitle{
@@ -830,6 +876,20 @@
 
   }
 
+}
+.session-buy-error{
+  background: url(web/error.png) no-repeat top center;
+  margin: 100px 200px;
+  padding-top: 180px;
+  text-align: center;
+  color:$gray;
+  font-size: 30px;
+  font-weight: 300;
+  .btn{
+    margin-top: 50px;
+    font-size: 20px;
+    display: inline-block;
+  }
 }
 
 

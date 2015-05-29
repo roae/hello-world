@@ -24,19 +24,10 @@ $this->data['Filter']['city']= $CitySelected['id'];
 
 <div class="filter">
 	<?= $this->Form->create("Filter",array('url'=>array('controller'=>'shows','action'=>'set_filter'),'id'=>'BillboardFilter')); ?>
-	<div class="input">
-		<label class="label">[:day-to-show:]</label>
 		<div class="filter-select">
-			<?= $this->Form->input("date",array('type'=>'select','options'=>$dates,'label'=>""));?>
+			<?= $this->Form->input("date",array('type'=>'select','options'=>$dates,'label'=>"[:day-to-show:]"));?>
 		</div>
-	</div>
-
-	<!--<span class="label">Ciudad</span>
-	<div class="filter-select">
-		<?= $this->Form->input("city",array('type'=>'select','options'=>$cities,'label'=>""));?>
-	</div>-->
-
-	<span class="label">[:select-complex:]</span>
-	<?= $this->Form->input("location",array('label'=>false,'options'=>$locations,'multiple'=>'checkbox')); ?>
+		<span class="label">[:select-complex:]</span>
+		<?= $this->Form->input("location",array('label'=>false,'options'=>$locations,'multiple'=>'checkbox')); ?>
 	<?= $this->Form->end(); ?>
 </div>

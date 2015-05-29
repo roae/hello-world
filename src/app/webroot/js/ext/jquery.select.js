@@ -1,30 +1,33 @@
 (function($){
 
 	$.Select=function(e){
-		this.e=$(e);
-		this.select=$('select',this.e).bind('change',$.proxy(this,'change')).bind("focus",$.proxy(this,"focus")).bind("blur",$.proxy(this,"blur")).bind("keypress",$.proxy(this,"change"));
-		this.label=$('label',this.e).wrapInner($("<span />"));
-		this.e.append($('<span />',{'class':'arrow'}));
-		$("span",this.label).text($('option[value="'+this.select.val()+'"]',this.select).html());
+		this.select=$(e);
+		this.select.bind('change',$.proxy(this,'change')).bind("focus",$.proxy(this,"focus")).bind("blur",$.proxy(this,"blur")).bind("keypress",$.proxy(this,"change"));
+		this.label=$('<span/>',{class:'SelectOpt'});
+		this.wrapper = $("<div/>",{class:'SelectWrapper'});
+		this.select.wrap(this.wrapper);
+		this.select.before(this.label);
+
+		this.label.text($('option[value="'+this.select.val()+'"]',this.select).html());
 	};
 
 
     $.Select.fn = $.Select.prototype = {
-        Label: '0.1'
+        Version: '1.0'
     };
 
     $.Select.fn.extend = $.extend;
 
 	$.Select.fn.extend({
 		change:function(){
-			$("span",this.label).text($('option[value="'+this.select.val()+'"]',this.select).html());
+			this.label.text($('option[value="'+this.select.val()+'"]',this.select).html());
 			//console.log(this.select.val());
 		},
 		focus:function(){
-			this.e.addClass("select_focus");
+			this.wrapper.addClass("select_focus");
 		},
 		blur:function(){
-			this.e.removeClass("select_focus");
+			this.wrapper.removeClass("select_focus");
 		}
 	});
 

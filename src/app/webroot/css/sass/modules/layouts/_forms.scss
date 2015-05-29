@@ -21,50 +21,42 @@ select {
   height : 40px;
 }
 
-.filter-select {
-
-  .select{
-    position: relative;
-    cursor: pointer;
-    select{
-      position: absolute;
-      top:0;left:0;
-      width: 100%;
-      height: 100%;
-      @include opacity(0);
-    }
-    label{
-      display: block;
-      padding: 8px 15px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #fff;
-      background: #55595c url(../img/custom-select-arrow.png) no-repeat 95% center;
-      background-size: 20px;
-      border-radius: 3px;
-    }
-    &:hover{
-      @include opacity(0.5);
-    }
+.error{
+  input,
+  textarea,
+  select,
+  .SelectWrapper{
+    border-color: #cc0017;
   }
 
-  & > a {
-    display: block;
-    padding: 8px 15px;
-    margin-bottom: 10px;
+  .error-message{
+    color:#cc0017;
     font-size: 14px;
-    color: #fff;
-    background: #55595c url(../img/custom-select-arrow.png) no-repeat 95% center;
-    background-size: 20px;
-    border-radius: 3px;
-
-    strong {
-      font-weight: bold;
-      color: $yellow;
-    }
-  }
-
-  ul {
-    display: none;
   }
 }
+
+
+.SelectWrapper{
+  position: relative;
+  padding : 8px;
+  font-size : 1em;
+  border : 2px solid #ccc;
+  background : #fff;
+  cursor: pointer;
+  @include border-radius(4px);
+
+  .SelectOpt{
+    background: url(web/select-arrow.png) no-repeat center right;
+    display:block;
+    padding-right: 20px;
+    line-height: 27px;
+  }
+  select{
+    position: absolute;
+    top:0;left:0;
+    width: 100%;
+    height: 100%;
+    @include opacity(0);
+  }
+}
+

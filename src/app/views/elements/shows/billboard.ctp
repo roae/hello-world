@@ -1,32 +1,11 @@
 <?php
 	/* @var $this View */
-	#$conditions = $movieLocationConditions = array();
 	$restParams = array();
 	if(isset($LocationsSelected) && !empty($LocationsSelected)){
-		#$conditions = array('Show.location_id'=>array_keys($LocationsSelected));
-		#$movieLocationConditions =array('MovieLocation.location_id'=>array_keys($LocationsSelected));
 		$restParams = array('named'=>array('locations'=>implode("-",array_keys($LocationsSelected))));
 	}
-	/*$query = array(
-		'fields'=>array('Show.id'),
-		'contain'=>array(
-			'Movie'=>array(
-				'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
-				'Poster',
-				'MovieLocation'=>array(
-					'conditions'=>$movieLocationConditions,
-					'limit'=>1
-				),
-			)
-		),
-		'group'=>array(
-			'movie_id'
-		),
-		'conditions'=>$conditions
-	);*/
 
 	$billboard = $this->requestAction(am(array('controller'=>'shows','action'=>'rest'),$restParams));
-	//pr($billboard);
 ?>
 <ul class="movies-list">
 	<?php foreach($billboard as $show) {

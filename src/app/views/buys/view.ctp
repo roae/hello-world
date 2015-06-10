@@ -99,7 +99,7 @@
 						foreach($record['BuyTicket'] as $ticket):
 							$seats = array();
 							for($i=1; $i<=$ticket['qty']; $i++){
-								$seats[]=$record['BuySeat'][$index_seat]['row_physical'].$record['BuySeat'][$index_seat]['column'];
+								$seats[]=$record['BuySeat'][$index_seat]['row_physical'].$record['BuySeat'][$index_seat]['column_physical'];
 								$index_seat++;
 							}
 							$price = $ticket['price']/100*$ticket['qty'];

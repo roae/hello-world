@@ -3,18 +3,31 @@ var countTickets = totalPayment = 0;
 var countTicketsLimit = 10; // TODO: Poner dato en la configuracion del sitio en el CMS
 var ticketsSelected = [];
 
+// Div contenedor de asientos.
+var $container;
+
 
 $(document).on("ready",function(){
-
 	/**
 	 * Carga los asientos de la sala
 	 */
 	$.ajax({
 		url:"/shows/seatlayout/"+$("#SeatLayout" ).data("show"),
-		success:function(html){
+		success:function(html,status,http){
+
+			eval('var Xnotifier = '+http.getResponseHeader('X-Notifier')+';');
+			if(Xnotifier){
+				if(Xnotifier.type = "error"){
+					 window.location = urlError;
+					return;
+				}
+			}
 			$("#SeatLayout" ).html(html);
+
 			seatSelection();
 			setSeatsSelected();
+
+
 		}
 	});
 
@@ -23,19 +36,30 @@ $(document).on("ready",function(){
 	 */
 
 	$(".ticketsSelection .plus" ).on("click",function(e){
+
 		$parent = $(this ).closest("tr");
 		$cantidad = $(".cantidad",$parent);
 		$qtyInput = $("input[rel='qty']",$parent);
 		cantidad = $cantidad.data("qty");
 		precio = $(".price",$parent ).data("price");
+		code = $parent.data("code");
 		$(".message",$container ).hide("fast");
+
 		if(countTickets < countTicketsLimit){
 			cantidad++;
 			countTickets++;
 			$cantidad.data("qty",cantidad);
 			$cantidad.html(cantidad);
 			$qtyInput.attr("value",cantidad);
+			Tickets[code].qty = cantidad;
+			//$ticketResume = $("#buyResume .tickets-details tr[data-code='"+code+"']");
+			//$ticketResume.css({display:'table-row'} ).addClass("showing");
+			//$(".qty",$ticketResume).html(cantidad);
+			//$("#buyResume .btnSelectTicket" ).css({display: 'none'});
+			//$("#buyResume .btnSelectSeats" ).css({display: 'inline-block'});
+
 			updateTotals();
+			updateResume();
 		}else{
 
 		}
@@ -46,6 +70,7 @@ $(document).on("ready",function(){
 		$cantidad = $(".cantidad",$parent);
 		$qtyInput = $(".qtyInput",$parent);
 		cantidad = $cantidad.data("qty");
+		code = $parent.data("code");
 		precio = $(".price",$parent ).data("price");
 		if(cantidad){
 			cantidad--;
@@ -53,7 +78,24 @@ $(document).on("ready",function(){
 			$cantidad.data("qty",cantidad);
 			$cantidad.html(cantidad);
 			$qtyInput.attr("value",cantidad);
+			Tickets[code].qty = cantidad;
+			// Se quita el ultimo asiento
+			Tickets[code].seats.splice(Tickets[code].seats.length-1,1);
+			buildTicketsSelectedArray();
+			updateSeatsInputs();
+			updateSeatGrid();
+
+			/*$ticketResume = $("#buyResume .tickets-details tr[data-code='"+code+"']");
+			if(cantidad == 0){
+				$ticketResume.css({display:'none'} ).removeClass("showing");
+			}*/
+			/*if(countTickets == 0){
+				$("#buyResume .btnSelectSeats" ).css({display: 'none'});
+				$("#buyResume .btnSelectTicket" ).css({display: 'inline-block'});
+			}*/
+			//$(".qty",$ticketResume).html(cantidad);
 			updateTotals();
+			updateResume();
 
 		}
 	});
@@ -76,13 +118,17 @@ $(document).on("ready",function(){
 		totalPayment = 0;
 		$(".ticketsSelection tr" ).each(function(){
 			$parent = $(this);
+			code = $parent.data("code");
 			$cantidad = $(".cantidad",$parent);
 			cantidad = $cantidad.data("qty");
 			precio = $(".price",$parent ).data("price");
 			subtotal = precio*cantidad;
 			$(".subtotal",$parent ).html("$"+subtotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
+			$ticketResume = $("#buyResume .tickets-details tr[data-code='"+code+"']");
+			$(".subtotal",$ticketResume ).html("$"+subtotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
 			totalPayment+=subtotal;
 			$(".ticketsSelection .total .value" ).html("$"+totalPayment.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"))
+			$("#buyResume .total .value" ).html("$"+totalPayment.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"))
 		});
 	}
 
@@ -92,8 +138,52 @@ $(document).on("ready",function(){
 		setCCTypeIcon($(this ).val());
 	});
 
+	$('.ticketsSelection').waypoint({
+		handler: function(direction) {
 
+			var $BuyResume = $('#buyResume');
+
+			if( direction == 'down' ) {
+				$BuyResume.addClass('sticky');
+				//$('body').css('padding-top', '118px');
+			} else {
+				$BuyResume.removeClass('sticky');
+				//$('body').css('padding-top', '0');
+			}
+
+		},
+		offset: 80
+	});
+
+	buyCountDown();
+	buildTicketsArray();
+	updateResume();
 });
+
+
+
+var minutos=0
+var segundos=0
+function buyCountDown(){
+	if(remainingTime){
+		//console.log(remainingTime);
+		minutos=Math.floor(remainingTime/60)
+		//console.log("minutos "+minutos);
+		_remainingTime=remainingTime-(60*minutos)
+		segundos=Math.floor(_remainingTime);
+		//console.log(segundos);
+		remainingTime--;
+		//console.log(remainingTime);
+
+		$("#buyResume .time .value" ).html(("00" + minutos).substr(-2,2)+":"+("00" + segundos).substr(-2,2));
+
+		if (remainingTime>=0){
+			setTimeout("buyCountDown()",1000)
+		}
+	}else if(remainingTime === 0){
+		window.location = urlExp;
+	}
+}
 
 function setCCTypeIcon(number){
 	type = detectCardType(number.replace(/\s/,""));
@@ -109,46 +199,208 @@ function seatSelection(){
 }
 
 function seatClick(){
-	if(ticketsSelected.length <= countTickets && countTickets){
+	//console.log(getTotalSeatsSeleted());
+	//console.log(countTickets);
+	if(ticketsSelected.length <= countTickets && countTickets && !$(this ).hasClass("status-selected")){
 		$(".seatCheck",$(this) ).attr("checked",true);
 		$(this).removeClass("status-0");
 		$(this).addClass("status-selected");
-		var place = /place-\d+-\d+/.exec($(this ).attr("class"))[0];
-		ticketsSelected.push(place);
+		//var place = /place-\w+-\d+-\d+-\d+/.exec($(this ).attr("class"))[0];
+
+		ticketsSelected.push({
+			row:$(this ).data("row"),
+			column:$(this ).data("column"),
+			row_physical:$(this ).data("row_physical"),
+			column_physical:$(this ).data("column_physical"),
+			area_category:$(this ).data("area_category"),
+			area_number:$(this ).data("area_number")
+		});
 		//console.log(ticketsSelected.length);
 		//console.log(countTickets);
 		if(ticketsSelected.length > countTickets){
+			//console.log("rochin");
 			//console.log(ticketsSelected[0]);
-			$("."+ticketsSelected[0] ).removeClass("status-selected");
-			$("."+ticketsSelected[0] ).addClass("status-0");
-			$(".seatCheck",$("."+ticketsSelected[0] ) ).attr("checked",false);
-
+			place_Class = ".place-"+ticketsSelected[0].row+"-"+ticketsSelected[0].column+"-"+ticketsSelected[0].area_category+"-"+ticketsSelected[0].area_number
+			$(place_Class).removeClass("status-selected");
+			$(place_Class).addClass("status-0");
+			$(".seatCheck",$(place_Class) ).attr("checked",false);
 			ticketsSelected.splice(0,1);
+
 		}
 
+		$("#buyResume .btnSelectSeats" ).css({display: 'none'});
+		buildTicketsSeats();
+		updateResume();
+		updateSeatsInputs();
 	}else if(countTickets == 0){
 		$(".message .content",$container ).html("<p>"+__("no-tickets-selected-yet")+"</p><a href='#tickets' class='btn'>"+__("select-tickets")+"</a>");
 		$(".message",$container).show("fast");
 	}
 }
 
-function setSeatsSelected(){
-	//console.dir(BuySeat);
-	$.each(BuySeat,function(k,area){
-		//console.dir(area);
-		$.each(area.grid, function(k,v){
-			if(v != "0"){
-				$place = $(".place-"+v );
-				$(".seatCheck",$place).attr("checked",true);
-				$place.removeClass("status-0" ).addClass("status-selected");
-				if($place.hasClass("status-1")){
-					$place.removeClass("status-1" ).on("click",seatClick);
-				}
-				ticketsSelected.push("place-"+v);
+function updateSeatsInputs(){
+	var $seatsInputs = $("#seatsInputs" ).empty();
+	var index = 0;
+	$.each(Tickets,function(k,ticket){
+		$.each(ticket.seats,function(i,seat){
+			$seat = $("<div></div>",{class:'seat'});
+			$seat.append($("<input/>",{name:"data[BuySeat]["+index+"][row]",type:'hidden','value':seat.row,class:'row'}));
+			$seat.append($("<input/>",{name:"data[BuySeat]["+index+"][column]",type:'hidden','value':seat.column,class:'column'}));
+			$seat.append($("<input/>",{name:"data[BuySeat]["+index+"][row_physical]",type:'hidden','value':seat.row_physical,class:'row_physical'}));
+			$seat.append($("<input/>",{name:"data[BuySeat]["+index+"][column_physical]",type:'hidden','value':seat.column_physical,class:'column_physical'}));
+			$seat.append($("<input/>",{name:"data[BuySeat]["+index+"][area_category]",type:'hidden','value':seat.area_category,class:'area_category'}));
+			$seat.append($("<input/>",{name:"data[BuySeat]["+index+"][area_number]",type:'hidden','value':seat.area_number,class:'area_number'}));
+			$seatsInputs.append($seat);
+			index++;
+		});
+	});
+}
 
+function getTotalSeatsSeleted(){
+	var total =0;
+	$.each(Tickets,function(k,v){
+		total += v.seats.length;
+	});
+	return total;
+}
+
+var Tickets = {};
+function buildTicketsArray(){
+	//console.dir(BuySeat);
+	var index =0;
+	$(".ticketsSelection tr" ).each(function(){
+		code = $(this ).data("code");
+		if(code){
+			cantidad = $(".cantidad",$(this ) ).data("qty");
+			Tickets[code] = {
+				qty:cantidad,
+				seats:[]
+			}
+			if(cantidad > 0 && BuySeat){
+
+				for(i = 0; i<cantidad; i++){
+					Tickets[code].seats.push(BuySeat[index]);
+					index++;
+				}
+			}
+		}
+
+	});
+}
+
+function buildTicketsSelectedArray(){
+	ticketsSelected = []
+	$.each(Tickets,function(code,ticket){
+		$.each(ticket.seats,function(i,seat){
+			ticketsSelected.push(seat);
+		});
+	});
+}
+
+function updateResume(){
+	$("#buyResume .tickets-details .ticket" ).removeClass("showing").css({display:'none'} );
+	$.each(Tickets,function(code,ticket){
+		//console.log(code);
+		console.dir(ticket);
+		if(ticket.qty > 0){
+
+			$ticket = $("#buyResume .tickets-details tr[data-code='"+code+"']");
+			//console.dir($ticket);
+			$ticket.addClass("showing" ).css({display:'table-row'} );
+			$(".qty",$ticket ).html(ticket.qty);
+
+			seats = "";
+			$seats = $(".seats",$ticket);
+			$.each(ticket.seats,function(k,v){
+				seats+= v.row_physical+ v.column_physical+" ";
+			});
+			$seats.html(seats);
+
+		}
+	});
+	if(countTickets > 0){
+		$("#buyResume .btnSelectTicket" ).css({display:'none'});
+		$("#buyResume .btnSelectSeats" ).css({display:'inline-block'});
+	}else{
+		$("#buyResume .btnSelectTicket" ).css({display:'inline-block'});
+		$("#buyResume .btnSelectSeats" ).css({display:'none'});
+	}
+	if(getTotalSeatsSeleted() > 0){
+		$("#buyResume .btnSelectSeats" ).css({display:'none'});
+	}else if(countTickets>0){
+		$("#buyResume .btnSelectSeats" ).css({display:'inline-block'});
+	}
+}
+
+function updateSeatGrid(){
+	$("#SeatLayout .status-selected" ).removeClass("status-selected" ).addClass("status-0");
+	$.each(Tickets,function(code,ticket){
+		$.each(ticket.seats,function(i,seat){
+			place_Class = ".place-"+seat.row+"" +"-"+seat.column+"-"+seat.area_category+"-"+seat.area_number;
+			console.log(place_Class);
+			$place = $(place_Class );
+			$place.removeClass("status-0" ).addClass("status-selected");
+			if($place.hasClass("status-1")){
+				$place.removeClass("status-1" ).on("click",seatClick);
 			}
 		});
 	});
+}
+
+
+/*function updateSeatsResume(){
+	$("#buyResume .tickets-details .showing").each(function(){
+		$seats = $(".seats",$(this));
+		if(Tickets[$(this ).data("code")].seats){
+			seats = "";
+			$.each(Tickets[$(this ).data("code")].seats,function(k,v){
+				seats+= v.row_physical+ v.column_physical+" ";
+			});
+			$seats.html(seats);
+		}
+	});
+}*/
+
+function buildTicketsSeats(){
+	$.each(Tickets,function(k,v){
+		Tickets[k].seats = [];
+	});
+	$.each(ticketsSelected,function(i,place){
+		//console.dir(place);
+		done = false;
+		$.each(Tickets,function(k,v){
+			if(v.qty > v.seats.length && !done){
+				//pieces = place.split("-");
+				Tickets[k].seats.push({
+					row_physical:place.row_physical,
+					row:place.row,
+					column_physical:place.column_physical,
+					column:place.column,
+					area_category:place.area_category,
+					area_number:place.area_number
+				});
+				done = true;
+			}
+		});
+	});
+}
+
+function setSeatsSelected(){
+	if(BuySeat){
+		$.each(BuySeat,function(i,seat){
+			//console.dir(area);
+			place_Class = ".place-"+seat.row+"" +"-"+seat.column+"-"+seat.area_category+"-"+seat.area_number;
+			$place = $(place_Class );
+			$place.removeClass("status-0" ).addClass("status-selected");
+			if($place.hasClass("status-1")){
+				$place.removeClass("status-1" ).on("click",seatClick);
+			}
+			ticketsSelected.push(seat);
+		});
+		//console.dir(ticketsSelected);
+		buildTicketsSeats();
+		updateSeatsInputs();
+	}
 }
 
 function detectCardType(number) {

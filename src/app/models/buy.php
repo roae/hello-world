@@ -54,23 +54,13 @@ class Buy extends AppModel{
 				}
 			}
 			if(isset($data['BuySeat'])){
-				$this->BuySeat->delete(array('BuyTicket.buy_id'=>$this->id));
-				foreach($data['BuySeat'] as $grids){
-					foreach($grids['grid'] as $seat){
-						if($seat){
-							list($row_physical,$row,$column) = explode("-",$seat);
-							$seatData = array(
-								'buy_id'=>$this->id,
-								'column'=>$column,
-								'row'=>$row,
-								'row_physical'=>$row_physical
-							);
+				$this->BuySeat->delete(array('BuySeat.buy_id'=>$this->id));
+				foreach($data['BuySeat'] as $seat){
+					$seat['buy_id'] = $this->id;
 
-							$this->BuySeat->create();
-							if(!$this->BuySeat->save($seatData)){
-								$buySeatsDone = false;
-							}
-						}
+					$this->BuySeat->create();
+					if(!$this->BuySeat->save($seat)){
+						$buySeatsDone = false;
 					}
 				}
 			}

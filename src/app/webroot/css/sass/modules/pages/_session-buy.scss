@@ -1,895 +1,1056 @@
-#SessionCheckout{
-  .big-cover {
-    height: auto;
-    position: relative;
-    color: #fff;
-    background-color: #f1f1f1;
-    padding: 50px 0;
-
-    &.image-not-founded {
-
-      h1 {
-        color: #CC0017;
-        text-shadow: 0 0 0 transparent;
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: 8px;
-          width: 100px;
-          height: 1px;
-          background-color: $light-gray;
-        }
-      }
-
-      .sub-title{
-        color:$dark-gray;
-        text-shadow: 0 0 0 transparent;
-      }
-
-      .movie-details{
-        .info{
-          color:$gray;
-        }
-      }
-
-      &:before,
-      &:after {
-        background: transparent;
-      }
-    }
-
-    .bg{
-
-      height: 100%;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: absolute;
-      top:0;
-      left:0;
-      width: 100%;
-
-    }
-
-    .col-container {
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
-      position: relative;
-      padding-bottom: 15px;
-      padding-left:gutter();
-      font-size: 50px;
-      font-weight: 100;
-      @include text-overflow();
-
-
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 8px;
-        left: gutter();
-        width: 100px;
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-    }
-    .sub-title{
-      font-size: 24px;
-      font-weight: 200;
-      padding-left:gutter();
-      @include text-overflow();
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-
-      @include gradientVertical(rgba(0,0,0,0.3),#000 );
-    }
-
-    &:before {
-      //content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(240, 139, 36, 0.3);
-    }
-
-
-  }
-
-  .movie-information{
-    @include span(12);
-    position: relative;
-    //border-bottom: 1px solid #f1f1f1;
-  }
-
-  @include with-layout(12) {
-
-    .movie-details{
-      @include span(8);
-      margin-top: 20px;
-      .info{
-        margin-top: 10px;
-        font-size: 18px;
-        strong{
-          display: inline-block;
-          width: 120px;
-        }
-        .value{
-          font-weight: 200;
-        }
-        .mega{
-          font-size: 14px;
-          background: #f18932;
-          color:#fff;
-          padding: 1px 5px;
-          @include border-radius(3px);
-        }
-        .premier{
-          font-size: 14px;
-          background: #e5c90c;
-          padding: 1px 5px;
-          color:$dark-gray;
-          @include border-radius(3px);
-        }
-      }
-    }
-    .schedule{
-      @include span(4);
-      text-align: center;
-      background: #00cc67;
-      padding: 20px 0;
-      margin-top: 20px;
-      @include border-radius(3px);
-      .title{
-        font-size: 24px;
-        color: #004422;
-      }
-      .value{
-        display: block;
-        font-weight: 100;
-        color:#fff;
-        font-size: 46px;
-        margin-bottom: 10px;
-      }
-      .btn{
-        background: #006935;
-        font-size: 14px;
-        color: #ffffff;
-        padding: 3px 10px;
-        margin-top: 10px;
-        @include border-radius(4px);
-      }
-    }
-  }
-
-  .cover-container{
-    @include span(4);
-    img{
-      width: 100%;
-      display:block;
-      @include border-radius(4px);
-    }
-  }
-
-  #Notifier{
-    .error{
-      padding: 20px 0;
-      font-size: 18px;
-      color:#fff;
-      background: $red;
-      text-align: center;
-    }
-  }
-
-  /* BOLETOS */
-
-  .ticketsSelection{
-    padding-bottom: 50px;
-    margin: 100px auto;
-
-    #ticketsAnchor{
-      position: relative;
-      top: -120px;
-    }
-
-    table{
-      @include span(10);
-      margin-left: span(1)+gutter();
-      font-size: 18px;
-      color: #565656;
-      tbody{
-        td,th{
-          border-top: 1px solid #f1f1f1;
-          padding:20px 5px;
-          color: #686868;
-          font-weight: normal;
-          vertical-align: middle;
-        }
-        th{
-          color: #434343;
-          font-size: 20px;
-          text-align: left;
-        }
-      }
-      .buttons{
-        padding: 10px;
-      }
-      .subtotal{
-        text-align: center;
-        width: 100px;
-      }
-      .cantidad{
-        line-height: 40px;
-        float: left;
-        display: inline-block;
-        padding: 0 10px;
-        font-size: 24px;
-        width: 42px;
-        text-align: center;
-      }
-      .less{
-        cursor: pointer;
-        float: left;
-        border: 2px solid #D10014;
-        color: #fff;
-        background: #fff;
-        font-size: 40px;
-        font-family: Arial;
-        width: 40px;
-        height: 40px;
-        line-height: 30px;
-        position: relative;
-        @include border-radius(50%);
-        &:before{
-          content: " ";
-          border:0;
-          border-top: 3px solid #D10014;
-          width: 15px;
-          display: block;
-          position: absolute;
-          top: 17px;
-          left: 11px;
-        }
-        &:hover{
-          background: lighten(#D10014,50);
-          color:lighten(#D10014,50);
-        }
-      }
-      .plus{
-        cursor: pointer;
-        float: left;
-        border: 2px solid #00CC67;
-        color: #fff;
-        background: #fff;
-        font-size: 40px;
-        font-family: Arial;
-        width: 40px;
-        height: 40px;
-        position: relative;
-        @include border-radius(50%);
-        &:before{
-          content: " ";
-          border:0;
-          border-top: 3px solid #00CC67;
-          height:0;
-          width: 15px;
-          display: block;
-          position: absolute;
-          top: 17px;
-          left: 11px;
-          background: transparent;
-        }
-        &:after{
-          content: " ";
-          border:0;
-          border-left: 3px solid #00CC67;
-          width: 0;
-          height: 15px;
-          display: block;
-          position: absolute;
-          top: 11px;
-          left: 17px;
-          background: transparent;
-        }
-        &:hover{
-          background: lighten(#00CC67,50);
-          color: lighten(#00CC67,50);
-        }
-      }
-    }
-  }
-
-  .total{
-    margin-top: 40px;
-    @include span(5);
-    color: #777777;
-    text-align: center;
-    font-size: 18px;
-    .title{
-      font-size: 30px;
-    }
-    .value{
-      color: #00cc67;
-      font-size: 48px;
-      display:block;
-    }
-  }
-
-  .loyaltyCard{
-    @include span(10);
-    margin-left: span(1)+gutter();
-    margin-top: 40px;
-    label{
-      display:block;
-    }
-
-    @include with-layout(10) {
-      .input{
-        overflow: hidden;
-        input{
-          @include span(6);
-          margin-left: 0;
-          @include border-radius(5px);
-        }
-        .btn-primary{
-          font-size: 18px;
-          @include span(4);
-          margin:0;
-        }
-      }
-    }
-  }
-
-  /* Asientos */
-
-  .seatsSelection{
-    border-top: 1px solid #f1f1f1;
-    padding-top: 100px;
-    padding-bottom: 50px;
-    position: relative;
-    .stepTitle{
-      strong{
-        &:before{
-          content:"2";
-        }
-      }
-    }
-
-    .loadingSeats{
-      font-size: 30px;
-      text-align: center;
-      color: darken($light-gray,10);
-      font-weight: 100;
-      margin:100px 0;
-      .icon-loading{
-        background: url(web/preloader_10-64.gif) no-repeat center;
-        width: 64px;
-        height: 64px;
-        display: inline-block;
-      }
-    }
-
-    .room-container{
-      border: 0;
-      margin: 10px auto 100px;
-      font-family: "Open Sans","Raleway","Helvetica Neue",Helvetica,Arial;
-      text-align: center;
-      color:#313131;
-
-      .layout{
-        margin:0 auto;
-        //border-collapse: separate;
-        //border-spacing: 2px;
-        tr:nth-child(odd) td{
-          background: #f1f1f1;
-        }
-      }
-
-      .screen{
-        margin:20px 50px;
-        background:#f1f1f1;
-        padding: 10px 0;
-        position: relative;
-        overflow: hidden;
-        font-size: 20px;
-        font-weight: 100;
-        padding-top:20px;
-        &:before{
-          content:" ";
-          width: 100px;
-          height: 100px;
-          display:block;
-          position: absolute;
-          top:0;
-          left:-35px;
-          background: #fff;
-          @include rotate(60deg);
-        }
-        &:after{
-          content:" ";
-          width: 100px;
-          height: 100px;
-          display:block;
-          position: absolute;
-          top:0;
-          right:-35px;
-          background: #fff;
-          @include rotate(25deg);
-        }
-      }
-
-      /*td{
-        width: 50px;
-      }*/
-      img{
-        width: 100%;
-        display:block;
-        visibility: hidden;
-      }
-
-      .room-layout-row{
-        white-space: nowrap;
-
-      }
-      .row{
-        line-height: 100%;
-        width: $widthSeat;
-      }
-
-      td{
-        width: $widthSeat;
-        max-width: $maxWidthSeat;
-        min-width: $minWidthSeat;
-        border: 5px 2px;
-        border-color:#fff;
-        position: relative;
-        vertical-align: middle;
-      }
-      .seat{
-        display:block;
-        text-align: center;
-        margin:14px 1px;
-      }
-      .number{
-        width: 100%;
-        text-align: center;
-        position: absolute;
-        top:0;
-        left:0;
-        font-size: 12px;
-      }
-      /*.individual{
-        width: auto;
-      }*/
-      .empty{
-        width: $widthSeat;
-        max-width: $maxWidthSeat;
-        min-width: $minWidthSeat;
-      }
-      .status-0 {
-        .seat {
-          background: url("../img/seat-0.png") center no-repeat;
-          background-size: 100% auto;
-          border-top: 0;
-          cursor: pointer;
-          &:hover{
-            background: url("../img/seat-hover.png") center no-repeat;
-            background-size: 100% auto;
-          }
-        }
-        &.Multi-End .seat{
-          background: url("../img/Multi-End-0.png") center no-repeat;
-          background-size: 100% auto;
-          &:hover{
-            background: url("../img/Multi-End-hover.png") center no-repeat;
-            background-size: 100% auto;
-          }
-        }
-        &.Multi-Start .seat{
-          background: url("../img/Multi-Start-0.png") center no-repeat;
-          background-size: 100% auto;
-          &:hover{
-            background: url("../img/Multi-Start-hover.png") center no-repeat;
-            background-size: 100% auto;
-          }
-        }
-      }
-      .status-1 {
-        .seat {
-          background: url("../img/seat-1.png") center no-repeat;
-          background-size: 100% auto;
-          border-top: 0;
-          color:#fff;
-        }
-        &.Multi-End .seat{
-          background: url("../img/Multi-End-1.png") center no-repeat;
-          background-size: 100% auto;
-        }
-        &.Multi-Start .seat{
-          background: url("../img/Multi-Start-1.png") center no-repeat;
-          background-size: 100% auto;
-        }
-      }
-
-      .status-selected {
-        .seat {
-          background: url("../img/seat-selected.png") center no-repeat;
-          background-size: 100% auto;
-          border-top: 0;
-          color:#fff;
-        }
-        &.Multi-End .seat{
-          background: url("../img/Multi-End-selected.png") center no-repeat;
-          background-size: 100% auto;
-        }
-        &.Multi-Start .seat{
-          background: url("../img/Multi-Start-selected.png") center no-repeat;
-          background-size: 100% auto;
-        }
-      }
-
-      .status-3 {
-        .seat {
-          background: url("../img/seat-0.png") center no-repeat;
-          background-size: 100% auto;
-          border-top: 0;
-          @include opacity(.5);
-        }
-        &.Multi-End .seat{
-          background: url("../img/Multi-End-0.png") center no-repeat;
-          background-size: 100% auto;
-        }
-        &.Multi-Start .seat{
-          background: url("../img/Multi-Start-0.png") center no-repeat;
-          background-size: 100% auto;
-        }
-      }
-
-      .Multi-Start{
-        @include box-sizing(content-box);
-        .number{
-          padding-right: 15px;
-        }
-        //margin-right: 10px;
-
-      }
-
-      .Multi-End{
-        //width: 50px;
-        .number{
-          padding-left: 15px;
-          //margin-left: 10px;
-        }
-
-      }
-
-      .individual + .Multi-End{
-        //margin-left:10px;
-      }
-
-      .loveSeats{
-        .row{
-          //width: 50px;
-        }
-        .seat{
-          font-size: 16px;
-          //width: 50px;
-          height: 42px;
-          padding-top:4px;
-        }
-        .empty{
-          //width: 50px;
-        }
-      }
-
-      .instructions{
-        padding: 20px 0;
-        font-weight: 100;
-        vertical-align: middle;
-        line-height: 20px;
-        .available{
-          margin-right: 30px;
-          &:before{
-            content: " ";
-            width: 20px;
-            height: 20px;
-            margin-right: 20px;
-            background: #c8c8c8;
-            @include border-radius(50%);
-            display: inline-block;
-          }
-        }
-        .unavailable{
-          margin-right: 30px;
-          &:before{
-            content: " ";
-            width: 20px;
-            height: 20px;
-            margin-right: 20px;
-            background: #F50A29;
-            @include border-radius(50%);
-            display: inline-block;
-          }
-        }
-        .yourseats{
-          margin-right: 30px;
-          &:before{
-            content: " ";
-            width: 20px;
-            height: 20px;
-            margin-right: 20px;
-            background: #EFBA62;
-            @include border-radius(50%);
-            display: inline-block;
-          }
-        }
-      }
-    }
-    .message{
-      background: rgba(255,255,255,.6);
-      position: absolute;
-      top:0;
-      left:0;
-      width: 100%;
-      height: 100%;
-      display: none;
-      //@include opacity(0);
-      .content{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 300px;
-        padding: 30px 30px;
-        text-align: center;
-        background: #fecc00;
-        @include translate(-50%,-50%);
-        @include border-radius(4px);
-        @include box-shadow(0 1px 2px rgba(0,0,0,.2));
-      }
-
-      .btn{
-        margin: 20px 0 0;
-        display: inline-block;
-        &:hover{
-          opacity: 1;
-          background-color: lighten(#cfd5d7,5);
-        }
-      }
-    }
-  }
-
-  /* Informacion de Tarjeta */
-
-  .paymentInfo{
-    border-top: 1px solid #f1f1f1;
-    padding-top: 100px;
-    padding-bottom: 50px;
-    margin-bottom: 100px;
-    position: relative;
-    .stepTitle{
-      strong{
-        &:before{
-          content:"3";
-        }
-      }
-    }
-
-    .paymentForm{
-      @include span(8);
-      margin-left: span(4)+gutter();
-      .paymentTypes{
-        margin-bottom: 30px;
-        input{
-          display: none;
-          &:checked + label{
-            background: #F0F0F0 url("web/checkedbox.png") no-repeat 10px center;
-            border: 1px solid #E3E3E3;
-          }
-
-        }
-        label{
-          font-size: 14px;
-          color:#6f6f6f;
-          @include span(8);
-          padding: 10px 10px 10px 40px;
-          background: #fff url("web/checkbox.png") no-repeat 10px center;
-          border: 1px solid #fff;
-          @include border-radius(4px);
-          @include transition(background border 0.2s ease-in-out);
-          .icons{
-            margin-top: 10px;
-            display:block;
-          }
-          .visa-icon{
-            display: inline-block;
-            background: url("web/visa.png") no-repeat;
-            width: 37px;
-            height: 27px;
-          }
-          .mastercard-icon{
-            display: inline-block;
-            background: url("web/mastercard.png") no-repeat;
-            width: 37px;
-            height: 27px;
-          }
-          .paypal-icon{
-            display: inline-block;
-            background: url("web/paypal.png") no-repeat;
-            width: 39px;
-            height: 27px;
-          }
-        }
-      }
-      .ccType{
-        position: absolute;
-        bottom: 25px;
-        right: 10px;
-        display: block;
-        width: 37px;
-        height: 27px;
-        &.VISA{
-          background: url("web/visa.png") no-repeat;
-        }
-        &.MASTERCARD{
-          background: url("web/mastercard.png") no-repeat;
-        }
-      }
-      .input{
-        position: relative;
-        margin-bottom: 20px;
-        padding-bottom: 1em;
-        label{
-          display: inline-block;
-          font-size: 18px;
-          color:$dark-gray;
-          margin-bottom: 10px;
-        }
-        input{
-          //border: 2px solid #ADADAD;
-          @include border-radius(4px);
-          padding:10px;
-          font-size: 18px;
-          width: 100%;
-          @include box-sizing(border-box);
-        }
-        input[type="text"]{
-          @include input-placeholder {
-            color:#a8a8a8;
-            font-size: 14px;
-            font-weight: 300;
-          }
-          &:focus{
-            @include input-placeholder {
-              color:darken(#a8a8a8,50);
-            }
-          }
-        }
-
-        .error-message{
-          position: absolute;
-          bottom: -0.5em;
-        }
-      }
-      .exp-date{
-        label{
-          display:block;
-        }
-        select{
-          margin-right: 10px;
-        }
-        .SelectWrapper{
-          @include span(8);
-        }
-
-      }
-      .exp-date,
-      .cvv{
-        @include span(8);
-
-      }
-
-      .card-number-icon{
-        background: url("web/no-tarjeta.png") no-repeat;
-        width: 30px;
-        height: 21px;
-        display: inline-block;
-        margin: 2px 0 0 10px;
-      }
-      .cvv-icon{
-        background: url("web/cvv-icon.png") no-repeat;
-        width: 30px;
-        height: 21px;
-        display: inline-block;
-        margin: 2px 0 0 10px;
-      }
-
-      hr{
-        border:0;
-        border-top: 1px solid #E1E1E1;
-        width: 100%;
-        margin:30px 0;
-        clear: left;
-      }
-      .button{
-        text-align: center;
-        margin-top: 30px;
-      }
-      button{
-        padding: 10px 20px;
-        font-size: 24px;
-        font-weight: 100;
-      }
-      #CCType{
-        display:none;
-      }
-
-
-    }
-
-
-  }
-
-  .disclaimer{
-    font-size: 12px;
-    color:#8f8f8f;
-    margin-top: 50px;
-    ul{
-      list-style-type: circle;
-      li{
-        margin-bottom: 1.5em;
-      }
-    }
-  }
-
-  .stepTitle{
-    text-align: center;
-    margin-bottom: 50px;
-    strong{
-      color: #f18932;
-      font-size: 30px;
-      font-weight: 300;
-      position: relative;
-      &:before{
-        position: absolute;
-        top:-5px;
-        left: -50px;
-        border: 3px solid #f9cca7;
-        width: 40px;
-        height: 40px;
-        @include border-radius(50%);
-        display: inline-block;
-        margin-right: 10px;
-        content:"1";
-        line-height: 33px;
-      }
-    }
-
-  }
+#SessionCheckout {
+	.big-cover {
+		height: auto;
+		position: relative;
+		color: #FFF;
+		background-color: #F1F1F1;
+		padding: 50px 0;
+
+		&.image-not-founded {
+
+			h1 {
+				color: #CC0017;
+				text-shadow: 0 0 0 transparent;
+				&:after {
+					content: '';
+					position: absolute;
+					bottom: 8px;
+					width: 100px;
+					height: 1px;
+					background-color: $light-gray;
+				}
+			}
+
+			.sub-title {
+				color: $dark-gray;
+				text-shadow: 0 0 0 transparent;
+			}
+
+			.movie-details {
+				.info {
+					color: $gray;
+				}
+			}
+
+			&:before,
+			&:after {
+				background: transparent;
+			}
+		}
+
+		.bg {
+			height: 100%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
+
+		.col-container {
+			position: relative;
+			z-index: 2;
+		}
+
+		h1 {
+			position: relative;
+			padding-bottom: 15px;
+			padding-left: gutter();
+			font-size: 50px;
+			font-weight: 100;
+			@include text-overflow();
+
+			&:after {
+				content: '';
+				position: absolute;
+				bottom: 8px;
+				left: gutter();
+				width: 100px;
+				height: 1px;
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+		}
+		.sub-title {
+			font-size: 24px;
+			font-weight: 200;
+			padding-left: gutter();
+			@include text-overflow();
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			@include gradientVertical(rgba(0, 0, 0, 0.3), #000);
+		}
+
+		&:before {
+			//content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(240, 139, 36, 0.3);
+		}
+
+	}
+
+	.movie-information {
+		@include span(12);
+		position: relative;
+		//border-bottom: 1px solid #f1f1f1;
+	}
+
+	@include with-layout(12) {
+
+		.movie-details {
+			@include span(8);
+			margin-top: 20px;
+			.info {
+				margin-top: 10px;
+				font-size: 18px;
+				strong {
+					display: inline-block;
+					width: 120px;
+				}
+				.value {
+					font-weight: 200;
+				}
+				.mega {
+					font-size: 14px;
+					background: #F18932;
+					color: #FFF;
+					padding: 1px 5px;
+					@include border-radius(3px);
+				}
+				.premier {
+					font-size: 14px;
+					background: #E5C90C;
+					padding: 1px 5px;
+					color: $dark-gray;
+					@include border-radius(3px);
+				}
+			}
+		}
+		.schedule {
+			@include span(4);
+			text-align: center;
+			background: #00CC67;
+			padding: 20px 0;
+			margin-top: 20px;
+			@include border-radius(3px);
+			.title {
+				font-size: 24px;
+				color: #042;
+			}
+			.value {
+				display: block;
+				font-weight: 100;
+				color: #FFF;
+				font-size: 46px;
+				margin-bottom: 10px;
+			}
+			.btn {
+				background: #006935;
+				font-size: 14px;
+				color: #FFF;
+				padding: 3px 10px;
+				margin-top: 10px;
+				@include border-radius(4px);
+			}
+		}
+	}
+
+	.cover-container {
+		@include span(4);
+		img {
+			width: 100%;
+			display: block;
+			@include border-radius(4px);
+		}
+	}
+
+	#Notifier {
+		.error {
+			padding: 20px 0;
+			font-size: 18px;
+			color: #FFF;
+			background: $red;
+			text-align: center;
+		}
+	}
+
+	/* BOLETOS */
+
+	.ticketsSelection {
+		padding-bottom: 50px;
+		padding: 170px 0;
+
+		#ticketsAnchor {
+			position: relative;
+			top: -120px;
+		}
+
+		table {
+			@include span(10);
+			margin-left: span(1)+gutter();
+			font-size: 18px;
+			color: #565656;
+			tbody {
+				td, th {
+					border-top: 1px solid #F1F1F1;
+					padding: 20px 5px;
+					color: #686868;
+					font-weight: normal;
+					vertical-align: middle;
+				}
+				th {
+					color: #434343;
+					font-size: 20px;
+					text-align: left;
+				}
+			}
+			.buttons {
+				padding: 10px;
+			}
+			.subtotal {
+				text-align: center;
+				width: 100px;
+			}
+			.cantidad {
+				line-height: 40px;
+				float: left;
+				display: inline-block;
+				padding: 0 10px;
+				font-size: 24px;
+				width: 42px;
+				text-align: center;
+			}
+			.less {
+				cursor: pointer;
+				float: left;
+				border: 2px solid #D10014;
+				color: #FFF;
+				background: #FFF;
+				font-size: 40px;
+				font-family: Arial;
+				width: 40px;
+				height: 40px;
+				line-height: 30px;
+				position: relative;
+				@include border-radius(50%);
+				&:before {
+					content: " ";
+					border: 0;
+					border-top: 3px solid #D10014;
+					width: 15px;
+					display: block;
+					position: absolute;
+					top: 17px;
+					left: 11px;
+				}
+				&:hover {
+					background: lighten(#D10014, 50);
+					color: lighten(#D10014, 50);
+				}
+			}
+			.plus {
+				cursor: pointer;
+				float: left;
+				border: 2px solid #00CC67;
+				color: #FFF;
+				background: #FFF;
+				font-size: 40px;
+				font-family: Arial;
+				width: 40px;
+				height: 40px;
+				position: relative;
+				@include border-radius(50%);
+				&:before {
+					content: " ";
+					border: 0;
+					border-top: 3px solid #00CC67;
+					height: 0;
+					width: 15px;
+					display: block;
+					position: absolute;
+					top: 17px;
+					left: 11px;
+					background: transparent;
+				}
+				&:after {
+					content: " ";
+					border: 0;
+					border-left: 3px solid #00CC67;
+					width: 0;
+					height: 15px;
+					display: block;
+					position: absolute;
+					top: 11px;
+					left: 17px;
+					background: transparent;
+				}
+				&:hover {
+					background: lighten(#00CC67, 50);
+					color: lighten(#00CC67, 50);
+				}
+			}
+		}
+	}
+
+	.total {
+		margin-top: 40px;
+		@include span(5);
+		color: #777;
+		text-align: center;
+		font-size: 18px;
+		.title {
+			font-size: 30px;
+		}
+		.value {
+			color: #00CC67;
+			font-size: 48px;
+			display: block;
+		}
+	}
+
+	.loyaltyCard {
+		@include span(10);
+		margin-left: span(1)+gutter();
+		margin-top: 40px;
+		label {
+			display: block;
+		}
+
+		@include with-layout(10) {
+			.input {
+				overflow: hidden;
+				input {
+					@include span(6);
+					margin-left: 0;
+					@include border-radius(5px);
+				}
+				.btn-primary {
+					font-size: 18px;
+					@include span(4);
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	/* Asientos */
+
+	.seatsSelection {
+		border-top: 1px solid #F1F1F1;
+		padding-top: 170px;
+		padding-bottom: 50px;
+		position: relative;
+		.stepTitle {
+			strong {
+				&:before {
+					content: "2";
+				}
+			}
+		}
+
+		.loadingSeats {
+			font-size: 30px;
+			text-align: center;
+			color: darken($light-gray, 10);
+			font-weight: 100;
+			margin: 100px 0;
+			.icon-loading {
+				background: url(web/preloader_10-64.gif) no-repeat center;
+				width: 64px;
+				height: 64px;
+				display: inline-block;
+			}
+		}
+
+		.room-container {
+			border: 0;
+			margin: 10px auto 100px;
+			font-family: "Open Sans", "Raleway", "Helvetica Neue", Helvetica, Arial;
+			text-align: center;
+			color: #313131;
+
+			.layout {
+				margin: 0 auto;
+				//border-collapse: separate;
+				//border-spacing: 2px;
+				tr:nth-child(odd) td {
+					background: #F1F1F1;
+				}
+			}
+
+			.screen {
+				margin: 20px 50px;
+				background: #F1F1F1;
+				padding: 10px 0;
+				position: relative;
+				overflow: hidden;
+				font-size: 20px;
+				font-weight: 100;
+				padding-top: 20px;
+				&:before {
+					content: " ";
+					width: 100px;
+					height: 100px;
+					display: block;
+					position: absolute;
+					top: 0;
+					left: -35px;
+					background: #FFF;
+					@include rotate(60deg);
+				}
+				&:after {
+					content: " ";
+					width: 100px;
+					height: 100px;
+					display: block;
+					position: absolute;
+					top: 0;
+					right: -35px;
+					background: #FFF;
+					@include rotate(25deg);
+				}
+			}
+
+			/*td{
+				width: 50px;
+			  }*/
+			img {
+				width: 100%;
+				display: block;
+				visibility: hidden;
+			}
+
+			.room-layout-row {
+				white-space: nowrap;
+			}
+			.row {
+				line-height: 100%;
+				width: $widthSeat;
+			}
+
+			td {
+				width: $widthSeat;
+				max-width: $maxWidthSeat;
+				min-width: $minWidthSeat;
+				border: 5px 2px;
+				border-color: #FFF;
+				position: relative;
+				vertical-align: middle;
+			}
+			.seat {
+				display: block;
+				text-align: center;
+				margin: 14px 1px;
+			}
+			.number {
+				width: 100%;
+				text-align: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size: 12px;
+			}
+			/*.individual{
+				width: auto;
+			  }*/
+			.empty {
+				width: $widthSeat;
+				max-width: $maxWidthSeat;
+				min-width: $minWidthSeat;
+			}
+			.status-0 {
+				.seat {
+					background: url("../img/seat-0.png") center no-repeat;
+					background-size: 100% auto;
+					border-top: 0;
+					cursor: pointer;
+					&:hover {
+						background: url("../img/seat-hover.png") center no-repeat;
+						background-size: 100% auto;
+					}
+				}
+				&.Multi-End .seat {
+					background: url("../img/Multi-End-0.png") center no-repeat;
+					background-size: 100% auto;
+					&:hover {
+						background: url("../img/Multi-End-hover.png") center no-repeat;
+						background-size: 100% auto;
+					}
+				}
+				&.Multi-Start .seat {
+					background: url("../img/Multi-Start-0.png") center no-repeat;
+					background-size: 100% auto;
+					&:hover {
+						background: url("../img/Multi-Start-hover.png") center no-repeat;
+						background-size: 100% auto;
+					}
+				}
+			}
+			.status-1 {
+				.seat {
+					background: url("../img/seat-1.png") center no-repeat;
+					background-size: 100% auto;
+					border-top: 0;
+					color: #FFF;
+				}
+				&.Multi-End .seat {
+					background: url("../img/Multi-End-1.png") center no-repeat;
+					background-size: 100% auto;
+				}
+				&.Multi-Start .seat {
+					background: url("../img/Multi-Start-1.png") center no-repeat;
+					background-size: 100% auto;
+				}
+			}
+
+			.status-selected {
+				.seat {
+					background: url("../img/seat-selected.png") center no-repeat;
+					background-size: 100% auto;
+					border-top: 0;
+					color: #FFF;
+				}
+				&.Multi-End .seat {
+					background: url("../img/Multi-End-selected.png") center no-repeat;
+					background-size: 100% auto;
+				}
+				&.Multi-Start .seat {
+					background: url("../img/Multi-Start-selected.png") center no-repeat;
+					background-size: 100% auto;
+				}
+			}
+
+			.status-3 {
+				.seat {
+					background: url("../img/seat-0.png") center no-repeat;
+					background-size: 100% auto;
+					border-top: 0;
+					@include opacity(.5);
+				}
+				&.Multi-End .seat {
+					background: url("../img/Multi-End-0.png") center no-repeat;
+					background-size: 100% auto;
+				}
+				&.Multi-Start .seat {
+					background: url("../img/Multi-Start-0.png") center no-repeat;
+					background-size: 100% auto;
+				}
+			}
+
+			.Multi-Start {
+				@include box-sizing(content-box);
+				.number {
+					padding-right: 15px;
+				}
+				//margin-right: 10px;
+
+			}
+
+			.Multi-End {
+				//width: 50px;
+				.number {
+					padding-left: 15px;
+					//margin-left: 10px;
+				}
+
+			}
+
+			.individual + .Multi-End {
+				//margin-left:10px;
+			}
+
+			.loveSeats {
+				.row {
+					//width: 50px;
+				}
+				.seat {
+					font-size: 16px;
+					//width: 50px;
+					height: 42px;
+					padding-top: 4px;
+				}
+				.empty {
+					//width: 50px;
+				}
+			}
+
+			.instructions {
+				padding: 20px 0;
+				font-weight: 100;
+				vertical-align: middle;
+				line-height: 20px;
+				.available {
+					margin-right: 30px;
+					&:before {
+						content: " ";
+						width: 20px;
+						height: 20px;
+						margin-right: 20px;
+						background: #C8C8C8;
+						@include border-radius(50%);
+						display: inline-block;
+					}
+				}
+				.unavailable {
+					margin-right: 30px;
+					&:before {
+						content: " ";
+						width: 20px;
+						height: 20px;
+						margin-right: 20px;
+						background: #F50A29;
+						@include border-radius(50%);
+						display: inline-block;
+					}
+				}
+				.yourseats {
+					margin-right: 30px;
+					&:before {
+						content: " ";
+						width: 20px;
+						height: 20px;
+						margin-right: 20px;
+						background: #EFBA62;
+						@include border-radius(50%);
+						display: inline-block;
+					}
+				}
+			}
+		}
+		.message {
+			background: rgba(255, 255, 255, .6);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			//@include opacity(0);
+			.content {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 300px;
+				padding: 30px 30px;
+				text-align: center;
+				background: #FECC00;
+				@include translate(-50%, -50%);
+				@include border-radius(4px);
+				@include box-shadow(0 1px 2px rgba(0, 0, 0, .2));
+			}
+
+			.btn {
+				margin: 20px 0 0;
+				display: inline-block;
+				&:hover {
+					opacity: 1;
+					background-color: lighten(#CFD5D7, 5);
+				}
+			}
+		}
+	}
+
+	/* Informacion de Tarjeta */
+
+	.paymentInfo {
+		border-top: 1px solid #F1F1F1;
+		padding-top: 170px;
+		padding-bottom: 50px;
+		margin-bottom: 100px;
+		position: relative;
+		.stepTitle {
+			strong {
+				&:before {
+					content: "3";
+				}
+			}
+		}
+
+		.paymentForm {
+			@include span(8);
+			margin-left: span(4)+gutter();
+			.paymentTypes {
+				margin-bottom: 30px;
+				input {
+					display: none;
+					&:checked + label {
+						background: #F0F0F0 url("web/checkedbox.png") no-repeat 10px center;
+						border: 1px solid #E3E3E3;
+					}
+
+				}
+				label {
+					font-size: 14px;
+					color: #6F6F6F;
+					@include span(8);
+					padding: 10px 10px 10px 40px;
+					background: #FFF url("web/checkbox.png") no-repeat 10px center;
+					border: 1px solid #FFF;
+					@include border-radius(4px);
+					@include transition(background border 0.2s ease-in-out);
+					.icons {
+						margin-top: 10px;
+						display: block;
+					}
+					.visa-icon {
+						display: inline-block;
+						background: url("web/visa.png") no-repeat;
+						width: 37px;
+						height: 27px;
+					}
+					.mastercard-icon {
+						display: inline-block;
+						background: url("web/mastercard.png") no-repeat;
+						width: 37px;
+						height: 27px;
+					}
+					.paypal-icon {
+						display: inline-block;
+						background: url("web/paypal.png") no-repeat;
+						width: 39px;
+						height: 27px;
+					}
+				}
+			}
+			.ccType {
+				position: absolute;
+				bottom: 25px;
+				right: 10px;
+				display: block;
+				width: 37px;
+				height: 27px;
+				&.VISA {
+					background: url("web/visa.png") no-repeat;
+				}
+				&.MASTERCARD {
+					background: url("web/mastercard.png") no-repeat;
+				}
+			}
+			.input {
+				position: relative;
+				margin-bottom: 20px;
+				padding-bottom: 1em;
+				label {
+					display: inline-block;
+					font-size: 18px;
+					color: $dark-gray;
+					margin-bottom: 10px;
+				}
+				input {
+					//border: 2px solid #ADADAD;
+					@include border-radius(4px);
+					padding: 10px;
+					font-size: 18px;
+					width: 100%;
+					@include box-sizing(border-box);
+				}
+				input[type="text"] {
+					@include input-placeholder {
+						color: #A8A8A8;
+						font-size: 14px;
+						font-weight: 300;
+					}
+					&:focus {
+						@include input-placeholder {
+							color: darken(#A8A8A8, 50);
+						}
+					}
+				}
+
+				.error-message {
+					position: absolute;
+					bottom: -0.5em;
+				}
+			}
+			.exp-date {
+				label {
+					display: block;
+				}
+				select {
+					margin-right: 10px;
+				}
+				.SelectWrapper {
+					@include span(8);
+				}
+
+			}
+			.exp-date,
+			.cvv {
+				@include span(8);
+			}
+
+			.card-number-icon {
+				background: url("web/no-tarjeta.png") no-repeat;
+				width: 30px;
+				height: 21px;
+				display: inline-block;
+				margin: 2px 0 0 10px;
+			}
+			.cvv-icon {
+				background: url("web/cvv-icon.png") no-repeat;
+				width: 30px;
+				height: 21px;
+				display: inline-block;
+				margin: 2px 0 0 10px;
+			}
+
+			hr {
+				border: 0;
+				border-top: 1px solid #E1E1E1;
+				width: 100%;
+				margin: 30px 0;
+				clear: left;
+			}
+			.button {
+				text-align: center;
+				margin-top: 30px;
+			}
+			button {
+				padding: 10px 20px;
+				font-size: 24px;
+				font-weight: 100;
+			}
+			#CCType {
+				display: none;
+			}
+
+		}
+
+	}
+
+	.disclaimer {
+		font-size: 12px;
+		color: #8F8F8F;
+		margin-top: 50px;
+		ul {
+			list-style-type: circle;
+			li {
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+
+	.stepTitle {
+		text-align: center;
+		margin-bottom: 50px;
+		strong {
+			color: #F18932;
+			font-size: 30px;
+			font-weight: 300;
+			position: relative;
+			&:before {
+				position: absolute;
+				top: -5px;
+				left: -50px;
+				border: 3px solid #F9CCA7;
+				width: 40px;
+				height: 40px;
+				@include border-radius(50%);
+				display: inline-block;
+				margin-right: 10px;
+				content: "1";
+				line-height: 33px;
+			}
+		}
+
+	}
 
 }
-.session-buy-error{
-  background: url(web/error.png) no-repeat top center;
-  margin: 100px 200px;
-  padding-top: 180px;
-  text-align: center;
-  color:$gray;
-  font-size: 30px;
-  font-weight: 300;
-  .btn{
-    margin-top: 50px;
-    font-size: 20px;
-    display: inline-block;
-  }
+
+#buyResume {
+	background: #f8f8f8;
+	padding: 10px 0;
+	position: fixed;
+
+	top:-200px;
+	//top: 68px;
+	@include transition(top 0.2s ease-in-out);
+	width: 100%;
+	font-size: 12px;
+	z-index: 3;
+	color:$dark-gray;
+	text-align: center;
+	@include box-shadow(0 1px 2px rgba(0,0,0,0.1));
+
+	.buyData{
+		//display: inline-block;
+		text-align: center;
+	}
+
+	&.sticky{
+		top: 68px;
+	}
+
+	.movie-details{
+		text-align: left;
+		@include span(5);
+		float: none;
+		//display: table-cell;
+		display: inline-block;
+		position: relative;
+		&:after{
+			content: " ";
+			display: block;
+			position: absolute;
+			top:10px;
+			right: 0;
+			width: 1px;
+			height: 60px;
+			background:#e1e1e1;
+		}
+
+		.poster {
+			float: left;
+			width: 55px;
+			margin-right: 10px;
+		}
+		.title{
+			font-size: 16px;
+			color:$red;
+		}
+
+		.info{
+			strong{
+				font-weight: bold;
+				width: 60px;
+				display: inline-block;
+			}
+		}
+	}
+
+	.tickets-details{
+		@include span(4);
+		float: none;
+		text-align: left;
+		//display: table-cell;
+		display: inline-block;
+		height: 70px;
+		position: relative;
+		&:after{
+			content: " ";
+			display: block;
+			position: absolute;
+			top:10px;
+			right: 0;
+			width: 1px;
+			height: 60px;
+			background:#e1e1e1;
+		}
+		table{
+			width: 100%;
+			th{
+				text-align: left;
+				font-weight: bold;
+				position: relative;
+			}
+			.ticket{
+				display: none;
+			}
+
+			td{
+				padding: 1px 5px;
+			}
+
+		}
+		.btn-success{
+			//margin-top: 10px;
+			padding: 5px;
+			font-size: 12px;
+			display: inline-block;
+			position: absolute;
+			margin:0;
+			bottom:-40px;
+			left:0;
+			&:active{
+				bottom:-39px;
+				top:auto;
+			}
+
+		}
+		.btnSelectSeats{
+			display:none;
+		}
+	}
+	.total{
+		@include span(3);
+		float: none;
+		//display: table-cell;
+		display: inline-block;
+
+		.titleSection{
+			font-weight: bold;
+		}
+		.value{
+			font-size: 34px;
+			line-height: 38px;
+			color: #00cc67;
+			display: block;
+			width: 150px;
+			margin:0 auto;
+		}
+		.iva{
+			font-size: 12px;
+			color:#2a2a2a;
+		}
+	}
+
+	.time{
+		@include span(3);
+		float: none;
+		padding: 0 10px;
+		//display: table-cell;
+		display: inline-block;
+		position: relative;
+		&:before{
+			content: " ";
+			display: block;
+			position: absolute;
+			top:10px;
+			left: 0;
+			width: 1px;
+			height: 60px;
+			background:#e1e1e1;
+		}
+		.value{
+			font-size: 26px;
+			color: #f18932;
+			display: block;
+			width: 100px;
+			margin: 0 auto;
+		}
+		.sectionTitle{
+			display:block;
+			font-size: 18px;
+		}
+	}
+
+}
+
+.session-buy-error {
+	background: url(web/error.png) no-repeat top center;
+	margin: 100px 200px;
+	padding-top: 180px;
+	text-align: center;
+	color: $gray;
+	font-size: 30px;
+	font-weight: 300;
+	.btn {
+		margin-top: 50px;
+		font-size: 20px;
+		display: inline-block;
+	}
 }
 
 

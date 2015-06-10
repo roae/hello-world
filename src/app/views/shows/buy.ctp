@@ -21,7 +21,7 @@ if(!empty($record)){
 			<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 			<div class="col-container">
 				<div class="cover-container">
-					<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>'[:logo_alt:]')) ?>
+					<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>$record['Movie']['title'])) ?>
 				</div>
 				<div class="movie-information">
 					<h1 class="blured-title">
@@ -76,8 +76,9 @@ if(!empty($record)){
 			</div>
 		</div>
 		<?= $this->Session->flash(); ?>
+		<a name="tickets" id="ticketsAnchor"></a>
 		<section class="ticketsSelection col-container">
-			<a name="tickets" id="ticketsAnchor"></a>
+
 			<div class="stepTitle">
 				<strong>[:buy-step-1:]</strong>
 				<div class="step-text">
@@ -97,7 +98,7 @@ if(!empty($record)){
 				<?php
 				foreach($record['TicketPrice'] as $key => $ticketPrice){
 					?>
-					<tr>
+					<tr data-code="<?= $ticketPrice['code']?>" >
 						<th><?= $ticketPrice['description']?></th>
 						<td data-price="<?= $ticketPrice['price'] ?>" class="price">$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
 						<td class="buttons">
@@ -136,6 +137,7 @@ if(!empty($record)){
 			</div>
 		</section>
 	<?php if($record['Show']['seat_alloctype']){ ?>
+		<a name="seats" id="ticketsAnchor"></a>
 		<section class="seatsSelection col-container">
 			<div class="stepTitle">
 				<strong>[:buy-step-2:]</strong>
@@ -162,16 +164,19 @@ if(!empty($record)){
 				</div>
 
 				<div class="instructions">
-				<span class="available">
-					[:disponibles:]
-				</span>
-				<span class="unavailable">
-					[:ocupados:]
-				</span>
-				<span class="yourseats">
-					[:tus-asientos:]
-				</span>
+					<span class="available">
+						[:disponibles:]
+					</span>
+					<span class="unavailable">
+						[:ocupados:]
+					</span>
+					<span class="yourseats">
+						[:tus-asientos:]
+					</span>
 				</div>
+			</div>
+			<div id="seatsInputs">
+
 			</div>
 		</section>
 	<?php
@@ -211,6 +216,7 @@ if(!empty($record)){
 					'between'=>$this->Html->tag("span","",'card-number-icon'),
 					'after'=>$this->Html->tag("span","","ccType")#.$this->Html->tag("span","","ccType MASTERCARD")
 				));
+				echo $this->Form->hidden("trans_id_temp");
 				echo $this->Html->tag("div",$this->I18n->input("cctype",array('options'=>array('VISA'=>"Visa",'MASTERCARD'=>'Master Card'))),array('id'=>'CCType'));
 
 				echo $this->I18n->input("ccname",array('placeholder'=>'[:name-in-card:]'));
@@ -240,7 +246,87 @@ if(!empty($record)){
 		</section>
 
 	</div>
-	<?php echo $this->Form->end();
+	<div id="buyResume">
+		<div class="col-container">
+			<div class="buyData">
+				<div class="movie-details">
+					<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>$record['Movie']['title'],'class'=>'poster')) ?>
+					<div class="title">
+						<?= Inflector::humanize(low($record['Movie']['title'])) ?>
+					</div>
+					<div class="info">
+						<strong>[:cine:]</strong>
+						<span class="value"><?= $record['Location']['name']." - ".$record['City']['name'] ?></span>
+					</div>
+					<div class="info">
+						<strong>[:fecha:]</strong>
+						<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Show']['schedule']); ?></span>
+					</div>
+					<div class="info">
+						<strong>[:hora:]</strong>
+						<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
+					</div>
+				</div>
+				<div class="tickets-details">
+					<table>
+						<colgroup>
+							<col span="1" />
+							<col span="1" width="100px" />
+							<col span="1" width="100px" />
+						</colgroup>
+						<thead>
+						<tr>
+							<th colspan="2">
+								[:boletos:]
+								<a href="#tickets" class="btn-success btnSelectTicket">[:select-tickets:]</a>
+							</th>
+							<th>
+								[:asientos:]
+								<a href="#seats" class="btn-success btnSelectSeats">[:select-seats:]</a>
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+							<?php foreach($record['TicketPrice'] as $ticket):?>
+							<tr class="ticket" data-code="<?= $ticket['code']?>">
+								<td>
+									<span class="qty"></span>
+									<?= $ticket['description']?>
+								</td>
+								<td class=subtotal></td>
+								<td class="seats"></td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+				<div class="total">
+					<div class="titleSeccion">[:total:]</div>
+					<span class="value">$0.00</span>
+					<span class="iva">[:incluye-iva:]</span>
+				</div>
+				<? if(isset($remainingTime)){ ?>
+				<div class="time">
+					[:remaining-time:]
+					<span class="value"></span>
+				</div>
+				<? } ?>
+			</div>
+
+		</div>
+	</div>
+	<?php
+	if(isset($this->data['buyExpDate'])){
+		echo $this->Form->hidden("buyExpDate",array('name'=>'data[buyExpDate]','value'=>$this->data['buyExpDate']));
+	}
+	echo $this->Form->end();
+	//if(isset($remainingTime)){
+		echo $this->Html->scriptBlock("
+		var remainingTime = ".(isset($remainingTime)? $remainingTime : "false").";
+		var urlExp = '".$this->Html->url(array('controller'=>'pages','action'=>'display','buy_error'))."';
+		var urlError = '".$this->Html->url(array('controller'=>'pages','action'=>'display','buy_error'))."';"
+		);
+	//}
 }else{
 ?>
 	<div class="col-container">
@@ -250,4 +336,8 @@ if(!empty($record)){
 		</div>
 	</div>
 <?php
-} ?>
+}
+$this->I18n->addMissing("no-tickets-selected-yet","Mensaje que aparece cuando intenta seleccionar asientos sin seleccionar boletos",'modulo',true);
+$this->I18n->addMissing("select-tickets","Boton del mensaje que aparece cuando intenta seleccionar asientos sin seleccionar boletos",'modulo',true);
+$this->I18n->addMissing("remaining-time","Texto del cronometro",'modulo',true);
+?>

@@ -191,109 +191,153 @@ class ShowsController extends AppController{
 		#pr(current(end($dbo->_queriesLog)));
 
 
-		if($record['Show']['seat_alloctype']){
+		/*if($record['Show']['seat_alloctype']){
 			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
-		}
+		}*/
 		if(!empty($record)){
-			if(!empty($this->data)){
-				# Se conecta con el servidor Vista
-				#TODO: Cachar la ecepcion cuando no se puede conectar al servicio web
-				$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+			try{
+				if(!empty($this->data)){
+					# Se conecta con el servidor Vista
+					#TODO: Cachar la ecepcion cuando no se puede conectar al servicio web
+					$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
 
-				if(!$this->Session->check("Tickets")){
-					$this->Session->write("Tickets",$this->data);
-				}else{
-					$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
-				}
-				# Se obtienen los tipos de boletos seleccionados
-				$isTicketsSelected = Set::extract('/BuyTicket[qty>0]',$this->data);
-				if(!empty($isTicketsSelected)){
-					$this->transIdTemp = $this->__TransNew($record['Location']['vista_service_url']);
-					if($this->transIdTemp){
+					if(!$this->Session->check("Tickets")){
+						$this->Session->write("Tickets",$this->data);
+					}else{
+						$buys = $this->Buy->find("first",array(
+							'fields'=>array('Buy.id','Buy.trans_id_temp'),
+							'conditions'=>array(
+								'Buy.trans_id_temp ='=>$this->Session->read("Tickets.Buy.trans_id_temp"),
+								'Buy.confirmation_number'=>"-",
+								'Buy.created >'=>date("Y-m-d H:i:s",strtotime("-5 mins")),
+								'Buy.location_id'=>$record['Location']['id']
+							)
+						));
+						$this->data['buyExpDate'] = $this->Session->read("Tickets.buyExpDate");
+						$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
+					}
 
-						if($this->__OrderTickets($record['Show'])){
+					# Se obtienen los tipos de boletos seleccionados
+					$isTicketsSelected = Set::extract('/BuyTicket[qty>0]',$this->data);
+					if(!empty($isTicketsSelected)){
 
-							$dataBuy = $record['Show'];
-							$dataBuy['trans_id_temp'] = $this->data['Buy']['trans_id_temp'] = $this->transIdTemp;
-							unset($dataBuy['created'],$dataBuy['id']);
-							#$dataBuy['BuySeat'] = $this->data['BuySeat'];
-							#$dataBuy['BuyTicket'] = $this->data['BuyTicket'];
-							if($this->Buy->save($dataBuy,false)){
-								$this->data['Buy']['id'] = $this->Buy->id;
-							}else{
-								$this->redirect($url_error_page);
-							}
+						#if(!$this->transIdTemp){
+							$this->transIdTemp = $this->__TransNew($record['Location']['vista_service_url']);
+						#}
 
-							if($record['Show']['seat_alloctype']){
-								if($this->__isSeatsSelected()){
-									if(!$this->__SetSeatsSelected($record['Show'])){
+						if($this->transIdTemp){
+
+							if($this->__OrderTickets($record['Show'])){
+
+								#$this->__getReservedSeatInformation($record['Show']['session_id']);
+
+								$dataBuy = $record['Show'];
+								$dataBuy['trans_id_temp'] = $this->data['Buy']['trans_id_temp'] = $this->transIdTemp;
+								unset($dataBuy['created'],$dataBuy['id']);
+								#$dataBuy['BuySeat'] = $this->data['BuySeat'];
+								#$dataBuy['BuyTicket'] = $this->data['BuyTicket'];
+								if($this->Buy->save($dataBuy,false)){
+									$this->data['Buy']['id'] = $this->Buy->id;
+								}else{
+									$this->redirect($url_error_page);
+								}
+
+								if($record['Show']['seat_alloctype']){
+									if($this->__isSeatsSelected()){
+										if(!$this->__SetSeatsSelected($record['Show'])){
+											$this->__TransCancel($this->transIdTemp);
+											//pr($this->__selectedSeatString());
+											$this->redirect($url_error_page);
+										}
+										#$this->set("buyExpDate",date("Y - m - d H:i:s"));
+
+										//pr($this->data);exit;
+										$this->data['buyExpDate'] = !isset($this->data['buyExpDate']) ? strtotime("+5 mins") : $this->data['buyExpDate'];
+										$this->data['remaining_time'] = $this->data['buyExpDate'] - time();
+										$this->set("remainingTime",$this->data['buyExpDate'] - time());
+									}else{
+										if(!$this->__TicketCancel($record['Show']['session_id'])){
+											$this->__TransCancel($this->transIdTemp);
+											$this->redirect($url_error_page);
+										}
+										$this->Notifier->error("[:no-se-seleccionaron-asientos:]");
+										return;
+									}
+
+								}
+
+								#$this->__saveBuy();
+
+								$this->Session->write("Tickets",$this->data);
+								#$this->Session->write("Tickets.transIdTemp",$this->transIdTemp);
+								$paymentTotal = $this->__getPaymentTotal();
+								$this->data['Buy']['_ccexp'] = $this->data['Buy']['ccexp']['year']."-".$this->data['Buy']['ccexp']['month']."-1";
+								//$this->data['Buy']['_ccexp'] = $ccexp;
+								$this->Buy->set($this->data);
+								# Se Validan los datos de la tarjeta
+								#pr("rochin");
+								if($this->Buy->validates()){
+									$payment = $this->__payment($paymentTotal);
+									if($payment){
+										list($transaction_id,$confirmation_number) = $payment;
+
+										$this->data['Buy']['trans_number'] = $transaction_id;
+										$this->data['Buy']['confirmation_number'] = $confirmation_number;
+										$this->data['Buy']['creater'] = $this->loggedUser['User']['id'];
+										$this->Buy->save($this->data,false);
+										$this->Session->delete("Tickets");
+										$this->redirect(array('controller'=>'buys','action'=>'view',$this->Buy->id));
+									}else{
 										$this->__TransCancel($this->transIdTemp);
 										$this->redirect($url_error_page);
 									}
 								}else{
-									$this->Notifier->error("[:no-se-seleccionaron-asientos:]");
-								}
-
-							}
-
-							#$this->__saveBuy();
-
-							$this->Session->write("Tickets",$this->data);
-							#$this->Session->write("Tickets.transIdTemp",$this->transIdTemp);
-							$paymentTotal = $this->__getPaymentTotal();
-							$this->data['Buy']['_ccexp'] = $this->data['Buy']['ccexp']['year']."-".$this->data['Buy']['ccexp']['month']."-1";
-							//$this->data['Buy']['_ccexp'] = $ccexp;
-							$this->Buy->set($this->data);
-							# Se Validan los datos de la tarjeta
-							if($this->Buy->validates()){
-								$payment = $this->__payment($paymentTotal);
-								if($payment){
-									list($transaction_id,$confirmation_number) = $payment;
-
-									$this->data['Buy']['trans_number'] = $transaction_id;
-									$this->data['Buy']['confirmation_number'] = $confirmation_number;
-									$this->data['Buy']['creater'] = $this->loggedUser['User']['id'];
-									$this->Buy->save($this->data,false);
-									$this->Session->delete("Tickets");
-									$this->redirect(array('controller'=>'buys','action'=>'view',$this->Buy->id));
-								}else{
-									$this->__TransCancel($this->transIdTemp);
-									$this->redirect($url_error_page);
+									$this->Notifier->error("[:informacion-de-pago-incorrecta:]");
 								}
 							}else{
-								$this->Notifier->error("[:informacion-de-pago-incorrecta:]");
+								$this->__TransCancel($this->transIdTemp);
+								$this->redirect($url_error_page);
 							}
 						}else{
-							$this->__TransCancel($this->transIdTemp);
-							#pr("rochin");
-							$this->redirect($url_error_page);
+							$this->redirect(array('controller'=>'pages','action'=>'display','buy_error'));
 						}
 					}else{
-						$this->redirect(array('controller'=>'pages','action'=>'display','buy_error'));
+						$this->Notifier->error("[:error-no-tickets-selected:]");
 					}
 				}else{
-					$this->Notifier->error("[:error-no-tickets-selected:]");
+					if($this->Session->check("Tickets")){
+						$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
+						$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
+					}
 				}
-			}else{
-				if($this->Session->check("Tickets")){
-					$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
-					$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
-				}
+			}catch(Exception $e){
+				$this->redirect($url_error_page);
 			}
 		}
 	}
 
 	function __isSeatsSelected(){
-		if(!empty($this->data['BuySeat'])){
-			foreach($this->data['BuySeat'] as $seats){
-				foreach($seats['grid'] as $seat){
-					if($seat != "0"){
-						return true;
-					}
-				}
-			}
+		return !empty($this->data['BuySeat']);
+	}
+
+	function __getReservedSeatInformation($session_id){
+		$params = array(
+			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$this->transIdTemp,
+			'CmdName'=>'GetReservedSeatInformation',
+			'Param1'=>$session_id,#SessionID
+			'Param2'=>"",#SessionDateTime
+			'Param3'=>"",#TicketsDetailsList
+			'Param4'=>"",#UserSelectedSeating
+			'Param5'=>"",#TicketPackageDefinition
+			'Param6'=>"" #TicketDetailsListFormat
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		pr($params);
+		pr($response);
+		if($response->ExecuteResult == 0){
+			#$result = explode("|",$response->ReturnData);
+			return true;
 		}
-		return false;
 	}
 
 
@@ -464,6 +508,24 @@ class ShowsController extends AppController{
 
 	}
 
+	function __TicketCancel($sessionId){
+		$params = array(
+			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$this->transIdTemp,#"20000000499",#$transId,
+			'CmdName'=>'TicketCancel',
+			'Param1'=>$sessionId,#$record['Show']['session_id'],#SessionID
+			'Param2'=>"",
+			'Param3'=>"",
+			'Param4'=>"",
+			'Param5'=>"",
+			'Param6'=>"",
+		);
+		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
+		return !$response->ExecuteResult;
+
+	}
+
 	function __TransNew(){
 		/**/
 		$params = array(
@@ -519,16 +581,10 @@ class ShowsController extends AppController{
 	}
 
 	function __selectedSeatString(){
-		$num = 0;
+		$num = count($this->data['BuySeat']);
 		$r = "";
-		foreach($this->data['BuySeat'] as $area){
-			foreach($area['grid'] as $seat){
-				if($seat != "0"){
-					$num++;
-					list($row_physical,$row,$column) = split("-",$seat);
-					$r .= $area['area_category']."|".$area['area_number']."|".$row."|".$column."|";
-				}
-			}
+		foreach($this->data['BuySeat'] as $seat){
+				$r .= $seat['area_category']."|".$seat['area_number']."|".$seat['row']."|".$seat['column']."|";
 		}
 		return "|".$num."|".$r;
 	}
@@ -537,141 +593,155 @@ class ShowsController extends AppController{
 		$this->Show->id = $show_id;
 		$this->Show->contain(array('Location'));
 		$record = $this->Show->read();
-			$this->set("sessionSeatData",$this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']));
+		$sessionSeatData = $this->__getSeats($record['Location']['vista_service_url'],$record['Show']['session_id']);
+		if($sessionSeatData){
+			$this->set("sessionSeatData",$sessionSeatData);
+		}else{
+			$this->set("sessionSeatData",array());
+			$this->Notifier->error("Servicio no disponible");
+		}
+
+
+
 		/*if($this->RequestHandler->isAjax()){
 
 		}*/
 	}
 
 	function __getSeats($server,$session_id){
-		$this->VistaServer = @new SoapClient($server,array('cache_wsdl'=>WSDL_CACHE_NONE));
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
-			'CmdName'=>'TransNew',
-			'Param1'=>"",
-			'Param2'=>"",
-			'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
-		);
-		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			$result = explode("|",$response->ReturnData);
-			$transId = $result[6];
-			#pr($transId);
-			#$this->Session->write("TransID",$transId);
-		}
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
-			'CmdName'=>'GetSessionSeatDataEx',
-			'Param1'=>$session_id."",
-			'Param2'=>"",
-			'Param3'=>"Y",
-			'Param4'=>"Y",
-			'Param5'=>"",
-			'Param6'=>"Y"
-		);
-		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		if($response->ExecuteResult == 0){
-			#pr($response->ReturnData);
-			$rData = explode("|",$response->ReturnData);
-			#pr($rData);
-			# En la posicion 7 del arreglo empiezan los datos del sistema
-			$index = 7;
-			$sessionSeatData['physical_screen_left'] = $rData[$index]; $index++;
-			$sessionSeatData['physical_screen_width'] = $rData[$index]; $index++;
-			$sessionSeatData['screen_boundary_position_left'] = $rData[$index]; $index++;
-			$sessionSeatData['screen_boundary_position_top'] = $rData[$index]; $index++;
-			$sessionSeatData['screen_boundary_position_right'] = $rData[$index]; $index++;
-			$sessionSeatData['number_relationships_types'] = $rData[$index]; $index++;
-
-			if($sessionSeatData['number_relationships_types']){
-				foreach(range(1,$sessionSeatData['number_relationships_types']) as $i){
-					$sessionSeatData['relationships_types'][$rData[$index]] = $rData[$index+1];
-					$index+=2;
-				}
+		try{
+			$this->VistaServer = @new SoapClient($server,array('cache_wsdl'=>WSDL_CACHE_NONE));
+			$params = array(
+				'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>"".rand(0,10000000),
+				'CmdName'=>'TransNew',
+				'Param1'=>"",
+				'Param2'=>"",
+				'Param3'=>"",'Param4'=>"",'Param5'=>"",'Param6'=>""
+			);
+			$response = $this->VistaServer->__soapCall("Execute",array($params));
+			if($response->ExecuteResult == 0){
+				$result = explode("|",$response->ReturnData);
+				$transId = $result[6];
+				#pr($transId);
+				#$this->Session->write("TransID",$transId);
 			}
-			$total_areas = $sessionSeatData['total_areas'] = $rData[$index];
-			foreach(range(1,$total_areas) as $i){
-				$index++;
-				$area_number = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_number'] = $area_number;
-				$sessionSeatData['areas'][$area_number]['area_category'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_layout_top'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_layout_left'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_layout_width'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_layout_height'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_layout_rows'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_layout_colums'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['is_selectable'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_description'] = $rData[$index]; $index++;
-				$sessionSeatData['areas'][$area_number]['area_description_alt'] = $rData[$index]; $index++;
-				$total_rows = $sessionSeatData['areas'][$area_number]['total_rows'] = $rData[$index]; $index++;
-				#pr($sessionSeatData);
-				for($i = 1; $i<=$total_rows; $i++){
-					#pr($index);
-					if(!isset($rData[$index])){
+			$params = array(
+				'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$transId,
+				'CmdName'=>'GetSessionSeatDataEx',
+				'Param1'=>$session_id."",
+				'Param2'=>"",
+				'Param3'=>"Y",
+				'Param4'=>"Y",
+				'Param5'=>"",
+				'Param6'=>"Y"
+			);
+			$response = $this->VistaServer->__soapCall("Execute",array($params));
+			if($response->ExecuteResult == 0){
+				#pr($response->ReturnData);
+				$rData = explode("|",$response->ReturnData);
+				#pr($rData);
+				# En la posicion 7 del arreglo empiezan los datos del sistema
+				$index = 7;
+				$sessionSeatData['physical_screen_left'] = $rData[$index]; $index++;
+				$sessionSeatData['physical_screen_width'] = $rData[$index]; $index++;
+				$sessionSeatData['screen_boundary_position_left'] = $rData[$index]; $index++;
+				$sessionSeatData['screen_boundary_position_top'] = $rData[$index]; $index++;
+				$sessionSeatData['screen_boundary_position_right'] = $rData[$index]; $index++;
+				$sessionSeatData['number_relationships_types'] = $rData[$index]; $index++;
+
+				if($sessionSeatData['number_relationships_types']){
+					foreach(range(1,$sessionSeatData['number_relationships_types']) as $i){
+						$sessionSeatData['relationships_types'][$rData[$index]] = $rData[$index+1];
+						$index+=2;
+					}
+				}
+				$total_areas = $sessionSeatData['total_areas'] = $rData[$index];
+				foreach(range(1,$total_areas) as $i){
+					$index++;
+					$area_number = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_number'] = $area_number;
+					$sessionSeatData['areas'][$area_number]['area_category'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_layout_top'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_layout_left'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_layout_width'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_layout_height'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_layout_rows'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_layout_colums'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['is_selectable'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_description'] = $rData[$index]; $index++;
+					$sessionSeatData['areas'][$area_number]['area_description_alt'] = $rData[$index]; $index++;
+					$total_rows = $sessionSeatData['areas'][$area_number]['total_rows'] = $rData[$index]; $index++;
+					#pr($sessionSeatData);
+					for($i = 1; $i<=$total_rows; $i++){
+						#pr($index);
+						if(!isset($rData[$index])){
+							$index++;
+						}
+						#pr($index);
+						if(!preg_match('/([0-9A-Fa-f]{2})([\s\d]){5}(\d)(\d)/', $rData[$index+2])){
+
+							/*
+								Se verifica que 2 posiciones mas adelante del arreglo sea un asiento
+								esto por que en ocaciones viene un numero de asiento fisico con un | (pipe),
+								se pone el elemento en la cadena de asientos de la fila anterior, se elimina el elemento
+								y se vuelve a ejecutar la fila anterior
+							*/
+							#pr($rData[$index+2]);
+							$rData[$index-1] .= " ".$rData[$index];
+							unset($rData[$index]);
+							$index -= 3;
+							$i--;
+
+						}
+						$_row = $rData[$index];
+						$sessionSeatData['areas'][$area_number]['rows'][$_row]['seat_grid_row_id'] = $rData[$index]; $index++;
+						$sessionSeatData['areas'][$area_number]['rows'][$_row]['row_physical_id'] = $rData[$index]; $index++;
+
+						preg_match_all('/(?<grid_seat_number>[0-9A-F]{2})(?<seat_number>[\s\d]{5})(?<seat_status>\d)(?<priority>\d)/',$rData[$index],$matches);
 						$index++;
+						foreach($matches as $field => $match){
+							if(!is_numeric($field)){
+								foreach($match as $k => $value){
+									$sessionSeatData['areas'][$area_number]['rows'][$_row]['seats'][$matches['grid_seat_number'][$k]][$field] = trim($value);
+								}
+							}
+						}
 					}
+					#$index++;
+
+					$total_relationships_groups = $sessionSeatData['areas'][$area_number]['total_relationship_groups'] = $rData[$index]; $index++;
 					#pr($index);
-					if(!preg_match('/([0-9A-Fa-f]{2})([\s\d]){5}(\d)(\d)/', $rData[$index+2])){
+					foreach(range(1,$total_relationships_groups) as $i){
+						//$_row = $rData[$index];
+						preg_match_all('/(?<seat_grid_row_id>[0-9A-F]{2})(?<seat_grid_number>[0-9A-F]{2})(?<rel_type_id>[a-zA-Z0-9])/',$rData[$index],$matches);
+						$index++;
 
-						/*
-							Se verifica que 2 posiciones mas adelante del arreglo sea un asiento
-							esto por que en ocaciones viene un numero de asiento fisico con un | (pipe),
-							se pone el elemento en la cadena de asientos de la fila anterior, se elimina el elemento
-							y se vuelve a ejecutar la fila anterior
-						*/
-						#pr($rData[$index+2]);
-						$rData[$index-1] .= " ".$rData[$index];
-						unset($rData[$index]);
-						$index -= 3;
-						$i--;
-
-					}
-					$_row = $rData[$index];
-					$sessionSeatData['areas'][$area_number]['rows'][$_row]['seat_grid_row_id'] = $rData[$index]; $index++;
-					$sessionSeatData['areas'][$area_number]['rows'][$_row]['row_physical_id'] = $rData[$index]; $index++;
-
-					preg_match_all('/(?<grid_seat_number>[0-9A-F]{2})(?<seat_number>[\s\d]{5})(?<seat_status>\d)(?<priority>\d)/',$rData[$index],$matches);
-					$index++;
-					foreach($matches as $field => $match){
-						if(!is_numeric($field)){
-							foreach($match as $k => $value){
-								$sessionSeatData['areas'][$area_number]['rows'][$_row]['seats'][$matches['grid_seat_number'][$k]][$field] = trim($value);
+						foreach($matches as $field => $match){
+							if(!is_numeric($field)){
+								foreach($match as $k => $value){
+									#$sessionSeatData['areas'][$area_number]['relationship_groups'][$i][$k][$field] = trim($value);
+									$_row = base_convert($matches['seat_grid_row_id'][$k],16,10);
+									//pr("areas"$row." - ")
+									$sessionSeatData['areas'][$area_number]['rows'][$_row]['seats'][$matches['seat_grid_number'][$k]]['rel_type_id'] = trim($value);
+								}
 							}
 						}
 					}
-				}
-				#$index++;
 
-				$total_relationships_groups = $sessionSeatData['areas'][$area_number]['total_relationship_groups'] = $rData[$index]; $index++;
-				#pr($index);
-				foreach(range(1,$total_relationships_groups) as $i){
-					//$_row = $rData[$index];
-					preg_match_all('/(?<seat_grid_row_id>[0-9A-F]{2})(?<seat_grid_number>[0-9A-F]{2})(?<rel_type_id>[a-zA-Z0-9])/',$rData[$index],$matches);
-					$index++;
-
-					foreach($matches as $field => $match){
-						if(!is_numeric($field)){
-							foreach($match as $k => $value){
-								#$sessionSeatData['areas'][$area_number]['relationship_groups'][$i][$k][$field] = trim($value);
-								$_row = base_convert($matches['seat_grid_row_id'][$k],16,10);
-								//pr("areas"$row." - ")
-								$sessionSeatData['areas'][$area_number]['rows'][$_row]['seats'][$matches['seat_grid_number'][$k]]['rel_type_id'] = trim($value);
-							}
-						}
-					}
 				}
 
+				#pr($sessionSeatData);
+				#pr($rData);
+				return $sessionSeatData;
+			}else{
+				#pr("error");
+				#pr($response);
+				return false;
 			}
-
-			#pr($sessionSeatData);
-			#pr($rData);
-		}else{
-			pr("error");
-			pr($response);
+		}catch(Exception $e){
+			return false;
 		}
 
-		return $sessionSeatData;
 	}
 
 	function get_movie_schedule($movie_id = null){
@@ -716,7 +786,7 @@ class ShowsController extends AppController{
 					Configure::write("CitySelected.id",$this->params['named']['city']);
 				}
 				$date = date("Y-m-d");
-				$start = strtotime("-30 min");
+				$start = date("Y-m-d",strtotime("-30 min"));
 				if(isset($this->params['named']['date'])){
 					$date = $this->params['named']['date'];
 					$start = $date." ".date("H:i:s");

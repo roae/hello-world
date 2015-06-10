@@ -50,12 +50,13 @@ class RemoveTransactionsShell extends Shell{
 
 		$buysToRemove = array();
 		foreach($locations as $record){
+			# TODO: poner el tiempo que durara una sesion en la configuracion de la página
 			$buys = $this->Buy->find("all",array(
 				'fields'=>array('Buy.id','Buy.trans_id_temp'),
 				'conditions'=>array(
 					'Buy.trans_id_temp <>'=>"-",
 					'Buy.confirmation_number'=>"-",
-					'Buy.created <'=>date("Y-m-d H:i:s",strtotime("-2 mins")),
+					'Buy.created <'=>date("Y-m-d H:i:s",strtotime("-5 mins")),
 					'Buy.location_id'=>$record['Location']['id']
 				)
 			));

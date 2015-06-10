@@ -26,7 +26,7 @@
 	);*/
 
 	$billboard = $this->requestAction(am(array('controller'=>'shows','action'=>'rest'),$restParams));
-	#pr($billboard);
+	//pr($billboard);
 ?>
 <ul class="movies-list">
 	<?php foreach($billboard as $show) {
@@ -38,7 +38,14 @@
 				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
 				<?php
 				if(isset($show['Movie']['presale']) && $show['Movie']['presale']){
-					echo $this->Html->tag("span","[:presale:]",'presale');
+					list($start_year,$start_month,$start_day) = explode("-",$show['Movie']['presale_start']);
+					list($end_year,$end_month,$end_day) = explode("-",$show['Movie']['presale_end']);
+					$presale_start = mktime(0,0,0,$start_month,$start_day,$start_year);
+					$presale_end = mktime(0,0,0,$end_month,$end_day,$end_year);
+					$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
+					if($today >= $presale_start && $today <= $presale_end){
+						echo $this->Html->tag("span","[:presale:]",'presale');
+					}
 				}
 				?>
 				<div class="details link">

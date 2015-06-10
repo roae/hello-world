@@ -10,7 +10,7 @@
  */
 class BCGArgumentException extends Exception {
     protected $param;
-
+ 
     /**
      * Constructor with specific message for a parameter.
      *

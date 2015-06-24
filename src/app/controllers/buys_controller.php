@@ -19,10 +19,16 @@ class BuysController extends AppController{
 				),
 				'Projection',
 				'BuySeat',
-				'BuyTicket'
+				'BuyTicket',
+				'Buyer'=>array(
+					'Profile'
+				)
 			));
 			$this->Buy->id = $id;
 			$record = $this->Buy->read();
+			$route = Router::parse($this->referer());
+			$this->set("showMessage",$route['controller'] == "shows");
+			$this->set("referer",$this->referer());
 			$this->set("record",$record);
 		}else{
 			$this->cakeError('error404');

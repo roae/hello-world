@@ -4,6 +4,7 @@
  * Class ShowsController
  * @property $Show Show
  * @property $Buy Buy
+ * @property $SmartConnector SmartConnectorComponent
  */
 class ShowsController extends AppController{
 	var $name = "Shows";
@@ -11,6 +12,18 @@ class ShowsController extends AppController{
 		"Show",
 		"Buy",
 	);
+
+	var $components = array(
+		'SmartConnector'=>array(
+			'hosts'=>"http://189.203.240.220:3742/SmartPlattformConnector",
+			'clientID'=>'CitiCinemas',
+			'clientPOS'=>'CitiCinemasWS1',
+			'user'=>'CitiCinemasWS1',
+			'passwd'=>'987654321',
+			'randomKey'=>'6BD2A20879A987AC46A24121356478B8'
+		)
+	);
+
 	/**
 	 * Conditions de peliculas usados para sacar los horarios
 	 * @var array
@@ -22,6 +35,7 @@ class ShowsController extends AppController{
 	var $VistaServer;
 
 	function index() {
+		#pr("rochin");
 		if(!isset($this->params['slug'])){
 			$this->cakeError("error404");
 		}
@@ -30,19 +44,21 @@ class ShowsController extends AppController{
 		$date = date("Y-m-d");
 		//$start = date("Y-m-d h:i:s");
 		$start = strtotime("-30 min");
-		/*if($this->Session->read("BillboardFilter.date")){
-			$date = $this->Session->read("BillboardFilter.date");
-			$start = $date." ".date("H:i:s");
-			if($date != date("Y-m-d")){
-				$start = $date." 0:0:0";
-			}
-		}*/
+
 		if(isset($this->params['named']['date'])){
 			$date = $this->params['named']['date'];
 			$start = $date." ".date("H:i:s");
 			if($date != date("Y-m-d")){
 				$start = $date." 0:0:0";
 			}
+		}
+		if(isset($this->data['Filter']['date'])){
+			$date = $this->data['Filter']['date'];
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+			//pr($start);
 		}
 		$end = $date." 23:59:59";
 		$this->__showConditions = array(
@@ -55,13 +71,17 @@ class ShowsController extends AppController{
 	}
 
 	function __getBillboardSchedules(){
+		$conditions = array(
+			'Location.trash'=>0,
+			'Location.status'=>1,
+			'Location.city_id'=>Configure::read("CitySelected.id"),
+		);
+		if(isset($this->data['Filter']['Location'])){
+			$conditions['Location.id']=$this->data['Filter']['Location'];
+		}
 		$recordset = $this->Show->Location->find("all", array(
 			'fields'=>$this->Show->Location->publicFields,
-			'conditions'=>array(
-				'Location.trash'=>0,
-				'Location.status'=>1,
-				'Location.city_id'=>Configure::read("CitySelected.id"),
-			),
+			'conditions'=>$conditions,
 			'contain'=>array(
 				'Show'=>array(
 					'conditions'=>am(
@@ -70,7 +90,8 @@ class ShowsController extends AppController{
 					),
 					'Projection',
 					'Movie'=>array(
-						'Poster'
+						'Poster',
+						'MovieLocation',
 					),
 					'order'=>'Show.schedule ASC'
 				)
@@ -100,16 +121,27 @@ class ShowsController extends AppController{
 		if(empty($data)){
 			$slug = $this->params['slug'];
 			$data['City'] = Configure::read("CitySelected");
+			#pr($slug);
+			#pr($data);
 			if( $slug != Configure::read("CitySelected.slug") ) {
-
 				$data = $this->Show->Location->City->findBySlug($slug);
+				pr($data);
+				$this->data['Filter']['Location']= array();
 			}
 		}
 
 		if( ! empty($data) ) {
+			#pr($data['City']);
 			$this->Cookie->write("CitySelected", $data['City'], false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
 			Configure::write("CitySelected", $data['City']);
 			$this->set("CitySelected",$data['City']);
+			$this->Session->write("CitySelected",$data['City']);
+
+
+			if($this->RequestHandler->isAjax()){
+				$url = Router::url(array('controller'=>'shows','action'=>'index','slug'=>$data['City']['slug']));
+				header(sprintf('X-City: {name:"%s",url:"%s"}',rawurlencode($data['City']['name']),$url."/"));
+			}
 
 			$_locations = $this->Show->Location->find("all",array(
 				'conditions'=>array(
@@ -120,18 +152,23 @@ class ShowsController extends AppController{
 				'fields'=>$this->Show->Location->publicFields
 			));
 			#pr($_locations);
-			$locations = array();
-			$locationsList = array();
+			$locations = $locationsList = $complexSelected = array();
+
 			foreach($_locations as $record){
 				$locations[$record['Location']['id']] = $record;
 				$locationsList[$record['Location']['id']] = $record['Location']['name'];
+				$complexSelected[] = $record['Location']['id'];
+			}
+
+			if(count($this->data['Filter']['Location']) == 0){
+				$this->data['Filter']['Location'] = $complexSelected;
 			}
 
 			$this->Cookie->write("LocationsSelected", json_encode($locations), false, mktime(0,0,0,date("m"), date("d"), date("Y") + 1));
 			$this->set("LocationsSelected",$locations);
 			Configure::write("LocationsSelected",$locations);
 			Configure::write("LocationsList",$locationsList);
-			Cache::write("LocationsList",$locationsList);
+			$this->Session->write("LocationsList",$locationsList);
 			#pr($this->Cookie->read("LocationsSelected"));
 
 		} else {
@@ -172,6 +209,7 @@ class ShowsController extends AppController{
 
 	function buy(){
 		$url_error_page = array('controller'=>'pages','action'=>'display','buy_error');
+		$url_expired_page = array('controller'=>'pages','action'=>'display','buy_expired_error');
 		$this->Show->id = $this->params['show_id'];
 		$this->Show->contain(array(
 			'TicketPrice',
@@ -213,7 +251,7 @@ class ShowsController extends AppController{
 								'Buy.location_id'=>$record['Location']['id']
 							)
 						));
-						$this->data['buyExpDate'] = $this->Session->read("Tickets.buyExpDate");
+						//$this->data['buyExpDate'] = $this->Session->read("Tickets.buyExpDate");
 						$this->__TransCancel($this->Session->read("Tickets.Buy.trans_id_temp"));
 					}
 
@@ -221,9 +259,7 @@ class ShowsController extends AppController{
 					$isTicketsSelected = Set::extract('/BuyTicket[qty>0]',$this->data);
 					if(!empty($isTicketsSelected)){
 
-						#if(!$this->transIdTemp){
-							$this->transIdTemp = $this->__TransNew($record['Location']['vista_service_url']);
-						#}
+						$this->transIdTemp = $this->__TransNew($record['Location']['vista_service_url']);
 
 						if($this->transIdTemp){
 
@@ -239,25 +275,46 @@ class ShowsController extends AppController{
 								if($this->Buy->save($dataBuy,false)){
 									$this->data['Buy']['id'] = $this->Buy->id;
 								}else{
+									pr("No se pudo guardar los datos de la compra");
+									#pr($dataBuy);
 									$this->redirect($url_error_page);
 								}
 
 								if($record['Show']['seat_alloctype']){
 									if($this->__isSeatsSelected()){
+										$reservedSeats = $this->__getReservedSeatInformation($record['Show']['session_id']);
+										#pr($reservedSeats);
+										#pr(count($reservedSeats));
+										#pr(count($this->data['BuySeat']));
+										/*if(count($reservedSeats) != count($this->data['BuySeat'])){
+											if(!$this->__TicketCancel($record['Show']['session_id'])){
+												$this->__TransCancel($this->transIdTemp);
+												pr("Hubo un cambio en el numero de asientos reservados, y no se pudo cancelar los asientos anteriores");
+												$this->redirect($url_error_page);
+											}
+										}*/
+										#pr($reservedSeats);
+										#pr($reservedSeats);
 										if(!$this->__SetSeatsSelected($record['Show'])){
 											$this->__TransCancel($this->transIdTemp);
-											//pr($this->__selectedSeatString());
+											pr($this->__selectedSeatString());
+											pr("No se pudo reservar los boletos");
 											$this->redirect($url_error_page);
 										}
 										#$this->set("buyExpDate",date("Y - m - d H:i:s"));
 
 										//pr($this->data);exit;
-										$this->data['buyExpDate'] = !isset($this->data['buyExpDate']) ? strtotime("+5 mins") : $this->data['buyExpDate'];
+										if($this->Session->check('Tickets.buyExpDate')){
+											pr($this->Session->read("Tickets"));
+										}
+										$this->data['buyExpDate'] = !$this->Session->check('Tickets.buyExpDate') ? strtotime("+5 mins") : $this->Session->read('Tickets.buyExpDate');
+										$this->Session->write("Tickets.buyExpDate",$this->data['buyExpDate']);
 										$this->data['remaining_time'] = $this->data['buyExpDate'] - time();
 										$this->set("remainingTime",$this->data['buyExpDate'] - time());
 									}else{
 										if(!$this->__TicketCancel($record['Show']['session_id'])){
 											$this->__TransCancel($this->transIdTemp);
+											pr("No se pudo cancelar los tickets");
 											$this->redirect($url_error_page);
 										}
 										$this->Notifier->error("[:no-se-seleccionaron-asientos:]");
@@ -278,17 +335,32 @@ class ShowsController extends AppController{
 								#pr("rochin");
 								if($this->Buy->validates()){
 									$payment = $this->__payment($paymentTotal);
-									if($payment){
-										list($transaction_id,$confirmation_number) = $payment;
-
-										$this->data['Buy']['trans_number'] = $transaction_id;
-										$this->data['Buy']['confirmation_number'] = $confirmation_number;
-										$this->data['Buy']['creater'] = $this->loggedUser['User']['id'];
+									//pr($payment);
+									if(isset($payment['confirmation_number'])){
+										$this->data['Buy']['trans_number'] = $payment['transaction_number'];
+										$this->data['Buy']['confirmation_number'] = $payment['confirmation_number'];
+										$this->data['Buy']['aut_code'] = $payment['smartResponse']['Aut-Code'];
+										$this->data['Buy']['buyer'] = $this->loggedUser['User']['id'];
+										$this->data['Buy']['ccending'] = substr($this->data['Buy']['ccnumber'],-4);
 										$this->Buy->save($this->data,false);
 										$this->Session->delete("Tickets");
 										$this->redirect(array('controller'=>'buys','action'=>'view',$this->Buy->id));
 									}else{
+										if(isset($payment['smart_response']['error'])){
+											switch($payment['smart_response']['code']){
+												case '05':
+													$this->Notifier->error("[:tarjeta-invalida:]");
+													break;
+												case '01':
+												case '02':
+													$this->Notifier->error("[:pago-rechazado:] ".$payment['smart_response']['message']);
+													break;
+											}
+											return;
+										}
+
 										$this->__TransCancel($this->transIdTemp);
+										pr("Error en la coneccion con el complejo");
 										$this->redirect($url_error_page);
 									}
 								}else{
@@ -296,10 +368,12 @@ class ShowsController extends AppController{
 								}
 							}else{
 								$this->__TransCancel($this->transIdTemp);
+								pr("No se pudo hacer la orden de Tickets");
 								$this->redirect($url_error_page);
 							}
 						}else{
-							$this->redirect(array('controller'=>'pages','action'=>'display','buy_error'));
+							pr("No se pudo crear una nueva transaccion");
+							$this->redirect($url_error_page);
 						}
 					}else{
 						$this->Notifier->error("[:error-no-tickets-selected:]");
@@ -311,6 +385,7 @@ class ShowsController extends AppController{
 					}
 				}
 			}catch(Exception $e){
+				pr("Error en la coneccion con el complejo");
 				$this->redirect($url_error_page);
 			}
 		}
@@ -332,11 +407,27 @@ class ShowsController extends AppController{
 			'Param6'=>"" #TicketDetailsListFormat
 		);
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		pr($params);
-		pr($response);
+		#pr($params);
+		#pr($response);
 		if($response->ExecuteResult == 0){
-			#$result = explode("|",$response->ReturnData);
-			return true;
+			$result = explode("|",$response->ReturnData);
+			$index = 6;
+			$seats = $result[4]; # Se obtiene la cantidad de boletos reservados
+			$tickets = array();
+			for($i = 0; $i<$seats; $i++){
+				$ticket = array();
+				$ticket['area_number'] = $result[$index]; $index++;
+				$ticket['row'] = $result[$index]; $index++;
+				$ticket['column'] = $result[$index]; $index++;
+				$ticket['row_physical'] = $result[$index]; $index++;
+				$ticket['column_physical'] = $result[$index]; $index++;
+				$ticket['area_desc'] = $result[$index]; $index++;
+
+				$tickets[] = $ticket;
+			}
+
+			//pr($result);
+			return $tickets;
 		}
 	}
 
@@ -380,67 +471,102 @@ class ShowsController extends AppController{
 			'Param6'=>""
 		);
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		if($response->ExecuteResult){
+			return false;
+		}
 		#pr($params);
 		#pr($response);
-
-		#PaymentOk
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
-			'CmdName'=>'PaymentOk',
-			'Param1'=>$this->data['Buy']['cctype'],
-			'Param2'=>$this->data['Buy']['ccnumber'],
-			'Param3'=>$this->data['Buy']['ccexp']['year'].$this->data['Buy']['ccexp']['month'],
-			'Param4'=>$this->data['Buy']['ccname'],
-			'Param5'=>"N",
-			'Param6'=>""
+		$date = mktime(0,0,0,$this->data['Buy']['ccexp']['month'],1,$this->data['Buy']['ccexp']['year']);
+		//pr(date("Y-m-d",$date));
+		$smartData = array(
+			'number'=>$this->data['Buy']['ccnumber'],
+			'name'=>$this->data['Buy']['ccname'],
+			'exp'=>date("ym",$date),
+			'cvv'=>$this->data['Buy']['cvv'],
+			'total'=>$paymentTotal
 		);
-		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		#pr($params);
-		#pr($response);
+		$smartResponse = $this->SmartConnector->payment($smartData);
+		#pr($smartResponse);
+		if(isset($smartResponse['Aut-Code'])){
 
-		#GetTransactionRefEx
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
-			'CmdName'=>'GetTransactionRefEx',
-			'Param1'=>"N",
-			'Param2'=>"",
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		#pr($params);
-		#pr($response);
-
-
-		if(!$response->ExecuteResult){
-			$result = explode("|",$response->ReturnData);
-			if(isset($result[8]) && isset($result[9])){
-				$transaction_number= $result[8];
-				$confirmation_number = $result[9];
+			#PaymentOk
+			$params = array(
+				'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+				'CmdName'=>'PaymentOk',
+				'Param1'=>$this->data['Buy']['cctype'],
+				'Param2'=>$this->data['Buy']['ccnumber'],
+				'Param3'=>$this->data['Buy']['ccexp']['year'].$this->data['Buy']['ccexp']['month'],
+				'Param4'=>$this->data['Buy']['ccname'],
+				'Param5'=>"N",
+				'Param6'=>""
+			);
+			$response = $this->VistaServer->__soapCall("Execute",array($params));
+			if($response->ExecuteResult != 0){# Si ocurre un error se cancela el pago
+				$smartData['RefSPNum'] = $smartResponse['RefSPNum'];
+				$this->SmartConnector->cancel($smartData);
 			}
+			#pr($params);
+			#pr($response);
+
+			#GetTransactionRefEx
+			$params = array(
+				'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+				'CmdName'=>'GetTransactionRefEx',
+				'Param1'=>"N",
+				'Param2'=>"",
+				'Param3'=>"",
+				'Param4'=>"",
+				'Param5'=>"",
+				'Param6'=>""
+			);
+			$response = $this->VistaServer->__soapCall("Execute",array($params));
+			#pr($params);
+			#pr($response);
+			if($response->ExecuteResult != 0){# Si ocurre un error se cancela el pago
+				$smartData['RefSPNum'] = $smartResponse['RefSPNum'];
+				$this->SmartConnector->cancel($smartData);
+			}
+
+
+			if(!$response->ExecuteResult){
+				$result = explode("|",$response->ReturnData);
+				if(isset($result[8]) && isset($result[9])){
+					$transaction_number= $result[8];
+					$confirmation_number = $result[9];
+				}
+			}
+
+			#TransComplete
+			$params = array(
+				'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
+				'CmdName'=>'TransComplete',
+				'Param1'=>"0",
+				'Param2'=>"",
+				'Param3'=>"",
+				'Param4'=>"",
+				'Param5'=>"",
+				'Param6'=>""
+			);
+			$response = $this->VistaServer->__soapCall("Execute",array($params));
+			#pr($params);
+			#pr($response);
+			if(!$response->ExecuteResult){
+				if(isset($transaction_number) && isset($confirmation_number)){
+					return array(
+						'transaction_number'=>$transaction_number,
+						'confirmation_number'=>$confirmation_number,
+						'smartResponse'=>$smartResponse,
+					);
+					#return compact("transaction_number",'confirmation_number','smartResponse'); #array($transaction_number,$confirmation_number,$autCode);
+				}
+			}else{# Si ocurre un error se cancela el pago
+				$smartData['RefSPNum'] = $smartResponse['RefSPNum'];
+				$this->SmartConnector->cancel($smartData);
+			}
+		}else{
+			return array('smart_response'=>$smartResponse);
 		}
 
-		#TransComplete
-		$params = array(
-			'ClientID'=>env('SERVER_ADDR'),'TransIdTemp'=>$this->transIdTemp,
-			'CmdName'=>'TransComplete',
-			'Param1'=>"0",
-			'Param2'=>"",
-			'Param3'=>"",
-			'Param4'=>"",
-			'Param5'=>"",
-			'Param6'=>""
-		);
-		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		#pr($params);
-		#pr($response);
-		if(!$response->ExecuteResult){
-			if(isset($transaction_number) && isset($confirmation_number)){
-				return array($transaction_number,$confirmation_number);
-			}
-		}
 		return false;
 		/**/
 	}
@@ -481,8 +607,8 @@ class ShowsController extends AppController{
 			'Param6'=>""
 		);
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		#pr($params);
-		#pr($response);
+		//pr($params);
+		//pr($response);
 		return !$response->ExecuteResult;
 	}
 
@@ -510,9 +636,9 @@ class ShowsController extends AppController{
 
 	function __TicketCancel($sessionId){
 		$params = array(
-			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$this->transIdTemp,#"20000000499",#$transId,
+			'ClientID'=>env("SERVER_ADDR"),'TransIdTemp'=>$this->transIdTemp,
 			'CmdName'=>'TicketCancel',
-			'Param1'=>$sessionId,#$record['Show']['session_id'],#SessionID
+			'Param1'=>$sessionId,#SessionID
 			'Param2'=>"",
 			'Param3'=>"",
 			'Param4'=>"",
@@ -520,8 +646,8 @@ class ShowsController extends AppController{
 			'Param6'=>"",
 		);
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		#pr($params);
-		#pr($response);
+		//pr($params);
+		//pr($response);
 		return !$response->ExecuteResult;
 
 	}
@@ -751,11 +877,49 @@ class ShowsController extends AppController{
 			return  false;
 		}
 
+		if(isset($this->data['Filter'])){
+			$filter = $this->data['Filter'];
+		}else if(isset($this->params['filter'])){
+			$this->data['Filter'] = $this->params['filter'];
+		}
+		//pr("rochin");
+		//pr($this->params['filter']);
+		if(isset($this->params['slug']) && $this->params['slug']){
+			//pr($this->params['slug']);
+			$this->__setCitySelected();
+		}
+
+		$date = date("Y-m-d");
+		//$start = date("Y-m-d h:i:s");
+		$start = strtotime("-30 min");
+
+		if(isset($this->params['named']['date'])){
+			$date = $this->params['named']['date'];
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+		}
+		if(isset($this->data['Filter']['date'])){
+			$date = $this->data['Filter']['date'];
+			$start = $date." ".date("H:i:s");
+			if($date != date("Y-m-d")){
+				$start = $date." 0:0:0";
+			}
+			//pr($start);
+		}
+		$end = $date." 23:59:59";
 		$this->__showConditions = array(
+			'Show.schedule >='=>$start,
+			'Show.schedule <='=>$end,
+			'Show.movie_id'=>$movie_id
+		);
+
+		/*$this->__showConditions = array(
 			'Show.schedule >='=>date("Y-m-d H:i:s"),
 			'Show.schedule <='=>date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d"),date("Y"))),
 			'Show.movie_id'=>$movie_id
-		);
+		);*/
 
 		return $this->__getBillboardSchedules();
 	}
@@ -848,14 +1012,19 @@ class ShowsController extends AppController{
 	}
 
 	function get_date($movie_id = null){
-		$conditions = array();
+		$conditions = array(
+			'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+		);
+		if($movie_id){
+			$conditions = am($conditions,array('Show.movie_id'=>$movie_id));
+			//pr($conditions);
+		}
+		//pr($conditions);
 		$dates = $this->Show->find("list",array(
 			'fields'=>array('Show.date'),
 			'group'=>'Show.date',
 			'order'=>'Show.schedule ASC',
-			'conditions'=>array(
-				'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
-			)
+			'conditions'=>$conditions
 		));
 		if(isset($this->params['requested'])){
 			return $dates;

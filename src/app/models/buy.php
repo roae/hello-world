@@ -17,6 +17,10 @@ class Buy extends AppModel{
 		'Movie',
 		'Location',
 		'Projection',
+		'Buyer'=>array(
+			'className'=>'User',
+			'foreignKey'=>'buyer',
+		)
 	);
 
 	var $validate = array(

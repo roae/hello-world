@@ -1,0 +1,31 @@
+#error404{
+	text-align: center;
+	padding:40px !important;
+	#logo{
+		margin:40px 0;
+		display: inline-block;
+	}
+
+	.error404{
+		text-align: center;
+		font-size: 200px;
+		line-height: 150px;
+		color: $red;
+		height: 250px;
+		font-weight: 100;
+		span{
+			display:block;
+			font-size: 40px;
+			color:$gray;
+			line-height: 40px;
+		}
+	}
+	.inf{
+		color:$gray;
+		font-size: 30px;
+		text-align: center;
+		.btn{
+			margin-top:40px;
+		}
+	}
+}

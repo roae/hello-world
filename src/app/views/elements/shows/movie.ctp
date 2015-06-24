@@ -1,95 +1,124 @@
-<div class="buy-tickets">
-	<h2>No hagas fila, compra tus boletos en línea</h2>
-
-	<p>Selecciona un horario para comprar tus boletos</p>
-
-	<div class="filter">
-		<div class="input">
-			<span class="label">Fecha de cartelera</span>
-
-			<div class="filter-select">
-				<a href="">09/02/2014 <strong>(Hoy)</strong></a>
-
-				<ul>
-					<li>
-						<a href="">Opción #1</a>
-					</li>
-
-					<li>
-						<a href="">Opción #2</a>
-					</li>
-				</ul>
-			</div>
+<?php echo $this->Ajax->div("BuyTickets",array('class'=>'buy-tickets')); $this->I18n->start(); ?>
+	<div id="loading">
+		<div class="message">
+			<i class="icon-loading"></i>
+			<div>[:cargando-horarios-pelicula:]</div>
 		</div>
-
-		<div class="input">
-			<span class="label">Ciudad</span>
-
-			<div class="filter-select">
-				<a href="">Culiacán</a>
-			</div>
-		</div>
-
-		<span class="label">Complejos seleccionados</span>
-
-		<a class="selected-complex selected" href="">La Isla</a>
-		<a class="selected-complex" href="">Galerías San Miguel</a>
 	</div>
-
+	<h2>No hagas fila, compra tus boletos en línea</h2>
+	<?= $this->element("shows/filter",array('movie_id'=>$record['Movie']['id'])); ?>
 	<div class="billboard-list">
-		<?php foreach($billboard as $record): ?>
-			<div class="complex">
-				<div class="complex-name floating">
-					<span class="complex-label"><?= $record['Location']['name'] ?></span>
-				</div>
-				<?php
+		<?php if(!empty($billboard)){?>
+			<h3>Selecciona un horario para comprar tus boletos</h3>
+			<?php foreach($billboard as $record):
+				$presale = "";
 				if(isset($record['Show'])){
-					foreach($record['Show'] as $item) {
-						?>
-						<div class="schedules">
-							<strong class="schedule-title">Horarios</strong>
-							<? foreach(isset($item['Normal']) ? $item['Normal'] : array() as $type => $shows): ?>
-								<div class="schedule">
-									<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
-									<ul>
-										<?
-										$schedule = array();
-										foreach($shows as $show){
-											echo $this->Html->tag("li",$this->Html->link($this->Time->format("h:i <\s\m\a\l\l>a</\s\m\a\l\l>",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'],'escape'=>false)));
-										}
-										?>
-									</ul>
-								</div>
-							<? endforeach; ?>
-							<? if(isset($item['Premier'])){ ?>
-								<strong class="schedule-title">[:PREMIERE:]</strong>
-								<? foreach($item['Premier'] as $type => $shows): ?>
-									<div class="schedule premiere">
+					//pr($record['Show']);
+					$_shows = $record['Show'];
+					$firstShow = array_shift($_shows);
+					$fisrtMovie = array_shift($firstShow);
+					//$presale = $fisrtMovie['Movie']['MovieLocation'] =
+					#pr($fisrtMovie);
+					$MovieLocation = isset($fisrtMovie['MovieLocation'][0]) ? $fisrtMovie['MovieLocation'][0] : null;
+
+					if($MovieLocation && $MovieLocation['presale']){
+
+						list($start_year,$start_month,$start_day) = explode("-",$MovieLocation['presale_start']);
+						list($end_year,$end_month,$end_day) = explode("-",$MovieLocation['presale_end']);
+						$presale_start = mktime(0,0,0,$start_month,$start_day,$start_year);
+						$presale_end = mktime(0,0,0,$end_month,$end_day,$end_year);
+						$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
+						if($today >= $presale_start && $today <= $presale_end){
+							$presale = $this->Html->tag("span","[:presale:]",'presale');
+						}
+					}
+				}
+				?>
+				<div class="complex">
+					<div class="complex-name floating">
+						<span class="complex-label"><?= $record['Location']['name'].$presale ?></span>
+					</div>
+					<?php
+					if(isset($record['Show'])){
+						foreach($record['Show'] as $item) {
+							?>
+							<div class="schedules">
+								<strong class="schedule-title">Horarios</strong>
+								<? foreach(isset($item['Normal']) ? $item['Normal'] : array() as $type => $shows): ?>
+									<div class="schedule">
 										<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
 										<ul>
 											<?
 											$schedule = array();
 											foreach($shows as $show){
-												echo $this->Html->tag("li",$this->Html->link($this->Time->format("h:i <\s\m\a\l\l>a</\s\m\a\l\l>",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'],'escape'=>false)));
+												echo $this->Html->tag("li",
+													$this->Html->link(
+														$this->Time->format("h:i ",$show['schedule']).
+														$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+														$this->Html->tag("span",
+															$this->Html->tag("span",$show['screen_name'],"room").
+															($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
+															($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
+															,"details"),
+														array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
+														array('title'=>$show['screen_name'],'escape'=>false)
+													));
 											}
 											?>
 										</ul>
 									</div>
-								<?
-								endforeach;
-							}
-							?>
+								<? endforeach; ?>
+								<? if(isset($item['Premier'])){ ?>
+									<strong class="schedule-title">[:PREMIERE:]</strong>
+									<? foreach($item['Premier'] as $type => $shows): ?>
+										<div class="schedule premiere">
+											<span class="label"><strong><?= str_replace("|","/",$type) ?></strong></span>
+											<ul>
+												<?
+												$schedule = array();
+												foreach($shows as $show){
+													echo $this->Html->tag("li",
+														$this->Html->link(
+															$this->Time->format("h:i ",$show['schedule']).
+															$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+															$this->Html->tag("span",
+																$this->Html->tag("span",$show['screen_name'],"room").
+																($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
+																($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
+															,"details"),
+															array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
+															array('title'=>$show['screen_name'],'escape'=>false)
+													));
+												}
+												?>
+											</ul>
+										</div>
+									<?
+									endforeach;
+								}
+								?>
+							</div>
+						<?php
+						}
+					}else{ ?>
+						<div class="no-schedules">
+							<div class="big">[:no-schedules-in-location:]</div>
+							<div>[:try-other-day:]</div>
+							<?= $this->Html->link("Ver horario de mañana","#",array('class'=>'btn'));?>
 						</div>
-					<?php
-					}
-				}else{ ?>
-					<div class="no-schedules">
-						<div class="big">[:no-schedules-in-location:]</div>
-						<div>[:try-other-day:]</div>
-						<?= $this->Html->link("Ver horario de mañana","#",array('class'=>'btn'));?>
-					</div>
-				<?php } ?>
+					<?php } ?>
+				</div>
+		<?php
+			endforeach;
+		}else{
+		?>
+			<div class="noCity">
+				[:Selecciona-tu-ciudad-para-horarios:]
 			</div>
-		<?php endforeach; ?>
+		<?php
+		}
+		?>
 	</div>
-</div>
+<?php
+$this->I18n->end();
+echo $this->Ajax->divEnd("BuyTickets");?>

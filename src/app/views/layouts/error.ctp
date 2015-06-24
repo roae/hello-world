@@ -1,7 +1,6 @@
 <?php /* @var $this View */
 if(isset($requestError)){
 	$this->requestAction('/i18n/interpreter/start');
-	pr("rochin");
 }
 ?>
 <?php
@@ -27,27 +26,22 @@ header("Content-Language: en, es");
 		if (Configure::read('debug') > 0) {
 			echo $this->Html->css('cake.generic');
 		}
-		echo $this->Html->css(array('error'));
+		echo $this->Html->css(array('style'));
 		?>
-		<?= $this->Html->script("modernizr-2.0.6.min.js"); ?>
 	</head>
-	<body>
-		<div id="container">
-			<header>
-			</header>
+	<body id ="error404">
+
 			<div id="main" role="main">
 				<?= $content_for_layout ?>
+				<?= $this->Html->link($this->Html->image("logo.png",array('alt'=>'[:logo_alt:]')), "/", array('escape'=>false,'title'=>'[:title_logo:]','id'=>'logo'));?>
 			</div>
-			<footer>
 
-			</footer>
-		</div>
+		<!--I18nScripts-->
 		<?php
 		echo $this->Html->script(array(
 			'ext/jquery',
-			'ext/jquery.label',
 			'ext/jquery.ui',
-			'script'
+			//'script'
 		));
 		?>
 		<?= $scripts_for_layout ?>

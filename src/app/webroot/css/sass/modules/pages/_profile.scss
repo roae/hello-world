@@ -1,116 +1,173 @@
-#UserProfile{
-  padding-bottom: 100px;
+#UserProfile {
+	padding-bottom: 100px;
 
-  .top-message{
-    padding: 50px 0;
-    margin-bottom: 0;
-    &:after{
-      display:none;
-    }
-  }
-  .userCard{
-    text-align: center;
-    @include span(5);
-    figure{
-      width: 160px;
-      height: 160px;
-      @include border-radius(50%);
-      overflow: hidden;
-      display: inline-block;
-    }
-    .name{
-      color: #cc0017;
-      font-size: 30px;
-      font-weight: 100;
-      display: block;
-    }
-    .username{
-      display: block;
-      font-size: 16px;
-      color: #707070;
-    }
-    .btn{
-      margin: 10px;
-      display: inline-block;
-    }
-    .logout{
-      font-size: 14px;
-      color: #cc0017;
-      text-decoration: underline;
-    }
-  }
-  .userInfo{
-    @include span(10);
-    margin-left: span(1)+gutter();
-    .title{
-      color:#5c5c5c;
-      font-size: 30px;
-      font-weight: 100;
-      display:block;
-      padding: 10px;
-      border-bottom: 1px solid #ECECEC;
-      margin-bottom: 20px;
-    }
-    .personal{
-      overflow: hidden;
-      .data{
-        @include span(8);
-        height: 70px;
-        font-size: 16px;
-      }
-      .label{
-        color: #353535;
-        font-weight: 500;
-        margin-bottom: 5px;
-        display: block;
-      }
-      .value{
-        display:block;
-        color: #5c5c5c;
-        font-weight: 200;
-      }
-    }
-    .pass{
-      .asterisk{
-        font-size: 50px;
-        color:#878787;
-        line-height: 50px;
-      }
-      .btn{
-        float: right;
-      }
-      .noPass{
-        font-weight: 200;
-        color: #5c5c5c;
-        strong{
-          font-weight: 500;
-        }
-        margin-bottom: 30px;
-      }
+	.top-message {
+		padding: 50px 0;
+		margin-bottom: 0;
+		&:after {
+			display: none;
+		}
+	}
+	.userCard {
+		text-align: center;
+		@include span(5);
+		figure {
+			width: 160px;
+			height: 160px;
+			@include border-radius(50%);
+			overflow: hidden;
+			display: inline-block;
 
-    }
-  }
-  .input{
-    overflow: hidden;
-    margin-bottom: 30px;
-    label{
-      @include span(5);
-      margin-top: 5px;
-    }
-    input{
-      @include span(10);
-    }
+			.capitals {
+				background: #FECC00 none repeat scroll 0 0;
+				display: block;
+				font-size: 80px;
+				height: 160px;
+				line-height: 160px;
+				text-align: center;
+				width: 160px;
+				font-weight: 100;
+			}
+		}
+		.name {
+			color: #CC0017;
+			font-size: 30px;
+			font-weight: 100;
+			display: block;
+		}
+		.username {
+			display: block;
+			font-size: 16px;
+			color: #707070;
+		}
+		.btn {
+			margin: 10px;
+			display: inline-block;
+		}
+		.logout {
+			font-size: 14px;
+			color: #CC0017;
+			text-decoration: underline;
+		}
+	}
+	.userInfo {
+		@include span(10);
+		margin-left: span(1)+gutter();
+		.title {
+			color: #5C5C5C;
+			font-size: 30px;
+			font-weight: 100;
+			display: block;
+			padding: 10px;
+			border-bottom: 1px solid #ECECEC;
+			margin-bottom: 20px;
+		}
+		.personal {
+			overflow: hidden;
+			.data {
+				@include span(8);
+				height: 70px;
+				font-size: 16px;
+			}
+			.label {
+				color: #353535;
+				font-weight: 500;
+				margin-bottom: 5px;
+				display: block;
+			}
+			.value {
+				display: block;
+				color: #5C5C5C;
+				font-weight: 200;
+			}
+		}
+		.pass {
+			margin-top:60px;
+			.asterisk {
+				font-size: 50px;
+				color: #878787;
+				line-height: 50px;
+			}
+			.btn {
+				float: right;
+			}
+			.noPass {
+				font-weight: 200;
+				color: #5C5C5C;
+				strong {
+					font-weight: 500;
+				}
+				margin-bottom: 30px;
+			}
 
-  }
-  .buttons{
-    .cancel{
-      color:#cc0017;
-      text-decoration: none;
-      float: right;
-    }
+		}
 
-    button{
-      float: right;
-    }
-  }
+		.Buys{
+			margin-top: 60px;
+			.movie{
+				overflow: hidden;
+				color:#808080;
+				font-size: 14px;
+				position: relative;
+				margin-bottom: 40px;
+			}
+			figure{
+				width: 70px;
+				float: left;
+				margin-right: 20px;
+				overflow: hidden;
+				@include border-radius(4px);
+				img{
+					display:block;
+					width:100%;
+				}
+			}
+			.movie-title{
+				font-size: 24px;
+				color: #2b2b2b;
+				font-weight: 200;
+				display: block;
+				margin-bottom: 5px;
+			}
+			.data{
+				display: block;
+			}
+			.btn{
+				position: absolute;
+				top: 20px;
+				right: 0;
+				padding: 2p 3px;
+				font-size: 12px;
+			}
+
+			.noBuys{
+				font-size: 18px;
+				color:#808080;
+				text-align: center;
+			}
+		}
+	}
+	.input {
+		overflow: hidden;
+		margin-bottom: 30px;
+		label {
+			@include span(5);
+			margin-top: 5px;
+		}
+		input {
+			@include span(10);
+		}
+
+	}
+	.buttons {
+		.cancel {
+			color: #CC0017;
+			text-decoration: none;
+			float: right;
+		}
+
+		button {
+			float: right;
+		}
+	}
 }

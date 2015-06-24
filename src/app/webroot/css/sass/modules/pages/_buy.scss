@@ -28,6 +28,12 @@
 			.bg{
 				display: none;
 			}
+
+			.buy-information{
+				background: #fff;
+				padding: 10px;
+				@include box-shadow(0 1px 0 rgba(0,0,0,0.1));
+			}
 		}
 
 		.bg {
@@ -54,6 +60,7 @@
 		.buttons{
 			text-align: center;
 			padding: 20px 0;
+			margin-top: 50px;
 			.btn-primary{
 
 			}
@@ -119,9 +126,7 @@
 
 	.buy-information {
 		@include span(8);
-		background: #fff;
-		padding: 10px;
-		@include box-shadow(0 1px 0 rgba(0,0,0,0.1));
+
 
 		@include with-layout(8) {
 			.buy-details{

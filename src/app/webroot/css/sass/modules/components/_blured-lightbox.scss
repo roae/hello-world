@@ -1,105 +1,107 @@
 .blured {
-  -moz-filter: blur(5px);
-  -webkit-filter: blur(5px);
-  filter: url(../img/blur.svg#blur);
-  filter: blur(5px);
-  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='5runt');
+	-moz-filter: blur(5px);
+	-webkit-filter: blur(5px);
+	filter: url(../img/blur.svg#blur);
+	filter: blur(5px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5runt');
 }
 
 #blured-lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 50;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 50;
 
-  .blured-lightbox-close {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 32px;
-    height: 32px;
-    text-indent: -1000px;
-    background: url(../img/lightbox-close-icon.png) no-repeat left top;
-    overflow: hidden;
-  }
+	.blured-lightbox-close {
+		position: absolute;
+		top: 40px;
+		right: 40px;
+		width: 32px;
+		height: 32px;
+		text-indent: -1000px;
+		background: url(../img/lightbox-close-icon.png) no-repeat left top;
+		overflow: hidden;
+	}
 
-  .blured-lightbox-content {
-    position: absolute;
-    top: 15%;
-    left: 30%;
-    width: 40%;
-    height: 60%;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 3px;
+	.blured-lightbox-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 400px;
+		@include translate(-50%, -50%);
+		//height: 60%;
 
-    &.video {
-      padding: 0;
-      background-color: transparent;
-    }
-  }
+		background-color: rgba(255, 255, 255, 0.9);
+		padding: 20px;
+		border-radius: 3px;
 
-  .blured-lightbox-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -20px;
-    margin-top: -20px;
-    @include box-shadow(0 1px 10px rgba(0,0,0,0.5));
+		&.video {
+			padding: 0;
+			background-color: transparent;
+			width: 80%;
+			height: 80%;
+		}
+	}
 
-    @include loader();
-  }
+	.blured-lightbox-loader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -20px;
+		margin-top: -20px;
+		@include box-shadow(0 1px 10px rgba(0, 0, 0, 0.5));
+		@include loader();
+	}
 
-  strong {
-    display: block;
-    padding: 20px 15px;
-    text-align: center;
-    font-size: 27px;
-    font-weight: 300;
-    color: #fff;
+	strong {
+		display: block;
+		padding: 20px 15px;
+		text-align: center;
+		font-size: 27px;
+		font-weight: 300;
+		color: #FFF;
 
-    &.dark {
-      color: $dark-gray;
-    }
+		&.dark {
+			color: $dark-gray;
+		}
 
-    &.geolocation {
-      padding-top: 45px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      background: url(../img/geolocation-icon.png) no-repeat center top;
-    }
-  }
+		&.geolocation {
+			padding-top: 45px;
+			margin-top: 10px;
+			margin-bottom: 20px;
+			background: url(../img/geolocation-icon.png) no-repeat center top;
+		}
+	}
 
-  iframe {
-    width: 100%;
-    height: 300px;
-  }
+	iframe {
+		width: 100%;
+		height: 300px;
+	}
 
-  ul {
-    li { display: block; }
+	ul {
+		li { display: block; }
 
-    a {
-      display: block;
-      width: 70%;
-      padding: 8px 15px;
-      margin: 0 auto;
-      margin-bottom: 10px;
-      text-align: center;
-      color: #fff;
-      background-color: $red;
-      border-radius: 3px;
+		a {
+			display: block;
+			width: 70%;
+			padding: 8px 15px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			text-align: center;
+			color: #FFF;
+			background-color: $red;
+			border-radius: 3px;
+			@include transition(background-color 0.2s ease-in-out);
 
-      @include transition(background-color 0.2s ease-in-out);
+			&:hover { background-color: darken($red, 5%); }
 
-      &:hover { background-color: darken($red, 5%); }
-
-      &:active {
-        position: relative;
-        top: 1px;
-      }
-    }
-  }
+			&:active {
+				position: relative;
+				top: 1px;
+			}
+		}
+	}
 }

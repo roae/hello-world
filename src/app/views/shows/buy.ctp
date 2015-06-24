@@ -1,7 +1,5 @@
 <?php /* @var $this View  */
 if(!empty($record)){
-
-
 	$this->Html->script("buy.min.js",array('inline'=>false));
 	echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 	?>
@@ -181,7 +179,8 @@ if(!empty($record)){
 		</section>
 	<?php
 	}
-	echo $this->Html->scriptBlock("var BuySeat = ".$this->Javascript->object($this->data['BuySeat']));
+
+	echo $this->Html->scriptBlock("var BuySeat = ".$this->Javascript->object(isset($this->data['BuySeat']) ? $this->data['BuySeat'] : array()));
 	?>
 		<section class="paymentInfo col-container">
 			<div class="stepTitle">
@@ -193,7 +192,7 @@ if(!empty($record)){
 
 			<div class="paymentForm">
 				<fieldset class="paymentTypes">
-					<input id="BuyPaymentType0" type="radio" <?= !isset($this->data['Buy']['payment_type']) || (isset($this->data['Buy']['payment_type']) && $this->data['Buy']['payment_type']==0) ? 'checked="checked"': ""?> value="0" name="data[Buy][payment_type]">
+					<input id="BuyPaymentType0" type="radio" <?= !isset($this->data['Buy']['payment_method']) || (isset($this->data['Buy']['payment_method']) && $this->data['Buy']['payment_method']==0) ? 'checked="checked"': ""?> value="0" name="data[Buy][payment_type]">
 					<label for="BuyPaymentType0">
 						[:credit-debit-card:]
 						<span class="icons">
@@ -202,7 +201,7 @@ if(!empty($record)){
 						</span>
 					</label>
 
-					<input id="BuyPaymentType1" type="radio" <?= (isset($this->data['Buy']['payment_type']) && $this->data['Buy']['payment_type']==1) ? 'checked="checked"': ""?> value="1" name="data[Buy][payment_type]">
+					<input id="BuyPaymentType1" type="radio" <?= (isset($this->data['Buy']['payment_method']) && $this->data['Buy']['payment_method']==1) ? 'checked="checked"': ""?> value="1" name="data[Buy][payment_method]">
 					<label for="BuyPaymentType1">
 						[:paypal-account:]
 						<span class="icons">
@@ -316,14 +315,14 @@ if(!empty($record)){
 		</div>
 	</div>
 	<?php
-	if(isset($this->data['buyExpDate'])){
+	/*if(isset($this->data['buyExpDate'])){
 		echo $this->Form->hidden("buyExpDate",array('name'=>'data[buyExpDate]','value'=>$this->data['buyExpDate']));
-	}
+	}*/
 	echo $this->Form->end();
 	//if(isset($remainingTime)){
 		echo $this->Html->scriptBlock("
 		var remainingTime = ".(isset($remainingTime)? $remainingTime : "false").";
-		var urlExp = '".$this->Html->url(array('controller'=>'pages','action'=>'display','buy_error'))."';
+		var urlExp = '".$this->Html->url(array('controller'=>'pages','action'=>'display','buy_expired_error'))."';
 		var urlError = '".$this->Html->url(array('controller'=>'pages','action'=>'display','buy_error'))."';"
 		);
 	//}

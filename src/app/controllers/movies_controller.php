@@ -262,13 +262,11 @@ class MoviesController extends AppController{
 		$this->Movie->contain(array(
 			"Poster",
 			"Gallery",
-			/*"Projection",
-			'MovieLocation'=>array(
-				'Location'
-			)*/
 		));
+		//pr($this->RequestHandler->ext);
 		if ($this->RequestHandler->ext != 'json'){
 			$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.slug'=>$slug)));
+			//pr($record);
 			if(empty($record)){
 				$this->cakeError("error404");
 			}
@@ -281,10 +279,41 @@ class MoviesController extends AppController{
 				$this->cakeError("error404");
 			}
 		}
+		$slug = null;
+		if(isset($this->data['Filter']['city']) && is_string($this->data['Filter']['city'])){
+			$route = Router::parse($this->data['Filter']['city']);
+			$slug = $route['slug'];
+		}
+		//pr($slug);
 
-		$billboard = $this->requestAction(array('controller'=>'shows','action'=>'get_movie_schedule','movie_id'=>$id));
+		$City = Configure::read("CitySelected");
+		$billboard = $CitySelected = array();
+		if(!empty($City) || $slug){
 
-		$this->set(compact("record","billboard"));
+			$dates = $this->requestAction("/shows/get_date/".$id);
+			if($dates){
+				//pr($dates);
+				$this->data['Filter']['date'] = array_shift($dates);
+			}
+
+			$billboard = $this->requestAction(array(
+				'controller'=>'shows',
+				'action'=>'get_movie_schedule',
+				'movie_id'=>$id,'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
+				'slug'=>$slug,
+			));
+			//pr($this->data);
+			$CitySelected = $this->Session->read("CitySelected");
+			if($CitySelected['id'] != $City['id'] || !isset($this->data['Filter']['Location'])){
+				$locationsSelected = $this->Session->read("LocationsList");
+				foreach($locationsSelected as $id => $location){
+					$this->data['Filter']['Location'][] = $id;
+				}
+			}
+		}
+
+		//pr($CitySelected);
+		$this->set(compact("record","billboard","CitySelected"));
 	}
 
 	function premiere(){

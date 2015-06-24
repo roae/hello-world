@@ -8,7 +8,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,700,500);
 /* line 6, sass/modules/base/_reset.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -148,6 +148,12 @@ a {
 }
 
 /* close commented backslash hack */
+/* line 122, sass/modules/base/_reset.scss */
+strong,
+b {
+  font-weight: 500;
+}
+
 /* line 2, sass/modules/base/_style.scss */
 .col-container {
   width: 1140px;
@@ -205,128 +211,6 @@ body {
   color: #fff;
 }
 
-/* line 30, sass/modules/components/_buttons.scss */
-#header-location-select {
-  position: relative;
-  display: inline-block;
-  margin-top: 30px;
-  transition: margin 0.2s ease-in-out;
-  -webkit-transition: margin 0.2s ease-in-out;
-  -moz-transition: margin 0.2s ease-in-out;
-}
-/* line 39, sass/modules/components/_buttons.scss */
-#header-location-select > a {
-  position: relative;
-  padding: 15px 80px 15px 60px;
-  border-radius: 50px;
-  font-size: 1.125em;
-  font-weight: 300;
-  color: #fff;
-  background-color: #cc0017;
-}
-/* line 48, sass/modules/components/_buttons.scss */
-#header-location-select > a .current {
-  position: relative;
-  font-weight: bold;
-  font-style: italic;
-  color: #fecc00;
-}
-/* line 54, sass/modules/components/_buttons.scss */
-#header-location-select > a .current:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -30px;
-  width: 1px;
-  height: 25px;
-  background-color: #b30014;
-}
-/* line 65, sass/modules/components/_buttons.scss */
-#header-location-select > a:hover {
-  background-color: #c20016;
-}
-/* line 67, sass/modules/components/_buttons.scss */
-#header-location-select > a:active {
-  position: relative;
-  top: 1px;
-}
-/* line 73, sass/modules/components/_buttons.scss */
-#header-location-select .sub-menu-trigger {
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  display: block;
-  width: 42px;
-  height: 42px;
-  margin-top: -21px;
-  text-indent: -1000px;
-  background: url(../img/custom-select-arrow.png) no-repeat center center;
-  background-size: 16px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  -moz-transition: background-color 0.2s ease-in-out;
-  -o-transition: background-color 0.2s ease-in-out;
-  -webkit-transition: background-color 0.2s ease-in-out;
-  transition: background-color 0.2s ease-in-out;
-}
-/* line 91, sass/modules/components/_buttons.scss */
-#header-location-select .places {
-  display: none;
-  position: absolute;
-  top: 31px;
-  right: 0;
-  width: 247px;
-  padding-top: 5px;
-  border-radius: 0 0 10px 10px;
-  background-color: #fff;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
-}
-/* line 101, sass/modules/components/_buttons.scss */
-#header-location-select .places:before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  right: 18px;
-  width: 16px;
-  height: 16px;
-  background-color: #fff;
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-/* line 115, sass/modules/components/_buttons.scss */
-#header-location-select .places li {
-  display: block;
-}
-/* line 118, sass/modules/components/_buttons.scss */
-#header-location-select .places li:last-child a {
-  border-radius: 0 0 10px 10px;
-}
-/* line 123, sass/modules/components/_buttons.scss */
-#header-location-select .places a {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  padding: 10px 14px;
-  text-align: left;
-  font-size: 16px;
-  color: #272b2e;
-  background-color: #fff;
-  z-index: 1;
-}
-/* line 134, sass/modules/components/_buttons.scss */
-#header-location-select .places a:hover {
-  background-color: #fecc00;
-}
-/* line 140, sass/modules/components/_buttons.scss */
-#header-location-select .sub-menu-container:hover .places {
-  display: block;
-}
-
 /* line 1, sass/modules/components/_blured-lightbox.scss */
 .blured {
   -moz-filter: blur(5px);
@@ -360,20 +244,25 @@ body {
 /* line 29, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-content {
   position: absolute;
-  top: 15%;
-  left: 30%;
-  width: 40%;
-  height: 60%;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 3px;
 }
-/* line 39, sass/modules/components/_blured-lightbox.scss */
+/* line 41, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-content.video {
   padding: 0;
   background-color: transparent;
+  width: 80%;
+  height: 80%;
 }
-/* line 45, sass/modules/components/_blured-lightbox.scss */
+/* line 49, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox .blured-lightbox-loader {
   position: absolute;
   top: 50%;
@@ -410,36 +299,36 @@ body {
     opacity: 0;
   }
 }
-/* line 56, sass/modules/components/_blured-lightbox.scss */
+/* line 59, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong {
   display: block;
   padding: 20px 15px;
   text-align: center;
   font-size: 27px;
   font-weight: 300;
-  color: #fff;
+  color: #FFF;
 }
-/* line 64, sass/modules/components/_blured-lightbox.scss */
+/* line 67, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong.dark {
   color: #272b2e;
 }
-/* line 68, sass/modules/components/_blured-lightbox.scss */
+/* line 71, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox strong.geolocation {
   padding-top: 45px;
   margin-top: 10px;
   margin-bottom: 20px;
   background: url(../img/geolocation-icon.png) no-repeat center top;
 }
-/* line 76, sass/modules/components/_blured-lightbox.scss */
+/* line 79, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox iframe {
   width: 100%;
   height: 300px;
 }
-/* line 82, sass/modules/components/_blured-lightbox.scss */
+/* line 85, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul li {
   display: block;
 }
-/* line 84, sass/modules/components/_blured-lightbox.scss */
+/* line 87, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul a {
   display: block;
   width: 70%;
@@ -447,7 +336,7 @@ body {
   margin: 0 auto;
   margin-bottom: 10px;
   text-align: center;
-  color: #fff;
+  color: #FFF;
   background-color: #cc0017;
   border-radius: 3px;
   -moz-transition: background-color 0.2s ease-in-out;
@@ -455,11 +344,11 @@ body {
   -webkit-transition: background-color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 97, sass/modules/components/_blured-lightbox.scss */
+/* line 99, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul a:hover {
   background-color: #b30014;
 }
-/* line 99, sass/modules/components/_blured-lightbox.scss */
+/* line 101, sass/modules/components/_blured-lightbox.scss */
 #blured-lightbox ul a:active {
   position: relative;
   top: 1px;
@@ -791,12 +680,12 @@ html[xmlns] .cf {
 * html .cf {
   height: 1%;
 } */
-/* line 2, sass/modules/layouts/_header.scss */
+/* line 1, sass/modules/layouts/_header.scss */
 body {
   padding-top: 108px !important;
 }
 
-/* line 6, sass/modules/layouts/_header.scss */
+/* line 5, sass/modules/layouts/_header.scss */
 #main-header {
   position: fixed;
   width: 100% !important;
@@ -805,41 +694,44 @@ body {
   left: 0;
   padding: 10px;
   text-align: center;
-  background: #fff;
+  background: #FFF;
   z-index: 10;
-  transition: height 0.2s ease-in-out;
-  -webkit-transition: height 0.2s ease-in-out;
   -moz-transition: height 0.2s ease-in-out;
+  -o-transition: height 0.2s ease-in-out;
+  -webkit-transition: height 0.2s ease-in-out;
+  transition: height 0.2s ease-in-out;
 }
-/* line 21, sass/modules/layouts/_header.scss */
+/* line 18, sass/modules/layouts/_header.scss */
 #main-header #logo {
   margin-right: 80px;
   float: left;
 }
-/* line 25, sass/modules/layouts/_header.scss */
+/* line 22, sass/modules/layouts/_header.scss */
 #main-header #logo img {
   height: 82px;
-  transition: height 0.2s ease-in-out;
-  -webkit-transition: height 0.2s ease-in-out;
   -moz-transition: height 0.2s ease-in-out;
+  -o-transition: height 0.2s ease-in-out;
+  -webkit-transition: height 0.2s ease-in-out;
+  transition: height 0.2s ease-in-out;
 }
-/* line 34, sass/modules/layouts/_header.scss */
+/* line 29, sass/modules/layouts/_header.scss */
 #main-header .account-container {
   float: right;
   margin-top: 26px;
-  transition: margin 0.2s ease-in-out;
-  -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
+  -o-transition: margin 0.2s ease-in-out;
+  -webkit-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out;
 }
-/* line 42, sass/modules/layouts/_header.scss */
+/* line 34, sass/modules/layouts/_header.scss */
 #main-header .account-container li {
   display: inline-block;
 }
-/* line 45, sass/modules/layouts/_header.scss */
+/* line 37, sass/modules/layouts/_header.scss */
 #main-header .account-container li:first-child {
   padding-right: 25px;
 }
-/* line 47, sass/modules/layouts/_header.scss */
+/* line 39, sass/modules/layouts/_header.scss */
 #main-header .account-container li a {
   display: inline-block;
   padding: 6px 3px 6px 28px;
@@ -848,25 +740,26 @@ body {
   background-repeat: no-repeat;
   background-position: 0 center;
   background-size: 16px;
-  transition: font-size 0.2s ease-in-out;
-  -webkit-transition: font-size 0.2s ease-in-out;
   -moz-transition: font-size 0.2s ease-in-out;
+  -o-transition: font-size 0.2s ease-in-out;
+  -webkit-transition: font-size 0.2s ease-in-out;
+  transition: font-size 0.2s ease-in-out;
 }
-/* line 60, sass/modules/layouts/_header.scss */
+/* line 49, sass/modules/layouts/_header.scss */
 #main-header .account-container li a.signin {
   background-image: url(../img/login-icon.png);
 }
-/* line 61, sass/modules/layouts/_header.scss */
+/* line 50, sass/modules/layouts/_header.scss */
 #main-header .account-container li a.signup {
   padding-left: 18px;
   background-image: url(../img/signup-icon.png);
   background-size: 7px;
 }
-/* line 67, sass/modules/layouts/_header.scss */
+/* line 56, sass/modules/layouts/_header.scss */
 #main-header .account-container li a:hover {
   color: #a8a9ab;
 }
-/* line 74, sass/modules/layouts/_header.scss */
+/* line 63, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container {
   float: right;
   margin-top: 26px;
@@ -875,12 +768,12 @@ body {
   -webkit-transition: margin 0.2s ease-in-out;
   transition: margin 0.2s ease-in-out;
 }
-/* line 78, sass/modules/layouts/_header.scss */
+/* line 67, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user {
   cursor: pointer;
   position: relative;
 }
-/* line 81, sass/modules/layouts/_header.scss */
+/* line 70, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user figure {
   float: right;
   -moz-border-radius: 50%;
@@ -890,13 +783,13 @@ body {
   margin-left: 10px;
   margin-top: 2px;
 }
-/* line 87, sass/modules/layouts/_header.scss */
+/* line 76, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user figure img {
   width: 40px;
   height: 40px;
   display: block;
 }
-/* line 93, sass/modules/layouts/_header.scss */
+/* line 82, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user figure .capitals {
   font-size: 20px;
   display: block;
@@ -906,24 +799,24 @@ body {
   line-height: 40px;
   background: #FECC00;
 }
-/* line 105, sass/modules/layouts/_header.scss */
+/* line 93, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .username {
   float: right;
 }
-/* line 108, sass/modules/layouts/_header.scss */
+/* line 96, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .name {
   font-weight: 300;
   font-size: 16px;
-  color: #cc0017;
+  color: #CC0017;
   display: block;
 }
-/* line 114, sass/modules/layouts/_header.scss */
+/* line 102, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .small {
   font-size: 14px;
   color: #797979;
   display: block;
 }
-/* line 119, sass/modules/layouts/_header.scss */
+/* line 107, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu {
   position: absolute;
   right: 0;
@@ -939,11 +832,11 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   padding: 0;
 }
-/* line 129, sass/modules/layouts/_header.scss */
+/* line 117, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu ul {
   position: relative;
 }
-/* line 131, sass/modules/layouts/_header.scss */
+/* line 119, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu ul:before {
   background-color: #232323;
   content: "";
@@ -955,61 +848,192 @@ body {
   width: 16px;
   display: block;
 }
-/* line 147, sass/modules/layouts/_header.scss */
+/* line 134, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu li a {
-  color: #a5a5a5;
+  color: #A5A5A5;
   white-space: nowrap;
   padding: 0;
   display: block;
   padding: 10px 20px;
 }
-/* line 153, sass/modules/layouts/_header.scss */
+/* line 140, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu li a:hover {
   color: #bfbfbf;
 }
-/* line 156, sass/modules/layouts/_header.scss */
+/* line 143, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu li a.logout {
-  background: #cc0017;
-  color: #fff;
+  background: #CC0017;
+  color: #FFF;
   -moz-border-radius: 0 0 4px 4px;
   -webkit-border-radius: 0;
   border-radius: 0 0 4px 4px;
 }
-/* line 165, sass/modules/layouts/_header.scss */
+/* line 152, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user:hover .userMenu {
   display: block;
 }
-/* line 172, sass/modules/layouts/_header.scss */
+/* line 159, sass/modules/layouts/_header.scss */
 #main-header.sticky {
   height: 68px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
 }
-/* line 177, sass/modules/layouts/_header.scss */
+/* line 164, sass/modules/layouts/_header.scss */
 #main-header.sticky #logo img {
   height: 46px;
 }
-/* line 182, sass/modules/layouts/_header.scss */
+/* line 169, sass/modules/layouts/_header.scss */
 #main-header.sticky #header-location-select {
   margin-top: 11px;
 }
-/* line 185, sass/modules/layouts/_header.scss */
+/* line 172, sass/modules/layouts/_header.scss */
 #main-header.sticky #header-location-select a {
   padding-top: 12px;
   padding-bottom: 12px;
 }
-/* line 191, sass/modules/layouts/_header.scss */
+/* line 178, sass/modules/layouts/_header.scss */
 #main-header.sticky .account-container {
   margin-top: 7px;
 }
-/* line 194, sass/modules/layouts/_header.scss */
+/* line 181, sass/modules/layouts/_header.scss */
 #main-header.sticky .account-container a {
   font-size: 14px;
 }
-/* line 198, sass/modules/layouts/_header.scss */
+/* line 185, sass/modules/layouts/_header.scss */
 #main-header.sticky .loggeduser-container {
   margin-top: 5px;
+}
+
+/* line 191, sass/modules/layouts/_header.scss */
+#header-location-select {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+  transition: margin 0.2s ease-in-out;
+  -webkit-transition: margin 0.2s ease-in-out;
+  -moz-transition: margin 0.2s ease-in-out;
+}
+/* line 199, sass/modules/layouts/_header.scss */
+#header-location-select > a {
+  position: relative;
+  padding: 15px 80px 15px 60px;
+  border-radius: 50px;
+  font-size: 1.125em;
+  font-weight: 300;
+  color: #FFF;
+  background-color: #cc0017;
+}
+/* line 208, sass/modules/layouts/_header.scss */
+#header-location-select > a .current {
+  position: relative;
+  font-weight: bold;
+  font-style: italic;
+  color: #fecc00;
+}
+/* line 214, sass/modules/layouts/_header.scss */
+#header-location-select > a .current:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -30px;
+  width: 1px;
+  height: 25px;
+  background-color: #b30014;
+}
+/* line 225, sass/modules/layouts/_header.scss */
+#header-location-select > a:hover {
+  background-color: #c20016;
+}
+/* line 227, sass/modules/layouts/_header.scss */
+#header-location-select > a:active {
+  position: relative;
+  top: 1px;
+}
+/* line 233, sass/modules/layouts/_header.scss */
+#header-location-select .sub-menu-trigger {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin-top: -21px;
+  text-indent: -1000px;
+  background: url(../img/custom-select-arrow.png) no-repeat center center;
+  background-size: 16px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+/* line 250, sass/modules/layouts/_header.scss */
+#header-location-select .places {
+  display: none;
+  position: absolute;
+  top: 31px;
+  right: 0;
+  width: 247px;
+  padding-top: 5px;
+  border-radius: 0 0 10px 10px;
+  background-color: #FFF;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+}
+/* line 260, sass/modules/layouts/_header.scss */
+#header-location-select .places:before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+  background-color: #FFF;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/* line 271, sass/modules/layouts/_header.scss */
+#header-location-select .places:after {
+  content: '';
+  position: absolute;
+  top: -16px;
+  right: 0;
+  width: 100%;
+  height: 16px;
+}
+/* line 282, sass/modules/layouts/_header.scss */
+#header-location-select .places li {
+  display: block;
+}
+/* line 285, sass/modules/layouts/_header.scss */
+#header-location-select .places li:last-child a {
+  border-radius: 0 0 10px 10px;
+}
+/* line 290, sass/modules/layouts/_header.scss */
+#header-location-select .places a {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 16px;
+  color: #272b2e;
+  background-color: #FFF;
+  z-index: 1;
+}
+/* line 301, sass/modules/layouts/_header.scss */
+#header-location-select .places a:hover {
+  background-color: #fecc00;
+}
+/* line 307, sass/modules/layouts/_header.scss */
+#header-location-select .sub-menu-container:hover .places {
+  display: block;
 }
 
 /* line 1, sass/modules/layouts/_footer.scss */
@@ -1025,6 +1049,7 @@ body {
   color: #fff;
   text-align: center;
   background: #272b2e url(../img/mobile-apps-bg.jpg) no-repeat center center;
+  background-size: cover;
   background-size: cover;
     /*&.small {
       text-align: left;
@@ -1089,17 +1114,17 @@ body {
       }
     }*/
 }
-/* line 14, sass/modules/layouts/_footer.scss */
+/* line 15, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .col-container {
   position: relative;
 }
-/* line 16, sass/modules/layouts/_footer.scss */
+/* line 17, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps h2 {
   font-size: 3.5em;
   margin-bottom: 30px;
   font-weight: 300;
 }
-/* line 22, sass/modules/layouts/_footer.scss */
+/* line 23, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps p {
   position: relative;
   width: 50%;
@@ -1109,7 +1134,7 @@ body {
   font-size: 1.25em;
   line-height: 1.75;
 }
-/* line 31, sass/modules/layouts/_footer.scss */
+/* line 32, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps p:after {
   content: '';
   position: absolute;
@@ -1120,46 +1145,46 @@ body {
   height: 1px;
   background-color: rgba(195, 199, 203, 0.7);
 }
-/* line 44, sass/modules/layouts/_footer.scss */
+/* line 45, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .actions li {
   display: inline-block;
 }
-/* line 47, sass/modules/layouts/_footer.scss */
+/* line 48, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .actions li.google-play {
   margin-right: 15px;
 }
-/* line 49, sass/modules/layouts/_footer.scss */
+/* line 50, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .actions li a {
   transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
 }
-/* line 54, sass/modules/layouts/_footer.scss */
+/* line 55, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .actions li a:hover {
   opacity: 0.8;
 }
-/* line 56, sass/modules/layouts/_footer.scss */
+/* line 57, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .actions li a:active {
   position: relative;
   top: 1px;
 }
-/* line 62, sass/modules/layouts/_footer.scss */
+/* line 63, sass/modules/layouts/_footer.scss */
 #main-footer .mobile-apps .actions li img {
   width: 200px;
   border: 3px solid #fff;
   border-radius: 10px;
 }
-/* line 135, sass/modules/layouts/_footer.scss */
+/* line 136, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu {
   padding: 60px 15px;
   color: #fff;
   background-color: #272b2e;
 }
-/* line 136, sass/modules/layouts/_footer.scss */
+/* line 137, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .col-container {
   margin-bottom: 20px;
 }
-/* line 143, sass/modules/layouts/_footer.scss */
+/* line 144, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu h2 {
   font-size: 14px;
   font-weight: 300;
@@ -1167,7 +1192,7 @@ body {
   letter-spacing: 1px;
   color: #a3abb1;
 }
-/* line 151, sass/modules/layouts/_footer.scss */
+/* line 152, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news {
   display: inline-block;
   width: 48.75%;
@@ -1177,7 +1202,7 @@ body {
   font-size: 0;
   vertical-align: top;
 }
-/* line 157, sass/modules/layouts/_footer.scss */
+/* line 158, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article {
   display: inline-block;
   width: 42.22222%;
@@ -1188,11 +1213,11 @@ body {
   vertical-align: top;
   overflow: hidden;
 }
-/* line 165, sass/modules/layouts/_footer.scss */
+/* line 166, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article:nth-of-type(2) {
   margin-left: 10%;
 }
-/* line 169, sass/modules/layouts/_footer.scss */
+/* line 170, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article h3 {
   margin-bottom: 15px;
   font-size: 18px;
@@ -1201,13 +1226,13 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 176, sass/modules/layouts/_footer.scss */
+/* line 177, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article p {
   font-size: 14px;
   font-weight: 200;
   color: #bcd1dd;
 }
-/* line 182, sass/modules/layouts/_footer.scss */
+/* line 183, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article .keep-reading {
   display: inline-block;
   margin-top: 10px;
@@ -1215,11 +1240,11 @@ body {
   font-size: 14px;
   color: #fecc00;
 }
-/* line 189, sass/modules/layouts/_footer.scss */
+/* line 190, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article .keep-reading:hover {
   color: #e5b800;
 }
-/* line 198, sass/modules/layouts/_footer.scss */
+/* line 199, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options {
   display: inline-block;
   width: 48.75%;
@@ -1229,7 +1254,7 @@ body {
   font-size: 16px;
   vertical-align: top;
 }
-/* line 205, sass/modules/layouts/_footer.scss */
+/* line 206, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options li {
   display: inline-block;
   width: 42.5%;
@@ -1238,20 +1263,20 @@ body {
   margin-right: 0.625%;
   margin-bottom: 10px;
 }
-/* line 209, sass/modules/layouts/_footer.scss */
+/* line 210, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options li:nth-of-type(2n) {
   margin-left: 5.625%;
 }
-/* line 214, sass/modules/layouts/_footer.scss */
+/* line 215, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options a {
   font-size: 14px;
   color: #fecc00;
 }
-/* line 218, sass/modules/layouts/_footer.scss */
+/* line 219, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options a:hover {
   color: #e5b800;
 }
-/* line 224, sass/modules/layouts/_footer.scss */
+/* line 225, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription {
   display: inline-block;
   width: 48.75%;
@@ -1260,7 +1285,7 @@ body {
   margin-right: 0.625%;
   margin-top: 40px;
 }
-/* line 229, sass/modules/layouts/_footer.scss */
+/* line 230, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input {
   display: inline-block;
   border: none;
@@ -1269,7 +1294,7 @@ body {
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
 }
-/* line 237, sass/modules/layouts/_footer.scss */
+/* line 238, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=text] {
   width: 42.5%;
   float: left;
@@ -1279,11 +1304,11 @@ body {
   border: 1px solid #87929a;
   background-color: #565f65;
 }
-/* line 244, sass/modules/layouts/_footer.scss */
+/* line 245, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=text]:focus {
   background-color: #626c73;
 }
-/* line 247, sass/modules/layouts/_footer.scss */
+/* line 248, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=submit] {
   width: 42.5%;
   float: left;
@@ -1295,11 +1320,11 @@ body {
   -webkit-transition: background-color 0.2s ease-in-out;
   -moz-transition: background-color 0.2s ease-in-out;
 }
-/* line 256, sass/modules/layouts/_footer.scss */
+/* line 257, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=submit]:hover {
   background-color: #b30014;
 }
-/* line 263, sass/modules/layouts/_footer.scss */
+/* line 264, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks {
   display: inline-block;
   width: 48.75%;
@@ -1311,16 +1336,16 @@ body {
   vertical-align: bottom;
   text-align: center;
 }
-/* line 274, sass/modules/layouts/_footer.scss */
+/* line 275, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li {
   display: inline-block;
   margin-right: 30px;
 }
-/* line 278, sass/modules/layouts/_footer.scss */
+/* line 279, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li:last-child {
   margin-right: 0;
 }
-/* line 280, sass/modules/layouts/_footer.scss */
+/* line 281, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a {
   display: inline-block;
   width: 46px;
@@ -1330,46 +1355,46 @@ body {
   background-position: center center;
   overflow: hidden;
 }
-/* line 289, sass/modules/layouts/_footer.scss */
+/* line 290, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a:hover {
   opacity: 0.8;
 }
-/* line 290, sass/modules/layouts/_footer.scss */
+/* line 291, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a:active {
   position: relative;
   top: 1px;
 }
-/* line 296, sass/modules/layouts/_footer.scss */
+/* line 297, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.fb {
   background-image: url(../img/social-networks/fb-icon.png);
 }
-/* line 296, sass/modules/layouts/_footer.scss */
+/* line 297, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.tw {
   background-image: url(../img/social-networks/tw-icon.png);
 }
-/* line 296, sass/modules/layouts/_footer.scss */
+/* line 297, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.vim {
   background-image: url(../img/social-networks/vim-icon.png);
 }
-/* line 296, sass/modules/layouts/_footer.scss */
+/* line 297, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.yt {
   background-image: url(../img/social-networks/yt-icon.png);
 }
-/* line 296, sass/modules/layouts/_footer.scss */
+/* line 297, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.gp {
   background-image: url(../img/social-networks/gp-icon.png);
 }
-/* line 306, sass/modules/layouts/_footer.scss */
+/* line 307, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright {
   padding: 30px 15px;
 }
-/* line 309, sass/modules/layouts/_footer.scss */
+/* line 310, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .copyright {
   display: block;
   margin-bottom: 10px;
   font-size: 14px;
 }
-/* line 316, sass/modules/layouts/_footer.scss */
+/* line 317, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a {
   padding-right: 10px;
   padding-left: 10px;
@@ -1377,20 +1402,20 @@ body {
   font-size: 12px;
   color: #a8a9ab;
 }
-/* line 323, sass/modules/layouts/_footer.scss */
+/* line 324, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:nth-of-type(1) {
   padding-left: 0;
 }
-/* line 324, sass/modules/layouts/_footer.scss */
+/* line 325, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:nth-of-type(2) {
   padding-left: 6px;
   border-right: none;
 }
-/* line 329, sass/modules/layouts/_footer.scss */
+/* line 330, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:hover {
   color: #8e9092;
 }
-/* line 332, sass/modules/layouts/_footer.scss */
+/* line 333, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container .certificates {
   float: right;
   margin-top: -6px;
@@ -1408,15 +1433,15 @@ textarea,
 select {
   padding: 8px;
   font-size: 1em;
-  border: 2px solid #ccc;
-  background: #fff;
+  border: 2px solid #CCC;
+  background: #FFF;
 }
 /* line 14, sass/modules/layouts/_forms.scss */
 input:focus,
 textarea:focus,
 select:focus {
   border-color: #b3b3b3;
-  background: #fafafa;
+  background: #FAFAFA;
 }
 
 /* line 20, sass/modules/layouts/_forms.scss */
@@ -1429,34 +1454,39 @@ select {
 .error textarea,
 .error select,
 .error .SelectWrapper {
-  border-color: #cc0017;
+  border-color: #CC0017;
 }
 /* line 32, sass/modules/layouts/_forms.scss */
 .error .error-message {
-  color: #cc0017;
+  color: #CC0017;
   font-size: 14px;
 }
 
-/* line 39, sass/modules/layouts/_forms.scss */
+/* line 38, sass/modules/layouts/_forms.scss */
 .SelectWrapper {
   position: relative;
   padding: 8px;
   font-size: 1em;
-  border: 2px solid #ccc;
-  background: #fff;
+  border: 2px solid #CCC;
+  background: #FFF;
   cursor: pointer;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 48, sass/modules/layouts/_forms.scss */
+/* line 46, sass/modules/layouts/_forms.scss */
+.SelectWrapper.select_focus {
+  border-color: #b3b3b3;
+  background: #FAFAFA;
+}
+/* line 51, sass/modules/layouts/_forms.scss */
 .SelectWrapper .SelectOpt {
   background: url(web/select-arrow.png) no-repeat center right;
   display: block;
   padding-right: 20px;
   line-height: 27px;
 }
-/* line 54, sass/modules/layouts/_forms.scss */
+/* line 57, sass/modules/layouts/_forms.scss */
 .SelectWrapper select {
   position: absolute;
   top: 0;
@@ -1510,7 +1540,7 @@ select {
 /* line 34, sass/modules/pages/_home.scss */
 .home .home-highlights .movie .movie-info {
   position: relative;
-  margin-top: 100px;
+  margin-top: 50px;
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
@@ -1879,13 +1909,51 @@ select {
   color: #353637;
 }
 
+/* line 1, sass/modules/pages/_billboard.scss */
+.billboard-container {
+  position: relative;
+}
 /* line 3, sass/modules/pages/_billboard.scss */
+.billboard-container #loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff no-repeat center;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  z-index: 9;
+  display: none;
+}
+/* line 13, sass/modules/pages/_billboard.scss */
+.billboard-container #loading .message {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  text-align: center;
+  color: #676767;
+}
+/* line 27, sass/modules/pages/_billboard.scss */
+.billboard-container #loading .message .icon-loading {
+  background: url(web/preloader_10-64.gif) no-repeat center;
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+}
+/* line 35, sass/modules/pages/_billboard.scss */
 .billboard-container .the-billboard {
   font-size: 0;
   position: relative;
   overflow: hidden;
 }
-/* line 9, sass/modules/pages/_billboard.scss */
+/* line 41, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside {
   display: inline-block;
   width: 23.75%;
@@ -1897,73 +1965,73 @@ select {
   vertical-align: top;
   text-align: center;
 }
-/* line 17, sass/modules/pages/_billboard.scss */
+/* line 49, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter {
   margin-bottom: 50px;
   text-align: left;
   border-radius: 3px;
 }
-/* line 22, sass/modules/pages/_billboard.scss */
+/* line 54, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .label {
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
   color: #818386;
 }
-/* line 29, sass/modules/pages/_billboard.scss */
+/* line 61, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .selected-complex {
   display: block;
   padding: 8px 15px;
   margin-bottom: 10px;
   font-size: 14px;
   color: #272b2e;
-  background-color: #cfd5d7;
+  background-color: #CFD5D7;
   border-radius: 3px;
 }
-/* line 38, sass/modules/pages/_billboard.scss */
+/* line 70, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .selected-complex.selected {
-  color: #fff;
+  color: #FFF;
   background: #51b347 url(../img/complex-selected-icon.png) no-repeat 95% center;
 }
-/* line 43, sass/modules/pages/_billboard.scss */
+/* line 75, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .selected-complex:hover {
   opacity: 0.7;
 }
-/* line 45, sass/modules/pages/_billboard.scss */
+/* line 77, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .selected-complex:active {
   position: relative;
   top: 1px;
 }
-/* line 52, sass/modules/pages/_billboard.scss */
+/* line 84, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .checkbox input {
   display: none;
 }
-/* line 54, sass/modules/pages/_billboard.scss */
+/* line 86, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .checkbox input:checked + label {
-  color: #fff;
+  color: #FFF;
   background: #51b347 url(../img/complex-selected-icon.png) no-repeat 95% center;
 }
-/* line 59, sass/modules/pages/_billboard.scss */
+/* line 91, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .checkbox label {
   display: block;
   padding: 8px 15px;
   margin-bottom: 10px;
   font-size: 14px;
   color: #272b2e;
-  background-color: #cfd5d7;
+  background-color: #CFD5D7;
   border-radius: 3px;
   cursor: pointer;
 }
-/* line 68, sass/modules/pages/_billboard.scss */
+/* line 100, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .checkbox label:hover {
   opacity: 0.7;
 }
-/* line 74, sass/modules/pages/_billboard.scss */
+/* line 106, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select {
   position: relative;
   cursor: pointer;
 }
-/* line 77, sass/modules/pages/_billboard.scss */
+/* line 109, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select select {
   position: absolute;
   top: 0;
@@ -1973,48 +2041,48 @@ select {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 84, sass/modules/pages/_billboard.scss */
+/* line 116, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select .SelectWrapper {
   border: 0;
   display: block;
   padding: 8px 15px;
   margin-bottom: 10px;
   font-size: 14px;
-  color: #fff;
-  background: #55595c url(../img/custom-select-arrow.png) no-repeat 95% center;
+  color: #FFF;
+  background: #55595C url(../img/custom-select-arrow.png) no-repeat 95% center;
   background-size: 20px;
   border-radius: 3px;
 }
-/* line 94, sass/modules/pages/_billboard.scss */
+/* line 126, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select .SelectWrapper .SelectOpt {
   background: transparent;
 }
-/* line 98, sass/modules/pages/_billboard.scss */
+/* line 130, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
-/* line 103, sass/modules/pages/_billboard.scss */
+/* line 135, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select > a {
   display: block;
   padding: 8px 15px;
   margin-bottom: 10px;
   font-size: 14px;
-  color: #fff;
-  background: #55595c url(../img/custom-select-arrow.png) no-repeat 95% center;
+  color: #FFF;
+  background: #55595C url(../img/custom-select-arrow.png) no-repeat 95% center;
   background-size: 20px;
   border-radius: 3px;
 }
-/* line 113, sass/modules/pages/_billboard.scss */
+/* line 145, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select > a strong {
   font-weight: bold;
   color: #fecc00;
 }
-/* line 119, sass/modules/pages/_billboard.scss */
+/* line 151, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select ul {
   display: none;
 }
-/* line 127, sass/modules/pages/_billboard.scss */
+/* line 159, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list {
   position: relative;
   width: 67.5%;
@@ -2024,24 +2092,24 @@ select {
   vertical-align: top;
   font-size: 16px;
 }
-/* line 133, sass/modules/pages/_billboard.scss */
+/* line 165, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .complex {
   position: relative;
 }
-/* line 138, sass/modules/pages/_billboard.scss */
+/* line 170, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .complex-name .complex-label {
   padding: 5px 10px;
   margin-bottom: 20px;
   font-size: 32px;
   font-weight: 300;
-  color: #fff;
+  color: #FFF;
   background: #272b2e;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   display: inline-block;
 }
-/* line 150, sass/modules/pages/_billboard.scss */
+/* line 182, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .sticky .complex-label {
   padding: 3px 5px;
   font-size: 24px;
@@ -2049,20 +2117,20 @@ select {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
 }
-/* line 160, sass/modules/pages/_billboard.scss */
+/* line 192, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a {
   color: #272b2e;
 }
-/* line 163, sass/modules/pages/_billboard.scss */
+/* line 195, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:hover {
   color: #cc0017;
 }
-/* line 168, sass/modules/pages/_billboard.scss */
+/* line 199, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:active {
   position: relative;
   top: 1px;
 }
-/* line 175, sass/modules/pages/_billboard.scss */
+/* line 206, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .movieAnchor {
   position: absolute;
   top: -80px;
@@ -2070,24 +2138,24 @@ select {
   height: 10px;
   display: block;
 }
-/* line 186, sass/modules/pages/_billboard.scss */
+/* line 216, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .movie {
   padding: 25px 0 64px;
   overflow: hidden;
   position: relative;
 }
-/* line 193, sass/modules/pages/_billboard.scss */
+/* line 223, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules {
   width: 70.90909%;
   padding-bottom: 0;
   float: left;
 }
-/* line 200, sass/modules/pages/_billboard.scss */
+/* line 229, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .image-container {
   float: left;
   width: 26.36364%;
 }
-/* line 205, sass/modules/pages/_billboard.scss */
+/* line 234, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img {
   display: block;
   width: 100%;
@@ -2097,16 +2165,16 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 212, sass/modules/pages/_billboard.scss */
+/* line 240, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:hover {
   opacity: 0.7;
 }
-/* line 213, sass/modules/pages/_billboard.scss */
+/* line 241, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:active {
   position: relative;
   top: 1px;
 }
-/* line 220, sass/modules/pages/_billboard.scss */
+/* line 248, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .no-movies {
   padding: 20px 30px;
   margin: 20px 0 50px;
@@ -2114,37 +2182,37 @@ select {
   font-size: 14px;
   color: #818386;
 }
-/* line 228, sass/modules/pages/_billboard.scss */
+/* line 256, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .no-movies .big {
   font-size: 24px;
   color: #747679;
 }
-/* line 232, sass/modules/pages/_billboard.scss */
+/* line 260, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .no-movies .btn {
   display: inline-block;
   margin: 20px 0 0;
 }
 
-/* line 241, sass/modules/pages/_billboard.scss */
+/* line 269, sass/modules/pages/_billboard.scss */
 .schedules {
   padding-left: 20px;
   padding-bottom: 40px;
 }
-/* line 243, sass/modules/pages/_billboard.scss */
+/* line 271, sass/modules/pages/_billboard.scss */
 .schedules li {
   display: inline-block;
   padding: 0;
 }
-/* line 251, sass/modules/pages/_billboard.scss */
+/* line 278, sass/modules/pages/_billboard.scss */
 .schedules .movie-title {
   margin-bottom: 40px;
 }
-/* line 255, sass/modules/pages/_billboard.scss */
+/* line 282, sass/modules/pages/_billboard.scss */
 .schedules h3 {
   font-size: 27px;
   font-weight: 300;
 }
-/* line 260, sass/modules/pages/_billboard.scss */
+/* line 287, sass/modules/pages/_billboard.scss */
 .schedules .schedule-title {
   padding-left: 20%;
   margin-left: 8px;
@@ -2153,47 +2221,47 @@ select {
   font-weight: bold;
   display: block;
 }
-/* line 269, sass/modules/pages/_billboard.scss */
+/* line 296, sass/modules/pages/_billboard.scss */
 .schedules .clasification-duration {
   font-size: 14px;
   color: #818386;
 }
-/* line 274, sass/modules/pages/_billboard.scss */
+/* line 301, sass/modules/pages/_billboard.scss */
 .schedules .real-name {
   padding-left: 10px;
   font-style: italic;
   font-size: 14px;
   color: #818386;
 }
-/* line 281, sass/modules/pages/_billboard.scss */
+/* line 308, sass/modules/pages/_billboard.scss */
 .schedules .schedule {
   font-size: 0;
   padding: 12px 12px 8px;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 287, sass/modules/pages/_billboard.scss */
+/* line 313, sass/modules/pages/_billboard.scss */
 .schedules .schedule:hover {
-  background-color: #eaf1f3;
+  background-color: #EAF1F3;
 }
-/* line 289, sass/modules/pages/_billboard.scss */
+/* line 315, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label,
 .schedules .schedule ul {
   display: inline-block;
   font-size: 16px;
   vertical-align: top;
 }
-/* line 296, sass/modules/pages/_billboard.scss */
+/* line 322, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label {
   position: relative;
   width: 20%;
   font-size: 14px;
   margin-top: 5px;
 }
-/* line 302, sass/modules/pages/_billboard.scss */
+/* line 328, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label strong {
   font-weight: bold;
 }
-/* line 304, sass/modules/pages/_billboard.scss */
+/* line 330, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label:after {
   content: '';
   position: absolute;
@@ -2203,16 +2271,16 @@ select {
   height: 1px;
   background-color: #818386;
 }
-/* line 315, sass/modules/pages/_billboard.scss */
+/* line 341, sass/modules/pages/_billboard.scss */
 .schedules .schedule ul {
   width: 80%;
 }
-/* line 319, sass/modules/pages/_billboard.scss */
+/* line 345, sass/modules/pages/_billboard.scss */
 .schedules .schedule li {
   display: inline-block;
   padding: 0;
 }
-/* line 324, sass/modules/pages/_billboard.scss */
+/* line 350, sass/modules/pages/_billboard.scss */
 .schedules .schedule a {
   font-family: "Open Sans";
   text-transform: uppercase;
@@ -2220,37 +2288,100 @@ select {
   margin: 0 4px 10px;
   padding: 4px 10px;
   font-size: 16px;
-  color: #fff;
+  color: #FFF;
   background-color: #cc0017;
   border-radius: 3px;
   font-weight: 500;
+  position: relative;
 }
-/* line 335, sass/modules/pages/_billboard.scss */
+/* line 362, sass/modules/pages/_billboard.scss */
 .schedules .schedule a small {
   font-size: 11px;
 }
-/* line 339, sass/modules/pages/_billboard.scss */
+/* line 365, sass/modules/pages/_billboard.scss */
+.schedules .schedule a .details {
+  position: absolute;
+  background: #272b2e;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  bottom: 35px;
+  left: 50%;
+  display: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  padding: 5px;
+  width: 100px;
+  -moz-transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 380, sass/modules/pages/_billboard.scss */
+.schedules .schedule a .details:after {
+  position: absolute;
+  bottom: -3px;
+  -moz-transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background: #272b2e;
+  width: 5px;
+  height: 5px;
+  content: " ";
+}
+/* line 390, sass/modules/pages/_billboard.scss */
+.schedules .schedule a .details .room {
+  display: block;
+}
+/* line 393, sass/modules/pages/_billboard.scss */
+.schedules .schedule a .details .format {
+  display: block;
+  color: #fecc00;
+  border-top: 1px solid #33383c;
+}
+/* line 398, sass/modules/pages/_billboard.scss */
+.schedules .schedule a .details .room_type {
+  border-top: 1px solid #33383c;
+  display: block;
+  font-size: 12px;
+  color: #51b347;
+}
+/* line 406, sass/modules/pages/_billboard.scss */
 .schedules .schedule a:hover {
   background-color: #b30014;
 }
-/* line 343, sass/modules/pages/_billboard.scss */
+/* line 408, sass/modules/pages/_billboard.scss */
+.schedules .schedule a:hover .details {
+  display: block;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+/* line 416, sass/modules/pages/_billboard.scss */
 .schedules .schedule.premiere a {
   color: #322800;
   background-color: #fecc00;
 }
-/* line 347, sass/modules/pages/_billboard.scss */
+/* line 420, sass/modules/pages/_billboard.scss */
 .schedules .schedule.premiere a:hover {
   background-color: #e5b800;
 }
 
-/* line 353, sass/modules/pages/_billboard.scss */
+/* line 426, sass/modules/pages/_billboard.scss */
 .top-message {
   position: relative;
   padding: 90px 15px 70px;
   margin-bottom: 40px;
   text-align: center;
 }
-/* line 359, sass/modules/pages/_billboard.scss */
+/* line 432, sass/modules/pages/_billboard.scss */
 .top-message:after {
   content: '';
   position: absolute;
@@ -2261,14 +2392,14 @@ select {
   height: 1px;
   background-color: #dee8ee;
 }
-/* line 370, sass/modules/pages/_billboard.scss */
+/* line 443, sass/modules/pages/_billboard.scss */
 .top-message h1 {
   margin-bottom: 15px;
   font-size: 42px;
   font-weight: 300;
   color: #cc0017;
 }
-/* line 377, sass/modules/pages/_billboard.scss */
+/* line 450, sass/modules/pages/_billboard.scss */
 .top-message p {
   margin-top: 0;
   color: #818386;
@@ -2278,19 +2409,19 @@ select {
 .movie-detail-container .big-cover {
   position: relative;
   height: 650px;
-  color: #fff;
+  color: #FFF;
   background-position: center center;
   background-repeat: no-repeat;
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   background-size: cover;
 }
-/* line 14, sass/modules/pages/_movie-detail.scss */
+/* line 13, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover .col-container {
   position: relative;
   height: 650px;
   z-index: 2;
 }
-/* line 20, sass/modules/pages/_movie-detail.scss */
+/* line 19, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover header {
   position: absolute;
   bottom: 15px;
@@ -2299,7 +2430,7 @@ select {
   width: 100%;
   text-shadow: 0px 0px 10px #000;
 }
-/* line 29, sass/modules/pages/_movie-detail.scss */
+/* line 28, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover h1 {
   position: relative;
   padding-bottom: 15px;
@@ -2310,7 +2441,7 @@ select {
   white-space: nowrap;
   padding-left: 20px;
 }
-/* line 38, sass/modules/pages/_movie-detail.scss */
+/* line 36, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover h1:after {
   content: '';
   position: absolute;
@@ -2320,7 +2451,7 @@ select {
   height: 1px;
   background-color: rgba(255, 255, 255, 0.5);
 }
-/* line 49, sass/modules/pages/_movie-detail.scss */
+/* line 47, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover p {
   padding-left: 20px;
   font-size: 24px;
@@ -2344,7 +2475,7 @@ select {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
   background-repeat: repeat-x;
 }
-/* line 67, sass/modules/pages/_movie-detail.scss */
+/* line 66, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover:before {
   position: absolute;
   top: 0;
@@ -2353,25 +2484,25 @@ select {
   height: 100%;
   background-color: rgba(240, 139, 36, 0.3);
 }
-/* line 77, sass/modules/pages/_movie-detail.scss */
+/* line 76, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded {
   height: 150px;
 }
-/* line 80, sass/modules/pages/_movie-detail.scss */
+/* line 79, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded header {
   position: static;
 }
-/* line 84, sass/modules/pages/_movie-detail.scss */
+/* line 83, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded .col-container {
   height: 135px;
 }
-/* line 88, sass/modules/pages/_movie-detail.scss */
+/* line 87, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded h1 {
   color: #CC0017;
   text-shadow: 0 0 0 transparent;
   margin-top: 20px;
 }
-/* line 92, sass/modules/pages/_movie-detail.scss */
+/* line 91, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded h1:after {
   content: '';
   position: absolute;
@@ -2381,21 +2512,21 @@ select {
   height: 1px;
   background-color: #dee8ee;
 }
-/* line 103, sass/modules/pages/_movie-detail.scss */
+/* line 102, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded p {
   color: #272b2e;
   text-shadow: 0 0 0 transparent;
 }
-/* line 108, sass/modules/pages/_movie-detail.scss */
+/* line 107, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .big-cover.image-not-founded:before, .movie-detail-container .big-cover.image-not-founded:after {
   background: transparent;
 }
-/* line 117, sass/modules/pages/_movie-detail.scss */
+/* line 114, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information {
   padding-top: 30px;
   position: relative;
 }
-/* line 120, sass/modules/pages/_movie-detail.scss */
+/* line 117, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .main-content {
   width: 67.5%;
   float: left;
@@ -2404,7 +2535,7 @@ select {
   display: inline-block;
   vertical-align: top;
 }
-/* line 125, sass/modules/pages/_movie-detail.scss */
+/* line 122, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information h2 {
   margin: 15px 0;
   font-size: 27px;
@@ -2412,18 +2543,18 @@ select {
   color: #818386;
   text-align: center;
 }
-/* line 137, sass/modules/pages/_movie-detail.scss */
+/* line 134, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis h2 {
   margin-top: 0;
   text-align: left;
 }
-/* line 142, sass/modules/pages/_movie-detail.scss */
+/* line 139, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis p {
   font-size: 15px;
   line-height: 1.5;
   color: #818386;
 }
-/* line 148, sass/modules/pages/_movie-detail.scss */
+/* line 145, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container {
   width: 34.54545%;
   float: left;
@@ -2434,13 +2565,13 @@ select {
   margin-bottom: 5px;
   text-align: center;
 }
-/* line 155, sass/modules/pages/_movie-detail.scss */
+/* line 152, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container img {
   display: block;
   width: 100%;
   border-radius: 3px;
 }
-/* line 161, sass/modules/pages/_movie-detail.scss */
+/* line 158, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container .like {
   display: inline-block;
   padding: 7px 15px 7px 40px;
@@ -2456,16 +2587,16 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   transition: border-color 0.2s ease-in-out;
 }
-/* line 173, sass/modules/pages/_movie-detail.scss */
+/* line 170, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container .like:hover {
   border-color: rgba(129, 131, 134, 0.2);
 }
-/* line 175, sass/modules/pages/_movie-detail.scss */
+/* line 172, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .sinopsis .cover-container .like:active {
   position: relative;
   top: 1px;
 }
-/* line 184, sass/modules/pages/_movie-detail.scss */
+/* line 180, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container {
   position: relative;
   width: 100%;
@@ -2474,7 +2605,7 @@ select {
   margin-bottom: 100px;
   overflow: hidden;
 }
-/* line 192, sass/modules/pages/_movie-detail.scss */
+/* line 188, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before, .movie-detail-container .movie-information .movie-gallery-container:after {
   content: '';
   position: absolute;
@@ -2483,27 +2614,27 @@ select {
   height: 100%;
   z-index: 5;
 }
-/* line 202, sass/modules/pages/_movie-detail.scss */
+/* line 198, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:before {
   left: 0;
-  background-image: -moz-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(left, #FFF, rgba(255, 255, 255, 0));
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
-  background-image: -webkit-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
-  background-image: -o-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
+  background-image: -webkit-linear-gradient(left, #FFF, rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(left, #FFF, rgba(255, 255, 255, 0));
   background-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
   background-repeat: repeat-x;
 }
-/* line 206, sass/modules/pages/_movie-detail.scss */
+/* line 202, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container:after {
   right: 0;
-  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #FFF);
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
-  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
-  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0), #fff);
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #FFF);
+  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0), #FFF);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff);
   background-repeat: repeat-x;
 }
-/* line 211, sass/modules/pages/_movie-detail.scss */
+/* line 207, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel {
   position: absolute;
   left: 0;
@@ -2515,83 +2646,283 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 219, sass/modules/pages/_movie-detail.scss */
+/* line 215, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container .movie-gallery-carousel:hover {
   opacity: 0.7;
 }
-/* line 222, sass/modules/pages/_movie-detail.scss */
+/* line 218, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container a {
   float: left;
   margin-right: 2px;
 }
-/* line 227, sass/modules/pages/_movie-detail.scss */
+/* line 223, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .movie-gallery-container img {
   height: 75px;
 }
-/* line 232, sass/modules/pages/_movie-detail.scss */
+/* line 230, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets {
-  width: 80%;
+  width: 88%;
   float: left;
-  margin-left: 0.90909%;
-  margin-right: 0.90909%;
-  margin-left: 8.18182%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-left: 9%;
+  margin-top: 50px;
+  position: relative;
 }
-/* line 236, sass/modules/pages/_movie-detail.scss */
+/* line 235, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets #loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff no-repeat center;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  z-index: 9;
+  display: none;
+}
+/* line 245, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets #loading .message {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  text-align: center;
+  color: #676767;
+}
+/* line 255, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets #loading .message .icon-loading {
+  background: url(web/preloader_10-64.gif) no-repeat center;
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+}
+/* line 264, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .billboard-list {
+  margin-top: 50px;
+  clear: both;
+  width: 98%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+/* line 267, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .billboard-list .complex {
+  clear: both;
+  width: 98%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+/* line 270, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .billboard-list .noCity {
+  font-size: 26px;
+  color: #818386;
+  text-align: center;
+}
+/* line 277, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h2 {
   margin-bottom: 5px;
   color: #cc0017;
 }
-/* line 241, sass/modules/pages/_movie-detail.scss */
+/* line 282, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets h3 {
   margin-bottom: 20px;
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 300;
+  color: #cc0017;
+  text-align: center;
 }
-/* line 247, sass/modules/pages/_movie-detail.scss */
+/* line 290, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets p {
   font-size: 16px;
 }
-/* line 249, sass/modules/pages/_movie-detail.scss */
+/* line 292, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 50px 0 0;
+  text-align: left;
+  border-radius: 3px;
+  width: 98%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
 }
-/* line 253, sass/modules/pages/_movie-detail.scss */
+/* line 298, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-complex {
+  width: 98%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+/* line 302, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .label {
   display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #818386;
 }
-/* line 255, sass/modules/pages/_movie-detail.scss */
-.movie-detail-container .movie-information .buy-tickets .filter .input,
+/* line 309, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .filter .selected-complex {
-  display: inline-block;
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #272b2e;
+  background-color: #CFD5D7;
+  border-radius: 3px;
+}
+/* line 318, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .selected-complex.selected {
+  color: #FFF;
+  background: #51b347 url(../img/complex-selected-icon.png) no-repeat 95% center;
+}
+/* line 323, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .selected-complex:hover {
+  opacity: 0.7;
+}
+/* line 325, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .selected-complex:active {
+  position: relative;
+  top: 1px;
+}
+/* line 331, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .checkbox {
   width: 48%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
 }
-/* line 260, sass/modules/pages/_movie-detail.scss */
-.movie-detail-container .movie-information .buy-tickets .filter .input:nth-of-type(1),
-.movie-detail-container .movie-information .buy-tickets .filter .selected-complex:nth-of-type(1) {
-  margin-right: 3%;
+/* line 334, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .checkbox input {
+  display: none;
 }
-/* line 264, sass/modules/pages/_movie-detail.scss */
-.movie-detail-container .movie-information .buy-tickets .label {
-  display: inline-block;
+/* line 336, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .checkbox input:checked + label {
+  color: #FFF;
+  background: #51b347 url(../img/complex-selected-icon.png) no-repeat 95% center;
 }
-/* line 268, sass/modules/pages/_movie-detail.scss */
+/* line 341, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .checkbox label {
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #272b2e;
+  background-color: #CFD5D7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+/* line 350, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .checkbox label:hover {
+  opacity: 0.7;
+}
+/* line 354, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select {
+  width: 98%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+/* line 356, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select .select {
+  position: relative;
+  cursor: pointer;
+  width: 48%;
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+/* line 360, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select .select select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+/* line 367, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select .select .SelectWrapper {
+  border: 0;
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #FFF;
+  background: #55595C url(../img/custom-select-arrow.png) no-repeat 95% center;
+  background-size: 20px;
+  border-radius: 3px;
+}
+/* line 377, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select .select .SelectWrapper .SelectOpt {
+  background: transparent;
+}
+/* line 381, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select .select:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}
+/* line 386, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select .center {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+/* line 392, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select > a {
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #FFF;
+  background: #55595C url(../img/custom-select-arrow.png) no-repeat 95% center;
+  background-size: 20px;
+  border-radius: 3px;
+}
+/* line 402, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select > a strong {
+  font-weight: bold;
+  color: #fecc00;
+}
+/* line 408, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .filter .filter-select ul {
+  display: none;
+}
+/* line 415, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules {
   padding-left: 0;
 }
-/* line 272, sass/modules/pages/_movie-detail.scss */
+/* line 419, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .schedules .schedule ul {
   width: 79%;
 }
-/* line 276, sass/modules/pages/_movie-detail.scss */
+/* line 423, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .complex-name {
   margin-bottom: 20px;
   font-size: 32px;
   font-weight: 300;
   color: #272b2e;
   display: inline-block;
+  position: relative;
 }
-/* line 285, sass/modules/pages/_movie-detail.scss */
+/* line 430, sass/modules/pages/_movie-detail.scss */
+.movie-detail-container .movie-information .buy-tickets .complex-name .presale {
+  background: #FECC00;
+  padding: 3px 10px;
+  position: absolute;
+  bottom: -20px;
+  left: 0px;
+  color: #353637;
+  font-size: 14px;
+}
+/* line 442, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .no-schedules {
   padding: 10px 30px;
   margin: 10px 0 30px;
@@ -2599,23 +2930,23 @@ select {
   font-size: 14px;
   color: #818386;
 }
-/* line 293, sass/modules/pages/_movie-detail.scss */
+/* line 450, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .no-schedules .big {
   font-size: 20px;
   color: #747679;
 }
-/* line 297, sass/modules/pages/_movie-detail.scss */
+/* line 454, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-information .buy-tickets .no-schedules .btn {
   display: inline-block;
   margin: 20px 0 0;
 }
-/* line 308, sass/modules/pages/_movie-detail.scss */
+/* line 465, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info {
   display: inline-block;
   width: 23.75%;
   margin-left: 5.625%;
 }
-/* line 313, sass/modules/pages/_movie-detail.scss */
+/* line 470, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer {
   display: block;
   padding: 8px 14px;
@@ -2630,45 +2961,45 @@ select {
   -webkit-transition: border-color 0.2s ease-in-out;
   -moz-transition: border-color 0.2s ease-in-out;
 }
-/* line 328, sass/modules/pages/_movie-detail.scss */
+/* line 484, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:hover {
   border-color: #83cb7c;
 }
-/* line 330, sass/modules/pages/_movie-detail.scss */
+/* line 486, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .watch-trailer:active {
   position: relative;
   top: 1px;
 }
-/* line 336, sass/modules/pages/_movie-detail.scss */
+/* line 492, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info {
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 340, sass/modules/pages/_movie-detail.scss */
+/* line 496, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info strong {
   display: block;
   margin-bottom: 3px;
   font-weight: bold;
 }
-/* line 346, sass/modules/pages/_movie-detail.scss */
+/* line 502, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value {
   display: block;
   margin-bottom: 2px;
   color: #818386;
 }
-/* line 351, sass/modules/pages/_movie-detail.scss */
+/* line 507, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info .value:empty + strong {
   display: none;
 }
-/* line 354, sass/modules/pages/_movie-detail.scss */
+/* line 510, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .info a {
   color: #fecc00;
 }
-/* line 357, sass/modules/pages/_movie-detail.scss */
+/* line 513, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner {
   margin-top: 20px;
 }
-/* line 360, sass/modules/pages/_movie-detail.scss */
+/* line 516, sass/modules/pages/_movie-detail.scss */
 .movie-detail-container .movie-detailed-info .vertical-banner img {
   border-radius: 3px;
 }
@@ -3896,6 +4227,29 @@ select {
   display: inline-block;
 }
 
+/* line 1056, sass/modules/pages/_session-buy.scss */
+.session-expired-buy-error {
+  background: url(web/clock.png) no-repeat top center;
+  margin: 100px 200px;
+  padding-top: 100px;
+  text-align: center;
+  color: #818386;
+  font-size: 24px;
+  font-weight: 300;
+}
+/* line 1064, sass/modules/pages/_session-buy.scss */
+.session-expired-buy-error .title {
+  font-size: 50px;
+  color: #cc0017;
+  font-weight: 200;
+}
+/* line 1069, sass/modules/pages/_session-buy.scss */
+.session-expired-buy-error .btn {
+  margin-top: 50px;
+  font-size: 20px;
+  display: inline-block;
+}
+
 /* line 1, sass/modules/pages/_buy.scss */
 .buy-detail-container {
   font-size: 14px;
@@ -3929,7 +4283,15 @@ select {
 .buy-detail-container .big-cover.image-not-founded .bg {
   display: none;
 }
-/* line 33, sass/modules/pages/_buy.scss */
+/* line 32, sass/modules/pages/_buy.scss */
+.buy-detail-container .big-cover.image-not-founded .buy-information {
+  background: #fff;
+  padding: 10px;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+/* line 39, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .bg {
   height: 100%;
   position: absolute;
@@ -3947,24 +4309,25 @@ select {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
 }
-/* line 50, sass/modules/pages/_buy.scss */
+/* line 56, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .col-container {
   position: relative;
   z-index: 2;
 }
-/* line 54, sass/modules/pages/_buy.scss */
+/* line 60, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .buttons {
   text-align: center;
   padding: 20px 0;
+  margin-top: 50px;
 }
-/* line 64, sass/modules/pages/_buy.scss */
+/* line 71, sass/modules/pages/_buy.scss */
 .buy-detail-container .message {
   font-size: 14px;
   font-weight: 200;
   overflow: hidden;
   margin: 0 50px 50px;
 }
-/* line 69, sass/modules/pages/_buy.scss */
+/* line 76, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .icon {
   background: url(web/checkbuy.png) no-repeat;
   width: 86px;
@@ -3972,22 +4335,22 @@ select {
   float: left;
   margin-right: 20px;
 }
-/* line 76, sass/modules/pages/_buy.scss */
+/* line 83, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .principal-text {
   margin-left: 106px;
   font-size: 36px;
   display: block;
 }
-/* line 81, sass/modules/pages/_buy.scss */
+/* line 88, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .second-text {
   margin-left: 106px;
 }
-/* line 83, sass/modules/pages/_buy.scss */
+/* line 90, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .second-text b, .buy-detail-container .message .second-text strong {
   font-weight: 500;
   color: #00CC67;
 }
-/* line 89, sass/modules/pages/_buy.scss */
+/* line 96, sass/modules/pages/_buy.scss */
 .buy-detail-container .section-title {
   color: #cc0017;
   font-size: 26px;
@@ -3995,14 +4358,14 @@ select {
   display: block;
   margin-bottom: 1em;
 }
-/* line 97, sass/modules/pages/_buy.scss */
+/* line 104, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 101, sass/modules/pages/_buy.scss */
+/* line 108, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information figure {
   width: 35%;
   float: left;
@@ -4013,12 +4376,12 @@ select {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 105, sass/modules/pages/_buy.scss */
+/* line 112, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information figure img {
   display: block;
   width: 100%;
 }
-/* line 110, sass/modules/pages/_buy.scss */
+/* line 117, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information .details {
   width: 60%;
   float: left;
@@ -4026,95 +4389,90 @@ select {
   margin-right: 1.25%;
   margin-top: 10px;
 }
-/* line 113, sass/modules/pages/_buy.scss */
+/* line 120, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information .details h2 {
   margin-bottom: 10px;
 }
-/* line 120, sass/modules/pages/_buy.scss */
+/* line 127, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
-  background: #fff;
-  padding: 10px;
-  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 127, sass/modules/pages/_buy.scss */
+/* line 132, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .buy-details {
   width: 60%;
   float: left;
   margin-left: 1.25%;
   margin-right: 1.25%;
 }
-/* line 130, sass/modules/pages/_buy.scss */
+/* line 135, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information figure {
   width: 35%;
   float: left;
   margin-left: 1.25%;
   margin-right: 1.25%;
 }
-/* line 132, sass/modules/pages/_buy.scss */
+/* line 137, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information figure img {
   border: 3px solid #fff;
 }
-/* line 138, sass/modules/pages/_buy.scss */
+/* line 143, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .info strong {
   width: 150px;
 }
-/* line 142, sass/modules/pages/_buy.scss */
+/* line 147, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets {
   margin: 20px 0;
   width: 100%;
   font-size: 16px;
 }
-/* line 146, sass/modules/pages/_buy.scss */
+/* line 151, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets th {
   text-align: left;
 }
-/* line 150, sass/modules/pages/_buy.scss */
+/* line 155, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets thead th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
-/* line 155, sass/modules/pages/_buy.scss */
+/* line 160, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets tfoot th {
   border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
-/* line 159, sass/modules/pages/_buy.scss */
+/* line 164, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets tfoot .total {
   text-align: center;
   font-size: 12px;
 }
-/* line 162, sass/modules/pages/_buy.scss */
+/* line 167, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets tfoot .total .value {
   color: #00CC67;
   display: block;
   font-size: 26px;
 }
-/* line 169, sass/modules/pages/_buy.scss */
+/* line 174, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets td {
   padding: 5px;
 }
-/* line 171, sass/modules/pages/_buy.scss */
+/* line 176, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets td.subtotal {
   text-align: center;
 }
-/* line 178, sass/modules/pages/_buy.scss */
+/* line 183, sass/modules/pages/_buy.scss */
 .buy-detail-container .info {
   margin-top: 5px;
 }
-/* line 180, sass/modules/pages/_buy.scss */
+/* line 185, sass/modules/pages/_buy.scss */
 .buy-detail-container .info strong {
   display: inline-block;
   width: 100px;
 }
-/* line 184, sass/modules/pages/_buy.scss */
+/* line 189, sass/modules/pages/_buy.scss */
 .buy-detail-container .info .value {
   font-weight: 200;
 }
-/* line 187, sass/modules/pages/_buy.scss */
+/* line 192, sass/modules/pages/_buy.scss */
 .buy-detail-container .info .mega {
   background: #F18932;
   color: #FFF;
@@ -4123,7 +4481,7 @@ select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 193, sass/modules/pages/_buy.scss */
+/* line 198, sass/modules/pages/_buy.scss */
 .buy-detail-container .info .premier {
   background: #E5C90C;
   padding: 1px 5px;
@@ -4570,7 +4928,7 @@ select {
 /* line 3, sass/modules/pages/_complex.scss */
 #complex-container #map {
   width: 100%;
-  height: 250px;
+  height: 450px;
 }
 /* line 8, sass/modules/pages/_complex.scss */
 #complex-container .cities-location {
@@ -4898,30 +5256,41 @@ select {
   display: inline-block;
 }
 /* line 21, sass/modules/pages/_profile.scss */
+#UserProfile .userCard figure .capitals {
+  background: #FECC00 none repeat scroll 0 0;
+  display: block;
+  font-size: 80px;
+  height: 160px;
+  line-height: 160px;
+  text-align: center;
+  width: 160px;
+  font-weight: 100;
+}
+/* line 32, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .name {
-  color: #cc0017;
+  color: #CC0017;
   font-size: 30px;
   font-weight: 100;
   display: block;
 }
-/* line 27, sass/modules/pages/_profile.scss */
+/* line 38, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .username {
   display: block;
   font-size: 16px;
   color: #707070;
 }
-/* line 32, sass/modules/pages/_profile.scss */
+/* line 43, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .btn {
   margin: 10px;
   display: inline-block;
 }
-/* line 36, sass/modules/pages/_profile.scss */
+/* line 47, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .logout {
   font-size: 14px;
-  color: #cc0017;
+  color: #CC0017;
   text-decoration: underline;
 }
-/* line 42, sass/modules/pages/_profile.scss */
+/* line 53, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo {
   width: 61.25%;
   float: left;
@@ -4929,9 +5298,9 @@ select {
   margin-right: 0.625%;
   margin-left: 5.625%;
 }
-/* line 45, sass/modules/pages/_profile.scss */
+/* line 56, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .title {
-  color: #5c5c5c;
+  color: #5C5C5C;
   font-size: 30px;
   font-weight: 100;
   display: block;
@@ -4939,11 +5308,11 @@ select {
   border-bottom: 1px solid #ECECEC;
   margin-bottom: 20px;
 }
-/* line 54, sass/modules/pages/_profile.scss */
+/* line 65, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal {
   overflow: hidden;
 }
-/* line 56, sass/modules/pages/_profile.scss */
+/* line 67, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal .data {
   width: 48.75%;
   float: left;
@@ -4952,45 +5321,102 @@ select {
   height: 70px;
   font-size: 16px;
 }
-/* line 61, sass/modules/pages/_profile.scss */
+/* line 72, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal .label {
   color: #353535;
   font-weight: 500;
   margin-bottom: 5px;
   display: block;
 }
-/* line 67, sass/modules/pages/_profile.scss */
+/* line 78, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal .value {
   display: block;
-  color: #5c5c5c;
+  color: #5C5C5C;
   font-weight: 200;
 }
-/* line 74, sass/modules/pages/_profile.scss */
+/* line 84, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .pass {
+  margin-top: 60px;
+}
+/* line 86, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .asterisk {
   font-size: 50px;
   color: #878787;
   line-height: 50px;
 }
-/* line 79, sass/modules/pages/_profile.scss */
+/* line 91, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .btn {
   float: right;
 }
-/* line 82, sass/modules/pages/_profile.scss */
+/* line 94, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .noPass {
   font-weight: 200;
-  color: #5c5c5c;
+  color: #5C5C5C;
   margin-bottom: 30px;
 }
-/* line 85, sass/modules/pages/_profile.scss */
+/* line 97, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .noPass strong {
   font-weight: 500;
 }
-/* line 93, sass/modules/pages/_profile.scss */
+/* line 105, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys {
+  margin-top: 60px;
+}
+/* line 107, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys .movie {
+  overflow: hidden;
+  color: #808080;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 40px;
+}
+/* line 114, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys figure {
+  width: 70px;
+  float: left;
+  margin-right: 20px;
+  overflow: hidden;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 120, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys figure img {
+  display: block;
+  width: 100%;
+}
+/* line 125, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys .movie-title {
+  font-size: 24px;
+  color: #2b2b2b;
+  font-weight: 200;
+  display: block;
+  margin-bottom: 5px;
+}
+/* line 132, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys .data {
+  display: block;
+}
+/* line 135, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys .btn {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 2p 3px;
+  font-size: 12px;
+}
+/* line 143, sass/modules/pages/_profile.scss */
+#UserProfile .userInfo .Buys .noBuys {
+  font-size: 18px;
+  color: #808080;
+  text-align: center;
+}
+/* line 150, sass/modules/pages/_profile.scss */
 #UserProfile .input {
   overflow: hidden;
   margin-bottom: 30px;
 }
-/* line 96, sass/modules/pages/_profile.scss */
+/* line 153, sass/modules/pages/_profile.scss */
 #UserProfile .input label {
   width: 30%;
   float: left;
@@ -4998,22 +5424,59 @@ select {
   margin-right: 0.625%;
   margin-top: 5px;
 }
-/* line 100, sass/modules/pages/_profile.scss */
+/* line 157, sass/modules/pages/_profile.scss */
 #UserProfile .input input {
   width: 61.25%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 106, sass/modules/pages/_profile.scss */
+/* line 163, sass/modules/pages/_profile.scss */
 #UserProfile .buttons .cancel {
-  color: #cc0017;
+  color: #CC0017;
   text-decoration: none;
   float: right;
 }
-/* line 112, sass/modules/pages/_profile.scss */
+/* line 169, sass/modules/pages/_profile.scss */
 #UserProfile .buttons button {
   float: right;
+}
+
+/* line 1, sass/modules/pages/_error-404.scss */
+#error404 {
+  text-align: center;
+  padding: 40px !important;
+}
+/* line 4, sass/modules/pages/_error-404.scss */
+#error404 #logo {
+  margin: 40px 0;
+  display: inline-block;
+}
+/* line 9, sass/modules/pages/_error-404.scss */
+#error404 .error404 {
+  text-align: center;
+  font-size: 200px;
+  line-height: 150px;
+  color: #cc0017;
+  height: 250px;
+  font-weight: 100;
+}
+/* line 16, sass/modules/pages/_error-404.scss */
+#error404 .error404 span {
+  display: block;
+  font-size: 40px;
+  color: #818386;
+  line-height: 40px;
+}
+/* line 23, sass/modules/pages/_error-404.scss */
+#error404 .inf {
+  color: #818386;
+  font-size: 30px;
+  text-align: center;
+}
+/* line 27, sass/modules/pages/_error-404.scss */
+#error404 .inf .btn {
+  margin-top: 40px;
 }
 
 /* line 2, sass/modules/base/_responsive.scss */

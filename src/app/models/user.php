@@ -12,6 +12,10 @@ class User extends AppModel {
 	var $hasAndBelongsToMany = array();
 	var $hasMany = array(
 		'SocialAuth',
+		'Buy'=>array(
+			'className'=>'Buy',
+			'foreignKey'=>'buyer',
+		)
 	);
 
 	var $_data = array();

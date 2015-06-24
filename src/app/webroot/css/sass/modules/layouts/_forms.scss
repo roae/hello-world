@@ -1,62 +1,65 @@
 label {
-  display: inline-block;
-  vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 input,
 textarea,
 select {
-  padding : 8px;
-  font-size : 1em;
-  border : 2px solid #ccc;
-  background : #fff;
+	padding: 8px;
+	font-size: 1em;
+	border: 2px solid #CCC;
+	background: #FFF;
 
-  &:focus {
-    border-color : darken(#ccc,10);
-    background : #fafafa;
-  }
+	&:focus {
+		border-color: darken(#CCC, 10);
+		background: #FAFAFA;
+	}
 }
 
 select {
-  height : 40px;
+	height: 40px;
 }
 
-.error{
-  input,
-  textarea,
-  select,
-  .SelectWrapper{
-    border-color: #cc0017;
-  }
+.error {
+	input,
+	textarea,
+	select,
+	.SelectWrapper {
+		border-color: #CC0017;
+	}
 
-  .error-message{
-    color:#cc0017;
-    font-size: 14px;
-  }
+	.error-message {
+		color: #CC0017;
+		font-size: 14px;
+	}
 }
 
+.SelectWrapper {
+	position: relative;
+	padding: 8px;
+	font-size: 1em;
+	border: 2px solid #CCC;
+	background: #FFF;
+	cursor: pointer;
+	@include border-radius(4px);
+	&.select_focus{
+		border-color: darken(#CCC, 10);
+		background: #FAFAFA;
+	}
 
-.SelectWrapper{
-  position: relative;
-  padding : 8px;
-  font-size : 1em;
-  border : 2px solid #ccc;
-  background : #fff;
-  cursor: pointer;
-  @include border-radius(4px);
-
-  .SelectOpt{
-    background: url(web/select-arrow.png) no-repeat center right;
-    display:block;
-    padding-right: 20px;
-    line-height: 27px;
-  }
-  select{
-    position: absolute;
-    top:0;left:0;
-    width: 100%;
-    height: 100%;
-    @include opacity(0);
-  }
+	.SelectOpt {
+		background: url(web/select-arrow.png) no-repeat center right;
+		display: block;
+		padding-right: 20px;
+		line-height: 27px;
+	}
+	select {
+		position: absolute;
+		top: 0; left: 0;
+		width: 100%;
+		height: 100%;
+		@include opacity(0);
+	}
 }
 

@@ -161,17 +161,91 @@ $(function(){
 			return false;
 		});
 	}
-	if($("#BillboardFilter").length){
-		//$(document).on("submit","#BillboardFilter",billboardRequest);
+	if($(".billboard-aside #BillboardFilter").length){
 
-		/*$("#BillboardFilter select,#BillboardFilter input" ).on("change",function(){
-			billboardRequest();
-		});*/
-		$("#BillboardFilter select" ).on("change",function(){
-			var date = $(this ).val();
-			$.xUpdater.setHash("#Billboard="+window.location.pathname+"date:"+date);
+		History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+			var State = History.getState(); // Note: We are using History.getState() instead of event.state
+			getBillboard(State.url,State.title);
+		});
+
+		$(document ).on("submit","#BillboardFilter",function(e){
+			e.preventDefault();
+			getBillboard($("#FilterCity" ).val());
+		});
+
+		$(document ).on("change","#FilterDate, #BillboardFilter input[type=checkbox]",function(){
+			$("#BillboardFilter" ).submit();
+		});
+
+		$(document ).on("change","#FilterCity",function(){
+			History.pushState(null,"Cartelera",$(this ).val());
+		});
+
+
+
+	}
+
+	if($(".movie-information #BillboardFilter" ).length){
+		$(document ).on("submit","#BillboardFilter",function(event){
+			event.preventDefault();
+			getBillboard($(this ).attr("action"),"BuyTickets");
+		});
+		$(document ).on("change","#FilterDate,#FilterCity, #BillboardFilter input[type=checkbox]",function(){
+			$("#BillboardFilter" ).submit();
 		});
 	}
+
+	$(document).on("click","#BillboardFilter input[type=checkbox]",function(event){
+		if($("#BillboardFilter input:checked" ).length < 1){
+			event.preventDefault();
+		}
+	})
+
+	function getBillboard(url,divs){
+		if(!divs){
+			divs = "Billboard topMessage FilterBillboard"
+		}
+
+		$("#loading" ).animate({opacity:.8} ).css({display:'block'});
+		$.ajax({
+			url:url,
+			data:$("#BillboardFilter" ).serialize(),
+			type:'post',
+			success:function(html,status,http){
+				if(divs.split(" " ).length > 1){
+					$.xUpdater.updateDivs(html);
+				}else{
+					$("#"+divs ).html(html);
+				}
+
+
+				$("#FilterBillboard select").Select();
+				$("#loading" ).animate({opacity:.0},function(){
+					$(this).css({display:'none'})
+				} );
+
+				eval('var xcity = '+http.getResponseHeader('X-City')+';');
+				if(xcity){
+					$link = $("#header-location-select .city-selector");
+					$cityName = $(".current",$link );
+					if($cityName.length){
+						$cityName.html(unescape(decodeURIComponent(xcity.name)));
+					}else{
+						$link.html("Ver cartelera de <span class='current'>"+xcity.name+"</span>")
+					}
+
+					$link.attr("href",xcity.url);
+				}
+				//$("#Billboard" ).html(html);
+			},
+			beforeSend:function(http){
+				http.setRequestHeader("X-update",divs);
+			}
+		});
+
+	}
+
+
 	function billboardRequest(){
 		//console.log($("#BillboardFilter").serialize());
 		$.ajax({

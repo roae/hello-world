@@ -369,7 +369,6 @@ class AppController extends Controller{
 		if(is_string($LocationsSelected)){
 			$first = substr($LocationsSelected, 0, 1);
 			if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
-
 				$LocationsSelected = json_decode(stripcslashes($LocationsSelected), true);
 			}
 		}
@@ -377,10 +376,10 @@ class AppController extends Controller{
 		Configure::write("LocationsSelected",$LocationsSelected);
 		$this->set("LocationsSelected",$LocationsSelected);
 
-		$locationsList = Cache::read("LocationsList");
+		$locationsList = $this->Session->read("LocationsList");
 		if(!$locationsList){
 			$locationsList = $this->City->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0,'city_id'=>Configure::read("CitySelected.id"))));
-			Cache::write("LocationsList",$locationsList);
+			$this->Session->write("LocationsList",$locationsList);
 		}
 		Configure::write("LocationsList",$locationsList);
 

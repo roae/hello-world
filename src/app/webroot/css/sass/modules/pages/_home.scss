@@ -33,7 +33,7 @@
 
       .movie-info {
         position: relative;
-        margin-top: 100px;
+        margin-top: 50px;
         @include span(8);
         margin-left: span(8) + gutter();
         z-index: 2;

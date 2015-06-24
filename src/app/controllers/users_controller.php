@@ -162,7 +162,9 @@ class UsersController extends AppController{
 
 	function logout(){
 		$this->Session->setFlash('Good-Bye');
-		$this->Auth->logout();
+		if($this->Auth->logout()){
+			$this->Session->delete("LoggedProfile");
+		}
 		$this->redirect("/");
 	}
 
@@ -172,7 +174,17 @@ class UsersController extends AppController{
 
 	function profile(){
 		$this->User->id = $this->Auth->user("id");
-		$this->User->contain(array("Profile",'SocialAuth'));
+		$this->User->contain(array(
+			"Profile",
+			'SocialAuth',
+			'Buy'=>array(
+				'Movie'=>array(
+					'Poster'
+				),
+				'Location',
+				'Projection'
+			)
+		));
 		$this->set("record",$this->User->read());
 	}
 

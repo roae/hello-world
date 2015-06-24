@@ -19,6 +19,7 @@ class Location extends AppModel {
 	var $hasMany = array(
 		'Show',
 		'Buy',
+		'MovieLocation'
 	);
 	var $displayField="name";
 

@@ -72,7 +72,7 @@ $(document).on("ready",function(){
 		cantidad = $cantidad.data("qty");
 		code = $parent.data("code");
 		precio = $(".price",$parent ).data("price");
-		if(cantidad){
+		if(cantidad != 0){
 			cantidad--;
 			countTickets--;
 			$cantidad.data("qty",cantidad);
@@ -301,7 +301,7 @@ function updateResume(){
 	$("#buyResume .tickets-details .ticket" ).removeClass("showing").css({display:'none'} );
 	$.each(Tickets,function(code,ticket){
 		//console.log(code);
-		console.dir(ticket);
+		//console.dir(ticket);
 		if(ticket.qty > 0){
 
 			$ticket = $("#buyResume .tickets-details tr[data-code='"+code+"']");

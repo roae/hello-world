@@ -1,14 +1,20 @@
 <?php
-$this->Html->script(array('ext/jquery.history.js','ext/jquery.flydom.js',"ext/jquery.xupdater.js"),array('inline'=>false));
+$this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js','ext/jquery.flydom.js',"ext/jquery.xupdater.js"),array('inline'=>false));
 ?>
 
 <section class="billboard-container">
+	<div id="loading">
+		<div class="message">
+			<i class="icon-loading"></i>
+			<div>[:cargando-cartelera:]</div>
+		</div>
+	</div>
 	<div class="col-container">
 
-		<div class="top-message">
+		<?php echo $this->Ajax->div("topMessage",array('class'=>'top-message')); ?>
 			<h1>Cartelera de <?= Configure::read("CitySelected.name") ?></h1>
 			<p>Selecciona un horario para comprar tus boletos</p>
-		</div>
+		<?php echo $this->Ajax->divEnd("topMessage"); ?>
 
 		<div class="the-billboard">
 
@@ -51,7 +57,18 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.flydom.js',"ext/jq
 											<?
 											$schedule = array();
 											foreach($shows as $show){
-												echo $this->Html->tag("li",$this->Html->link($this->Time->format("h:i <\s\m\a\l\l>a</\s\m\a\l\l>",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'],'escape'=>false)));
+												echo $this->Html->tag("li",
+													$this->Html->link(
+														$this->Time->format("h:i ",$show['schedule']).
+														$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+														$this->Html->tag("span",
+															$this->Html->tag("span",$show['screen_name'],"room").
+															($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
+															($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
+															,"details"),
+														array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
+														array('title'=>$show['screen_name'],'escape'=>false)
+													));
 											}
 											?>
 										</ul>
@@ -66,7 +83,18 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.flydom.js',"ext/jq
 												<?
 												$schedule = array();
 												foreach($shows as $show){
-													echo $this->Html->tag("li",$this->Html->link($this->Time->format("h:i <\s\m\a\l\l>a</\s\m\a\l\l>",$show['schedule']),array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),array('title'=>$show['screen_name'],'escape'=>false)));
+													echo $this->Html->tag("li",
+														$this->Html->link(
+															$this->Time->format("h:i ",$show['schedule']).
+															$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+															$this->Html->tag("span",
+																$this->Html->tag("span",$show['screen_name'],"room").
+																($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
+																($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
+																,"details"),
+															array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
+															array('title'=>$show['screen_name'],'escape'=>false)
+														));
 												}
 												?>
 											</ul>

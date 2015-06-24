@@ -1053,4 +1053,24 @@
 	}
 }
 
+.session-expired-buy-error {
+	background: url(web/clock.png) no-repeat top center;
+	margin: 100px 200px;
+	padding-top: 100px;
+	text-align: center;
+	color: $gray;
+	font-size: 24px;
+	font-weight: 300;
+	.title{
+		font-size: 50px;
+		color:#cc0017;
+		font-weight: 200;
+	}
+	.btn {
+		margin-top: 50px;
+		font-size: 20px;
+		display: inline-block;
+	}
+}
+
 

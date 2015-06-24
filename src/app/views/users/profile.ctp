@@ -8,7 +8,12 @@
 	<div class="col-container">
 		<section class="userCard">
 			<figure>
-			<?= $this->Html->image($record['Profile']['photo_url']);?>
+				<?
+				if(!empty($loggedProfile['photo_url'])){
+					echo $this->Html->image($record['Profile']['photo_url'],array('alt'=>sprintf("%s %s",$record['User']['nombre'],$record['User']['paterno'])));
+				}else{
+					echo $this->Html->tag("span",substr($record['User']['nombre'],0,1).substr($record['User']['paterno'],0,1),'capitals');
+				}?>
 			</figure>
 			<span class="name">
 				<?= $record['User']['nombre']." ".$record['User']['paterno']?>
@@ -54,6 +59,36 @@
 					echo $this->Html->link("[:set-password:]",array('action'=>'set_password'),array('class'=>'btn-success'));
 				}
 
+				?>
+			</div>
+			<a name="compras"></a>
+			<div class="Buys">
+
+				<span class="title">[:user-buys:]</span>
+				<?php
+				if(!empty($record['Buy'])){
+				?>
+					<ul class="moviesList">
+						<?php foreach($record['Buy'] as $item): ?>
+							<li class="movie">
+								<figure>
+									<?= $this->Html->link($this->Html->image($this->Uploader->generatePath($item['Movie']['Poster'],'mini')), array('controller' => 'movies', 'action' => 'view', 'slug' => $item['Movie']['slug']), array('escape' => false));?>
+								</figure>
+								<span class="movie-title"><?= h($item['Movie']['title'])?></span>
+								<span class="data">[:buy-no-confirmation:]: <?= $item['confirmation_number']?></span>
+								<span class="data">[:buy-date:]: <?= $this->Time->format("[:l:] d [:F:], Y",$item['created']);?></span>
+								<?= $this->Html->link("[:more-details:]",array('controller'=>'buys','action'=>'view',$item['id']),array('class'=>'btn'));?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php
+				}else{
+				?>
+					<div class="noBuys">
+						[:no-buys-yet:]
+					</div>
+				<?php
+				}
 				?>
 			</div>
 		</section>

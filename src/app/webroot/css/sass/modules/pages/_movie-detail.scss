@@ -1,364 +1,520 @@
 .movie-detail-container {
-  .big-cover {
-    position: relative;
-    height: 650px;
-    color: #fff;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #f1f1f1;
-    background-size: cover;
+	.big-cover {
+		position: relative;
+		height: 650px;
+		color: #FFF;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-color: #F1F1F1;
+		background-size: cover;
+		//-moz-background-blend-mode: luminosity;
+		//background-blend-mode: luminosity;
 
-    //-moz-background-blend-mode: luminosity;
-    //background-blend-mode: luminosity;
+		.col-container {
+			position: relative;
+			height: 650px;
+			z-index: 2;
+		}
 
-    .col-container {
-      position: relative;
-      height: 650px;
-      z-index: 2;
-    }
+		header {
+			position: absolute;
+			bottom: 15px;
+			padding-left: span(4)+gutter();
+			overflow: hidden;
+			width: 100%;
+			text-shadow: 0px 0px 10px #000
+		}
 
-    header {
-      position: absolute;
-      bottom: 15px;
-      padding-left: span(4)+gutter();
-      overflow: hidden;
-      width: 100%;
-      text-shadow: 0px 0px 10px #000
-    }
+		h1 {
+			position: relative;
+			padding-bottom: 15px;
+			font-size: 50px;
+			font-weight: 100;
+			@include text-overflow();
+			padding-left: 20px;
 
-    h1 {
-      position: relative;
-      padding-bottom: 15px;
-      font-size: 50px;
-      font-weight: 100;
-      @include text-overflow();
-      padding-left: 20px;
+			&:after {
+				content: '';
+				position: absolute;
+				bottom: 8px;
+				left: 20px;
+				width: 100px;
+				height: 1px;
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+		}
 
-
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 8px;
-        left: 20px;
-        width: 100px;
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-    }
-
-    p{
-      padding-left: 20px;
-      font-size: 24px;
-      font-weight: 200;
-      @include text-overflow();
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 300px;
-
-     @include gradientVertical(transparent,#000 );
-    }
-
-    &:before {
-      //content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(240, 139, 36, 0.3);
-    }
-
-    &.image-not-founded {
-      height: 150px;
-
-      header{
-        position: static;
-      }
-
-      .col-container {
-        height: 135px;
-      }
-
-      h1 {
-        color: #CC0017;
-        text-shadow: 0 0 0 transparent;
-        margin-top: 20px;
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: 8px;
-          left: 20px;
-          width: 100px;
-          height: 1px;
-          background-color: $light-gray;
-        }
-      }
-
-      p{
-        color:$dark-gray;
-        text-shadow: 0 0 0 transparent;
-      }
-
-      &:before,
-      &:after {
-        background: transparent;
-      }
-    }
-  }
+		p {
+			padding-left: 20px;
+			font-size: 24px;
+			font-weight: 200;
+			@include text-overflow();
+		}
 
 
 
-  .movie-information {
-    padding-top: 30px;
-    position: relative;
-    .main-content{
-      @include span(11);
-      display: inline-block;
-      vertical-align: top;
-    }
-    h2 {
-      margin: 15px 0;
-      font-size: 27px;
-      font-weight: 300;
-      color: $gray;
-      text-align: center;
-    }
-    @include with-layout(11) {
-      .sinopsis {
-        @extend .block;
-        //@include span(11);
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 300px;
+			@include gradientVertical(transparent, #000);
+		}
 
-        h2 {
-          margin-top:0;
-          text-align: left;
-        }
+		&:before {
+			//content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(240, 139, 36, 0.3);
+		}
 
-        p {
-          font-size: 15px;
-          line-height: 1.5;
-          color: $gray;
-        }
+		&.image-not-founded {
+			height: 150px;
 
-        .cover-container {
-          @include span(4);
-          margin-top: -160px;
-          margin-right: 20px;
-          margin-bottom: 5px;
-          text-align: center;
+			header {
+				position: static;
+			}
 
-          img {
-            display: block;
-            width: 100%;
-            border-radius: 3px;
-          }
+			.col-container {
+				height: 135px;
+			}
 
-          .like {
-            display: inline-block;
-            padding: 7px 15px 7px 40px;
-            margin-top: 10px;
-            border: 1px solid lighten($gray, 20%);
-            text-align: center;
-            color: $dark-gray;
-            background: url(../img/like.png) no-repeat 15px center;
-            background-size: 16px;
-            border-radius: 3px;
-            @include transition(border-color 0.2s ease-in-out);
+			h1 {
+				color: #CC0017;
+				text-shadow: 0 0 0 transparent;
+				margin-top: 20px;
+				&:after {
+					content: '';
+					position: absolute;
+					bottom: 8px;
+					left: 20px;
+					width: 100px;
+					height: 1px;
+					background-color: $light-gray;
+				}
+			}
 
-            &:hover { border-color: transparentize($gray, 0.8); }
+			p {
+				color: $dark-gray;
+				text-shadow: 0 0 0 transparent;
+			}
 
-            &:active {
-              position: relative;
-              top: 1px;
-            }
-          }
-        }
-      }
+			&:before,
+			&:after {
+				background: transparent;
+			}
+		}
+	}
 
+	.movie-information {
+		padding-top: 30px;
+		position: relative;
+		.main-content {
+			@include span(11);
+			display: inline-block;
+			vertical-align: top;
+		}
+		h2 {
+			margin: 15px 0;
+			font-size: 27px;
+			font-weight: 300;
+			color: $gray;
+			text-align: center;
+		}
+		@include with-layout(11) {
+			.sinopsis {
+				@extend .block;
+				//@include span(11);
 
-      .movie-gallery-container {
-        position: relative;
-        width: 100%;
-        height: 75px;
-        margin-top: 40px;
-        margin-bottom: 100px;
-        overflow: hidden;
+				h2 {
+					margin-top: 0;
+					text-align: left;
+				}
 
-        &:before,
-        &:after {
-          content: '';
-          position: absolute;
-          top: 0;
-          width: 200px;
-          height: 100%;
-          z-index: 5;
-        }
+				p {
+					font-size: 15px;
+					line-height: 1.5;
+					color: $gray;
+				}
 
-        &:before {
-          left: 0;
-          @include gradientHorizontal(#fff, rgba(255, 255, 255, 0));
-        }
-        &:after {
-          right: 0;
-          @include gradientHorizontal(rgba(255, 255, 255, 0), #fff);
-        }
+				.cover-container {
+					@include span(4);
+					margin-top: -160px;
+					margin-right: 20px;
+					margin-bottom: 5px;
+					text-align: center;
 
-        .movie-gallery-carousel {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 10000px;
-          cursor: pointer;
-          @include transition(opacity 0.2s ease-in-out);
+					img {
+						display: block;
+						width: 100%;
+						border-radius: 3px;
+					}
 
-          &:hover { opacity: 0.7; }
-        }
+					.like {
+						display: inline-block;
+						padding: 7px 15px 7px 40px;
+						margin-top: 10px;
+						border: 1px solid lighten($gray, 20%);
+						text-align: center;
+						color: $dark-gray;
+						background: url(../img/like.png) no-repeat 15px center;
+						background-size: 16px;
+						border-radius: 3px;
+						@include transition(border-color 0.2s ease-in-out);
 
-        a {
-          float: left;
-          margin-right: 2px;
-        }
+						&:hover { border-color: transparentize($gray, 0.8); }
 
-        img {
-          height: 75px;
-        }
-      }
+						&:active {
+							position: relative;
+							top: 1px;
+						}
+					}
+				}
+			}
 
-      .buy-tickets {
-        @include span(9);
-        margin-left: span(1) + gutter();
+			.movie-gallery-container {
+				position: relative;
+				width: 100%;
+				height: 75px;
+				margin-top: 40px;
+				margin-bottom: 100px;
+				overflow: hidden;
 
-        h2 {
-          margin-bottom: 5px;
-          color: $red;
-        }
+				&:before,
+				&:after {
+					content: '';
+					position: absolute;
+					top: 0;
+					width: 200px;
+					height: 100%;
+					z-index: 5;
+				}
 
-        h3 {
-          margin-bottom: 20px;
-          font-size: 27px;
-          font-weight: 300;
-        }
+				&:before {
+					left: 0;
+					@include gradientHorizontal(#FFF, rgba(255, 255, 255, 0));
+				}
+				&:after {
+					right: 0;
+					@include gradientHorizontal(rgba(255, 255, 255, 0), #FFF);
+				}
 
-        p { font-size: 16px; }
+				.movie-gallery-carousel {
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 10000px;
+					cursor: pointer;
+					@include transition(opacity 0.2s ease-in-out);
 
-        .filter {
-          margin-top: 20px;
-          margin-bottom: 20px;
+					&:hover { opacity: 0.7; }
+				}
 
-          .label { display: block; }
+				a {
+					float: left;
+					margin-right: 2px;
+				}
 
-          .input,
-          .selected-complex {
-            display: inline-block;
-            width: 48%;
+				img {
+					height: 75px;
+				}
+			}
+		}
 
-            &:nth-of-type(1) { margin-right: 3%; }
-          }
-        }
+		@include with-layout(10){
+			.buy-tickets {
+				@include span(9);
+				margin-left: span(1) + gutter();
+				margin-top: 50px;
+				position: relative;
+				#loading{
+					position: absolute;
+					top:0;
+					left:0;
+					width: 100%;
+					height: 100%;
+					background:  #fff no-repeat center;
+					@include opacity(.8);
+					z-index: 9;
+					display: none;
+					.message{
+						position: absolute;
+						z-index:10;
+						top:50%;
+						left: 50%;
+						@include translate(-50%,-50%);
+						font-size: 30px;
+						text-align: center;
+						color: darken(gray, 10);
+						//font-weight: 100;
+						.icon-loading {
+							background: url(web/preloader_10-64.gif) no-repeat center;
+							width: 64px;
+							height: 64px;
+							display: inline-block;
+						}
+					}
+				}
 
-        .label {
-          display: inline-block;
-        }
+				.billboard-list{
+					margin-top:50px;
+					@include full;
+					.complex{
+						@include full;
+					}
+					.noCity{
+						font-size: 26px;
+						color:$gray;
+						text-align: center;
+					}
+				}
 
-        .schedules {
-          padding-left: 0;
+				h2 {
+					margin-bottom: 5px;
+					color: $red;
+				}
 
-          .schedule {
-            ul { width: 79%; }
-          }
-        }
+				h3 {
+					margin-bottom: 20px;
+					font-size: 24px;
+					font-weight: 300;
+					color: $red;
+					text-align: center;
+				}
 
-        .complex-name{
-          margin-bottom: 20px;
-          font-size: 32px;
-          font-weight: 300;
-          color: $dark-gray;
-          display: inline-block;
-        }
+				p { font-size: 16px; }
 
-        // Mensaje que aparece cuando no hay funciones de la pelicula
-        .no-schedules{
-          padding:10px 30px;
-          margin: 10px 0 30px;
-          border-left: 3px solid $light-gray;
-          //margin:50px 0;
-          //text-align: center;
-          font-size: 14px;
-          color: $gray;
-          .big{
-            font-size: 20px;
-            color: darken($gray,5%);
-          }
-          .btn{
-            display: inline-block;
-            margin:20px 0 0;
-          }
-        }
+				.filter {
+					margin: 50px 0 0;
+					text-align: left;
+					border-radius: 3px;
+					@include span(10);
 
-      }
-    }
+					.filter-complex{
+						@include span(10);
+					}
 
-  }
+					.label {
+						display: block;
+						margin-bottom: 8px;
+						font-size: 14px;
+						color: $gray;
+					}
 
-  .movie-detailed-info {
-    display: inline-block;
-    width: span(4);
-    margin-left: span(1) + gutter();
+					.selected-complex {
+						display: block;
+						padding: 8px 15px;
+						margin-bottom: 10px;
+						font-size: 14px;
+						color: $dark-gray;
+						background-color: #CFD5D7;
+						border-radius: 3px;
 
-    .watch-trailer {
-      display: block;
-      padding: 8px 14px;
-      margin-top: 5px;
-      margin-bottom: 40px;
-      border: 2px solid $green;
-      text-align: center;
-      color: $green;
-      background: url(../img/green-camera-icon.png) no-repeat 15px center;
-      border-radius: 30px;
+						&.selected {
+							color: #FFF;
+							background: $green url(../img/complex-selected-icon.png) no-repeat 95% center;
+						}
 
-      transition: border-color 0.2s ease-in-out;
-      -webkit-transition: border-color 0.2s ease-in-out;
-      -moz-transition: border-color 0.2s ease-in-out;
+						&:hover { opacity: 0.7; }
 
-      &:hover { border-color: lighten($green, 15%); }
+						&:active {
+							position: relative;
+							top: 1px;
+						}
+					}
 
-      &:active {
-        position: relative;
-        top: 1px;
-      }
-    }
+					.checkbox {
+						@include span(5);
 
-    .info {
-      font-size: 14px;
-      margin-bottom: 15px;
+						input {
+							display: none;
+							&:checked + label {
+								color: #FFF;
+								background: $green url(../img/complex-selected-icon.png) no-repeat 95% center;
+							}
+						}
+						label {
+							display: block;
+							padding: 8px 15px;
+							margin-bottom: 10px;
+							font-size: 14px;
+							color: $dark-gray;
+							background-color: #CFD5D7;
+							border-radius: 3px;
+							cursor: pointer;
+							&:hover { opacity: 0.7; }
+						}
+					}
 
-      strong {
-        display: block;
-        margin-bottom: 3px;
-        font-weight: bold;
-      }
+					.filter-select {
+						@include span(10);
+						.select {
+							position: relative;
+							cursor: pointer;
+							@include span(5);
+							select {
+								position: absolute;
+								top: 0; left: 0;
+								width: 100%;
+								height: 100%;
+								@include opacity(0);
+							}
+							.SelectWrapper {
+								border: 0;
+								display: block;
+								padding: 8px 15px;
+								margin-bottom: 10px;
+								font-size: 14px;
+								color: #FFF;
+								background: #55595C url(../img/custom-select-arrow.png) no-repeat 95% center;
+								background-size: 20px;
+								border-radius: 3px;
+								.SelectOpt {
+									background: transparent;
+								}
+							}
+							&:hover {
+								@include opacity(0.5);
+							}
+						}
 
-      .value {
-        display: block;
-        margin-bottom: 2px;
-        color: $gray;
+						.center{
+							margin-left: auto;
+							margin-right: auto;
+							float: none;
+						}
 
-        &:empty + strong { display: none; }
-      }
+						& > a {
+							display: block;
+							padding: 8px 15px;
+							margin-bottom: 10px;
+							font-size: 14px;
+							color: #FFF;
+							background: #55595C url(../img/custom-select-arrow.png) no-repeat 95% center;
+							background-size: 20px;
+							border-radius: 3px;
 
-      a { color: $yellow; }
-    }
+							strong {
+								font-weight: bold;
+								color: $yellow;
+							}
+						}
 
-    .vertical-banner {
-      margin-top: 20px;
+						ul {
+							display: none;
+						}
+					}
 
-      img { border-radius: 3px; }
-    }
-  }
+				}
+
+				.schedules {
+					padding-left: 0;
+
+					.schedule {
+						ul { width: 79%; }
+					}
+				}
+
+				.complex-name {
+					margin-bottom: 20px;
+					font-size: 32px;
+					font-weight: 300;
+					color: $dark-gray;
+					display: inline-block;
+					position: relative;
+					.presale{
+						background: #FECC00;
+						padding: 3px 10px;
+						position: absolute;
+						bottom: -20px;
+						left:0px;
+						color:#353637;
+						font-size: 14px;
+					}
+				}
+
+				// Mensaje que aparece cuando no hay funciones de la pelicula
+				.no-schedules {
+					padding: 10px 30px;
+					margin: 10px 0 30px;
+					border-left: 3px solid $light-gray;
+					//margin:50px 0;
+					//text-align: center;
+					font-size: 14px;
+					color: $gray;
+					.big {
+						font-size: 20px;
+						color: darken($gray, 5%);
+					}
+					.btn {
+						display: inline-block;
+						margin: 20px 0 0;
+					}
+				}
+
+			}
+		}
+
+	}
+
+	.movie-detailed-info {
+		display: inline-block;
+		width: span(4);
+		margin-left: span(1) + gutter();
+
+		.watch-trailer {
+			display: block;
+			padding: 8px 14px;
+			margin-top: 5px;
+			margin-bottom: 40px;
+			border: 2px solid $green;
+			text-align: center;
+			color: $green;
+			background: url(../img/green-camera-icon.png) no-repeat 15px center;
+			border-radius: 30px;
+			transition: border-color 0.2s ease-in-out;
+			-webkit-transition: border-color 0.2s ease-in-out;
+			-moz-transition: border-color 0.2s ease-in-out;
+
+			&:hover { border-color: lighten($green, 15%); }
+
+			&:active {
+				position: relative;
+				top: 1px;
+			}
+		}
+
+		.info {
+			font-size: 14px;
+			margin-bottom: 15px;
+
+			strong {
+				display: block;
+				margin-bottom: 3px;
+				font-weight: bold;
+			}
+
+			.value {
+				display: block;
+				margin-bottom: 2px;
+				color: $gray;
+
+				&:empty + strong { display: none; }
+			}
+
+			a { color: $yellow; }
+		}
+
+		.vertical-banner {
+			margin-top: 20px;
+
+			img { border-radius: 3px; }
+		}
+	}
 
 }

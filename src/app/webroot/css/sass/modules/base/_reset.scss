@@ -118,3 +118,8 @@ a {
 * html .block { height: 1%; }
 .block { display: block; }
 /* close commented backslash hack */
+
+strong,
+b{
+	font-weight: 500;
+}

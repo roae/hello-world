@@ -14,11 +14,13 @@
 	<div class="big-cover <?= $class ?>">
 		<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 		<div class="col-container">
+			<?php if($showMessage){ ?>
 			<div class="message">
 				<span class="icon"></span>
 				<span class="principal-text">[:buy-principal-message:]</span>
 				<div class="second-text">[:buy-second-messages:]</div>
 			</div>
+			<?php } ?>
 			<div class="show-information">
 				<span class="section-title">[:show-details-title:]</span>
 				<figure class="poster"><?= $this->Html->image( $this->Uploader->generatePath($record['Poster'],'medium'), array( 'alt' => '[:logo_alt:]' ) ) ?></figure>
@@ -122,14 +124,41 @@
 							</th>
 						</tr>
 					</tfoot>
-
 				</table>
+				<?php
+				if(!$record['Buy']['payment_method']){
+				?>
+					<div class="paymentInfo">
+						[:pago-con-tarjeta:]
+						<div class="info">
+							<strong>[:buy-ccending:]:</strong>
+							<span class="value">**** **** **** <?= $record['Buy']['ccending'] ?></span>
+						</div>
+						<div class="info">
+							<strong>[:buy-cctype:]:</strong>
+							<span class="value"><?= $record['Buy']['cctype'] ?></span>
+						</div>
+						<div class="info">
+							<strong>[:buy-aut_code:]:</strong>
+							<span class="value"><?= $record['Buy']['aut_code'] ?></span>
+						</div>
+					</div>
+				<?
+				}
+				?>
 			</div>
 
 		</div>
 		<div class="buttons">
-			<?= $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));?>
-			<?= $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));?>
+			<?php
+			if($showMessage){
+				echo $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));
+				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));
+			}else{
+				echo $this->Html->link("[:back-to-profile:]",$referer,array('class'=>'btn'));
+				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));
+			}
+			?>
 		</div>
 	</div>
 </div>

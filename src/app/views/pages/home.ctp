@@ -7,12 +7,12 @@
   <div class="col-container">
 
     <header>
-      <h1>¡Un mundo de diversión!</h1>
+      <h1>[:tag-line:]</h1>
     </header>
 
-    <p class="description">
-      Consulta nuestra cartelera y no te pierdas de nuestros próximos estrenos, tenemos promociones y descuentos.
-    </p>
+    <div class="description">
+      [:tag-line-description:]
+    </div>
 
     <?php $this->element("locations/select");?>
     <div class="movies">

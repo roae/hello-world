@@ -1,0 +1,1 @@
+ALTER TABLE `buys` ADD `email` VARCHAR(100)  NULL  DEFAULT NULL  AFTER `aut_code`;

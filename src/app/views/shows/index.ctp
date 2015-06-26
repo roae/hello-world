@@ -67,7 +67,7 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 															($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
 															,"details"),
 														array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
-														array('title'=>$show['screen_name'],'escape'=>false)
+														array('escape'=>false)
 													));
 											}
 											?>
@@ -93,7 +93,7 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 																($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
 																,"details"),
 															array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
-															array('title'=>$show['screen_name'],'escape'=>false)
+															array('escape'=>false)
 														));
 												}
 												?>

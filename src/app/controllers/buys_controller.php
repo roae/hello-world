@@ -5,6 +5,10 @@ class BuysController extends AppController{
 		"Buy"
 	);
 
+	var $components = array(
+		'Email'
+	);
+
 	function view($id = null){
 		if($id){
 			$this->Buy->contain(array(
@@ -30,6 +34,31 @@ class BuysController extends AppController{
 			$this->set("showMessage",$route['controller'] == "shows");
 			$this->set("referer",$this->referer());
 			$this->set("record",$record);
+
+			$this->Email->reset();
+			$this->Email->to = "marisolphr@gmail.com";#$record['Buy']['email'];
+			$this->Email->from = "erochin@h1webstudio.com";
+			$this->Email->subject = "Confirmación de compra";
+			$this->Email->sendAs = 'html';
+			//$this->set("data",$this->errors);
+			$this->Email->template = "buy_confirm";
+
+			/* Opciones SMTP*/
+			$this->Email->smtpOptions = array(
+				'port'=>'25',
+				'timeout'=>'30',
+				'host' => 'mail.h1webstudio.com',
+				'username'=>'erochin@h1webstudio.com',
+				'password'=>'Rochin12!-');
+
+			$this->Email->delivery = 'smtp';
+			/**/
+			$this->Email->send();
+
+			//pr(print_r($this->Email->smtpError));
+
+
+
 		}else{
 			$this->cakeError('error404');
 		}

@@ -206,22 +206,27 @@
 				}
 
 				.labels{
+					font-size: 16px;
+					font-weight: 600;
 					position: absolute;
 					top: 7px;
 					left: 0px;
 					@include transition(opacity 0.2s ease-in-out);
+					li{
+						margin-bottom: 2px;
+					}
 				}
 
 				.presale {
-					background: #FECC00;
+					background: $red;
 					padding: 3px 10px;
-					color: #353637;
+					color: #fff;
 				}
 
 				.premiere {
 					background: $green;
 					padding: 3px 10px;
-					color: #353637;
+					color: #fff;
 				}
 
 				.details {

@@ -236,7 +236,6 @@ class ShowsController extends AppController{
 			try{
 				if(!empty($this->data)){
 					# Se conecta con el servidor Vista
-					#TODO: Cachar la ecepcion cuando no se puede conectar al servicio web
 					$this->VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
 
 					if(!$this->Session->check("Tickets")){
@@ -385,7 +384,7 @@ class ShowsController extends AppController{
 					}
 				}
 			}catch(Exception $e){
-				pr("Error en la coneccion con el complejo");
+				//pr("Error en la coneccion con el complejo");
 				$this->redirect($url_error_page);
 			}
 		}
@@ -971,7 +970,7 @@ class ShowsController extends AppController{
 
 		}else{
 			$query = array(
-				'fields'=>array('Show.id'),
+				'fields'=>array('Show.id','Show.schedule'),
 				'contain'=>array(
 					'Movie'=>array(
 						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),

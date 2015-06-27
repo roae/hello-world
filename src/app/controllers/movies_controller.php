@@ -312,6 +312,9 @@ class MoviesController extends AppController{
 			}
 		}
 
+
+		$this->pageTitle = isset($record['Movie']['title'])? $record['Movie']['title'] : "";
+
 		//pr($CitySelected);
 		$this->set(compact("record","billboard","CitySelected"));
 	}

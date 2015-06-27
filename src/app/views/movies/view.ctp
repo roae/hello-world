@@ -1,5 +1,8 @@
 <?php
+/* @var $this View */
 $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js','ext/jquery.flydom.js',"ext/jquery.xupdater.js"),array('inline'=>false));
+$this->set("pageDescription",$this->Text->truncate($record['Movie']['synopsis'],150));
+$this->set("pageKeywords",$record['Movie']['title']);
 ?>
 <div class="movie-detail-container">
 

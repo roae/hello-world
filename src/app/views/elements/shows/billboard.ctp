@@ -6,6 +6,7 @@
 	}
 
 	$billboard = $this->requestAction(am(array('controller'=>'shows','action'=>'rest'),$restParams));
+	pr($billboard);
 ?>
 <ul class="movies-list">
 	<?php foreach($billboard as $show) {
@@ -16,15 +17,28 @@
 			<div class="image-container">
 				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
 				<?php
+				$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
+				$labels = "";
+				#Etiqueta preventa
 				if(isset($show['Movie']['presale']) && $show['Movie']['presale']){
-					list($start_year,$start_month,$start_day) = explode("-",$show['Movie']['presale_start']);
-					list($end_year,$end_month,$end_day) = explode("-",$show['Movie']['presale_end']);
-					$presale_start = mktime(0,0,0,$start_month,$start_day,$start_year);
-					$presale_end = mktime(0,0,0,$end_month,$end_day,$end_year);
-					$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
+					$presale_start = $this->Time->gmt($show['Movie']['presale_start']);
+					$presale_end = $this->Time->gmt($show['Movie']['presale_end']);
+
 					if($today >= $presale_start && $today <= $presale_end){
-						echo $this->Html->tag("span","[:presale:]",'presale');
+						$labels.= $this->Html->tag("li","[:presale:]",'presale');
 					}
+				}
+				#Etiqueta Estreno
+				if(isset($show['Movie']['premiere_end']) && $show['Movie']['premiere_end']){
+					$premiere_start = $this->Time->gmt($this->Time->format("Y-m-d",$show['Show']['schedule']));
+					$premiere_end = $this->Time->gmt($show['Movie']['premiere_end']);
+
+					if($today >= $premiere_start && $today < $premiere_end){
+						$labels.= $this->Html->tag("li",'[:premiere:]','premiere');
+					}
+				}
+				if($labels){
+					echo $this->Html->tag("ul",$labels,"labels");
 				}
 				?>
 				<div class="details link">

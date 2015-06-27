@@ -125,7 +125,7 @@ class ShowsController extends AppController{
 			#pr($data);
 			if( $slug != Configure::read("CitySelected.slug") ) {
 				$data = $this->Show->Location->City->findBySlug($slug);
-				pr($data);
+				//pr($data);
 				$this->data['Filter']['Location']= array();
 			}
 		}

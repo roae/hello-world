@@ -49,7 +49,14 @@ $movies = $this->requestAction(array('controller'=>'movies','action'=>'get','typ
 						}
 						?>
 					</ul>
-					<?= $this->Html->link("[:ver_trailer:]",array('controller'=>'movies','action'=>'view','slug'=>$record['Movie']['slug']),array('class'=>'see-trailer')); ?>
+					<?php
+					if( $record['Movie']['trailer'] != '' ){
+						echo $this->Html->link("[:ver_trailer:]",array('controller'=>'movies','action'=>'view','slug'=>$record['Movie']['slug'],"#"=>'trailer'),array('class'=>'see-trailer'));
+					}else{
+						echo $this->Html->link("[:mas_detalles:]",array('controller'=>'movies','action'=>'view','slug'=>$record['Movie']['slug']),array('class'=>'see-trailer'));
+					}
+					?>
+
 				</div>
 			</div>
 		</div>

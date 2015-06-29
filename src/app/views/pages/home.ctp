@@ -14,7 +14,7 @@
       [:tag-line-description:]
     </div>
 
-    <?php $this->element("locations/select");?>
+    <?php //$this->element("locations/select");?>
     <div class="movies">
       <h2 class="titleBillboard">En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h2>
        <?= $this->element("shows/billboard"); ?>

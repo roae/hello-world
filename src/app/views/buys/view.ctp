@@ -153,9 +153,11 @@
 			<?php
 			if($showMessage){
 				echo $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));
+				echo "&nbsp";
 				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));
 			}else{
 				echo $this->Html->link("[:back-to-profile:]",$referer,array('class'=>'btn'));
+				echo "&nbsp";
 				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));
 			}
 			?>

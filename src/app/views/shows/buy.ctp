@@ -338,5 +338,14 @@ if(!empty($record)){
 }
 $this->I18n->addMissing("no-tickets-selected-yet","Mensaje que aparece cuando intenta seleccionar asientos sin seleccionar boletos",'modulo',true);
 $this->I18n->addMissing("select-tickets","Boton del mensaje que aparece cuando intenta seleccionar asientos sin seleccionar boletos",'modulo',true);
+$this->I18n->addMissing("select-seats","Boton seleccionar asientos que aparece en la barra de info",'modulo',true);
+$this->I18n->addMissing("session-not-found-message","Mensaje de error que aparece cuando no se encuentra la sesion solicitada",'modulo',true);
+$this->I18n->addMissing("back-billboard","Boton que dice volver a la cartelera cuando ocurre un error en la compra",'modulo',true);
+$this->I18n->addMissing("error-no-tickets-selected","Mensaje flash que aparece cuando no selecciono boletos",'modulo',true);
+$this->I18n->addMissing("no-se-seleccionaron-asientos","Mensaje flash que aparece cuando no selecciono asientos",'modulo',true);
+$this->I18n->addMissing("informacion-de-pago-incorrecta","Mensaje flash que aparece cuando no se pusieron los datos de la tarjeta correctamente",'modulo',true);
+$this->I18n->addMissing("invalid-credit-card-number","Mensaje de error del inpu no de tarjeta de credito",'modulo',true);
+
+
 $this->I18n->addMissing("remaining-time","Texto del cronometro",'modulo',true);
 ?>

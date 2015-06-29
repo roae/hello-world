@@ -68,6 +68,10 @@ class ShowsController extends AppController{
 
 		$this->set("billboard",$this->__getBillboardSchedules());
 
+		$this->pageTitle = "Cartelera de cines en ".Configure::read("CitySelected.name");
+		$this->pageDescription = "Horarios de las carteleras de cine en ".Configure::read("CitySelected.name");
+		$this->pageKeywords = "horarios,peliculas,cines,cartelera";
+
 	}
 
 	function __getBillboardSchedules(){

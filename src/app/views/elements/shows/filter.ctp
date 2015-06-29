@@ -46,7 +46,7 @@ foreach($citiesList as $city){
 				'type'=>'select',
 				'options'=>$cities,
 				'label'=>"[:city-to-show:]",
-				'value'=>$this->data['Filter']['city'],
+				'value'=>isset($this->data['Filter']['city']) ? $this->data['Filter']['city'] : "",
 				'div'=>array('class'=>empty($CitySelected)? "input select center":"input select"),
 				'empty'=>empty($CitySelected)? "Selecciona tu ciudad" : null,
 			));?>

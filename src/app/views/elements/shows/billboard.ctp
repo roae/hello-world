@@ -19,12 +19,14 @@
 				<?php
 				$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
 				$labels = "";
+				$presale = false;
 				#Etiqueta preventa
 				if(isset($show['Movie']['presale']) && $show['Movie']['presale']){
 					$presale_start = $this->Time->gmt($show['Movie']['presale_start']);
 					$presale_end = $this->Time->gmt($show['Movie']['presale_end']);
 
 					if($today >= $presale_start && $today <= $presale_end){
+						$presale = true;
 						$labels.= $this->Html->tag("li","[:presale:]",'presale');
 					}
 				}
@@ -56,8 +58,13 @@
 							$schedules_slug_data = '';
 							$schedules_url = array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(low($CitySelected['name']),'-'),'#' => $show['Movie']['slug']);
 						}
+						if($presale){
 
-						echo $this->Html->link("[:ver_horarios:]", $schedules_url,array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
+							echo $this->Html->link("[:ver_preventa:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"],'#'=>'horarios'),array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
+						}else{
+							echo $this->Html->link("[:ver_horarios:]", $schedules_url,array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
+						}
+
 					?>
 				</div>
 			</div>

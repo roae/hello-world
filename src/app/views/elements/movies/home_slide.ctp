@@ -9,9 +9,9 @@ $movies = $this->requestAction(array('controller'=>'movies','action'=>'get','typ
 #pr($movies);
 ?>
 <section class="home-highlights" id="main-slider">
-	<? foreach($movies as $record):
-	?>
-		<div class="movie" style="background-image: url(<?= $record['Gallery'][0]['url']?>) ">
+	<? foreach($movies as $i => $record): ?>
+		<div class="movie movie-<?= $i ?>" style="background-image: url(<?= $record['Gallery'][0]['url'] ?>);" data-bg-speed="5" data-type="background">
+			<?= $this->Html->image($record['Gallery'][0]['url'],array('data-loaded'=>'0','data-item'=>$i,'class'=>'img'.$i));?>
 			<div class="col-container">
 				<div class="movie-info-bg"></div>
 				<div class="movie-info">
@@ -64,17 +64,16 @@ $movies = $this->requestAction(array('controller'=>'movies','action'=>'get','typ
 	endforeach;
 	?>
 
-
-
 	<div class="col-container pagination-container">
 		<div class="pagination">
 			<ul>
 				<?php
-				for($i = 1; $i<=count($movies); $i++){
-					echo $this->Html->tag("li",$this->Html->link($i,"#",array('class'=>$i == 1 ? "current":"")));
+				for($i = 0; $i<=count($movies) -1; $i++){
+					echo $this->Html->tag("li",$this->Html->link($i,"#",array('class'=>$i == 0 ? "current":"",'data-item'=>$i)));
 				}
 				?>
 			</ul>
 		</div>
 	</div>
+	<div class="loading"></div>
 </section>

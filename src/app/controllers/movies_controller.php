@@ -330,7 +330,14 @@ class MoviesController extends AppController{
 			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
 			'contain'=>array(
 				'Movie'=>array(
-					'Poster'
+					'Poster',
+					/*'Show'=>array(
+						'conditions'=>array(
+							'Show.location_id'=>array_keys($LocationsSelected),
+							//'Show.movie_id'=>'Movie.id'
+						),
+						'limit'=>1
+					)*/
 				)
 			),
 			'group'=>'MovieLocation.movie_id'

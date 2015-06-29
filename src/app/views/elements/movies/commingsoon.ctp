@@ -6,7 +6,6 @@ if(isset($LocationsSelected) && !empty($LocationsSelected)){
 }
 
 $premiere = $this->requestAction(array('controller'=>'movies','action'=>'premiere'));
-#pr($premiere);
 if(!empty($premiere)){
 ?>
 <section class="next-premieres">

@@ -106,6 +106,12 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing('movies_url',array('desc'=>'url de detalle de pelicula','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('billboard_url',array('desc'=>'url de cartelera','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('shows_buy_url',array('desc'=>'url del proceso de compra','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('buy_url',array('desc'=>'url del detalle de la compra','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('profile_url',array('desc'=>'url del perfil de usuarios','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('edit_profile_url',array('desc'=>'url de la edicion del perfil de usuarios','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('change_pass_url',array('desc'=>'url de la pagina cambio de contraseña','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('set_pass_url',array('desc'=>'url de la pagina poner contraseña','js'=>false,'tab'=>'urls'));
+
 	$this->I18n->addMissing('m_about_url',array('desc'=>'url de la pagina about','js'=>false,'tab'=>'urls'));
 
 	$this->I18n->addMissing('m_contacts_url',array('desc'=>'url de la pagina de la pagina de contacto','js'=>false,'tab'=>'urls'));
@@ -117,10 +123,16 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing('thanks_url',array('desc'=>'url de la pagina de agradecimiento de contacto','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('m_register_url',array('desc'=>'url de la pagina de registro','js'=>false,'tab'=>'urls'));
 
-
+	$this->I18n->addMissing("[:year:]",array('desc'=>'Palabra año','js'=>true,'tab'=>"extras"));
+	$this->I18n->addMissing("[:month:]",array('desc'=>'Palabra mes','js'=>true,'tab'=>"extras"));
 	foreach(range(1,12) as $i){
 		$this->I18n->addMissing($this->Time->format("[:F:]",  mktime(null,null,null,$i,2,2010)),array('desc'=>'Mes','js'=>true,'tab'=>"extras"));
 		$this->I18n->addMissing($this->Time->format("[:M:]",  mktime(null,null,null,$i,2,2010)),array('desc'=>'Mes abreviado','js'=>true,'tab'=>"extras"));
+	}
+
+	foreach(range(14,20) as $i){
+		$this->I18n->addMissing($this->Time->format("[:l:]",  mktime(null,null,null,6,$i,2015)),array('desc'=>'Día','js'=>true,'tab'=>"extras"));
+		$this->I18n->addMissing($this->Time->format("[:D:]",  mktime(null,null,null,6,$i,2015)),array('desc'=>'Día abreviado','js'=>true,'tab'=>"extras"));
 	}
 
 	if(isset($this->Uploader)){

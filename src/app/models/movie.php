@@ -43,6 +43,7 @@ class Movie extends AppModel {
 				),
 				'limit' => 10,
 				'required' => false,
+				'resize'=>false,
 				#'image_ratio_crop' => true,
 				'allowed' => array('images'),
 				'max_file_size'=>2,// MB

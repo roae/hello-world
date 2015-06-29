@@ -1,3 +1,4 @@
+<?php /* @var $this View */?>
 <?= $this->element("movies/home_slide");?>
 <section class="top-promo">
   <a href="">¡Palomitas 2X1 los Martes y Jueves!</a>
@@ -27,3 +28,9 @@
 </section>
 
 <?= $this->element("movies/commingsoon"); ?>
+
+<?php
+$this->I18n->addMissing("[:username-or-email:]","Label del campo username en el formulario de login","extras");
+$this->I18n->addMissing("[:username-password:]","Label del campo password en el formulario de login","extras");
+$this->I18n->addMissing("[:username-login:]","Boton del formulario de login","extras");
+?>

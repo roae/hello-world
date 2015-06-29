@@ -12,7 +12,7 @@ class Article extends AppModel {
 		'Translate' => array( 'titulo','contenido','slug','keywords','description' ),
 		'Media.Uploader' => array(
 			'Foto' => array(
-				#'resize' => true,
+				'resize' => false,
 				'copies' => array(
 					'snipped' => array('width' => 100,'height'=>100,'image_ratio_crop' => true),
 					'mini' => array('width' => 75,'height'=>75,'image_ratio_crop' => true),

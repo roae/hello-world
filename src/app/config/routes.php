@@ -89,19 +89,24 @@ I18nRouter::connect( "/[buy_url]/*",
 	array( 'controller' => 'buys', 'action' => 'view' )
 );
 
-I18nRouter::connect( "/[profile_url]/[edit_profile_url]/*",
+I18nRouter::connect( "/[profile_url]/[edit_profile_url]/",
 	array( 'controller' => 'users', 'action' => 'edit_profile' )
 );
 
-I18nRouter::connect( "/[profile_url]/[change_pass_url]/*",
+I18nRouter::connect( "/[profile_url]/[change_pass_url]/",
 	array( 'controller' => 'users', 'action' => 'change_password' )
 );
-I18nRouter::connect( "/[profile_url]/[set_pass_url]/*",
+I18nRouter::connect( "/[profile_url]/[set_pass_url]/",
 	array( 'controller' => 'users', 'action' => 'set_password' )
 );
 
-I18nRouter::connect( "/[profile_url]/*",
+I18nRouter::connect( "/[profile_url]/",
 	array( 'controller' => 'users', 'action' => 'profile' )
+);
+
+
+I18nRouter::connect( "/[session_timeout_url]/",
+	array( 'controller' => 'pages', 'action' => 'display','buy_expired_error' )
 );
 
 I18nRouter::connect( "/[m_contacts_url]", array( 'controller' => 'contacts',

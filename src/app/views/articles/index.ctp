@@ -1,75 +1,91 @@
 <div id="articles-container">
-  <div class="top-message">
-    <div class="col-container">
-      <h1>Blog, noticias recientes</h1>
-      <p>
-        Bienvenido a nuestro blog, lee las ultimas noticias en el mundo del cine y actualizaciones en nuestro sitio.
-      </p>
-    </div>
-  </div>
+	<div class="top-message">
+		<div class="col-container">
+			<h1>Blog, noticias recientes</h1>
 
-  <ul class="the-articles">
+			<p>
+				Bienvenido a nuestro blog, lee las ultimas noticias en el mundo del cine y actualizaciones en nuestro
+				sitio.
+			</p>
+		</div>
+	</div>
 
-    <?php foreach ($recordset as $record): ?>
+	<ul class="the-articles">
 
-      <?php
-        $article = $record['Article'];
-        $tags = $record['Tag'];
-        $categories = $record['Category'];
-        $photo = $record['Foto'];
-      ?>
+		<?php foreach( $recordset as $record ): ?>
 
-      <li class="<?= (isset($photo['id'])) ? 'with-image': '' ?>" style="<?= (isset($photo['id'])) ? 'background-image: url('.$photo['big'].')': '' ?>">
-        <div class="col-container">
-          <article>
-            <small class="date">
-              Creado: 22 Enero, 2015 | en
+			<?php
+			$article = $record['Article'];
+			$tags = $record['Tag'];
+			$categories = $record['Category'];
+			$photo = $record['Foto'];
+			?>
 
-              <?php
-                $total_categories = count($categories);
-                $_categories = array();
+			<li class="<?= ( isset( $photo['id'] ) ) ? 'with-image' : '' ?>"
+			    style="<?= ( isset( $photo['id'] ) ) ? 'background-image: url('.$photo['big'].')' : '' ?>">
+				<div class="col-container">
+					<article>
+						<small class="date">
+							Creado: 22 Enero, 2015 | en
 
-                foreach ($categories as $i => $category):
-                  $_categories[] = $this->Html->link($category['nombre'], array('controller' => 'articles', 'action' => 'index', 'category_slug' => $category['slug']));
-                endforeach;
+							<?php
+							$total_categories = count( $categories );
+							$_categories = array();
 
-                echo implode(', ', $_categories);
-              ?>
-            </small>
+							foreach( $categories as $i => $category ):
+								$_categories[] = $this->Html->link( $category['nombre'], array( 'controller' => 'articles',
+									'action' => 'index',
+									'category_slug' => $category['slug']
+								) );
+							endforeach;
 
-            <header>
-              <h2><?= $article['titulo'] ?></h2>
-            </header>
+							echo implode( ', ', $_categories );
+							?>
+						</small>
 
-            <?= $this->Text->truncate($article['contenido'], 300, array('html' => true, 'exact' => false)) ?>
+						<header>
+							<h2><?= $article['titulo'] ?></h2>
+						</header>
 
-            <div class="bottom-article">
-              <div class="tags">
-                <ul>
+						<?= $this->Text->truncate( $article['contenido'], 300, array( 'html' => true,
+							'exact' => false
+						) ) ?>
 
-                  <?php foreach ($tags as $tag): ?>
+						<div class="bottom-article">
+							<div class="tags">
+								<ul>
 
-                    <li>
-                      <?= $this->Html->link($tag['nombre'], array('controller' => 'articles', 'action' => 'index', 'tag_slug' => $tag['slug']), array('class' => 'tag')) ?>
-                    </li>
+									<?php foreach( $tags as $tag ): ?>
 
-                  <?php endforeach; ?>
+										<li>
+											<?= $this->Html->link( $tag['nombre'], array( 'controller' => 'articles',
+												'action' => 'index',
+												'tag_slug' => $tag['slug']
+											), array( 'class' => 'tag' ) ) ?>
+										</li>
 
-                </ul>
-              </div>
+									<?php endforeach; ?>
 
-              <?= $this->Html->link('[:seguir_leyendo:]', array('controller' => 'articles', 'action' => 'view', 'id' => $article['id'], 'slug' => $article['slug']), array('class' => 'see-more')); ?>
-            </div>
-          </article>
-        </div>
-      </li>
+								</ul>
+							</div>
 
-    <?php endforeach; ?>
+							<?= $this->Html->link( '[:seguir_leyendo:]', array( 'controller' => 'articles',
+								'action' => 'view',
+								'id' => $article['id'],
+								'slug' => $article['slug']
+							), array( 'class' => 'see-more' ) ); ?>
+						</div>
+					</article>
+				</div>
+			</li>
 
-  </ul>
+		<?php endforeach; ?>
 
-  <div class="articles-pagination">
-    <?= $this->Paginator->numbers(array('separator' => null)) ?>
-  </div>
+	</ul>
+	<?php if(isset($this->params['paging']['Article']['pageCount']) && $this->params['paging']['Article']['pageCount'] > 1){ ?>
+		<div class="articles-pagination">
+			<?= $this->Paginator->numbers( array( 'separator' => null ) ) ?>
+		</div>
+	<?php } ?>
 
 </div>

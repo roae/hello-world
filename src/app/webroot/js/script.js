@@ -137,9 +137,10 @@ $(function(){
 		changeSlide($(this ).data("item"));
 	});
 
-	$(".redes .red" ).click(function(){
+	$(".redes .red" ).click(function(event){
+		console.log("rochin");
 		window.open($(this ).attr("href"),'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
-		return false;
+		event.preventDefault();
 	});
 
 

@@ -4,12 +4,28 @@
 		text-align: center;
 		color: #818386;
 		margin-top: 0;
+		position: relative;
 
 		h1 {
 			color: #CC0017;
 			font-size: 42px;
 			font-weight: 300;
 			margin-bottom: 15px;
+		}
+
+		.crumb{
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom: 5px;
+			left:0;
+			color: $gray;
+			a{
+				color:$red;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
 		}
 
 	}
@@ -172,15 +188,35 @@
 
 	.article-banner {
 		position: relative;
-		height: 170px;
 		margin-bottom: 20px;
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
 
-		.info{
+		.crumb{
+			color: $gray;
+			margin-top: 20px;
+			.col-container{
+				padding-bottom: 5px;
+				border-bottom: $light-gray 1px solid;
+			}
+			.crumbTitle{
+				font-size: 12px;
+				display:block;
+			}
+			a{
+				color:$red;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.title{
 			color: $dark-gray;
-			margin: 50px span(1)+gutter();
+			.info{
+				margin: 50px span(1)+gutter();
+			}
 
 
 			h1 {
@@ -211,11 +247,29 @@
 				@include gradientVertical(transparent, #000);
 			}
 
-			.info {
+			.title{
 				position: absolute;
 				bottom: 20px;
 				color: #FFF;
 				z-index: 2;
+				width: 100%;
+				margin:0;
+			}
+
+			.info {
+				margin: 50px span(1)+gutter() 0;
+			}
+			.crumb{
+				margin:0;
+				top:20px;
+				color:#fff;
+				position: absolute;
+				width: 100%;
+				border:0;
+				.col-container{
+					border-bottom:transparentize(#fff,.5) 1px solid;
+					padding-bottom: 5px;
+				}
 			}
 		}
 	}

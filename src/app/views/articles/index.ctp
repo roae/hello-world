@@ -1,12 +1,35 @@
 <div id="articles-container">
 	<div class="top-message">
 		<div class="col-container">
-			<h1>Blog, noticias recientes</h1>
-
-			<p>
-				Bienvenido a nuestro blog, lee las ultimas noticias en el mundo del cine y actualizaciones en nuestro
-				sitio.
-			</p>
+			<?php if(isset($category['Term'])){?>
+				<h1><?= $category['Term']['nombre'] ?></h1>
+				<?= $category['Term']['descripcion'] ?>
+				<div class="crumb">
+					<?= $this->Html->link("[:home_crumb:]","/");?>
+					/
+					<?= $this->Html->link("[:blog_crumb:]",array('action'=>'index'));?>
+					/
+					<span>[:category:]: <?= h($category['Term']['nombre'])?></span>
+				</div>
+			<?php }else if(isset($tag['Term'])){?>
+				<h1><?= $tag['Term']['nombre'] ?></h1>
+				<?= $tag['Term']['descripcion'] ?>
+				<div class="crumb">
+					<?= $this->Html->link("[:home_crumb:]","/");?>
+					/
+					<?= $this->Html->link("[:blog_crumb:]",array('action'=>'index'));?>
+					/
+					<span>[:tag:]: <?= h($tag['Term']['nombre'])?></span>
+				</div>
+			<?php }else{ ?>
+				<h1>[:Blog-principal-title:]</h1>
+				[:welcome-to-our-blog:]
+				<div class="crumb">
+					<?= $this->Html->link("[:home_crumb:]","/");?>
+					/
+					<span>[:blog_crumb:]</span>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 

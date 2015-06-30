@@ -17,7 +17,7 @@ $movies = $this->requestAction(array('controller'=>'movies','action'=>'get','typ
 				<div class="movie-info">
 					<h3 class="title"><?= h($record['Movie']['title']) ?></h3>
 
-					<?= $this->Text->truncate($record['Movie']['synopsis'],200)?>
+					<?= $this->Text->truncate($record['Movie']['synopsis'],200,array('html'=>true,'exact'=>false))?>
 
 					<ul class="features">
 						<?php if($record['Movie']['director']){ ?>

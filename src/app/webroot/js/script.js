@@ -110,7 +110,6 @@ $(function(){
 	// Link en bloque
 	$(".link:has(a.fwd)").on('click',function(event){
 		if(event.target.tagName.toUpperCase()!="A" || event.target.tag.toUpperCase()!="BUTTON"){
-			alert(event.target.tagName);
 			window.location =  $("a.fwd", this).attr('href');
 		}
 	}).on('mousemove',function(){

@@ -43,7 +43,7 @@ class ShowsController extends AppController{
 		$this->__setCitySelected();
 		$date = date("Y-m-d");
 		//$start = date("Y-m-d h:i:s");
-		$start = strtotime("-30 min");
+		$start = date("Y-m-d H:i:s",strtotime("-20 min"));
 
 		if(isset($this->params['named']['date'])){
 			$date = $this->params['named']['date'];
@@ -894,18 +894,19 @@ class ShowsController extends AppController{
 
 		$date = date("Y-m-d");
 		//$start = date("Y-m-d h:i:s");
-		$start = strtotime("-30 min");
+		$start = date("Y-m-d H:i:s",strtotime("-20 min"));
 
 		if(isset($this->params['named']['date'])){
 			$date = $this->params['named']['date'];
-			$start = $date." ".date("H:i:s");
+			$start = $date." ".date("H:i:s",strtotime("-20 min"));
 			if($date != date("Y-m-d")){
 				$start = $date." 0:0:0";
 			}
 		}
 		if(isset($this->data['Filter']['date'])){
+
 			$date = $this->data['Filter']['date'];
-			$start = $date." ".date("H:i:s");
+			$start = $date." ".date("H:i:s",strtotime("-20 min"));
 			if($date != date("Y-m-d")){
 				$start = $date." 0:0:0";
 			}

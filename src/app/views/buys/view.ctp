@@ -1,5 +1,5 @@
 <div class="buy-detail-container">
-
+	<iframe height="0" width="0" name="email" id="print" src="<?= $this->Html->url()?>email:true"></iframe>
 	<?php
 	$bg_url = '';
 	$class = '';
@@ -154,11 +154,11 @@
 			if($showMessage){
 				echo $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));
 				echo "&nbsp";
-				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));
+				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'frames.print.focus();frames.print.print();return false;'));
 			}else{
 				echo $this->Html->link("[:back-to-profile:]",$referer,array('class'=>'btn'));
 				echo "&nbsp";
-				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary'));
+				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'frames.print.focus();frames.print.print();return false;'));
 			}
 			?>
 		</div>

@@ -35,30 +35,34 @@ class BuysController extends AppController{
 			$this->set("referer",$this->referer());
 			$this->set("record",$record);
 
-			$this->Email->reset();
-			$this->Email->to = $record['Buy']['email'];
-			$this->Email->from = "erochin@h1webstudio.com";
-			$this->Email->subject = "Confirmación de compra";
-			$this->Email->sendAs = 'html';
-			//$this->set("data",$this->errors);
-			$this->Email->template = "buy_confirm";
+			if(isset($this->params['named']['email'])){
+				$this->layout = 'email/html/default';
+				return $this->render('/elements/email/html/buy_confirm');
+			}
 
-			/* Opciones SMTP*/
-			$this->Email->smtpOptions = array(
-				'port'=>'25',
-				'timeout'=>'30',
-				'host' => 'mail.h1webstudio.com',
-				'username'=>'erochin@h1webstudio.com',
-				'password'=>'Rochin12!-');
+			if($route['controller'] == "shows"){
+				$this->Email->reset();
+				$this->Email->to = $record['Buy']['email'];
+				$this->Email->from = "erochin@h1webstudio.com";
+				$this->Email->subject = "Confirmación de compra";
+				$this->Email->sendAs = 'html';
+				//$this->set("data",$this->errors);
+				$this->Email->template = "buy_confirm";
 
-			$this->Email->delivery = 'smtp';
-			/**/
-			$this->Email->send();
+				/* Opciones SMTP*/
+				$this->Email->smtpOptions = array(
+					'port'=>'25',
+					'timeout'=>'30',
+					'host' => 'mail.h1webstudio.com',
+					'username'=>'erochin@h1webstudio.com',
+					'password'=>'Rochin12!-');
 
-			//pr(print_r($this->Email->smtpError));
+				$this->Email->delivery = 'smtp';
+				/**/
+				$this->Email->send();
 
-
-
+				//pr(print_r($this->Email->smtpError));
+			}
 		}else{
 			$this->cakeError('error404');
 		}

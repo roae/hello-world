@@ -110,5 +110,8 @@
 			<?= $this->Paginator->numbers( array( 'separator' => null ) ) ?>
 		</div>
 	<?php } ?>
+	<section class="horizontal-banner">
+		<?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
+	</section>
 
 </div>

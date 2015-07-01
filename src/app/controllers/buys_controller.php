@@ -36,7 +36,7 @@ class BuysController extends AppController{
 			$this->set("record",$record);
 
 			$this->Email->reset();
-			$this->Email->to = "marisolphr@gmail.com";#$record['Buy']['email'];
+			$this->Email->to = $record['Buy']['email'];
 			$this->Email->from = "erochin@h1webstudio.com";
 			$this->Email->subject = "Confirmación de compra";
 			$this->Email->sendAs = 'html';

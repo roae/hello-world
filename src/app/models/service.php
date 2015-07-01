@@ -48,7 +48,7 @@ class Service extends AppModel {
 
 	var $validate = array(
 		'name'=>array(
-			'unico'=>array('rule'=>array('isUnique','title'),'message'=>'[:service_already_existe:]'),
+			'unico'=>array('rule'=>array('isUnique','name'),'message'=>'[:service_already_existe:]'),
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		)
 	);

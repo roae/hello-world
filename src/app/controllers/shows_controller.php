@@ -1018,6 +1018,7 @@ class ShowsController extends AppController{
 	function get_date($movie_id = null){
 		$conditions = array(
 			'Show.location_id'=> array_keys(Configure::read("LocationsSelected")),
+			'Show.schedule >='=>date("Y-m-d"),
 		);
 		if($movie_id){
 			$conditions = am($conditions,array('Show.movie_id'=>$movie_id));

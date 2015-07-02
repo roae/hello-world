@@ -5,7 +5,7 @@
 	echo $this->Form->hidden('map_lat') . $this->Form->hidden('map_lng') . $this->Form->hidden('map_zoom');
 	echo $this->Form->hidden('sv_heading') . $this->Form->hidden('sv_pitch') . $this->Form->hidden('sv_zoom');
 	echo $this->Form->hidden('sv_lat') . $this->Form->hidden('sv_lng');
-	echo $this->Html->script(array('http://maps.google.com/maps/api/js?sensor=true','location_map'),array('inline'=>false));
+	echo $this->Html->script(array('//maps.google.com/maps/api/js?sensor=true','location_map'),array('inline'=>false));
 	ob_start();
 	echo $this->Html->div('canvas','',array('id' => 'map_canvas'));
 	echo $this->Html->div('view','',array('id' => 'streetView'));

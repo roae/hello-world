@@ -128,6 +128,7 @@ I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' 
 I18nRouter::connect( "/[m_locations_url]", array( 'controller' => 'locations', 'action' => 'index') );
 I18nRouter::connect( "/[m_services_url]", array( 'controller' => 'services', 'action' => 'index' ) );
 I18nRouter::connect( "/[m_register_url]/*", array( 'controller' => 'users', 'action' => 'singin' ) );
+I18nRouter::connect( "/[buy_error_url]/*", array( 'controller' => 'pages', 'action' => 'display', 'buy_error' ) );
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.

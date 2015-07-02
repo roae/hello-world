@@ -11,16 +11,19 @@ if(!empty($CitySelected)){
 	}
 
 	$day = "";
+	$today = date("Y-m-d");
 	foreach($dates as $key => $date){
-		if($date == date("Y-m-d")){
-			$dates[$date] = $this->Time->format("[:D:] d [:F:]",$date)." ([:hoy:])";
-		}else if($date == date("Y-m-d",strtotime("+1 day"))){
+		if(!isset($dates[$today])){
+			$dates[$today] = $this->Time->format("[:D:] d [:F:]",$today)." ([:hoy:])";
+		}
+		if($date == date("Y-m-d",strtotime("+1 day"))){
 			$dates[$date] = $this->Time->format("[:D:] d [:F:]",$date)." ([:manana:])";
-		}else{
+		}else if($date != $today){
 			$dates[$date] = $this->Time->format("[:D:] d [:F:]",$date);
 		}
 		unset($dates[$key]);
 	}
+
 	#pr($dates);
 
 	$locations = Configure::read("LocationsList");

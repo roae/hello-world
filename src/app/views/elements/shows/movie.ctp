@@ -106,7 +106,7 @@ echo $this->Ajax->div("BuyTickets",array('class'=>'buy-tickets')); $this->I18n->
 						}
 					}else{ ?>
 						<div class="no-schedules">
-							<div class="big">[:no-schedules-in-location:]</div>
+							<div class="big">[:no-movies-to-show-in-location:]</div>
 							<div>[:try-other-day:]</div>
 							<? // echo $this->Html->link("Ver horario de mañana","#",array('class'=>'btn'));?>
 						</div>
@@ -124,7 +124,7 @@ echo $this->Ajax->div("BuyTickets",array('class'=>'buy-tickets')); $this->I18n->
 		?>
 	</div>
 <?php
-$this->I18n->end();
+echo $this->I18n->end();
 echo $this->Ajax->divEnd("BuyTickets");
 $this->I18n->addMissing("[:cargando-horarios-pelicula:]","Mensaje que aparece cuando se cambia el filtro de horarios");
 $this->I18n->addMissing("[:Selecciona-tu-ciudad-para-horarios:]","Mensaje que aparece cuando no se ha seleccionado una ciudad en la seccion de horarios");

@@ -9,7 +9,7 @@ if(!empty($CitySelected)){
 	if(!isset($dates)){
 		$dates = $this->requestAction("/shows/get_date/".(isset($movie_id)? $movie_id : null));
 	}
-
+	//pr($dates);
 	$day = "";
 	$today = date("Y-m-d");
 	foreach($dates as $key => $date){
@@ -22,6 +22,9 @@ if(!empty($CitySelected)){
 			$dates[$date] = $this->Time->format("[:D:] d [:F:]",$date);
 		}
 		unset($dates[$key]);
+	}
+	if(!isset($dates[$today])){
+		$dates[$today] = $this->Time->format("[:D:] d [:F:]",$today)." ([:hoy:])";
 	}
 
 	#pr($dates);

@@ -1,42 +1,54 @@
 #services-container {
-  .services {
-    @include span(12);
+	.services {
+		//@include span(14);
+		//margin-left: span(1) + gutter();
+		margin-bottom: 80px;
+		list-style: none;
 
-    margin-left: span(2) + gutter();
-    margin-bottom: 80px;
+		.service {
+			@include span(6);
+			//padding: 0 48px 30px 48px;
+			margin-left: span(2)+gutter();
+			margin-bottom: 40px;
+			font-size:  14px;
+			figure{
+				float: left;
+				margin-right:10px;
+			}
 
-    .service {
-      @include span(8);
+			h2{
+				font-size: 20px;
+			}
 
-      padding: 0 48px 30px 48px;
-      margin-bottom: 10px;
-      font-size: 20px;
-      background-position: left top;
-      background-repeat: no-repeat;
-      background-size: 32px;
-      background-image: url(../img/service-credit-card-icon.png);
+			.content{
+				margin-left: 50px;
+			}
 
-      &:nth-of-type(2n + 1) {
-        clear: left;
-      }
-    }
-  }
+			//background-position: left top;
+			//background-repeat: no-repeat;
+			//background-size: 32px;
+			//background-image: url(../img/service-credit-card-icon.png);
 
-  .service-gallery {
-    width: 100%;
-    margin-top: 15px;
+			&:nth-of-type(2n + 1) {
+				clear: left;
+			}
+		}
+	}
 
-    .service-picture {
-      display: inline-block;
-      width: 64px;
-      margin-right: 3px;
+	.service-gallery {
+		width: 100%;
+		margin-top: 15px;
 
-      @include transition(opacity 0.2s ease-in-out);
+		.service-picture {
+			display: inline-block;
+			width: 64px;
+			margin-right: 3px;
+			@include transition(opacity 0.2s ease-in-out);
 
-      img { max-width: 100%; }
+			img { max-width: 100%; }
 
-      &:hover { opacity: 0.7; }
-      &:focus { outline: none; }
-    }
-  }
+			&:hover { opacity: 0.7; }
+			&:focus { outline: none; }
+		}
+	}
 }

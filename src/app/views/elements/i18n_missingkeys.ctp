@@ -113,6 +113,7 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing('set_pass_url',array('desc'=>'url de la pagina poner contraseña','js'=>false,'tab'=>'urls'));
 
 	$this->I18n->addMissing('m_about_url',array('desc'=>'url de la pagina about','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('m_services_url',array('desc'=>'url del blog','js'=>false,'tab'=>'urls'));
 
 	$this->I18n->addMissing('m_contacts_url',array('desc'=>'url de la pagina de la pagina de contacto','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('tag_url',array('desc'=>'url de la pagina de la etiqueta','js'=>false,'tab'=>'urls'));

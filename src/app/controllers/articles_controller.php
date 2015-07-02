@@ -227,7 +227,7 @@ class ArticlesController extends AppController{
 			$this->cakeError('error404');
 		}
 
-		$conditions = array('Article.status'=>1);
+		$conditions = array('Article.status'=>1,'Article.trash'=>0);
 		if(isset($this->params['tag_slug']) && !empty($this->params['tag_slug'])){
 			$tag = $this->Article->Term->find("first",array('conditions'=>array('Term.slug'=>$this->params['tag_slug'])));
 			$sql = "SELECT `article_id` FROM `articles_terms` AS `ArticlesTerm`

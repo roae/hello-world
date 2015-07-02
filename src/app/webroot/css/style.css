@@ -5137,37 +5137,42 @@ select {
 
 /* line 2, sass/modules/pages/_services.scss */
 #services-container .services {
-  width: 73.75%;
+  margin-bottom: 80px;
+  list-style: none;
+}
+/* line 8, sass/modules/pages/_services.scss */
+#services-container .services .service {
+  width: 36.25%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
   margin-left: 11.875%;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
+  font-size: 14px;
 }
-/* line 8, sass/modules/pages/_services.scss */
-#services-container .services .service {
-  width: 48.75%;
+/* line 14, sass/modules/pages/_services.scss */
+#services-container .services .service figure {
   float: left;
-  margin-left: 0.625%;
-  margin-right: 0.625%;
-  padding: 0 48px 30px 48px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: 32px;
-  background-image: url(../img/service-credit-card-icon.png);
+  margin-right: 10px;
 }
 /* line 19, sass/modules/pages/_services.scss */
+#services-container .services .service h2 {
+  font-size: 20px;
+}
+/* line 23, sass/modules/pages/_services.scss */
+#services-container .services .service .content {
+  margin-left: 50px;
+}
+/* line 32, sass/modules/pages/_services.scss */
 #services-container .services .service:nth-of-type(2n + 1) {
   clear: left;
 }
-/* line 25, sass/modules/pages/_services.scss */
+/* line 38, sass/modules/pages/_services.scss */
 #services-container .service-gallery {
   width: 100%;
   margin-top: 15px;
 }
-/* line 29, sass/modules/pages/_services.scss */
+/* line 42, sass/modules/pages/_services.scss */
 #services-container .service-gallery .service-picture {
   display: inline-block;
   width: 64px;
@@ -5177,15 +5182,15 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 36, sass/modules/pages/_services.scss */
+/* line 48, sass/modules/pages/_services.scss */
 #services-container .service-gallery .service-picture img {
   max-width: 100%;
 }
-/* line 38, sass/modules/pages/_services.scss */
+/* line 50, sass/modules/pages/_services.scss */
 #services-container .service-gallery .service-picture:hover {
   opacity: 0.7;
 }
-/* line 39, sass/modules/pages/_services.scss */
+/* line 51, sass/modules/pages/_services.scss */
 #services-container .service-gallery .service-picture:focus {
   outline: none;
 }

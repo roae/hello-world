@@ -97,7 +97,10 @@ class ShowsController extends AppController{
 						'Poster',
 						'MovieLocation',
 					),
-					'order'=>'Show.schedule ASC'
+					'order'=>array(
+						//'Show.schedule ASC',
+						'Movie.title ASC'
+					)
 				)
 			),
 		));
@@ -990,7 +993,8 @@ class ShowsController extends AppController{
 								'MovieLocation.comming_soon',
 								'MovieLocation.premiere_end'
 							)
-						)
+						),
+						'order'=>'Movie.title ASC'
 					)
 				),
 				'group'=>array(

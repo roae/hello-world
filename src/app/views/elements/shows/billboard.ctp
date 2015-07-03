@@ -6,7 +6,7 @@
 	}
 
 	$billboard = $this->requestAction(am(array('controller'=>'shows','action'=>'rest'),$restParams));
-	//pr($billboard);
+	#pr($billboard);
 ?>
 <ul class="movies-list">
 	<?php foreach($billboard as $show) {

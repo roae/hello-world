@@ -5191,8 +5191,9 @@ select {
   border-radius: 4px;
   display: none;
   font-size: 14px;
+  white-space: nowrap;
 }
-/* line 117, sass/modules/pages/_complex.scss */
+/* line 118, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .services .service .serviceName:after {
   content: " ";
   position: absolute;
@@ -5208,20 +5209,20 @@ select {
   transform: rotate(45deg);
   background: #272b2e;
 }
-/* line 131, sass/modules/pages/_complex.scss */
+/* line 132, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .services .service:hover .serviceName {
   display: block;
 }
-/* line 138, sass/modules/pages/_complex.scss */
+/* line 139, sass/modules/pages/_complex.scss */
 #complex-container .complex .address .tel {
   display: block;
 }
-/* line 141, sass/modules/pages/_complex.scss */
+/* line 142, sass/modules/pages/_complex.scss */
 #complex-container .complex .address.hover {
   background: #f1f1f1;
 }
 
-/* line 149, sass/modules/pages/_complex.scss */
+/* line 150, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover {
   position: relative;
   height: 450px;
@@ -5231,7 +5232,7 @@ select {
   background-color: #F1F1F1;
   background-size: cover;
 }
-/* line 160, sass/modules/pages/_complex.scss */
+/* line 161, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .mask {
   position: absolute;
   top: 0;
@@ -5241,13 +5242,13 @@ select {
   background: rgba(0, 0, 0, 0.7);
   display: block;
 }
-/* line 170, sass/modules/pages/_complex.scss */
+/* line 171, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .col-container {
   position: relative;
   height: 450px;
   z-index: 2;
 }
-/* line 176, sass/modules/pages/_complex.scss */
+/* line 177, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .text {
   width: 48.75%;
   float: left;
@@ -5255,12 +5256,12 @@ select {
   margin-right: 0.625%;
   margin-top: 100px;
 }
-/* line 181, sass/modules/pages/_complex.scss */
+/* line 182, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover h1 {
   font-size: 54px;
   color: #fecc00;
 }
-/* line 185, sass/modules/pages/_complex.scss */
+/* line 186, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .address {
   color: #fff;
   font-size: 14px;
@@ -5270,7 +5271,7 @@ select {
   padding-left: 30px;
   margin-right: 11.875%;
 }
-/* line 193, sass/modules/pages/_complex.scss */
+/* line 194, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .address .icon {
   display: block;
   background: url(web/location-icon.png) no-repeat center;
@@ -5280,14 +5281,14 @@ select {
   left: 0;
   top: 0;
 }
-/* line 203, sass/modules/pages/_complex.scss */
+/* line 204, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .btn-primary {
   padding: 10px 20px;
   font-size: 24px;
   font-weight: 100;
   display: inline-block;
 }
-/* line 208, sass/modules/pages/_complex.scss */
+/* line 209, sass/modules/pages/_complex.scss */
 .location-detail-container .big-cover .btn-primary .icon {
   display: block;
   float: left;
@@ -5297,12 +5298,12 @@ select {
   width: 26px;
   height: 27px;
 }
-/* line 220, sass/modules/pages/_complex.scss */
+/* line 221, sass/modules/pages/_complex.scss */
 .location-detail-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
 }
-/* line 225, sass/modules/pages/_complex.scss */
+/* line 226, sass/modules/pages/_complex.scss */
 .location-detail-container .services {
   width: 48.75%;
   float: left;
@@ -5310,13 +5311,13 @@ select {
   margin-right: 0.625%;
   margin-top: 40px;
 }
-/* line 228, sass/modules/pages/_complex.scss */
+/* line 229, sass/modules/pages/_complex.scss */
 .location-detail-container .services ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 233, sass/modules/pages/_complex.scss */
+/* line 234, sass/modules/pages/_complex.scss */
 .location-detail-container .services li {
   width: 48.75%;
   float: left;
@@ -5327,17 +5328,17 @@ select {
   color: #818386;
   overflow: hidden;
 }
-/* line 240, sass/modules/pages/_complex.scss */
+/* line 241, sass/modules/pages/_complex.scss */
 .location-detail-container .services li img {
   float: left;
   margin-right: 10px;
   width: 32px;
 }
-/* line 246, sass/modules/pages/_complex.scss */
+/* line 247, sass/modules/pages/_complex.scss */
 .location-detail-container .services li:nth-of-type(2n+1) {
   clear: left;
 }
-/* line 251, sass/modules/pages/_complex.scss */
+/* line 252, sass/modules/pages/_complex.scss */
 .location-detail-container .gallery {
   width: 48.75%;
   float: left;
@@ -5345,13 +5346,13 @@ select {
   margin-right: 0.625%;
   margin-top: 40px;
 }
-/* line 254, sass/modules/pages/_complex.scss */
+/* line 255, sass/modules/pages/_complex.scss */
 .location-detail-container .gallery ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 259, sass/modules/pages/_complex.scss */
+/* line 260, sass/modules/pages/_complex.scss */
 .location-detail-container .gallery li {
   width: 30%;
   float: left;
@@ -5359,12 +5360,12 @@ select {
   margin-right: 0.625%;
   margin-bottom: 10px;
 }
-/* line 262, sass/modules/pages/_complex.scss */
+/* line 263, sass/modules/pages/_complex.scss */
 .location-detail-container .gallery li img {
   width: 100%;
   display: block;
 }
-/* line 268, sass/modules/pages/_complex.scss */
+/* line 269, sass/modules/pages/_complex.scss */
 .location-detail-container .contact {
   width: 48.75%;
   float: left;
@@ -5373,7 +5374,7 @@ select {
   margin-top: 40px;
   margin-bottom: 40px;
 }
-/* line 272, sass/modules/pages/_complex.scss */
+/* line 273, sass/modules/pages/_complex.scss */
 .location-detail-container .contact li {
   float: left;
   margin-right: 10px;
@@ -5386,7 +5387,7 @@ select {
   white-space: nowrap;
   margin-bottom: 20px;
 }
-/* line 284, sass/modules/pages/_complex.scss */
+/* line 285, sass/modules/pages/_complex.scss */
 .location-detail-container .social {
   width: 48.75%;
   float: left;
@@ -5395,7 +5396,7 @@ select {
   margin-top: 40px;
   margin-bottom: 40px;
 }
-/* line 288, sass/modules/pages/_complex.scss */
+/* line 289, sass/modules/pages/_complex.scss */
 .location-detail-container .social .socialNetwork {
   margin-bottom: 20px;
   overflow: hidden;
@@ -5405,23 +5406,23 @@ select {
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 293, sass/modules/pages/_complex.scss */
+/* line 294, sass/modules/pages/_complex.scss */
 .location-detail-container .social .share {
   float: left;
   width: 90px;
 }
-/* line 298, sass/modules/pages/_complex.scss */
+/* line 299, sass/modules/pages/_complex.scss */
 .location-detail-container .social .facebook_button {
   margin-top: -4px;
 }
-/* line 302, sass/modules/pages/_complex.scss */
+/* line 303, sass/modules/pages/_complex.scss */
 .location-detail-container .social .btn {
   padding: 20px 30px;
   background: #fecc00;
   color: black;
   display: inline-block;
 }
-/* line 307, sass/modules/pages/_complex.scss */
+/* line 308, sass/modules/pages/_complex.scss */
 .location-detail-container .social .btn .icon {
   display: block;
   float: left;
@@ -5430,19 +5431,19 @@ select {
   width: 26px;
   height: 24px;
 }
-/* line 317, sass/modules/pages/_complex.scss */
+/* line 318, sass/modules/pages/_complex.scss */
 .location-detail-container #map {
   margin-top: 40px;
 }
-/* line 319, sass/modules/pages/_complex.scss */
+/* line 320, sass/modules/pages/_complex.scss */
 .location-detail-container #map ul {
   overflow: hidden;
 }
-/* line 322, sass/modules/pages/_complex.scss */
+/* line 323, sass/modules/pages/_complex.scss */
 .location-detail-container #map li {
   float: left;
 }
-/* line 324, sass/modules/pages/_complex.scss */
+/* line 325, sass/modules/pages/_complex.scss */
 .location-detail-container #map li a {
   display: block;
   padding: 3px 10px;
@@ -5454,11 +5455,11 @@ select {
   margin-top: 4px;
   color: #272b2e;
 }
-/* line 332, sass/modules/pages/_complex.scss */
+/* line 333, sass/modules/pages/_complex.scss */
 .location-detail-container #map li a:hover {
   background: #d1d1d1;
 }
-/* line 335, sass/modules/pages/_complex.scss */
+/* line 336, sass/modules/pages/_complex.scss */
 .location-detail-container #map li a.selected {
   background: #ffa800;
   color: black;
@@ -5466,24 +5467,24 @@ select {
   position: relative;
   margin-top: 0;
 }
-/* line 341, sass/modules/pages/_complex.scss */
+/* line 342, sass/modules/pages/_complex.scss */
 .location-detail-container #map li a.selected:hover {
   background: #ffa800;
 }
-/* line 347, sass/modules/pages/_complex.scss */
+/* line 348, sass/modules/pages/_complex.scss */
 .location-detail-container #map iframe {
   width: 100%;
   height: 100%;
   background: #ffffff url("web/preloader_10-64.gif") no-repeat center;
 }
-/* line 352, sass/modules/pages/_complex.scss */
+/* line 353, sass/modules/pages/_complex.scss */
 .location-detail-container #map #mapCanvas,
 .location-detail-container #map #streetCanvas {
   border-top: 5px solid #ffa800;
   height: 600px;
   display: none;
 }
-/* line 357, sass/modules/pages/_complex.scss */
+/* line 358, sass/modules/pages/_complex.scss */
 .location-detail-container #map #mapCanvas.current,
 .location-detail-container #map #streetCanvas.current {
   display: block;

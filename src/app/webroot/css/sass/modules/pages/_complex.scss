@@ -114,6 +114,7 @@
 						@include border-radius(4px);
 						display: none;
 						font-size: 14px;
+						white-space: nowrap;
 						&:after{
 							content: " ";
 							position: absolute;

@@ -1,96 +1,363 @@
 #complex-container {
 
-  #map {
-    width: 100%;
-    height: 450px;
-  }
+	#map {
+		width: 100%;
+		height: 450px;
+	}
 
-  .cities-location {
-    background-color: $light-gray;
-  }
+	.cities-location {
+		background-color: $light-gray;
+	}
 
-  aside {
-    padding: 0;
-    margin-bottom: 25px;
-    background-color: $light-gray;
-    border-radius: 3px;
-    overflow: hidden;
+	.cities {
+		padding: 0;
+		margin-bottom: 25px;
+		background-color: $light-gray;
+		border-radius: 3px;
+		overflow: hidden;
 
-    .title {
-      display: block;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
+		.title {
+			display: block;
+			margin-bottom: 20px;
+			font-weight: bold;
+		}
 
-    li { float: left; }
+		li { float: left; }
 
-    a {
-      display: block;
-      padding: 18px 25px;
-      text-align: center;
-      color: $dark-gray;
+		a {
+			display: block;
+			padding: 18px 25px;
+			text-align: center;
+			color: $dark-gray;
 
-      &:hover { background-color: darken($light-gray, 5%); }
+			&:hover { background-color: darken($light-gray, 5%); }
 
-      &.selected {
-        background-color: darken($light-gray, 8%);
-      }
-    }
+			&.selected {
+				background-color: darken($light-gray, 8%);
+			}
+		}
 
-  }
+	}
 
-  .complex {
-    @include span(12);
+	.complex {
+		@include span(12);
+		margin-left: span(2) + gutter();
 
-    margin-left: span(2) + gutter();
+		.cover {
+			@include span(5);
+			margin-right: span(1);
+			margin-top: 10px;
+			text-align: center;
+			img{
+				display:block;
+				width: 100%;
+				margin-bottom: 20px;
+				@include border-radius(4px);
+			}
 
-    .cover {
-      @include span(5);
+		}
 
-      margin-right: span(1);
-    }
+		.text {
+			@include span(10);
+			color:$dark-gray;
+			padding-bottom: 20px;
+		}
 
-    .text {
-      @include span(10);
-    }
+		.address {
+			display: none;
+			margin-bottom: 30px;
+			overflow: hidden;
+			padding: 10px;
+			@include border-radius(4px);
 
-    .address {
-      display: none;
-      margin-bottom: 30px;
-      overflow: hidden;
+			&.show { display: block; }
 
-      &.show { display: block; }
+			.title {
+				display: block;
+				margin-bottom: 10px;
+				font-weight: 300;
+				font-size: 32px;
+				color:$red
+			}
 
-      .title {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
+			.subtitle{
+				font-size: 14px;
+				font-weight: 300;
+				display:block;
+				margin-top: 15px;
+				color: $gray;
+			}
 
-      p {
-        margin-bottom: 10px;
-        font-size: 24px;
-      }
+			/*p {
+				margin-bottom: 10px;
+				font-size: 24px;
+			}*/
 
-      .services {
-        margin-top: 20px;
+			.services {
+				margin-top: 20px;
 
-        .service {
-          display: inline-block;
-          width: 32px;
-          height: 32px;
-          margin-right: 5px;
-          text-indent: -1000px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-          overflow: hidden;
-        }
-      }
+				.service {
+					float: left;
+					margin-right: 10px;
+					position: relative;
+					img{
+						display:block;
+					}
+					.serviceName{
+						position: absolute;
+						top:-40px;
+						left:50%;
+						@include translate(-50%,0%);
+						background: $dark-gray;
+						color:#fff;
+						padding: 5px 15px;
+						@include border-radius(4px);
+						display: none;
+						font-size: 14px;
+						&:after{
+							content: " ";
+							position: absolute;
+							bottom:-5px;
+							left:50%;
+							margin-left:-5px;
+							width: 10px;
+							height: 10px;
+							display:block;
+							@include rotate(45deg);
+							background: $dark-gray;
+						}
+					}
+					&:hover{
+						.serviceName{
+							display:block;
+						}
+					}
+				}
+			}
 
-      .tel {
-        display: block;
-      }
-    }
-  }
+			.tel {
+				display: block;
+			}
+			&.hover{
+				background:#f1f1f1;
+			}
+		}
+	}
+}
+
+.location-detail-container {
+	.big-cover {
+		position: relative;
+		height: 450px;
+		color: #FFF;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-color: #F1F1F1;
+		background-size: cover;
+		//-moz-background-blend-mode: luminosity;
+		//background-blend-mode: luminosity;
+
+		.mask{
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.7);
+			display:block;
+		}
+
+		.col-container {
+			position: relative;
+			height: 450px;
+			z-index: 2;
+		}
+
+		.text{
+			@include span(8);
+			margin-top: 100px;
+		}
+
+		h1{
+			font-size: 54px;
+			color:$yellow;
+		}
+		.address{
+			color:#fff;
+			font-size: 14px;
+			display: block;
+			margin-bottom: 40px;
+			position: relative;
+			padding-left: 30px;
+			margin-right: span(2)+gutter();
+			.icon{
+				display:block;
+				background: url(web/location-icon.png) no-repeat center;
+				width: 17px;
+				height: 100%;
+				position: absolute;
+				left:0;
+				top:0;
+			}
+		}
+		.btn-primary{
+			padding: 10px 20px;
+			font-size: 24px;
+			font-weight: 100;
+			display: inline-block;
+			.icon{
+				display:block;
+				float: left;
+				margin-right: 15px;
+				margin-top: 4px;
+				background: url(web/clock-icon.png) no-repeat;
+				width: 26px;
+				height: 27px;
+			}
+		}
+	}
+
+	h2{
+		margin-bottom: 20px;
+		font-size: 24px;
+	}
+
+	.services{
+		@include span(8);
+		margin-top: 40px;
+		ul{
+			margin: 0;
+			padding:0;
+			list-style:none;
+		}
+		li{
+			@include span(8);
+			margin-bottom: 20px;
+			font-size: 18px;
+			color:$gray;
+			overflow: hidden;
+
+			img{
+				float: left;
+				margin-right: 10px;
+				width: 32px;
+			}
+
+			&:nth-of-type(2n+1) {
+				clear: left;
+			}
+		}
+	}
+	.gallery{
+		@include span(8);
+		margin-top: 40px;
+		ul{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		li{
+			@include span(5);
+			margin-bottom: 10px;
+			img{
+				width: 100%;
+				display:block;
+			}
+		}
+	}
+	.contact{
+		@include span(8);
+		margin-top:40px;
+		margin-bottom: 40px;
+		li{
+			float: left;
+			margin-right: 10px;
+			padding: 5px 10px;
+			@include border-radius(4px);
+			background: $green;
+			color:#fff;
+			white-space: nowrap;
+			margin-bottom: 20px;
+		}
+	}
+
+	.social{
+		@include span(8);
+		margin-top: 40px;
+		margin-bottom: 40px;
+		.socialNetwork{
+			margin-bottom: 20px;
+			overflow: hidden;
+			@include full;
+		}
+		.share{
+			float: left;
+			//height:70px;
+			width: 90px;
+		}
+		.facebook_button{
+			margin-top:-4px;
+		}
+
+		.btn{
+			padding: 20px 30px;
+			background: $yellow;
+			color: darken($yellow,50%);
+			display: inline-block;
+			.icon{
+				display:block;
+				float: left;
+				margin-right: 15px;
+				background: url(web/send-icon.png) no-repeat;
+				width: 26px;
+				height: 24px;
+			}
+		}
+	}
+	#map{
+		margin-top: 40px;
+		ul{
+			overflow: hidden;
+		}
+		li{
+			float: left;
+			a{
+				display:block;
+				padding: 3px 10px;
+				@include border-radius(4px 4px 0 0);
+				background: #dedede;
+				margin-right: 2px;
+				margin-top: 4px;
+				color: $dark-gray;
+				&:hover{
+					background: darken(#dedede,5%);
+				}
+				&.selected{
+					background: #ffa800;
+					color: darken(#ffa800,80%);
+					padding: 5px 10px;
+					position: relative;
+					margin-top:0;
+					&:hover{
+						background: #ffa800;
+					}
+				}
+			}
+		}
+		iframe{
+			width: 100%;
+			height: 100%;
+			background: #ffffff url("web/preloader_10-64.gif") no-repeat center;
+		}
+		#mapCanvas,
+		#streetCanvas{
+			border-top: 5px solid #ffa800;
+			height: 600px;
+			display: none;
+			&.current{
+				display: block;
+			}
+		}
+
+	}
 }

@@ -43,10 +43,6 @@ Router::connect( '/error404', array( 'controller' => 'pages', 'action' => 'displ
 
 I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
 
-I18nRouter::connect( '/[m_articles_url]/:id-:slug/*',
-	array( 'controller' => 'articles', 'action' => 'view', 'restricted' => false ),
-	array( 'pass' => array( 'id', 'slug' ), 'id' => '[0-9]+' )
-);
 I18nRouter::connect( '/[m_articles_url]/[tag_url]/:tag_slug/*',
 	array( 'controller' => 'articles', 'action' => 'index', 'restricted' => false ),
 	array( 'pass' => array( 'tag_slug' ), 'tag_slug' => '[0-9a-zA-Z_\-]+' )
@@ -125,6 +121,10 @@ I18nRouter::connect( "/[privacy_policies_url]", array( 'controller' => 'pages',
 
 I18nRouter::connect( "/[sitemap_url]", array( 'controller' => 'pages', 'action' => 'display', 'sitemap' ) );
 I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
+I18nRouter::connect( '/[m_locations_url]/:id-:slug/*',
+	array( 'controller' => 'locations', 'action' => 'view', 'restricted' => false ),
+	array( 'pass' => array( 'id', 'slug' ), 'id' => '[0-9]+' )
+);
 I18nRouter::connect( "/[m_locations_url]", array( 'controller' => 'locations', 'action' => 'index') );
 I18nRouter::connect( "/[m_services_url]", array( 'controller' => 'services', 'action' => 'index' ) );
 I18nRouter::connect( "/[m_register_url]/*", array( 'controller' => 'users', 'action' => 'singin' ) );

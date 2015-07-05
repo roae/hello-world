@@ -245,9 +245,13 @@ class LocationsController extends AppController{
 	}
 
 	function view($id){
-		$this->Location->contain(array('Gallery','Service'));
-		$location = $this->Location->find("first",array('conditions'=>array('Location.trash'=>0,'Location.status'=>1,'Location.id'=>$id)));
-		$this->set(compact("location"));
+		$this->Location->contain(array('Gallery','Service' => 'Icon', 'City'));
+		$record = $this->Location->find("first",array('conditions'=>array('Location.trash'=>0,'Location.status'=>1,'Location.id'=>$id)));
+		$this->set(compact("record"));
+	}
+
+	function map($street_view=0){
+		$this->render($street_view ? "street_view" : "map",'map');
 	}
 
 }

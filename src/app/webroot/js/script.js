@@ -690,70 +690,74 @@ function nextSlide(){
 
 	if( $('#complex-container').length ) {
 
-		var location_container = $('#complex-container'),
-    		map = new GMaps({
+		var location_container = $('#complex-container');
+    	var	map = new GMaps({
 		      div: '#map',
 		      lat: 24.82301520608666,
 		      lng: -107.36934023201599,
-		      zoom: 12,
+		      zoom: 13,
 		      scrollwheel: false
-		    }),
-    		addresses = location_container.find('.address'),
-    		cities = location_container.find('.city-trigger');
-
-    addresses.each(function(i, e) {
-
-    	var $e = $(e);
-
-    	if( $e.css('display') == 'block' ) {
-		    map.addMarker({
-		      lat: $e.data('lat'),
-		      lng: $e.data('lng'),
-		      title: 'Lima'
 		    });
-    	}
+    	var	addresses = location_container.find('.address');
+    	var	cities = location_container.find('.city-trigger');
 
-    });
+	    addresses.each(function(i, e) {
 
-    cities.on('click', function(event) {
-    	event.preventDefault();
+	        var $e = $(e);
 
-    	var self = $(this),
-    			city_id = self.data('id');
+	        if( $e.css('display') == 'block' ) {
+			    map.addMarker({
+			      lat: $e.data('lat'),
+			      lng: $e.data('lng'),
+			      title: 'Lima'
+			    });
+	        }
 
-    	cities.removeClass('selected');
-    	self.addClass('selected');
+	    });
 
-			addresses.fadeOut(200, function() {
+	    cities.on('click', function(event) {
+	        event.preventDefault();
 
-				var current_addresses = location_container.find('.city-' + city_id),
-						last_lat = 0,
-						last_lng = 0;
+	        var self = $(this);
+			var city_id = self.data('id');
+
+		    cities.removeClass('selected');
+
+	        self.addClass('selected');
+
+			//addresses.fadeOut(200, function() {
+			addresses.css({display:'none'});
+				var current_addresses = location_container.find('.city-' + city_id);
+				var last_lat = 0;
+				var last_lng = 0;
 
 				map.removeMarkers();
 
 				current_addresses.each(function(i, e) {
-		    	var $e = $(e),
-		    			lat = $e.data('lat'),
-		    			lng = $e.data('lng');
+			        var $e = $(e);
+			        var lat = $e.data('lat');
+			        var lng = $e.data('lng');
 
-			    map.addMarker({
-			      lat: lat,
-			      lng: lng,
-			      title: 'Lima'
+				    map.addMarker({
+				      lat: lat,
+				      lng: lng,
+				      title: 'Lima'
+				    });
+
+				    if( lat != '' && lat != null ) {
+					    last_lat = lat;
+					    last_lng = lng;
+				    }
+
 			    });
+				//current_addresses.css({opacity:0,display:'block'} ).animate({opacity:1});
+				//current_addresses.animate({opacity:1});
+				current_addresses.css({display:'block'} );
 
-			    if( lat != '' && lat != null ) {
-				    last_lat = lat;
-				    last_lng = lng;
-			    }
-		    });
+				map.setCenter(last_lat, last_lng);
 
-		    map.setCenter(last_lat, last_lng);
-				current_addresses.fadeIn(100);
-			});
-    });
-
+			//});
+	    });
 	}
 
 	$('.service-gallery').each(function() {
@@ -774,5 +778,41 @@ function nextSlide(){
 			}
 		});
 	});
+
+	$(".gallery ul").magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Cargando imagen #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		}
+	});
+
+	$("#map .tabs a" ).on("click",function(event){
+		event.preventDefault();
+		var $this = $(this);
+		if(!$this.hasClass("current")){
+			$oldTab = $("#map .tabs a.selected" ).removeClass("selected");
+			$this.addClass("selected");
+
+			$("#"+$oldTab.data("id") ).removeClass("current");
+			$("#"+$this.data("id") ).addClass("current");
+			if($("#"+$this.data("id" )+":empty" ).length){
+				$("#"+$this.data("id") ).append($("<iframe/>",{'src':$("#"+$this.data("id") ).data("url")}));
+			}
+		}
+	});
+
+	if($("#mapCanvas" ).length){
+		$("#mapCanvas" ).append($("<iframe/>",{'src':$("#mapCanvas" ).data("url")}));
+	}
 
 })(jQuery);

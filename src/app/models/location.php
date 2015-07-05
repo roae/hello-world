@@ -29,7 +29,7 @@ class Location extends AppModel {
 				#'resize' => true,
 				'copies' => array(
 					'snipped' => array('width' => 100,'height'=>100,'image_ratio_crop' => true),
-					'mini' => array('width' => 75,'height'=>75,'image_ratio_crop' => true),
+					'mini' => array('width' => 215,'height'=>160,'image_ratio_crop' => true),
 					'medium' => array('width' => 280,'height'=>135,'image_ratio_crop' => true),
 					'big' => array('width' => 775,'image_ratio_crop' => false,'image_ratio_y'=>true),
 				),

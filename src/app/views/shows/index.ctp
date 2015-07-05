@@ -24,6 +24,7 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 			foreach($billboard as $record): ?>
 				<div class="complex">
 					<div class="complex-name floating">
+						<a name="<?= Inflector::slug($record['Location']['name'],"-") ?>"></a>
 						<span class="complex-label"><?= $record['Location']['name'] ?></span>
 					</div>
 					<?php

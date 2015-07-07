@@ -58,7 +58,6 @@
 			}
 
 			p {
-				margin-bottom: 40px;
 				line-height: 2;
 				font-weight: 300;
 				color: $gray;
@@ -66,6 +65,7 @@
 
 			.tags {
 				@include span(12);
+				margin-top: 40px;
 
 				li { float: left; }
 
@@ -84,6 +84,7 @@
 			.see-more {
 				display: block;
 				@include span(4);
+				margin-top: 40px;
 				padding: 8px 15px;
 				text-align: center;
 				color: #FFF;

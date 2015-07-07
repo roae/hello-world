@@ -26,7 +26,7 @@ class Location extends AppModel {
 	var $actsAs = array(
 		'Media.Uploader' => array(
 			'Gallery' => array(
-				#'resize' => true,
+				'resize' => false,
 				'copies' => array(
 					'snipped' => array('width' => 100,'height'=>100,'image_ratio_crop' => true),
 					'mini' => array('width' => 215,'height'=>160,'image_ratio_crop' => true),

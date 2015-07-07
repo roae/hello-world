@@ -29,12 +29,13 @@
 			echo $this->Form->create("User");
 				echo $this->Html->tag("div",'[:manual-singin:]');
 				echo $this->I18n->input("nombre");
-				echo $this->I18n->input("paterno");
-				echo $this->I18n->input("materno");
+				echo $this->I18n->input("paterno",array('div'=>array('class'=>'input text min')));
+				echo $this->I18n->input("materno",array('div'=>array('class'=>'input text min')));
 				echo $this->I18n->input("username");
-				echo $this->I18n->input("password");
-				echo $this->I18n->input("password_confirm",array('type'=>'password'));
+				echo $this->I18n->input("password",array('div'=>'input text min'));
+				echo $this->I18n->input("password_confirm",array('type'=>'password','div'=>array('class'=>'input text min')));
 				echo $this->Html->tag("div","",array('class'=>'g-recaptcha','data-sitekey'=>Configure::read("reCAPTCHA.site-key")));
+				echo $this->I18n->input("terms",array('type'=>'checkbox'));
 				echo $this->Form->button("[:singin-today:]",array('class'=>'','type'=>'submit'));
 			echo $this->Form->end();
 			?>

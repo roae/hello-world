@@ -9,7 +9,12 @@
 		<?= $this->Form->create("User"); ?>
 		<section class="userCard">
 			<figure>
-				<?= $this->Html->image($this->data['Profile']['photo_url']);?>
+				<?
+				if(!empty($loggedProfile['photo_url'])){
+					echo $this->Html->image($this->data['Profile']['photo_url'],array('alt'=>sprintf("%s %s",$this->data['User']['nombre'],$this->data['User']['paterno'])));
+				}else{
+					echo $this->Html->tag("span",substr($this->data['User']['nombre'],0,1).substr($this->data['User']['paterno'],0,1),'capitals');
+				}?>
 			</figure>
 			<span class="name">
 				<?= $this->data['User']['nombre']." ".$this->data['User']['paterno']?>

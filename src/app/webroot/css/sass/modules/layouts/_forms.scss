@@ -43,6 +43,7 @@ select {
 	background: #FFF;
 	cursor: pointer;
 	@include border-radius(4px);
+	display: inline-block;
 	&.select_focus{
 		border-color: darken(#CCC, 10);
 		background: #FAFAFA;
@@ -51,7 +52,7 @@ select {
 	.SelectOpt {
 		background: url(web/select-arrow.png) no-repeat center right;
 		display: block;
-		padding-right: 20px;
+		padding-right: 30px;
 		line-height: 27px;
 	}
 	select {

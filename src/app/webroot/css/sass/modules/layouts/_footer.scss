@@ -151,7 +151,7 @@
 		.news {
 			display: inline-block;
 			@include span(9);
-			margin-left: span(1)+gutter();
+			@include push(1);
 			font-size: 0;
 			vertical-align: top;
 			@include with-layout(9) {
@@ -163,7 +163,7 @@
 					overflow: hidden;
 
 					&:nth-of-type(2) {
-						margin-left: span(1)+gutter();
+						@include push(1);
 					}
 
 					h3 {
@@ -200,13 +200,14 @@
 			@include span(6);
 			font-size: 16px;
 			vertical-align: top;
-
-			li {
-				display: inline-block;
-				@include span(7);
-				margin-bottom: 10px;
-				&:nth-of-type(2n) {
-					margin-left: span(1)+gutter();
+			@include with-layout(9){
+				li {
+					display: inline-block;
+					@include span(4);
+					margin-bottom: 10px;
+					&:nth-of-type(2n) {
+						@include push(1);
+					}
 				}
 			}
 
@@ -223,7 +224,7 @@
 		.subscription {
 			display: inline-block;
 			@include span(9);
-			margin-left: span(1)+gutter();
+			@include push(1);
 			margin-top: 40px;
 			@include with-layout(9){
 				input {
@@ -243,7 +244,8 @@
 					}
 					&[type=submit] {
 						@include span(4);
-						margin-left: span(1)+gutter();
+						@include push(1);
+						//margin-left: push(2);
 						background-color: $red;
 						transition: background-color 0.2s ease-in-out;
 						-webkit-transition: background-color 0.2s ease-in-out;

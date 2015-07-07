@@ -48,22 +48,28 @@
 					<div class="sinopsis">
 						<?= $show['Movie']['synopsis']?>
 					</div>
-					<?
-						echo $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"]), array("class" => "watch-trailer fwd"));
+					<?php
+					$style="";
+					if(trim($show['Movie']['trailer'])){
+						echo $this->Html->link("[:ver_trailer:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"],"#"=>"trailer"), array("class" => "watch-trailer"));
+						$style="display:none;";
+					}
 
-						$schedules_url = '#';
-						$schedules_slug_data = $show['Movie']['slug'];
+					echo $this->Html->link("[:ver_detalles:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"]), array("class" => "watch-trailer fwd",'style'=>$style));
 
-						if( isset($CitySelected['name']) && $CitySelected['name'] ) {
-							$schedules_slug_data = '';
-							$schedules_url = array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(low($CitySelected['name']),'-'),'#' => $show['Movie']['slug']);
-						}
-						if($presale){
+					$schedules_url = '#';
+					$schedules_slug_data = $show['Movie']['slug'];
 
-							echo $this->Html->link("[:ver_preventa:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"],'#'=>'horarios'),array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
-						}else{
-							echo $this->Html->link("[:ver_horarios:]", $schedules_url,array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
-						}
+					if( isset($CitySelected['name']) && $CitySelected['name'] ) {
+						$schedules_slug_data = '';
+						$schedules_url = array('controller'=>'shows','action'=>'index','slug'=>Inflector::slug(low($CitySelected['name']),'-'),'#' => $show['Movie']['slug']);
+					}
+					if($presale){
+
+						echo $this->Html->link("[:ver_preventa:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"],'#'=>'horarios'),array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
+					}else{
+						echo $this->Html->link("[:ver_horarios:]", $schedules_url,array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
+					}
 
 					?>
 				</div>

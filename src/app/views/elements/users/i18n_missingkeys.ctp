@@ -14,4 +14,7 @@ $this->I18n->addMissing('change_status_user_confirm',array('desc'=>'Mensaje de c
 $this->I18n->addMissing('delete_status_user_confirm',array('desc'=>'Mensaje de confirmacion de cambio de eliminar al usuario','js'=>true,'tab'=>'modulo'));
 $this->I18n->addMissing('warning_message_delete_multiple_users',array('desc'=>'Mensaje de advertensia en la eliminacion de varios usuarios','js'=>true,'tab'=>'modulo'));
 $this->I18n->addMissing('warning_message_delete_multiple_users',array('desc'=>'Mensaje de advertensia en la eliminacion de varios usuarios','js'=>true,'tab'=>'modulo'));
+$this->I18n->addMissing('debe-aceptar-terminos',array('desc'=>'Mensaje de error que aparece cuando no se aceptan las politicas de privacidad','tab'=>'modulo'));
+$this->I18n->addMissing('user_exist',array('desc'=>'Mensaje de error que aparece cuando se escribe un nombre de usuario que ya esta registrado','tab'=>'modulo'));
+$this->I18n->addMissing('error-confirm-password-not-match',array('desc'=>'Mensaje de error que aparece cuando no coinciden las contraseñas','tab'=>'modulo'));
 ?>

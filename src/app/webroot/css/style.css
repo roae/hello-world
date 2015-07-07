@@ -1224,7 +1224,7 @@ body {
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
-  margin-left: 5.625%;
+  margin-left: 6.875%;
   font-size: 0;
   vertical-align: top;
 }
@@ -1241,7 +1241,7 @@ body {
 }
 /* line 165, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article:nth-of-type(2) {
-  margin-left: 10%;
+  margin-left: 12.22222%;
 }
 /* line 169, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article h3 {
@@ -1283,36 +1283,36 @@ body {
 /* line 204, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options li {
   display: inline-block;
-  width: 42.5%;
+  width: 42.22222%;
   float: left;
-  margin-left: 0.625%;
-  margin-right: 0.625%;
+  margin-left: 1.11111%;
+  margin-right: 1.11111%;
   margin-bottom: 10px;
 }
 /* line 208, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options li:nth-of-type(2n) {
-  margin-left: 5.625%;
+  margin-left: 12.22222%;
 }
-/* line 213, sass/modules/layouts/_footer.scss */
+/* line 214, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options a {
   font-size: 14px;
   color: #fecc00;
 }
-/* line 217, sass/modules/layouts/_footer.scss */
+/* line 218, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options a:hover {
   color: #e5b800;
 }
-/* line 223, sass/modules/layouts/_footer.scss */
+/* line 224, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription {
   display: inline-block;
   width: 55.0%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
-  margin-left: 5.625%;
+  margin-left: 6.875%;
   margin-top: 40px;
 }
-/* line 229, sass/modules/layouts/_footer.scss */
+/* line 230, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input {
   display: inline-block;
   border: none;
@@ -1321,7 +1321,7 @@ body {
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
 }
-/* line 236, sass/modules/layouts/_footer.scss */
+/* line 237, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=text] {
   width: 42.22222%;
   float: left;
@@ -1333,17 +1333,17 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 241, sass/modules/layouts/_footer.scss */
+/* line 242, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=text]:focus {
   background-color: #626c73;
 }
-/* line 244, sass/modules/layouts/_footer.scss */
+/* line 245, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=submit] {
   width: 42.22222%;
   float: left;
   margin-left: 1.11111%;
   margin-right: 1.11111%;
-  margin-left: 10%;
+  margin-left: 12.22222%;
   background-color: #cc0017;
   transition: background-color 0.2s ease-in-out;
   -webkit-transition: background-color 0.2s ease-in-out;
@@ -1352,11 +1352,11 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 252, sass/modules/layouts/_footer.scss */
+/* line 254, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=submit]:hover {
   background-color: #b30014;
 }
-/* line 258, sass/modules/layouts/_footer.scss */
+/* line 260, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks {
   display: inline-block;
   width: 36.25%;
@@ -1368,12 +1368,12 @@ body {
   vertical-align: bottom;
   text-align: center;
 }
-/* line 266, sass/modules/layouts/_footer.scss */
+/* line 268, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks h2 {
   text-align: left;
   margin-bottom: 5px;
 }
-/* line 270, sass/modules/layouts/_footer.scss */
+/* line 272, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks ul {
   padding: 10px 10px 5px;
   -moz-border-radius: 4px;
@@ -1381,16 +1381,16 @@ body {
   border-radius: 4px;
   background: #222628;
 }
-/* line 275, sass/modules/layouts/_footer.scss */
+/* line 277, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li {
   display: inline-block;
   margin-right: 30px;
 }
-/* line 279, sass/modules/layouts/_footer.scss */
+/* line 281, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li:last-child {
   margin-right: 0;
 }
-/* line 281, sass/modules/layouts/_footer.scss */
+/* line 283, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a {
   display: inline-block;
   width: 46px;
@@ -1400,46 +1400,46 @@ body {
   background-position: center center;
   overflow: hidden;
 }
-/* line 290, sass/modules/layouts/_footer.scss */
+/* line 292, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a:hover {
   opacity: 0.8;
 }
-/* line 291, sass/modules/layouts/_footer.scss */
+/* line 293, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a:active {
   position: relative;
   top: 1px;
 }
-/* line 297, sass/modules/layouts/_footer.scss */
+/* line 299, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.fb {
   background-image: url(../img/social-networks/fb-icon.png);
 }
-/* line 297, sass/modules/layouts/_footer.scss */
+/* line 299, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.tw {
   background-image: url(../img/social-networks/tw-icon.png);
 }
-/* line 297, sass/modules/layouts/_footer.scss */
+/* line 299, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.vim {
   background-image: url(../img/social-networks/vim-icon.png);
 }
-/* line 297, sass/modules/layouts/_footer.scss */
+/* line 299, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.yt {
   background-image: url(../img/social-networks/yt-icon.png);
 }
-/* line 297, sass/modules/layouts/_footer.scss */
+/* line 299, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.gp {
   background-image: url(../img/social-networks/gp-icon.png);
 }
-/* line 307, sass/modules/layouts/_footer.scss */
+/* line 309, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright {
   padding: 30px 15px;
 }
-/* line 310, sass/modules/layouts/_footer.scss */
+/* line 312, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .copyright {
   display: block;
   margin-bottom: 10px;
   font-size: 14px;
 }
-/* line 317, sass/modules/layouts/_footer.scss */
+/* line 319, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a {
   padding-right: 10px;
   padding-left: 10px;
@@ -1447,20 +1447,20 @@ body {
   font-size: 12px;
   color: #a8a9ab;
 }
-/* line 324, sass/modules/layouts/_footer.scss */
+/* line 326, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:nth-of-type(1) {
   padding-left: 0;
 }
-/* line 325, sass/modules/layouts/_footer.scss */
+/* line 327, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:nth-of-type(2) {
   padding-left: 6px;
   border-right: none;
 }
-/* line 330, sass/modules/layouts/_footer.scss */
+/* line 332, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:hover {
   color: #8e9092;
 }
-/* line 333, sass/modules/layouts/_footer.scss */
+/* line 335, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container .certificates {
   float: right;
   margin-top: -6px;
@@ -1518,20 +1518,21 @@ select {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+  display: inline-block;
 }
-/* line 46, sass/modules/layouts/_forms.scss */
+/* line 47, sass/modules/layouts/_forms.scss */
 .SelectWrapper.select_focus {
   border-color: #b3b3b3;
   background: #FAFAFA;
 }
-/* line 51, sass/modules/layouts/_forms.scss */
+/* line 52, sass/modules/layouts/_forms.scss */
 .SelectWrapper .SelectOpt {
   background: url(web/select-arrow.png) no-repeat center right;
   display: block;
-  padding-right: 20px;
+  padding-right: 30px;
   line-height: 27px;
 }
-/* line 57, sass/modules/layouts/_forms.scss */
+/* line 58, sass/modules/layouts/_forms.scss */
 .SelectWrapper select {
   position: absolute;
   top: 0;
@@ -2035,7 +2036,7 @@ select {
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
-  margin-left: 5.625%;
+  margin-left: 6.875%;
   font-size: 16px;
   vertical-align: top;
   text-align: center;
@@ -5550,56 +5551,67 @@ select {
   outline: none;
 }
 
-/* line 2, sass/modules/pages/_register.scss */
-#register-container .social-connect,
-#register-container form {
-  width: 48.75%;
-  margin-left: 24.375%;
+/* line 1, sass/modules/pages/_register.scss */
+#register-container {
+  color: #272b2e;
+}
+/* line 3, sass/modules/pages/_register.scss */
+#register-container h2 {
   margin-bottom: 20px;
 }
-/* line 9, sass/modules/pages/_register.scss */
+/* line 6, sass/modules/pages/_register.scss */
 #register-container .social-connect {
   text-align: center;
+  width: 23.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-left: 6.875%;
 }
-/* line 12, sass/modules/pages/_register.scss */
+/* line 13, sass/modules/pages/_register.scss */
 #register-container .social-connect .social-networks {
   margin-top: 15px;
 }
-/* line 16, sass/modules/pages/_register.scss */
+/* line 17, sass/modules/pages/_register.scss */
 #register-container .social-connect .social-network {
-  display: inline-block;
+  margin-bottom: 10px;
 }
-/* line 19, sass/modules/pages/_register.scss */
+/* line 21, sass/modules/pages/_register.scss */
 #register-container .social-connect .social-network a {
-  display: inline-block;
+  display: block;
   padding: 10px 25px;
   font-size: 14px;
-  color: #fff;
-  background-color: #3b5998;
+  color: #FFF;
+  background-color: #3B5998;
   border-radius: 3px;
   -moz-transition: opacity 0.2s ease-in-out;
   -o-transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 29, sass/modules/pages/_register.scss */
-#register-container .social-connect .social-network a.google {
-  background-color: #de4b39;
-}
 /* line 30, sass/modules/pages/_register.scss */
-#register-container .social-connect .social-network a.twitter {
-  background-color: #5ea9dd;
+#register-container .social-connect .social-network a.google {
+  background-color: #DE4B39;
 }
-/* line 32, sass/modules/pages/_register.scss */
+/* line 31, sass/modules/pages/_register.scss */
+#register-container .social-connect .social-network a.twitter {
+  background-color: #5EA9DD;
+}
+/* line 33, sass/modules/pages/_register.scss */
 #register-container .social-connect .social-network a:hover {
   opacity: 0.7;
 }
-/* line 37, sass/modules/pages/_register.scss */
+/* line 38, sass/modules/pages/_register.scss */
 #register-container form {
   overflow: hidden;
-  margin-bottom: 60px;
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  margin-left: 6.875%;
+  margin-bottom: 80px;
 }
-/* line 41, sass/modules/pages/_register.scss */
+/* line 45, sass/modules/pages/_register.scss */
 #register-container form .title {
   position: relative;
   display: block;
@@ -5607,74 +5619,85 @@ select {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-  color: #5e6364;
+  color: #5E6364;
 }
-/* line 50, sass/modules/pages/_register.scss */
+/* line 54, sass/modules/pages/_register.scss */
 #register-container form .title:before, #register-container form .title:after {
   content: '';
   position: absolute;
   top: 50%;
   width: 64px;
   height: 1px;
-  background-color: #5e6364;
+  background-color: #5E6364;
 }
-/* line 60, sass/modules/pages/_register.scss */
+/* line 64, sass/modules/pages/_register.scss */
 #register-container form .title:before {
   left: 0;
 }
-/* line 61, sass/modules/pages/_register.scss */
+/* line 65, sass/modules/pages/_register.scss */
 #register-container form .title:after {
   right: 0;
 }
-/* line 64, sass/modules/pages/_register.scss */
+/* line 68, sass/modules/pages/_register.scss */
 #register-container form .input {
   margin-bottom: 15px;
+  width: 98.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
 }
-/* line 67, sass/modules/pages/_register.scss */
+/* line 71, sass/modules/pages/_register.scss */
 #register-container form .input.use-conditions {
   font-size: 14px;
 }
-/* line 71, sass/modules/pages/_register.scss */
+/* line 75, sass/modules/pages/_register.scss */
 #register-container form .input a {
   padding-bottom: 1px;
-  color: #3498db;
+  color: #3498DB;
   font-weight: bold;
 }
-/* line 76, sass/modules/pages/_register.scss */
+/* line 80, sass/modules/pages/_register.scss */
 #register-container form .input a:hover {
-  border-bottom: 1px solid #3498db;
+  border-bottom: 1px solid #3498DB;
 }
-/* line 82, sass/modules/pages/_register.scss */
+/* line 86, sass/modules/pages/_register.scss */
+#register-container form .min {
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 92, sass/modules/pages/_register.scss */
 #register-container form label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: bold;
 }
-/* line 90, sass/modules/pages/_register.scss */
+/* line 100, sass/modules/pages/_register.scss */
 #register-container form input[type=text], #register-container form input[type=password] {
   width: 100%;
-  border-color: #bbc6c9;
+  border-color: #BBC6C9;
   border-radius: 3px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-/* line 101, sass/modules/pages/_register.scss */
+/* line 110, sass/modules/pages/_register.scss */
 #register-container form input:focus {
   outline: none;
 }
-/* line 106, sass/modules/pages/_register.scss */
+/* line 115, sass/modules/pages/_register.scss */
 #register-container form button {
   float: right;
   height: 40px;
   width: 200px;
-  margin-top: 40px;
+  margin-top: 5px;
   border: none;
   font-size: 14px;
   font-weight: bold;
-  color: #fff;
-  background-color: #05b558;
+  color: #FFF;
+  background-color: #05B558;
   border-radius: 3px;
   cursor: pointer;
   -moz-transition: opacity 0.2s ease-in-out;
@@ -5682,9 +5705,44 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 121, sass/modules/pages/_register.scss */
+/* line 129, sass/modules/pages/_register.scss */
 #register-container form button:hover {
   opacity: 0.7;
+}
+/* line 132, sass/modules/pages/_register.scss */
+#register-container form .checkbox {
+  width: 48.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+}
+/* line 134, sass/modules/pages/_register.scss */
+#register-container form .checkbox input {
+  float: left;
+  margin-top: 5px;
+}
+/* line 138, sass/modules/pages/_register.scss */
+#register-container form .checkbox label {
+  font-weight: 300;
+  margin-left: 20px;
+}
+/* line 145, sass/modules/pages/_register.scss */
+#register-container form .g-recaptcha {
+  clear: both;
+  width: 98.75%;
+  float: left;
+  margin-left: 0.625%;
+  margin-right: 0.625%;
+  text-align: center;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 100px;
+  background: url(web/preloader_10-64.gif) no-repeat center;
+}
+/* line 153, sass/modules/pages/_register.scss */
+#register-container form .g-recaptcha > div {
+  display: inline-block;
 }
 
 /* line 1, sass/modules/pages/_profile.scss */

@@ -981,7 +981,7 @@ class ShowsController extends AppController{
 				'fields'=>array('Show.id','Show.schedule'),
 				'contain'=>array(
 					'Movie'=>array(
-						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.synopsis','Movie.slug'),
+						'fields'=>array('Movie.id','Movie.title', 'Movie.genre', 'Movie.duration','Movie.trailer','Movie.synopsis','Movie.slug'),
 						'Poster',
 						'MovieLocation'=>array(
 							'conditions'=>$movieLocationConditions,

@@ -41,7 +41,7 @@
 	.billboard-aside {
 		display: inline-block;
 		@include span(4);
-		margin-left: span(1)+gutter();
+		@include push(1);
 		font-size: 16px;
 		vertical-align: top;
 		text-align: center;

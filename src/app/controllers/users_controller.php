@@ -283,61 +283,66 @@ class UsersController extends AppController{
 			$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
 			if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR'))) || !$reCaptcha){
 				$error = false;
-				$this->User->begin();
-				if($this->User->save($this->data['User'],false)){
-					if(isset($this->data['Profile'])){
-						$this->data['Profile']['user_id'] = $this->User->id;
-						$this->User->Profile->set($this->data['Profile']);
-						if(!$this->User->Profile->save()){
-							$error = true;
+				if($this->data['User']['terms']){
+					$this->User->begin();
+					if($this->User->save($this->data['User'],false)){
+						//if(isset($this->data['Profile'])){
+							$this->data['Profile']['user_id'] = $this->User->id;
+							$this->User->Profile->set($this->data['Profile']);
+							if(!$this->User->Profile->save()){
+								$error = true;
+							}
+						//}
+						if(isset($this->data['SocialAuth'])){
+							$this->data['SocialAuth']['user_id'] = $this->User->id;
+							$this->User->SocialAuth->set($this->data['SocialAuth']);
+							if(!$this->User->SocialAuth->save()){
+								$error = true;
+							}
 						}
-					}
-					if(isset($this->data['SocialAuth'])){
-						$this->data['SocialAuth']['user_id'] = $this->User->id;
-						$this->User->SocialAuth->set($this->data['SocialAuth']);
-						if(!$this->User->SocialAuth->save()){
-							$error = true;
+						if($error){
+							$this->User->rollback();
+						}else{
+							$this->User->commit();
+							$this->Auth->login($this->data['User']);
 						}
+						#$this->Email->layout="invitacion";
+						$this->Email->to = $this->data['User']['username'];
+						$this->Email->subject = 'Active su usuario de Citicinemas Mobil';
+						$this->Email->from = "noreply@citicinemas.com";
+						$this->Email->name="Citicinemas Mobil";
+						$this->Email->sendAs = 'html';
+						$this->Email->template = 'confirm_user';
+						$this->set('email',$this->data['User']['username']);
+						$this->set("code",$this->data['User']['code']);
+						/* Opciones SMTP*/
+						$this->Email->smtpOptions = array(
+							'port'=>'25',
+							'timeout'=>'30',
+							'host' => 'mail.h1webstudio.com',
+							'username'=>'erochin@h1webstudio.com',
+							'password'=>'Rochin12!-');
+
+						$this->Email->delivery = 'smtp';
+						/**/
+						$this->Email->send();
+						$this->redirect(array('action'=>'profile'));
+					}else{
+						$error = true;
 					}
 					if($error){
 						$this->User->rollback();
 					}else{
 						$this->User->commit();
 					}
-					#$this->Email->layout="invitacion";
-					$this->Email->to = $this->data['User']['username'];
-					$this->Email->subject = 'Active su usuario de Citicinemas Mobil';
-					$this->Email->from = "noreply@citicinemas.com";
-					$this->Email->name="Citicinemas Mobil";
-					$this->Email->sendAs = 'html';
-					$this->Email->template = 'confirm_user';
-					$this->set('email',$this->data['User']['username']);
-					$this->set("code",$this->data['User']['code']);
-					/* Opciones SMTP*/
-					$this->Email->smtpOptions = array(
-						'port'=>'25',
-						'timeout'=>'30',
-						'host' => 'mail.h1webstudio.com',
-						'username'=>'erochin@h1webstudio.com',
-						'password'=>'Rochin12!-');
-
-					$this->Email->delivery = 'smtp';
-					/**/
-					$this->Email->send();
-					$this->redirect(array('action'=>'profile'));
 				}else{
-					$error = true;
-				}
-				if($error){
-					$this->User->rollback();
-				}else{
-					$this->User->commit();
+					$this->User->invalidate("terms","[:debe-aceptar-terminos:]");
 				}
 			}
-
 		}else{
 			//pr($this->User->validationErrors);
 		}
+		$this->data['User']['password'] = $this->data['User']['password_confirm'] = "";
 	}
 
 	function __socialConnect($provider){

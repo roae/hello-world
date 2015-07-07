@@ -13,17 +13,16 @@ if(!empty($CitySelected)){
 	$day = "";
 	$today = date("Y-m-d");
 	foreach($dates as $key => $date){
-		if(!isset($dates[$today])){
+		if($date == $today){
 			$dates[$today] = $this->Time->format("[:D:] d [:F:]",$today)." ([:hoy:])";
-		}
-		if($date == date("Y-m-d",strtotime("+1 day"))){
+		}else if($date == date("Y-m-d",strtotime("+1 day"))){
 			$dates[$date] = $this->Time->format("[:D:] d [:F:]",$date)." ([:manana:])";
 		}else if($date != $today){
 			$dates[$date] = $this->Time->format("[:D:] d [:F:]",$date);
 		}
 		unset($dates[$key]);
 	}
-	if(!isset($dates[$today])){
+	if(empty($dates)){
 		$dates[$today] = $this->Time->format("[:D:] d [:F:]",$today)." ([:hoy:])";
 	}
 

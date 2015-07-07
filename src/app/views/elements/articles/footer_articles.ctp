@@ -14,16 +14,12 @@ $articles = $this->requestAction( array(
 	)
 ) );
 foreach( $articles as $key => $record ){
+	$url = array( 'controller' => 'articles','action' => 'view','id' => $record['Article']['id'],'slug' => $record['Article']['slug']);
 	?>
-
 	<article>
-		<h3><?= $record['Article']['titulo'] ?></h3>
-		<?= $this->Text->truncate( $record['Article']['contenido'], 100 ); ?>
-		<?= $this->Html->link( 'Continuar leyendo', array( 'controller' => 'articles',
-			'action' => 'view',
-			'id' => $record['Article']['id'],
-			'slug' => $record['Article']['slug']
-		), array( 'class' => 'keep-reading' ) ) ?>
+		<h3><?= $this->Html->link($record['Article']['titulo'],$url) ?></h3>
+		<?= $this->Text->truncate( $record['Article']['contenido'], 100 ,array('html'=>true)); ?>
+		<?= $this->Html->link( '[:continuar-leyendo:]', $url, array( 'class' => 'keep-reading' ) ) ?>
 	</article>
 
 <?php } ?>

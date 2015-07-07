@@ -1252,13 +1252,17 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 176, sass/modules/layouts/_footer.scss */
+/* line 174, sass/modules/layouts/_footer.scss */
+#main-footer .footer-menu .news article h3 a {
+  color: #fff;
+}
+/* line 179, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article p {
   font-size: 14px;
   font-weight: 200;
   color: #bcd1dd;
 }
-/* line 182, sass/modules/layouts/_footer.scss */
+/* line 185, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article .keep-reading {
   display: inline-block;
   margin-top: 10px;
@@ -1266,11 +1270,11 @@ body {
   font-size: 14px;
   color: #fecc00;
 }
-/* line 189, sass/modules/layouts/_footer.scss */
+/* line 192, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .news article .keep-reading:hover {
   color: #e5b800;
 }
-/* line 198, sass/modules/layouts/_footer.scss */
+/* line 201, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options {
   display: inline-block;
   width: 36.25%;
@@ -1280,7 +1284,7 @@ body {
   font-size: 16px;
   vertical-align: top;
 }
-/* line 204, sass/modules/layouts/_footer.scss */
+/* line 207, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options li {
   display: inline-block;
   width: 42.22222%;
@@ -1289,20 +1293,20 @@ body {
   margin-right: 1.11111%;
   margin-bottom: 10px;
 }
-/* line 208, sass/modules/layouts/_footer.scss */
+/* line 211, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options li:nth-of-type(2n) {
   margin-left: 12.22222%;
 }
-/* line 214, sass/modules/layouts/_footer.scss */
+/* line 217, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options a {
   font-size: 14px;
   color: #fecc00;
 }
-/* line 218, sass/modules/layouts/_footer.scss */
+/* line 221, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .footer-menu-options a:hover {
   color: #e5b800;
 }
-/* line 224, sass/modules/layouts/_footer.scss */
+/* line 227, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription {
   display: inline-block;
   width: 55.0%;
@@ -1312,7 +1316,7 @@ body {
   margin-left: 6.875%;
   margin-top: 40px;
 }
-/* line 230, sass/modules/layouts/_footer.scss */
+/* line 233, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input {
   display: inline-block;
   border: none;
@@ -1321,7 +1325,7 @@ body {
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
 }
-/* line 237, sass/modules/layouts/_footer.scss */
+/* line 240, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=text] {
   width: 42.22222%;
   float: left;
@@ -1333,11 +1337,11 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 242, sass/modules/layouts/_footer.scss */
+/* line 245, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=text]:focus {
   background-color: #626c73;
 }
-/* line 245, sass/modules/layouts/_footer.scss */
+/* line 248, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=submit] {
   width: 42.22222%;
   float: left;
@@ -1352,11 +1356,11 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 254, sass/modules/layouts/_footer.scss */
+/* line 257, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .subscription input[type=submit]:hover {
   background-color: #b30014;
 }
-/* line 260, sass/modules/layouts/_footer.scss */
+/* line 263, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks {
   display: inline-block;
   width: 36.25%;
@@ -1368,12 +1372,12 @@ body {
   vertical-align: bottom;
   text-align: center;
 }
-/* line 268, sass/modules/layouts/_footer.scss */
+/* line 271, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks h2 {
   text-align: left;
   margin-bottom: 5px;
 }
-/* line 272, sass/modules/layouts/_footer.scss */
+/* line 275, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks ul {
   padding: 10px 10px 5px;
   -moz-border-radius: 4px;
@@ -1381,16 +1385,16 @@ body {
   border-radius: 4px;
   background: #222628;
 }
-/* line 277, sass/modules/layouts/_footer.scss */
+/* line 280, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li {
   display: inline-block;
   margin-right: 30px;
 }
-/* line 281, sass/modules/layouts/_footer.scss */
+/* line 284, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li:last-child {
   margin-right: 0;
 }
-/* line 283, sass/modules/layouts/_footer.scss */
+/* line 286, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a {
   display: inline-block;
   width: 46px;
@@ -1400,46 +1404,46 @@ body {
   background-position: center center;
   overflow: hidden;
 }
-/* line 292, sass/modules/layouts/_footer.scss */
+/* line 295, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a:hover {
   opacity: 0.8;
 }
-/* line 293, sass/modules/layouts/_footer.scss */
+/* line 296, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a:active {
   position: relative;
   top: 1px;
 }
-/* line 299, sass/modules/layouts/_footer.scss */
+/* line 302, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.fb {
   background-image: url(../img/social-networks/fb-icon.png);
 }
-/* line 299, sass/modules/layouts/_footer.scss */
+/* line 302, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.tw {
   background-image: url(../img/social-networks/tw-icon.png);
 }
-/* line 299, sass/modules/layouts/_footer.scss */
+/* line 302, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.vim {
   background-image: url(../img/social-networks/vim-icon.png);
 }
-/* line 299, sass/modules/layouts/_footer.scss */
+/* line 302, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.yt {
   background-image: url(../img/social-networks/yt-icon.png);
 }
-/* line 299, sass/modules/layouts/_footer.scss */
+/* line 302, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.gp {
   background-image: url(../img/social-networks/gp-icon.png);
 }
-/* line 309, sass/modules/layouts/_footer.scss */
+/* line 312, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright {
   padding: 30px 15px;
 }
-/* line 312, sass/modules/layouts/_footer.scss */
+/* line 315, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .copyright {
   display: block;
   margin-bottom: 10px;
   font-size: 14px;
 }
-/* line 319, sass/modules/layouts/_footer.scss */
+/* line 322, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a {
   padding-right: 10px;
   padding-left: 10px;
@@ -1447,20 +1451,20 @@ body {
   font-size: 12px;
   color: #a8a9ab;
 }
-/* line 326, sass/modules/layouts/_footer.scss */
+/* line 329, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:nth-of-type(1) {
   padding-left: 0;
 }
-/* line 327, sass/modules/layouts/_footer.scss */
+/* line 330, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:nth-of-type(2) {
   padding-left: 6px;
   border-right: none;
 }
-/* line 332, sass/modules/layouts/_footer.scss */
+/* line 335, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container > a:hover {
   color: #8e9092;
 }
-/* line 335, sass/modules/layouts/_footer.scss */
+/* line 338, sass/modules/layouts/_footer.scss */
 #main-footer section.copyright .col-container .certificates {
   float: right;
   margin-top: -6px;

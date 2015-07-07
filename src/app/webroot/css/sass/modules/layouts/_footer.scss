@@ -171,6 +171,9 @@
 						font-size: 18px;
 						color: #FFF;
 						@include text-overflow();
+						a{
+							color:#fff;
+						}
 					}
 
 					p {

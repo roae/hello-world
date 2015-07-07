@@ -1,6 +1,6 @@
 <article id="article-detail">
 	<div class="article-banner <?= ( isset( $record['Foto']['id'] ) ) ? 'with-image' : '' ?>"
-	     style="<?= ( isset( $record['Foto']['id'] ) ) ? 'background-image: url('.$record['Foto']['big'].')' : '' ?>">
+	     style="<?= ( isset( $record['Foto']['id'] ) ) ? 'background-image: url('.$record['Foto']['url'].')' : '' ?>">
 		<div class="crumb ">
 			<div class="col-container">
 				<span class="crumbTitle">[:estas-aqui:]</span>

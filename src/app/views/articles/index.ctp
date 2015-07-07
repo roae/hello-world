@@ -45,7 +45,7 @@
 			?>
 
 			<li class="<?= ( isset( $photo['id'] ) ) ? 'with-image' : '' ?>"
-			    style="<?= ( isset( $photo['id'] ) ) ? 'background-image: url('.$photo['big'].')' : '' ?>">
+			    style="<?= ( isset( $photo['id'] ) ) ? 'background-image: url('.$photo['url'].')' : '' ?>">
 				<div class="col-container">
 					<article>
 						<small class="date">

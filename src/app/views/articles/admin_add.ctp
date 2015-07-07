@@ -1,4 +1,4 @@
-ç<?php /* @var $this View */
+<?php /* @var $this View */
 $this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
 $this->Html->script('tiny',array('inline'=>false));
 $this->Html->addCrumb('[:System.admin_articles:]',array('action' => 'index'));$this->Html->addCrumb('[:System.admin_articles_add:]');

@@ -1,3 +1,8 @@
+<?php /*@var $this View */
+$category_slug = isset($this->params['category_slug']) ? $this->params['category_slug'] : null;
+$tag_slug = isset($this->params['tag_slug']) ? $this->params['tag_slug'] : null;
+$this->Paginator->options(array('url' => am(array('controller' => 'articles','action' => 'index','category_slug'=>$category_slug,'tag_slug'=>$tag_slug),$this->params['named'])));?>
+?>
 <div id="articles-container">
 	<div class="top-message">
 		<div class="col-container">

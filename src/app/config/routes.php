@@ -43,6 +43,11 @@ Router::connect( '/error404', array( 'controller' => 'pages', 'action' => 'displ
 
 I18nRouter::connect( "/[m_about_url]", array( 'controller' => 'pages', 'action' => 'display', 'about' ) );
 
+I18nRouter::connect( '/[m_articles_url]/:id-:slug/*',
+	array( 'controller' => 'articles', 'action' => 'view', 'restricted' => false ),
+	array( 'pass' => array( 'id', 'slug' ), 'id' => '[0-9]+' )
+);
+
 I18nRouter::connect( '/[m_articles_url]/[tag_url]/:tag_slug/*',
 	array( 'controller' => 'articles', 'action' => 'index', 'restricted' => false ),
 	array( 'pass' => array( 'tag_slug' ), 'tag_slug' => '[0-9a-zA-Z_\-]+' )
@@ -51,10 +56,7 @@ I18nRouter::connect( '/[m_articles_url]/[category_url]/:category_slug/*',
 	array( 'controller' => 'articles', 'action' => 'index', 'restricted' => false ),
 	array( 'pass' => array( 'category_slug' ), 'category_slug' => '[0-9a-zA-Z_\-]+' )
 );
-I18nRouter::connect( '/[m_articles_url]/:id-:slug/*',
-	array( 'controller' => 'articles', 'action' => 'view', 'restricted' => false ),
-	array( 'pass' => array( 'id', 'slug' ), 'id' => '[0-9]+' )
-);
+
 I18nRouter::connect( "/[m_articles_url]/*", array( 'controller' => 'articles',
 	'action' => 'index',
 	'restricted' => false

@@ -49,8 +49,7 @@
 				<div class="col-container">
 					<article>
 						<small class="date">
-							Creado: 22 Enero, 2015 | en
-
+							Creado: <?= $this->Time->format("d [:F:], Y",$article['created']) ?> |
 							<?php
 							$total_categories = count( $categories );
 							$_categories = array();
@@ -66,9 +65,7 @@
 							?>
 						</small>
 
-						<header>
-							<h2><?= $article['titulo'] ?></h2>
-						</header>
+						<h2><?= $article['titulo'] ?></h2>
 
 						<?= $this->Text->truncate( $article['contenido'], 300, array( 'html' => true,
 							'exact' => false

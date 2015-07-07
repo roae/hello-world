@@ -55,6 +55,9 @@
 				font-size: 32px;
 				margin-bottom: 20px;
 				font-weight: 300;
+				a{
+					color:$dark-gray;
+				}
 			}
 
 			p {
@@ -122,6 +125,17 @@
 				article {
 					color: #FFF;
 					border-bottom: none;
+					.tags{
+						a {
+							border-right: 1px solid rgba(255,255,255,0.3);
+						}
+					}
+					h2{
+						a{
+							color:#fff;
+						}
+					}
+
 				}
 
 				p {
@@ -238,6 +252,17 @@
 
 		&.with-image{
 			height: 600px;
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				//background-color: rgba(0, 0, 0, 0.5);
+				//@include gradientVertical(rgba(0,0,0,0.5),transparent);
+				@include box-shadow(0 0 200px rgba(0,0,0,0.8) inset);
+			}
 			&:after {
 				content: '';
 				position: absolute;
@@ -245,7 +270,7 @@
 				bottom: 0;
 				width: 100%;
 				height: 120px;
-				@include gradientVertical(transparent, #000);
+				@include gradientVertical(transparent, rgba(0,0,0,0.8));
 			}
 
 			.title{
@@ -268,7 +293,7 @@
 				width: 100%;
 				border:0;
 				.col-container{
-					border-bottom:transparentize(#fff,.5) 1px solid;
+					border-bottom:transparentize(#fff,.3) 1px solid;
 					padding-bottom: 5px;
 				}
 			}
@@ -280,6 +305,7 @@
 
 		p {
 			line-height: 2;
+			margin-bottom: 2em;
 		}
 	}
 

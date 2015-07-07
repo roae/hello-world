@@ -65,7 +65,7 @@
 							?>
 						</small>
 
-						<h2><?= $article['titulo'] ?></h2>
+						<h2><?= $this->Html->link($article['titulo'],array('action'=>'view','id'=>$article['id'],'slug'=>$article['slug'])) ?></h2>
 
 						<?= $this->Text->truncate( $article['contenido'], 300, array( 'html' => true,
 							'exact' => false

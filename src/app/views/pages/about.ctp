@@ -1,26 +1,26 @@
 <section class="col-container" id="about-container">
-  <header class="top-message">
-    <h1>Conoce más sobre CitiCinemas</h1>
-  </header>
+  <div class="top-message">
+    <h1>[:about-citicinemas-title:]</h1>
+  </div>
 
   <div class="about-info history">
     <img src="http://placehold.it/250x250">
-    <h2>Historia</h2>
+    <h2>[:historio_citicinemas:]</h2>
 
-    <p>[history_content]</p>
+    <p>[:history_content:]</p>
   </div>
 
   <div class="about-info mission">
     <img src="http://placehold.it/250x250">
-    <h2>Misión</h2>
+    <h2>[:mision_citicinemas:]</h2>
 
-    <p>[mission_content]</p>
+    <p>[:mission_content:]</p>
   </div>
 
   <div class="about-info vision">
     <img src="http://placehold.it/250x250">
-    <h2>Visión</h2>
+    <h2>[:vision_citicinemas:]</h2>
 
-    <p>[vision_content]</p>
+    <p>[:vision_content:]</p>
   </div>
 </section>

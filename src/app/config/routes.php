@@ -102,7 +102,7 @@ I18nRouter::connect( "/[profile_url]/[set_pass_url]/",
 	array( 'controller' => 'users', 'action' => 'set_password' )
 );
 
-I18nRouter::connect( "/[profile_url]/",
+I18nRouter::connect( "/[profile_url]/*",
 	array( 'controller' => 'users', 'action' => 'profile' )
 );
 
@@ -135,6 +135,8 @@ I18nRouter::connect( "/[m_locations_url]", array( 'controller' => 'locations', '
 I18nRouter::connect( "/[m_services_url]", array( 'controller' => 'services', 'action' => 'index' ) );
 I18nRouter::connect( "/[m_register_url]/*", array( 'controller' => 'users', 'action' => 'singin' ) );
 I18nRouter::connect( "/[buy_error_url]/*", array( 'controller' => 'pages', 'action' => 'display', 'buy_error' ) );
+I18nRouter::connect( "/[user_confirm_url]/*", array( 'controller' => 'users', 'action' => 'confirm' ) );
+
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.

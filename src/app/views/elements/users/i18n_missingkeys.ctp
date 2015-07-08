@@ -17,4 +17,9 @@ $this->I18n->addMissing('warning_message_delete_multiple_users',array('desc'=>'M
 $this->I18n->addMissing('debe-aceptar-terminos',array('desc'=>'Mensaje de error que aparece cuando no se aceptan las politicas de privacidad','tab'=>'modulo'));
 $this->I18n->addMissing('user_exist',array('desc'=>'Mensaje de error que aparece cuando se escribe un nombre de usuario que ya esta registrado','tab'=>'modulo'));
 $this->I18n->addMissing('error-confirm-password-not-match',array('desc'=>'Mensaje de error que aparece cuando no coinciden las contraseñas','tab'=>'modulo'));
+
+$this->I18n->addMissing('user_confirm_successfully',array('desc'=>'Mensaje flash que aparece cuando se activa el usuario satisfactoriamente','tab'=>'modulo'));
+$this->I18n->addMissing('profile-changes-saved',array('desc'=>'Mensaje flash que aparece cuando se edita correctamente el perfil','tab'=>'modulo'));
+$this->I18n->addMissing('email_user_confirmation_sended',array('desc'=>'Mensaje flash que aparece cuando se envia de nuevo el correo de confirmación','tab'=>'modulo'));
+$this->I18n->addMissing('email_user_confirmation_error',array('desc'=>'Mensaje flash que aparece cuando ocurre un error al enviar el correo de confirmación','tab'=>'modulo'));
 ?>

@@ -5779,16 +5779,79 @@ select {
 #UserProfile {
   padding-bottom: 100px;
 }
-/* line 4, sass/modules/pages/_profile.scss */
+/* line 3, sass/modules/pages/_profile.scss */
+#UserProfile #Notifier {
+  margin: 0 11.25%;
+}
+/* line 5, sass/modules/pages/_profile.scss */
+#UserProfile #Notifier .success {
+  background: #51b347;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #49a140;
+}
+/* line 15, sass/modules/pages/_profile.scss */
+#UserProfile #Notifier .error {
+  background: #cc0017;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #b30014;
+}
+/* line 25, sass/modules/pages/_profile.scss */
+#UserProfile #Notifier .warning {
+  text-align: center;
+  background: #fecc00;
+  padding: 20px;
+  font-size: 18px;
+  color: black;
+  margin-bottom: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #e5b800;
+}
+/* line 38, sass/modules/pages/_profile.scss */
+#UserProfile .noActive {
+  margin: 0 11.25%;
+  background: #ffeb98;
+  padding: 20px;
+  font-size: 14px;
+  color: black;
+  margin-bottom: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #cba300;
+  overflow: hidden;
+}
+/* line 48, sass/modules/pages/_profile.scss */
+#UserProfile .noActive .btn {
+  margin-top: 30px;
+  display: inline-block;
+  margin-bottom: 0;
+}
+/* line 55, sass/modules/pages/_profile.scss */
 #UserProfile .top-message {
   padding: 50px 0;
   margin-bottom: 0;
 }
-/* line 7, sass/modules/pages/_profile.scss */
+/* line 58, sass/modules/pages/_profile.scss */
 #UserProfile .top-message:after {
   display: none;
 }
-/* line 11, sass/modules/pages/_profile.scss */
+/* line 62, sass/modules/pages/_profile.scss */
 #UserProfile .userCard {
   text-align: center;
   width: 30%;
@@ -5796,7 +5859,7 @@ select {
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 14, sass/modules/pages/_profile.scss */
+/* line 65, sass/modules/pages/_profile.scss */
 #UserProfile .userCard figure {
   width: 160px;
   height: 160px;
@@ -5806,7 +5869,7 @@ select {
   overflow: hidden;
   display: inline-block;
 }
-/* line 21, sass/modules/pages/_profile.scss */
+/* line 72, sass/modules/pages/_profile.scss */
 #UserProfile .userCard figure .capitals {
   background: #FECC00 none repeat scroll 0 0;
   display: block;
@@ -5817,31 +5880,31 @@ select {
   width: 160px;
   font-weight: 100;
 }
-/* line 32, sass/modules/pages/_profile.scss */
+/* line 83, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .name {
   color: #CC0017;
   font-size: 30px;
   font-weight: 100;
   display: block;
 }
-/* line 38, sass/modules/pages/_profile.scss */
+/* line 89, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .username {
   display: block;
   font-size: 16px;
   color: #707070;
 }
-/* line 43, sass/modules/pages/_profile.scss */
+/* line 94, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .btn {
   margin: 10px;
   display: inline-block;
 }
-/* line 47, sass/modules/pages/_profile.scss */
+/* line 98, sass/modules/pages/_profile.scss */
 #UserProfile .userCard .logout {
   font-size: 14px;
   color: #CC0017;
   text-decoration: underline;
 }
-/* line 53, sass/modules/pages/_profile.scss */
+/* line 104, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo {
   width: 61.25%;
   float: left;
@@ -5849,7 +5912,7 @@ select {
   margin-right: 0.625%;
   margin-left: 5.625%;
 }
-/* line 56, sass/modules/pages/_profile.scss */
+/* line 107, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .title {
   color: #5C5C5C;
   font-size: 30px;
@@ -5859,11 +5922,11 @@ select {
   border-bottom: 1px solid #ECECEC;
   margin-bottom: 20px;
 }
-/* line 65, sass/modules/pages/_profile.scss */
+/* line 116, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal {
   overflow: hidden;
 }
-/* line 67, sass/modules/pages/_profile.scss */
+/* line 118, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal .data {
   width: 48.75%;
   float: left;
@@ -5872,48 +5935,48 @@ select {
   height: 70px;
   font-size: 16px;
 }
-/* line 72, sass/modules/pages/_profile.scss */
+/* line 123, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal .label {
   color: #353535;
   font-weight: 500;
   margin-bottom: 5px;
   display: block;
 }
-/* line 78, sass/modules/pages/_profile.scss */
+/* line 129, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .personal .value {
   display: block;
   color: #5C5C5C;
   font-weight: 200;
 }
-/* line 84, sass/modules/pages/_profile.scss */
+/* line 135, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass {
   margin-top: 60px;
 }
-/* line 86, sass/modules/pages/_profile.scss */
+/* line 137, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .asterisk {
   font-size: 50px;
   color: #878787;
   line-height: 50px;
 }
-/* line 91, sass/modules/pages/_profile.scss */
+/* line 142, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .btn {
   float: right;
 }
-/* line 94, sass/modules/pages/_profile.scss */
+/* line 145, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .noPass {
   font-weight: 200;
   color: #5C5C5C;
   margin-bottom: 30px;
 }
-/* line 97, sass/modules/pages/_profile.scss */
+/* line 148, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .pass .noPass strong {
   font-weight: 500;
 }
-/* line 105, sass/modules/pages/_profile.scss */
+/* line 156, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys {
   margin-top: 60px;
 }
-/* line 107, sass/modules/pages/_profile.scss */
+/* line 158, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys .movie {
   overflow: hidden;
   color: #808080;
@@ -5921,7 +5984,7 @@ select {
   position: relative;
   margin-bottom: 40px;
 }
-/* line 114, sass/modules/pages/_profile.scss */
+/* line 165, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys figure {
   width: 70px;
   float: left;
@@ -5931,12 +5994,12 @@ select {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 120, sass/modules/pages/_profile.scss */
+/* line 171, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys figure img {
   display: block;
   width: 100%;
 }
-/* line 125, sass/modules/pages/_profile.scss */
+/* line 176, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys .movie-title {
   font-size: 24px;
   color: #2b2b2b;
@@ -5944,11 +6007,11 @@ select {
   display: block;
   margin-bottom: 5px;
 }
-/* line 132, sass/modules/pages/_profile.scss */
+/* line 183, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys .data {
   display: block;
 }
-/* line 135, sass/modules/pages/_profile.scss */
+/* line 186, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys .btn {
   position: absolute;
   top: 20px;
@@ -5956,18 +6019,18 @@ select {
   padding: 2p 3px;
   font-size: 12px;
 }
-/* line 143, sass/modules/pages/_profile.scss */
+/* line 194, sass/modules/pages/_profile.scss */
 #UserProfile .userInfo .Buys .noBuys {
   font-size: 18px;
   color: #808080;
   text-align: center;
 }
-/* line 150, sass/modules/pages/_profile.scss */
+/* line 201, sass/modules/pages/_profile.scss */
 #UserProfile .input {
   overflow: hidden;
   margin-bottom: 30px;
 }
-/* line 153, sass/modules/pages/_profile.scss */
+/* line 204, sass/modules/pages/_profile.scss */
 #UserProfile .input label {
   width: 30%;
   float: left;
@@ -5975,20 +6038,20 @@ select {
   margin-right: 0.625%;
   margin-top: 5px;
 }
-/* line 157, sass/modules/pages/_profile.scss */
+/* line 208, sass/modules/pages/_profile.scss */
 #UserProfile .input input {
   width: 61.25%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 163, sass/modules/pages/_profile.scss */
+/* line 214, sass/modules/pages/_profile.scss */
 #UserProfile .buttons .cancel {
   color: #CC0017;
   text-decoration: none;
   float: right;
 }
-/* line 169, sass/modules/pages/_profile.scss */
+/* line 220, sass/modules/pages/_profile.scss */
 #UserProfile .buttons button {
   float: right;
 }

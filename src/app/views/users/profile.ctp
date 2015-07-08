@@ -6,6 +6,16 @@
 	</div>
 
 	<div class="col-container">
+		<?= $this->Session->flash(); ?>
+		<?php
+		if(empty($record['User']['confirmed'])){
+			echo $this->Html->tag("div",
+				"[:user-no-activated:]".$this->Html->link("[:send-confirmation-mail:]",array('action'=>'send_confirmation'),
+					array('class'=>'btn')),
+				'noActive'
+			);
+		}
+		?>
 		<section class="userCard">
 			<figure>
 				<?

@@ -161,7 +161,6 @@ class UsersController extends AppController{
 	}
 
 	function logout(){
-		$this->Session->setFlash('Good-Bye');
 		if($this->Auth->logout()){
 			$this->Session->delete("LoggedProfile");
 		}
@@ -202,7 +201,7 @@ class UsersController extends AppController{
 				$this->Session->write("Auth",am($this->loggedUser['User'],$this->data['User']));
 				$this->Auth->login($this->data['User']);
 				$this->Notifier->success("[:profile-changes-saved:]");
-				$this->redirect(array('action'=>'profile'));
+				$this->redirect(array('controller'=>'users','action'=>'profile'));
 			}
 
 		}
@@ -304,18 +303,18 @@ class UsersController extends AppController{
 							$this->User->rollback();
 						}else{
 							$this->User->commit();
-							$this->Auth->login($this->data['User']);
 						}
+
 						#$this->Email->layout="invitacion";
 						$this->Email->to = $this->data['User']['username'];
-						$this->Email->subject = 'Active su usuario de Citicinemas Mobil';
-						$this->Email->from = "noreply@citicinemas.com";
+						$this->Email->subject = 'Active su usuario de Citicinemas';
+						$this->Email->from = "Citicinemas Mobil <noreply@citicinemas.com>";
 						$this->Email->name="Citicinemas Mobil";
 						$this->Email->sendAs = 'html';
 						$this->Email->template = 'confirm_user';
 						$this->set('email',$this->data['User']['username']);
 						$this->set("code",$this->data['User']['code']);
-						/* Opciones SMTP*/
+						/* Opciones SMTP*
 						$this->Email->smtpOptions = array(
 							'port'=>'25',
 							'timeout'=>'30',
@@ -326,6 +325,8 @@ class UsersController extends AppController{
 						$this->Email->delivery = 'smtp';
 						/**/
 						$this->Email->send();
+						//pr($this->Email->smtpError);
+						$this->Auth->login($this->data['User']);
 						$this->redirect(array('action'=>'profile'));
 					}else{
 						$error = true;
@@ -455,6 +456,65 @@ class UsersController extends AppController{
 		if($this->Auth->login($data)){
 			$this->Session->write("LoggedProfile",$data['Profile']);
 		}
+	}
+
+	function confirm($uid=null){
+		if(!empty($uid)){
+			$subscription=$this->User->findByCode($uid);
+			if(!empty($subscription)){
+				#$data=array('status'=>1,'id'=>$subscription['User']['id']);
+
+				$subscription['User']['status'] = 1;
+				$subscription['User']['confirmed'] = date("Y-m-d H:i:s");
+				unset($this->User->validate['password_confirm']);
+				$this->set("data",$subscription);
+				$this->User->set($subscription);
+				if($this->User->save()){
+					$this->Notifier->success("[:user_confirm_successfully:]");
+					$this->set("done",'successfully');
+					$this->Auth->login($subscription);
+					$this->redirect(array('controller'=>'users','action'=>'profile'));
+				}else{
+					pr($this->User->validationErrors);
+					$this->set("done",'error');
+				}
+			}else{
+				$this->set("done",'no_existe');
+			}
+		}else{
+			$this->set("done",'no_existe');
+		}
+
+	}
+
+	function send_confirmation(){
+		$this->Email->to = $this->loggedUser['User']['username'];
+		$this->Email->subject = 'Active su usuario de Citicinemas';
+		$this->Email->from = "Citicinemas Mobil <noreply@citicinemas.com>";
+		$this->Email->name="Citicinemas Mobil";
+		$this->Email->sendAs = 'html';
+		$this->Email->template = 'confirm_user';
+		$this->set('email',$this->loggedUser['User']['username']);
+		$this->set("code",$this->loggedUser['User']['code']);
+		/* Opciones SMTP*
+		$this->Email->smtpOptions = array(
+			'port'=>'25',
+			'timeout'=>'30',
+			'host' => 'mail.h1webstudio.com',
+			'username'=>'erochin@h1webstudio.com',
+			'password'=>'Rochin12!-');
+
+		$this->Email->delivery = 'smtp';
+		/**/
+		//pr($this->Email->smtpError);
+		if($this->Email->send()){
+			$this->Notifier->success("[:email_user_confirmation_sended:]");
+		}else{
+			$this->Notifier->success("[:email_user_confirmation_error:]");
+		}
+
+		$this->redirect($this->referer());
+
 
 	}
 }

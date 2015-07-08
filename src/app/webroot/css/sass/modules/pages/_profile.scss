@@ -1,5 +1,56 @@
 #UserProfile {
 	padding-bottom: 100px;
+	#Notifier{
+		margin:0 span(2);
+		.success{
+			background: $green;
+			padding: 20px;
+			font-size: 18px;
+			text-align: center;
+			color:#fff;
+			margin-bottom: 40px;
+			@include border-radius(4px);
+			border:1px solid darken($green,5%);
+		}
+		.error{
+			background: $red;
+			padding: 20px;
+			font-size: 18px;
+			text-align: center;
+			color:#fff;
+			margin-bottom: 40px;
+			@include border-radius(4px);
+			border:1px solid darken($red,5%);
+		}
+		.warning{
+			text-align: center;
+			background: $yellow;
+			padding: 20px;
+			font-size: 18px;
+			color: darken($yellow,80%);
+			margin-bottom: 40px;
+			@include border-radius(4px);
+			border:1px solid darken($yellow,5%);
+
+		}
+	}
+
+	.noActive{
+		margin:0 span(2);
+		background: lighten($yellow,30%);
+		padding: 20px;
+		font-size: 14px;
+		color: darken($yellow,70%);
+		margin-bottom: 40px;
+		@include border-radius(4px);
+		border:1px solid darken($yellow,10%);
+		overflow: hidden;
+		.btn{
+			margin-top:30px;
+			display: inline-block;
+			margin-bottom:0;
+		}
+	}
 
 	.top-message {
 		padding: 50px 0;

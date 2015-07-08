@@ -68,7 +68,7 @@ $(document).on("ready",function(){
 	$(".ticketsSelection .less" ).on("click",function(e){
 		$parent = $(this ).closest("tr");
 		$cantidad = $(".cantidad",$parent);
-		$qtyInput = $(".qtyInput",$parent);
+		$qtyInput = $("input[rel='qty']",$parent);
 		cantidad = $cantidad.data("qty");
 		code = $parent.data("code");
 		precio = $(".price",$parent ).data("price");

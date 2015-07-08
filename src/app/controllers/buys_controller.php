@@ -43,13 +43,13 @@ class BuysController extends AppController{
 			if($route['controller'] == "shows"){
 				$this->Email->reset();
 				$this->Email->to = $record['Buy']['email'];
-				$this->Email->from = "erochin@h1webstudio.com";
+				$this->Email->from = "Citicinemas Mobil<noreply@citicinemas.com>";
 				$this->Email->subject = "Confirmación de compra";
 				$this->Email->sendAs = 'html';
 				//$this->set("data",$this->errors);
 				$this->Email->template = "buy_confirm";
 
-				/* Opciones SMTP*/
+				/* Opciones SMTP*
 				$this->Email->smtpOptions = array(
 					'port'=>'25',
 					'timeout'=>'30',

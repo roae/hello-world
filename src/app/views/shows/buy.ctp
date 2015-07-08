@@ -345,6 +345,8 @@ $this->I18n->addMissing("error-no-tickets-selected","Mensaje flash que aparece c
 $this->I18n->addMissing("no-se-seleccionaron-asientos","Mensaje flash que aparece cuando no selecciono asientos",'modulo',true);
 $this->I18n->addMissing("informacion-de-pago-incorrecta","Mensaje flash que aparece cuando no se pusieron los datos de la tarjeta correctamente",'modulo',true);
 $this->I18n->addMissing("invalid-credit-card-number","Mensaje de error del inpu no de tarjeta de credito",'modulo',true);
+$this->I18n->addMissing("no-se-pudo-reservar-sus-asientos","Mensaje flasg de error que se muestra cuando no se pueden reservar los boletos",'modulo',true);
+
 
 
 $this->I18n->addMissing("remaining-time","Texto del cronometro",'modulo',true);

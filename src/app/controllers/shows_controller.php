@@ -281,38 +281,27 @@ class ShowsController extends AppController{
 								if($this->Buy->save($dataBuy,false)){
 									$this->data['Buy']['id'] = $this->Buy->id;
 								}else{
-									pr("No se pudo guardar los datos de la compra");
+									#pr("No se pudo guardar los datos de la compra");
 									#pr($dataBuy);
 									$this->redirect($url_error_page);
 								}
 
 								if($record['Show']['seat_alloctype']){
 									if($this->__isSeatsSelected()){
-										$reservedSeats = $this->__getReservedSeatInformation($record['Show']['session_id']);
-										#pr($reservedSeats);
-										#pr(count($reservedSeats));
-										#pr(count($this->data['BuySeat']));
-										/*if(count($reservedSeats) != count($this->data['BuySeat'])){
-											if(!$this->__TicketCancel($record['Show']['session_id'])){
-												$this->__TransCancel($this->transIdTemp);
-												pr("Hubo un cambio en el numero de asientos reservados, y no se pudo cancelar los asientos anteriores");
-												$this->redirect($url_error_page);
-											}
-										}*/
-										#pr($reservedSeats);
-										#pr($reservedSeats);
 										if(!$this->__SetSeatsSelected($record['Show'])){
 											$this->__TransCancel($this->transIdTemp);
-											pr($this->__selectedSeatString());
-											pr("No se pudo reservar los boletos");
-											$this->redirect($url_error_page);
+											#pr($this->__selectedSeatString());
+											#pr("No se pudo reservar los boletos");
+											#$this->redirect($url_error_page);
+											$this->Notifier->error("[:no-se-pudo-reservar-sus-asientos:]");
+											return;
 										}
 										#$this->set("buyExpDate",date("Y - m - d H:i:s"));
 
 										//pr($this->data);exit;
-										if($this->Session->check('Tickets.buyExpDate')){
+										/*if($this->Session->check('Tickets.buyExpDate')){
 											pr($this->Session->read("Tickets"));
-										}
+										}*/
 										$this->data['buyExpDate'] = !$this->Session->check('Tickets.buyExpDate') ? strtotime("+5 mins") : $this->Session->read('Tickets.buyExpDate');
 										$this->Session->write("Tickets.buyExpDate",$this->data['buyExpDate']);
 										$this->data['remaining_time'] = $this->data['buyExpDate'] - time();
@@ -320,7 +309,7 @@ class ShowsController extends AppController{
 									}else{
 										if(!$this->__TicketCancel($record['Show']['session_id'])){
 											$this->__TransCancel($this->transIdTemp);
-											pr("No se pudo cancelar los tickets");
+											#pr("No se pudo cancelar los tickets");
 											$this->redirect($url_error_page);
 										}
 										$this->Notifier->error("[:no-se-seleccionaron-asientos:]");
@@ -374,11 +363,11 @@ class ShowsController extends AppController{
 								}
 							}else{
 								$this->__TransCancel($this->transIdTemp);
-								pr("No se pudo hacer la orden de Tickets");
+								#pr("No se pudo hacer la orden de Tickets");
 								$this->redirect($url_error_page);
 							}
 						}else{
-							pr("No se pudo crear una nueva transaccion");
+							#pr("No se pudo crear una nueva transaccion");
 							$this->redirect($url_error_page);
 						}
 					}else{
@@ -492,6 +481,12 @@ class ShowsController extends AppController{
 			'total'=>$paymentTotal
 		);
 		$smartResponse = $this->SmartConnector->payment($smartData);
+		/**
+		 # Se puso para hacer pruebas sin hacer la peticion a smart
+		$smartResponse = array(
+			'Aut-Code' => '23ddkjs',
+			'RefSPNum' => '2323sd2'
+		);/**/
 		#pr($smartResponse);
 		if(isset($smartResponse['Aut-Code'])){
 
@@ -613,8 +608,8 @@ class ShowsController extends AppController{
 			'Param6'=>""
 		);
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		//pr($params);
-		//pr($response);
+		#pr($params);
+		#pr($response);
 		return !$response->ExecuteResult;
 	}
 
@@ -652,8 +647,8 @@ class ShowsController extends AppController{
 			'Param6'=>"",
 		);
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
-		//pr($params);
-		//pr($response);
+		pr($params);
+		pr($response);
 		return !$response->ExecuteResult;
 
 	}
@@ -686,6 +681,8 @@ class ShowsController extends AppController{
 		);
 
 		$response = $this->VistaServer->__soapCall("Execute",array($params));
+		#pr($params);
+		#pr($response);
 		if($response->ExecuteResult == 0){
 			$result = explode("|",$response->ReturnData);
 			$transId = $result[6];
@@ -694,8 +691,7 @@ class ShowsController extends AppController{
 		}
 
 		return false;
-		#pr($params);
-		#pr($response);
+
 
 	}
 

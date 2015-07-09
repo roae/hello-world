@@ -266,12 +266,12 @@ class UsersController extends AppController{
 			//$this->__register(false);
 		}else{
 			if(!empty($this->data)){
-				$this->__register();
+				$this->__register(false,$provider);
 			}
 		}
 	}
 
-	function __register($reCaptcha = true){
+	function __register($reCaptcha = true,$provider = null){
 		$this->data['User']['group_id']=Configure::read("Group.Registered");
 		$this->data['User']['code']=String::uuid();
 		$this->data['User']['email'] = $this->data['User']['username'];
@@ -282,7 +282,7 @@ class UsersController extends AppController{
 			$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
 			if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR'))) || !$reCaptcha){
 				$error = false;
-				if($this->data['User']['terms']){
+				if((isset($this->data['User']['terms']) && $this->data['User']['terms'])  || $provider){
 					$this->User->begin();
 					if($this->User->save($this->data['User'],false)){
 						//if(isset($this->data['Profile'])){
@@ -351,7 +351,7 @@ class UsersController extends AppController{
 
 		try{
 			// create an instance for Hybridauth with the configuration file path as parameter
-			Configure::write("HybridAuth.base_url",($_SERVER['HTTPS'] ? 'https://' : "http://").$_SERVER['HTTP_HOST'].$this->base . "/hybridauth/");
+			Configure::write("HybridAuth.base_url",(env('HTTPS') ? 'https://' : "http://").$_SERVER['HTTP_HOST'].$this->base . "/hybridauth/");
 
 			$hybridauth = new Hybrid_Auth(Configure::read("HybridAuth"));
 			// try to authenticate the selected $provider

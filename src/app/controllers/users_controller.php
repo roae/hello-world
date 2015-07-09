@@ -257,7 +257,8 @@ class UsersController extends AppController{
 
 	function singin($provider = null){
 		$route = Router::parse($this->referer());
-		if($route['controller']!='users' || $route['action']!='singin'){
+		##pr($route);
+		if(!empty($route) && ($route['controller']!='users' || $route['action']!='singin')){
 			$this->Session->write("SigninReferer",$this->referer());
 		}
 
@@ -410,7 +411,7 @@ class UsersController extends AppController{
 			$error .= "<br /><br /><b>Original error message:</b> " . $e->getMessage();
 			$error .= "<hr /><pre>Trace:<br />" . $e->getTraceAsString() . "</pre>";
 			$this->set( 'error',  $error );
-			pr($error);
+			//pr($error);
 		}
 	}
 

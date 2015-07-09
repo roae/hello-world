@@ -1,7 +1,7 @@
 <?php
 /**
  * Class UsersController
- * @property $User USer
+ * @property $User user
  */
 class UsersController extends AppController{
 	var $name = 'Users';
@@ -142,7 +142,7 @@ class UsersController extends AppController{
 
 	function login(){
 		if(!empty($this->data)){
-			if($this->Auth->login()){
+			if($this->__login($this->data)){
 				if($this->Auth->user("group_id") != Configure::read("Group.Registered")){
 					#pr("/".$this->Session->read("Auth.redirect"));
 					$this->redirect("/admin/");
@@ -264,6 +264,8 @@ class UsersController extends AppController{
 
 		if(!empty($provider)){
 			$this->__socialConnect($provider);
+			#pr($this->data);
+			$this->data['User']['password'] = $this->data['User']['password_confirm'] = $this->data['User']['term'] = "";
 			//$this->__register(false);
 		}else{
 			if(!empty($this->data)){
@@ -283,7 +285,7 @@ class UsersController extends AppController{
 			$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
 			if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR'))) || !$reCaptcha){
 				$error = false;
-				if((isset($this->data['User']['terms']) && $this->data['User']['terms'])  || $provider){
+				if((isset($this->data['User']['terms']) && $this->data['User']['terms'])){
 					$this->User->begin();
 					if($this->User->save($this->data['User'],false)){
 						//if(isset($this->data['Profile'])){
@@ -327,12 +329,14 @@ class UsersController extends AppController{
 						/**/
 						$this->Email->send();
 						//pr($this->Email->smtpError);
-						$this->Auth->login($this->data['User']);
+						//$this->Auth->login($this->data['User']);
+						$this->__login($this->data);
 						$this->redirect(array('action'=>'profile'));
 					}else{
 						$error = true;
 					}
 					if($error){
+						$this->data['User']['password'] = $this->data['User']['password_confirm'] = "";
 						$this->User->rollback();
 					}else{
 						$this->User->commit();
@@ -342,7 +346,8 @@ class UsersController extends AppController{
 				}
 			}
 		}else{
-			//pr($this->User->validationErrors);
+			//pr($this->data);
+			$this->data['User']['password'] = $this->data['User']['password_confirm'] = "";
 		}
 		$this->data['User']['password'] = $this->data['User']['password_confirm'] = "";
 	}
@@ -359,7 +364,7 @@ class UsersController extends AppController{
 			$adapter = $hybridauth->authenticate( $provider );
 			// grab the user profile
 			$user_profile = $adapter->getUserProfile();
-			//pr($user_profile);
+			#pr($user_profile);
 
 			$_provider = $this->User->SocialAuth->find("first",array(
 				'conditions'=>array(
@@ -371,6 +376,7 @@ class UsersController extends AppController{
 					)
 				)
 			));
+			#pr($_provider);
 
 			if(!empty($_provider)){
 				#pr($_provider);
@@ -434,6 +440,7 @@ class UsersController extends AppController{
 		$this->data['User']['confirmed'] = date("Y-m-d h:i:s");
 		$this->data['User']['signed_in'] = date("Y-m-d h:i:s");
 		$this->data['User']['signed_count'] = 1;
+		$this->data['User']['terms'] = 1;
 
 		$this->data['Profile']['gender'] = $data->gender;
 		$this->data['Profile']['age'] = $data->age;
@@ -455,8 +462,12 @@ class UsersController extends AppController{
 
 	function __login($data){
 		if($this->Auth->login($data)){
+			if(!isset($data['Profile'])){
+				$data = $this->User->Profile->find("first",array('conditions'=>array('Profile.user_id'=>$this->Auth->user("id"))));
+			}
 			$this->Session->write("LoggedProfile",$data['Profile']);
-		}
+			return true;
+		}return false;
 	}
 
 	function confirm($uid=null){

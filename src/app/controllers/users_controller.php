@@ -351,7 +351,7 @@ class UsersController extends AppController{
 
 		try{
 			// create an instance for Hybridauth with the configuration file path as parameter
-			Configure::write("HybridAuth.base_url",'//'.$_SERVER['HTTP_HOST'].$this->base . "/hybridauth/");
+			Configure::write("HybridAuth.base_url",($_SERVER['HTTPS'] ? 'https://' : "http://").$_SERVER['HTTP_HOST'].$this->base . "/hybridauth/");
 
 			$hybridauth = new Hybrid_Auth(Configure::read("HybridAuth"));
 			// try to authenticate the selected $provider

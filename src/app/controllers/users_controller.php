@@ -258,7 +258,7 @@ class UsersController extends AppController{
 	function singin($provider = null){
 		$route = Router::parse($this->referer());
 		##pr($route);
-		if(!empty($route) && ($route['controller']!='users' || $route['action']!='singin')){
+		if(isset($route['controller']) && ($route['controller']!='users' || $route['action']!='singin')){
 			$this->Session->write("SigninReferer",$this->referer());
 		}
 

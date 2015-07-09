@@ -347,7 +347,7 @@ class UsersController extends AppController{
 	}
 
 	function __socialConnect($provider){
-		require_once( "//:".WWW_ROOT . "hybridauth/Hybrid/Auth.php" );
+		require_once( WWW_ROOT . "hybridauth/Hybrid/Auth.php" );
 
 		try{
 			// create an instance for Hybridauth with the configuration file path as parameter

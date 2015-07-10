@@ -14,12 +14,20 @@ class ShowsController extends AppController{
 	);
 
 	var $components = array(
-		'SmartConnector'=>array(
+		/*'SmartConnector'=>array(
 			'hosts'=>"http://189.203.240.220:3742/SmartPlattformConnector",
 			'clientID'=>'CitiCinemas',
 			'clientPOS'=>'CitiCinemasWS1',
 			'user'=>'CitiCinemasWS1',
 			'passwd'=>'987654321',
+			'randomKey'=>'6BD2A20879A987AC46A24121356478B8'
+		)*/
+		'SmartConnector'=>array(
+			'hosts'=>"http://200.66.69.108:8989/SmartPlattformConnector",
+			'clientID'=>'CitiCinemas',
+			'clientPOS'=>'Citicinemas1',
+			'user'=>'TestCiti',
+			'passwd'=>'Admin01',
 			'randomKey'=>'6BD2A20879A987AC46A24121356478B8'
 		)
 	);

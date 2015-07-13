@@ -128,9 +128,10 @@ class SmartConnectorComponent extends object{
 				$time,
 				$this->settings['randomKey']
 			);
-			#pr($exec);
+			pr($exec);
+			pr($this->__getLastServerKey());
 			$dataCipher = exec($exec);
-			#pr($dataCipher);
+			pr($dataCipher);
 
 			$xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 			<sbt-ws-message version=\"1.0\">
@@ -147,6 +148,9 @@ class SmartConnectorComponent extends object{
 			    </message>
 			</sbt-ws-message>";
 
+			pr(h($xmlString));
+			exit;
+
 			$process = curl_init($this->settings['hosts']);
 			curl_setopt($process, CURLOPT_HTTPHEADER, $this->headers);
 			curl_setopt($process, CURLOPT_HEADER, 0);
@@ -157,8 +161,9 @@ class SmartConnectorComponent extends object{
 			$return = curl_exec($process);
 			$xml = new Xml($return);
 			$xmlData = $xml->toArray();
+			//pr($xml->)
 			curl_close($process);
-			#pr($xmlData);
+			pr($xmlData);
 			$this->__saveStan($stan+1);
 			if($xmlData['Sbt-ws-message']['Header']['Resp-Code'] == "00"){
 				return $xmlData['Sbt-ws-message']['Message'];

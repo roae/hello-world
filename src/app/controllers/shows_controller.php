@@ -361,9 +361,9 @@ class ShowsController extends AppController{
 											}
 											return;
 										}
-
+										#pr($payment);
 										$this->__TransCancel($this->transIdTemp);
-										pr("Error en la coneccion con el complejo");
+										pr("Error en la conexion con el complejo");
 										$this->redirect($url_error_page);
 									}
 								}else{
@@ -481,6 +481,7 @@ class ShowsController extends AppController{
 		#pr($response);
 		$date = mktime(0,0,0,$this->data['Buy']['ccexp']['month'],1,$this->data['Buy']['ccexp']['year']);
 		//pr(date("Y-m-d",$date));
+		$this->data['Buy']['ccnumber'] = str_replace(" ","",$this->data['Buy']['ccnumber']);
 		$smartData = array(
 			'number'=>$this->data['Buy']['ccnumber'],
 			'name'=>$this->data['Buy']['ccname'],

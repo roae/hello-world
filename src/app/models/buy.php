@@ -35,7 +35,11 @@ class Buy extends AppModel{
 		),
 		'cvv'=>array(
 			'requerido' => array( 'rule' => 'notEmpty', 'required' => true, 'allowEmpty' => false, 'message' => '[:required_field:]'),
-		)
+		),
+		'email'=>array(
+			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+			'mail' => array('rule' => 'email','message' => '[:valid_email:]'),
+		),
 	);
 
 	function save($data = null, $validate = true, $fieldList = array()){

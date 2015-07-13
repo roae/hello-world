@@ -167,6 +167,9 @@
 </div>
 
 <?php
+$this->I18n->addMissing('buy-principal-message',array('desc'=>'Mensaje que aparece cuando se realiza la compra con exito','tab'=>'modulo'));
+$this->I18n->addMissing('buy-second-messages',array('desc'=>'Mensaje que aparece cuando se realiza la compra con exito','tab'=>'modulo'));
+
 $this->Html->script( array(
 	'ext/images-loaded.min.js',
 	'ext/litebox.min.js',

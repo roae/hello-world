@@ -351,6 +351,8 @@ $this->I18n->addMissing("cvv-solo-numeros","Mensaje de erro de cvv solo  numeros
 $this->I18n->addMissing("ocurrio-un-error-con-el-pago-intentalo-de-nuevo","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
 $this->I18n->addMissing("no-hubo-respuesta-autorizador","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
 $this->I18n->addMissing("sin-respuesta-de-servidor-smart","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
+$this->I18n->addMissing("ccname-invalid","Mensaje error cuando no escribe un nombre valido",'modulo',true);
+
 
 
 

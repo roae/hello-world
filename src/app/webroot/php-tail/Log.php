@@ -7,7 +7,7 @@ require 'PHPTail.php';
  * Initilize a new instance of PHPTail
  * @var PHPTail
  */
-$tail = new PHPTail("/Users/roae/Documents/servidor/citicinemas/src/app/tmp/logs/SmartConnector.log");
+$tail = new PHPTail(dirname(dirname(dirname(__FILE__)))."/tmp/logs/SmartConnector.log");
 
 /**
  * We're getting an AJAX call

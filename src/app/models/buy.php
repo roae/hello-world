@@ -26,8 +26,10 @@ class Buy extends AppModel{
 	var $validate = array(
 		'ccname'=>array(
 			'requerido' => array( 'rule' => 'notEmpty', 'required' => true, 'allowEmpty' => false, 'message' => '[:required_field:]'),
-			# al menos 2 palabras
-			'pattern'=>array('rule'=>'/[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)*/','message'   => '[:ccname-invalid:]'),
+			'pattern'=>array(
+				'rule'      => '/^[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)*$/i', # al menos 2 palabras
+				'message'   => '[:ccname-invalid:]',
+			),
 		),
 		'ccnumber'=>array(
 			'rule' => array('cc', 'all', false, null),'message' => '[:invalid-credit-card-number:]'

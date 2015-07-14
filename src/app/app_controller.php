@@ -46,6 +46,7 @@ class AppController extends Controller{
 		'Group',
 		'Contact',
 		'City',
+		'Setting',
 	);
 
 	var $components = array(
@@ -391,6 +392,8 @@ class AppController extends Controller{
 			$this->RequestHandler->respondAs('json');
 			$this->RequestHandler->renderAs($this, 'json');
 		}
+
+		Configure::write("AppConfig", $this->Setting->getConfig());
 
 	}
 

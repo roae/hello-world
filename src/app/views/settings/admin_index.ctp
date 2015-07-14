@@ -2,6 +2,7 @@
 $this->Html->script('ext/tiny_mce/jquery.tinymce',array('inline'=>false));
 $this->Html->script('tiny',array('inline'=>false));
 $this->Html->addCrumb('[:System.admin_settings:]');
+//pr(Configure::read("AppConfig"));
 echo $this->Form->create("Setting");
 ?>
 	<div class="contentForm" id="Settings">
@@ -15,9 +16,9 @@ echo $this->Form->create("Setting");
 				<fieldset>
 					<legend>[:sync_billboard:]</legend>
 				<?php
-				foreach(range(1,23) as $hour){
+				/*foreach(range(1,23) as $hour){
 					$hours[$hour] = $hour.":00";
-				}
+				}*/
 				/*echo $this->Form->hidden("0.id");
 				echo $this->I18n->input("0.value",array('options'=>$hours,'label'=>'[:hora-sincronizacion-cartelera:]'));
 				*/
@@ -38,9 +39,6 @@ echo $this->Form->create("Setting");
 				<fieldset>
 					<legend>[:blog-config:]</legend>
 					<?php
-					foreach(range(1,23) as $hour){
-						$hours[$hour.":00"] = $hour.":00";
-					}
 					echo $this->Form->hidden("3.id");
 					echo $this->I18n->input("3.value",array('type'=>'text','label'=>'[:post-per-page:]'));
 
@@ -56,9 +54,6 @@ echo $this->Form->create("Setting");
 				<fieldset>
 					<legend>[:contact-config:]</legend>
 					<?php
-					foreach(range(1,23) as $hour){
-						$hours[$hour.":00"] = $hour.":00";
-					}
 					echo $this->Form->hidden("6.id");
 					echo $this->I18n->input("6.value",array('type'=>'text','label'=>'[:contact-email:]','after'=>'<span class="help">[:contact-email-help:]</span>'));
 
@@ -66,6 +61,39 @@ echo $this->Form->create("Setting");
 					echo $this->I18n->input("7.value",array('type'=>'text','label'=>'[:contact-email-cc:]','after'=>'<span class="help">[:contact-email-cc-help:]</span>'));
 
 					?>
+				</fieldset>
+				<fieldset>
+					<legend>[:smart-connector-config:]</legend>
+					<?php
+					echo $this->Form->hidden("11.id");
+					echo $this->I18n->input("11.value",array('type'=>'text','label'=>'[:smart-url:]'));
+
+					echo $this->Form->hidden("12.id");
+					echo $this->I18n->input("12.value",array('type'=>'text','label'=>'[:smart-clientID:]'));
+
+					echo $this->Form->hidden("13.id");
+					echo $this->I18n->input("13.value",array('type'=>'text','label'=>'[:smart-clientPOS:]'));
+
+					echo $this->Form->hidden("14.id");
+					echo $this->I18n->input("14.value",array('type'=>'text','label'=>'[:smart-user:]'));
+
+					echo $this->Form->hidden("15.id");
+					echo $this->I18n->input("15.value",array('type'=>'text','label'=>'[:smart-passwd:]'));
+
+					echo $this->Form->hidden("16.id");
+					echo $this->I18n->input("16.value",array('type'=>'text','label'=>'[:smart-last_stan:]'));
+
+					echo $this->Form->hidden("17.id");
+					echo $this->I18n->input("17.value",array('type'=>'text','label'=>'[:smart-current_stan:]','after'=>'<span class="help">[:smart-current_stan-help:]</span>'));
+
+					echo $this->Form->hidden("18.id");
+					echo $this->I18n->input("18.value",array('type'=>'text','label'=>'[:smart-login_date:]'));
+
+					echo $this->Form->hidden("19.id");
+					echo $this->I18n->input("19.value",array('type'=>'text','label'=>'[:smart-lastServerKey:]','after'=>'<span class="help">[:smart-lastserverkey:]</span>'));
+					?>
+					<a href="/php-tail/log.php" target="popup" class="btn_info" onClick="window.open(this.href, this.target, 'width=1000,height=500'); return false;">SmartConnector Log</a>
+
 				</fieldset>
 			</div>
 		</div>

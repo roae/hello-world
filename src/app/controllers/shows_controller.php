@@ -22,14 +22,15 @@ class ShowsController extends AppController{
 			'passwd'=>'987654321',
 			'randomKey'=>'6BD2A20879A987AC46A24121356478B8'
 		)*/
-		'SmartConnector'=>array(
+		/*'SmartConnector'=>array(
 			'hosts'=>"http://200.66.69.108:8989/SmartPlattformConnector",
 			'clientID'=>'CitiCinemas',
 			'clientPOS'=>'Citicinemas1',
 			'user'=>'TestCiti',
 			'passwd'=>'Admin01',
 			'randomKey'=>'6BD2A20879A987AC46A24121356478B8'
-		)
+		)*/
+		'SmartConnector'
 	);
 
 	/**
@@ -41,6 +42,18 @@ class ShowsController extends AppController{
 	var $transIdTemp;
 
 	var $VistaServer;
+
+	function beforeFilter(){
+		parent::beforeFilter();
+		$this->SmartConnector->settings = array(
+			'hosts'=>Configure::read("AppConfig.smart_url"),
+			'clientID'=>Configure::read("AppConfig.smart_clientID"),
+			'clientPOS'=>Configure::read("AppConfig.smart_clientPOS"),
+			'user'=>Configure::read("AppConfig.smart_user"),
+			'passwd'=>Configure::read("AppConfig.smart_passwd"),
+			'randomKey'=>'6BD2A20879A987AC46A24121356478B8',
+		);
+	}
 
 	function index() {
 		#pr("rochin");
@@ -223,6 +236,7 @@ class ShowsController extends AppController{
 	}
 
 	function buy(){
+		#pr(date("Y-m-d"),1436486400);
 		$url_error_page = array('controller'=>'pages','action'=>'display','buy_error');
 		$url_expired_page = array('controller'=>'pages','action'=>'display','buy_expired_error');
 		$this->Show->id = $this->params['show_id'];

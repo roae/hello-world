@@ -382,7 +382,7 @@ class ShowsController extends AppController{
 													$this->Notifier->error("[:no-hubo-respuesta-autorizador:]");
 													break;
 												case '05':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													$this->Notifier->error("[:tarjeta-invalida:]");
 													break;
 												case '06':
 													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");

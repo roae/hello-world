@@ -92,7 +92,7 @@ echo $this->Form->create("Setting");
 					echo $this->Form->hidden("19.id");
 					echo $this->I18n->input("19.value",array('type'=>'text','label'=>'[:smart-lastServerKey:]','after'=>'<span class="help">[:smart-lastserverkey:]</span>'));
 					?>
-					<a href="/php-tail/log.php" target="popup" class="btn_info" onClick="window.open(this.href, this.target, 'width=1000,height=500'); return false;">SmartConnector Log</a>
+					<a href="/php-tail/Log.php" target="popup" class="btn_info" onClick="window.open(this.href, this.target, 'width=1000,height=500'); return false;">SmartConnector Log</a>
 
 				</fieldset>
 			</div>

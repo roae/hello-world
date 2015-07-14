@@ -154,11 +154,11 @@
 			if($showMessage){
 				echo $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));
 				echo "&nbsp";
-				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'frames.print.focus();frames.print.print();return false;'));
+				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
 			}else{
 				echo $this->Html->link("[:back-to-profile:]",$referer,array('class'=>'btn'));
 				echo "&nbsp";
-				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'frames.print.focus();frames.print.print();return false;'));
+				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
 			}
 			?>
 		</div>

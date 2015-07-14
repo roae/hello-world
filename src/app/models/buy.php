@@ -35,6 +35,8 @@ class Buy extends AppModel{
 		),
 		'cvv'=>array(
 			'requerido' => array( 'rule' => 'notEmpty', 'required' => true, 'allowEmpty' => false, 'message' => '[:required_field:]'),
+			'numerico'=>array('rule'=>'numeric','required'=>true,'message'=>'[:cvv-solo-numeros:]'),
+			'tamaño'=>array('rule' => array('between', 3, 4),'message'=>'[:cvv-de-3-a-4-numeros:]')
 		),
 		'email'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),

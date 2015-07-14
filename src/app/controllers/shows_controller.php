@@ -357,6 +357,7 @@ class ShowsController extends AppController{
 										$this->data['Buy']['trans_number'] = $payment['transaction_number'];
 										$this->data['Buy']['confirmation_number'] = $payment['confirmation_number'];
 										$this->data['Buy']['aut_code'] = $payment['smartResponse']['Aut-Code'];
+										$this->data['Buy']['refspnum'] = $payment['smartResponse']['RefSPNum'];
 										$this->data['Buy']['buyer'] = $this->loggedUser['User']['id'];
 										$this->data['Buy']['ccending'] = substr($this->data['Buy']['ccnumber'],-4);
 										$this->Buy->save($this->data,false);
@@ -365,12 +366,38 @@ class ShowsController extends AppController{
 									}else{
 										if(isset($payment['smart_response']['error'])){
 											switch($payment['smart_response']['code']){
-												case '05':
-													$this->Notifier->error("[:tarjeta-invalida:]");
+												case '-1':
+													$this->Notifier->error("[:sin-respuesta-de-servidor-smart:]");
 													break;
 												case '01':
+													$this->Notifier->error("[:pago-rechazado:] ".$payment['smart_response']['message']);
+													break;
 												case '02':
 													$this->Notifier->error("[:pago-rechazado:] ".$payment['smart_response']['message']);
+													break;
+												case '03':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
+												case '04':
+													$this->Notifier->error("[:no-hubo-respuesta-autorizador:]");
+													break;
+												case '05':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
+												case '06':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
+												case '09':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
+												case '10':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
+												case '11':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
+												case '12':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
 													break;
 											}
 											return;

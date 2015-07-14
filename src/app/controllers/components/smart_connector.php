@@ -138,7 +138,7 @@ class SmartConnectorComponent extends object{
 					}
 					return false;
 				}else{
-					$this->log("[Login] Request Error: No huvo respuesta del servidor de smart","SmartConnector");
+					$this->log("[Login] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
 					return false;
 
 				}
@@ -249,6 +249,9 @@ class SmartConnectorComponent extends object{
 						case '03':
 							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
+						case '04':
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							break;
 						case '05':
 							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
@@ -272,10 +275,10 @@ class SmartConnectorComponent extends object{
 						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
 					);
 				}else{
-					$this->log("[Payment] Request Error: No huvo respuesta del servidor de smart","SmartConnector");
+					$this->log("[Payment] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
 					return array(
 						'error'=>true,
-						'message'=>"No huvo respuesta del servidor de smart",
+						'message'=>"No hubo respuesta del servidor de smart",
 						'code'=>"-1"
 					);
 				}
@@ -407,10 +410,10 @@ class SmartConnectorComponent extends object{
 						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
 					);
 				}else{
-					$this->log("[Cancel] Request Error: No huvo respuesta del servidor de smart","SmartConnector");
+					$this->log("[Cancel] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
 					return array(
 						'error'=>true,
-						'message'=>"No huvo respuesta del servidor de smart",
+						'message'=>"No hubo respuesta del servidor de smart",
 						'code'=>"-1"
 					);
 				}

@@ -346,6 +346,12 @@ $this->I18n->addMissing("no-se-seleccionaron-asientos","Mensaje flash que aparec
 $this->I18n->addMissing("informacion-de-pago-incorrecta","Mensaje flash que aparece cuando no se pusieron los datos de la tarjeta correctamente",'modulo',true);
 $this->I18n->addMissing("invalid-credit-card-number","Mensaje de error del inpu no de tarjeta de credito",'modulo',true);
 $this->I18n->addMissing("no-se-pudo-reservar-sus-asientos","Mensaje flasg de error que se muestra cuando no se pueden reservar los boletos",'modulo',true);
+$this->I18n->addMissing("cvv-de-3-a-4-numeros","Mensaje de erro de cvv solo 3 o 4 numeros",'modulo',true);
+$this->I18n->addMissing("cvv-solo-numeros","Mensaje de erro de cvv solo  numeros",'modulo',true);
+$this->I18n->addMissing("ocurrio-un-error-con-el-pago-intentalo-de-nuevo","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
+$this->I18n->addMissing("no-hubo-respuesta-autorizador","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
+$this->I18n->addMissing("sin-respuesta-de-servidor-smart","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
+
 
 
 

@@ -142,6 +142,10 @@
 							<strong>[:buy-aut_code:]:</strong>
 							<span class="value"><?= $record['Buy']['aut_code'] ?></span>
 						</div>
+						<div class="info">
+							<strong>[:buy-RefSPNum:]:</strong>
+							<span class="value"><?= $record['Buy']['refspnum'] ?></span>
+						</div>
 					</div>
 				<?
 				}

@@ -96,7 +96,7 @@ class PHPTail {
 				<title>PHPTail</title>
 				<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-				<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" rel="stylesheet"></link>
+				<link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" rel="stylesheet"></link>
 				<style type="text/css">
 					#grepKeyword, #settings {
 						font-size: 80%;
@@ -115,8 +115,8 @@ class PHPTail {
 					}
 				</style>
 
-				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 
 				<script type="text/javascript">
 					/* <![CDATA[ */

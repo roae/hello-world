@@ -408,7 +408,7 @@ class ShowsController extends AppController{
 										$this->redirect($url_error_page);
 									}
 								}else{
-									if(isset($this->Buy->validationErrors['_ccexp'])){
+									if(isset($this->Buy->validationErrors['_ccexp']) && preg_match('/(\d{4})\-(\d{1,2})-(\d{1,2})/',$this->data['Buy']['_ccexp'])){
 										$this->Notifier->error("[:tarjeta-expiro:]");
 									}else{
 										$this->Notifier->error("[:informacion-de-pago-incorrecta:]");

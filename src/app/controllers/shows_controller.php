@@ -404,11 +404,15 @@ class ShowsController extends AppController{
 										}
 										#pr($payment);
 										$this->__TransCancel($this->transIdTemp);
-										pr("Error en la conexion con el complejo");
+										#pr("Error en la conexion con el complejo");
 										$this->redirect($url_error_page);
 									}
 								}else{
-									$this->Notifier->error("[:informacion-de-pago-incorrecta:]");
+									if(isset($this->Buy->validationErrors['_ccexp'])){
+										$this->Notifier->error("[:tarjeta-expiro:]");
+									}else{
+										$this->Notifier->error("[:informacion-de-pago-incorrecta:]");
+									}
 								}
 							}else{
 								$this->__TransCancel($this->transIdTemp);

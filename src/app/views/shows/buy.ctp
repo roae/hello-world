@@ -358,6 +358,7 @@ $this->I18n->addMissing("ocurrio-un-error-con-el-pago-intentalo-de-nuevo","Mensa
 $this->I18n->addMissing("no-hubo-respuesta-autorizador","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
 $this->I18n->addMissing("sin-respuesta-de-servidor-smart","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
 $this->I18n->addMissing("ccname-invalid","Mensaje error cuando no escribe un nombre valido",'modulo',true);
-
+$this->I18n->addMissing("tarjeta-expiro","Mensaje flash error cuando ingresa un tarjeta vencida",'modulo',true);
+$this->I18n->addMissing("cc-expiro","Mensaje error cuando ingresa un tarjeta vencida",'modulo',true);
 $this->I18n->addMissing("remaining-time","Texto del cronometro",'modulo',true);
 ?>

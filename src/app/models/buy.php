@@ -36,6 +36,7 @@ class Buy extends AppModel{
 		),
 		'_ccexp'=>array(
 			'fecha' => array( 'rule' => array('date'), 'required' => true, 'allowEmpty' => false, 'message' => '[:required_field:]'),
+			'expiro'=>array('rule'=>'expiro','message'=>'[:cc-expiro:]')
 		),
 		'cvv'=>array(
 			'requerido' => array( 'rule' => 'notEmpty', 'required' => true, 'allowEmpty' => false, 'message' => '[:required_field:]'),
@@ -47,6 +48,14 @@ class Buy extends AppModel{
 			'mail' => array('rule' => 'email','message' => '[:valid_email:]'),
 		),
 	);
+
+	function expiro($data){
+		$current_month = mktime(0,0,0,date("m"),1,date("Y"));
+		//preg_match('/(\d{4})\-(\d{1,2})-(\d{1,2})/',$data['_ccexp'],$matches);
+		list($year,$month,$day) = explode("-",$data['_ccexp']);
+
+		return mktime(0,0,0,$month,$day,$year) >= $current_month;
+	}
 
 	function save($data = null, $validate = true, $fieldList = array()){
 		$buySeatsDone = true;

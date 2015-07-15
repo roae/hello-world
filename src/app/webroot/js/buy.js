@@ -194,7 +194,7 @@ $(document).on("ready",function(){
 			}
 
 		},
-		offset: 80
+		offset: 400
 	});
 
 	buyCountDown();

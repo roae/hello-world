@@ -39,6 +39,7 @@ class SmartConnectorComponent extends object{
 	function login( ){
 		if(!$this->__isLogged()){
 			$stan = $this->__getStan();
+			date_default_timezone_set("Mexico/General");
 			$time = date('dmYHis', time());
 
 			$authData = "12={$this->settings['user']}
@@ -109,6 +110,7 @@ class SmartConnectorComponent extends object{
 							$this->log("[Login] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							#Cache::set(array('duration' => '+30 days'));
 							#Cache::write("smart_connector",$cache);
+							date_default_timezone_set('America/Mazatlan');
 							return true;
 							break;
 						case '01':
@@ -136,8 +138,10 @@ class SmartConnectorComponent extends object{
 							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
+					date_default_timezone_set('America/Mazatlan');
 					return false;
 				}else{
+					date_default_timezone_set('America/Mazatlan');
 					$this->log("[Login] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
 					return false;
 
@@ -157,7 +161,7 @@ class SmartConnectorComponent extends object{
 		if($this->login()){
 			$stan = $this->__getStan();
 			#pr("stan $stan");
-			//date_default_timezone_set("Mexico/General");
+			date_default_timezone_set("Mexico/General");
 			$time = date('dmYHis', time());
 			//date_default_timezone_set("UTC");
 			$dataText = $this->__buildDataText(array(
@@ -238,6 +242,7 @@ class SmartConnectorComponent extends object{
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
 							$this->log("[Payment] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							date_default_timezone_set('America/Mazatlan');
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						case '01':
@@ -268,7 +273,7 @@ class SmartConnectorComponent extends object{
 							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
-
+					date_default_timezone_set('America/Mazatlan');
 					return array(
 						'error'=>true,
 						'message'=>$xmlData['Sbt-ws-message']['Header']['Resp-Message'],
@@ -276,6 +281,7 @@ class SmartConnectorComponent extends object{
 					);
 				}else{
 					$this->log("[Payment] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
+					date_default_timezone_set('America/Mazatlan');
 					return array(
 						'error'=>true,
 						'message'=>"No hubo respuesta del servidor de smart",
@@ -284,6 +290,7 @@ class SmartConnectorComponent extends object{
 				}
 			}catch (Exception $e){
 				$this->log("[Payment] Error: ".$e->getMessage(),"SmartConnector");
+				date_default_timezone_set('America/Mazatlan');
 				return array(
 					'error'=>true,
 					'message'=>$e->getMessage(),
@@ -299,7 +306,7 @@ class SmartConnectorComponent extends object{
 		if($this->login()){
 			$stan = $this->__getStan();
 			#pr("stan $stan");
-			//date_default_timezone_set("Mexico/General");
+			date_default_timezone_set("Mexico/General");
 			$time = date('dmYHis', time());
 			//date_default_timezone_set("UTC");
 			$dataText = $this->__buildDataText(array(
@@ -376,6 +383,7 @@ class SmartConnectorComponent extends object{
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
 							$this->log("[Cancel] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							date_default_timezone_set('America/Mazatlan');
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						case '01':
@@ -403,7 +411,7 @@ class SmartConnectorComponent extends object{
 							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
-
+					date_default_timezone_set('America/Mazatlan');
 					return array(
 						'error'=>true,
 						'message'=>$xmlData['Sbt-ws-message']['Header']['Resp-Message'],
@@ -411,6 +419,7 @@ class SmartConnectorComponent extends object{
 					);
 				}else{
 					$this->log("[Cancel] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
+					date_default_timezone_set('America/Mazatlan');
 					return array(
 						'error'=>true,
 						'message'=>"No hubo respuesta del servidor de smart",
@@ -419,6 +428,7 @@ class SmartConnectorComponent extends object{
 				}
 			}catch(Exception $e){
 				$this->log("[Cancel] Error: ".$e->getMessage(),"SmartConnector");
+				date_default_timezone_set('America/Mazatlan');
 				return array(
 					'error'=>true,
 					'message'=>$e->getMessage(),

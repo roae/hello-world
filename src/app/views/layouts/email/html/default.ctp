@@ -1,7 +1,7 @@
 
 <?php $this->requestAction('/i18n/interpreter/start') ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="padding:0 !important;margin:0 !important;">
 <head>
 	<base href="<? echo FULL_BASE_URL ?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,11 +33,21 @@
 		h2.error{
 			color: #f00;
 		}
+		<?php
+		 if(isset($this->params['named']['print'])){
+		 ?>
+		@page {
+			size: 21.59cm 27.49 cm;
+			margin: 0.5cm 2cm;
+		}
+		<?php
+		 }
+		?>
 			/*h2{font-size:16px;font-weight:normal; font-style: normal;margin:0;}*/
 	</style>
 </head>
-<body bgcolor="#f4f4f4">
-	<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" bgcolor="#f4f4f4" width="100%">
+<body <?php echo !isset($this->params['named']['print']) ? 'bgcolor="#f4f4f4"' : "" ?> style="padding:0 !important;margin:0 !important;">
+	<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" <?php echo !isset($this->params['named']['print']) ? 'bgcolor="#f4f4f4"' : "" ?> width="100%">
 		<tr>
 			<td>
 				<table cellpadding="" cellspacing="0" border="0" align="center" style="font-family: Helvetica,Arial,Sans-serif;">

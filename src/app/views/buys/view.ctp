@@ -1,5 +1,5 @@
 <div class="buy-detail-container">
-	<iframe height="0" width="0" name="email" id="print" src="<?= $this->Html->url()?>email:true"></iframe>
+	<iframe height="0" width="0" name="email" id="print" src="<?= $this->Html->url()?>print:true"></iframe>
 	<?php
 	$bg_url = '';
 	$class = '';

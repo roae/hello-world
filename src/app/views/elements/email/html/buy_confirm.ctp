@@ -1,3 +1,4 @@
+<?php /* @var $this View */?>
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 	<tr>
 		<td >
@@ -7,7 +8,7 @@
 						<?= $this->Html->image("check.png",array('class'=>'img_fix'));?>
 					</td>
 					<td bgcolor="#00cc67" align="center" valign="middle" style="padding-right: 20px;color:#fff;font-size:24px;line-height: 1em;">
-						Confirmacion de la compra y reservación de boletos
+						Confirmaci&oacute;n de la compra y reservaci&oacute;n de boletos
 					</td>
 				</tr>
 			</table>
@@ -19,7 +20,7 @@
 				<tr>
 					<td style="padding-left: 10px;padding-right: 10px;padding-top: 30px; font-size:14px;" bgcolor="#ffffff">
 						<span style="color:#cc0017;font-size:24px;">Datos de la orden</span>
-						<p style="color:#9b9b9b;margin-bottom: 20px;font-size:12px;">Estimado cliente, gracias por usar el servicio en linea de Citicinemas®. Los datos de su compra están indicados a continuación. Que disfrute su función.</p>
+						<p style="color:#9b9b9b;margin-bottom: 20px;font-size:12px;">Estimado cliente, gracias por usar el servicio en linea de Citicinemas®. Los datos de su compra est&aacute;n indicados a continuación. Que disfrute su funci&oacute;n.</p>
 						<table width="100%" cellpadding="0" cellspacing="0" border="0" style="color:#464646;">
 							<tr>
 								<td width="145px">
@@ -119,22 +120,43 @@
 								$total +=$price;
 								?>
 								<tr>
-									<td><?= sprintf("%s %s ($%s)",$ticket['qty'],$ticket['description'],$ticket['price']/100); ?></td>
+									<td><?= sprintf("%s %s (%s)",$ticket['qty'],$ticket['description'], $this->Number->currency($ticket['price']/100)); ?></td>
 									<td><?= implode(",",$seats); ?></td>
-									<td class="subtotal">$<?= $price ?></td>
+									<td class="subtotal" style="text-align: center;"><?= $this->Number->currency($price) ?></td>
 								</tr>
 							<?php endforeach; ?>
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="2" align="right" style="border-top: 1px solid #f1f1f1;">[:total-pagado:]</td>
-									<th class="total">
-										<span style="display:block;font-size:26px; color:#00cc67; font-weight: bold;line-height:1.2em;">$<?= $total ?></span>
+									<th colspan="2" align="right" style="border-top: 1px solid #f1f1f1;">[:total-pagado:]</th>
+									<th class="total" style="border-top: 1px solid #f1f1f1;">
+										<span style="display:block;font-size:26px; color:#00cc67; font-weight: bold;line-height:1.2em;"><?=  $this->Number->currency($total) ?></span>
 										<span style="font-size:12px;">[:incluye-iva:]</span>
 									</th>
 								</tr>
 							</tfoot>
 						</table>
+						<?php
+						if(!$record['Buy']['payment_method']){
+							?>
+							<div class="paymentInfo" style="color:#464646;padding: 10px 0 0;border-bottom:1px solid #f1f1f1;">
+								<span style="color:#cc0017;font-size:16px;padding:10px 0;display:block;border-bottom:1px solid #f1f1f1;">Pago con tarjeta de Cr&eacute;dito</span>
+								<div class="info" style="padding-bottom:5px;padding-top:5px;">
+									<strong>[:buy-ccending:]:</strong>
+									<span class="value" style="padding-left:10px;">**** **** **** <?= $record['Buy']['ccending'] ?></span>
+								</div>
+								<div class="info" style="padding-bottom:5px;">
+									<strong>[:buy-cctype:]:</strong>
+									<span class="value" style="padding-left:10px;"><?= $record['Buy']['cctype'] ?></span>
+								</div>
+								<div class="info" style="padding-bottom:5px;">
+									<strong>[:buy-aut_code:]:</strong>
+									<span class="value" style="padding-left:10px;"><?= $record['Buy']['aut_code'] ?></span>
+								</div>
+							</div>
+						<?
+						}
+						?>
 						<p style="color:#cc0017;font-size:12px;text-align:center;">Esta compra es INTRASFERIBLE y es propiedad del titular de la tarjeta</p>
 					</td>
 				</tr>

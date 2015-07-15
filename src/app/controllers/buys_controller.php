@@ -35,7 +35,7 @@ class BuysController extends AppController{
 			$this->set("referer",$this->referer());
 			$this->set("record",$record);
 
-			if(isset($this->params['named']['email'])){
+			if(isset($this->params['named']['print'])){
 				$this->layout = 'email/html/default';
 				return $this->render('/elements/email/html/buy_confirm');
 			}

@@ -55,10 +55,9 @@ class Buy extends AppModel{
 		$current_month = mktime(0,0,0,date("m"),1,date("Y"));
 		if(preg_match('/(\d{4})\-(\d{1,2})-(\d{1,2})/',$data['_ccexp'])){
 			list($year,$month,$day) = explode("-",$data['_ccexp']);
+			return mktime(0,0,0,$month,$day,$year) >= $current_month;
 		}
-
-
-		return mktime(0,0,0,$month,$day,$year) >= $current_month;
+		return false;
 	}
 
 	function save($data = null, $validate = true, $fieldList = array()){

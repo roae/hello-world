@@ -39,7 +39,7 @@ class SmartConnectorComponent extends object{
 	function login( ){
 		if(!$this->__isLogged()){
 			$stan = $this->__getStan();
-			date_default_timezone_set("Mexico/General");
+			date_default_timezone_set("America/Mexico_City");
 			$time = date('dmYHis', time());
 
 			$authData = "12={$this->settings['user']}
@@ -161,7 +161,7 @@ class SmartConnectorComponent extends object{
 		if($this->login()){
 			$stan = $this->__getStan();
 			#pr("stan $stan");
-			date_default_timezone_set("Mexico/General");
+			date_default_timezone_set("America/Mexico_City");
 			$time = date('dmYHis', time());
 			//date_default_timezone_set("UTC");
 			$dataText = $this->__buildDataText(array(
@@ -306,7 +306,7 @@ class SmartConnectorComponent extends object{
 		if($this->login()){
 			$stan = $this->__getStan();
 			#pr("stan $stan");
-			date_default_timezone_set("Mexico/General");
+			date_default_timezone_set("America/Mexico_City");
 			$time = date('dmYHis', time());
 			//date_default_timezone_set("UTC");
 			$dataText = $this->__buildDataText(array(

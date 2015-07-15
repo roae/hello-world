@@ -212,6 +212,7 @@ if(!empty($record)){
 				<?php
 				echo $this->I18n->input("ccnumber",array(
 					'placeholder'=>'[:sixteen-digits-card:]',
+					'maxlength'=>16,
 					'between'=>$this->Html->tag("span","",'card-number-icon'),
 					'after'=>$this->Html->tag("span","","ccType")#.$this->Html->tag("span","","ccType MASTERCARD")
 				));
@@ -227,7 +228,12 @@ if(!empty($record)){
 					$validationErrors
 
 				);
-				echo $this->I18n->input("cvv",array('div'=>array('class'=>'input text cvv'),'between'=>$this->Html->tag("span","",'cvv-icon'),'placeholder'=>'[:cvv-text:]'));
+				echo $this->I18n->input("cvv",array(
+					'div'=>array('class'=>'input text cvv'),
+					'between'=>$this->Html->tag("span","",'cvv-icon'),
+					'maxlength'=>4,
+					'placeholder'=>'[:cvv-text:]')
+				);
 				echo "<hr />";
 				echo $this->I18n->input("email",array('placeholder'=>'[:your-email:]'));
 
@@ -352,10 +358,6 @@ $this->I18n->addMissing("ocurrio-un-error-con-el-pago-intentalo-de-nuevo","Mensa
 $this->I18n->addMissing("no-hubo-respuesta-autorizador","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
 $this->I18n->addMissing("sin-respuesta-de-servidor-smart","Mensaje flash cuando ocurre un error en la peticion de smart",'modulo',true);
 $this->I18n->addMissing("ccname-invalid","Mensaje error cuando no escribe un nombre valido",'modulo',true);
-
-
-
-
 
 $this->I18n->addMissing("remaining-time","Texto del cronometro",'modulo',true);
 ?>

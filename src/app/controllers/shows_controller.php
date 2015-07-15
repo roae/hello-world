@@ -324,7 +324,7 @@ class ShowsController extends AppController{
 										/*if($this->Session->check('Tickets.buyExpDate')){
 											pr($this->Session->read("Tickets"));
 										}*/
-										$this->data['buyExpDate'] = !$this->Session->check('Tickets.buyExpDate') ? strtotime("+5 mins") : $this->Session->read('Tickets.buyExpDate');
+										$this->data['buyExpDate'] = !$this->Session->check('Tickets.buyExpDate') ? strtotime("+2 mins") : $this->Session->read('Tickets.buyExpDate');
 										$this->Session->write("Tickets.buyExpDate",$this->data['buyExpDate']);
 										$this->data['remaining_time'] = $this->data['buyExpDate'] - time();
 										$this->set("remainingTime",$this->data['buyExpDate'] - time());

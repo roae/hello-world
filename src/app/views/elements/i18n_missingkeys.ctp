@@ -126,6 +126,7 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing('m_register_url',array('desc'=>'url de la pagina de registro','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('user_confirm_url',array('desc'=>'url de la pagina de confirmacion de usuarios','js'=>false,'tab'=>'urls'));
 	$this->I18n->addMissing('buy_error_url',array('desc'=>'url de la pagina de error en la compra','js'=>false,'tab'=>'urls'));
+	$this->I18n->addMissing('session_timeout_url',array('desc'=>'url de la pagina de error en la compra','js'=>false,'tab'=>'urls'));
 
 	$this->I18n->addMissing("[:year:]",array('desc'=>'Palabra año','js'=>true,'tab'=>"extras"));
 	$this->I18n->addMissing("[:month:]",array('desc'=>'Palabra mes','js'=>true,'tab'=>"extras"));

@@ -56,7 +56,7 @@ class RemoveTransactionsShell extends Shell{
 				'conditions'=>array(
 					'Buy.trans_id_temp <>'=>"-",
 					'Buy.confirmation_number'=>"-",
-					'Buy.created <'=>date("Y-m-d H:i:s",strtotime("-5 mins")),
+					'Buy.created <'=>date("Y-m-d H:i:s",strtotime("-2 mins")),
 					'Buy.location_id'=>$record['Location']['id']
 				)
 			));

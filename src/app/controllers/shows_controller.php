@@ -387,6 +387,9 @@ class ShowsController extends AppController{
 												case '06':
 													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
 													break;
+												case '07':
+													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
+													break;
 												case '09':
 													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
 													break;

@@ -125,6 +125,9 @@ class SmartConnectorComponent extends object{
 						case '05':
 							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
+						case '07':
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							break;
 						case '09':
 							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
@@ -258,6 +261,9 @@ class SmartConnectorComponent extends object{
 							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '05':
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							break;
+						case '07':
 							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '09':
@@ -397,6 +403,9 @@ class SmartConnectorComponent extends object{
 							break;
 						case '05':
 							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							break;
+						case '07':
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '09':
 							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");

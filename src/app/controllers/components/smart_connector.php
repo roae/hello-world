@@ -112,28 +112,28 @@ class SmartConnectorComponent extends object{
 							return true;
 							break;
 						case '01':
-							$this->log("[Login] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '02':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '03':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '05':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '09':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '10':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '11':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '12':
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
 					return false;
@@ -237,35 +237,35 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->log("[Payment] Request: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$this->log("[Payment] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						case '01':
 							$this->log("[Payment] Request: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '02':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '03':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '04':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '05':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '09':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '10':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '11':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '12':
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
 
@@ -375,32 +375,32 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->log("[Cancel] Request: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$this->log("[Cancel] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						case '01':
-							$this->log("[Cancel] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '02':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '03':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '05':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '09':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '10':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '11':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 						case '12':
-							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Cancel] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
 

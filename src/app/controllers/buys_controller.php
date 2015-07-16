@@ -5,6 +5,10 @@ class BuysController extends AppController{
 		"Buy"
 	);
 
+	var $helpers = array(
+		'Number',
+	);
+
 	var $components = array(
 		'Email'
 	);

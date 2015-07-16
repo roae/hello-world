@@ -318,6 +318,7 @@ class AppController extends Controller{
 	var $pageKeywords="[:meta_keywords_default:]";
 
 	function beforeFilter() {
+		$this->set("date",date("Y-m-d h:i:s"));
         $cookie = null;
 		$this->params['isAjax']=$this->RequestHandler->isAjax();
 

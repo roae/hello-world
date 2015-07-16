@@ -55,7 +55,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>[:sala:]:</td>
+											<td>[:sala:]</td>
 											<td>
 												<?= $record['Buy']['screen_name'] ?>
 												<?php

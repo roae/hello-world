@@ -67,3 +67,37 @@ foreach($files[0] as $file)
 		require_once APP . 'plugins' . DS . $file . DS . 'config' . DS . 'bootstrap.php';
 	}
 }
+
+function setTimezoneByOffset($offset){
+
+	$offset = (idate("I")? $offset+1 : $offset);# Si es horario de verano se le aumenta una hora
+
+	$testTimestamp = time();
+	date_default_timezone_set('UTC');
+	$testLocaltime = localtime($testTimestamp,true);
+	$testHour = $testLocaltime['tm_hour'];
+
+	$abbrarray = timezone_abbreviations_list();
+	foreach ($abbrarray as $abbr){
+		//echo $abbr."<br>";
+		foreach ($abbr as $city){
+			#pr(strlen($city['timezone_id']));
+			if(strlen($city['timezone_id'])){
+				date_default_timezone_set($city['timezone_id']);
+				$testLocaltime     = localtime($testTimestamp,true);
+				$hour                     = $testLocaltime['tm_hour'];
+				$testOffset =  $hour - $testHour;
+				if($testOffset == $offset){
+					return true;
+				}
+			}
+
+		}
+	}
+	return false;
+}
+
+setTimezoneByOffset(-7);
+//pr(timezone_abbreviations_list());
+
+?>

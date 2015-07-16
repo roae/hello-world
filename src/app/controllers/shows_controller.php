@@ -375,31 +375,13 @@ class ShowsController extends AppController{
 												case '02':
 													$this->Notifier->error("[:pago-rechazado:] ".$payment['smart_response']['message']);
 													break;
-												case '03':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
-													break;
 												case '04':
 													$this->Notifier->error("[:no-hubo-respuesta-autorizador:]");
 													break;
 												case '05':
 													$this->Notifier->error("[:tarjeta-invalida:]");
 													break;
-												case '06':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
-													break;
-												case '07':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
-													break;
-												case '09':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
-													break;
-												case '10':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
-													break;
-												case '11':
-													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
-													break;
-												case '12':
+												default:
 													$this->Notifier->error("[:ocurrio-un-error-con-el-pago-intentalo-de-nuevo:]");
 													break;
 											}
@@ -537,8 +519,8 @@ class ShowsController extends AppController{
 			'cvv'=>$this->data['Buy']['cvv'],
 			'total'=>$paymentTotal
 		);
-		$smartResponse = $this->SmartConnector->payment($smartData);
-		/**
+		#$smartResponse = $this->SmartConnector->payment($smartData);
+		/**/
 		 # Se puso para hacer pruebas sin hacer la peticion a smart
 		$smartResponse = array(
 			'Aut-Code' => '23ddkjs',

@@ -519,8 +519,8 @@ class ShowsController extends AppController{
 			'cvv'=>$this->data['Buy']['cvv'],
 			'total'=>$paymentTotal
 		);
-		#$smartResponse = $this->SmartConnector->payment($smartData);
-		/**/
+		$smartResponse = $this->SmartConnector->payment($smartData);
+		/**
 		 # Se puso para hacer pruebas sin hacer la peticion a smart
 		$smartResponse = array(
 			'Aut-Code' => '23ddkjs',

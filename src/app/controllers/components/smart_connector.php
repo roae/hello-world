@@ -117,7 +117,7 @@ class SmartConnectorComponent extends object{
 							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
-					date_default_setTimezoneByOffset(-7);
+					setTimezoneByOffset(-7);
 					return false;
 				}else{
 					setTimezoneByOffset(-7);

@@ -8,6 +8,10 @@ $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>fa
 	</div>
 	<div class="col-container">
 		<div class="ContactForm">
+			<div class="text">
+				[:contact-form-text:]
+			</div>
+
 			<?php
 			echo $this->Form->create("Contact");
 				echo $this->I18n->inputs(array(

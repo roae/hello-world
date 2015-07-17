@@ -6079,6 +6079,12 @@ select {
   text-align: center;
 }
 /* line 7, sass/modules/pages/_contact.scss */
+#Contact-container .ContactForm .text {
+  color: #86888b;
+  text-align: left;
+  margin-bottom: 10px;
+}
+/* line 12, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .input {
   text-align: left;
   margin-bottom: 30px;
@@ -6087,14 +6093,15 @@ select {
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 11, sass/modules/pages/_contact.scss */
+/* line 16, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .input label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: bold;
+  color: #818386;
 }
-/* line 18, sass/modules/pages/_contact.scss */
+/* line 24, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .input input[type=text], #Contact-container .ContactForm .input input[type=password] {
   width: 100%;
   border-color: #BBC6C9;
@@ -6103,11 +6110,11 @@ select {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-/* line 28, sass/modules/pages/_contact.scss */
+/* line 34, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .input input:focus {
   outline: none;
 }
-/* line 32, sass/modules/pages/_contact.scss */
+/* line 38, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .input textarea {
   width: 100%;
   height: 200px;
@@ -6117,18 +6124,18 @@ select {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-/* line 40, sass/modules/pages/_contact.scss */
+/* line 46, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .input textarea:focus {
   outline: none;
 }
-/* line 46, sass/modules/pages/_contact.scss */
+/* line 52, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .min {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 49, sass/modules/pages/_contact.scss */
+/* line 55, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm button {
   padding: 15px 30px;
   margin-top: 5px;
@@ -6144,11 +6151,11 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 61, sass/modules/pages/_contact.scss */
+/* line 67, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm button:hover {
   opacity: 0.7;
 }
-/* line 63, sass/modules/pages/_contact.scss */
+/* line 69, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .g-recaptcha {
   clear: both;
   width: 98.75%;
@@ -6162,52 +6169,52 @@ select {
   height: 100px;
   background: url(web/preloader_10-64.gif) no-repeat center;
 }
-/* line 71, sass/modules/pages/_contact.scss */
+/* line 77, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .g-recaptcha > div {
   display: inline-block;
 }
-/* line 76, sass/modules/pages/_contact.scss */
+/* line 82, sass/modules/pages/_contact.scss */
 #Contact-container aside {
-  width: 30%;
+  width: 36.25%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
-  margin-left: 13.125%;
+  margin-left: 6.875%;
 }
-/* line 81, sass/modules/pages/_contact.scss */
+/* line 87, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList {
   margin: 0;
   padding: auto;
 }
-/* line 84, sass/modules/pages/_contact.scss */
+/* line 90, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li {
   padding: 15px 0;
   border-bottom: 1px solid #f1f1f1;
-  color: ligthen(#818386, 20%);
+  color: #b5b6b8;
   font-size: 12px;
 }
-/* line 89, sass/modules/pages/_contact.scss */
+/* line 95, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li h3 {
   color: #cc0017;
   font-size: 18px;
 }
-/* line 93, sass/modules/pages/_contact.scss */
+/* line 99, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li .address {
   margin-bottom: 10px;
   display: block;
-  color: ligthen(#818386, 10%);
+  color: #86888b;
 }
-/* line 98, sass/modules/pages/_contact.scss */
+/* line 104, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li .phones {
   display: block;
-  color: ligthen(#818386, 10%);
+  color: #86888b;
 }
 
-/* line 107, sass/modules/pages/_contact.scss */
+/* line 113, sass/modules/pages/_contact.scss */
 #thanks {
   padding: 100px 0;
 }
-/* line 109, sass/modules/pages/_contact.scss */
+/* line 115, sass/modules/pages/_contact.scss */
 #thanks .message {
   width: 48.75%;
   float: left;

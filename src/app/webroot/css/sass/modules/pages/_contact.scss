@@ -4,6 +4,11 @@
 		@include span(7);
 		@include push(1);
 		text-align: center;
+		.text{
+			color: lighten($gray,2%);
+			text-align: left;
+			margin-bottom:10px;
+		}
 		.input{
 			text-align: left;
 			margin-bottom: 30px;
@@ -13,6 +18,7 @@
 				margin-bottom: 5px;
 				font-size: 14px;
 				font-weight: bold;
+				color: $gray;
 			}
 			input {
 				&[type=text],
@@ -74,8 +80,8 @@
 		}
 	}
 	aside{
-		@include span(5);
-		@include push(2);
+		@include span(6);
+		@include push(1);
 	}
 
 	.locationsList{
@@ -84,7 +90,7 @@
 		li{
 			padding: 15px 0;
 			border-bottom: 1px solid #f1f1f1;
-			color: ligthen($gray,20%);
+			color: lighten($gray,20%);
 			font-size: 12px;
 			h3{
 				color:$red;
@@ -93,11 +99,11 @@
 			.address{
 				margin-bottom: 10px;
 				display:block;
-				color: ligthen($gray,10%);
+				color: lighten($gray,2%);
 			}
 			.phones{
 				display: block;
-				color: ligthen($gray,10%);
+				color: lighten($gray,2%);
 			}
 		}
 	}

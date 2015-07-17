@@ -431,13 +431,22 @@ function nextSlide(){
 				}
 				//console.log(direction);
 			},
-			continuous:false,
 			offset:80
 		});
 
 		// Waypoint para detener el elemento sticky del complejo anterior
+		$('.endComplexWaypoint').waypoint({
+			handler:function(direction) {
+				if(direction == "down"){
+					$(".complex-name",$(this.element).parent() ).css({position:'absolute',bottom:0,top:'auto'});
+				}else{
+					$( ".complex-name", $( this.element ).parent() ).css( {position: 'fixed', top: '68px',bottom:'auto'} );
+				}
+			},
+			offset:130
+		});
 
-		$('.complex:has(.movies)').waypoint({
+		/*$('.complex:has(.movies)').waypoint({
 			handler:function(direction) {
 				if(direction == "down"){
 					if($(this.element).prev().hasClass("complex")){
@@ -449,9 +458,8 @@ function nextSlide(){
 					}
 				}
 			},
-			continuous:false,
 			offset:140
-		});
+		});*/
 	}
 
 
@@ -465,7 +473,6 @@ function nextSlide(){
 				}
 
 			},
-			continuous:false,
 			offset:'100px'
 		});
 
@@ -478,7 +485,6 @@ function nextSlide(){
 				}
 
 			},
-			continuous:false,
 			offset: $(".billboard-aside .vertical-banner").outerHeight()+100
 		});
 	}

@@ -111,6 +111,7 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 
 					<?php } ?>
 					</ul>
+					<div class="endComplexWaypoint"></div>
 					<?php }else{ ?>
 						<div class="no-movies">
 							<div class="big">[:no-movies-to-show-in-location:]</div>

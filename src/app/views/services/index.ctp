@@ -1,9 +1,9 @@
 <?php /* @var $this View */ ?>
 <div id="services-container">
-	<header class="top-message">
+	<div class="top-message">
 		<h1>[:Services_title:]</h1>
 		[:services_text:]
-	</header>
+	</div>
 
 	<div class="col-container">
 		<ul class="services">

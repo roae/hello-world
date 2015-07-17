@@ -46,13 +46,14 @@ class ContactsController extends AppController{
 			$this->data['Contact']['referer']=$this->referer();
 			$this->Contact->set($this->data);
 			if($this->Contact->validates()){
-				if($this->Captcha->check($this->data['Contact']['captcha'],'contact')){
+				$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
+				if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR')))){
 					if($this->Contact->save($this->data,false)){
 						# Mail interno
 						$this->Email->to = Configure::read("Contact");
 						$this->Email->bcc = Configure::read('Contact_bcc');
 						$this->Email->subject = "Contacto";
-						$this->Email->from = "contacto@smarcomns.com";//$this->data['Contact']['email'];
+						$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
 						$this->Email->sendAs = 'html';
 						$this->Email->template = 'contactus';
 						$this->set('datos',$this->data);

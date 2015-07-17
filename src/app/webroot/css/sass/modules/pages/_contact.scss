@@ -1,0 +1,119 @@
+#Contact-container{
+	padding-bottom: 50px;
+	.ContactForm{
+		@include span(7);
+		@include push(1);
+		text-align: center;
+		.input{
+			text-align: left;
+			margin-bottom: 30px;
+			@include span(full);
+			label{
+				display: block;
+				margin-bottom: 5px;
+				font-size: 14px;
+				font-weight: bold;
+			}
+			input {
+				&[type=text],
+				&[type=password] {
+					width: 100%;
+					border-color: #BBC6C9;
+					border-radius: 3px;
+					box-sizing: border-box;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+				}
+
+				&:focus {
+					outline: none;
+				}
+			}
+			textarea{
+				width: 100%;
+				height: 200px;
+				border-color: #BBC6C9;
+				border-radius: 3px;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				&:focus {
+					outline: none;
+				}
+			}
+
+		}
+		.min{
+			@include span(8);
+		}
+		button {
+			padding: 15px 30px;
+			margin-top: 5px;
+			border: none;
+			font-size: 20px;
+			font-weight: 200;
+			color: #FFF;
+			background-color: #05B558;
+			border-radius: 3px;
+			cursor: pointer;
+			@include transition(opacity 0.2s ease-in-out);
+
+			&:hover { opacity: 0.7; }
+		}
+		.g-recaptcha{
+			@include full;
+			text-align: center;
+			border-bottom: 1px solid #f1f1f1;
+			padding: 10px;
+			margin-bottom: 10px;
+			height: 100px;
+			background: url(web/preloader_10-64.gif) no-repeat center;
+			&>div{
+				display: inline-block;
+			}
+		}
+	}
+	aside{
+		@include span(5);
+		@include push(2);
+	}
+
+	.locationsList{
+		margin:0;
+		padding: auto;
+		li{
+			padding: 15px 0;
+			border-bottom: 1px solid #f1f1f1;
+			color: ligthen($gray,20%);
+			font-size: 12px;
+			h3{
+				color:$red;
+				font-size: 18px;
+			}
+			.address{
+				margin-bottom: 10px;
+				display:block;
+				color: ligthen($gray,10%);
+			}
+			.phones{
+				display: block;
+				color: ligthen($gray,10%);
+			}
+		}
+	}
+
+}
+
+#thanks{
+	padding:100px 0;
+	.message{
+		@include span(8);
+		@include push(4);
+		text-align: center;
+		background: url(web/checkbuy.png) no-repeat top center;
+		padding-top:150px;
+		font-size: 40px;
+		font-weight: 200;
+
+	}
+}

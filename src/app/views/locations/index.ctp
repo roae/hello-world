@@ -34,7 +34,7 @@
 					$location = $tmp_location['Location'];
 					$services = $tmp_location['Service'];
 					$gallery = $tmp_location['Gallery'];
-
+					$city = $tmp_location['City'];
 					if( count( $gallery ) ){
 						$gallery = $gallery[0];
 					}
@@ -60,7 +60,7 @@
 						<div class="text">
 							<span class="subtitle">[:location_address:]</span>
 							<p class="address-info">
-								<?= $location['street']." #".$location['outside'].(!empty($location['interior'])? " - ".$location['interior'] : "")." ".$location['neighborhood']." C.P. ".$location['zip'] ?>
+								<?= $location['street']." #".$location['outside'].(!empty($location['interior'])? " - ".$location['interior'] : "")." ".$location['neighborhood']." C.P. ".$location['zip'].", ".$city['name'].", ".$location['state'] ?>
 							</p>
 							<span class="subtitle">[:location_phones:]</span>
 							<?php

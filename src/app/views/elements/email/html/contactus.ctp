@@ -6,7 +6,6 @@
 	</tr>
 	<tr>
 		<td><p><strong>E-mail: </strong> <?php echo $datos['Contact']['email'];?></p></td>
-		<td><p><strong>Phone: </strong> <?php echo $datos['Contact']['phone'];?></p></td>
 		<td><p><strong>Phone: </strong> <?php echo $datos['Contact']['subject'];?></p></td>
 	</tr>
 	<tr>

@@ -107,27 +107,27 @@ class SmartConnectorComponent extends object{
 									'value'=>2,
 								)
 							));
-							$this->log("[Login] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Login] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							#Cache::set(array('duration' => '+30 days'));
 							#Cache::write("smart_connector",$cache);
 							setTimezoneByOffset(-7);
 							return true;
 							break;
 						default:
-							$this->log("[Login] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$this->log("[Login] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
 					setTimezoneByOffset(-7);
 					return false;
 				}else{
 					setTimezoneByOffset(-7);
-					$this->log("[Login] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
+					$this->log("[Login] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
 					return false;
 
 				}
 
 			}catch (Exception $e){
-				$this->log("[Login]Error: ".$e->getMessage(),"SmartConnector");
+				$this->log("[Login] Response Error: ".$e->getMessage(),"SmartConnector");
 				return false;
 			}
 		}else{
@@ -221,12 +221,12 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->log("[Payment] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Payment] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							setTimezoneByOffset(-7);
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						default:
-							$this->log("[Payment] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$this->log("[Payment] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 					}
 					setTimezoneByOffset(-7);
@@ -236,7 +236,7 @@ class SmartConnectorComponent extends object{
 						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
 					);
 				}else{
-					$this->log("[Payment] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
+					$this->log("[Payment] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
 					setTimezoneByOffset(-7);
 					return array(
 						'error'=>true,
@@ -245,7 +245,7 @@ class SmartConnectorComponent extends object{
 					);
 				}
 			}catch (Exception $e){
-				$this->log("[Payment] Error: ".$e->getMessage(),"SmartConnector");
+				$this->log("[Payment] Response Error: ".$e->getMessage(),"SmartConnector");
 				setTimezoneByOffset(-7);
 				return array(
 					'error'=>true,
@@ -460,12 +460,12 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->log("[Reverse] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$this->log("[Reverse] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							setTimezoneByOffset(-7);
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						default:
-							$this->log("[Reverse] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$this->log("[Reverse] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							break;
 
 					}
@@ -476,7 +476,7 @@ class SmartConnectorComponent extends object{
 						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
 					);
 				}else{
-					$this->log("[Reverse] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
+					$this->log("[Reverse] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
 					setTimezoneByOffset(-7);
 					return array(
 						'error'=>true,
@@ -485,7 +485,7 @@ class SmartConnectorComponent extends object{
 					);
 				}
 			}catch(Exception $e){
-				$this->log("[Reverse] Error: ".$e->getMessage(),"SmartConnector");
+				$this->log("[Reverse] Response Error: ".$e->getMessage(),"SmartConnector");
 				setTimezoneByOffset(-7);
 				return array(
 					'error'=>true,

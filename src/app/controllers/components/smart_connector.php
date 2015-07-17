@@ -63,7 +63,7 @@ class SmartConnectorComponent extends object{
 	    </sbt-ws-message>";
 
 			$this->log("[Login] Request: ".json_encode(array(
-				'Type'=>'000100 (Login)',
+				'Type'=>'000100',
 				'ClientID'=>$this->settings['clientID'],
 				'SerialPos'=>$this->settings['clientPOS'],
 				'Stan'=>$stan,
@@ -194,7 +194,7 @@ class SmartConnectorComponent extends object{
 			#pr(h($xmlString));
 			#exit;
 			$this->log("[Payment] Request: ".json_encode(array(
-				'Type'=>'030100 (venta)',
+				'Type'=>'030100',
 				'ClientID'=>$this->settings['clientID'],
 				'SerialPos'=>$this->settings['clientPOS'],
 				'Stan'=>$stan,
@@ -214,6 +214,7 @@ class SmartConnectorComponent extends object{
 				//pr($xml->)
 				curl_close($process);
 				#pr($xmlData);
+				#$this->log($xmlData,"SmartConnector");
 				#$this->__saveStan($stan+1);
 				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
 					$this->__saveLastStan($stan);
@@ -364,6 +365,127 @@ class SmartConnectorComponent extends object{
 				}
 			}catch(Exception $e){
 				$this->log("[Cancel] Error: ".$e->getMessage(),"SmartConnector");
+				setTimezoneByOffset(-7);
+				return array(
+					'error'=>true,
+					'message'=>$e->getMessage(),
+					'code'=>"-1"
+				);
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Funcion usada para cancelar la transacción cuando no se esta seguro si se realizo o falla el servidor de Vista
+	 * @param     $data información del pago
+	 * @param int $motivo Motivo por el que se esta cancelando la transaccion
+	 * Los valores esperados son:
+	 * 0: Reverso por time-out
+	 * 1: Reverso por que el chip deniega la transacción
+	 * 2: Falla en el punto de venta al concluir la transacción
+	 *
+	 * @return array|bool
+	 */
+
+	function reverse($data,$motivo = 0){
+		if($this->login()){
+			$stan = $this->__getStan();
+			#pr("stan $stan");
+			setTimezoneByOffset(-6);
+
+			$time = date('dmYHis', time());
+			//date_default_timezone_set("UTC");
+			$dataText = $this->__buildDataText(array(
+				'05'=>$data['total'],
+				'21'=>$motivo,
+				'64'=>'MX',
+				'65'=>'484',
+				//'19'=>$stan
+			));
+			#pr($dataText);
+
+			$script = APP."vendors".DS."smart_connector".DS."encrypt.exe";
+			#pr($data);
+			$exec = sprintf(
+				'mono %s "00=%s" "%s" "%s" "%s" "%s"',
+				$script,
+				$data['number'],
+				$this->__getLastServerKey(),
+				$stan,
+				$time,
+				$this->settings['randomKey']
+			);
+			#pr($exec);
+			$dataCipher = exec($exec);
+			#pr($dataCipher);
+
+			$xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+			<sbt-ws-message version=\"1.0\">
+			    <header>
+			        <Type>030800</Type>
+			        <ClientID>{$this->settings['clientID']}</ClientID>
+			        <SerialPos>{$this->settings['clientPOS']}</SerialPos>
+			        <Stan>$stan</Stan>
+			        <DeviceTime>$time</DeviceTime>
+			    </header>
+			    <message>
+			        <DataCipher><![CDATA[$dataCipher)]]></DataCipher>
+			        <DataText><![CDATA[$dataText]]></DataText>
+			    </message>
+			</sbt-ws-message>";
+			$this->log("[Reverse] Request: ".json_encode(array(
+				'Type'=>'030800',
+				'ClientID'=>$this->settings['clientID'],
+				'SerialPos'=>$this->settings['clientPOS'],
+				'Stan'=>$stan,
+				'DeviceTime'=>$time,
+			)),"SmartConnector");
+			try{
+				$process = curl_init($this->settings['hosts']);
+				curl_setopt($process, CURLOPT_HTTPHEADER, $this->headers);
+				curl_setopt($process, CURLOPT_HEADER, 0);
+				curl_setopt($process, CURLOPT_TIMEOUT, 30);
+				curl_setopt($process, CURLOPT_POST, 1);
+				curl_setopt($process, CURLOPT_POSTFIELDS, $xmlString);
+				curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
+				$return = curl_exec($process);
+				$xml = new Xml($return);
+				$xmlData = $xml->toArray();
+				curl_close($process);
+				#pr($xmlData);
+				#$this->log($xmlData,"SmartConnector");
+				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
+					$this->__saveLastStan($stan);
+					$this->__saveCurrentStan($stan+1);
+					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
+						case '00':
+							$this->log("[Reverse] Request: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							setTimezoneByOffset(-7);
+							return $xmlData['Sbt-ws-message']['Message'];
+							break;
+						default:
+							$this->log("[Reverse] Request Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							break;
+
+					}
+					setTimezoneByOffset(-7);
+					return array(
+						'error'=>true,
+						'message'=>$xmlData['Sbt-ws-message']['Header']['Resp-Message'],
+						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
+					);
+				}else{
+					$this->log("[Reverse] Request Error: No hubo respuesta del servidor de smart","SmartConnector");
+					setTimezoneByOffset(-7);
+					return array(
+						'error'=>true,
+						'message'=>"No hubo respuesta del servidor de smart",
+						'code'=>"-1"
+					);
+				}
+			}catch(Exception $e){
+				$this->log("[Reverse] Error: ".$e->getMessage(),"SmartConnector");
 				setTimezoneByOffset(-7);
 				return array(
 					'error'=>true,

@@ -543,7 +543,7 @@ class ShowsController extends AppController{
 			$response = $this->VistaServer->__soapCall("Execute",array($params));
 			if($response->ExecuteResult != 0){# Si ocurre un error se cancela el pago
 				$smartData['RefSPNum'] = $smartResponse['RefSPNum'];
-				$this->SmartConnector->cancel($smartData);
+				$this->SmartConnector->reverse($smartData,2);
 			}
 			#pr($params);
 			#pr($response);
@@ -601,9 +601,12 @@ class ShowsController extends AppController{
 				}
 			}else{# Si ocurre un error se cancela el pago
 				$smartData['RefSPNum'] = $smartResponse['RefSPNum'];
-				$this->SmartConnector->cancel($smartData);
+				$this->SmartConnector->reverse($smartData,2);
 			}
 		}else{
+			if($smartResponse['error'] && $smartResponse['code'] == "-1"){
+				$this->SmartConnector->reverse($smartData);
+			}
 			return array('smart_response'=>$smartResponse);
 		}
 

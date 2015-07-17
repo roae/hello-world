@@ -114,7 +114,8 @@ class SmartConnectorComponent extends object{
 							return true;
 							break;
 						default:
-							$this->log("[Login] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
+							$this->log("[Login] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
 							break;
 					}
 					setTimezoneByOffset(-7);
@@ -226,7 +227,8 @@ class SmartConnectorComponent extends object{
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						default:
-							$this->log("[Payment] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
+							$this->log("[Payment] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
 							break;
 					}
 					setTimezoneByOffset(-7);
@@ -465,7 +467,8 @@ class SmartConnectorComponent extends object{
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						default:
-							$this->log("[Reverse] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
+							$this->log("[Reverse] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
 							break;
 
 					}

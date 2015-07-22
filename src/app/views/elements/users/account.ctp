@@ -1,15 +1,16 @@
 <?php
 if($loggedUser['User']['group_id'] == Configure::read("Group.Anonymous")){
 ?>
-<ul class="account-container">
-	<li>
-		<a class="signin" href="">Iniciar sesión</a>
-	</li>
-
-	<li>
-		<?= $this->Html->link('Crear cuenta', array('controller'=>'users','action'=>'singin'), array('class' => 'signup')); ?>
-	</li>
-</ul>
+<div class="account-container">
+	<ul>
+		<li>
+			<a class="signin" href="">[:login:]</a>
+		</li>
+		<li>
+			<?= $this->Html->link('[:crear-cuenta:]', array('controller'=>'users','action'=>'singin'), array('class' => 'signup')); ?>
+		</li>
+	</ul>
+</div>
 <?php
 }else{
 ?>

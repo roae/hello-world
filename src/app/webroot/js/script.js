@@ -138,7 +138,7 @@ $(function(){
 	});
 
 	$(".redes .red" ).click(function(event){
-		console.log("rochin");
+		//console.log("rochin");
 		window.open($(this ).attr("href"),'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
 		event.preventDefault();
 	});
@@ -248,6 +248,20 @@ $(function(){
 
 		return false;
 	}
+
+	$("html" ).click(function(event){
+		if($(".menu-showing" ).length){
+			$(".account-container" ).removeClass("menu-showing");
+		}
+	})
+
+	$(".account-container" ).click(function(event){
+		if(Modernizr.mq('only screen and (max-width: 854px)')){
+			event.stopPropagation();
+			$(this).addClass("menu-showing");
+		}
+	});
+
 });
 
 function changeSlide(item){
@@ -257,8 +271,8 @@ function changeSlide(item){
 		clearInterval(intervalSlider);
 		item_ant = item_act;
 		item_act = item;
-		console.log(item_act);
-		console.log(item_ant);
+		//console.log(item_act);
+		//console.log(item_ant);
 		$("#main-slider .pagination a:eq("+item_act+")" ).addClass("current");
 		$("#main-slider .pagination a:eq("+item_ant+")").removeClass("current");
 		$("#main-slider .loading" ).finish().css({width:"0px"});

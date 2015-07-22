@@ -140,6 +140,7 @@ class SmartConnectorComponent extends object{
 	function payment($data){
 		if($this->login()){
 			$stan = $this->__getStan();
+			//$this->out($stan);
 			#pr("stan $stan");
 			setTimezoneByOffset(-6);
 			$time = date('dmYHis', time());
@@ -217,6 +218,7 @@ class SmartConnectorComponent extends object{
 				#pr($xmlData);
 				#$this->log($xmlData,"SmartConnector");
 				#$this->__saveStan($stan+1);
+				#$xmlData = array();
 				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
 					$this->__saveLastStan($stan);
 					$this->__saveCurrentStan($stan+1);
@@ -390,9 +392,13 @@ class SmartConnectorComponent extends object{
 	 * @return array|bool
 	 */
 
-	function reverse($data,$motivo = 0){
+	function reverse($data,$motivo = 0,$nested = false){
 		if($this->login()){
 			$stan = $this->__getStan();
+			//if(isset($this->out)){
+				//$this->out($stan);
+			//}
+
 			#pr("stan $stan");
 			setTimezoneByOffset(-6);
 
@@ -457,13 +463,13 @@ class SmartConnectorComponent extends object{
 				curl_close($process);
 				#pr($xmlData);
 				#$this->log($xmlData,"SmartConnector");
+				#$xmlData = array();
 				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
 					$this->__saveLastStan($stan);
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
 							$this->log("[Reverse] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
-							setTimezoneByOffset(-7);
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						default:
@@ -472,6 +478,22 @@ class SmartConnectorComponent extends object{
 							break;
 
 					}
+
+					if(!$nested){
+						$this->log("Intento reverso (2)","SmartConnector");
+						return  $this->reverse($data,$motivo,true);
+					}
+					Cache::set(array('duration' => '+1 day'));
+					$transactions = Cache::read("reverse_transactions");
+					$transactions[] = array(
+						'attempts' => 2,
+						'data'=>$data,
+						'time'=>time(),
+						'last_attempt'=>time(),
+						'motivo'=>$motivo,
+						'working'=>false,
+					);
+					Cache::write("reverse_transactions",$transactions);
 					setTimezoneByOffset(-7);
 					return array(
 						'error'=>true,
@@ -480,6 +502,24 @@ class SmartConnectorComponent extends object{
 					);
 				}else{
 					$this->log("[Reverse] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
+					if(!$nested){
+						$this->log("Intento reverso (2)","SmartConnector");
+						return  $this->reverse($data,$motivo,true);
+					}
+
+					Cache::set(array('duration' => '+1 day'));
+					$transactions = Cache::read("reverse_transactions");
+					$transactions[] = array(
+						'attempts' => 2,
+						'data'=>$data,
+						'time'=>time(),
+						'last_attempt'=>time(),
+						'motivo'=>$motivo,
+						'working'=>false,
+					);
+					Cache::set(array('duration' => '+1 day'));
+					Cache::write("reverse_transactions",$transactions);
+
 					setTimezoneByOffset(-7);
 					return array(
 						'error'=>true,

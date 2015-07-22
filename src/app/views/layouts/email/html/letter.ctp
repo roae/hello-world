@@ -1,4 +1,3 @@
-<?php $this->I18n->start(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -75,9 +74,6 @@
 					<table cellpadding="" cellspacing="0" border="0" align="center">
 						<tr>
 							<td colspan="3" height="50px">
-								<div id="MTSViewBrowser">
-									[:subscription-comfirm-mail-view-browser:]
-								</div>
 							</td>
 						</tr>
 						<tr>
@@ -151,17 +147,5 @@
 				<td height="50px"></td>
 			</tr>
 		</table>
-		<?php
-		if($browser_version){
-			echo $this->Html->script(array(
-			#'plugins',
-			'ext/jquery',
-			'ext/jquery.ui',
-		));
-			echo $scripts_for_layout;
-			echo $this->Js->writeBuffer();
-		}
-		?>
 	</body>
 </html>
-<?php echo $this->Template->make($this->I18n->end(),$templatedata); ?>

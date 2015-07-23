@@ -470,7 +470,7 @@ class SmartConnectorComponent extends object{
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
 							$this->log("[Reverse] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
-							return $xmlData['Sbt-ws-message']['Message'];
+							return $xmlData['Sbt-ws-message']['Header']['Resp-Code'];
 							break;
 						default:
 							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
@@ -486,7 +486,7 @@ class SmartConnectorComponent extends object{
 					Cache::set(array('duration' => '+1 day'));
 					$transactions = Cache::read("reverse_transactions");
 					$transactions[] = array(
-						'attempts' => 2,
+						'attempts' => 1,
 						'data'=>$data,
 						'time'=>time(),
 						'last_attempt'=>time(),
@@ -502,15 +502,15 @@ class SmartConnectorComponent extends object{
 					);
 				}else{
 					$this->log("[Reverse] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
-					if(!$nested){
+					/*if(!$nested){
 						$this->log("Intento reverso (2)","SmartConnector");
 						return  $this->reverse($data,$motivo,true);
-					}
+					}*/
 
 					Cache::set(array('duration' => '+1 day'));
 					$transactions = Cache::read("reverse_transactions");
 					$transactions[] = array(
-						'attempts' => 2,
+						'attempts' => 1,
 						'data'=>$data,
 						'time'=>time(),
 						'last_attempt'=>time(),

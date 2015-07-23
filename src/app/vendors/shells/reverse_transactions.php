@@ -26,6 +26,7 @@ class ReverseTransactionsShell extends Shell{
 	 */
 	function main(){
 		//Configure::write("debug",2);
+		#$this->hr();
 		try{
 			//$this->log(print_r(range(0,59)));
 			$this->config = $this->Setting->getConfig();
@@ -57,7 +58,21 @@ class ReverseTransactionsShell extends Shell{
 					foreach($transactions as $i => $transaction){
 						if(!$transaction['working']){
 							if(($start - $transaction['time']) <= 2*60){
-								if($transaction['attempts'] == 2 && ($start - $transaction['last_attempt']) >= 3 && ($start - $transaction['last_attempt']) < 10){
+								if($transaction['attempts'] == 1 ){
+									$this->log("Intento reverso (".($transaction['attempts']+1).")","SmartConnector");
+									#$this->hr();
+									$transactions[$i]['attempts'] ++;
+									$transactions[$i]['last_attempt'] = time();
+									$transaction[$i]['working'] = true;
+									$this->__setCache($transactions);
+									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],true);
+									if($smartResponse == "00"){
+										unset($transactions[$i]);
+									}else{
+										$transaction[$i]['working'] = false;
+									}
+									$this->__setCache($transactions);
+								}else if($transaction['attempts'] == 2 && ($start - $transaction['last_attempt']) >= 3 && ($start - $transaction['last_attempt']) < 10){
 									//$this->out("intento: ".($transaction['attempts']+1)." - ".date("H:i:s",$start));
 									$this->log("Intento reverso (".($transaction['attempts']+1).")","SmartConnector");
 									#$this->hr();
@@ -66,12 +81,13 @@ class ReverseTransactionsShell extends Shell{
 									$transaction[$i]['working'] = true;
 									$this->__setCache($transactions);
 									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],true);
-									if(isset($smartResponse['Aut-Code'])){
+									#$this->log($smartResponse,"SmartConnector");
+									if($smartResponse == "00"){
 										unset($transactions[$i]);
 									}else{
 										$transaction[$i]['working'] = false;
-										$this->__setCache($transactions);
 									}
+									$this->__setCache($transactions);
 								}else if($transaction['attempts'] > 2 && ($start - $transaction['last_attempt']) >= 10){
 									//$this->out("- intento: ".($transaction['attempts']+1)." - ".date("H:i:s",$start));
 									$this->log("Intento reverso (".($transaction['attempts']+1).")","SmartConnector");
@@ -81,22 +97,25 @@ class ReverseTransactionsShell extends Shell{
 									$transaction[$i]['working'] = true;
 									$this->__setCache($transactions);
 									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],true);
-									if(isset($smartResponse['Aut-Code'])){
+									#$this->log($smartResponse,"SmartConnector");
+									if($smartResponse == "00"){
 										unset($transactions[$i]);
 									}else{
 										$transaction[$i]['working'] = false;
-										$this->__setCache($transactions);
 									}
+									$this->__setCache($transactions);
 								}
 							}else{
 								#Enviar mail
 								$this->__sendErrorEmail($transactions[$i]['attempts'],$transactions[$i]['time']);
-								$this->log("Se envio un email a ubaldo@citicinemas.com");
+
 								//$this->out("Envio de mail");
 
 								unset($transactions[$i]);
 								$this->__setCache($transactions);
 							}
+						}else{
+							#$this->out("WORKING");
 						}
 					}
 
@@ -108,7 +127,8 @@ class ReverseTransactionsShell extends Shell{
 				$this->out("end: ".$end-$start);*/
 				$time = $end-$start;
 				$seccond += $time? $time : 1;
-				//$this->out($seccond);
+				#$this->out($seccond);
+
 
 				sleep(1);
 			}
@@ -132,7 +152,7 @@ class ReverseTransactionsShell extends Shell{
 		}
 
 		$this->Email->reset();
-		$this->Email->to = "ubaldo@citicinemas.com,erochin@grupoadhoc.mx";#$this->config['sync_error_email'];
+		$this->Email->to = $this->config['sync_error_email'];
 		$this->Email->from = "erochin@h1webstudio.com";
 		$this->Email->subject = "Error en Reverso";
 		$this->Email->sendAs = 'html';
@@ -152,7 +172,9 @@ class ReverseTransactionsShell extends Shell{
 
 		$this->Email->delivery = 'smtp';
 		/**/
-		$this->Email->send();
+		if($this->Email->send()){
+			$this->log("Se envio un email a ".$this->config['sync_error_email'],"SmartConnector");
+		}
 
 		$this->out(print_r($this->Email->smtpError));
 	}

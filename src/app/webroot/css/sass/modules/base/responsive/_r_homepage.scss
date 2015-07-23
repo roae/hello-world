@@ -397,8 +397,22 @@
 	}
 
 	#login-container {
+		background: rgba(255,255,255,0.9);
+		#login-close {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 24px;
+			height: 24px;
+			background: url(../img/lightbox-close-icon2.png) no-repeat left top;
+			z-index: 10;
+		}
 		.login{
-			top: 40px;
+			background: transparent;
+			top: 50%;
+			left:50%;
+			margin:0;
+			@include translate(-50%,-50%);
 		}
 	}
 }
@@ -484,16 +498,8 @@
 	}
 
 	#login-container {
-		#login-close {
-			top: 10px;
-			right: 10px;
-		}
 		.login{
-			top: 0px;
-			width: 600px;
-			height: 100%;
-			@include box-sizing(border-box);
-			margin-left: -300px;
+			padding: 10px 30px;
 		}
 	}
 }
@@ -614,6 +620,72 @@
 						width:100%;
 					}
 				}
+			}
+		}
+	}
+
+	#login-container {
+		.login{
+			width: 100%;
+			.subtitle{
+				margin:10px 0;
+			}
+		}
+	}
+	#UserLoginForm{
+		button{
+			margin-top:10px;
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	#login-container {
+		.login{
+			width: 100%;
+			height: auto;
+			.subtitle{
+				margin:10px 0;
+			}
+			.social-connect{
+				@include full;
+				li{
+					display: inline-block;
+					a{
+						padding: 5px 10px;
+					}
+				}
+			}
+
+			form{
+				@include full;
+			}
+		}
+	}
+}
+@media only screen and (max-width: 480px) and (max-height: 320px) {
+	#login-container {
+		.login{
+			width: 100%;
+			height: auto;
+			padding: 10px;
+			.subtitle{
+				margin:10px 0;
+			}
+			.social-connect{
+				@include span(6);
+				li{
+					display: block;
+					a{
+						padding: 5px 10px;
+					}
+				}
+			}
+
+			form{
+				@include span(9);
+				@include push(1);
+				clear: none;
 			}
 		}
 	}

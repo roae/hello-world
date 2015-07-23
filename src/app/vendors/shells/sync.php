@@ -566,6 +566,7 @@ class SyncShell extends Shell{
 		$Email->subject = "Errores en la sincronización de la cartelera";
 		$Email->sendAs = 'html';
 		$Controller->set("errors",$this->errors);
+		$Email->layout="notifications";
 		$Email->template = "sync_error";
 
 		/* Opciones SMTP*

@@ -58,46 +58,16 @@ class ReverseTransactionsShell extends Shell{
 					foreach($transactions as $i => $transaction){
 						if(!$transaction['working']){
 							if(($start - $transaction['time']) <= 2*60){
-								if($transaction['attempts'] == 1 ){
+								if($transaction['attempts'] == 1
+								|| ($transaction['attempts'] == 2 && ($start - $transaction['last_attempt']) >= 3 && ($start - $transaction['last_attempt']) < 10)
+								|| ($transaction['attempts'] > 2 && ($start - $transaction['last_attempt']) >= 10)){
 									$this->log("Intento reverso (".($transaction['attempts']+1).")","SmartConnector");
 									#$this->hr();
 									$transactions[$i]['attempts'] ++;
 									$transactions[$i]['last_attempt'] = time();
 									$transaction[$i]['working'] = true;
 									$this->__setCache($transactions);
-									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],true);
-									if($smartResponse == "00"){
-										unset($transactions[$i]);
-									}else{
-										$transaction[$i]['working'] = false;
-									}
-									$this->__setCache($transactions);
-								}else if($transaction['attempts'] == 2 && ($start - $transaction['last_attempt']) >= 3 && ($start - $transaction['last_attempt']) < 10){
-									//$this->out("intento: ".($transaction['attempts']+1)." - ".date("H:i:s",$start));
-									$this->log("Intento reverso (".($transaction['attempts']+1).")","SmartConnector");
-									#$this->hr();
-									$transactions[$i]['attempts'] ++;
-									$transactions[$i]['last_attempt'] = time();
-									$transaction[$i]['working'] = true;
-									$this->__setCache($transactions);
-									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],true);
-									#$this->log($smartResponse,"SmartConnector");
-									if($smartResponse == "00"){
-										unset($transactions[$i]);
-									}else{
-										$transaction[$i]['working'] = false;
-									}
-									$this->__setCache($transactions);
-								}else if($transaction['attempts'] > 2 && ($start - $transaction['last_attempt']) >= 10){
-									//$this->out("- intento: ".($transaction['attempts']+1)." - ".date("H:i:s",$start));
-									$this->log("Intento reverso (".($transaction['attempts']+1).")","SmartConnector");
-									//$this->hr();
-									$transactions[$i]['attempts'] ++;
-									$transactions[$i]['last_attempt'] = time();
-									$transaction[$i]['working'] = true;
-									$this->__setCache($transactions);
-									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],true);
-									#$this->log($smartResponse,"SmartConnector");
+									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],$transaction['stan']);
 									if($smartResponse == "00"){
 										unset($transactions[$i]);
 									}else{

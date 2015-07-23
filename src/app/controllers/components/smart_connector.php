@@ -392,9 +392,12 @@ class SmartConnectorComponent extends object{
 	 * @return array|bool
 	 */
 
-	function reverse($data,$motivo = 0,$nested = false){
+	function reverse($data,$motivo = 0,$stan = false){
 		if($this->login()){
-			$stan = $this->__getStan();
+			if(!$stan){
+				$stan = $this->__getStan();
+			}
+
 			//if(isset($this->out)){
 				//$this->out($stan);
 			//}
@@ -479,10 +482,7 @@ class SmartConnectorComponent extends object{
 
 					}
 
-					if(!$nested){
-						$this->log("Intento reverso (2)","SmartConnector");
-						return  $this->reverse($data,$motivo,true);
-					}
+
 					Cache::set(array('duration' => '+1 day'));
 					$transactions = Cache::read("reverse_transactions");
 					$transactions[] = array(
@@ -492,6 +492,7 @@ class SmartConnectorComponent extends object{
 						'last_attempt'=>time(),
 						'motivo'=>$motivo,
 						'working'=>false,
+						'stan'=>$stan,
 					);
 					Cache::write("reverse_transactions",$transactions);
 					setTimezoneByOffset(-7);
@@ -516,6 +517,7 @@ class SmartConnectorComponent extends object{
 						'last_attempt'=>time(),
 						'motivo'=>$motivo,
 						'working'=>false,
+						'stan'=>$stan,
 					);
 					Cache::set(array('duration' => '+1 day'));
 					Cache::write("reverse_transactions",$transactions);
@@ -581,7 +583,7 @@ class SmartConnectorComponent extends object{
 
 	function __isLogged(){
 		$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
-		return Configure::read("AppConfig.smart_login_date") == $today;
+		return date("Y-m-d",Configure::read("AppConfig.smart_login_date")) == date("Y-m-d",$today);
 	}
 
 	function __getLastServerKey(){

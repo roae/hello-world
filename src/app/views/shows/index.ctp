@@ -17,7 +17,14 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 		<?php echo $this->Ajax->divEnd("topMessage"); ?>
 
 		<div class="the-billboard">
+			<div class="billboard-aside">
 
+				<?= $this->element("shows/filter"); ?>
+
+				<div class="vertical-banner">
+					<?= $this->element("ads/show",array('type'=>'VERTICAL'));?>
+				</div>
+			</div>
 			<?php
 			echo $this->Ajax->div("Billboard",array('class'=>'billboard-list'));
 			$this->I18n->start();
@@ -126,16 +133,6 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 			$this->I18n->end();
 			echo $this->Ajax->divEnd("Billboard");
 			?>
-
-
-			<div class="billboard-aside">
-
-				<?= $this->element("shows/filter"); ?>
-
-				<div class="vertical-banner">
-					<?= $this->element("ads/show",array('type'=>'VERTICAL'));?>
-				</div>
-			</div>
 
 		</div>
 		<section class="horizontal-banner">

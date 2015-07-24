@@ -438,7 +438,7 @@ function nextSlide(){
 				$complexName.toggleClass("sticky");
 				if(direction == "down"){
 					$(".movies",$(this.element) ).css({marginTop:$complexName.outerHeight()});
-					$complexName.css({position: "fixed",top: "68px",zIndex: 8});
+					$complexName.css({position: "fixed","top":$("#main-header").outerHeight()+"px",zIndex: 8});
 				}else{
 					$complexName.css({position: "static"});
 					$(".movies",$(this.element) ).css({marginTop:"auto"});
@@ -451,10 +451,12 @@ function nextSlide(){
 		// Waypoint para detener el elemento sticky del complejo anterior
 		$('.endComplexWaypoint').waypoint({
 			handler:function(direction) {
+				$complexName = $( ".complex-name", $( this.element ).parent() );
 				if(direction == "down"){
-					$(".complex-name",$(this.element).parent() ).css({position:'absolute',bottom:0,top:'auto'});
+					$complexName.css({position:'absolute',bottom:0,top:'auto'});
 				}else{
-					$( ".complex-name", $( this.element ).parent() ).css( {position: 'fixed', top: '68px',bottom:'auto'} );
+
+					$complexName.css( {position: 'fixed', top: $("#main-header").outerHeight()+"px",bottom:'auto'} );
 				}
 			},
 			offset:130
@@ -481,7 +483,7 @@ function nextSlide(){
 		$(".billboard-aside .vertical-banner" ).waypoint({
 			handler: function(direction){
 				if(direction == "down"){
-					$(this.element ).css({width: $(this.element ).outerWidth() }).css({position: "fixed",top: "100px",zIndex: 8});
+					$(this.element ).css({width: $(this.element ).outerWidth() }).css({position: "fixed",top:  $("#main-header").outerHeight()+"px",zIndex: 8});
 				}else{
 					$(this.element ).css({position:'static'});
 				}
@@ -495,7 +497,7 @@ function nextSlide(){
 				if(direction == "down"){
 					$(".billboard-aside .vertical-banner").css({position: "absolute",bottom:0,top:"auto"});
 				}else{
-					$(".billboard-aside .vertical-banner").css({position: "fixed",bottom:"auto",top:"100px"});
+					$(".billboard-aside .vertical-banner").css({position: "fixed",bottom:"auto",top: $("#main-header").outerHeight()+"px"});
 				}
 
 			},

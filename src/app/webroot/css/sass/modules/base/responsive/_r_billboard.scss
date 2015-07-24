@@ -1,0 +1,43 @@
+@media only screen and (max-width: 854px) {
+	.top-message {
+		padding: 30px 15px 30px;
+	}
+	.billboard-container{
+		.billboard-list{
+			@include full;
+			.complex-name {
+				.complex-label {
+					padding: 3px 10px;
+					font-size: 24px;
+				}
+			}
+			.sticky {
+				.complex-label {
+					padding: 2px 5px;
+					font-size: 18px;
+				}
+
+			}
+		}
+		.billboard-aside {
+			margin-bottom: 30px;
+			@include full;
+			.filter {
+				.checkbox {
+					@include span(8);
+				}
+				.filter-select {
+					.select {
+						@include span(8);
+					}
+				}
+			}
+			.vertical-banner{
+				display: none;
+			}
+		}
+	}
+
+
+
+}

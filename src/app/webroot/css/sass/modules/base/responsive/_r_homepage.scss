@@ -35,6 +35,9 @@
 				padding-right: 15px;
 			}
 		}
+		.loggeduser-container {
+			margin-top: 10px;
+		}
 	}
 	.home {
 		.home-highlights {
@@ -115,6 +118,10 @@
 			margin-top: 11px;
 		}
 
+		.loggeduser-container {
+			margin-top: 5px;
+		}
+
 		&.sticky {
 			height: 58px;
 			@include box-shadow(rgba(black, 0.1) 0 1px 2px);
@@ -142,7 +149,7 @@
 				}
 			}
 			.loggeduser-container {
-				margin-top: 5px;
+				margin-top: 2px;
 			}
 		}
 	}

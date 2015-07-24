@@ -849,6 +849,9 @@ body {
   position: absolute;
   right: 10px;
   top: -4px;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
   width: 16px;
   display: block;
@@ -6367,33 +6370,44 @@ select {
   #main-header #header-location-select a {
     padding: 10px 60px 10px 30px;
   }
-  /* line 174, sass/modules/base/responsive/_r_homepage.scss */
-  #main-header .account-container {
-    position: relative;
-    margin-top: 8px;
+  /* line 172, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header #header-location-select a .current:after {
+    right: -10px;
   }
-  /* line 178, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 179, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .account-container {
+    margin: 0;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background: #cc0017;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  /* line 191, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container:before {
     content: " ";
-    width: 30px;
-    height: 30px;
-    display: block;
-    background: url(web/menu.png) no-repeat center;
+    width: 100%;
+    height: 100%;
+    background: url(web/menuwhite.png) no-repeat center;
+    -moz-background-size: 18px;
+    -o-background-size: 18px;
+    -webkit-background-size: 18px;
+    background-size: 18px;
     cursor: pointer;
+    display: block;
   }
-  /* line 186, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 200, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container ul {
     display: none;
-    width: 0;
-    height: 0;
-    -moz-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
     position: absolute;
-    top: 24px;
+    bottom: 48px;
     right: 0;
     background: #fff;
     padding: 5px;
@@ -6404,59 +6418,109 @@ select {
     -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
   }
-  /* line 201, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 213, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container li {
     display: block;
   }
-  /* line 203, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 215, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container li a {
     white-space: nowrap;
     display: block;
     text-align: left;
   }
-  /* line 207, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 219, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container li a.signin {
     background-image: url(../img/login-icon.png);
   }
-  /* line 210, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 222, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container li a.signup {
     padding-left: 28px;
     background: url(../img/signup-icon.png) no-repeat 5px 5px;
+    -moz-background-size: 7px;
+    -o-background-size: 7px;
+    -webkit-background-size: 7px;
     background-size: 7px;
   }
-  /* line 218, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 229, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .account-container.menu-showing {
+    background: #990011;
+  }
+  /* line 231, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container.menu-showing:before {
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    background: #c1c1c1 url(web/menu.png) no-repeat center;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: url(web/menuwhite.png) no-repeat center;
+    -moz-background-size: 18px;
+    -o-background-size: 18px;
+    -webkit-background-size: 18px;
+    background-size: 18px;
   }
-  /* line 222, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 236, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container.menu-showing ul {
-    -moz-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
     display: block;
-    width: 150px;
-    height: auto;
-    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-    opacity: 1;
   }
-  /* line 232, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 246, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container {
+    margin: 0;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
+  /* line 252, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container .user figure {
+    margin: 0;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  /* line 255, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container .user figure img {
+    height: 48px;
+    width: 48px;
+  }
+  /* line 260, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container .user .username {
+    display: none;
+  }
+  /* line 264, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container .user .userMenu {
+    top: auto;
+    bottom: 10px;
+  }
+  /* line 268, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container .user .userMenu ul:before {
+    bottom: -4px;
+    top: auto;
+    background: #cc0017;
+  }
+  /* line 273, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .loggeduser-container .user .userMenu ul:after {
+    position: absolute;
+    bottom: -15px;
+    height: 15px;
+    width: 100%;
+    content: " ";
+    display: block;
+  }
+  /* line 289, sass/modules/base/responsive/_r_homepage.scss */
   #main-header.sticky .account-container {
     margin-top: 8px;
   }
+  /* line 292, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header.sticky .loggeduser-container {
+    margin-top: 0px;
+  }
 
-  /* line 240, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 300, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights {
     height: 270px;
   }
-  /* line 242, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 302, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie {
     height: 270px;
   }
-  /* line 244, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 304, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info-bg {
     left: 0;
     width: 100%;
@@ -6468,7 +6532,7 @@ select {
     background-image: linear-gradient(to right, #000000, rgba(0, 0, 0, 0));
     background-repeat: repeat-x;
   }
-  /* line 251, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 311, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info {
     width: 80%;
     float: left;
@@ -6477,16 +6541,16 @@ select {
     margin-left: 6.875%;
     margin-top: 15px;
   }
-  /* line 255, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 315, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info .features {
     display: none;
   }
-  /* line 258, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 318, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info .see-trailer {
     padding: 5px 30px 5px 60px;
     font-size: 14px;
   }
-  /* line 265, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 325, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination {
     border: 0;
     right: 0;
@@ -6495,99 +6559,99 @@ select {
     width: auto;
     padding: 10px 30px 10px 0;
   }
-  /* line 272, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 332, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination ul {
     margin-left: 6.875%;
   }
-  /* line 279, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 339, sass/modules/base/responsive/_r_homepage.scss */
   .home .top-promo {
     margin-bottom: 0;
   }
-  /* line 281, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 341, sass/modules/base/responsive/_r_homepage.scss */
   .home .top-promo a {
     font-size: 14px;
     padding: 10px;
   }
-  /* line 288, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 348, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard h1 {
     font-size: 2.3em;
   }
-  /* line 291, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 351, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .description {
     width: auto;
     margin: 0 0.625%;
   }
-  /* line 295, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 355, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movies {
     margin-top: 40px;
   }
-  /* line 299, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 359, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .details {
     opacity: 0;
   }
-  /* line 301, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 361, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .details .sinopsis {
     height: 120px;
   }
-  /* line 308, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 368, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {
     width: 23.75%;
     float: left;
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 312, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 372, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .details a {
     margin: 5px 10px;
   }
-  /* line 317, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 377, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .info {
     padding: 10px;
     text-align: left;
   }
-  /* line 321, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 381, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .info h2 {
     font-size: 14px;
   }
-  /* line 326, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 386, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(4n+1) {
     clear: left;
   }
-  /* line 330, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 390, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(5n+1) {
     clear: none;
   }
 
-  /* line 344, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 404, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news article {
     width: 45%;
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 346, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 406, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news article:nth-of-type(2n) {
     margin: 0 2.5%;
   }
-  /* line 356, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 416, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription input[type=text] {
     width: 45%;
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 359, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 419, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription input[type=submit] {
     width: 45%;
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 367, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 427, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li {
     margin-right: 0;
   }
-  /* line 369, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 429, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li a {
     width: 34px;
     height: 34px;
@@ -6596,30 +6660,30 @@ select {
     -webkit-background-size: 34px;
     background-size: 34px;
   }
-  /* line 378, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 438, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright {
     text-align: center;
   }
-  /* line 382, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 442, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright .col-container .copy {
     margin-top: 20px;
     display: block;
   }
-  /* line 387, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 447, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright .col-container .certificates {
     float: none;
   }
-  /* line 389, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 449, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright .col-container .certificates img {
     display: block;
     width: 100%;
   }
 
-  /* line 399, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 459, sass/modules/base/responsive/_r_homepage.scss */
   #login-container {
     background: rgba(255, 255, 255, 0.9);
   }
-  /* line 401, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 461, sass/modules/base/responsive/_r_homepage.scss */
   #login-container #login-close {
     position: absolute;
     top: 20px;
@@ -6629,7 +6693,7 @@ select {
     background: url(../img/lightbox-close-icon2.png) no-repeat left top;
     z-index: 10;
   }
-  /* line 410, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 470, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login {
     background: transparent;
     top: 50%;
@@ -6642,36 +6706,36 @@ select {
   }
 }
 @media only screen and (max-width: 768px) {
-  /* line 421, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 481, sass/modules/base/responsive/_r_homepage.scss */
   body {
     padding-top: 58px !important;
   }
 
-  /* line 424, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 484, sass/modules/base/responsive/_r_homepage.scss */
   #main-header {
     height: 58px;
   }
-  /* line 427, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 487, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #logo img {
     height: 36px;
   }
-  /* line 431, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 491, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select {
     margin-top: 6px;
   }
-  /* line 433, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 493, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select a {
     font-size: 1em;
     padding: 10px 50px 10px 15px;
   }
-  /* line 436, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 496, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select a .current {
     position: relative;
     font-weight: bold;
     font-style: italic;
     color: #fecc00;
   }
-  /* line 442, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 502, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select a .current:after {
     content: '';
     position: absolute;
@@ -6681,103 +6745,108 @@ select {
     height: 25px;
     background-color: #b30014;
   }
-  /* line 453, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 513, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select .sub-menu-trigger {
     right: 2px;
     background-size: 18px;
   }
-  /* line 460, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 520, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .account-container li:first-child {
     padding-right: 5px;
   }
 
-  /* line 467, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 527, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard {
     padding: 0 1%;
   }
-  /* line 471, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 531, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .details .sinopsis {
     height: 100px;
   }
-  /* line 478, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 538, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {
     width: 23.33333%;
     float: left;
     margin-left: 0.83333%;
     margin-right: 0.83333%;
   }
-  /* line 481, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 541, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .details a {
     margin: 5px 10px;
   }
-  /* line 486, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 546, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .info {
     padding: 10px;
     text-align: left;
   }
-  /* line 490, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 550, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie .info h2 {
     font-size: 14px;
   }
 
-  /* line 501, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 561, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login {
     padding: 10px 30px;
   }
 }
 @media only screen and (max-width: 568px) {
-  /* line 509, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 570, sass/modules/base/responsive/_r_homepage.scss */
+  #main-header .col-container {
+    margin: 0;
+  }
+
+  /* line 577, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights {
     height: 220px;
   }
-  /* line 511, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 579, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie {
     height: 220px;
   }
-  /* line 513, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 581, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info {
     margin-bottom: 5px;
   }
-  /* line 515, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 583, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info .title {
     font-size: 32px;
     margin-bottom: 0;
   }
-  /* line 519, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 587, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info .see-trailer {
     margin-top: 5px;
     padding: 5px 30px 5px 60px;
     font-size: 14px;
   }
-  /* line 527, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 595, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination {
     bottom: 5px;
   }
-  /* line 534, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 602, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard h1 {
     font-size: 2em;
   }
-  /* line 539, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 607, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {
     width: 31.66667%;
     float: left;
     margin-left: 0.83333%;
     margin-right: 0.83333%;
   }
-  /* line 545, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 613, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(3n+1) {
     clear: left;
   }
-  /* line 549, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 617, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(4n+1) {
     clear: none;
   }
-  /* line 553, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 621, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(5n+1) {
     clear: none;
   }
 
-  /* line 564, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 632, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .footer-menu-options {
     clear: both;
     width: 98.75%;
@@ -6785,7 +6854,7 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 567, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 635, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news {
     clear: both;
     width: 98.75%;
@@ -6794,18 +6863,18 @@ select {
     margin-right: 0.625%;
     margin-top: 40px;
   }
-  /* line 571, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 639, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news article {
     width: 45%;
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 573, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 641, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news article:nth-of-type(2n) {
     margin: 0 2.5%;
   }
-  /* line 580, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 648, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription {
     clear: both;
     width: 98.75%;
@@ -6813,21 +6882,21 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 584, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 652, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription input[type=text] {
     width: 45%;
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 587, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 655, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription input[type=submit] {
     width: 45%;
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 594, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 662, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks {
     clear: both;
     width: 98.75%;
@@ -6835,11 +6904,11 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 596, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 664, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li {
     margin-right: 15px;
   }
-  /* line 598, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 666, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li a {
     width: 46px;
     height: 46px;
@@ -6848,50 +6917,50 @@ select {
     -webkit-background-size: 46px;
     background-size: 46px;
   }
-  /* line 607, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 675, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright {
     text-align: center;
   }
-  /* line 611, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 679, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright .col-container .copy {
     margin-top: 20px;
     display: block;
   }
-  /* line 616, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 684, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright .col-container .certificates {
     float: none;
   }
-  /* line 618, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 686, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .copyright .col-container .certificates img {
     display: block;
     width: 100%;
   }
 
-  /* line 628, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 696, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login {
     width: 100%;
   }
-  /* line 630, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 698, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .subtitle {
     margin: 10px 0;
   }
 
-  /* line 636, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 704, sass/modules/base/responsive/_r_homepage.scss */
   #UserLoginForm button {
     margin-top: 10px;
   }
 }
 @media only screen and (max-width: 480px) {
-  /* line 644, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 712, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login {
     width: 100%;
     height: auto;
   }
-  /* line 647, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 715, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .subtitle {
     margin: 10px 0;
   }
-  /* line 650, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 718, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .social-connect {
     clear: both;
     width: 98.75%;
@@ -6899,15 +6968,15 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 652, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 720, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .social-connect li {
     display: inline-block;
   }
-  /* line 654, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 722, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .social-connect li a {
     padding: 5px 10px;
   }
-  /* line 660, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 728, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login form {
     clear: both;
     width: 98.75%;
@@ -6917,32 +6986,32 @@ select {
   }
 }
 @media only screen and (max-width: 480px) and (max-height: 320px) {
-  /* line 668, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 736, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login {
     width: 100%;
     height: auto;
     padding: 10px;
   }
-  /* line 672, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 740, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .subtitle {
     margin: 10px 0;
   }
-  /* line 675, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 743, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .social-connect {
     width: 36.25%;
     float: left;
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 677, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 745, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .social-connect li {
     display: block;
   }
-  /* line 679, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 747, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login .social-connect li a {
     padding: 5px 10px;
   }
-  /* line 685, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 753, sass/modules/base/responsive/_r_homepage.scss */
   #login-container .login form {
     width: 55.0%;
     float: left;
@@ -6953,118 +7022,108 @@ select {
   }
 }
 @media only screen and (max-width: 375px) {
-  /* line 695, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 763, sass/modules/base/responsive/_r_homepage.scss */
   body {
     padding-top: 50px !important;
   }
 
-  /* line 698, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 766, sass/modules/base/responsive/_r_homepage.scss */
   #main-header {
     padding: 5px;
     height: 50px;
   }
-  /* line 701, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 769, sass/modules/base/responsive/_r_homepage.scss */
   #main-header .col-container {
     margin: 0;
   }
-  /* line 704, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 772, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #logo {
     margin: 5px 0;
   }
-  /* line 706, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 774, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #logo img {
     height: 30px;
   }
-  /* line 710, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 778, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select {
     margin-top: 6px;
   }
-  /* line 712, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 780, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select a {
     font-size: 12px;
     padding: 10px 35px 10px 10px;
   }
-  /* line 716, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 784, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select a .current:after {
     display: none;
   }
-  /* line 721, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 789, sass/modules/base/responsive/_r_homepage.scss */
   #main-header #header-location-select .sub-menu-trigger {
     right: -4px;
     top: 14px;
+    -moz-background-size: 14px;
+    -o-background-size: 14px;
+    -webkit-background-size: 14px;
     background-size: 14px;
     font-size: 14px;
   }
-  /* line 729, sass/modules/base/responsive/_r_homepage.scss */
-  #main-header .account-container {
-    margin: 10px 10px 0 0;
-  }
-  /* line 731, sass/modules/base/responsive/_r_homepage.scss */
-  #main-header .account-container:before {
-    background-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-  /* line 738, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 799, sass/modules/base/responsive/_r_homepage.scss */
   #main-header.sticky {
     height: 50px;
   }
-  /* line 741, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 802, sass/modules/base/responsive/_r_homepage.scss */
   #main-header.sticky #logo img {
     height: 30px;
   }
-  /* line 745, sass/modules/base/responsive/_r_homepage.scss */
-  #main-header.sticky .account-container {
-    margin: 10px 10px 0 0;
-  }
 
-  /* line 754, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 812, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info {
     margin-bottom: 5px;
   }
-  /* line 756, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 814, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info .title {
     font-size: 24px;
     margin-bottom: 0;
   }
-  /* line 760, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 818, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info p {
     font-size: 12px;
   }
-  /* line 763, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 821, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .movie .movie-info .see-trailer {
     font-size: 12px;
     margin-top: 5px;
     padding: 5px 25px 5px 45px;
     font-size: 14px;
+    background-position: 10px center;
   }
-  /* line 772, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 831, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination {
     bottom: 20px;
     padding: 10px 0;
   }
-  /* line 782, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 841, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {
     width: 48.33333%;
     float: left;
     margin-left: 0.83333%;
     margin-right: 0.83333%;
   }
-  /* line 790, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 849, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(3n+1), .home .billboard .movie:nth-of-type(4n+1), .home .billboard .movie:nth-of-type(5n+1) {
     clear: none;
   }
-  /* line 796, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 855, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(2n+1) {
     clear: left;
   }
 
-  /* line 804, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 863, sass/modules/base/responsive/_r_homepage.scss */
   .horizontal-banner {
     display: none;
   }
 
-  /* line 810, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 869, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .footer-menu-options {
     clear: both;
     width: 98.75%;
@@ -7072,7 +7131,7 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 813, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 872, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news {
     clear: both;
     width: 98.75%;
@@ -7081,7 +7140,7 @@ select {
     margin-right: 0.625%;
     margin-top: 40px;
   }
-  /* line 816, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 875, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news article {
     clear: both;
     width: 98.75%;
@@ -7090,11 +7149,11 @@ select {
     margin-right: 0.625%;
     margin-bottom: 30px;
   }
-  /* line 823, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 882, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li {
     margin-right: 0;
   }
-  /* line 825, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 884, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li a {
     width: 34px;
     height: 34px;
@@ -7102,5 +7161,22 @@ select {
     -o-background-size: 34px;
     -webkit-background-size: 34px;
     background-size: 34px;
+  }
+  /* line 895, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .subscription input[type=text] {
+    clear: both;
+    width: 95%;
+    float: left;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+  /* line 898, sass/modules/base/responsive/_r_homepage.scss */
+  #main-footer .footer-menu .subscription input[type=submit] {
+    margin-top: 10px;
+    clear: both;
+    width: 95%;
+    float: left;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
   }
 }

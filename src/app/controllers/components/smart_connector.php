@@ -194,7 +194,7 @@ class SmartConnectorComponent extends object{
 			    </message>
 			</sbt-ws-message>";
 
-			pr(h($xmlString));
+			$this->log(h($xmlString),"SmartConnector");
 			#exit;
 			$this->log("[Payment] Request: ".json_encode(array(
 				'Type'=>'030100',
@@ -545,7 +545,7 @@ class SmartConnectorComponent extends object{
 	function __generateSubcampo47($data){
 		$_browser = detectBrowser();
 		$browser = $_browser['browser']."v".$_browser['version']." ".$_browser['os'];
-		$hostname = "server";
+		$hostname = "webCiticinemas";
 		$country = "MX";
 		$metodo_envio = "0";
 		$sku = " ";

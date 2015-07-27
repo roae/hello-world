@@ -54,6 +54,9 @@ select {
 		display: block;
 		padding-right: 30px;
 		line-height: 27px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 	select {
 		position: absolute;

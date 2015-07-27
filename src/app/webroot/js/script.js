@@ -459,23 +459,8 @@ function nextSlide(){
 					$complexName.css( {position: 'fixed', top: $("#main-header").outerHeight()+"px",bottom:'auto'} );
 				}
 			},
-			offset:130
+			offset:$("#main-header").outerHeight()
 		});
-
-		/*$('.complex:has(.movies)').waypoint({
-			handler:function(direction) {
-				if(direction == "down"){
-					if($(this.element).prev().hasClass("complex")){
-						$(".complex-name",$(this.element).prev() ).css({position:'absolute',bottom:0,top:'auto'});
-					}
-				}else{
-					if($(this.element).prev().hasClass("complex")) {
-						$( ".complex-name", $( this.element ).prev() ).css( {position: 'fixed', top: '68px',bottom:'auto'} );
-					}
-				}
-			},
-			offset:140
-		});*/
 	}
 
 

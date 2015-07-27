@@ -1455,8 +1455,11 @@ select {
   display: block;
   padding-right: 30px;
   line-height: 27px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-/* line 58, sass/modules/layouts/_forms.scss */
+/* line 61, sass/modules/layouts/_forms.scss */
 .SelectWrapper select {
   position: absolute;
   top: 0;
@@ -2022,17 +2025,20 @@ select {
   background-color: #CFD5D7;
   border-radius: 3px;
   cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-/* line 101, sass/modules/pages/_billboard.scss */
+/* line 104, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .checkbox label:hover {
   opacity: 0.7;
 }
-/* line 107, sass/modules/pages/_billboard.scss */
+/* line 110, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select {
   position: relative;
   cursor: pointer;
 }
-/* line 110, sass/modules/pages/_billboard.scss */
+/* line 113, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select select {
   position: absolute;
   top: 0;
@@ -2042,7 +2048,7 @@ select {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 117, sass/modules/pages/_billboard.scss */
+/* line 120, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select .SelectWrapper {
   border: 0;
   display: block;
@@ -2054,16 +2060,16 @@ select {
   background-size: 20px;
   border-radius: 3px;
 }
-/* line 127, sass/modules/pages/_billboard.scss */
+/* line 130, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select .SelectWrapper .SelectOpt {
   background: transparent;
 }
-/* line 131, sass/modules/pages/_billboard.scss */
+/* line 134, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select .select:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
-/* line 136, sass/modules/pages/_billboard.scss */
+/* line 139, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select > a {
   display: block;
   padding: 8px 15px;
@@ -2074,16 +2080,16 @@ select {
   background-size: 20px;
   border-radius: 3px;
 }
-/* line 146, sass/modules/pages/_billboard.scss */
+/* line 149, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select > a strong {
   font-weight: bold;
   color: #fecc00;
 }
-/* line 152, sass/modules/pages/_billboard.scss */
+/* line 155, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-aside .filter .filter-select ul {
   display: none;
 }
-/* line 160, sass/modules/pages/_billboard.scss */
+/* line 163, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list {
   position: relative;
   width: 67.5%;
@@ -2093,11 +2099,11 @@ select {
   vertical-align: top;
   font-size: 16px;
 }
-/* line 166, sass/modules/pages/_billboard.scss */
+/* line 169, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .complex {
   position: relative;
 }
-/* line 171, sass/modules/pages/_billboard.scss */
+/* line 174, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .complex-name .complex-label {
   padding: 5px 10px;
   margin-bottom: 20px;
@@ -2110,7 +2116,7 @@ select {
   border-radius: 4px;
   display: inline-block;
 }
-/* line 183, sass/modules/pages/_billboard.scss */
+/* line 186, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .sticky .complex-label {
   padding: 3px 5px;
   font-size: 24px;
@@ -2118,20 +2124,20 @@ select {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
 }
-/* line 193, sass/modules/pages/_billboard.scss */
+/* line 196, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a {
   color: #272b2e;
 }
-/* line 196, sass/modules/pages/_billboard.scss */
+/* line 199, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:hover {
   color: #cc0017;
 }
-/* line 200, sass/modules/pages/_billboard.scss */
+/* line 203, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list h3 a:active {
   position: relative;
   top: 1px;
 }
-/* line 207, sass/modules/pages/_billboard.scss */
+/* line 210, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .movieAnchor {
   position: absolute;
   top: -80px;
@@ -2139,24 +2145,28 @@ select {
   height: 10px;
   display: block;
 }
-/* line 217, sass/modules/pages/_billboard.scss */
+/* line 220, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .movie {
   padding: 25px 0 64px;
   overflow: hidden;
   position: relative;
 }
-/* line 224, sass/modules/pages/_billboard.scss */
+/* line 227, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .schedules {
   width: 70.90909%;
+  float: left;
+  margin-left: 0.90909%;
+  margin-right: 0.90909%;
   padding-bottom: 0;
-  float: left;
 }
-/* line 230, sass/modules/pages/_billboard.scss */
+/* line 232, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .image-container {
+  width: 25.45455%;
   float: left;
-  width: 26.36364%;
+  margin-left: 0.90909%;
+  margin-right: 0.90909%;
 }
-/* line 235, sass/modules/pages/_billboard.scss */
+/* line 236, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img {
   display: block;
   width: 100%;
@@ -2166,16 +2176,16 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 241, sass/modules/pages/_billboard.scss */
+/* line 242, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:hover {
   opacity: 0.7;
 }
-/* line 242, sass/modules/pages/_billboard.scss */
+/* line 243, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list img:active {
   position: relative;
   top: 1px;
 }
-/* line 249, sass/modules/pages/_billboard.scss */
+/* line 250, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .no-movies {
   padding: 20px 30px;
   margin: 20px 0 50px;
@@ -2183,37 +2193,37 @@ select {
   font-size: 14px;
   color: #818386;
 }
-/* line 257, sass/modules/pages/_billboard.scss */
+/* line 258, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .no-movies .big {
   font-size: 24px;
   color: #747679;
 }
-/* line 261, sass/modules/pages/_billboard.scss */
+/* line 262, sass/modules/pages/_billboard.scss */
 .billboard-container .billboard-list .no-movies .btn {
   display: inline-block;
   margin: 20px 0 0;
 }
 
-/* line 270, sass/modules/pages/_billboard.scss */
+/* line 271, sass/modules/pages/_billboard.scss */
 .schedules {
   padding-left: 20px;
   padding-bottom: 40px;
 }
-/* line 272, sass/modules/pages/_billboard.scss */
+/* line 273, sass/modules/pages/_billboard.scss */
 .schedules li {
   display: inline-block;
   padding: 0;
 }
-/* line 279, sass/modules/pages/_billboard.scss */
+/* line 280, sass/modules/pages/_billboard.scss */
 .schedules .movie-title {
   margin-bottom: 40px;
 }
-/* line 283, sass/modules/pages/_billboard.scss */
+/* line 284, sass/modules/pages/_billboard.scss */
 .schedules h3 {
   font-size: 27px;
   font-weight: 300;
 }
-/* line 288, sass/modules/pages/_billboard.scss */
+/* line 289, sass/modules/pages/_billboard.scss */
 .schedules .schedule-title {
   padding-left: 20%;
   margin-left: 8px;
@@ -2222,47 +2232,47 @@ select {
   font-weight: bold;
   display: block;
 }
-/* line 297, sass/modules/pages/_billboard.scss */
+/* line 298, sass/modules/pages/_billboard.scss */
 .schedules .clasification-duration {
   font-size: 14px;
   color: #818386;
 }
-/* line 302, sass/modules/pages/_billboard.scss */
+/* line 303, sass/modules/pages/_billboard.scss */
 .schedules .real-name {
   padding-left: 10px;
   font-style: italic;
   font-size: 14px;
   color: #818386;
 }
-/* line 309, sass/modules/pages/_billboard.scss */
+/* line 310, sass/modules/pages/_billboard.scss */
 .schedules .schedule {
   font-size: 0;
   padding: 12px 12px 8px;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 314, sass/modules/pages/_billboard.scss */
+/* line 315, sass/modules/pages/_billboard.scss */
 .schedules .schedule:hover {
   background-color: #EAF1F3;
 }
-/* line 316, sass/modules/pages/_billboard.scss */
+/* line 317, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label,
 .schedules .schedule ul {
   display: inline-block;
   font-size: 16px;
   vertical-align: top;
 }
-/* line 323, sass/modules/pages/_billboard.scss */
+/* line 324, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label {
   position: relative;
   width: 20%;
   font-size: 14px;
   margin-top: 5px;
 }
-/* line 329, sass/modules/pages/_billboard.scss */
+/* line 330, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label strong {
   font-weight: bold;
 }
-/* line 331, sass/modules/pages/_billboard.scss */
+/* line 332, sass/modules/pages/_billboard.scss */
 .schedules .schedule .label:after {
   content: '';
   position: absolute;
@@ -2272,16 +2282,16 @@ select {
   height: 1px;
   background-color: #818386;
 }
-/* line 342, sass/modules/pages/_billboard.scss */
+/* line 343, sass/modules/pages/_billboard.scss */
 .schedules .schedule ul {
   width: 80%;
 }
-/* line 346, sass/modules/pages/_billboard.scss */
+/* line 347, sass/modules/pages/_billboard.scss */
 .schedules .schedule li {
   display: inline-block;
   padding: 0;
 }
-/* line 351, sass/modules/pages/_billboard.scss */
+/* line 352, sass/modules/pages/_billboard.scss */
 .schedules .schedule a {
   font-family: "Open Sans";
   text-transform: uppercase;
@@ -2295,11 +2305,11 @@ select {
   font-weight: 500;
   position: relative;
 }
-/* line 363, sass/modules/pages/_billboard.scss */
+/* line 364, sass/modules/pages/_billboard.scss */
 .schedules .schedule a small {
   font-size: 11px;
 }
-/* line 366, sass/modules/pages/_billboard.scss */
+/* line 367, sass/modules/pages/_billboard.scss */
 .schedules .schedule a .details {
   position: absolute;
   background: #272b2e;
@@ -2319,7 +2329,7 @@ select {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 381, sass/modules/pages/_billboard.scss */
+/* line 382, sass/modules/pages/_billboard.scss */
 .schedules .schedule a .details:after {
   position: absolute;
   bottom: -3px;
@@ -2336,49 +2346,49 @@ select {
   height: 5px;
   content: " ";
 }
-/* line 391, sass/modules/pages/_billboard.scss */
+/* line 392, sass/modules/pages/_billboard.scss */
 .schedules .schedule a .details .room {
   display: block;
 }
-/* line 394, sass/modules/pages/_billboard.scss */
+/* line 395, sass/modules/pages/_billboard.scss */
 .schedules .schedule a .details .format {
   display: block;
   color: #fecc00;
   border-top: 1px solid #33383c;
 }
-/* line 399, sass/modules/pages/_billboard.scss */
+/* line 400, sass/modules/pages/_billboard.scss */
 .schedules .schedule a .details .room_type {
   border-top: 1px solid #33383c;
   display: block;
   font-size: 12px;
   color: #51b347;
 }
-/* line 407, sass/modules/pages/_billboard.scss */
+/* line 408, sass/modules/pages/_billboard.scss */
 .schedules .schedule a:hover {
   background-color: #b30014;
 }
-/* line 409, sass/modules/pages/_billboard.scss */
+/* line 410, sass/modules/pages/_billboard.scss */
 .schedules .schedule a:hover .details {
   display: block;
 }
-/* line 417, sass/modules/pages/_billboard.scss */
+/* line 418, sass/modules/pages/_billboard.scss */
 .schedules .schedule.premiere a {
   color: #322800;
   background-color: #fecc00;
 }
-/* line 421, sass/modules/pages/_billboard.scss */
+/* line 422, sass/modules/pages/_billboard.scss */
 .schedules .schedule.premiere a:hover {
   background-color: #e5b800;
 }
 
-/* line 427, sass/modules/pages/_billboard.scss */
+/* line 428, sass/modules/pages/_billboard.scss */
 .top-message {
   position: relative;
   padding: 90px 15px 70px;
   margin-bottom: 40px;
   text-align: center;
 }
-/* line 433, sass/modules/pages/_billboard.scss */
+/* line 434, sass/modules/pages/_billboard.scss */
 .top-message:after {
   content: '';
   position: absolute;
@@ -2389,14 +2399,14 @@ select {
   height: 1px;
   background-color: #dee8ee;
 }
-/* line 444, sass/modules/pages/_billboard.scss */
+/* line 445, sass/modules/pages/_billboard.scss */
 .top-message h1 {
   margin-bottom: 15px;
   font-size: 42px;
   font-weight: 300;
   color: #cc0017;
 }
-/* line 451, sass/modules/pages/_billboard.scss */
+/* line 452, sass/modules/pages/_billboard.scss */
 .top-message p {
   margin-top: 0;
   color: #818386;
@@ -7213,7 +7223,30 @@ select {
     padding: 2px 5px;
     font-size: 18px;
   }
-  /* line 22, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 25, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .movie {
+    padding: 25px 0 45px;
+  }
+  /* line 29, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .schedules {
+    width: 80%;
+    float: left;
+    margin-left: 0.90909%;
+    margin-right: 0.90909%;
+    padding-bottom: 0;
+  }
+  /* line 32, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .schedules h3 {
+    font-size: 18px;
+  }
+  /* line 38, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .image-container {
+    width: 16.36364%;
+    float: left;
+    margin-left: 0.90909%;
+    margin-right: 0.90909%;
+  }
+  /* line 44, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-aside {
     margin-bottom: 30px;
     clear: both;
@@ -7222,22 +7255,49 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 26, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 48, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-aside .filter .checkbox {
     width: 48.75%;
     float: left;
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 30, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 50, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-aside .filter .checkbox label {
+    padding: 8px 25px 8px 10px;
+  }
+  /* line 55, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-aside .filter .filter-select .select {
     width: 48.75%;
     float: left;
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 35, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 60, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-aside .vertical-banner {
     display: none;
+  }
+}
+@media only screen and (max-width: 320px) {
+  /* line 73, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .movie {
+    padding: 25px 0 45px;
+  }
+  /* line 77, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .schedules {
+    float: none;
+    width: auto;
+    padding-left: 0;
+  }
+  /* line 81, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .schedules h3 {
+    font-size: 18px;
+  }
+  /* line 87, sass/modules/base/responsive/_r_billboard.scss */
+  .billboard-container .billboard-list .image-container {
+    width: 16.36364%;
+    float: left;
+    margin-left: 0.90909%;
+    margin-right: 0.90909%;
   }
 }

@@ -155,7 +155,8 @@ class SmartConnectorComponent extends object{
 				'17'=>'08',
 				'64'=>'MX',
 				'65'=>'484',
-				'19'=>$stan
+				'19'=>$stan,
+				'47'=>$this->__generateSubcampo47($data),
 			));
 			#pr($dataText);
 
@@ -193,7 +194,7 @@ class SmartConnectorComponent extends object{
 			    </message>
 			</sbt-ws-message>";
 
-			#pr(h($xmlString));
+			pr(h($xmlString));
 			#exit;
 			$this->log("[Payment] Request: ".json_encode(array(
 				'Type'=>'030100',
@@ -213,7 +214,6 @@ class SmartConnectorComponent extends object{
 				$return = curl_exec($process);
 				$xml = new Xml($return);
 				$xmlData = $xml->toArray();
-				//pr($xml->)
 				curl_close($process);
 				#pr($xmlData);
 				#$this->log($xmlData,"SmartConnector");
@@ -540,6 +540,19 @@ class SmartConnectorComponent extends object{
 			}
 		}
 		return true;
+	}
+
+	function __generateSubcampo47($data){
+		$_browser = detectBrowser();
+		$browser = $_browser['browser']."v".$_browser['version']." ".$_browser['os'];
+		$hostname = "server";
+		$country = "MX";
+		$metodo_envio = "0";
+		$sku = " ";
+		$ip = env('REMOTE_ADDR');
+		$tel = " ";
+		$codigo_tel = " ";
+		return sprintf("%s|%s|%s|%s|%s|%s|%s|%s|%s",$data['email'],$browser,$hostname,$country,$metodo_envio,$sku,$ip,$tel,$codigo_tel);
 	}
 
 	function __buildDataText($data){

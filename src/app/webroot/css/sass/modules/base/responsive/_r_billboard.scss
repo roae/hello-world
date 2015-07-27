@@ -18,6 +18,28 @@
 				}
 
 			}
+
+
+			@include with-layout(11) {
+
+				.movie {
+					padding: 25px 0 45px;
+				}
+
+				.schedules {
+					@include span(9);
+					padding-bottom: 0;
+					h3{
+						font-size: 18px;
+					}
+
+				}
+
+				.image-container {
+					@include span(2);
+				}
+			}
+
 		}
 		.billboard-aside {
 			margin-bottom: 30px;
@@ -25,6 +47,9 @@
 			.filter {
 				.checkbox {
 					@include span(8);
+					label{
+						padding: 8px 25px 8px 10px;
+					}
 				}
 				.filter-select {
 					.select {
@@ -37,7 +62,33 @@
 			}
 		}
 	}
+}
 
+@media only screen and (max-width: 320px) {
+	.billboard-container{
+		.billboard-list{
 
+			@include with-layout(11) {
 
+				.movie {
+					padding: 25px 0 45px;
+				}
+
+				.schedules {
+					float: none;
+					width: auto;
+					padding-left:0;
+					h3{
+						font-size: 18px;
+					}
+
+				}
+
+				.image-container {
+					@include span(2);
+				}
+			}
+
+		}
+	}
 }

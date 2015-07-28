@@ -148,7 +148,7 @@ $(function(){
 
 		History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
 			var State = History.getState(); // Note: We are using History.getState() instead of event.state
-			getBillboard(State.url,State.title);
+			getBillboard(State.url);
 		});
 
 		$(document ).on("submit","#BillboardFilter",function(e){
@@ -161,7 +161,7 @@ $(function(){
 		});
 
 		$(document ).on("change","#FilterCity",function(){
-			History.pushState(null,"Cartelera",$(this ).val());
+			History.pushState(null,"Cartelera ",$(this ).val());
 		});
 
 	}

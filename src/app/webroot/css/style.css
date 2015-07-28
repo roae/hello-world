@@ -7278,26 +7278,50 @@ select {
     display: none;
   }
 }
-@media only screen and (max-width: 320px) {
-  /* line 73, sass/modules/base/responsive/_r_billboard.scss */
+@media only screen and (max-width: 480px) {
+  /* line 69, sass/modules/base/responsive/_r_billboard.scss */
+  .schedules .schedule-title {
+    clear: left;
+  }
+  /* line 72, sass/modules/base/responsive/_r_billboard.scss */
+  .schedules .schedule {
+    padding: 10px 0;
+  }
+  /* line 74, sass/modules/base/responsive/_r_billboard.scss */
+  .schedules .schedule .label {
+    font-size: 12px;
+  }
+  /* line 76, sass/modules/base/responsive/_r_billboard.scss */
+  .schedules .schedule .label:after {
+    display: none;
+  }
+  /* line 80, sass/modules/base/responsive/_r_billboard.scss */
+  .schedules .schedule a {
+    font-size: 12px;
+    padding: 4px 5px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  /* line 95, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-list .movie {
     padding: 25px 0 45px;
   }
-  /* line 77, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 99, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-list .schedules {
     float: none;
     width: auto;
     padding-left: 0;
   }
-  /* line 81, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 103, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-list .schedules h3 {
     font-size: 18px;
   }
-  /* line 87, sass/modules/base/responsive/_r_billboard.scss */
+  /* line 109, sass/modules/base/responsive/_r_billboard.scss */
   .billboard-container .billboard-list .image-container {
     width: 16.36364%;
     float: left;
     margin-left: 0.90909%;
     margin-right: 0.90909%;
+    margin-right: 10px;
   }
 }

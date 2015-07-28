@@ -64,7 +64,29 @@
 	}
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and(max-width:480px){
+	.schedules {
+		.schedule-title{
+			clear: left;
+		}
+		.schedule{
+			padding: 10px 0;
+			.label{
+				font-size: 12px;
+				&:after{
+					display: none;
+				}
+			}
+			a{
+				font-size: 12px;
+				padding: 4px 5px;
+			}
+		}
+
+	}
+}
+
+@media only screen and (max-width: 375px) {
 	.billboard-container{
 		.billboard-list{
 
@@ -86,9 +108,11 @@
 
 				.image-container {
 					@include span(2);
+					margin-right: 10px;
 				}
 			}
 
 		}
 	}
+
 }

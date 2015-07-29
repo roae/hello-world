@@ -262,6 +262,12 @@ $(function(){
 		}
 	});
 
+	$(".infoTabs a").click(function(event){
+		event.preventDefault();
+		$(".selected").removeClass("selected");
+		$($(this ).attr("href") ).addClass("selected");
+		$(this ).parent().addClass("selected");
+	})
 });
 
 function changeSlide(item){

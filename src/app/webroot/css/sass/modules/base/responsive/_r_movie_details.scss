@@ -45,16 +45,14 @@
 		}
 		.movie-information{
 			@include with-layout(11) {
-				.sinopsis{
-					.cover-container{
-						@include span(3);
-						margin-right: 20px;
-						.like{
-							padding: 5px 5px 5px 30px;
-							background: url(../img/like.png) no-repeat 10px center;
-							background-size: 16px;
-							font-size: 14px;
-						}
+				.cover-container{
+					@include span(3);
+					margin-right: 20px;
+					.like{
+						padding: 5px 5px 5px 30px;
+						background: url(../img/like.png) no-repeat 10px center;
+						background-size: 16px;
+						font-size: 14px;
 					}
 				}
 				.movie-gallery-container{
@@ -79,12 +77,16 @@
 				height: 220px;
 			}
 			.movie-title{
-
 				h1{
 					font-size: 24px;
+					padding-left: 10px;
+					&:after{
+						left: 10px;
+					}
 				}
 				p{
 					font-size: 14px;
+					padding-left: 10px;
 				}
 			}
 		}
@@ -94,20 +96,110 @@
 				@include full;
 			}
 			padding-top: 10px;
-			@include with-layout(16) {
-				.sinopsis{
-					.cover-container{
-						margin-right: 20px;
-						margin-top: -120px;
-						@include span(3);
-						.like{
-							padding: 5px 5px 5px 30px;
-							background: url(../img/like.png) no-repeat 10px center;
-							background-size: 16px;
-							font-size: 12px;
+			.cover-container{
+				margin-right: 20px;
+				margin-top: -100px;
+				@include span(3);
+				.like{
+					display: none;
+					padding: 5px 5px 5px 30px;
+					background: url(../img/like.png) no-repeat 10px center;
+					background-size: 16px;
+					font-size: 12px;
+				}
+			}
+
+			.watch-trailer {
+				position: absolute;
+				top:0;
+				right: 10px;
+				display: inline-block;
+				padding: 4px 10px 4px 40px;
+				margin-bottom: 40px;
+				border: 2px solid $green;
+				text-align: center;
+				color: $green;
+				background: url(../img/green-camera-icon.png) no-repeat 10px center;
+				border-radius: 30px;
+				transition: border-color 0.2s ease-in-out;
+				-webkit-transition: border-color 0.2s ease-in-out;
+				-moz-transition: border-color 0.2s ease-in-out;
+
+				&:hover { border-color: lighten($green, 15%); }
+
+				&:active {
+					position: relative;
+					top: 1px;
+				}
+			}
+
+			.like {
+				display: inline-block;
+				padding: 4px 10px 4px 30px;
+				border: 1px solid lighten($gray, 20%);
+				text-align: center;
+				color: $dark-gray;
+				background: url(../img/like.png) no-repeat 10px center;
+				background-size: 16px;
+				border-radius: 3px;
+				@include transition(border-color 0.2s ease-in-out);
+
+				&:hover { border-color: transparentize($gray, 0.8); }
+
+				&:active {
+					position: relative;
+					top: 1px;
+				}
+			}
+			/*.tab{
+				border-top: 1px solid #f1f1f1;
+				clear: left;
+				display: none !important;
+				&.selected{
+					display: block !important;
+				}
+			}*/
+
+			.movilTrailer{
+				display:block;
+				position: relative;
+				margin-bottom: 20px;
+			}
+			.infoTabs{
+				display: block;
+				text-align: center;
+				overflow: hidden;
+				font-size: 14px;
+				li{
+					display: inline-block;
+					float: left;
+					a{
+						border: 1px solid #9A9A9A;
+						border-right: 0;
+						padding: 3px 10px;
+						color: #9A9A9A;
+						display: block;
+					}
+					&:first-child{
+						a{
+							@include border-radius(4px 0 0 4px);
+						}
+					}
+					&:last-child{
+						a{
+							border-right: 1px solid #9A9A9A;
+							@include border-radius(0 4px 4px 0);
+						}
+					}
+					&.selected{
+						a{
+							background: #9A9A9A;
+							color:#fff;
 						}
 					}
 				}
+			}
+			@include with-layout(16) {
 				.movie-gallery-container{
 					margin-bottom: 40px;
 					&:before,
@@ -129,10 +221,9 @@
 			}
 		}
 		.movie-detailed-info{
-			@include full;
-			display:block;
-
-			.vertical-banner{
+			display:none;
+			.vertical-banner,
+			.watch-trailer{
 				display: none;
 			}
 		}

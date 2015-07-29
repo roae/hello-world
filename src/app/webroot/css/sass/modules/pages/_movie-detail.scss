@@ -16,7 +16,7 @@
 			z-index: 2;
 		}
 
-		header {
+		.movie-title {
 			position: absolute;
 			bottom: 15px;
 			padding-left: span(4)+gutter();
@@ -76,7 +76,7 @@
 		&.image-not-founded {
 			height: 150px;
 
-			header {
+			.movie-title {
 				position: static;
 			}
 
@@ -229,7 +229,7 @@
 		@include with-layout(10){
 			.buy-tickets {
 				@include span(9);
-				margin-left: span(1) + gutter();
+				@include push(1);
 				margin-top: 50px;
 				position: relative;
 				#loading{

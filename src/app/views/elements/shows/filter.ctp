@@ -12,6 +12,7 @@ if(!empty($CitySelected)){
 	//pr($dates);
 	$day = "";
 	$today = date("Y-m-d");
+	#pr($dates);
 	foreach($dates as $key => $date){
 		if($date == $today){
 			$dates[$today] = $this->Time->format("[:D:] d [:M:]",$today)." ([:hoy:])";

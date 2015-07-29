@@ -19,13 +19,13 @@ $this->set("pageKeywords",$record['Movie']['title']);
 
 	<div class="big-cover <?= $class ?>" style="background-image: url(<?= $bg_url ?>)">
 		<div class="col-container">
-			<header>
+			<div class="movie-title">
 				<h1 class="blured-title">
 					<?= Inflector::humanize( low( $record['Movie']['title'] ) ) ?>
 				</h1>
 
 				<p><?= Inflector::humanize( low( $record['Movie']['original_title'] ) ) ?></p>
-			</header>
+			</div>
 			<!--<span class="presale">[:presale:]</span>-->
 			<!--span class="likes">65</span-->
 		</div>

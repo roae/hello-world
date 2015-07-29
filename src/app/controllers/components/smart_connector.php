@@ -182,7 +182,7 @@ class SmartConnectorComponent extends object{
 			$xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 			<sbt-ws-message version=\"1.0\">
 			    <header>
-			        <Type>030100</Type>
+			        <Type>031100</Type>
 			        <ClientID>{$this->settings['clientID']}</ClientID>
 			        <SerialPos>{$this->settings['clientPOS']}</SerialPos>
 			        <Stan>$stan</Stan>

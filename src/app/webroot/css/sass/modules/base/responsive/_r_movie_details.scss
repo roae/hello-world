@@ -1,0 +1,140 @@
+@media only screen and (max-width: 1440px) {
+	.movie-detail-container{
+		.big-cover{
+			height: 500px;
+			.col-container{
+				height: 500px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1366px) {
+	.movie-detail-container{
+		.big-cover{
+			height: 460px;
+			.col-container{
+				height: 460px;
+			}
+			h1{
+				font-size: 40px;
+			}
+			p{
+				font-size: 20px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 854px) {
+	.movie-detail-container{
+		.big-cover{
+			height: 270px;
+			.col-container{
+				height: 270px;
+			}
+			.movie-title{
+				padding-left: span(3)+gutter();
+				h1{
+					font-size: 30px;
+				}
+				p{
+					font-size: 18px;
+				}
+			}
+		}
+		.movie-information{
+			@include with-layout(11) {
+				.sinopsis{
+					.cover-container{
+						@include span(3);
+						margin-right: 20px;
+						.like{
+							padding: 5px 5px 5px 30px;
+							background: url(../img/like.png) no-repeat 10px center;
+							background-size: 16px;
+							font-size: 14px;
+						}
+					}
+				}
+				.movie-gallery-container{
+					margin-bottom: 40px;
+				}
+			}
+
+			@include with-layout(10){
+				.buy-tickets{
+					@include full;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 568px) {
+	.movie-detail-container{
+		.big-cover{
+			height: 220px;
+			.col-container{
+				height: 220px;
+			}
+			.movie-title{
+
+				h1{
+					font-size: 24px;
+				}
+				p{
+					font-size: 14px;
+				}
+			}
+		}
+
+		.movie-information{
+			.main-content{
+				@include full;
+			}
+			padding-top: 10px;
+			@include with-layout(16) {
+				.sinopsis{
+					.cover-container{
+						margin-right: 20px;
+						margin-top: -120px;
+						@include span(3);
+						.like{
+							padding: 5px 5px 5px 30px;
+							background: url(../img/like.png) no-repeat 10px center;
+							background-size: 16px;
+							font-size: 12px;
+						}
+					}
+				}
+				.movie-gallery-container{
+					margin-bottom: 40px;
+					&:before,
+					&:after {
+						content: '';
+						position: absolute;
+						top: 0;
+						width: 100px;
+						height: 100%;
+						z-index: 5;
+					}
+				}
+			}
+
+			@include with-layout(10){
+				.buy-tickets{
+					@include full;
+				}
+			}
+		}
+		.movie-detailed-info{
+			@include full;
+			display:block;
+
+			.vertical-banner{
+				display: none;
+			}
+		}
+	}
+}

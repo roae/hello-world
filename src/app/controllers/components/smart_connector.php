@@ -197,7 +197,7 @@ class SmartConnectorComponent extends object{
 			$this->log(h($xmlString),"SmartConnector");
 			#exit;
 			$this->log("[Payment] Request: ".json_encode(array(
-				'Type'=>'030100',
+				'Type'=>'031100',
 				'ClientID'=>$this->settings['clientID'],
 				'SerialPos'=>$this->settings['clientPOS'],
 				'Stan'=>$stan,
@@ -216,7 +216,7 @@ class SmartConnectorComponent extends object{
 				$xmlData = $xml->toArray();
 				curl_close($process);
 				#pr($xmlData);
-				#$this->log($xmlData,"SmartConnector");
+				$this->log($xmlData,"SmartConnector");
 				#$this->__saveStan($stan+1);
 				#$xmlData = array();
 				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){

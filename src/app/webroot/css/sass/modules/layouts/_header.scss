@@ -6,14 +6,20 @@ body {
 	position: fixed;
 	width: 100% !important;
 	height: 108px;
+
+	.fndHeader{
+		height: 100%;
+		padding: 10px 0;
+		text-align: center;
+		background: #FFF;
+		position: relative;
+		z-index: 4;
+	}
+
 	top: 0;
 	left: 0;
-	padding: 10px;
-	text-align: center;
-	background: #FFF;
 	z-index: 10;
 	@include transition(height 0.2s ease-in-out);
-
 
 	#logo {
 		margin-right: 80px;

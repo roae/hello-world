@@ -69,36 +69,14 @@ foreach($files[0] as $file)
 }
 
 function setTimezoneByOffset($offset){
+	$is_DST = FALSE; // observing daylight savings?
+	$timezone_name = timezone_name_from_abbr('', $offset * 3600, $is_DST); // e.g. "America/New_York"
 
-	$offset = (idate("I")? $offset+1 : $offset);# Si es horario de verano se le aumenta una hora
-
-	$testTimestamp = time();
-	date_default_timezone_set('UTC');
-	$testLocaltime = localtime($testTimestamp,true);
-	$testHour = $testLocaltime['tm_hour'];
-
-	$abbrarray = timezone_abbreviations_list();
-	foreach ($abbrarray as $abbr){
-		//echo $abbr."<br>";
-		foreach ($abbr as $city){
-			#pr(strlen($city['timezone_id']));
-			if(strlen($city['timezone_id'])){
-				date_default_timezone_set($city['timezone_id']);
-				$testLocaltime     = localtime($testTimestamp,true);
-				$hour                     = $testLocaltime['tm_hour'];
-				$testOffset =  $hour - $testHour;
-				if($testOffset == $offset){
-					return true;
-				}
-			}
-
-		}
-	}
-	return false;
+	date_default_timezone_set($timezone_name);
 }
 
 setTimezoneByOffset(-7);
-//pr(timezone_abbreviations_list());
+#pr(date("Y-m-d H:i:s"));
 
 
 /**

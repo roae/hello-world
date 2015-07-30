@@ -252,72 +252,74 @@ if(!empty($record)){
 
 	</div>
 	<div id="buyResume">
-		<div class="col-container">
-			<div class="buyData">
-				<div class="movie-details">
-					<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>$record['Movie']['title'],'class'=>'poster')) ?>
-					<div class="title">
-						<?= Inflector::humanize(low($record['Movie']['title'])) ?>
+		<div class="fnd">
+			<div class="col-container">
+				<div class="buyData">
+					<div class="movie-details">
+						<?= $this->Html->image($this->Uploader->generatePath($record['Poster'],'medium'), array('alt'=>$record['Movie']['title'],'class'=>'poster')) ?>
+						<div class="title">
+							<?= Inflector::humanize(low($record['Movie']['title'])) ?>
+						</div>
+						<div class="info">
+							<strong>[:cine:]</strong>
+							<span class="value"><?= $record['Location']['name']." - ".$record['City']['name'] ?></span>
+						</div>
+						<div class="info">
+							<strong>[:fecha:]</strong>
+							<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Show']['schedule']); ?></span>
+						</div>
+						<div class="info">
+							<strong>[:hora:]</strong>
+							<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
+						</div>
 					</div>
-					<div class="info">
-						<strong>[:cine:]</strong>
-						<span class="value"><?= $record['Location']['name']." - ".$record['City']['name'] ?></span>
-					</div>
-					<div class="info">
-						<strong>[:fecha:]</strong>
-						<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Show']['schedule']); ?></span>
-					</div>
-					<div class="info">
-						<strong>[:hora:]</strong>
-						<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
-					</div>
-				</div>
-				<div class="tickets-details">
-					<table>
-						<colgroup>
-							<col span="1" />
-							<col span="1" width="100px" />
-							<col span="1" width="100px" />
-						</colgroup>
-						<thead>
-						<tr>
-							<th colspan="2">
-								[:boletos:]
-								<a href="#tickets" class="btn-success btnSelectTicket">[:select-tickets:]</a>
-							</th>
-							<th>
-								[:asientos:]
-								<a href="#seats" class="btn-success btnSelectSeats">[:select-seats:]</a>
-							</th>
-						</tr>
-						</thead>
-						<tbody>
-							<?php foreach($record['TicketPrice'] as $ticket):?>
-							<tr class="ticket" data-code="<?= $ticket['code']?>">
-								<td>
-									<span class="qty"></span>
-									<?= $ticket['description']?>
-								</td>
-								<td class=subtotal></td>
-								<td class="seats"></td>
+					<div class="tickets-details">
+						<table>
+							<colgroup>
+								<col span="1" />
+								<col span="1" width="100px" />
+								<col span="1" width="100px" />
+							</colgroup>
+							<thead>
+							<tr>
+								<th colspan="2">
+									[:boletos:]
+									<a href="#tickets" class="btn-success btnSelectTicket">[:select-tickets:]</a>
+								</th>
+								<th>
+									[:asientos:]
+									<a href="#seats" class="btn-success btnSelectSeats">[:select-seats:]</a>
+								</th>
 							</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<?php foreach($record['TicketPrice'] as $ticket):?>
+								<tr class="ticket" data-code="<?= $ticket['code']?>">
+									<td>
+										<span class="qty"></span>
+										<?= $ticket['description']?>
+									</td>
+									<td class=subtotal></td>
+									<td class="seats"></td>
+								</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+					<div class="total">
+						<div class="titleSeccion">[:total:]</div>
+						<span class="value">$0.00</span>
+						<span class="iva">[:incluye-iva:]</span>
+					</div>
+					<? if(isset($remainingTime)){ ?>
+					<div class="time">
+						[:remaining-time:]
+						<span class="value"></span>
+					</div>
+					<? } ?>
 				</div>
-				<div class="total">
-					<div class="titleSeccion">[:total:]</div>
-					<span class="value">$0.00</span>
-					<span class="iva">[:incluye-iva:]</span>
-				</div>
-				<? if(isset($remainingTime)){ ?>
-				<div class="time">
-					[:remaining-time:]
-					<span class="value"></span>
-				</div>
-				<? } ?>
-			</div>
 
+			</div>
 		</div>
 	</div>
 	<?php

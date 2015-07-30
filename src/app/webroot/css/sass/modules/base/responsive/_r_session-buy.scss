@@ -1,0 +1,17 @@
+@media only screen and (max-width: 1366px) {
+	#SessionCheckout{
+		.ticketsSelection{
+			padding: 100px 0;
+		}
+		.seatsSelection{
+			padding: 100px 0 0;
+		}
+		.paymentInfo{
+			padding: 100px 0;
+			.paymentForm {
+				@include span(10);
+				@include push(3);
+			}
+		}
+	}
+}

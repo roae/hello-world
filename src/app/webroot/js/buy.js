@@ -179,17 +179,14 @@ $(document).on("ready",function(){
 	$(document ).on("change",'#BuyCcnumber',function(){
 		setCCTypeIcon($(this ).val());
 	});
-
+	var $BuyResume = $('#buyResume');
 	$('.ticketsSelection').waypoint({
 		handler: function(direction) {
-
-			var $BuyResume = $('#buyResume');
-
 			if( direction == 'down' ) {
-				$BuyResume.addClass('sticky');
+				$BuyResume.addClass('sticky' )//.css({top: $("#main-header").outerHeight()+"px"});
 				//$('body').css('padding-top', '118px');
 			} else {
-				$BuyResume.removeClass('sticky');
+				$BuyResume.removeClass('sticky')//.css({top:'-200px'});
 				//$('body').css('padding-top', '0');
 			}
 
@@ -197,9 +194,19 @@ $(document).on("ready",function(){
 		offset: 400
 	});
 
+	/*$window = $(window);
+	$window.on("scroll",function(event){
+		if($BuyResume.hasClass("sticky")){
+			$BuyResume.css({top: $("#main-header").outerHeight()+"px"});
+		}
+	})*/
+
+	$("#main-header" ).append($BuyResume);
+
 	buyCountDown();
 	buildTicketsArray();
 	updateResume();
+
 });
 
 

@@ -697,21 +697,27 @@ body {
   height: 108px;
   top: 0;
   left: 0;
-  padding: 10px;
-  text-align: center;
-  background: #FFF;
   z-index: 10;
   -moz-transition: height 0.2s ease-in-out;
   -o-transition: height 0.2s ease-in-out;
   -webkit-transition: height 0.2s ease-in-out;
   transition: height 0.2s ease-in-out;
 }
-/* line 18, sass/modules/layouts/_header.scss */
+/* line 10, sass/modules/layouts/_header.scss */
+#main-header .fndHeader {
+  height: 100%;
+  padding: 10px 0;
+  text-align: center;
+  background: #FFF;
+  position: relative;
+  z-index: 4;
+}
+/* line 24, sass/modules/layouts/_header.scss */
 #main-header #logo {
   margin-right: 80px;
   float: left;
 }
-/* line 22, sass/modules/layouts/_header.scss */
+/* line 28, sass/modules/layouts/_header.scss */
 #main-header #logo img {
   height: 82px;
   -moz-transition: height 0.2s ease-in-out;
@@ -719,7 +725,7 @@ body {
   -webkit-transition: height 0.2s ease-in-out;
   transition: height 0.2s ease-in-out;
 }
-/* line 29, sass/modules/layouts/_header.scss */
+/* line 35, sass/modules/layouts/_header.scss */
 #main-header .account-container {
   float: right;
   margin-top: 26px;
@@ -728,15 +734,15 @@ body {
   -webkit-transition: margin 0.2s ease-in-out;
   transition: margin 0.2s ease-in-out;
 }
-/* line 34, sass/modules/layouts/_header.scss */
+/* line 40, sass/modules/layouts/_header.scss */
 #main-header .account-container li {
   display: inline-block;
 }
-/* line 37, sass/modules/layouts/_header.scss */
+/* line 43, sass/modules/layouts/_header.scss */
 #main-header .account-container li:first-child {
   padding-right: 25px;
 }
-/* line 39, sass/modules/layouts/_header.scss */
+/* line 45, sass/modules/layouts/_header.scss */
 #main-header .account-container li a {
   display: inline-block;
   padding: 6px 3px 6px 28px;
@@ -750,21 +756,21 @@ body {
   -webkit-transition: font-size 0.2s ease-in-out;
   transition: font-size 0.2s ease-in-out;
 }
-/* line 49, sass/modules/layouts/_header.scss */
+/* line 55, sass/modules/layouts/_header.scss */
 #main-header .account-container li a.signin {
   background-image: url(../img/login-icon.png);
 }
-/* line 50, sass/modules/layouts/_header.scss */
+/* line 56, sass/modules/layouts/_header.scss */
 #main-header .account-container li a.signup {
   padding-left: 18px;
   background-image: url(../img/signup-icon.png);
   background-size: 7px;
 }
-/* line 56, sass/modules/layouts/_header.scss */
+/* line 62, sass/modules/layouts/_header.scss */
 #main-header .account-container li a:hover {
   color: #a8a9ab;
 }
-/* line 63, sass/modules/layouts/_header.scss */
+/* line 69, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container {
   float: right;
   margin-top: 26px;
@@ -773,12 +779,12 @@ body {
   -webkit-transition: margin 0.2s ease-in-out;
   transition: margin 0.2s ease-in-out;
 }
-/* line 67, sass/modules/layouts/_header.scss */
+/* line 73, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user {
   cursor: pointer;
   position: relative;
 }
-/* line 70, sass/modules/layouts/_header.scss */
+/* line 76, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user figure {
   float: right;
   -moz-border-radius: 50%;
@@ -788,13 +794,13 @@ body {
   margin-left: 10px;
   margin-top: 2px;
 }
-/* line 76, sass/modules/layouts/_header.scss */
+/* line 82, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user figure img {
   width: 40px;
   height: 40px;
   display: block;
 }
-/* line 82, sass/modules/layouts/_header.scss */
+/* line 88, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user figure .capitals {
   font-size: 20px;
   display: block;
@@ -804,24 +810,24 @@ body {
   line-height: 40px;
   background: #FECC00;
 }
-/* line 93, sass/modules/layouts/_header.scss */
+/* line 99, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .username {
   float: right;
 }
-/* line 96, sass/modules/layouts/_header.scss */
+/* line 102, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .name {
   font-weight: 300;
   font-size: 16px;
   color: #CC0017;
   display: block;
 }
-/* line 102, sass/modules/layouts/_header.scss */
+/* line 108, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .small {
   font-size: 14px;
   color: #797979;
   display: block;
 }
-/* line 107, sass/modules/layouts/_header.scss */
+/* line 113, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu {
   position: absolute;
   right: 0;
@@ -837,11 +843,11 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   padding: 0;
 }
-/* line 117, sass/modules/layouts/_header.scss */
+/* line 123, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu ul {
   position: relative;
 }
-/* line 119, sass/modules/layouts/_header.scss */
+/* line 125, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu ul:before {
   background-color: #232323;
   content: "";
@@ -856,7 +862,7 @@ body {
   width: 16px;
   display: block;
 }
-/* line 134, sass/modules/layouts/_header.scss */
+/* line 140, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu li a {
   color: #A5A5A5;
   white-space: nowrap;
@@ -864,11 +870,11 @@ body {
   display: block;
   padding: 10px 20px;
 }
-/* line 140, sass/modules/layouts/_header.scss */
+/* line 146, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu li a:hover {
   color: #bfbfbf;
 }
-/* line 143, sass/modules/layouts/_header.scss */
+/* line 149, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user .userMenu li a.logout {
   background: #CC0017;
   color: #FFF;
@@ -876,44 +882,44 @@ body {
   -webkit-border-radius: 0;
   border-radius: 0 0 4px 4px;
 }
-/* line 152, sass/modules/layouts/_header.scss */
+/* line 158, sass/modules/layouts/_header.scss */
 #main-header .loggeduser-container .user:hover .userMenu {
   display: block;
 }
-/* line 159, sass/modules/layouts/_header.scss */
+/* line 165, sass/modules/layouts/_header.scss */
 #main-header.sticky {
   height: 68px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
 }
-/* line 164, sass/modules/layouts/_header.scss */
+/* line 170, sass/modules/layouts/_header.scss */
 #main-header.sticky #logo img {
   height: 46px;
 }
-/* line 169, sass/modules/layouts/_header.scss */
+/* line 175, sass/modules/layouts/_header.scss */
 #main-header.sticky #header-location-select {
   margin-top: 11px;
 }
-/* line 172, sass/modules/layouts/_header.scss */
+/* line 178, sass/modules/layouts/_header.scss */
 #main-header.sticky #header-location-select a {
   padding-top: 12px;
   padding-bottom: 12px;
 }
-/* line 178, sass/modules/layouts/_header.scss */
+/* line 184, sass/modules/layouts/_header.scss */
 #main-header.sticky .account-container {
   margin-top: 7px;
 }
-/* line 181, sass/modules/layouts/_header.scss */
+/* line 187, sass/modules/layouts/_header.scss */
 #main-header.sticky .account-container a {
   font-size: 14px;
 }
-/* line 185, sass/modules/layouts/_header.scss */
+/* line 191, sass/modules/layouts/_header.scss */
 #main-header.sticky .loggeduser-container {
   margin-top: 5px;
 }
 
-/* line 191, sass/modules/layouts/_header.scss */
+/* line 197, sass/modules/layouts/_header.scss */
 #header-location-select {
   position: relative;
   display: inline-block;
@@ -922,7 +928,7 @@ body {
   -webkit-transition: margin 0.2s ease-in-out;
   -moz-transition: margin 0.2s ease-in-out;
 }
-/* line 199, sass/modules/layouts/_header.scss */
+/* line 205, sass/modules/layouts/_header.scss */
 #header-location-select > a {
   position: relative;
   padding: 15px 80px 15px 60px;
@@ -932,14 +938,14 @@ body {
   color: #FFF;
   background-color: #cc0017;
 }
-/* line 208, sass/modules/layouts/_header.scss */
+/* line 214, sass/modules/layouts/_header.scss */
 #header-location-select > a .current {
   position: relative;
   font-weight: bold;
   font-style: italic;
   color: #fecc00;
 }
-/* line 214, sass/modules/layouts/_header.scss */
+/* line 220, sass/modules/layouts/_header.scss */
 #header-location-select > a .current:after {
   content: '';
   position: absolute;
@@ -949,16 +955,16 @@ body {
   height: 25px;
   background-color: #b30014;
 }
-/* line 225, sass/modules/layouts/_header.scss */
+/* line 231, sass/modules/layouts/_header.scss */
 #header-location-select > a:hover {
   background-color: #c20016;
 }
-/* line 227, sass/modules/layouts/_header.scss */
+/* line 233, sass/modules/layouts/_header.scss */
 #header-location-select > a:active {
   position: relative;
   top: 1px;
 }
-/* line 233, sass/modules/layouts/_header.scss */
+/* line 239, sass/modules/layouts/_header.scss */
 #header-location-select .sub-menu-trigger {
   position: absolute;
   right: 6px;
@@ -977,7 +983,7 @@ body {
   -webkit-transition: background-color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
 }
-/* line 250, sass/modules/layouts/_header.scss */
+/* line 256, sass/modules/layouts/_header.scss */
 #header-location-select .places {
   display: none;
   position: absolute;
@@ -991,7 +997,7 @@ body {
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
 }
-/* line 260, sass/modules/layouts/_header.scss */
+/* line 266, sass/modules/layouts/_header.scss */
 #header-location-select .places:before {
   content: '';
   position: absolute;
@@ -1005,7 +1011,7 @@ body {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-/* line 271, sass/modules/layouts/_header.scss */
+/* line 277, sass/modules/layouts/_header.scss */
 #header-location-select .places:after {
   content: '';
   position: absolute;
@@ -1014,15 +1020,15 @@ body {
   width: 100%;
   height: 16px;
 }
-/* line 282, sass/modules/layouts/_header.scss */
+/* line 288, sass/modules/layouts/_header.scss */
 #header-location-select .places li {
   display: block;
 }
-/* line 285, sass/modules/layouts/_header.scss */
+/* line 291, sass/modules/layouts/_header.scss */
 #header-location-select .places li:last-child a {
   border-radius: 0 0 10px 10px;
 }
-/* line 290, sass/modules/layouts/_header.scss */
+/* line 296, sass/modules/layouts/_header.scss */
 #header-location-select .places a {
   position: relative;
   display: inline-block;
@@ -1034,11 +1040,11 @@ body {
   background-color: #FFF;
   z-index: 1;
 }
-/* line 301, sass/modules/layouts/_header.scss */
+/* line 307, sass/modules/layouts/_header.scss */
 #header-location-select .places a:hover {
   background-color: #fecc00;
 }
-/* line 307, sass/modules/layouts/_header.scss */
+/* line 313, sass/modules/layouts/_header.scss */
 #header-location-select .sub-menu-container:hover .places {
   display: block;
 }
@@ -4046,32 +4052,37 @@ select {
 
 /* line 872, sass/modules/pages/_session-buy.scss */
 #buyResume {
+  position: relative;
+}
+/* line 874, sass/modules/pages/_session-buy.scss */
+#buyResume .fnd {
   background: #f8f8f8;
   padding: 10px 0;
-  position: fixed;
-  top: -200px;
-  -moz-transition: top 0.2s ease-in-out;
-  -o-transition: top 0.2s ease-in-out;
-  -webkit-transition: top 0.2s ease-in-out;
-  transition: top 0.2s ease-in-out;
+  position: absolute;
+  height: 100px;
+  bottom: 100px;
+  -moz-transition: bottom 0.2s ease-in-out;
+  -o-transition: bottom 0.2s ease-in-out;
+  -webkit-transition: bottom 0.2s ease-in-out;
+  transition: bottom 0.2s ease-in-out;
   width: 100%;
   font-size: 12px;
   z-index: 3;
   color: #272b2e;
   text-align: center;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
-/* line 887, sass/modules/pages/_session-buy.scss */
+/* line 894, sass/modules/pages/_session-buy.scss */
 #buyResume .buyData {
   text-align: center;
 }
-/* line 892, sass/modules/pages/_session-buy.scss */
-#buyResume.sticky {
-  top: 68px;
+/* line 900, sass/modules/pages/_session-buy.scss */
+#buyResume.sticky .fnd {
+  bottom: -100px;
 }
-/* line 896, sass/modules/pages/_session-buy.scss */
+/* line 906, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details {
   text-align: left;
   width: 30%;
@@ -4082,7 +4093,7 @@ select {
   display: inline-block;
   position: relative;
 }
-/* line 903, sass/modules/pages/_session-buy.scss */
+/* line 913, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details:after {
   content: " ";
   display: block;
@@ -4093,26 +4104,29 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 914, sass/modules/pages/_session-buy.scss */
+/* line 924, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .poster {
   float: left;
   width: 55px;
   margin-right: 10px;
 }
-/* line 919, sass/modules/pages/_session-buy.scss */
+/* line 929, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .title {
   font-size: 16px;
   color: #cc0017;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-/* line 925, sass/modules/pages/_session-buy.scss */
+/* line 938, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .info strong {
   font-weight: bold;
   width: 60px;
   display: inline-block;
 }
-/* line 933, sass/modules/pages/_session-buy.scss */
+/* line 946, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details {
-  width: 23.75%;
+  width: 30%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
@@ -4122,7 +4136,7 @@ select {
   height: 70px;
   position: relative;
 }
-/* line 941, sass/modules/pages/_session-buy.scss */
+/* line 954, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details:after {
   content: " ";
   display: block;
@@ -4133,25 +4147,31 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 951, sass/modules/pages/_session-buy.scss */
+/* line 964, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table {
   width: 100%;
 }
-/* line 953, sass/modules/pages/_session-buy.scss */
+/* line 966, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table th {
   text-align: left;
   font-weight: bold;
   position: relative;
 }
-/* line 958, sass/modules/pages/_session-buy.scss */
+/* line 971, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table .ticket {
   display: none;
 }
-/* line 962, sass/modules/pages/_session-buy.scss */
-#buyResume .tickets-details table td {
-  padding: 1px 5px;
+/* line 975, sass/modules/pages/_session-buy.scss */
+#buyResume .tickets-details table tr td:first-child {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-/* line 967, sass/modules/pages/_session-buy.scss */
+/* line 982, sass/modules/pages/_session-buy.scss */
+#buyResume .tickets-details table td {
+  padding: 1px;
+}
+/* line 987, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btn-success {
   padding: 5px;
   font-size: 12px;
@@ -4161,43 +4181,43 @@ select {
   bottom: -40px;
   left: 0;
 }
-/* line 976, sass/modules/pages/_session-buy.scss */
+/* line 996, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btn-success:active {
   bottom: -39px;
   top: auto;
 }
-/* line 982, sass/modules/pages/_session-buy.scss */
+/* line 1002, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btnSelectSeats {
   display: none;
 }
-/* line 986, sass/modules/pages/_session-buy.scss */
+/* line 1006, sass/modules/pages/_session-buy.scss */
 #buyResume .total {
-  width: 17.5%;
+  width: 11.25%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
   float: none;
   display: inline-block;
 }
-/* line 992, sass/modules/pages/_session-buy.scss */
+/* line 1012, sass/modules/pages/_session-buy.scss */
 #buyResume .total .titleSection {
   font-weight: bold;
 }
-/* line 995, sass/modules/pages/_session-buy.scss */
+/* line 1015, sass/modules/pages/_session-buy.scss */
 #buyResume .total .value {
   font-size: 34px;
   line-height: 38px;
   color: #00cc67;
   display: block;
-  width: 150px;
+  width: 100%;
   margin: 0 auto;
 }
-/* line 1003, sass/modules/pages/_session-buy.scss */
+/* line 1023, sass/modules/pages/_session-buy.scss */
 #buyResume .total .iva {
   font-size: 12px;
   color: #2a2a2a;
 }
-/* line 1009, sass/modules/pages/_session-buy.scss */
+/* line 1029, sass/modules/pages/_session-buy.scss */
 #buyResume .time {
   width: 17.5%;
   float: left;
@@ -4205,10 +4225,13 @@ select {
   margin-right: 0.625%;
   float: none;
   padding: 0 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   display: inline-block;
   position: relative;
 }
-/* line 1016, sass/modules/pages/_session-buy.scss */
+/* line 1037, sass/modules/pages/_session-buy.scss */
 #buyResume .time:before {
   content: " ";
   display: block;
@@ -4219,7 +4242,7 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 1026, sass/modules/pages/_session-buy.scss */
+/* line 1047, sass/modules/pages/_session-buy.scss */
 #buyResume .time .value {
   font-size: 26px;
   color: #f18932;
@@ -4227,13 +4250,13 @@ select {
   width: 100px;
   margin: 0 auto;
 }
-/* line 1033, sass/modules/pages/_session-buy.scss */
+/* line 1054, sass/modules/pages/_session-buy.scss */
 #buyResume .time .sectionTitle {
   display: block;
   font-size: 18px;
 }
 
-/* line 1041, sass/modules/pages/_session-buy.scss */
+/* line 1062, sass/modules/pages/_session-buy.scss */
 .session-buy-error {
   background: url(web/error.png) no-repeat top center;
   margin: 100px 200px;
@@ -4243,14 +4266,14 @@ select {
   font-size: 30px;
   font-weight: 300;
 }
-/* line 1049, sass/modules/pages/_session-buy.scss */
+/* line 1070, sass/modules/pages/_session-buy.scss */
 .session-buy-error .btn {
   margin-top: 50px;
   font-size: 20px;
   display: inline-block;
 }
 
-/* line 1056, sass/modules/pages/_session-buy.scss */
+/* line 1077, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error {
   background: url(web/clock.png) no-repeat top center;
   margin: 100px 200px;
@@ -4260,13 +4283,13 @@ select {
   font-size: 24px;
   font-weight: 300;
 }
-/* line 1064, sass/modules/pages/_session-buy.scss */
+/* line 1085, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error .title {
   font-size: 50px;
   color: #cc0017;
   font-weight: 200;
 }
-/* line 1069, sass/modules/pages/_session-buy.scss */
+/* line 1090, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error .btn {
   margin-top: 50px;
   font-size: 20px;
@@ -7601,5 +7624,27 @@ select {
   .movie-detail-container .movie-detailed-info .vertical-banner,
   .movie-detail-container .movie-detailed-info .watch-trailer {
     display: none;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  /* line 3, sass/modules/base/responsive/_r_session-buy.scss */
+  #SessionCheckout .ticketsSelection {
+    padding: 100px 0;
+  }
+  /* line 6, sass/modules/base/responsive/_r_session-buy.scss */
+  #SessionCheckout .seatsSelection {
+    padding: 100px 0 0;
+  }
+  /* line 9, sass/modules/base/responsive/_r_session-buy.scss */
+  #SessionCheckout .paymentInfo {
+    padding: 100px 0;
+  }
+  /* line 11, sass/modules/base/responsive/_r_session-buy.scss */
+  #SessionCheckout .paymentInfo .paymentForm {
+    width: 61.25%;
+    float: left;
+    margin-left: 0.625%;
+    margin-right: 0.625%;
+    margin-left: 19.375%;
   }
 }

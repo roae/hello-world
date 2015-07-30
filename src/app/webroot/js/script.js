@@ -422,18 +422,18 @@ function nextSlide(){
 		});
 	}
 
-	$('.the-content').waypoint(function(direction) {
+	$('.the-content').waypoint({
+		handler:function(direction){
+		    var $header = $('#main-header');
 
-	  	var $header = $('#main-header');
-
-	  	if( direction == 'down' ) {
-	  		$header.addClass('sticky');
-	  		//$('body').css('padding-top', '118px');
-	  	} else {
-	  		$header.removeClass('sticky');
-	  		//$('body').css('padding-top', '0');
-	  	}
-
+		    if( direction == 'down' ) {
+		        $header.addClass('sticky');
+		        //$('body').css('padding-top', '118px');
+		    } else {
+		        $header.removeClass('sticky');
+		        //$('body').css('padding-top', '0');
+		    }
+		}
 	});
 
 	if($('.complex:has(.movies)' ).length){

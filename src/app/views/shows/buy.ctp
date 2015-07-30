@@ -1,5 +1,6 @@
 <?php /* @var $this View  */
 if(!empty($record)){
+	$this->Html->script("ext/jquery.touchSwipe.min.js",array('inline'=>false));
 	$this->Html->script("buy.min.js",array('inline'=>false));
 	echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
 	?>
@@ -144,7 +145,8 @@ if(!empty($record)){
 				</div>
 			</div>
 			<div class="room-container">
-
+				<div id="logTouchSwipe"></div>
+				<div id="logTouchPinch"></div>
 				<div id="SeatLayout" data-show="<?= $record['Show']['id']?>">
 					<div class="loadingSeats">
 						<i class="icon-loading"></i>

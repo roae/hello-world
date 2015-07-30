@@ -381,8 +381,13 @@
 			text-align: center;
 			color: #313131;
 
+			#SeatLayout{
+				overflow: hidden;
+			}
+
 			.layout {
 				margin: 0 auto;
+				position: relative;
 				//border-collapse: separate;
 				//border-spacing: 2px;
 				tr:nth-child(odd) td {

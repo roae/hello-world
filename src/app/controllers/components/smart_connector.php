@@ -152,11 +152,11 @@ class SmartConnectorComponent extends object{
 				'08'=>'0',
 				'09'=>'0',
 				'16'=>'01',
-				'17'=>'08',
+				'17'=>'06',
 				'64'=>'MX',
 				'65'=>'484',
-				'19'=>$stan,
 				'47'=>$this->__generateSubcampo47($data),
+				'19'=>$stan,
 			));
 			#pr($dataText);
 
@@ -245,7 +245,7 @@ class SmartConnectorComponent extends object{
 					return array(
 						'error'=>true,
 						'message'=>"No hubo respuesta del servidor de smart",
-						'code'=>"-1"
+						'code'=>"-1",
 					);
 				}
 			}catch (Exception $e){
@@ -399,7 +399,7 @@ class SmartConnectorComponent extends object{
 			}
 
 			//if(isset($this->out)){
-				//$this->out($stan);
+			//$this->out($stan);
 			//}
 
 			#pr("stan $stan");
@@ -547,12 +547,12 @@ class SmartConnectorComponent extends object{
 		$browser = $_browser['browser']."v".$_browser['version']." ".$_browser['os'];
 		$hostname = "webCiticinemas";
 		$country = "MX";
-		$metodo_envio = "0";
+		$metodo_envio = "05";
 		$sku = " ";
 		$ip = env('REMOTE_ADDR');
 		$tel = " ";
 		$codigo_tel = " ";
-		return sprintf("%s|%s|%s|%s|%s|%s|%s|%s|%s",$data['email'],$browser,$hostname,$country,$metodo_envio,$sku,$ip,$tel,$codigo_tel);
+		return sprintf("%s|%s|%s|%s|%s|%s|%s|%s|%s",$data['email'],$hostname,$browser,$country,$metodo_envio,$sku,$ip,$tel,$codigo_tel);
 	}
 
 	function __buildDataText($data){

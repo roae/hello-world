@@ -89,7 +89,7 @@ if(!empty($record)){
 				<thead>
 					<tr>
 						<th></th>
-						<th>Precio</th>
+						<th class="price">Precio</th>
 						<th>Cantidad</th>
 						<th>Subtotal</th>
 					</tr>
@@ -99,12 +99,16 @@ if(!empty($record)){
 				foreach($record['TicketPrice'] as $key => $ticketPrice){
 					?>
 					<tr data-code="<?= $ticketPrice['code']?>" >
-						<th><?= $ticketPrice['description']?></th>
+						<th>
+							<?= $ticketPrice['description']?>
+							<span class="price">$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</span>
+						</th>
 						<td data-price="<?= $ticketPrice['price'] ?>" class="price">$<?= number_format($ticketPrice['price'], 2, ".", ",") ?> c/u</td>
 						<td class="buttons">
 							<button type="button" class="less">-</button>
 							<span class="cantidad" data-qty="0">0</span>
 							<button type="button" class="plus">+</button>
+
 							<?php
 							echo $this->Form->hidden("BuyTicket.$key.description",array('value'=>$ticketPrice['description']));
 							echo $this->Form->hidden("BuyTicket.$key.code",array('value'=>$ticketPrice['code']));
@@ -130,7 +134,7 @@ if(!empty($record)){
 			<div class="loyaltyCard">
 				<div class="input text">
 					<label for="">[:loyalty-card-text:]</label>
-					<input type="text" id="loyalty"/>
+					<input type="text" id="loyalty" placeholder="[:loyalty-card-help:]"/>
 					<button typ="button" id="loyaltyButton" class="btn-primary">[:add-card:]</button>
 				</div>
 				<div>[:que-es-loyalty:]</div>
@@ -195,7 +199,7 @@ if(!empty($record)){
 
 			<div class="paymentForm">
 				<fieldset class="paymentTypes">
-					<input id="BuyPaymentType0" type="radio" <?= !isset($this->data['Buy']['payment_method']) || (isset($this->data['Buy']['payment_method']) && $this->data['Buy']['payment_method']==0) ? 'checked="checked"': ""?> value="0" name="data[Buy][payment_type]">
+					<input id="BuyPaymentType0" type="radio" <?= !isset($this->data['Buy']['payment_method']) || (isset($this->data['Buy']['payment_method']) && $this->data['Buy']['payment_method']==0) ? 'checked="checked"': ""?> value="0" name="data[Buy][payment_method]">
 					<label for="BuyPaymentType0">
 						[:credit-debit-card:]
 						<span class="icons">

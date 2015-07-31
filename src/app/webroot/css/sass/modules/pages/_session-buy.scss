@@ -75,6 +75,7 @@
 		.sub-title {
 			font-size: 24px;
 			font-weight: 200;
+			color:$yellow;
 			padding-left: gutter();
 			@include text-overflow();
 		}
@@ -214,10 +215,16 @@
 					color: #434343;
 					font-size: 20px;
 					text-align: left;
+					.price{
+						display: none;
+					}
 				}
 			}
 			.buttons {
 				padding: 10px;
+				.price{
+					display: none;
+				}
 			}
 			.subtotal {
 				text-align: center;
@@ -232,6 +239,7 @@
 				width: 42px;
 				text-align: center;
 			}
+
 			.less {
 				cursor: pointer;
 				float: left;
@@ -385,6 +393,7 @@
 			font-family: "Open Sans", "Raleway", "Helvetica Neue", Helvetica, Arial;
 			text-align: center;
 			color: #313131;
+			overflow: hidden;
 
 			#SeatLayout{
 				overflow: hidden;

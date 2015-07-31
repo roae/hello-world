@@ -80,7 +80,7 @@
 		}
 		.schedule{
 			padding: 10px 0;
-			margin-top: 0;
+			margin-top: 10px;
 		}
 		.ticketsSelection{
 			padding: 50px 0;
@@ -127,7 +127,7 @@
 			padding: 10px 0;
 			margin-top: 10;
 			.title{
-				font-size: 28px;
+				font-size: 18px;
 			}
 			.value{
 				font-size: 30px;
@@ -140,6 +140,338 @@
 			.paymentForm {
 				@include span(14);
 				@include push(1);
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 667px) {
+	#SessionCheckout{
+		.stepTitle{
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		.ticketsSelection{
+			table{
+				tbody{
+					th{
+						padding: 10px 1px;
+					}
+					td{
+						padding: 10px 1px;
+					}
+					.buttons{
+						padding: 1px;
+					}
+				}
+				.less{
+					width: 30px;
+					height: 30px;
+					&:before{
+						left:6px;
+						top: 12px;
+					}
+				}
+				.plus{
+					width: 30px;
+					height: 30px;
+					&:before{
+						left:6px;
+						top: 12px;
+					}
+					&:after{
+						left:12px;
+						top: 6px;
+					}
+				}
+				.cantidad{
+					font-size: 20px;
+					line-height: 30px;
+				}
+			}
+		}
+		.total{
+			.title{
+				font-size: 24px;
+			}
+			.value{
+				font-size: 40px;
+			}
+			.taxes{
+				font-size: 16px;
+			}
+		}
+		.loyaltyCard{
+			@include full;
+			@include with-layout(16) {
+				.input{
+					input{
+						@include span(11);
+						margin-left: 0;
+					}
+					.btn-primary{
+						@include span(5);
+						margin-right: 0;
+						font-size: 16px;
+					}
+				}
+			}
+
+		}
+	}
+}
+
+@media only screen and (max-width: 568px) {
+	#SessionCheckout{
+		.big-cover{
+			padding: 10px 0 15px;
+		}
+		.cover-container{
+			@include span(2);
+		}
+		.movie-information{
+			width: auto;
+			float: none;
+		}
+		.movie-details{
+			clear: left;
+			.info{
+				font-size: 14px;
+				strong{
+					width: 100px;
+				}
+			}
+		}
+		.schedule{
+			.title{
+				font-size: 14px;
+			}
+			.value{
+				font-size: 26px;
+			}
+		}
+
+		.ticketsSelection{
+			table{
+				tbody{
+					th{
+						font-size: 14px;
+					}
+					td{
+						width: 80px;
+					}
+				}
+				.buttons{
+					width: 110px;
+					.cantidad{
+						font-size: 16px;
+					}
+				}
+				.subtotal{
+					width: 60px;
+				}
+			}
+		}
+		.total{
+			.value{
+				font-size: 30px;
+			}
+		}
+
+		.paymentInfo{
+			.paymentForm{
+				@include full;
+				.paymentTypes{
+					label{
+						padding: 10px 5px 10px 35px;
+						background-position:5px center !important;
+					}
+				}
+			}
+		}
+		.disclaimer{
+			margin: 50px 20px 0;
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	#SessionCheckout{
+		.cover-container{
+			@include span(3);
+		}
+		.movie-information{
+			h1{
+				padding-top: 10px;
+			}
+		}
+		@include with-layout(12){
+			.movie-details{
+				@include span(7);
+			}
+			.schedule{
+				@include span(5);
+			}
+		}
+
+		.stepTitle{
+			margin-top: 50px;
+			strong{
+				font-size: 24px;
+				&:before{
+					width: 35px;
+					height: 35px;
+					left: 50%;
+					top:-80px;
+					@include translate(-50%);
+				}
+			}
+		}
+		.ticketsSelection{
+			table{
+				@include full;
+			}
+		}
+		.total{
+			@include full;
+		}
+
+		.loyaltyCard{
+			@include full;
+			@include with-layout(16) {
+				.input{
+					input{
+						@include span(10);
+					}
+					.btn-primary{
+						@include span(6);
+					}
+				}
+			}
+
+		}
+
+		.seatsSelection{
+			.room-container {
+				.instructions{
+					.available,
+					.unavailable,
+					.yourseats{
+						margin-right: 10px;
+						&:before{
+							margin-right: 5px;
+							position: relative;
+							top: 4px;
+						}
+					}
+				}
+			}
+		}
+
+		.paymentInfo{
+			.paymentForm{
+				.paymentTypes{
+					label{
+						font-size: 16px;
+					}
+				}
+				.exp-date,
+				.cvv {
+					@include full;
+				}
+			}
+		}
+
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	#SessionCheckout{
+		.movie-information{
+			h1{
+				padding-top: 0px;
+			}
+		}
+		.loyaltyCard{
+			@include full;
+			@include with-layout(16) {
+				.input{
+					input{
+						@include full;
+					}
+					.btn-primary{
+						margin-top: 10px;
+						@include full;
+					}
+				}
+			}
+
+		}
+		.paymentInfo{
+			.paymentForm{
+				.paymentTypes{
+					label{
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	#SessionCheckout{
+		.movie-information{
+			h1{
+				font-size: 24px;
+			}
+			.sub-title{
+				font-size: 16px;
+			}
+		}
+		.movie-details{
+			@include full;
+		}
+		.schedule{
+			@include full;
+		}
+		.ticketsSelection{
+			table{
+				tbody{
+					th{
+						.price{
+							color:lighten($gray,5%);
+							display: block;
+							@include full;
+							font-size: 12px;
+						}
+					}
+				}
+				.price{
+					display: none;
+				}
+			}
+		}
+		.seatsSelection{
+			.room-container {
+				.instructions{
+					display: inline-block;
+					.available,
+					.unavailable,
+					.yourseats{
+						display: block;
+						text-align: left;
+					}
+				}
+			}
+		}
+		.paymentInfo{
+			.paymentForm{
+				.paymentTypes{
+					label{
+						font-size: 12px;
+					}
+				}
 			}
 		}
 	}

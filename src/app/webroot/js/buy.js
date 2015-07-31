@@ -95,7 +95,7 @@ $(document).on("ready",function(){
 		$cantidad = $(".cantidad",$parent);
 		$qtyInput = $("input[rel='qty']",$parent);
 		cantidad = $cantidad.data("qty");
-		precio = $(".price",$parent ).data("price");
+		precio = $("td.price",$parent) .data("price");
 		code = $parent.data("code");
 		$(".message",$container ).hide("fast");
 
@@ -125,7 +125,7 @@ $(document).on("ready",function(){
 		$qtyInput = $("input[rel='qty']",$parent);
 		cantidad = $cantidad.data("qty");
 		code = $parent.data("code");
-		precio = $(".price",$parent ).data("price");
+		precio = $("td.price",$parent) .data("price");
 		if(cantidad != 0){
 			cantidad--;
 			countTickets--;
@@ -175,7 +175,7 @@ $(document).on("ready",function(){
 			code = $parent.data("code");
 			$cantidad = $(".cantidad",$parent);
 			cantidad = $cantidad.data("qty");
-			precio = $(".price",$parent ).data("price");
+			precio = $("td.price",$parent) .data("price");
 			subtotal = precio*cantidad;
 			$(".subtotal",$parent ).html("$"+subtotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
 			$ticketResume = $("#buyResume .tickets-details tr[data-code='"+code+"']");

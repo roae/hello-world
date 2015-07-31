@@ -771,7 +771,10 @@
 		padding-top:50px !important;
 	}
 	#main-header{
-		padding: 5px;
+		.fndHeader{
+			padding: 5px;
+		}
+
 		height: 50px;
 		.col-container{
 			margin:0;

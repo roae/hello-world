@@ -199,7 +199,7 @@
 
 		table {
 			@include span(10);
-			margin-left: span(1)+gutter();
+			@include push(1);
 			font-size: 18px;
 			color: #565656;
 			tbody {
@@ -238,13 +238,17 @@
 				border: 2px solid #D10014;
 				color: #FFF;
 				background: #FFF;
-				font-size: 40px;
 				font-family: Arial;
 				width: 40px;
 				height: 40px;
 				line-height: 30px;
 				position: relative;
 				@include border-radius(50%);
+				@include box-sizing(border-box);
+				display: block;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				text-indent: -10000000px;
 				&:before {
 					content: " ";
 					border: 0;
@@ -266,12 +270,13 @@
 				border: 2px solid #00CC67;
 				color: #FFF;
 				background: #FFF;
-				font-size: 40px;
 				font-family: Arial;
 				width: 40px;
 				height: 40px;
 				position: relative;
 				@include border-radius(50%);
+				@include box-sizing(border-box);
+				display: block;
 				&:before {
 					content: " ";
 					border: 0;
@@ -322,7 +327,7 @@
 
 	.loyaltyCard {
 		@include span(10);
-		margin-left: span(1)+gutter();
+		@include push(1);
 		margin-top: 40px;
 		label {
 			display: block;

@@ -2,7 +2,8 @@
 var countTickets = totalPayment = 0;
 var countTicketsLimit = 10; // TODO: Poner dato en la configuracion del sitio en el CMS
 var ticketsSelected = [];
-var LayoutZoom = 0;
+var LayoutZoom = 1;
+//var LayoutZoom = 0;
 var LayoutLeft = 0;
 //var LayoutRight = 0;
 var LayoutTop = 0;
@@ -70,8 +71,12 @@ $(document).on("ready",function(){
 				}
 			}
 			$("#SeatLayout" ).html(html);
-			$("#SeatLayout" ).width($("#SeatLayout .layout" ).width());
-			$("#SeatLayout" ).height($("#SeatLayout .layout" ).height());
+			//$("#SeatLayout" ).width($("#SeatLayout .layout" ).width());
+			//$("#SeatLayout" ).height($("#SeatLayout .layout" ).height());
+			$("#SeatLayout .layout" ).each(function(){
+				new RTP.PinchZoom($(this), {
+				});
+			})
 
 			seatSelection();
 			setSeatsSelected();
@@ -213,73 +218,6 @@ $(document).on("ready",function(){
 	buyCountDown();
 	buildTicketsArray();
 	updateResume();
-
-
-	$("#SeatLayout").swipe({
-		swipeStatus:function(event, phase, direction, distance , duration , fingerCount) {
-			//$("#logTouchSwipe").html("Direction "+direction+" Distance "+distance+" Duration "+duration+" finger count "+fingerCount);
-			if(fingerCount == 1){
-				if(phase == "move"){
-					//position = $(".layout",$(this) ).position();
-					left = right = 0;
-					if(direction == "left"){
-						left = parseInt(LayoutLeft) - parseFloat(distance);
-					}else if(direction == "right"){
-						left = parseInt(LayoutLeft) + parseFloat(distance);
-					}
-					//$(".layout",$(this) ).css({'left':left});
-
-					if(direction == "up"){
-						right = parseInt(LayoutTop) - parseFloat(distance);
-					}else if(direction == "down"){
-						right = parseInt(LayoutTop) + parseFloat(distance);
-					}
-					$(".layout",$(this) ).css({'left':left,'right':right});
-				}
-				if(phase == "end" || phase == "cancel"){
-					LayoutLeft = left;
-				}
-			}
-
-		},
-		pinchStatus:function(event, phase, direction, distance , duration , fingerCount, pinchZoom) {
-			//$("#logTouchPinch").html("Pinch zoom scale "+pinchZoom+"  Distance pinched "+distance+"Direction " + direction);
-			//$("#logTouchSwipe").html("Pinch zoom scale <strong>"+pinchZoom+"</strong> phase <strong>"+phase+"</strong> Layout zoom "+LayoutZoom);
-			//zoom = LayoutZoom;
-
-			if ( phase == "move" ) {
-				if(direction == "in"){
-					zoom = parseFloat(LayoutZoom) +  parseFloat(pinchZoom);
-				}else if(direction == "out"){
-					zoom = parseFloat(LayoutZoom) -  parseFloat(pinchZoom);
-				}
-
-				if(fingerCount > 1){
-					if(zoom >= 1){
-						if(zoom <=2.5){
-							$('.layout',$(this)).css({ 'zoom': zoom });
-						}
-					}else{
-						$('.layout',$(this)).css({ 'zoom': 1 });
-						$(".layout",$(this) ).css({'left':0});
-						$(".layout",$(this) ).css({'top':0});
-					}
-
-				}
-			}
-			//$("#logTouchPinch").html("Pinch zoom scale <strong>"+pinchZoom+"</strong> phase <strong>"+phase+"</strong> Layout zoom "+LayoutZoom+" zoom "+zoom+" Direction " + direction);
-			if(phase == "end" || phase == "cancel"){
-				if(zoom <=2.5){
-					LayoutZoom = zoom
-				}
-			}
-
-		},
-		fingers:2,
-		allowPageScroll:true,
-		threshold:10,
-		pinchThreshold:10
-	});
 
 });
 

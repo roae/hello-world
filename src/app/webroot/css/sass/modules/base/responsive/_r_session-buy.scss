@@ -1,8 +1,51 @@
 @media only screen and (max-width: 1366px) {
 	#SessionCheckout{
+		.big-cover{
+			h1{
+				font-size: 40px;
+			}
+			.sub-title{
+				font-size: 20px;
+			}
+		}
+		.movie-details{
+			.info{
+				margin-top: 5px;
+				font-size: 16px;
+			}
+		}
 		.ticketsSelection{
 			padding: 100px 0;
+			table{
+				@include span(11);
+				font-size: 14px;
+				tbody{
+					th{
+						font-size: 16px;
+					}
+				}
+			}
 		}
+		.loyaltyCard {
+			@include span(11);
+			@include with-layout(11) {
+				.input {
+					overflow: hidden;
+					input {
+						@include span(7);
+						@include border-radius(5px);
+						@include box-sizing(border-box);
+						margin-left: 0;
+					}
+					.btn-primary {
+						@include span(4);
+						@include box-sizing(border-box);
+						font-size: 18px;
+					}
+				}
+			}
+		}
+
 		.seatsSelection{
 			padding: 100px 0 0;
 		}
@@ -11,6 +54,92 @@
 			.paymentForm {
 				@include span(10);
 				@include push(3);
+			}
+		}
+	}
+	#buyResume{
+		.total{
+			.value{
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 854px) {
+	#SessionCheckout{
+		font-size: 14px;
+		.big-cover{
+			padding: 30px 0;
+			h1{
+				font-size: 30px;
+			}
+			.sub-title{
+				font-size: 20px;
+			}
+		}
+		.schedule{
+			padding: 10px 0;
+			margin-top: 0;
+		}
+		.ticketsSelection{
+			padding: 50px 0;
+		}
+		.seatsSelection{
+			padding: 50px 0 0;
+			.room-container{
+				margin-bottom: 50px;
+			}
+		}
+		@include with-layout(12) {
+			.movie-details {
+				@include span(7);
+				.info{
+					margin-top:0;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					@include border-radius(3px);
+				}
+			}
+			.schedule {
+				@include span(5);
+			}
+		}
+
+		.paymentInfo{
+			padding: 50px 0;
+			.paymentForm {
+				@include span(12);
+				@include push(2);
+			}
+		}
+	}
+	#buyResume{
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 736px) {
+	#SessionCheckout{
+		.schedule{
+			margin-top: 10px;
+			padding: 10px 0;
+			margin-top: 10;
+			.title{
+				font-size: 28px;
+			}
+			.value{
+				font-size: 30px;
+			}
+		}
+		.movie-details{
+			margin-top: 10px;
+		}
+		.paymentInfo{
+			.paymentForm {
+				@include span(14);
+				@include push(1);
 			}
 		}
 	}

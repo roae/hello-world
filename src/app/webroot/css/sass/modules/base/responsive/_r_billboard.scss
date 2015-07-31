@@ -29,9 +29,6 @@
 				.schedules {
 					@include span(9);
 					padding-bottom: 0;
-					h3{
-						font-size: 18px;
-					}
 
 				}
 
@@ -71,6 +68,9 @@
 		}
 		.schedule{
 			padding: 10px 0;
+			h3{
+				font-size: 18px;
+			}
 			.label{
 				font-size: 12px;
 				&:after{

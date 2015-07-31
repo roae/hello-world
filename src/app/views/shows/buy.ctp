@@ -3,7 +3,7 @@ if(!empty($record)){
 	#$this->Html->script("ext/jquery.touchSwipe.min.js",array('inline'=>false));
 	$this->Html->script("ext/pinchzoom.min.js",array('inline'=>false));
 	$this->Html->script("buy.min.js",array('inline'=>false));
-	echo $this->Form->create("Buy",array('url'=>$this->Html->url()));
+	echo $this->Form->create("Buy",array('url'=>$this->Html->url(),'id'=>'BuyForm'));
 	?>
 	<div class="session-buy-container" id="SessionCheckout">
 		<?php
@@ -246,7 +246,7 @@ if(!empty($record)){
 
 				?>
 				<div class="button">
-					<button type="submit" class="btn-primary" >[:completar-compra:]</button>
+					<button type="submit" class="btn-primary" id="BuyFormSubmit">[:completar-compra:]</button>
 				</div>
 
 				<div class="disclaimer">
@@ -327,6 +327,12 @@ if(!empty($record)){
 				</div>
 
 			</div>
+		</div>
+	</div>
+	<div id="SendingBuy">
+		<div class="message">
+			<i class="icon-loading"></i>
+			<div>[:procesando-compra:]</div>
 		</div>
 	</div>
 	<?php

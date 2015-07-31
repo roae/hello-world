@@ -11,6 +11,10 @@ window.log = function(){
   }
 };
 
+var touch = window.ontouchstart
+	|| navigator.MaxTouchPoints > 0
+	|| navigator.msMaxTouchPoints > 0;
+
 // make it safe to use console.log always
 (function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,timeStamp,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();){b[a]=b[a]||c}})((function(){try
 {console.log();return window.console;}catch(err){return window.console={};}})());
@@ -249,11 +253,17 @@ $(function(){
 		return false;
 	}
 
-	$("html" ).click(function(event){
+	$("html" ).on("click",function(event){
 		if($(".menu-showing" ).length){
 			$(".account-container" ).removeClass("menu-showing");
 		}
-	})
+	});
+
+	$("html" ).on("touchstart",function(event){
+		if($(".menu-showing" ).length){
+			$(".account-container" ).removeClass("menu-showing");
+		}
+	});
 
 	$(".account-container" ).click(function(event){
 		if(Modernizr.mq('only screen and (max-width: 854px)')){
@@ -268,6 +278,7 @@ $(function(){
 		$($(this ).attr("href") ).addClass("selected");
 		$(this ).parent().addClass("selected");
 	})
+
 });
 
 function changeSlide(item){

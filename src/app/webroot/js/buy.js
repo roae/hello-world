@@ -15,6 +15,11 @@ var $container;
 
 $(document).on("ready",function(){
 
+	$("#BuyForm" ).on("submit",function(event){
+		$("#SendingBuy" ).css({display:'block'});
+		$("#BuyFormSubmit" ).prop('disabled',true);
+	});
+
 	$("#BuyCcnumber,#BuyCvv" ).on("keypress",function(e){
 		key = e.keyCode || e.which;
 		//console.log(key);

@@ -929,6 +929,7 @@
 		//display: table-cell;
 		display: inline-block;
 		position: relative;
+		vertical-align: top;
 		&:after{
 			content: " ";
 			display: block;
@@ -970,6 +971,7 @@
 		display: inline-block;
 		height: 70px;
 		position: relative;
+		vertical-align: top;
 		&:after{
 			content: " ";
 			display: block;
@@ -1027,6 +1029,7 @@
 		float: none;
 		//display: table-cell;
 		display: inline-block;
+		vertical-align: top;
 
 		.titleSection{
 			font-weight: bold;
@@ -1052,6 +1055,7 @@
 		@include box-sizing(border-box);
 		//display: table-cell;
 		display: inline-block;
+		vertical-align: top;
 		position: relative;
 		&:before{
 			content: " ";

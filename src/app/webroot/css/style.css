@@ -1855,16 +1855,15 @@ select {
 .next-premieres {
   position: relative;
   width: 100%;
-  padding: 25px 15px;
+  padding: 25px 0;
   margin-top: 40px;
   text-align: center;
   background-color: #eff4f7;
-  overflow: hidden;
 }
 /* line 340, sass/modules/pages/_home.scss */
 .next-premieres .info {
   text-align: left;
-  padding: 10px;
+  padding: 5px;
 }
 /* line 345, sass/modules/pages/_home.scss */
 .next-premieres .titleCommingSoon {
@@ -1877,15 +1876,62 @@ select {
 .next-premieres .movies {
   position: relative;
 }
-/* line 356, sass/modules/pages/_home.scss */
+/* line 354, sass/modules/pages/_home.scss */
+.next-premieres .movies:before {
+  background-image: -moz-linear-gradient(left, #eff4f7, rgba(239, 244, 247, 0));
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
+  background-image: -webkit-linear-gradient(left, #eff4f7, rgba(239, 244, 247, 0));
+  background-image: -o-linear-gradient(left, #eff4f7, rgba(239, 244, 247, 0));
+  background-image: linear-gradient(to right, #eff4f7, rgba(239, 244, 247, 0));
+  background-repeat: repeat-x;
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: " ";
+  display: block;
+}
+/* line 364, sass/modules/pages/_home.scss */
+.next-premieres .movies:after {
+  background-image: -moz-linear-gradient(left, rgba(239, 244, 247, 0), #eff4f7);
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
+  background-image: -webkit-linear-gradient(left, rgba(239, 244, 247, 0), #eff4f7);
+  background-image: -o-linear-gradient(left, rgba(239, 244, 247, 0), #eff4f7);
+  background-image: linear-gradient(to right, rgba(239, 244, 247, 0), #eff4f7);
+  background-repeat: repeat-x;
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: " ";
+  display: block;
+}
+/* line 375, sass/modules/pages/_home.scss */
+.next-premieres .antiscroll-wrap {
+  overflow: hidden;
+  overflow-x: auto;
+}
+/* line 380, sass/modules/pages/_home.scss */
+.next-premieres .movies-list {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
+/* line 386, sass/modules/pages/_home.scss */
 .next-premieres .movie {
   padding: 0 15px;
+  float: left;
+  display: inline-block;
+  vertical-align: top;
+  width: 190px;
 }
-/* line 359, sass/modules/pages/_home.scss */
+/* line 393, sass/modules/pages/_home.scss */
 .next-premieres .movie .image-container {
   position: relative;
 }
-/* line 363, sass/modules/pages/_home.scss */
+/* line 397, sass/modules/pages/_home.scss */
 .next-premieres .movie img {
   width: 100%;
   display: block;
@@ -1893,30 +1939,30 @@ select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 369, sass/modules/pages/_home.scss */
+/* line 403, sass/modules/pages/_home.scss */
 .next-premieres .movie h2 {
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: normal;
 }
-/* line 375, sass/modules/pages/_home.scss */
+/* line 409, sass/modules/pages/_home.scss */
 .next-premieres .movie span {
   display: block;
   text-align: left;
   font-size: 13px;
   color: #818386;
 }
-/* line 382, sass/modules/pages/_home.scss */
+/* line 416, sass/modules/pages/_home.scss */
 .next-premieres .movie a {
   font-size: 14px;
   color: #818386;
   line-height: 1.5;
 }
-/* line 388, sass/modules/pages/_home.scss */
+/* line 422, sass/modules/pages/_home.scss */
 .next-premieres .movie .date {
   color: #CC0017;
 }
-/* line 392, sass/modules/pages/_home.scss */
+/* line 426, sass/modules/pages/_home.scss */
 .next-premieres .movie .presale {
   background: #FECC00;
   padding: 3px 10px;
@@ -4125,8 +4171,9 @@ select {
   float: none;
   display: inline-block;
   position: relative;
+  vertical-align: top;
 }
-/* line 932, sass/modules/pages/_session-buy.scss */
+/* line 933, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details:after {
   content: " ";
   display: block;
@@ -4137,13 +4184,13 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 943, sass/modules/pages/_session-buy.scss */
+/* line 944, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .poster {
   float: left;
   width: 55px;
   margin-right: 10px;
 }
-/* line 948, sass/modules/pages/_session-buy.scss */
+/* line 949, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .title {
   font-size: 16px;
   color: #cc0017;
@@ -4151,13 +4198,13 @@ select {
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 957, sass/modules/pages/_session-buy.scss */
+/* line 958, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .info strong {
   font-weight: bold;
   width: 60px;
   display: inline-block;
 }
-/* line 965, sass/modules/pages/_session-buy.scss */
+/* line 966, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details {
   width: 30%;
   float: left;
@@ -4168,8 +4215,9 @@ select {
   display: inline-block;
   height: 70px;
   position: relative;
+  vertical-align: top;
 }
-/* line 973, sass/modules/pages/_session-buy.scss */
+/* line 975, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details:after {
   content: " ";
   display: block;
@@ -4180,31 +4228,31 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 983, sass/modules/pages/_session-buy.scss */
+/* line 985, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table {
   width: 100%;
 }
-/* line 985, sass/modules/pages/_session-buy.scss */
+/* line 987, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table th {
   text-align: left;
   font-weight: bold;
   position: relative;
 }
-/* line 990, sass/modules/pages/_session-buy.scss */
+/* line 992, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table .ticket {
   display: none;
 }
-/* line 994, sass/modules/pages/_session-buy.scss */
+/* line 996, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table tr td:first-child {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 1001, sass/modules/pages/_session-buy.scss */
+/* line 1003, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table td {
   padding: 1px;
 }
-/* line 1006, sass/modules/pages/_session-buy.scss */
+/* line 1008, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btn-success {
   padding: 5px;
   font-size: 12px;
@@ -4214,16 +4262,16 @@ select {
   bottom: -40px;
   left: 0;
 }
-/* line 1015, sass/modules/pages/_session-buy.scss */
+/* line 1017, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btn-success:active {
   bottom: -39px;
   top: auto;
 }
-/* line 1021, sass/modules/pages/_session-buy.scss */
+/* line 1023, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btnSelectSeats {
   display: none;
 }
-/* line 1025, sass/modules/pages/_session-buy.scss */
+/* line 1027, sass/modules/pages/_session-buy.scss */
 #buyResume .total {
   width: 11.25%;
   float: left;
@@ -4231,12 +4279,13 @@ select {
   margin-right: 0.625%;
   float: none;
   display: inline-block;
+  vertical-align: top;
 }
-/* line 1031, sass/modules/pages/_session-buy.scss */
+/* line 1034, sass/modules/pages/_session-buy.scss */
 #buyResume .total .titleSection {
   font-weight: bold;
 }
-/* line 1034, sass/modules/pages/_session-buy.scss */
+/* line 1037, sass/modules/pages/_session-buy.scss */
 #buyResume .total .value {
   font-size: 34px;
   line-height: 38px;
@@ -4245,12 +4294,12 @@ select {
   width: 100%;
   margin: 0 auto;
 }
-/* line 1042, sass/modules/pages/_session-buy.scss */
+/* line 1045, sass/modules/pages/_session-buy.scss */
 #buyResume .total .iva {
   font-size: 12px;
   color: #2a2a2a;
 }
-/* line 1048, sass/modules/pages/_session-buy.scss */
+/* line 1051, sass/modules/pages/_session-buy.scss */
 #buyResume .time {
   width: 17.5%;
   float: left;
@@ -4262,9 +4311,10 @@ select {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
+  vertical-align: top;
   position: relative;
 }
-/* line 1056, sass/modules/pages/_session-buy.scss */
+/* line 1060, sass/modules/pages/_session-buy.scss */
 #buyResume .time:before {
   content: " ";
   display: block;
@@ -4275,7 +4325,7 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 1066, sass/modules/pages/_session-buy.scss */
+/* line 1070, sass/modules/pages/_session-buy.scss */
 #buyResume .time .value {
   font-size: 26px;
   color: #f18932;
@@ -4283,13 +4333,13 @@ select {
   width: 100px;
   margin: 0 auto;
 }
-/* line 1073, sass/modules/pages/_session-buy.scss */
+/* line 1077, sass/modules/pages/_session-buy.scss */
 #buyResume .time .sectionTitle {
   display: block;
   font-size: 18px;
 }
 
-/* line 1081, sass/modules/pages/_session-buy.scss */
+/* line 1085, sass/modules/pages/_session-buy.scss */
 #SendingBuy {
   position: fixed;
   top: 0;
@@ -4302,7 +4352,7 @@ select {
   z-index: 9;
   display: none;
 }
-/* line 1091, sass/modules/pages/_session-buy.scss */
+/* line 1095, sass/modules/pages/_session-buy.scss */
 #SendingBuy .message {
   position: fixed;
   z-index: 10;
@@ -4316,7 +4366,7 @@ select {
   text-align: center;
   color: #676767;
 }
-/* line 1105, sass/modules/pages/_session-buy.scss */
+/* line 1109, sass/modules/pages/_session-buy.scss */
 #SendingBuy .message .icon-loading {
   background: url(web/preloader_10-64.gif) no-repeat center;
   width: 64px;
@@ -4324,7 +4374,7 @@ select {
   display: inline-block;
 }
 
-/* line 1114, sass/modules/pages/_session-buy.scss */
+/* line 1118, sass/modules/pages/_session-buy.scss */
 .session-buy-error {
   background: url(web/error.png) no-repeat top center;
   margin: 100px 200px;
@@ -4334,14 +4384,14 @@ select {
   font-size: 30px;
   font-weight: 300;
 }
-/* line 1122, sass/modules/pages/_session-buy.scss */
+/* line 1126, sass/modules/pages/_session-buy.scss */
 .session-buy-error .btn {
   margin-top: 50px;
   font-size: 20px;
   display: inline-block;
 }
 
-/* line 1129, sass/modules/pages/_session-buy.scss */
+/* line 1133, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error {
   background: url(web/clock.png) no-repeat top center;
   margin: 100px 200px;
@@ -4351,13 +4401,13 @@ select {
   font-size: 24px;
   font-weight: 300;
 }
-/* line 1137, sass/modules/pages/_session-buy.scss */
+/* line 1141, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error .title {
   font-size: 50px;
   color: #cc0017;
   font-weight: 200;
 }
-/* line 1142, sass/modules/pages/_session-buy.scss */
+/* line 1146, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error .btn {
   margin-top: 50px;
   font-size: 20px;

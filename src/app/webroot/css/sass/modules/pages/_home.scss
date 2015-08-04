@@ -331,15 +331,15 @@
 .next-premieres {
 	position: relative;
 	width: 100%;
-	padding: 25px 15px;
+	padding: 25px 0;
 	margin-top: 40px;
 	text-align: center;
 	background-color: lighten($light-gray, 5%);
-	overflow: hidden;
+
 
 	.info {
 		text-align: left;
-		padding: 10px;
+		padding: 5px;
 	}
 
 	.titleCommingSoon {
@@ -351,11 +351,45 @@
 
 	.movies {
 		position: relative;
+		&:before{
+			@include gradientHorizontal(#eff4f7,rgba(#eff4f7,0));
+			width: 50px;
+			height: 100%;
+			position: absolute;
+			top:0;
+			left:0;
+			content: " ";
+			display: block;
+		}
+		&:after{
+			@include gradientHorizontal(rgba(#eff4f7,0),#eff4f7);
+			width: 50px;
+			height: 100%;
+			position: absolute;
+			top:0;
+			right:0;
+			content: " ";
+			display: block;
+		}
+	}
+	.antiscroll-wrap{
+		overflow: hidden;
+		overflow-x: auto;
+	}
+
+	.movies-list{
+		vertical-align: top;
+		display: inline-block;
+		text-align: center;
 	}
 
 	.movie {
 		padding: 0 15px;
-
+		//@include span(2);
+		float: left;
+		display: inline-block;
+		vertical-align: top;
+		width: 190px;
 		.image-container {
 			position: relative;
 		}

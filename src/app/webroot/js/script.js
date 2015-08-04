@@ -415,23 +415,25 @@ function nextSlide(){
 
 	}
 */
-	if( $.fn.owlCarousel ) {
+	/*if( $.fn.owlCarousel ) {
+		var items = $(".next-premieres .movie" ).length;
+		console.log(items);
 		$('.next-premieres .movies-list' ).owlCarousel({
 			center:true,
 			loop:true,
-			items : 8,
+			items : items,
 			pagination : true,
 			paginationNumbers: false,
-			itemsCustom : false,
+			itemsCustom : true,
 			itemsDesktop : [1199,4],
 			itemsDesktopSmall : [980,3],
 			itemsTablet: [768,3],
 			itemsTabletSmall: false,
 			itemsMobile : [479,1],
 			singleItem : false,
-			itemsScaleUp : false,
+			itemsScaleUp : false
 		});
-	}
+	}*/
 
 	$('.the-content').waypoint({
 		handler:function(direction){
@@ -837,6 +839,15 @@ function nextSlide(){
 
 	if($("#mapCanvas" ).length){
 		$("#mapCanvas" ).append($("<iframe/>",{'src':$("#mapCanvas" ).data("url")}));
+	}
+
+	var span8 = 11.25;
+	var gutter8 = 0.625;
+	var $premieresContainer = $('.next-premieres' );
+	if($premieresContainer.length){
+		$movies = $(".movie",$premieresContainer);
+		$(".movies-list",$premieresContainer ).width($movies.eq(0).outerWidth() * $movies.length);
+		$(".antiscroll-wrap",$premieresContainer ).antiscroll().data('antiscroll');
 	}
 
 })(jQuery);

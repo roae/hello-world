@@ -33,6 +33,7 @@ class SmartConnectorComponent extends object{
 		#$this->controller = $controller;
 		$this->settings = am($this->settings, $settings);
 		$this->Setting = ClassRegistry::init('Setting');
+		$this->Location = ClassRegistry::init("Location");
 	}
 
 
@@ -88,6 +89,8 @@ class SmartConnectorComponent extends object{
 				$this->log($xmlData,"SmartConnector");
 
 				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
+					$this->__saveLastStan($stan);
+					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
 							$this->Setting->saveAll(array(
@@ -109,8 +112,6 @@ class SmartConnectorComponent extends object{
 								)
 							));
 							$this->log("[Login] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
-							#Cache::set(array('duration' => '+30 days'));
-							#Cache::write("smart_connector",$cache);
 							setTimezoneByOffset(-7);
 							return true;
 							break;
@@ -347,19 +348,25 @@ class SmartConnectorComponent extends object{
 				}else{
 					$this->log("[Payment] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
 					setTimezoneByOffset(-7);
+					$this->__saveLastStan($stan);
+					$this->__saveCurrentStan($stan+1);
 					return array(
 						'error'=>true,
 						'message'=>"No hubo respuesta del servidor de smart",
 						'code'=>"-1",
+						'stan'=> $stan,
 					);
 				}
 			}catch (Exception $e){
 				$this->log("[Payment] Response Error: ".$e->getMessage(),"SmartConnector");
 				setTimezoneByOffset(-7);
+				$this->__saveLastStan($stan);
+				$this->__saveCurrentStan($stan+1);
 				return array(
 					'error'=>true,
 					'message'=>$e->getMessage(),
-					'code'=>"-1"
+					'code'=>"-1",
+					'stan'=> $stan,
 				);
 			}
 
@@ -598,6 +605,7 @@ class SmartConnectorComponent extends object{
 						'motivo'=>$motivo,
 						'working'=>false,
 						'stan'=>$stan,
+						'location_id'=>$this->settings['location_id'],
 					);
 					Cache::write("reverse_transactions",$transactions);
 					setTimezoneByOffset(-7);
@@ -623,6 +631,7 @@ class SmartConnectorComponent extends object{
 						'motivo'=>$motivo,
 						'working'=>false,
 						'stan'=>$stan,
+						'location_id'=>$this->settings['location_id'],
 					);
 					Cache::set(array('duration' => '+1 day'));
 					Cache::write("reverse_transactions",$transactions);
@@ -680,36 +689,48 @@ class SmartConnectorComponent extends object{
 	}
 
 	function __getStan(){
-		/*$cached = Cache::read("smart_connector");
-		return isset($cached['stan']) ? $cached['stan'] : 1;*/
-		return Configure::read("AppConfig.smart_current_stan");
+		$record = $this->Location->find('first',array(
+			'fields'=>array('Location.smart_current_stan'),
+			'conditions'=>array('Location.id'=>$this->settings['location_id']),
+		));
+		if(!isset($record['Location']['smart_current_stan'])){
+			return 0;
+		}
+		return $record['Location']['smart_current_stan'];
 	}
 
 	function __saveCurrentStan($val){
-		$this->Setting->save(array(
-			'id'=>18, #id del campo smart_current_stan
-			'value'=>$val
+		$this->Location->save(array(
+			'id'=>$this->settings['location_id'],
+			'smart_current_stan'=>$val
 		));
 	}
 
 	function __saveLastStan($val){
-		$this->Setting->save(array(
-			'id'=>17, #id del campo smart_current_stan
-			'value'=>$val
+		$this->Location->save(array(
+			'id'=>$this->settings['location_id'],
+			'smart_last_stan'=>$val
 		));
 	}
 
 	function __isLogged(){
 		$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
-		return date("Y-m-d",Configure::read("AppConfig.smart_login_date")) == date("Y-m-d",$today);
+		$record = $this->Location->find('first',array(
+			'fields'=>array('Location.smart_lastlogin'),
+			'conditions'=>array('Location.id'=>$this->settings['location_id']),
+		));
+		if(!isset($record['Location']['smart_lastlogin'])){
+			return false;
+		}
+		return date("Y-m-d",$record['Location']['smart_lastlogin']) == date("Y-m-d",$today);
 	}
 
 	function __getLastServerKey(){
-		/*Cache::set(array('duration' => '+30 days'));
-		$cached = Cache::read("smart_connector");*/
-		#return isset($cached['lastServerKey'])? $cached['lastServerKey'] : false;
-		return  Configure::read("AppConfig.smart_lastServerKey");
-
+		$record = $this->Location->find('first',array(
+			'fields'=>array('Location.smart_lastserverkey'),
+			'conditions'=>array('Location.id'=>$this->settings['location_id']),
+		));
+		return isset($record['Location']['lastServerKey'])? $record['Location']['lastServerKey'] : "";
 	}
 
 }

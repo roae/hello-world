@@ -11,6 +11,7 @@ class ReverseTransactionsShell extends Shell{
 	 */
 	var $uses = array(
 		'Setting',
+		'Location',
 	);
 
 	var $config;
@@ -37,14 +38,6 @@ class ReverseTransactionsShell extends Shell{
 			App::import('Component', 'SmartConnector');
 			$smartConnector =& new SmartConnectorComponent();
 			$smartConnector->initialize($Controller);
-			$smartConnector->settings = array(
-				'hosts'=>$this->config['smart_url'],
-				'clientID'=>$this->config['smart_clientID'],
-				'clientPOS'=>$this->config['smart_clientPOS'],
-				'user'=>$this->config['smart_user'],
-				'passwd'=>$this->config['smart_passwd'],
-				'randomKey'=>'6BD2A20879A987AC46A24121356478B8',
-			);
 
 			$seccond =0;
 			while($seccond < 60){
@@ -67,6 +60,18 @@ class ReverseTransactionsShell extends Shell{
 									$transactions[$i]['last_attempt'] = time();
 									$transaction[$i]['working'] = true;
 									$this->__setCache($transactions);
+									$record = $this->Location->find("first",array(
+										'fields'=>array('Location.id','Location.smart_serialpos','Location.smart_user','Location.smart_passwd')
+									));
+									$smartConnector->settings = array(
+										'hosts'=>$this->config['smart_url'],
+										'clientID'=>$this->config['smart_clientID'],
+										'serialPOS'=>$record['Location']['smart_serialpos'],
+										'user'=>$record['Location']['smart_user'],
+										'passwd'=>$record['Location']['smart_passwd'],
+										'location_id'=>$record['Location']['id'],
+										'randomKey'=>'6BD2A20879A987AC46A24121356478B8',
+									);
 									$smartResponse = $smartConnector->reverse($transaction['data'],$transaction['motivo'],$transaction['stan']);
 									if($smartResponse == "00"){
 										unset($transactions[$i]);

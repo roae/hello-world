@@ -235,6 +235,7 @@ class LocationsController extends AppController{
 						'serialPOS'=>$record['Location']['smart_serialpos'],
 						'user'=>$record['Location']['smart_user'],
 						'passwd'=>$record['Location']['smart_passwd'],
+						'location_id'=>$record['Location']['id'],
 						'randomKey'=>Configure::read("Smart.randomkey"),
 					);
 					$response = $this->SmartConnector->change_pass($this->data['Location']['smart_passwd']);

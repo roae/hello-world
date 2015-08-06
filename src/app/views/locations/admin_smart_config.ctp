@@ -13,9 +13,15 @@ echo $this->Form->create("Location",array('url'=>$this->Html->url()));
 			/*if(!empty($record['Location']['smart_passwd'])){
 				echo $this->I18n->input("smart_newpasswd");
 			}*/
+			$date = is_numeric($record['Location']['smart_lastlogin'])? date("Y-m-d H:i:s",$record['Location']['smart_lastlogin']) : "";
 			?>
 		</div>
 		<div class="span3">
+			<?= $this->element("admin/view-field",array('label'=>'[:Location_smart_lastserverkey:]','data'=>$record['Location']['smart_lastserverkey']));?>
+			<?= $this->element("admin/view-field",array('label'=>'[:Location_smart_last_stan:]','data'=>$record['Location']['smart_last_stan']));?>
+			<?= $this->element("admin/view-field",array('label'=>'[:Location_smart_current_stan:]','data'=>$record['Location']['smart_current_stan']));?>
+
+			<?= $this->element("admin/view-field",array('label'=>'[:Location_smart_lastlogin:]','data'=>$date));?>
 			<div class="help">
 				<i class="icon-asterisk icon-3x"></i>
 				[:help_smart_config_form:]

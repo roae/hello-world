@@ -93,15 +93,20 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->Location->save(array(
-								'id'=>$this->settings['location_id'],
-								'smart_lastserverkey'=>$xmlData['Sbt-ws-message']['Header']['LastServerKey'],
-								'smart_last_stan'=>1,
-								'smart_current_stan'=>2,
-							));
-							$this->log("[Login] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
+							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
+							$this->log("[Login] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
 							setTimezoneByOffset(-7);
-							return true;
+							if(isset($xmlData['Sbt-ws-message']['Header']['LastServerKey'])){
+								$this->Location->save(array(
+									'id'=>$this->settings['location_id'],
+									'smart_lastserverkey'=>$xmlData['Sbt-ws-message']['Header']['LastServerKey'],
+									'smart_lastlogin'=>mktime(0,0,0,date("m"),date("d"),date("Y")),
+									'smart_last_stan'=>1,
+									'smart_current_stan'=>2,
+								),false);
+								return true;
+							}
+							return false;
 							break;
 						default:
 							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
@@ -146,7 +151,9 @@ class SmartConnectorComponent extends object{
 				$time,
 				$this->settings['randomKey']
 			);
+			pr($exec);
 			$dataCipher = exec($exec);
+
 			$xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 			<sbt-ws-message version=\"1.0\">
 			    <header>
@@ -691,14 +698,14 @@ class SmartConnectorComponent extends object{
 		$this->Location->save(array(
 			'id'=>$this->settings['location_id'],
 			'smart_current_stan'=>$val
-		));
+		),false);
 	}
 
 	function __saveLastStan($val){
 		$this->Location->save(array(
 			'id'=>$this->settings['location_id'],
 			'smart_last_stan'=>$val
-		));
+		),false);
 	}
 
 	function __isLogged(){
@@ -707,7 +714,7 @@ class SmartConnectorComponent extends object{
 			'fields'=>array('Location.smart_lastlogin'),
 			'conditions'=>array('Location.id'=>$this->settings['location_id']),
 		));
-		if(!isset($record['Location']['smart_lastlogin'])){
+		if(!isset($record['Location']['smart_lastlogin']) || empty($record['Location']['smart_lastlogin'])){
 			return false;
 		}
 		return date("Y-m-d",$record['Location']['smart_lastlogin']) == date("Y-m-d",$today);
@@ -718,7 +725,8 @@ class SmartConnectorComponent extends object{
 			'fields'=>array('Location.smart_lastserverkey'),
 			'conditions'=>array('Location.id'=>$this->settings['location_id']),
 		));
-		return isset($record['Location']['lastServerKey'])? $record['Location']['lastServerKey'] : "";
+		#pr($record);
+		return isset($record['Location']['smart_lastserverkey'])? $record['Location']['smart_lastserverkey'] : "";
 	}
 
 }

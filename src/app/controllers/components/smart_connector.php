@@ -93,23 +93,11 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->Setting->saveAll(array(
-								array(
-									'id'=>19,
-									'value'=>mktime(0,0,0,date("m"),date("d"),date("Y")),
-								),
-								array(
-									'id'=>20,
-									'value'=>$xmlData['Sbt-ws-message']['Header']['LastServerKey'],
-								),
-								array(
-									'id'=>17,
-									'value'=>1,
-								),
-								array(
-									'id'=>18,
-									'value'=>2,
-								)
+							$this->Location->save(array(
+								'id'=>$this->settings['location_id'],
+								'smart_lastserverkey'=>$xmlData['Sbt-ws-message']['Header']['LastServerKey'],
+								'smart_last_stan'=>1,
+								'smart_current_stan'=>2,
 							));
 							$this->log("[Login] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							setTimezoneByOffset(-7);

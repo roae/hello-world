@@ -42,6 +42,15 @@ echo $this->Form->create("Location");
 				</fieldset>
 			</div>
 			<div class="span3">
+				<?php
+				echo $this->I18n->inputs(array(
+					'legend'=>'[:smart-serices:]',
+					'smart_serialpos',
+					'smart_user',
+					'smart_passwd'=>array('type'=>'password'),
+
+				));
+				?>
 				<fieldset>
 					<legend>[:select_location_services:]</legend>
 					<?= $this->I18n->input("Service",array('multiple'=>'checkbox','label'=>false,'class'=>'checkbox span6'));?>

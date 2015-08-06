@@ -1,7 +1,7 @@
 <?php
 class LocationsController extends AppController{
 	var $name = "Locations";
-	var $components = array();
+	var $components = array('SmartConnector');
 	var $helpers = array();
 
 	var $paginate = array(
@@ -29,6 +29,7 @@ class LocationsController extends AppController{
 	}
 
 	function admin_index(){
+		#$this->SmartConnector->change_pass("CD3aeD5iju");
 		$conditions=array();
 		if(isset($this->data['Xpagin']['search'])){
 			if(is_numeric($this->data['Xpagin']['search'])){
@@ -209,6 +210,59 @@ class LocationsController extends AppController{
 				$this->redirect(array('action'=>'trash'));
 			}
 			$this->redirect($this->referer());
+		}
+	}
+
+	function admin_smart_config($id = null){
+		if($id){
+			$this->Location->id= $id;
+			$record = $this->Location->read();
+			$this->set("record",$record);
+			if(!empty($this->data)){
+				/*if(isset($this->data['Location']['smart_newpasswd']) ){
+					if($this->data['Location']['smart_newpasswd'] != $record['Location']['smart_passwd']){
+
+					}
+				}*/
+				$response = false;
+				$this->data['Location']['id'] = $id;
+				$this->Location->set($this->data);
+				if($this->data['Location']['smart_passwd'] != $record['Location']['smart_passwd'] && $this->Location->validates()){
+					#Cambiar contraseña
+					$this->SmartConnector->settings = array(
+						'hosts'=>Configure::read("AppConfig.smart_url"),
+						'clientID'=>Configure::read("AppConfig.smart_clientID"),
+						'serialPOS'=>$record['Location']['smart_serialpos'],
+						'user'=>$record['Location']['smart_user'],
+						'passwd'=>$record['Location']['smart_passwd'],
+						'randomKey'=>Configure::read("Smart.randomkey"),
+					);
+					$response = $this->SmartConnector->change_pass($this->data['Location']['smart_passwd']);
+
+					if($response == "APROBADA"){
+						if($this->Location->save($this->data,false)){
+							$this->Notifier->success("[:smart-config-successfully-change:]");
+							$this->redirect(array('action'=>'index'));
+						}else{
+							$this->Notifier->error("Ocurri&oacute; un error al guardar la contraseña contacte al administrador");
+						}
+					}else{
+						$message  = " ";
+						if(is_string($response)){
+							$message = $response;
+						}else if(is_array($response) && isset($response['message'])){
+							$message = $response['message'];
+						}
+						$this->Notifier->error($message);
+					}
+
+				}
+
+
+			}else{
+				$this->data = $record;
+			}
+
 		}
 	}
 

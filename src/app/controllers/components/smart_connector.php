@@ -39,7 +39,7 @@ class SmartConnectorComponent extends object{
 	function login( ){
 		if(!$this->__isLogged()){
 			$stan = $this->__getStan();
-			setTimezoneByOffset(-7);
+			setTimezoneByOffset(-6);
 			$time = date('dmYHis', time());
 
 			$authData = "12={$this->settings['user']}
@@ -53,7 +53,7 @@ class SmartConnectorComponent extends object{
 	        <header>
 	            <Type>000100</Type>
 	            <ClientID>{$this->settings['clientID']}</ClientID>
-	            <SerialPos>{$this->settings['clientPOS']}</SerialPos>
+	            <SerialPos>{$this->settings['serialPOS']}</SerialPos>
 	            <Stan>$stan</Stan>
 	            <DeviceTime>$time</DeviceTime>
 	        </header>
@@ -61,11 +61,11 @@ class SmartConnectorComponent extends object{
 	            <DataCipher><![CDATA[" . base64_encode($authDataCrypt) . "]]></DataCipher>
 	        </message>
 	    </sbt-ws-message>";
-
+			$this->log(h($authXML),"SmartConnector");
 			$this->log("[Login] Request: ".json_encode(array(
 				'Type'=>'000100',
 				'ClientID'=>$this->settings['clientID'],
-				'SerialPos'=>$this->settings['clientPOS'],
+				'SerialPos'=>$this->settings['serialPOS'],
 				'Stan'=>$stan,
 				'DeviceTime'=>$time,
 			)),"SmartConnector");
@@ -85,6 +85,7 @@ class SmartConnectorComponent extends object{
 				curl_close($process);
 
 				#pr($xmlData);
+				$this->log($xmlData,"SmartConnector");
 
 				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
@@ -137,6 +138,110 @@ class SmartConnectorComponent extends object{
 
 	}
 
+	function change_pass($pass){
+		if($this->login()){
+			$stan = $this->__getStan();
+			setTimezoneByOffset(-6);
+			$time = date('dmYHis', time());
+
+			$script = APP."vendors".DS."smart_connector".DS."encrypt.exe";
+			#pr($data);
+			$exec = sprintf(
+				'mono %s "12=%s:13=%s:22=%s" "%s" "%s" "%s" "%s"',
+				$script,
+				$this->settings['user'],
+				$this->settings['passwd'],
+				$pass,
+				$this->__getLastServerKey(),
+				$stan,
+				$time,
+				$this->settings['randomKey']
+			);
+			$dataCipher = exec($exec);
+			$xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+			<sbt-ws-message version=\"1.0\">
+			    <header>
+			        <Type>000200</Type>
+			        <ClientID>{$this->settings['clientID']}</ClientID>
+			        <SerialPos>{$this->settings['serialPOS']}</SerialPos>
+			        <Stan>$stan</Stan>
+			        <DeviceTime>$time</DeviceTime>
+			    </header>
+			    <message>
+			        <DataCipher><![CDATA[$dataCipher)]]></DataCipher>
+			    </message>
+			</sbt-ws-message>";
+
+			$this->log(h($xmlString),"SmartConnector");
+
+			$this->log("[ChangePass] Request: ".json_encode(array(
+				'Type'=>'000200',
+				'ClientID'=>$this->settings['clientID'],
+				'SerialPos'=>$this->settings['serialPOS'],
+				'Stan'=>$stan,
+				'DeviceTime'=>$time,
+			)),"SmartConnector");
+			try{
+				$process = curl_init($this->settings['hosts']);
+				curl_setopt($process, CURLOPT_HTTPHEADER, $this->headers);
+				curl_setopt($process, CURLOPT_HEADER, 0);
+				curl_setopt($process, CURLOPT_TIMEOUT, 30);
+				curl_setopt($process, CURLOPT_POST, 1);
+				curl_setopt($process, CURLOPT_POSTFIELDS, $xmlString);
+				curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
+				$return = curl_exec($process);
+				$xml = new Xml($return);
+				$xmlData = $xml->toArray();
+				curl_close($process);
+				#pr($xmlData);
+				$this->log($xmlData,"SmartConnector");
+				if(isset($xmlData['Sbt-ws-message']['Header']['Resp-Code'])){
+					$this->__saveLastStan($stan);
+					$this->__saveCurrentStan($stan+1);
+					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
+						case '00':
+							$this->log("[Payment] Response: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							setTimezoneByOffset(-7);
+							return $xmlData['Sbt-ws-message']['Header']['Resp-Message'];
+							break;
+						default:
+							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
+							$this->log("[Payment] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
+							break;
+					}
+					setTimezoneByOffset(-7);
+					return array(
+						'error'=>true,
+						'message'=>$xmlData['Sbt-ws-message']['Header']['Resp-Message'],
+						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
+					);
+				}else{
+					$this->log("[Payment] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
+					setTimezoneByOffset(-7);
+					return array(
+						'error'=>true,
+						'message'=>"No hubo respuesta del servidor de smart",
+						'code'=>"-1",
+					);
+				}
+			}catch (Exception $e){
+				$this->log("[ChangePass] Response Error: ".$e->getMessage(),"SmartConnector");
+				setTimezoneByOffset(-7);
+				return array(
+					'error'=>true,
+					'message'=>$e->getMessage(),
+					'code'=>"-1"
+				);
+			}
+		}else{
+			return array(
+				'error'=>true,
+				'message'=>"No se pudo iniciar sesion con smart",
+				'code'=>"-1"
+			);
+		}
+	}
+
 	function payment($data){
 		if($this->login()){
 			$stan = $this->__getStan();
@@ -184,7 +289,7 @@ class SmartConnectorComponent extends object{
 			    <header>
 			        <Type>031100</Type>
 			        <ClientID>{$this->settings['clientID']}</ClientID>
-			        <SerialPos>{$this->settings['clientPOS']}</SerialPos>
+			        <SerialPos>{$this->settings['serialPOS']}</SerialPos>
 			        <Stan>$stan</Stan>
 			        <DeviceTime>$time</DeviceTime>
 			    </header>
@@ -199,7 +304,7 @@ class SmartConnectorComponent extends object{
 			$this->log("[Payment] Request: ".json_encode(array(
 				'Type'=>'031100',
 				'ClientID'=>$this->settings['clientID'],
-				'SerialPos'=>$this->settings['clientPOS'],
+				'SerialPos'=>$this->settings['serialPOS'],
 				'Stan'=>$stan,
 				'DeviceTime'=>$time,
 			)),"SmartConnector");
@@ -307,7 +412,7 @@ class SmartConnectorComponent extends object{
 			    <header>
 			        <Type>030700</Type>
 			        <ClientID>{$this->settings['clientID']}</ClientID>
-			        <SerialPos>{$this->settings['clientPOS']}</SerialPos>
+			        <SerialPos>{$this->settings['serialPOS']}</SerialPos>
 			        <Stan>$stan</Stan>
 			        <DeviceTime>$time</DeviceTime>
 			    </header>
@@ -320,7 +425,7 @@ class SmartConnectorComponent extends object{
 			$this->log("[Cancel] Request: ".json_encode(array(
 				'Type'=>'030700 (cancelacion)',
 				'ClientID'=>$this->settings['clientID'],
-				'SerialPos'=>$this->settings['clientPOS'],
+				'SerialPos'=>$this->settings['serialPOS'],
 				'Stan'=>$stan,
 				'DeviceTime'=>$time,
 			)),"SmartConnector");
@@ -436,7 +541,7 @@ class SmartConnectorComponent extends object{
 			    <header>
 			        <Type>030800</Type>
 			        <ClientID>{$this->settings['clientID']}</ClientID>
-			        <SerialPos>{$this->settings['clientPOS']}</SerialPos>
+			        <SerialPos>{$this->settings['serialPOS']}</SerialPos>
 			        <Stan>$stan</Stan>
 			        <DeviceTime>$time</DeviceTime>
 			    </header>
@@ -448,7 +553,7 @@ class SmartConnectorComponent extends object{
 			$this->log("[Reverse] Request: ".json_encode(array(
 				'Type'=>'030800',
 				'ClientID'=>$this->settings['clientID'],
-				'SerialPos'=>$this->settings['clientPOS'],
+				'SerialPos'=>$this->settings['serialPOS'],
 				'Stan'=>$stan,
 				'DeviceTime'=>$time,
 			)),"SmartConnector");

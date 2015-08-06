@@ -39,6 +39,8 @@ if(!empty($recordset)){
 				$this->Html->tag("li",$this->Paginator->link("[:list_rooms:]",array('controller'=>'locations','action'=>'index','location'=>$record['Location']['id']))).
 				$this->Html->tag("li",$this->Paginator->link("[:list_services:]",array('controller'=>'locations','action'=>'index','location'=>$record['Location']['id']))).
 				$this->Html->tag("li","","divider").
+				$this->Html->tag("li",$this->Paginator->link("[:smart_config:]",array('controller'=>'locations','action'=>'smart_config',$record['Location']['id']),array('rev'=>''))).
+				$this->Html->tag("li","","divider").
 				$this->Html->tag("li",$this->Paginator->link("<span class='icon-trash'></span> [:delete:]",array('action'=>'delete',$record['Location']['id']),array('class'=>'action danger','rel'=>'[:System.delete_location_name:]: '.h($record['Location']['name']).'?','escape'=>false)))
 				,array('class'=>"dropdown-menu",'role'=>'menu'))
 		);

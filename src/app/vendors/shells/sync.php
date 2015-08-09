@@ -235,7 +235,7 @@ class SyncShell extends Shell{
 			$xml = new Xml($r[6]);
 			$data = $xml->toArray();
 			#$this->out("XML to Array");
-			#$this->log($data,"GetSellingDataXMLStream");
+			$this->log($data,"GetSellingDataXMLStream");
 		}catch (Exception $e){
 			$this->locationsFail[] = $location['id'];
 			$this->errors['xml'][] = $location;
@@ -354,8 +354,14 @@ class SyncShell extends Shell{
 							$session_prices = Set::extract("/Price[Price_group_code=/{$session['Price_group_code']}/]",$data['VistaData']['Prices']);
 							$ticketsAdded = Set::classicExtract($session_prices,"{n}.Price.Ticket_type_code");
 							$tickets = $this->Show->TicketPrice->find("list",array('conditions'=>array('TicketPrice.show_id'=>$showID),'fields'=>array('TicketPrice.code')));
+							//$this->log($session_prices,"session_prices");
+							//$this->log($ticketsAdded,"ticketsAdded");
+							//å$this->log($tickets,"tickets");
 
-							$this->Show->TicketPrice->deleteAll(array('TicketPrice.show_id'=>$location['id'],'TicketPrice.code NOT'=>$ticketsAdded));
+							$this->Show->TicketPrice->deleteAll(array('TicketPrice.show_id'=>$showID,'TicketPrice.code NOT'=>$ticketsAdded));
+							//Configure::write("debug",2);
+							//$dbo = $this->Show->TicketPrice->getDatasource();
+							//pr($dbo->_queriesLog);
 
 							foreach($session_prices as $record){
 								if(strpos($record['Price']['TType_strSalesChannels'],"WWW")){
@@ -365,15 +371,15 @@ class SyncShell extends Shell{
 										$ticketID = null;
 									}
 
-									#$this->out($record['Price']['Ticket_Price']);
-									#$this->out($record['Price']['Ticket_Price']/100);
-									$this->Show->TicketPrice->save(array(
+									$ticketData = array(
 										'id'=>$ticketID,
 										'show_id'=>$showID,
 										'code'=>$record['Price']['Ticket_type_code'],
 										'description'=>$record['Price']['Ticket_type_description'],
 										'price'=>$record['Price']['Ticket_Price']/100*1.0
-									));
+									);
+									$this->out("Guardando Ticket: ".json_encode($ticketData));
+									$this->Show->TicketPrice->save($ticketData);
 								}
 							}
 						}

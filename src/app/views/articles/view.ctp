@@ -70,15 +70,11 @@
 				</li>
 			</ul>
 		</div>
-
+		<?php if(!empty($record['Related'])){ ?>
 		<div class="related-posts">
-
-			<strong>Artículos relacionados</strong>
-
+			<span class="title">[:related-articles-title:]</span>
 			<ul>
-
 				<?php foreach( $record['Related'] as $related ): ?>
-
 					<li>
 						<h2>
 							<?= $this->Html->link( $related['titulo'], array( 'controller' => 'articles',
@@ -93,7 +89,7 @@
 				<?php endforeach; ?>
 			</ul>
 		</div>
-
+		<?php } ?>
 		<div class="comments">
 			<div class="fb-comments" data-href="<?= $this->Html->url(null,true)?>" data-width="100%"
 			     data-numposts="5" data-colorscheme="light"></div>

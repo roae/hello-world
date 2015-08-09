@@ -33,9 +33,9 @@
 		margin-bottom: 60px;
 		article {
 			position: relative;
-			width: span(14);
+			@include span(14);
+			@include push(1);
 			padding: 100px 0;
-			margin-left: span(1) + gutter();
 			border-bottom: 1px solid $light-gray;
 			overflow: hidden;
 
@@ -84,8 +84,8 @@
 			}
 
 			.see-more {
-				display: block;
-				@include span(4);
+				display: inline-block;
+				float: right;
 				margin-top: 40px;
 				padding: 8px 15px;
 				text-align: center;
@@ -193,12 +193,10 @@
 		}
 	}
 }
-
+.iframeYoutube {position: relative;padding-bottom: 56.25%;padding-top: 30px;height: 0;overflow: hidden; margin: 50px 0;
+	embed, object, iframe,img {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+}
 #article-detail {
-	/*.col-container .info {
-		@include span(14);
-		margin-left: span(1) + gutter();
-	  }*/
 
 	.article-banner {
 		position: relative;
@@ -213,6 +211,9 @@
 			.col-container{
 				padding-bottom: 5px;
 				border-bottom: $light-gray 1px solid;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 			.crumbTitle{
 				font-size: 12px;
@@ -374,7 +375,7 @@
 	.related-posts {
 		margin-bottom: 60px;
 
-		strong {
+		.title {
 			display: block;
 			margin-bottom: 20px;
 			font-size: 32px;

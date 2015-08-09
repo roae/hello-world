@@ -20,21 +20,6 @@ var touch = window.ontouchstart
 {console.log();return window.console;}catch(err){return window.console={};}})());
 
 
-// place any jQuery/helper plugins in here, instead of separate, slower script files.
-/*Modernizr.load([
-	{
-		load:'/js/ext/jquery.ui.js'
-	},
-	{
-		load: "/js/ext/jquery.label.js",
-		complete: function(){
-			$(function(){
-				$('#Search .input,#contactFooter .text,#contactFooter .textarea,#CommentForm .text,#CommentForm .textarea,#contactForm .text,#contactForm .textarea,.search_quest_inner .input, #AddQuestion .question, #AddQuestion .details, aside .captcha').Label();
-			});
-		}
-	}
-]);*/
-
 var item_act = 1;
 var item_ant = 1;
 var $slides = $("#main-slider .movie");
@@ -91,6 +76,14 @@ $(function(){
 	if( $.fn.Select ) {
 		$("select").Select();
 	}
+
+	$("a.youtube").each(function(i,e){
+		//console.log($(this).attr("href"));
+		$(this).css({display:'none'});
+		$(this).after(
+			$("<div/>",{'class':'iframeYoutube'})
+				.append("<iframe src=http://www.youtube.com/embed/"+$("img",this).attr("alt")+" frameborder=0 width=560 height=315 allowfullscreen ></iframe>"));
+	});
 
 	/*allMods = $(".appear");
 

@@ -139,7 +139,8 @@
 
 	.top-promo {
 		margin-bottom: 20px;
-
+		height: 10px;
+		background-color: lighten($yellow, 25%);
 		a {
 			display: block;
 			padding: 15px;

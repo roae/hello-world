@@ -1366,6 +1366,10 @@ body {
 #main-footer .footer-menu .social-networks li a.gp {
   background-image: url(../img/social-networks/gp-icon.png);
 }
+/* line 239, sass/modules/layouts/_footer.scss */
+#main-footer .footer-menu .social-networks li a.vim {
+  background-image: url(../img/social-networks/vim-icon.png);
+}
 /* line 249, sass/modules/layouts/_footer.scss */
 #main-footer .copyright {
   padding: 30px 15px;
@@ -1378,26 +1382,14 @@ body {
 }
 /* line 259, sass/modules/layouts/_footer.scss */
 #main-footer .copyright .col-container > a {
-  padding-right: 10px;
-  padding-left: 10px;
-  border-right: 1px solid #8e9092;
   font-size: 12px;
   color: #a8a9ab;
 }
-/* line 266, sass/modules/layouts/_footer.scss */
-#main-footer .copyright .col-container > a:nth-of-type(1) {
-  padding-left: 0;
-}
-/* line 267, sass/modules/layouts/_footer.scss */
-#main-footer .copyright .col-container > a:nth-of-type(2) {
-  padding-left: 6px;
-  border-right: none;
-}
-/* line 272, sass/modules/layouts/_footer.scss */
+/* line 263, sass/modules/layouts/_footer.scss */
 #main-footer .copyright .col-container > a:hover {
   color: #8e9092;
 }
-/* line 275, sass/modules/layouts/_footer.scss */
+/* line 266, sass/modules/layouts/_footer.scss */
 #main-footer .copyright .col-container .certificates {
   float: right;
   margin-top: -6px;
@@ -1649,8 +1641,10 @@ select {
 /* line 140, sass/modules/pages/_home.scss */
 .home .top-promo {
   margin-bottom: 20px;
+  height: 10px;
+  background-color: #ffe67f;
 }
-/* line 143, sass/modules/pages/_home.scss */
+/* line 144, sass/modules/pages/_home.scss */
 .home .top-promo a {
   display: block;
   padding: 15px;
@@ -1659,16 +1653,16 @@ select {
   color: #655100;
   background-color: #ffe67f;
 }
-/* line 151, sass/modules/pages/_home.scss */
+/* line 152, sass/modules/pages/_home.scss */
 .home .top-promo a:hover {
   background-color: #ffeb98;
 }
-/* line 155, sass/modules/pages/_home.scss */
+/* line 156, sass/modules/pages/_home.scss */
 .home .billboard {
   overflow: hidden;
   text-align: center;
 }
-/* line 159, sass/modules/pages/_home.scss */
+/* line 160, sass/modules/pages/_home.scss */
 .home .billboard h1 {
   margin-top: 20px;
   margin-bottom: 5px;
@@ -1676,7 +1670,7 @@ select {
   font-weight: 300;
   color: #cc0017;
 }
-/* line 167, sass/modules/pages/_home.scss */
+/* line 168, sass/modules/pages/_home.scss */
 .home .billboard .description {
   display: block;
   width: 50%;
@@ -1686,24 +1680,24 @@ select {
   font-weight: 300;
   color: #818386;
 }
-/* line 177, sass/modules/pages/_home.scss */
+/* line 178, sass/modules/pages/_home.scss */
 .home .billboard .movies {
   font-size: 0;
   text-align: left;
   margin-bottom: 50px;
 }
-/* line 184, sass/modules/pages/_home.scss */
+/* line 185, sass/modules/pages/_home.scss */
 .home .billboard .movies .titleBillboard {
   margin-bottom: 20px;
   font-size: 34px;
   font-weight: 100;
   color: #272b2e;
 }
-/* line 190, sass/modules/pages/_home.scss */
+/* line 191, sass/modules/pages/_home.scss */
 .home .billboard .movies .titleBillboard strong {
   font-weight: bold;
 }
-/* line 199, sass/modules/pages/_home.scss */
+/* line 200, sass/modules/pages/_home.scss */
 .home .billboard .movie {
   width: 19%;
   float: left;
@@ -1715,20 +1709,20 @@ select {
   vertical-align: top;
   position: relative;
 }
-/* line 207, sass/modules/pages/_home.scss */
+/* line 208, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container {
   position: relative;
 }
-/* line 210, sass/modules/pages/_home.scss */
+/* line 211, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container img {
   width: 100%;
   display: block;
 }
-/* line 216, sass/modules/pages/_home.scss */
+/* line 217, sass/modules/pages/_home.scss */
 .home .billboard .movie .image-container:hover .details {
   opacity: 1;
 }
-/* line 222, sass/modules/pages/_home.scss */
+/* line 223, sass/modules/pages/_home.scss */
 .home .billboard .movie .labels {
   font-size: 16px;
   font-weight: 600;
@@ -1740,19 +1734,19 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 231, sass/modules/pages/_home.scss */
+/* line 232, sass/modules/pages/_home.scss */
 .home .billboard .movie .presale {
   background: #FECC00;
   padding: 3px 10px;
   color: #353637;
 }
-/* line 237, sass/modules/pages/_home.scss */
+/* line 238, sass/modules/pages/_home.scss */
 .home .billboard .movie .premiere {
   background: #cc0017;
   padding: 3px 10px;
   color: #fff;
 }
-/* line 243, sass/modules/pages/_home.scss */
+/* line 244, sass/modules/pages/_home.scss */
 .home .billboard .movie .details {
   position: absolute;
   left: 0;
@@ -1772,7 +1766,7 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 258, sass/modules/pages/_home.scss */
+/* line 259, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .title {
   display: block;
   margin-bottom: 10px;
@@ -1781,7 +1775,7 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 265, sass/modules/pages/_home.scss */
+/* line 266, sass/modules/pages/_home.scss */
 .home .billboard .movie .details .sinopsis {
   height: 175px;
   overflow-y: auto;
@@ -1789,7 +1783,7 @@ select {
   font-size: 13px;
   color: #dee8ee;
 }
-/* line 273, sass/modules/pages/_home.scss */
+/* line 274, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a {
   display: block;
   padding: 5px 10px;
@@ -1803,25 +1797,25 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 283, sass/modules/pages/_home.scss */
+/* line 284, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:hover {
   border-color: #8e9092;
 }
-/* line 285, sass/modules/pages/_home.scss */
+/* line 286, sass/modules/pages/_home.scss */
 .home .billboard .movie .details a:active {
   position: relative;
   top: 1px;
 }
-/* line 293, sass/modules/pages/_home.scss */
+/* line 294, sass/modules/pages/_home.scss */
 .home .billboard .movie img {
   border-radius: 3px;
 }
-/* line 295, sass/modules/pages/_home.scss */
+/* line 296, sass/modules/pages/_home.scss */
 .home .billboard .movie .info {
   padding: 10px;
   text-align: left;
 }
-/* line 299, sass/modules/pages/_home.scss */
+/* line 300, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 {
   margin-top: 0;
   margin-bottom: 5px;
@@ -1832,26 +1826,26 @@ select {
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 306, sass/modules/pages/_home.scss */
+/* line 307, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a {
   color: #818386;
 }
-/* line 309, sass/modules/pages/_home.scss */
+/* line 310, sass/modules/pages/_home.scss */
 .home .billboard .movie .info h2 a:hover {
   color: #686a6c;
 }
-/* line 315, sass/modules/pages/_home.scss */
+/* line 316, sass/modules/pages/_home.scss */
 .home .billboard .movie .info span {
   display: block;
   font-size: 13px;
   opacity: 0.7;
 }
-/* line 322, sass/modules/pages/_home.scss */
+/* line 323, sass/modules/pages/_home.scss */
 .home .billboard .movie:nth-of-type(5n+1) {
   clear: left;
 }
 
-/* line 331, sass/modules/pages/_home.scss */
+/* line 332, sass/modules/pages/_home.scss */
 .next-premieres {
   position: relative;
   width: 100%;
@@ -1860,23 +1854,23 @@ select {
   text-align: center;
   background-color: #eff4f7;
 }
-/* line 340, sass/modules/pages/_home.scss */
+/* line 341, sass/modules/pages/_home.scss */
 .next-premieres .info {
   text-align: left;
   padding: 5px;
 }
-/* line 345, sass/modules/pages/_home.scss */
+/* line 346, sass/modules/pages/_home.scss */
 .next-premieres .titleCommingSoon {
   font-size: 34px;
   font-weight: 100;
   margin: 40px 0 50px;
   color: #272b2e;
 }
-/* line 352, sass/modules/pages/_home.scss */
+/* line 353, sass/modules/pages/_home.scss */
 .next-premieres .movies {
   position: relative;
 }
-/* line 354, sass/modules/pages/_home.scss */
+/* line 355, sass/modules/pages/_home.scss */
 .next-premieres .movies:before {
   background-image: -moz-linear-gradient(left, #eff4f7, rgba(239, 244, 247, 0));
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
@@ -1892,7 +1886,7 @@ select {
   content: " ";
   display: block;
 }
-/* line 364, sass/modules/pages/_home.scss */
+/* line 365, sass/modules/pages/_home.scss */
 .next-premieres .movies:after {
   background-image: -moz-linear-gradient(left, rgba(239, 244, 247, 0), #eff4f7);
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
@@ -1908,18 +1902,18 @@ select {
   content: " ";
   display: block;
 }
-/* line 375, sass/modules/pages/_home.scss */
+/* line 376, sass/modules/pages/_home.scss */
 .next-premieres .antiscroll-wrap {
   overflow: hidden;
   overflow-x: auto;
 }
-/* line 380, sass/modules/pages/_home.scss */
+/* line 381, sass/modules/pages/_home.scss */
 .next-premieres .movies-list {
   vertical-align: top;
   display: inline-block;
   text-align: center;
 }
-/* line 386, sass/modules/pages/_home.scss */
+/* line 387, sass/modules/pages/_home.scss */
 .next-premieres .movie {
   padding: 0 15px;
   float: left;
@@ -1927,11 +1921,11 @@ select {
   vertical-align: top;
   width: 190px;
 }
-/* line 393, sass/modules/pages/_home.scss */
+/* line 394, sass/modules/pages/_home.scss */
 .next-premieres .movie .image-container {
   position: relative;
 }
-/* line 397, sass/modules/pages/_home.scss */
+/* line 398, sass/modules/pages/_home.scss */
 .next-premieres .movie img {
   width: 100%;
   display: block;
@@ -1939,30 +1933,30 @@ select {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 403, sass/modules/pages/_home.scss */
+/* line 404, sass/modules/pages/_home.scss */
 .next-premieres .movie h2 {
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: normal;
 }
-/* line 409, sass/modules/pages/_home.scss */
+/* line 410, sass/modules/pages/_home.scss */
 .next-premieres .movie span {
   display: block;
   text-align: left;
   font-size: 13px;
   color: #818386;
 }
-/* line 416, sass/modules/pages/_home.scss */
+/* line 417, sass/modules/pages/_home.scss */
 .next-premieres .movie a {
   font-size: 14px;
   color: #818386;
   line-height: 1.5;
 }
-/* line 422, sass/modules/pages/_home.scss */
+/* line 423, sass/modules/pages/_home.scss */
 .next-premieres .movie .date {
   color: #CC0017;
 }
-/* line 426, sass/modules/pages/_home.scss */
+/* line 427, sass/modules/pages/_home.scss */
 .next-premieres .movie .presale {
   background: #FECC00;
   padding: 3px 10px;

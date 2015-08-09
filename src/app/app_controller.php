@@ -295,7 +295,7 @@ class AppController extends Controller{
 		'default'=>array(
 			'menu'=>array(
 				'[:m_home:]'=>array('url'=>array('controller'=>'pages','action'=>'display','home'),'restrincted'=>false,'isCurrentWhen'=>array('url')),
-				'[:m_about:]'=>array('url'=>array('controller'=>'pages','action'=>'display','about'),'restricted'=>false,'title'=>'[:m_about_title:]','isCurrentWhen'=>array('url'),'desc'=>'Link nosotros menu'),
+				//'[:m_about:]'=>array('url'=>array('controller'=>'pages','action'=>'display','about'),'restricted'=>false,'title'=>'[:m_about_title:]','isCurrentWhen'=>array('url'),'desc'=>'Link nosotros menu'),
 				'[:m_articles:]'=>array('url'=>array('controller'=>'articles','action'=>'index'),'restricted'=>false,'title'=>'[:m_articles_title:]','desc'=>'link blog menu'),
 				'[:m_contact:]'=>array('url'=>array('controller'=>'contacts','action'=>'add'),'restricted'=>false,'title'=>'[:m_contact_title:]','desc'=>'contacto menu','class'=>'contact'),
 				'[:m_locations:]'=>array('url'=>array('controller'=>'locations','action'=>'index'),'restricted'=>false,'title'=>'[:m_location_title:]','desc'=>'complejos menu','class'=>'locations'),

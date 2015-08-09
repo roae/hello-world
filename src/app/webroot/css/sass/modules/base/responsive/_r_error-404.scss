@@ -1,0 +1,21 @@
+@media only screen and (max-width: 375px) {
+	#error404{
+		.error404{
+			font-size: 150px;
+		}
+		.info{
+			font-size: 30px;
+		}
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	#error404{
+		.error404{
+			font-size: 130px;
+		}
+		.info{
+			font-size: 24px;
+		}
+	}
+}

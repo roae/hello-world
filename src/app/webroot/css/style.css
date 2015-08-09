@@ -1355,8 +1355,8 @@ body {
   background-image: url(../img/social-networks/tw-icon.png);
 }
 /* line 239, sass/modules/layouts/_footer.scss */
-#main-footer .footer-menu .social-networks li a.vim {
-  background-image: url(../img/social-networks/vim-icon.png);
+#main-footer .footer-menu .social-networks li a.insta {
+  background-image: url(../img/social-networks/insta-icon.png);
 }
 /* line 239, sass/modules/layouts/_footer.scss */
 #main-footer .footer-menu .social-networks li a.yt {

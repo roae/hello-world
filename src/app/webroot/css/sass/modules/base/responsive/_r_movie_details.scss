@@ -30,6 +30,15 @@
 	.movie-detail-container{
 		.big-cover{
 			height: 270px;
+			&.image-not-founded{
+				height: auto;
+				.col-container{
+					height: auto;
+				}
+				.movie-title{
+					padding-bottom: 20px;
+				}
+			}
 			.col-container{
 				height: 270px;
 			}
@@ -57,6 +66,13 @@
 				}
 				.movie-gallery-container{
 					margin-bottom: 40px;
+				}
+			}
+
+			&.image-not-founded{
+				padding-top: 10px;
+				.cover-container{
+					margin-top: -130px;
 				}
 			}
 

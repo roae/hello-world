@@ -292,7 +292,6 @@ class MoviesController extends AppController{
 
 			$dates = $this->requestAction("/shows/get_date/".$id);
 			if($dates){
-				//pr($dates);
 				$this->data['Filter']['date'] = array_shift($dates);
 			}
 
@@ -303,7 +302,7 @@ class MoviesController extends AppController{
 				'slug'=>$slug,
 			));
 			//pr($this->data);
-			$CitySelected = $this->Session->read("CitySelected");
+			$CitySelected = $this->Cookie->read("CitySelected");
 			if($CitySelected['id'] != $City['id'] || !isset($this->data['Filter']['Location'])){
 				$locationsSelected = $this->Session->read("LocationsList");
 				foreach($locationsSelected as $id => $location){

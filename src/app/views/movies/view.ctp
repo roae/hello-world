@@ -31,7 +31,7 @@ $this->set("pageKeywords",$record['Movie']['title']);
 		</div>
 	</div>
 
-	<div class="movie-information">
+	<div class="movie-information <?= $class ?>">
 		<div class="col-container">
 
 			<div class="main-content">

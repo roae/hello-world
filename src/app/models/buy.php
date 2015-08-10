@@ -50,7 +50,7 @@ class Buy extends AppModel{
 			'mail' => array('rule' => 'email','message' => '[:valid_email:]'),
 		),
 		'privacy' => array(
-			'requerido' => array( 'rule' => array('comparison' , '!=', 0 ), 'required' => true, 'allowEmpty' => false, 'message' => '[:requiered_acept_policies]' )
+			'requerido' => array( 'rule' => array('comparison' , '!=', 0 ), 'required' => true, 'allowEmpty' => false, 'message' => '[:requiered_acept_policies:]' )
 		)
 	);
 

@@ -34,3 +34,9 @@ $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>fa
 		</aside>
 	</div>
 </div>
+
+<?php
+$this->I18n->addMissing("[:name_required:]",array('desc'=>'Mensaje de error: Nombre querido','tab'=>'modulo'));
+$this->I18n->addMissing("[:invalid_email:]",array('desc'=>'Mensaje de error: Email invalido','tab'=>'modulo'));
+$this->I18n->addMissing("[:message_required:]",array('desc'=>'Mensaje de error: Mensaje requerido','tab'=>'modulo'));
+?>

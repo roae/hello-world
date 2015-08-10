@@ -18,7 +18,7 @@ var YoutubeDialog = {
         code = (regexRes === null) ? url : regexRes[1];
         if (code === "") { tinyMCEPopup.close(); return; }
 
-        tinyMCEPopup.editor.execCommand('mceInsertContent', false, '<a class="youtube" href="http://www.youtube.com/watch?v=' + code + '" target="_blank" rel="nofollow"><img src="http://img.youtube.com/vi/' + code + '/0.jpg" class="mceItem" alt="' + code + '"/></a>');
+        tinyMCEPopup.editor.execCommand('mceInsertContent', false, '<a class="youtube" href="https://www.youtube.com/watch?v=' + code + '" target="_blank" rel="nofollow"><img src="https://img.youtube.com/vi/' + code + '/0.jpg" class="mceItem" alt="' + code + '"/></a>');
         tinyMCEPopup.close();
     }
 };

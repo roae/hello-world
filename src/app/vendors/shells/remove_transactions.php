@@ -37,10 +37,20 @@ class RemoveTransactionsShell extends Shell{
 		$this->Dispatch->clear();
 	}
 
+	function initialize(){
+		Configure::write('debug', 2);
+		$this->_loadDbConfig();
+		$this->_loadModels();
+	}
+
 	/**
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
+		/*Configure::write("debug",2);
+		$dbo = $this->Buy->getDatasource();
+		$oldStateFullDebug = $dbo->fullDebug;
+		$dbo->fullDebug = true;*/
 		$this->out(date("Y F d H:i:s"));
 		#print_r(date("Y F d H:i:s",strtotime("-2 mins")));
 		$locations = $this->Location->find("all",array(
@@ -60,9 +70,7 @@ class RemoveTransactionsShell extends Shell{
 					'Buy.location_id'=>$record['Location']['id']
 				)
 			));
-			print_r($buys);
-			$dbo = $this->Location->getDatasource();
-			print_r(current(end($dbo->_queriesLog)));
+			//print_r($buys);
 			if(!empty($buys)){
 				foreach($buys as $buy){
 					$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
@@ -89,8 +97,55 @@ class RemoveTransactionsShell extends Shell{
 		if(!empty($buysToRemove)){
 			$this->Buy->deleteAll(array('Buy.id'=>$buysToRemove));
 		}
+
+		$this->dump_sql();
+		$this->hr(1);
 		$this->_stop(1);
 
+	}
+
+	function dump_sql()
+	{
+		$sql_dump = '';
+
+		if (!class_exists('ConnectionManager') || Configure::read('debug') < 2)
+			return false;
+
+		$noLogs = !isset($logs);
+		if ($noLogs)
+		{
+			$sources = ConnectionManager::sourceList();
+
+			$logs = array();
+			foreach ($sources as $source):
+				$db =& ConnectionManager::getDataSource($source);
+				if (!$db->isInterfaceSupported('getLog')):
+					continue;
+				endif;
+				$logs[$source] = $db->getLog();
+			endforeach;
+		}
+
+		if ($noLogs || isset($_forced_from_dbo_))
+		{
+			foreach ($logs as $source => $logInfo)
+			{
+				$text = $logInfo['count'] > 1 ? 'queries' : 'query';
+				$this->out("cakeSqlLog_" . preg_replace('/[^A-Za-z0-9_]/', '_', uniqid(time(), true)));
+				$this->out('('.$source.') '. $logInfo['count'] .' '.$text. ' took '.$logInfo['time'].' ms');
+				$this->out('Nr Query Error Affected Num. rows Took (ms)');
+
+				foreach ($logInfo['log'] as $k => $i)
+				{
+					$this->out($i['query']);
+				}
+			}
+		}
+		else
+		{
+			$this->out('Encountered unexpected $logs cannot generate SQL log');
+		}
+		//return $sql_dump;
 	}
 
 }

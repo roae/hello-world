@@ -3,15 +3,23 @@ Página login
 **/
 #Login {
 	margin-bottom: 100px;
-	form {
-		@include span(6);
-		margin-left: span(5)+gutter();
+	overflow: hidden;
+	.login{
+		@include span(10);
+		@include push(3);
 	}
+	form {
+		@include span(8);
+		@include push(1);
+
+	}
+
 	.social-connect {
+		@include span(7);
 		text-align: center;
 
 		li {
-			display: inline-block;
+			margin-bottom: 10px;
 		}
 
 		a {
@@ -20,11 +28,33 @@ Página login
 			color: #FFF;
 			background-color: #3B5998;
 			border-radius: 3px;
+			display:block;
 
 			&.gp { background-color: #DE4B39; }
 			&.tw { background-color: #5EA9DD; }
 		}
+	}
+	.subtitle {
+		position: relative;
+		display: block;
+		margin: 30px 0;
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+		color: #5E6364;
 
+		/*&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			width: 64px;
+			height: 1px;
+			background-color: #5E6364;
+		}
+
+		&:before { left: 0; }
+		&:after { right: 0; }*/
 	}
 	.title {
 		position: relative;

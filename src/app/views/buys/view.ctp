@@ -148,6 +148,10 @@
 							<strong>[:buy-aut_code:]:</strong>
 							<span class="value"><?= $record['Buy']['aut_code'] ?></span>
 						</div>
+						<div class="info">
+							<strong>[:buy-created:]:</strong>
+							<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:] h:i a",$record['Buy']['schedule']); ?></span>
+						</div>
 						<?php /*
 						<div class="info">
 							<strong>[:buy-RefSPNum:]:</strong>

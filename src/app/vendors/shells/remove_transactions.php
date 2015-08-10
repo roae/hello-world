@@ -41,7 +41,7 @@ class RemoveTransactionsShell extends Shell{
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
-		print_r(date("Y F d H:i:s"));
+		$this->out(date("Y F d H:i:s"));
 		#print_r(date("Y F d H:i:s",strtotime("-2 mins")));
 		$locations = $this->Location->find("all",array(
 			'fields'=>array('Location.vista_service_url','Location.id'),
@@ -60,8 +60,9 @@ class RemoveTransactionsShell extends Shell{
 					'Buy.location_id'=>$record['Location']['id']
 				)
 			));
-			#$dbo = $this->Location->getDatasource();
-			#pr(current(end($dbo->_queriesLog)));
+			print_r($buys);
+			$dbo = $this->Location->getDatasource();
+			print_r(current(end($dbo->_queriesLog)));
 			if(!empty($buys)){
 				foreach($buys as $buy){
 					$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));

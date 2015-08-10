@@ -38,6 +38,7 @@ class SmartConnectorComponent extends object{
 
 
 	function login( ){
+		$this->log("Payment","SmartConnector");
 		if(!$this->__isLogged()){
 			$stan = $this->__getStan();
 			setTimezoneByOffset(-6);
@@ -62,6 +63,8 @@ class SmartConnectorComponent extends object{
 	            <DataCipher><![CDATA[" . base64_encode($authDataCrypt) . "]]></DataCipher>
 	        </message>
 	    </sbt-ws-message>";
+
+			$this->log(json_encode($this->settings),"SmartConnector");
 			$this->log(h($authXML),"SmartConnector");
 			$this->log("[Login] Request: ".json_encode(array(
 				'Type'=>'000100',
@@ -127,6 +130,7 @@ class SmartConnectorComponent extends object{
 				return false;
 			}
 		}else{
+			$this->log("Sesion Iniciada","SmartConnector");
 			return true;
 		}
 
@@ -168,6 +172,7 @@ class SmartConnectorComponent extends object{
 			    </message>
 			</sbt-ws-message>";
 
+			$this->log(json_encode($this->settings),"SmartConnector");
 			$this->log(h($xmlString),"SmartConnector");
 
 			$this->log("[ChangePass] Request: ".json_encode(array(
@@ -196,13 +201,13 @@ class SmartConnectorComponent extends object{
 					$this->__saveCurrentStan($stan+1);
 					switch($xmlData['Sbt-ws-message']['Header']['Resp-Code']){
 						case '00':
-							$this->log("[Payment] Response: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
+							$this->log("[ChangePass] Response: ".json_encode($xmlData['Sbt-ws-message']['Header']),"SmartConnector");
 							setTimezoneByOffset(-7);
 							return $xmlData['Sbt-ws-message']['Header']['Resp-Message'];
 							break;
 						default:
 							$messageJSON = isset($xmlData['Sbt-ws-message']['Message']) ? json_encode($xmlData['Sbt-ws-message']['Message']) : "";
-							$this->log("[Payment] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
+							$this->log("[ChangePass] Response Error: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".$messageJSON,"SmartConnector");
 							break;
 					}
 					setTimezoneByOffset(-7);
@@ -212,7 +217,7 @@ class SmartConnectorComponent extends object{
 						'code'=>$xmlData['Sbt-ws-message']['Header']['Resp-Code']
 					);
 				}else{
-					$this->log("[Payment] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
+					$this->log("[ChangePass] Response Error: No hubo respuesta del servidor de smart","SmartConnector");
 					setTimezoneByOffset(-7);
 					return array(
 						'error'=>true,
@@ -239,6 +244,7 @@ class SmartConnectorComponent extends object{
 	}
 
 	function payment($data){
+		$this->log("Payment","SmartConnector");
 		if($this->login()){
 			$stan = $this->__getStan();
 			//$this->out($stan);
@@ -294,7 +300,7 @@ class SmartConnectorComponent extends object{
 			        <DataText><![CDATA[$dataText]]></DataText>
 			    </message>
 			</sbt-ws-message>";
-
+			$this->log(json_encode($this->settings),"SmartConnector");
 			$this->log(h($xmlString),"SmartConnector");
 			#exit;
 			$this->log("[Payment] Request: ".json_encode(array(
@@ -327,6 +333,7 @@ class SmartConnectorComponent extends object{
 						case '00':
 							$this->log("[Payment] Response: ".json_encode($xmlData['Sbt-ws-message']['Header'])." | ".json_encode($xmlData['Sbt-ws-message']['Message']),"SmartConnector");
 							setTimezoneByOffset(-7);
+							$xmlData['Sbt-ws-message']['Message']['stan'] = $stan;
 							return $xmlData['Sbt-ws-message']['Message'];
 							break;
 						default:
@@ -366,6 +373,7 @@ class SmartConnectorComponent extends object{
 			}
 
 		}
+		$this->log("No se pudo iniciar Sesion","SmartConnector");
 		return true;
 	}
 
@@ -717,6 +725,7 @@ class SmartConnectorComponent extends object{
 		if(!isset($record['Location']['smart_lastlogin']) || empty($record['Location']['smart_lastlogin'])){
 			return false;
 		}
+		$this->log("Inicio Sesion: ".date("Y-m-d",$record['Location']['smart_lastlogin']),"SmartConnector");
 		return date("Y-m-d",$record['Location']['smart_lastlogin']) == date("Y-m-d",$today);
 	}
 

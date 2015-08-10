@@ -757,7 +757,8 @@
 					background: url("web/mastercard.png") no-repeat;
 				}
 			}
-			.input {
+			.text,
+			.select {
 				position: relative;
 				margin-bottom: 20px;
 				padding-bottom: 1em;
@@ -847,7 +848,11 @@
 
 			.checkbox{
 				label{
-					display: inline;
+					display: inline-block;
+					a{
+						color:$gray;
+						text-decoration: underline;
+					}
 				}
 				input{
 					width: auto;

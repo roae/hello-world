@@ -33,7 +33,8 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
-input{
+input[type="submit"],
+input[type="button"]{
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }

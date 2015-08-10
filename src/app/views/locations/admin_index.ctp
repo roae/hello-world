@@ -24,6 +24,8 @@ if(!empty($recordset)){
 	$th = array(
 		$this->Form->checkbox("Xpagin.all",array('class'=>'checkAll','id'=>'')),
 		$this->Paginator->sort('<span>[:Location_name:]</span><span class="sortind"></span>','Location.name',array('title'=>'[:sort_by:] [:Location_name:]','escape'=>false)),
+		'<span>[:Location_venta_online:]</span>',
+		'<span>[:Location_status:]</span>',
 		$this->Paginator->sort('<span>[:Location_created:]</span><span class="sortind"></span>','Location.created',array('title'=>'[:sort_by:] [:Location_created:]','escape'=>false)),
 		$this->Paginator->sort('<span>ID</span><span class="sortind"></span>','Location.id',array('title'=>'[:sort_by:] [:Location_id:]','escape'=>false)),
 		'-'
@@ -39,6 +41,13 @@ if(!empty($recordset)){
 				$this->Html->tag("li",$this->Paginator->link("[:list_rooms:]",array('controller'=>'locations','action'=>'index','location'=>$record['Location']['id']))).
 				$this->Html->tag("li",$this->Paginator->link("[:list_services:]",array('controller'=>'locations','action'=>'index','location'=>$record['Location']['id']))).
 				$this->Html->tag("li","","divider").
+				$this->Html->tag("li",
+					$this->Paginator->link( $record['Location']['status']? $this->Html->tag("i","","icon-circle-blank")."[:unpublish:]" : $this->Html->tag("i","","icon-circle")."[:publish:]",array('action'=>'status',($record['Location']['status'])?0:1,$record['Location']['id']),array('class'=>'action '.($record['Location']['status'] ? "warning" : "success"),'rel'=>"[:change_status_Location_name:]: <span class='itemName'>".h($record['Location']['name']).'</span>?','escape'=>false))
+				).
+				$this->Html->tag("li",
+					$this->Paginator->link( $record['Location']['venta_online']? $this->Html->tag("i","","icon-circle-blank")."[:venta_onlune_inactive:]" : $this->Html->tag("i","","icon-circle")."[:venta_online_active:]",array('action'=>'venta_online',($record['Location']['venta_online'])?0:1,$record['Location']['id']),array('class'=>'action '.($record['Location']['venta_online'] ? "warning" : "success"),'rel'=>"[:change_venta_online_Location_name:]: <span class='itemName'>".h($record['Location']['name']).'</span>?','escape'=>false))
+				).
+				$this->Html->tag("li","","divider").
 				$this->Html->tag("li",$this->Paginator->link("[:smart_config:]",array('controller'=>'locations','action'=>'smart_config',$record['Location']['id']),array('rev'=>''))).
 				$this->Html->tag("li","","divider").
 				$this->Html->tag("li",$this->Paginator->link("<span class='icon-trash'></span> [:delete:]",array('action'=>'delete',$record['Location']['id']),array('class'=>'action danger','rel'=>'[:System.delete_location_name:]: '.h($record['Location']['name']).'?','escape'=>false)))
@@ -47,7 +56,8 @@ if(!empty($recordset)){
 		$tr[]=array(
 			$this->Form->checkbox("Xpagin.record][",array('class'=>'check','id'=>'','value'=>$record['Location']['id'])),
 			$this->Paginator->link($record['Location']['name'],array('action' => 'view',$record['Location']['id']),array('rev'=>'','escape'=>false,'class'=>'highlight','name'=>'[:edit:] '.$record['Location']['name'])),
-			#($record['Location']['status'])? $this->Html->tag("span","[:yes:]","label label-success"):$this->Html->tag("span","[:no:]","label label-warning"),
+			($record['Location']['venta_online'])? $this->Html->tag("span","[:activo:]","label label-success"):$this->Html->tag("span","[:inactivo:]","label label-warning"),
+			($record['Location']['status'])? $this->Html->tag("span","[:si:]","label label-success"):$this->Html->tag("span","[:no:]","label label-warning"),
 			$this->Html->tag("span",$this->Time->format('d-[:M:]-Y',$record['Location']['created']),array('title'=>$this->Time->format('[:F:] d, Y  h:m a',$record['Location']['created']))),
 			#$this->Time->format('d/m/Y h:m a',$record['Location']['modified']),
 			array($record['Location']['id'],array('class'=>'center')),
@@ -58,7 +68,7 @@ if(!empty($recordset)){
 		$this->Html->tag("colgroup",
 			$this->Html->tag("col",null,array('span'=>1,'width'=>'15px')).
 			$this->Html->tag("col",null,array('span'=>1)).
-			$this->Html->tag("col",null,array('span'=>1,'width'=>'140px')).
+			$this->Html->tag("col",null,array('span'=>3,'width'=>'140px')).
 			#$this->Html->tag("col",null,array('span'=>1,'width'=>'140px')).
 			$this->Html->tag("col",null,array('span'=>1,'width'=>'30px')).
 			$this->Html->tag("col",null,array('span'=>1,'width'=>'150px'))

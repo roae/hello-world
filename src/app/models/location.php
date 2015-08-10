@@ -91,6 +91,7 @@ class Location extends AppModel {
 		'sv_lat',
 		'sv_lng',
 		'description',
+		'venta_online',
 	);
 
 }

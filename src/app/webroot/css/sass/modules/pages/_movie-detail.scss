@@ -448,6 +448,16 @@
 						font-size: 14px;
 					}
 				}
+				// Mensaje que aparece cuando esta la venta online inactiva
+				.noOnline{
+					background: lighten($yellow,20%);
+					color: darken($yellow,50%);
+					padding: 10px;
+					@include border-radius(4px);
+					border:1px solid $yellow;
+					margin-botom: 10px;
+					text-align: center;
+				}
 
 				// Mensaje que aparece cuando no hay funciones de la pelicula
 				.no-schedules {

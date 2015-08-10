@@ -35,6 +35,9 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 						<span class="complex-label"><?= $record['Location']['name'] ?></span>
 					</div>
 					<?php
+					if(!$record['Location']['venta_online']){
+						echo $this->Html->tag("div","[:mensaje_venta_online_no_dispobible:]",'noOnline');
+					}
 					if(isset($record['Show'])){
 					?>
 					<ul class="movies">
@@ -65,18 +68,33 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 											<?
 											$schedule = array();
 											foreach($shows as $show){
-												echo $this->Html->tag("li",
-													$this->Html->link(
-														$this->Time->format("h:i ",$show['schedule']).
-														$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+												if($record['Location']['venta_online']){
+													echo $this->Html->tag("li",
+														$this->Html->link(
+															$this->Time->format("h:i ",$show['schedule']).
+															$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+															$this->Html->tag("span",
+																$this->Html->tag("span",$show['screen_name'],"room").
+																($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
+																($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
+																,"details"),
+															array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
+															array('escape'=>false)
+														));
+												}else{
+													echo $this->Html->tag("li",
 														$this->Html->tag("span",
-															$this->Html->tag("span",$show['screen_name'],"room").
-															($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
-															($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
-															,"details"),
-														array('controller'=>'shows','action'=>'buy','show_id'=>$show['id'],'movie_slug'=>$item['Movie']['slug']),
-														array('escape'=>false)
-													));
+															$this->Time->format("h:i ",$show['schedule']).
+															$this->Html->tag("small",$this->Time->format("a",$show['schedule'])).
+															$this->Html->tag("span",
+																$this->Html->tag("span",$show['screen_name'],"room").
+																($show['Projection']['format'] == "3D" ? $this->Html->tag("span","3D","format") : "").
+																($show['room_type'] == "mega" ? $this->Html->tag("span","MEGAPANTALLA","room_type") : "")
+																,"details"),
+															array('class'=>'show')
+														));
+												}
+
 											}
 											?>
 										</ul>

@@ -128,6 +128,31 @@ class LocationsController extends AppController{
 		}
 	}
 
+	function admin_venta_online($state=null, $id=null){
+		if(!empty($id) || $this->Xpagin->isExecuter){
+			if(empty($id) && !empty($this->data['Xpagin']['record'])){
+				$id = $this->data['Xpagin']['record'];
+			}else if(empty($id)){
+				$this->Notifier->error($this->Interpreter->process("[:no_items_selected:]"));
+				$this->redirect($this->referer());
+			}
+			if(!empty($state) || $state == 0){
+				if($this->Location->updateAll(array('Location.venta_online' => $state), array('Location.id' => $id))){
+					$this->Notifier->success($this->Interpreter->process(($state) ? "[:Location_venta_online_active_successfully:]" : "[:Location_venta_online_inactive_successfully:]"));
+				}else{
+					$this->Notifier->success($this->Interpreter->process("[:an_error_ocurred_on_the_server:]"));
+				}
+			}else{
+				$this->Notifier->error($this->Interpreter->process("[:specify_a_state:]"));
+			}
+		}else{
+			$this->Notifier->error($this->Interpreter->process("[:specify_a_Location_id:]"));
+		}
+		if(!$this->Xpagin->isExecuter){
+			$this->redirect($this->referer());
+		}
+	}
+
 	function admin_delete($id){
 		if(!empty($id) || $this->Xpagin->isExecuter){
 			if(empty($id) && !empty($this->data['Xpagin']['record'])){

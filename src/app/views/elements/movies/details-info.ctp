@@ -3,7 +3,6 @@
 		<a class="pause-flag" href="#"></a>
 		<a class="watch-trailer trailer-trigger" href="<?= $record['Movie']['trailer'] ?>">[:see-movie-trailer:]</a>
 	<?php endif; ?>
-	<h2>[:movie-details:]</h2>
 	<?php if( $record['Movie']['duration'] != '' ): ?>
 		<div class="info">
 			<strong>[:movie-duration:]:</strong>

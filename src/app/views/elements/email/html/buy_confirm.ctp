@@ -32,7 +32,7 @@
 											<td colspan="2" style="font-size: 26px;line-height: 1em;padding-bottom: 5px;"><?= h($record['Movie']['title'])?></td>
 										</tr>
 										<tr>
-											<td>[:clasification:]:</td>
+											<td>[:clasification:]</td>
 											<td><?= $record['Movie']['clasification'] ?></td>
 										</tr>
 										<tr>

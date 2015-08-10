@@ -50,8 +50,8 @@ class ContactsController extends AppController{
 				if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR')))){
 					if($this->Contact->save($this->data,false)){
 						# Mail interno
-						$this->Email->to = Configure::read("Contact");
-						$this->Email->bcc = Configure::read('Contact_bcc');
+						$this->Email->to = Configure::read("AppConfig.contact_email");
+						$this->Email->bcc = Configure::read('AppConfig.contact_email_cc');
 						$this->Email->subject = "Contacto";
 						$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
 						$this->Email->sendAs = 'html';

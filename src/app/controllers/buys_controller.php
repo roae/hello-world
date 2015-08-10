@@ -44,7 +44,7 @@ class BuysController extends AppController{
 				return $this->render('/elements/email/html/buy_confirm');
 			}
 
-			if($route['controller'] == "shows"){
+			/*if($route['controller'] == "shows"){
 				$this->Email->reset();
 				$this->Email->to = $record['Buy']['email'];
 				$this->Email->from = "Citicinemas Mobil<noreply@citicinemas.com>";
@@ -53,7 +53,7 @@ class BuysController extends AppController{
 				//$this->set("data",$this->errors);
 				$this->Email->template = "buy_confirm";
 
-				/* Opciones SMTP*
+				/* Opciones SMTP *
 				$this->Email->smtpOptions = array(
 					'port'=>'25',
 					'timeout'=>'30',
@@ -62,11 +62,11 @@ class BuysController extends AppController{
 					'password'=>'Rochin12!-');
 
 				$this->Email->delivery = 'smtp';
-				/**/
+				/**
 				$this->Email->send();
 
 				//pr(print_r($this->Email->smtpError));
-			}
+			}*/
 		}else{
 			$this->cakeError('error404');
 		}

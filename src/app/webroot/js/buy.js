@@ -197,28 +197,26 @@ $(document).on("ready",function(){
 		setCCTypeIcon($(this ).val());
 	});
 	var $BuyResume = $('#buyResume');
-	$('.ticketsSelection').waypoint({
-		handler: function(direction) {
-			if( direction == 'down' ) {
-				$BuyResume.addClass('sticky' )//.css({top: $("#main-header").outerHeight()+"px"});
-				//$('body').css('padding-top', '118px');
-			} else {
-				$BuyResume.removeClass('sticky')//.css({top:'-200px'});
-				//$('body').css('padding-top', '0');
-			}
-
-		},
-		offset: 400
-	});
-
-	/*$window = $(window);
-	$window.on("scroll",function(event){
-		if($BuyResume.hasClass("sticky")){
-			$BuyResume.css({top: $("#main-header").outerHeight()+"px"});
-		}
-	})*/
 
 	$("#main-header" ).append($BuyResume);
+
+	if(!$BuyResume.hasClass("remainingTime")){
+		$('.ticketsSelection').waypoint({
+			handler: function(direction) {
+				if( direction == 'down' ) {
+					$BuyResume.addClass('sticky' )//.css({top: $("#main-header").outerHeight()+"px"});
+					//$('body').css('padding-top', '118px');
+				} else {
+					$BuyResume.removeClass('sticky')//.css({top:'-200px'});
+					//$('body').css('padding-top', '0');
+				}
+
+			},
+			offset: 400
+		});
+	}else{
+		$BuyResume.addClass('sticky' )
+	}
 
 	buyCountDown();
 	buildTicketsArray();

@@ -49,6 +49,9 @@ class Buy extends AppModel{
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 			'mail' => array('rule' => 'email','message' => '[:valid_email:]'),
 		),
+		'privacy' => array(
+			'requerido' => array( 'rule' => array('comparison' , '!=', 0 ), 'required' => true, 'allowEmpty' => false, 'message' => '[:requiered_acept_policies]' )
+		)
 	);
 
 	function expiro($data){

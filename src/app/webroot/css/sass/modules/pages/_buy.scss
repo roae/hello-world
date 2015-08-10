@@ -50,7 +50,7 @@
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-size: cover;
-			@include opacity(0.2);
+			@include opacity(0.1);
 		}
 
 		.col-container {
@@ -127,7 +127,6 @@
 	.buy-information {
 		@include span(8);
 
-
 		@include with-layout(8) {
 			.buy-details{
 				@include span(5);
@@ -194,11 +193,13 @@
 			color: #FFF;
 			padding: 1px 5px;
 			@include border-radius(3px);
+			font-size: 10px;
 		}
 		.premier {
 			background: #E5C90C;
 			padding: 1px 5px;
 			color: $dark-gray;
+			font-size: 10px;
 			@include border-radius(3px);
 		}
 	}

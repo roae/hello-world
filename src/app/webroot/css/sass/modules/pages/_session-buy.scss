@@ -845,6 +845,16 @@
 				display: none;
 			}
 
+			.checkbox{
+				label{
+					display: inline;
+				}
+				input{
+					width: auto;
+					margin-right: 10px;
+				}
+			}
+
 		}
 
 	}

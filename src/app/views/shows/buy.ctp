@@ -25,24 +25,24 @@ if(!empty($record)){
 				</div>
 				<div class="movie-information">
 					<h1 class="blured-title">
-						<?= Inflector::humanize(low($record['Movie']['title'])) ?>
+						<?= h($record['Movie']['title']) ?>
 					</h1>
-					<h2 class="sub-title"><?= Inflector::humanize(low($record['Movie']['original_title'])) ?></h2>
+					<h2 class="sub-title"><?= h($record['Movie']['original_title']) ?></h2>
 					<div class="movie-details">
 
 						<?php if( $record['Movie']['clasification'] != '' ): ?>
 							<div class="info">
-								<strong>[:clasification:]:</strong>
-								<span class="value"><?= $record['Movie']['clasification'] ?></span>
+								<strong>[:clasification:]</strong>
+								<span class="value"><?= h($record['Movie']['clasification']) ?></span>
 							</div>
 						<?php endif; ?>
 						<div class="info">
 							<strong>[:ciudad:]</strong>
-							<span class="value"><?= $record['City']['name'] ?></span>
+							<span class="value"><?= h($record['City']['name']) ?></span>
 						</div>
 						<div class="info">
 							<strong>[:cine:]</strong>
-							<span class="value"><?= $record['Location']['name'] ?></span>
+							<span class="value"><?= h($record['Location']['name']) ?></span>
 						</div>
 						<div class="info">
 							<strong>[:projection_version:]</strong>
@@ -131,14 +131,14 @@ if(!empty($record)){
 				<span class="value">$0.00</span>
 				<span class="taxes">Incluye IVA</span>
 			</div>
-			<div class="loyaltyCard">
+			<!--<div class="loyaltyCard">
 				<div class="input text">
 					<label for="">[:loyalty-card-text:]</label>
 					<input type="text" id="loyalty" placeholder="[:loyalty-card-help:]"/>
 					<button typ="button" id="loyaltyButton" class="btn-primary">[:add-card:]</button>
 				</div>
 				<div>[:que-es-loyalty:]</div>
-			</div>
+			</div>-->
 		</section>
 	<?php if($record['Show']['seat_alloctype']){ ?>
 		<a name="seats" id="ticketsAnchor"></a>
@@ -208,13 +208,13 @@ if(!empty($record)){
 						</span>
 					</label>
 
-					<input id="BuyPaymentType1" type="radio" <?= (isset($this->data['Buy']['payment_method']) && $this->data['Buy']['payment_method']==1) ? 'checked="checked"': ""?> value="1" name="data[Buy][payment_method]">
+					<!--<input id="BuyPaymentType1" type="radio" <?= (isset($this->data['Buy']['payment_method']) && $this->data['Buy']['payment_method']==1) ? 'checked="checked"': ""?> value="1" name="data[Buy][payment_method]">
 					<label for="BuyPaymentType1">
 						[:paypal-account:]
 						<span class="icons">
 							<span class="paypal-icon"></span>
 						</span>
-					</label>
+					</label>-->
 				</fieldset>
 				<?php
 				echo $this->I18n->input("ccnumber",array(
@@ -243,6 +243,7 @@ if(!empty($record)){
 				);
 				echo "<hr />";
 				echo $this->I18n->input("email",array('placeholder'=>'[:your-email:]'));
+				echo $this->I18n->input("privacy",array('type'=>'checkbox'));
 
 				?>
 				<div class="button">
@@ -258,7 +259,7 @@ if(!empty($record)){
 		</section>
 
 	</div>
-	<div id="buyResume">
+	<div id="buyResume" <?= isset($remainingTime)? "class='remainingTime'":"" ?>>
 		<div class="fnd">
 			<div class="col-container">
 				<div class="buyData">
@@ -376,4 +377,5 @@ $this->I18n->addMissing("ccname-invalid","Mensaje error cuando no escribe un nom
 $this->I18n->addMissing("tarjeta-expiro","Mensaje flash error cuando ingresa un tarjeta vencida",'modulo',true);
 $this->I18n->addMissing("cc-expiro","Mensaje error cuando ingresa un tarjeta vencida",'modulo',true);
 $this->I18n->addMissing("remaining-time","Texto del cronometro",'modulo',true);
+$this->I18n->addMissing("requiered_acept_policies","Mensaje de error cuando no acepta las politicas de privacidad",'modulo',true);
 ?>

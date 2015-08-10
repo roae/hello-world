@@ -1,0 +1,148 @@
+@media only screen and (max-width: 854px) {
+	.buy-detail-container{
+		.big-cover{
+			padding: 60px 0;
+		}
+		.message{
+			margin: 0 20px 50px;
+			.principal-text{
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 736px) {
+	.buy-detail-container{
+		.show-information {
+			margin-bottom: 50px;
+			@include span(14);
+			@include push(1);
+			@include with-layout(8){
+				figure {
+					@include span(2);
+					margin-top: 5px;
+					overflow: hidden;
+					@include border-radius(4px);
+					img {
+						display: block;
+						width: 100%;
+					}
+				}
+				.details {
+					@include span(6);
+					margin-top: 10px;
+					h2 {
+						margin-bottom: 10px;
+					}
+				}
+			}
+
+
+		}
+		.buy-information{
+			@include span(14);
+			@include push(1);
+		}
+	}
+}
+
+@media only screen and (max-width: 667px) {
+	.buy-detail-container{
+		.big-cover{
+			padding: 40px 0;
+		}
+
+		.message{
+			.icon{
+				width: 60px;
+				height: 60px;
+				background-size: 60px;
+			}
+			.principal-text{
+				font-size: 24px;
+				margin-left: 80px;
+			}
+			.second-text{
+				margin-left: 80px;
+				font-size: 12px;
+			}
+
+		}
+	}
+}
+
+@media only screen and (max-width: 667px) {
+	.buy-detail-container{
+		.show-information {
+			margin-bottom: 50px;
+			@include full;
+		}
+		.buy-information{
+			@include full;
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.buy-detail-container{
+		.message{
+			margin: 0 10px 50px;
+			.icon{
+				background-size: 40px;
+				width: 40px;
+				height: 40px;
+				margin-right: 10px;
+			}
+			.principal-text{
+				margin-left: 50px;
+			}
+			.second-text{
+				margin-left: 50px;
+			}
+		}
+		.info{
+			font-size: 14px;
+		}
+		.buy-information{
+			.tickets{
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.buy-detail-container{
+		.message{
+			.icon{
+				margin-top: 10px;
+			}
+			.principal-text{
+				font-size: 18px;
+			}
+			.second-text{
+				margin-left:0;
+				margin-top: 5px;
+				font-size: 12px;
+			}
+		}
+		.info{
+			font-size: 12px;
+		}
+		.buy-information{
+			.tickets{
+				font-size: 12px;
+			}
+			.buy-details{
+				@include full;
+			}
+			.barras{
+				@include full;
+				text-align: center;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+		}
+	}
+}

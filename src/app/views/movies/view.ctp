@@ -21,10 +21,10 @@ $this->set("pageKeywords",$record['Movie']['title']);
 		<div class="col-container">
 			<div class="movie-title">
 				<h1 class="blured-title">
-					<?= Inflector::humanize( low( $record['Movie']['title'] ) ) ?>
+					<?= h($record['Movie']['title']) ?>
 				</h1>
 
-				<p><?= Inflector::humanize( low( $record['Movie']['original_title'] ) ) ?></p>
+				<p><?= h($record['Movie']['original_title']) ?></p>
 			</div>
 			<!--<span class="presale">[:presale:]</span>-->
 			<!--span class="likes">65</span-->
@@ -37,7 +37,7 @@ $this->set("pageKeywords",$record['Movie']['title']);
 			<div class="main-content">
 				<div class="cover-container">
 					<?= $this->Html->image( $record['Poster']['medium'], array( 'alt' => '[:logo_alt:]' ) ) ?>
-					<a class="like" href="">Me gusta</a>
+					<!--<a class="like" href="">Me gusta</a>-->
 				</div>
 
 				<div class="movilTrailer">
@@ -45,7 +45,7 @@ $this->set("pageKeywords",$record['Movie']['title']);
 					<a class="pause-flag" href="#"></a>
 					<a class="watch-trailer trailer-trigger" href="<?= $record['Movie']['trailer'] ?>">[:see-movie-trailer:]</a>
 					<?php endif; ?>
-					<a class="like" href="">Me gusta</a>
+					<!--<a class="like" href="">Me gusta</a>-->
 				</div>
 
 

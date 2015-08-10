@@ -133,6 +133,8 @@ if(Configure::read("I18n.L10n.active")){
 	$this->I18n->addMissing("[:hoy:]",array('desc'=>'Palabra hoy','js'=>true,'tab'=>"extras"));
 	$this->I18n->addMissing("[:manana:]",array('desc'=>'Palabra mañana','js'=>true,'tab'=>"extras"));
 
+	$this->I18n->addMissing("[:suscribirme:]",array('desc'=>'Texto del boton del boletin'));
+
 	foreach(range(1,12) as $i){
 		$this->I18n->addMissing($this->Time->format("[:F:]",  mktime(null,null,null,$i,2,2010)),array('desc'=>'Mes','js'=>true,'tab'=>"extras"));
 		$this->I18n->addMissing($this->Time->format("[:M:]",  mktime(null,null,null,$i,2,2010)),array('desc'=>'Mes abreviado','js'=>true,'tab'=>"extras"));

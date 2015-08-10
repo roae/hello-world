@@ -29,7 +29,7 @@
 					<div class="movie-details">
 						<?php if( $record['Movie']['clasification'] != '' ): ?>
 							<div class="info">
-								<strong>[:clasification:]:</strong>
+								<strong>[:clasification:]</strong>
 								<span class="value"><?= $record['Movie']['clasification'] ?></span>
 							</div>
 						<?php endif; ?>
@@ -43,21 +43,27 @@
 						</div>
 						<div class="info">
 							<strong>[:projection_version:]</strong>
-							<span class="value"><?= $record['Projection']['format']." / ".$record['Projection']['lang'] ?></span>
-							<?php
-							if(strpos($record['Buy']['room_type'],"mega") !== false){
-								echo $this->Html->tag("span","[:mega-pantalla:]",'mega');
-							}
-							?>
+							<span class="value">
+								<?= $record['Projection']['format']." / ".$record['Projection']['lang'] ?>
+								<?php
+								if(strpos($record['Buy']['room_type'],"mega") !== false){
+									echo $this->Html->tag("span","[:mega-pantalla:]",'mega');
+								}
+								?>
+							</span>
+
 						</div>
 						<div class="info">
 							<strong>[:sala:]</strong>
-							<span class="value"><?= $record['Buy']['screen_name'] ?></span>
-							<?php
-							if(strpos($record['Buy']['room_type'],"premier") !== false){
-								echo $this->Html->tag("span","[:sala-prermier:]",'premier');
-							}
-							?>
+							<span class="value">
+								<?= $record['Buy']['screen_name'] ?>
+								<?php
+								if(strpos($record['Buy']['room_type'],"premier") !== false){
+									echo $this->Html->tag("span","[:sala-prermier:]",'premier');
+								}
+								?>
+							</span>
+
 						</div>
 						<div class="info">
 							<strong>[:fecha:]</strong>
@@ -142,10 +148,12 @@
 							<strong>[:buy-aut_code:]:</strong>
 							<span class="value"><?= $record['Buy']['aut_code'] ?></span>
 						</div>
+						<?php /*
 						<div class="info">
 							<strong>[:buy-RefSPNum:]:</strong>
 							<span class="value"><?= $record['Buy']['refspnum'] ?></span>
 						</div>
+                          */ ?>
 					</div>
 				<?
 				}

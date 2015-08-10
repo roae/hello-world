@@ -15,7 +15,7 @@
 		<li class="movie">
 
 			<div class="image-container">
-				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'));?>
+				<?= $this->Html->image($this->Uploader->generatePath($show['Poster'],'medium'),array('alt'=>$show['Movie']['title']));?>
 				<?php
 				$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
 				$labels = "";

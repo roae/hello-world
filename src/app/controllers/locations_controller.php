@@ -303,6 +303,7 @@ class LocationsController extends AppController{
 		$this->Location->contain(array('Gallery','Service' => 'Icon', 'City'));
 		$record = $this->Location->find("first",array('conditions'=>array('Location.trash'=>0,'Location.status'=>1,'Location.id'=>$id)));
 		$this->set(compact("record"));
+		$this->pageTitle = isset($record['Location']['name'])? $record['Location']['name']." | Citicinemas" : "Citicinemas";
 	}
 
 	function map($street_view=0){

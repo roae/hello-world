@@ -425,7 +425,8 @@
 		}
 
 		&.premiere {
-			a {
+			a,
+			.show{
 				color: darken($yellow, 40%);
 				background-color: $yellow;
 

@@ -1,8 +1,7 @@
 <?php
 /* @var $this View */
 $this->Html->script(array(
-	'ext/jquery.mousewheel.min.js',
-	'ext/antiscroll.js'
+	'ext/perfect-scrollbar.jquery.min.js'
 ),array('inline'=>false));
 $conditions = array();
 if(isset($LocationsSelected) && !empty($LocationsSelected)){
@@ -49,7 +48,7 @@ if(!empty($premiere)){
 					</div>
 				</div>
 			</div>
-		</div>
+		<!--</div>-->
 	</div>
 </section>
 <?

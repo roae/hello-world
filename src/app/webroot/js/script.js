@@ -593,14 +593,16 @@ function nextSlide(){
 			}
 		});
 
-		$('.litebox').liteBox({
-		  revealSpeed: 400,
-		  background: 'rgba(0,0,0,.8)',
-		  overlayClose: true,
-		  escKey: true,
-		  navKey: true
-		});
+	}
 
+	if($(".movie-gallery-container" ).length || $("#services-container" ).length){
+		$('.litebox').liteBox({
+			revealSpeed: 400,
+			background: 'rgba(0,0,0,.8)',
+			overlayClose: true,
+			escKey: true,
+			navKey: true
+		});
 	}
 
 	$('#header-location-select').find('.city-selector').on('click', function(event) {
@@ -779,7 +781,7 @@ function nextSlide(){
 	    });
 	}
 
-	$('.service-gallery').each(function() {
+	/*$('.service-gallery').each(function() {
 		$(this).magnificPopup({
 			delegate: 'a',
 			type: 'image',
@@ -813,7 +815,7 @@ function nextSlide(){
 				return item.el.attr('title');
 			}
 		}
-	});
+	});*/
 
 	$("#map .tabs a" ).on("click",function(event){
 		event.preventDefault();
@@ -840,7 +842,10 @@ function nextSlide(){
 	if($premieresContainer.length){
 		$movies = $(".movie",$premieresContainer);
 		$(".movies-list",$premieresContainer ).width($movies.eq(0).outerWidth() * $movies.length);
-		$(".antiscroll-wrap",$premieresContainer ).antiscroll().data('antiscroll');
+		//$(".antiscroll-wrap",$premieresContainer ).antiscroll().data('antiscroll');
+		$('.antiscroll-wrap',$premieresContainer).perfectScrollbar();
 	}
+
+	$('.billboard .sinopsis').perfectScrollbar();
 
 })(jQuery);

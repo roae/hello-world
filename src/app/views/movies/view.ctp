@@ -83,7 +83,7 @@ $this->set("pageKeywords",$record['Movie']['title']);
 		</div>
 	</div>
 </div>
-
+<?= $this->element("movies/commingsoon"); ?>
 
 <?php
 $this->Html->script( array(

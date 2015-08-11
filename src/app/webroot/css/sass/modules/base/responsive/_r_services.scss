@@ -1,0 +1,45 @@
+@media only screen and (max-width: 854px) {
+	#services-container {
+		.services{
+			.service{
+				@include span(7);
+				@include push(2);
+				&:nth-of-type(2n + 1) {
+					@include span(7);
+					clear: left;
+				}
+			}
+		}
+	}
+}
+
+
+@media only screen and (max-width: 667px) {
+	#services-container {
+		.services{
+			.service{
+				@include span(8);
+				&:nth-of-type(2n + 1) {
+					@include span(8);
+					clear: left;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 667px) {
+	#services-container {
+		.services{
+			.service{
+				@include span(14);
+				@include push(1);
+				&:nth-of-type(2n + 1) {
+					@include span(14);
+					@include push(1);
+					clear: left;
+				}
+			}
+		}
+	}
+}

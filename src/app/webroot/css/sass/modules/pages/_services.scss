@@ -7,8 +7,7 @@
 
 		.service {
 			@include span(6);
-			//padding: 0 48px 30px 48px;
-			margin-left: span(2)+gutter();
+			@include push(2);
 			margin-bottom: 40px;
 			font-size:  14px;
 			figure{
@@ -24,13 +23,9 @@
 				margin-left: 50px;
 			}
 
-			//background-position: left top;
-			//background-repeat: no-repeat;
-			//background-size: 32px;
-			//background-image: url(../img/service-credit-card-icon.png);
-
 			&:nth-of-type(2n + 1) {
 				clear: left;
+				@include push(1);
 			}
 		}
 	}

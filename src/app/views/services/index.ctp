@@ -19,11 +19,11 @@
 
 						<?= $this->Xhtml->para("description",h($service['Service']['description'])); ?>
 
-						<div class="service-gallery" id="popup-gallery">
+						<div class="service-gallery" >
 
 							<?php foreach( $service['Gallery'] as $picture ){ ?>
 
-								<a class="service-picture" href="<?= $picture['url'] ?>">
+								<a class="service-picture litebox" data-litebox-group="group-<?= $service['Service']['id'] ?>" href="<?= $picture['url'] ?>">
 									<img src="<?= $picture['mini'] ?>">
 								</a>
 
@@ -39,3 +39,10 @@
 
 	</div>
 </div>
+<?= $this->element("movies/commingsoon"); ?>
+<?php
+$this->Html->script( array(
+	'ext/images-loaded.min.js',
+	'ext/litebox.min.js',
+), false );
+?>

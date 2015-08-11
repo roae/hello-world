@@ -117,3 +117,4 @@ $this->Paginator->options(array('url' => am(array('controller' => 'articles','ac
 	</section>
 
 </div>
+<?= $this->element("movies/commingsoon"); ?>

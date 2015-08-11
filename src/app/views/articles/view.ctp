@@ -96,3 +96,4 @@
 		</div>
 	</div>
 </article>
+<?= $this->element("movies/commingsoon"); ?>

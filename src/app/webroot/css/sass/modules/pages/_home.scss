@@ -264,6 +264,7 @@
 					}
 
 					.sinopsis {
+						position: relative;
 						height: 175px;
 						overflow-y: auto;
 						margin-bottom: 10px;
@@ -373,15 +374,18 @@
 			display: block;
 		}
 	}
-	.antiscroll-wrap{
-		overflow: hidden;
-		overflow-x: auto;
-	}
 
 	.movies-list{
+		//width: 10000px;
 		vertical-align: top;
 		display: inline-block;
 		text-align: center;
+		overflow: hidden;
+	}
+	.antiscroll-wrap{
+		position: relative;
+		overflow: hidden;
+		overflow-x: auto;
 	}
 
 	.movie {

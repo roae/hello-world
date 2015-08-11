@@ -7564,7 +7564,7 @@ select {
     font-size: 14px;
   }
   /* line 825, sass/modules/base/responsive/_r_homepage.scss */
-  #main-header.sticky .fndheader {
+  #main-header.sticky .fndHeader {
     height: 50px;
   }
   /* line 830, sass/modules/base/responsive/_r_homepage.scss */
@@ -7593,33 +7593,33 @@ select {
     font-size: 14px;
     background-position: 10px center;
   }
-  /* line 859, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 860, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination {
     bottom: 20px;
     padding: 10px 0;
   }
-  /* line 869, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 870, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {
     width: 48.33333%;
     float: left;
     margin-left: 0.83333%;
     margin-right: 0.83333%;
   }
-  /* line 877, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 873, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(3n+1), .home .billboard .movie:nth-of-type(4n+1), .home .billboard .movie:nth-of-type(5n+1) {
     clear: none;
   }
-  /* line 883, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 879, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie:nth-of-type(2n+1) {
     clear: left;
   }
 
-  /* line 891, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 887, sass/modules/base/responsive/_r_homepage.scss */
   .horizontal-banner {
     display: none;
   }
 
-  /* line 897, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 893, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .footer-menu-options {
     clear: both;
     width: 98.75%;
@@ -7627,7 +7627,7 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
-  /* line 900, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 896, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news {
     clear: both;
     width: 98.75%;
@@ -7636,7 +7636,7 @@ select {
     margin-right: 0.625%;
     margin-top: 40px;
   }
-  /* line 903, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 899, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .news article {
     clear: both;
     width: 98.75%;
@@ -7645,11 +7645,11 @@ select {
     margin-right: 0.625%;
     margin-bottom: 30px;
   }
-  /* line 910, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 906, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li {
     margin-right: 0;
   }
-  /* line 912, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 908, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .social-networks li a {
     width: 34px;
     height: 34px;
@@ -7658,7 +7658,7 @@ select {
     -webkit-background-size: 34px;
     background-size: 34px;
   }
-  /* line 923, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 919, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription input[type=text] {
     clear: both;
     width: 95%;
@@ -7666,7 +7666,7 @@ select {
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
-  /* line 926, sass/modules/base/responsive/_r_homepage.scss */
+  /* line 922, sass/modules/base/responsive/_r_homepage.scss */
   #main-footer .footer-menu .subscription input[type=submit] {
     margin-top: 10px;
     clear: both;
@@ -7674,6 +7674,22 @@ select {
     float: left;
     margin-left: 2.5%;
     margin-right: 2.5%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  /* line 937, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie .details .title {
+    margin-bottom: 5px;
+  }
+  /* line 940, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie .details .sinopsis {
+    height: 90px;
+    margin-bottom: 5px;
+  }
+  /* line 945, sass/modules/base/responsive/_r_homepage.scss */
+  .home .billboard .movie .details a {
+    padding: 3px 10px;
+    margin: 5px 5px;
   }
 }
 @media only screen and (max-width: 854px) {

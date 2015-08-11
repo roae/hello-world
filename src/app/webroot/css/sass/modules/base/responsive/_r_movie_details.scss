@@ -82,6 +82,12 @@
 				}
 			}
 		}
+		.movie-detailed-info{
+			.watch-trailer{
+				padding: 8px 7px 8px 20px;
+				background-position: 10px center;
+			}
+		}
 	}
 }
 
@@ -122,6 +128,11 @@
 					background: url(../img/like.png) no-repeat 10px center;
 					background-size: 16px;
 					font-size: 12px;
+				}
+			}
+			&.image-not-founded{
+				.cover-container{
+					margin-top: -100px;
 				}
 			}
 
@@ -179,7 +190,8 @@
 			.movilTrailer{
 				display:block;
 				position: relative;
-				margin-bottom: 20px;
+				//margin-bottom: 20px;
+				height: 35px;
 			}
 			.infoTabs{
 				display: block;

@@ -846,6 +846,9 @@ function nextSlide(){
 		$('.antiscroll-wrap',$premieresContainer).perfectScrollbar();
 	}
 
-	$('.billboard .sinopsis').perfectScrollbar();
+	if($('.billboard .sinopsis' ).length){
+		$('.billboard .sinopsis').perfectScrollbar();
+	}
+
 
 })(jQuery);

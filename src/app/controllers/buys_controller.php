@@ -44,31 +44,38 @@ class BuysController extends AppController{
 				return $this->render('/elements/email/html/buy_confirm');
 			}
 
-			/*if($route['controller'] == "shows"){
-				$this->Email->reset();
-				$this->Email->to = $record['Buy']['email'];
-				$this->Email->from = "Citicinemas Mobil<noreply@citicinemas.com>";
-				$this->Email->subject = "Confirmación de compra";
-				$this->Email->sendAs = 'html';
-				//$this->set("data",$this->errors);
-				$this->Email->template = "buy_confirm";
-
-				/* Opciones SMTP *
-				$this->Email->smtpOptions = array(
-					'port'=>'25',
-					'timeout'=>'30',
-					'host' => 'mail.h1webstudio.com',
-					'username'=>'erochin@h1webstudio.com',
-					'password'=>'Rochin12!-');
-
-				$this->Email->delivery = 'smtp';
-				/**
-				$this->Email->send();
-
-				//pr(print_r($this->Email->smtpError));
-			}*/
+			if($route['controller'] == "shows"){
+				$this->__sendBuyConfirmation($record);
+			}
 		}else{
 			$this->cakeError('error404');
+		}
+	}
+
+	function __sendBuyConfirmation(){
+		$this->log("Enviando Confirmacion","SmartConnector");
+		$this->Email->reset();
+		$this->Email->to = $this->data['Buy']['email'];
+		$this->Email->from = "Citicinemas Movil<noreply@citicinemas.com>";
+		$this->Email->subject = "Confirmación de compra";
+		$this->Email->sendAs = 'html';
+		#$this->set("record",$record);
+		$this->Email->template = "buy_confirm";
+
+		/* Opciones SMTP *
+		$this->Email->smtpOptions = array(
+			'port'=>'25',
+			'timeout'=>'30',
+			'host' => 'mail.h1webstudio.com',
+			'username'=>'erochin@h1webstudio.com',
+			'password'=>'Rochin12!-');
+
+		$this->Email->delivery = 'smtp';
+		/**/
+		if($this->Email->send()){
+			$this->log("Email de confirmación enviada con exito al email ".$this->data['Buy']['email'],"SmartConnector");
+		}else{
+			$this->log("Error al enviar el correo de confirmación","SmartConnector");
 		}
 	}
 

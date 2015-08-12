@@ -155,7 +155,7 @@
 								</div>
 								<div class="info" style="padding-bottom:5px;">
 									<strong>[:buy-created:]:</strong>
-									<span class="value" style="padding-left:10px;"><?= $this->Time->format("[:l:] d \d\e [:F:] h:i a",$record['Buy']['schedule']); ?></span>
+									<span class="value" style="padding-left:10px;"><?= date("[:l:] d \d\e [:F:] h:i a") ?></span>
 								</div>
 							</div>
 						<?

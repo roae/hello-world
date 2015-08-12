@@ -71,6 +71,7 @@ class RemoveTransactionsShell extends Shell{
 			));
 			//print_r($buys);
 			if(!empty($buys)){
+				print_r($buys);
 				foreach($buys as $buy){
 					$VistaServer = @new SoapClient($record['Location']['vista_service_url'],array('cache_wsdl'=>WSDL_CACHE_NONE));
 					$params = array(
@@ -94,7 +95,9 @@ class RemoveTransactionsShell extends Shell{
 		}
 		#print_r($buysToRemove);
 		if(!empty($buysToRemove)){
-			$this->Buy->deleteAll(array('Buy.id'=>$buysToRemove));
+			$this->log("delete");
+			print_r($buysToRemove);
+			#$this->Buy->deleteAll(array('Buy.id'=>$buysToRemove));
 		}
 
 		$this->dump_sql();

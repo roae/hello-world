@@ -63,6 +63,16 @@ echo $this->Form->create("Setting");
 					?>
 				</fieldset>
 				<fieldset>
+					<legend>[:buys_config:]</legend>
+					<?php
+					echo $this->Form->hidden("13.id");
+					echo $this->I18n->input("13.value",array('type'=>'text','label'=>'[:buy_remaining_time:]'));
+
+					echo $this->Form->hidden("14.id");
+					echo $this->I18n->input("14.value",array('type'=>'text','label'=>'[:buy_bcc_confirmation:]'));
+					?>
+				</fieldset>
+				<fieldset>
 					<legend>[:smart-connector-config:]</legend>
 					<?php
 					echo $this->Form->hidden("11.id");
@@ -71,7 +81,7 @@ echo $this->Form->create("Setting");
 					echo $this->Form->hidden("12.id");
 					echo $this->I18n->input("12.value",array('type'=>'text','label'=>'[:smart-clientID:]'));
 
-					echo $this->Form->hidden("13.id");
+					/*echo $this->Form->hidden("13.id");
 					echo $this->I18n->input("13.value",array('type'=>'text','label'=>'[:smart-clientPOS:]'));
 
 					echo $this->Form->hidden("14.id");
@@ -90,7 +100,7 @@ echo $this->Form->create("Setting");
 					echo $this->I18n->input("18.value",array('type'=>'text','label'=>'[:smart-login_date:]'));
 
 					echo $this->Form->hidden("19.id");
-					echo $this->I18n->input("19.value",array('type'=>'text','label'=>'[:smart-lastServerKey:]','after'=>'<span class="help">[:smart-lastserverkey:]</span>'));
+					echo $this->I18n->input("19.value",array('type'=>'text','label'=>'[:smart-lastServerKey:]','after'=>'<span class="help">[:smart-lastserverkey:]</span>'));*/
 					?>
 					<a href="/php-tail/Log.php" target="popup" class="btn_info" onClick="window.open(this.href, this.target, 'width=1000,height=500'); return false;">SmartConnector Log</a>
 

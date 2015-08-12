@@ -28,8 +28,11 @@ class RemoveTransactionsShell extends Shell{
 	 */
 	var $uses = array(
 		'Buy',
-		'Location'
+		'Location',
+		'Setting'
 	);
+
+	var $config;
 
 
 
@@ -47,11 +50,8 @@ class RemoveTransactionsShell extends Shell{
 	 * Metodo que se ejecuta automaticamente desde el comando de consola
 	 */
 	function main(){
-		/*Configure::write("debug",2);
-		$dbo = $this->Buy->getDatasource();
-		$oldStateFullDebug = $dbo->fullDebug;
-		$dbo->fullDebug = true;*/
 		$this->out(date("Y F d H:i:s"));
+		$this->config = $this->Setting->getConfig();
 		#print_r(date("Y F d H:i:s",strtotime("-2 mins")));
 		$locations = $this->Location->find("all",array(
 			'fields'=>array('Location.vista_service_url','Location.id'),
@@ -60,13 +60,12 @@ class RemoveTransactionsShell extends Shell{
 
 		$buysToRemove = array();
 		foreach($locations as $record){
-			# TODO: poner el tiempo que durara una sesion en la configuracion de la página
 			$buys = $this->Buy->find("all",array(
 				'fields'=>array('Buy.id','Buy.trans_id_temp'),
 				'conditions'=>array(
 					'Buy.trans_id_temp <>'=>"-",
 					'Buy.confirmation_number'=>"-",
-					'Buy.created <'=>date("Y-m-d H:i:s",strtotime("-2 mins")),
+					'Buy.created <'=>date("Y-m-d H:i:s",strtotime("-{$this->config['buy_remmaining_time']} mins")),
 					'Buy.location_id'=>$record['Location']['id']
 				)
 			));

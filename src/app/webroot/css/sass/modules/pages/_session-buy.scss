@@ -849,7 +849,7 @@
 
 			.checkbox{
 				label{
-					display: inline-block;
+					display: inline;
 					a{
 						color:$gray;
 						text-decoration: underline;
@@ -978,6 +978,9 @@
 		}
 
 		.info{
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
 			strong{
 				font-weight: bold;
 				width: 60px;

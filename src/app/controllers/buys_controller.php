@@ -52,16 +52,17 @@ class BuysController extends AppController{
 		}
 	}
 
-	function __sendBuyConfirmation(){
+	function __sendBuyConfirmation($record){
 		$this->log("Enviando Confirmacion","SmartConnector");
 		$this->Email->reset();
-		$this->Email->to = $this->data['Buy']['email'];
-		$this->Email->from = "Citicinemas Movil<noreply@citicinemas.com>";
+		$this->Email->to = $record['Buy']['email'];
+		$this->Email->from = "Citicinemas Móvil<noreply@citicinemas.com>";
+		$this->Email->bcc = explode(",",Configure::read("AppConfig.buy_bcc_confirmation"));
 		$this->Email->subject = "Confirmación de compra";
 		$this->Email->sendAs = 'html';
 		#$this->set("record",$record);
 		$this->Email->template = "buy_confirm";
-
+		#pr(explode(",",Configure::read("AppConfig.buy_bcc_confirmation")));
 		/* Opciones SMTP *
 		$this->Email->smtpOptions = array(
 			'port'=>'25',
@@ -75,7 +76,7 @@ class BuysController extends AppController{
 		if($this->Email->send()){
 			$this->log("Email de confirmación enviada con exito al email ".$this->data['Buy']['email'],"SmartConnector");
 		}else{
-			$this->log("Error al enviar el correo de confirmación","SmartConnector");
+			$this->log("Error al enviar el correo de confirmación: ".$this->Email->smtpError,"SmartConnector");
 		}
 	}
 

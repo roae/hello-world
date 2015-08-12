@@ -64,7 +64,7 @@ if(!empty($record)){
 						</div>
 						<div class="info">
 							<strong>[:fecha:]</strong>
-							<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Show']['schedule']); ?></span>
+							<span class="value"><?= $this->Time->format("[:D:] d \d\e [:M:]",$record['Show']['schedule']); ?></span>
 						</div>
 					</div>
 					<div class="schedule">
@@ -282,7 +282,7 @@ if(!empty($record)){
 						</div>
 						<div class="info">
 							<strong>[:fecha:]</strong>
-							<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Show']['schedule']); ?></span>
+							<span class="value"><?= $this->Time->format("[:D:] d \d\e [:M:]",$record['Show']['schedule']); ?></span>
 						</div>
 						<div class="info">
 							<strong>[:hora:]</strong>

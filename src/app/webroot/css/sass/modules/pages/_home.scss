@@ -91,6 +91,7 @@
 		.pagination-container {
 			position: relative;
 			height: 100%;
+			z-index: 3;
 		}
 
 		.pagination {
@@ -101,6 +102,7 @@
 			padding: 20px 30px 20px 0;
 			border-top: 1px solid transparentize(#FFF, 0.5);
 			white-space: nowrap;
+
 
 			li {
 				display: inline-block;

@@ -7,6 +7,15 @@
 			height: 500px;
 			.movie{
 				height: 500px;
+				.movie-info{
+					margin-top: 20px;
+					.title{
+						font-size: 48px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
 			}
 		}
 	}
@@ -326,7 +335,7 @@
 				}
 
 				.movie-info {
-					@include span(13);
+					@include span(14);
 					@include push(1);
 					margin-top: 15px;
 					.features{

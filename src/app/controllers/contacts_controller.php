@@ -50,8 +50,9 @@ class ContactsController extends AppController{
 			if($this->Contact->validates() * $captcha){
 				if($this->Contact->save($this->data,false)){
 					# Mail interno
+					$this->Email->layout="notifications";
 					$this->Email->to = Configure::read("AppConfig.contact_email");
-					$this->Email->bcc = Configure::read('AppConfig.contact_email_cc');
+					$this->Email->bcc = explode(",",Configure::read('AppConfig.contact_email_cc'));
 					$this->Email->subject = "Contacto";
 					$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
 					$this->Email->sendAs = 'html';

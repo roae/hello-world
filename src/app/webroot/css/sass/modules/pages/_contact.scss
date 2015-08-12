@@ -78,6 +78,10 @@
 				display: inline-block;
 			}
 		}
+		.error-message{
+			color: #cc0017;
+			font-size: 14px;
+		}
 	}
 	aside{
 		@include span(6);

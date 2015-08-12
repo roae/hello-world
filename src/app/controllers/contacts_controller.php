@@ -45,26 +45,26 @@ class ContactsController extends AppController{
 			$this->data['Contact']['ip']=$_SERVER['REMOTE_ADDR'];
 			$this->data['Contact']['referer']=$this->referer();
 			$this->Contact->set($this->data);
-			if($this->Contact->validates()){
-				$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
-				if((isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR')))){
-					if($this->Contact->save($this->data,false)){
-						# Mail interno
-						$this->Email->to = Configure::read("AppConfig.contact_email");
-						$this->Email->bcc = Configure::read('AppConfig.contact_email_cc');
-						$this->Email->subject = "Contacto";
-						$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
-						$this->Email->sendAs = 'html';
-						$this->Email->template = 'contactus';
-						$this->set('datos',$this->data);
-						$this->Email->send();
-						#$this->Notifier->success("sended");
-						$this->redirect($this->Interpreter->process("/[:thanks_url:]/"));
-					}
-				}else{
-					$this->Contact->invalidate("captcha","[:captcha_error:]");
+			$this->Captcha->secret = Configure::read("reCAPTCHA.secret");
+			$captcha = (isset($_POST['g-recaptcha-response']) && $this->Captcha->reCaptcha($_POST['g-recaptcha-response'],env('SERVER_ADDR')));
+			if($this->Contact->validates() * $captcha){
+				if($this->Contact->save($this->data,false)){
+					# Mail interno
+					$this->Email->to = Configure::read("AppConfig.contact_email");
+					$this->Email->bcc = Configure::read('AppConfig.contact_email_cc');
+					$this->Email->subject = "Contacto";
+					$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
+					$this->Email->sendAs = 'html';
+					$this->Email->template = 'contactus';
+					$this->set('datos',$this->data);
+					$this->Email->send();
+					#$this->Notifier->success("sended");
+					$this->redirect($this->Interpreter->process("/[:thanks_url:]/"));
 				}
 			}else{
+				if(!$captcha){
+					$this->Contact->invalidate("captcha","[:captcha_error:]");
+				}
 
 			}
 		}

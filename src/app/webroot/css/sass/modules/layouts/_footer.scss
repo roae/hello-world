@@ -266,6 +266,11 @@
 			.certificates {
 				float: right;
 				margin-top: -6px;
+				a,
+				table{
+					display: inline-block;
+					vertical-align: top;
+				}
 			}
 		}
 	}

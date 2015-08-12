@@ -23,6 +23,7 @@ $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>fa
 				echo $this->I18n->input("message");
 
 				echo $this->Html->tag("div","",array('class'=>'g-recaptcha','data-sitekey'=>Configure::read("reCAPTCHA.site-key")));
+				echo $this->Form->error("captcha");
 
 				echo $this->Form->button("[:send-message:]",array('class'=>'btn btn_principal','type'=>'submit'));
 			echo $this->Form->end();
@@ -39,4 +40,5 @@ $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>fa
 $this->I18n->addMissing("[:name_required:]",array('desc'=>'Mensaje de error: Nombre querido','tab'=>'modulo'));
 $this->I18n->addMissing("[:invalid_email:]",array('desc'=>'Mensaje de error: Email invalido','tab'=>'modulo'));
 $this->I18n->addMissing("[:message_required:]",array('desc'=>'Mensaje de error: Mensaje requerido','tab'=>'modulo'));
+$this->I18n->addMissing("[:captcha_error:]",array('desc'=>'Mensaje de error: Mensaje requerido','tab'=>'modulo'));
 ?>

@@ -1582,6 +1582,12 @@ body {
   float: right;
   margin-top: -6px;
 }
+/* line 269, sass/modules/layouts/_footer.scss */
+#main-footer .copyright .col-container .certificates a,
+#main-footer .copyright .col-container .certificates table {
+  display: inline-block;
+  vertical-align: top;
+}
 
 /* line 1, sass/modules/layouts/_forms.scss */
 label {
@@ -4382,19 +4388,28 @@ select {
 #SessionCheckout .disclaimer ul li {
   margin-bottom: 1.5em;
 }
-/* line 880, sass/modules/pages/_session-buy.scss */
+/* line 879, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .certificates {
+  text-align: center;
+}
+/* line 881, sass/modules/pages/_session-buy.scss */
+#SessionCheckout .certificates table {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 887, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .stepTitle {
   text-align: center;
   margin-bottom: 50px;
 }
-/* line 883, sass/modules/pages/_session-buy.scss */
+/* line 890, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .stepTitle strong {
   color: #F18932;
   font-size: 30px;
   font-weight: 300;
   position: relative;
 }
-/* line 888, sass/modules/pages/_session-buy.scss */
+/* line 895, sass/modules/pages/_session-buy.scss */
 #SessionCheckout .stepTitle strong:before {
   position: absolute;
   top: -5px;
@@ -4412,11 +4427,11 @@ select {
   line-height: 33px;
 }
 
-/* line 907, sass/modules/pages/_session-buy.scss */
+/* line 914, sass/modules/pages/_session-buy.scss */
 #buyResume {
   position: relative;
 }
-/* line 909, sass/modules/pages/_session-buy.scss */
+/* line 916, sass/modules/pages/_session-buy.scss */
 #buyResume .fnd {
   background: #f8f8f8;
   padding: 10px 0;
@@ -4436,15 +4451,15 @@ select {
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
-/* line 929, sass/modules/pages/_session-buy.scss */
+/* line 936, sass/modules/pages/_session-buy.scss */
 #buyResume .buyData {
   text-align: center;
 }
-/* line 935, sass/modules/pages/_session-buy.scss */
+/* line 942, sass/modules/pages/_session-buy.scss */
 #buyResume.sticky .fnd {
   bottom: -100px;
 }
-/* line 941, sass/modules/pages/_session-buy.scss */
+/* line 948, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details {
   text-align: left;
   width: 30%;
@@ -4456,7 +4471,7 @@ select {
   position: relative;
   vertical-align: top;
 }
-/* line 949, sass/modules/pages/_session-buy.scss */
+/* line 956, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details:after {
   content: " ";
   display: block;
@@ -4467,13 +4482,13 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 960, sass/modules/pages/_session-buy.scss */
+/* line 967, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .poster {
   float: left;
   width: 55px;
   margin-right: 10px;
 }
-/* line 965, sass/modules/pages/_session-buy.scss */
+/* line 972, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .title {
   font-size: 16px;
   color: #cc0017;
@@ -4481,13 +4496,13 @@ select {
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 974, sass/modules/pages/_session-buy.scss */
+/* line 981, sass/modules/pages/_session-buy.scss */
 #buyResume .movie-details .info strong {
   font-weight: bold;
   width: 60px;
   display: inline-block;
 }
-/* line 982, sass/modules/pages/_session-buy.scss */
+/* line 989, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details {
   width: 30%;
   float: left;
@@ -4500,7 +4515,7 @@ select {
   position: relative;
   vertical-align: top;
 }
-/* line 991, sass/modules/pages/_session-buy.scss */
+/* line 998, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details:after {
   content: " ";
   display: block;
@@ -4511,31 +4526,31 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 1001, sass/modules/pages/_session-buy.scss */
+/* line 1008, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table {
   width: 100%;
 }
-/* line 1003, sass/modules/pages/_session-buy.scss */
+/* line 1010, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table th {
   text-align: left;
   font-weight: bold;
   position: relative;
 }
-/* line 1008, sass/modules/pages/_session-buy.scss */
+/* line 1015, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table .ticket {
   display: none;
 }
-/* line 1012, sass/modules/pages/_session-buy.scss */
+/* line 1019, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table tr td:first-child {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 1019, sass/modules/pages/_session-buy.scss */
+/* line 1026, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details table td {
   padding: 1px;
 }
-/* line 1024, sass/modules/pages/_session-buy.scss */
+/* line 1031, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btn-success {
   padding: 5px;
   font-size: 12px;
@@ -4545,16 +4560,16 @@ select {
   bottom: -40px;
   left: 0;
 }
-/* line 1033, sass/modules/pages/_session-buy.scss */
+/* line 1040, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btn-success:active {
   bottom: -39px;
   top: auto;
 }
-/* line 1039, sass/modules/pages/_session-buy.scss */
+/* line 1046, sass/modules/pages/_session-buy.scss */
 #buyResume .tickets-details .btnSelectSeats {
   display: none;
 }
-/* line 1043, sass/modules/pages/_session-buy.scss */
+/* line 1050, sass/modules/pages/_session-buy.scss */
 #buyResume .total {
   width: 11.25%;
   float: left;
@@ -4564,11 +4579,11 @@ select {
   display: inline-block;
   vertical-align: top;
 }
-/* line 1050, sass/modules/pages/_session-buy.scss */
+/* line 1057, sass/modules/pages/_session-buy.scss */
 #buyResume .total .titleSection {
   font-weight: bold;
 }
-/* line 1053, sass/modules/pages/_session-buy.scss */
+/* line 1060, sass/modules/pages/_session-buy.scss */
 #buyResume .total .value {
   font-size: 34px;
   line-height: 38px;
@@ -4577,12 +4592,12 @@ select {
   width: 100%;
   margin: 0 auto;
 }
-/* line 1061, sass/modules/pages/_session-buy.scss */
+/* line 1068, sass/modules/pages/_session-buy.scss */
 #buyResume .total .iva {
   font-size: 12px;
   color: #2a2a2a;
 }
-/* line 1067, sass/modules/pages/_session-buy.scss */
+/* line 1074, sass/modules/pages/_session-buy.scss */
 #buyResume .time {
   width: 17.5%;
   float: left;
@@ -4597,7 +4612,7 @@ select {
   vertical-align: top;
   position: relative;
 }
-/* line 1076, sass/modules/pages/_session-buy.scss */
+/* line 1083, sass/modules/pages/_session-buy.scss */
 #buyResume .time:before {
   content: " ";
   display: block;
@@ -4608,7 +4623,7 @@ select {
   height: 60px;
   background: #e1e1e1;
 }
-/* line 1086, sass/modules/pages/_session-buy.scss */
+/* line 1093, sass/modules/pages/_session-buy.scss */
 #buyResume .time .value {
   font-size: 26px;
   color: #f18932;
@@ -4616,13 +4631,13 @@ select {
   width: 100px;
   margin: 0 auto;
 }
-/* line 1093, sass/modules/pages/_session-buy.scss */
+/* line 1100, sass/modules/pages/_session-buy.scss */
 #buyResume .time .sectionTitle {
   display: block;
   font-size: 18px;
 }
 
-/* line 1101, sass/modules/pages/_session-buy.scss */
+/* line 1108, sass/modules/pages/_session-buy.scss */
 #SendingBuy {
   position: fixed;
   top: 0;
@@ -4635,7 +4650,7 @@ select {
   z-index: 9;
   display: none;
 }
-/* line 1111, sass/modules/pages/_session-buy.scss */
+/* line 1118, sass/modules/pages/_session-buy.scss */
 #SendingBuy .message {
   position: fixed;
   z-index: 10;
@@ -4649,7 +4664,7 @@ select {
   text-align: center;
   color: #676767;
 }
-/* line 1125, sass/modules/pages/_session-buy.scss */
+/* line 1132, sass/modules/pages/_session-buy.scss */
 #SendingBuy .message .icon-loading {
   background: url(web/preloader_10-64.gif) no-repeat center;
   width: 64px;
@@ -4657,7 +4672,7 @@ select {
   display: inline-block;
 }
 
-/* line 1134, sass/modules/pages/_session-buy.scss */
+/* line 1141, sass/modules/pages/_session-buy.scss */
 .session-buy-error {
   background: url(web/error.png) no-repeat top center;
   margin: 100px 200px;
@@ -4667,14 +4682,14 @@ select {
   font-size: 30px;
   font-weight: 300;
 }
-/* line 1142, sass/modules/pages/_session-buy.scss */
+/* line 1149, sass/modules/pages/_session-buy.scss */
 .session-buy-error .btn {
   margin-top: 50px;
   font-size: 20px;
   display: inline-block;
 }
 
-/* line 1149, sass/modules/pages/_session-buy.scss */
+/* line 1156, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error {
   background: url(web/clock.png) no-repeat top center;
   margin: 100px 200px;
@@ -4684,13 +4699,13 @@ select {
   font-size: 24px;
   font-weight: 300;
 }
-/* line 1157, sass/modules/pages/_session-buy.scss */
+/* line 1164, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error .title {
   font-size: 50px;
   color: #cc0017;
   font-weight: 200;
 }
-/* line 1162, sass/modules/pages/_session-buy.scss */
+/* line 1169, sass/modules/pages/_session-buy.scss */
 .session-expired-buy-error .btn {
   margin-top: 50px;
   font-size: 20px;
@@ -6570,7 +6585,12 @@ select {
 #Contact-container .ContactForm .g-recaptcha > div {
   display: inline-block;
 }
-/* line 82, sass/modules/pages/_contact.scss */
+/* line 81, sass/modules/pages/_contact.scss */
+#Contact-container .ContactForm .error-message {
+  color: #cc0017;
+  font-size: 14px;
+}
+/* line 86, sass/modules/pages/_contact.scss */
 #Contact-container aside {
   width: 36.25%;
   float: left;
@@ -6578,40 +6598,40 @@ select {
   margin-right: 0.625%;
   margin-left: 6.875%;
 }
-/* line 87, sass/modules/pages/_contact.scss */
+/* line 91, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList {
   margin: 0;
   padding: auto;
 }
-/* line 90, sass/modules/pages/_contact.scss */
+/* line 94, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li {
   padding: 15px 0;
   border-bottom: 1px solid #f1f1f1;
   color: #b5b6b8;
   font-size: 12px;
 }
-/* line 95, sass/modules/pages/_contact.scss */
+/* line 99, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li h3 {
   color: #cc0017;
   font-size: 18px;
 }
-/* line 99, sass/modules/pages/_contact.scss */
+/* line 103, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li .address {
   margin-bottom: 10px;
   display: block;
   color: #86888b;
 }
-/* line 104, sass/modules/pages/_contact.scss */
+/* line 108, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li .phones {
   display: block;
   color: #86888b;
 }
 
-/* line 113, sass/modules/pages/_contact.scss */
+/* line 117, sass/modules/pages/_contact.scss */
 #thanks {
   padding: 100px 0;
 }
-/* line 115, sass/modules/pages/_contact.scss */
+/* line 119, sass/modules/pages/_contact.scss */
 #thanks .message {
   width: 48.75%;
   float: left;

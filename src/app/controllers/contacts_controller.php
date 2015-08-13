@@ -50,17 +50,32 @@ class ContactsController extends AppController{
 			if($this->Contact->validates() * $captcha){
 				if($this->Contact->save($this->data,false)){
 					# Mail interno
-					$this->Email->layout="notifications";
+					//$this->Email->layout="notifications";
 					$this->Email->to = Configure::read("AppConfig.contact_email");
 					$this->Email->bcc = explode(",",Configure::read('AppConfig.contact_email_cc'));
 					$this->Email->subject = "Contacto";
 					$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
+					#$this->Email->from = "erochin@h1webstudio.com";
 					$this->Email->sendAs = 'html';
 					$this->Email->template = 'contactus';
 					$this->set('datos',$this->data);
-					$this->Email->send();
+					/* Opciones SMTP *
+					$this->Email->smtpOptions = array(
+						'port'=>'25',
+						'timeout'=>'30',
+						'host' => 'mail.h1webstudio.com',
+						'username'=>'erochin@h1webstudio.com',
+						'password'=>'Rochin12!-');
+
+					$this->Email->delivery = 'smtp';
+					/**/
+					if($this->Email->send()){
+						$this->redirect($this->Interpreter->process("/[:thanks_url:]/"));
+					}/*else{
+						pr($this->Email->smtpError);
+					}*/
 					#$this->Notifier->success("sended");
-					$this->redirect($this->Interpreter->process("/[:thanks_url:]/"));
+
 				}
 			}else{
 				if(!$captcha){

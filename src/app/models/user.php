@@ -59,5 +59,26 @@ class User extends AppModel {
 		}
 		return false;
 	}
+
+	function paginateCount($conditions = null, $recursive = 0, $extra = array()) {
+		$db = $this->getDataSource();
+		$sql = $db->buildStatement(
+			array(
+				'fields'     => array("COUNT(DISTINCT(`User`.`id`)) AS count"),
+				'table'      => $db->fullTableName($this),
+				'alias'      => 'User',
+				'limit'      => null,
+				'offset'     => null,
+				'joins'      => array(),
+				'conditions' => $conditions,
+				'order'      => null,
+				'group'      => null
+			),
+			$this
+		);
+		$this->recursive = $recursive;
+		$results = $this->query($sql);
+		return isset($results[0][0]['count']) ? $results[0][0]['count'] : 0;
+	}
 }
 ?>

@@ -66,7 +66,7 @@
 					}
 					if($presale){
 
-						echo $this->Html->link("[:ver_preventa:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"],'#'=>'horarios'),array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
+						echo $this->Html->link("[:ver_preventa:]", array("controller" => "movies", "action" => "view", "slug" => $show["Movie"]["slug"],'#'=>'horarios'),array('class'=>'buy-presale', 'data-slug' => $schedules_slug_data));
 					}else{
 						echo $this->Html->link("[:ver_horarios:]", $schedules_url,array('class'=>'buy-tickets', 'data-slug' => $schedules_slug_data));
 					}

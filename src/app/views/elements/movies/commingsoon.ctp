@@ -38,7 +38,14 @@ if(!empty($premiere)){
 									<h2>
 										<?= $this->Html->link($item['Movie']['title'], array("controller" => "movies", "action" => "view", "slug" => $item["Movie"]["slug"]),array('class'=>'fwd')) ?>
 									</h2>
-									<span class="date"><?= $this->Time->format("d / [:M:] / Y",$item['MovieLocation']['premiere_date']);?></span>
+									<?php
+									if($item['MovieLocation']['premiere_date'] != "0000-00-00"){
+									?>
+										<span class="date"><?= $this->Time->format("d / [:M:] / Y",$item['MovieLocation']['premiere_date']);?></span>
+									<?php
+									}
+									?>
+
 
 								</div>
 

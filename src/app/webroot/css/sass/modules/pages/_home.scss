@@ -272,14 +272,20 @@
 						margin-bottom: 10px;
 						font-size: 13px;
 						color: $light-gray;
+						.ps-scrollbar-y{
+							background-color: $red;
+						}
 					}
 
 					a {
 						display: block;
 						padding: 5px 10px;
 						border: 1px solid #FFF;
-						margin: 5px 20px;
+						margin: 5px 0px;
 						text-align: center;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
 						color: #FFF;
 						border-radius: 5px;
 						@include transition(opacity 0.2s ease-in-out);
@@ -289,6 +295,16 @@
 						&:active {
 							position: relative;
 							top: 1px;
+						}
+					}
+
+					.buy-presale{
+						background: $yellow;
+						color: #353637;
+						border:1px solid $yellow;
+						&:hover{
+							background: lighten($yellow,10%);
+							border:1px solid $yellow;
 						}
 					}
 

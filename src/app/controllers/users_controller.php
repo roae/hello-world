@@ -62,7 +62,7 @@ class UsersController extends AppController{
 			unset($this->data['User']['password'],$this->data['User']['password_confirm']);
 			$this->Session->setFlash('[:admin_user_add_error:]','default',array('class' => 'error'));
 		}
-		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'))));
+		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'),'conditions'=>array('Group.id <>'=>Configure::read("Group.System")))));
 	}
 
 	function admin_edit($id){
@@ -85,7 +85,7 @@ class UsersController extends AppController{
 			//unset($this->data['User']['password'],$this->data['User']['password_confirm']);
 			$this->Notifier->error('[:admin_user_edit_error:]');
 		}
-		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'))));
+		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'),'conditions'=>array('Group.id <>'=>Configure::read("Group.System")))));
 		$this->User->id=$id;
 		$this->data=$this->User->read();
 	}

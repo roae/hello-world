@@ -74,6 +74,7 @@ class MoviesController extends AppController{
 				$transaction = $this->Movie->save();
 				if ( $transaction == 1 ) {
 					$this->Notifier->success ( "[:Movie_saved_successfully:]" );
+					#pr($this->data);
 					$this->redirect ( array( 'action' => 'index' ) );
 				} else if ( $transaction == -1 ) {
 					$this->Notifier->error ( "[:an_error_ocurred_on_the_server:]" );
@@ -326,9 +327,8 @@ class MoviesController extends AppController{
 		}
 
 		return $this->Movie->MovieLocation->find("all",array(
-			#'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),
-			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
-
+			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),
+			#'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
 			'order'=>array('MovieLocation.premiere_date'=>'DESC','Movie.title'),
 			'contain'=>array(
 				'Movie'=>array(

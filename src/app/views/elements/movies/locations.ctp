@@ -35,7 +35,8 @@ $this->Html->script("admin/locations.min",false);
 			<!-- complejo -->
 			<div class="checkbox">
 				<label for="MovieLocation<?= $index ?>LocationId">
-					<input type="checkbox" id="MovieLocation<?= $index ?>LocationId" value="<?= $id ?>" name="data[MovieLocation][<?= $index ?>][location_id]" class="locationCheckbox" <?= (isset($this->data['MovieLocation'][$index]['location_id'])  )? "checked" : ""?>/>
+					<input type="hidden" value="0" name="data[MovieLocation][<?= $index ?>][location_id]" />
+					<input type="checkbox" id="MovieLocation<?= $index ?>LocationId" value="<?= $id ?>" name="data[MovieLocation][<?= $index ?>][location_id]" class="locationCheckbox" <?= (isset($this->data['MovieLocation'][$index]['location_id']) && $this->data['MovieLocation'][$index]['location_id'] ==1 )? "checked" : ""?>/>
 					<?= $location?>
 				</label>
 			</div>
@@ -47,6 +48,7 @@ $this->Html->script("admin/locations.min",false);
 						<?
 						$premier_end = ( isset($this->data['MovieLocation'][$index]['premiere_end']) && !preg_match('/0{4}-0{2}-0{2}/',$this->data['MovieLocation'][$index]['premiere_end']))? $this->data['MovieLocation'][$index]['premiere_end'] : false;
 						?>
+
 						<input
 							type="text"
 							id="MovieLocation<?= $index ?>PremiereEnd"
@@ -69,7 +71,8 @@ $this->Html->script("admin/locations.min",false);
 				<!-- proximamente -->
 				<div class="commingSoon">
 					<div class="checkbox">
-						<input type="checkbox" class="commingSoonCheckbox" id="MovieLocation<?= $index ?>CommingSoon" value="1" name="data[MovieLocation][<?= $index ?>][comming_soon]" <?= (isset($this->data['MovieLocation'][$index]['comming_soon']) ? "checked" : "")?>/>
+						<input type="hidden" value="0" name="data[MovieLocation][<?= $index ?>][comming_soon]" />
+						<input type="checkbox" class="commingSoonCheckbox" id="MovieLocation<?= $index ?>CommingSoon" value="1" name="data[MovieLocation][<?= $index ?>][comming_soon]" <?= (isset($this->data['MovieLocation'][$index]['comming_soon']) && $this->data['MovieLocation'][$index]['comming_soon'] ==1 ? "checked" : "")?>/>
 						<label for="MovieLocation<?= $index ?>CommingSoon">[:Movie_comming_soon:]</label>
 					</div>
 					<div class="premierDate">
@@ -101,7 +104,8 @@ $this->Html->script("admin/locations.min",false);
 				<!-- preventa -->
 				<div class="presale">
 					<div class="checkbox">
-						<input type="checkbox" id="MovieLocation<?= $index ?>Presale" value="1" name="data[MovieLocation][<?= $index ?>][presale]" class="presaleCheckbox" <?= (isset($this->data['MovieLocation'][$index]['presale']) ? "checked" : "")?>/>
+						<input type="hidden" value="0" name="data[MovieLocation][<?= $index ?>][presale]" />
+						<input type="checkbox" id="MovieLocation<?= $index ?>Presale" value="1" name="data[MovieLocation][<?= $index ?>][presale]" class="presaleCheckbox" <?= (isset($this->data['MovieLocation'][$index]['presale']) && $this->data['MovieLocation'][$index]['presale'] ==1 ? "checked" : "")?>/>
 						<label for="MovieLocation<?= $index ?>Presale">[:Movie_presale:]</label>
 					</div>
 					<!-- periodo -->

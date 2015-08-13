@@ -19,10 +19,10 @@ class MovieLocation extends AppModel {
 		'location_id'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
 		),
-		'premiere_end'=>array(
+		/*'premiere_end'=>array(
 			#'requerido'=>array('rule'=>'notEmpty','required'=>true,'allowEmpty'=>false,'message'=>'[:required_field:]'),
 			'fecha'=>array('rule'=>array('date','ymd'),'message'=>'[:invalid_date:]')
-		),
+		),*/
 		'presale_start'=>array(
 			#'fecha'=>array('rule'=>array('date','ymd'),'message'=>'[:invalid_date:]'),
 			'requerido'=>array('rule'=>'presaleDate'),

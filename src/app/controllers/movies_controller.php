@@ -326,7 +326,9 @@ class MoviesController extends AppController{
 		}
 
 		return $this->Movie->MovieLocation->find("all",array(
-			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),
+			#'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),
+			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
+
 			'order'=>array('MovieLocation.premiere_date'=>'DESC','Movie.title'),
 			'contain'=>array(
 				'Movie'=>array(

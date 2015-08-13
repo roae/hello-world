@@ -275,6 +275,8 @@ class AppController extends Controller{
 				//'[:madmin_tags:]'=>array('url'=>array('controller'=>'tags','action'=>'index','admin'=>true,'plugin'=>false)),
 				'[:madmin_comments:]'=>array('url'=>'/admin/comments/'),
 				'[:madmin_contacts:]'=>array('url'=>'/admin/contacts/'),
+				'|',
+				'[:syncstatus:]'=>array('url'=>array('plugin'=>false,'controller'=>'shows','action'=>'syncstatus','admin'=>true)),
 			),
 			'config'=>array(
 				'[:security:]'=>array('url'=>array('plugin'=>'acl','controller'=>'acos','action'=>'index','admin'=>true)),

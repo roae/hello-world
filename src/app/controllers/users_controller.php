@@ -62,7 +62,7 @@ class UsersController extends AppController{
 			unset($this->data['User']['password'],$this->data['User']['password_confirm']);
 			$this->Session->setFlash('[:admin_user_add_error:]','default',array('class' => 'error'));
 		}
-		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'),'conditions'=>array('Group.id <>'=>Configure::read("Group.System")))));
+		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'),'conditions'=>array('Group.id NOT'=>array(Configure::read("Group.System"),Configure::read("Group.Anonymous"))))));
 	}
 
 	function admin_edit($id){
@@ -85,7 +85,7 @@ class UsersController extends AppController{
 			//unset($this->data['User']['password'],$this->data['User']['password_confirm']);
 			$this->Notifier->error('[:admin_user_edit_error:]');
 		}
-		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'),'conditions'=>array('Group.id <>'=>Configure::read("Group.System")))));
+		$this->set('groups',$this->User->Group->find('list',array('fields'=>array('id','name'),'order' => array('Group.name' => 'ASC'),'conditions'=>array('Group.id NOT'=>array(Configure::read("Group.System"),Configure::read("Group.Anonymous"))))));
 		$this->User->id=$id;
 		$this->data=$this->User->read();
 	}
@@ -144,6 +144,9 @@ class UsersController extends AppController{
 		if(!empty($this->data)){
 			if($this->__login($this->data)){
 				if($this->Auth->user("group_id") != Configure::read("Group.Registered")){
+					if($this->Auth->user("group_id") != Configure::read("Group.Gerente")){
+						$this->redirect(array('plugin'=>false,'controller'=>'shows','action'=>'syncstatus','admin'=>true));
+					}
 					#pr("/".$this->Session->read("Auth.redirect"));
 					$this->redirect("/admin/");
 				}

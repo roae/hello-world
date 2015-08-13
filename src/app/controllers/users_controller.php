@@ -144,7 +144,7 @@ class UsersController extends AppController{
 		if(!empty($this->data)){
 			if($this->__login($this->data)){
 				if($this->Auth->user("group_id") != Configure::read("Group.Registered")){
-					if($this->Auth->user("group_id") != Configure::read("Group.Gerente")){
+					if($this->Auth->user("group_id") == Configure::read("Group.Gerente")){
 						$this->redirect(array('plugin'=>false,'controller'=>'shows','action'=>'syncstatus','admin'=>true));
 					}
 					#pr("/".$this->Session->read("Auth.redirect"));

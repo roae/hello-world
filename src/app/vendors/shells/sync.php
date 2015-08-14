@@ -57,7 +57,7 @@ class SyncShell extends Shell{
 	 * Instancia de un controller
 	 * @var Controller Controller
 	 */
-	var $controller;
+	var $Controller;
 
 	function startUp(){
 		$this->Dispatch->clear();
@@ -67,7 +67,7 @@ class SyncShell extends Shell{
 
 		App::import('Component', 'Email');
 		$this->Email = new EmailComponent();
-		$this->Email->initialize($Controller);
+		$this->Email->initialize($this->Controller);
 	}
 
 	/**

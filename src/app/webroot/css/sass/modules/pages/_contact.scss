@@ -48,6 +48,9 @@
 				}
 			}
 
+			.SelectWrapper{
+				display: block;
+			}
 		}
 		.min{
 			@include span(8);

@@ -13,7 +13,7 @@
  * @property $Room Room
  *
  * Components
- * @property $Email EmailComponent
+ * @property $this->Email EmailComponent
  *
  */
 class SyncShell extends Shell{
@@ -47,8 +47,27 @@ class SyncShell extends Shell{
 
 	var $syncStatus = array();
 
+	/**
+	 * Instancia de del componenete de E-mails
+	 * @var Email EmailComponent
+	 */
+	var $Email;
+
+	/**
+	 * Instancia de un controller
+	 * @var Controller Controller
+	 */
+	var $controller;
+
 	function startUp(){
 		$this->Dispatch->clear();
+		App::import('Core', 'Controller');
+		App::import('Controller', 'App');
+		$this->Controller = & new Controller();
+
+		App::import('Component', 'Email');
+		$this->Email = new EmailComponent();
+		$this->Email->initialize($Controller);
 	}
 
 	/**
@@ -117,6 +136,7 @@ class SyncShell extends Shell{
 						'Location.name',
 						'Location.vista_code',
 						'Location.vista_service_url',
+						'Location.manager_email',
 					),
 					'conditions'=>$conditions
 				));
@@ -400,13 +420,14 @@ class SyncShell extends Shell{
 			}
 
 			$this->Show->commit();
-
 		}else{
 			# Error: No se encontraron horarios
 			$this->out("No se descargaron horarios en este complejo");
 			$this->locationsNoScheduled[] = $location['id'];
 			$this->errors['location_no_scheduled'][] = $location;
-
+			if(!empty($location['manager_email'])){
+				$this->__sendManagerNotification($location);
+			}
 			$this->syncStatus['locations'][$location['id']]['fail'] = true;
 			$this->syncStatus['locations'][$location['id']]['scheduled']=false;
 			$this->syncStatus['fail'] = true;
@@ -551,6 +572,7 @@ class SyncShell extends Shell{
 			$this->syncStatus['locations'][$location['id']]['fail'] = true;
 			$this->syncStatus['locations'][$location['id']]['scheduled']=false;
 			$this->syncStatus['fail'] = true;
+			$this->__sendManagerNotification($location);
 		}
 
 		$this->syncStatus['locations'][$location['id']]['running'] = false;
@@ -558,36 +580,61 @@ class SyncShell extends Shell{
 	}
 
 	function __sendNotification(){
-		App::import('Core', 'Controller');
-		App::import('Controller', 'App');
-		$Controller = & new Controller();
-
-		App::import('Component', 'Email');
-		$Email = new EmailComponent();
-		$Email->initialize($Controller);
-
-		$Email->reset();
-		$Email->to = $this->config['sync_error_email'];
-		$Email->from = "erochin@h1webstudio.com";
-		$Email->subject = "Errores en la sincronización de la cartelera";
-		$Email->sendAs = 'html';
-		$Controller->set("errors",$this->errors);
-		$Email->layout="notifications";
-		$Email->template = "sync_error";
+		$this->Email->reset();
+		$this->Email->to = $this->config['sync_error_email'];
+		$this->Email->from = "noreply@citicinemas.com";
+		#$this->Email->from = "erochin@h1webstudio.com";
+		$this->Email->subject = "Errores en la sincronización de la cartelera";
+		$this->Email->sendAs = 'html';
+		$this->Controller->set("errors",$this->errors);
+		$this->Email->layout="notifications";
+		$this->Email->template = "sync_error";
 
 		/* Opciones SMTP*
-		$Email->smtpOptions = array(
+		$this->Email->smtpOptions = array(
 			'port'=>'25',
 			'timeout'=>'30',
 			'host' => 'mail.h1webstudio.com',
 			'username'=>'erochin@h1webstudio.com',
 			'password'=>'Rochin12!-');
 
-		$Email->delivery = 'smtp';
+		$this->Email->delivery = 'smtp';
 		/**/
-		$Email->send();
+		$this->Email->send();
 
-		$this->out(print_r($Email->smtpError));
+		$this->out(print_r($this->Email->smtpError));
+
+	}
+
+	function __sendManagerNotification($location){
+		#Configure::write("debug",2);
+		$this->out("Enviando notificacion al gerente de ".$location['name']. " al correo ".$location['manager_email']);
+		$this->Email->reset();
+		$this->Email->to = $location['manager_email'];
+		$this->Email->from = "noreply@citicinemas.com";
+		#$this->Email->from = "erochin@h1webstudio.com";
+		$this->Email->subject = "Error en la sincronización de la cartelera";
+		$this->Email->sendAs = 'html';
+		#$this->Controller->set("errors",$this->errors);
+		$this->Email->layout="notifications";
+		$this->Email->template = "manager_notification";
+
+		/* Opciones SMTP*
+		$this->Email->smtpOptions = array(
+			'port'=>'25',
+			'timeout'=>'30',
+			'host' => 'mail.h1webstudio.com',
+			'username'=>'erochin@h1webstudio.com',
+			'password'=>'Rochin12!-');
+
+		$this->Email->delivery = 'smtp';
+		/**/
+		if($this->Email->send()){
+			$this->out("Email enviado con éxito");
+		}else{
+			print_r($this->Email->smtpError);
+		}
+
 
 	}
 

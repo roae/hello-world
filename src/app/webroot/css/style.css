@@ -6565,14 +6565,18 @@ select {
 #Contact-container .ContactForm .input textarea:focus {
   outline: none;
 }
-/* line 52, sass/modules/pages/_contact.scss */
+/* line 51, sass/modules/pages/_contact.scss */
+#Contact-container .ContactForm .input .SelectWrapper {
+  display: block;
+}
+/* line 55, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .min {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 55, sass/modules/pages/_contact.scss */
+/* line 58, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm button {
   padding: 15px 30px;
   margin-top: 5px;
@@ -6588,11 +6592,11 @@ select {
   -o-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
-/* line 67, sass/modules/pages/_contact.scss */
+/* line 70, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm button:hover {
   opacity: 0.7;
 }
-/* line 69, sass/modules/pages/_contact.scss */
+/* line 72, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .g-recaptcha {
   clear: both;
   width: 98.75%;
@@ -6606,16 +6610,16 @@ select {
   min-height: 100px;
   background: url(web/preloader_10-64.gif) no-repeat center;
 }
-/* line 77, sass/modules/pages/_contact.scss */
+/* line 80, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .g-recaptcha > div {
   display: inline-block;
 }
-/* line 81, sass/modules/pages/_contact.scss */
+/* line 84, sass/modules/pages/_contact.scss */
 #Contact-container .ContactForm .error-message {
   color: #cc0017;
   font-size: 14px;
 }
-/* line 86, sass/modules/pages/_contact.scss */
+/* line 89, sass/modules/pages/_contact.scss */
 #Contact-container aside {
   width: 36.25%;
   float: left;
@@ -6623,40 +6627,40 @@ select {
   margin-right: 0.625%;
   margin-left: 6.875%;
 }
-/* line 91, sass/modules/pages/_contact.scss */
+/* line 94, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList {
   margin: 0;
   padding: auto;
 }
-/* line 94, sass/modules/pages/_contact.scss */
+/* line 97, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li {
   padding: 15px 0;
   border-bottom: 1px solid #f1f1f1;
   color: #b5b6b8;
   font-size: 12px;
 }
-/* line 99, sass/modules/pages/_contact.scss */
+/* line 102, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li h3 {
   color: #cc0017;
   font-size: 18px;
 }
-/* line 103, sass/modules/pages/_contact.scss */
+/* line 106, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li .address {
   margin-bottom: 10px;
   display: block;
   color: #86888b;
 }
-/* line 108, sass/modules/pages/_contact.scss */
+/* line 111, sass/modules/pages/_contact.scss */
 #Contact-container .locationsList li .phones {
   display: block;
   color: #86888b;
 }
 
-/* line 117, sass/modules/pages/_contact.scss */
+/* line 120, sass/modules/pages/_contact.scss */
 #thanks {
   padding: 100px 0;
 }
-/* line 119, sass/modules/pages/_contact.scss */
+/* line 122, sass/modules/pages/_contact.scss */
 #thanks .message {
   width: 48.75%;
   float: left;

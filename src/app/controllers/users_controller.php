@@ -39,6 +39,7 @@ class UsersController extends AppController{
 	}
 
 	function admin_index(){
+		$this->User->contain(array('Group'));
 		$this->set("recordset",$this->paginate("User"));
 	}
 

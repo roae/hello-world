@@ -1,34 +1,25 @@
 <section id="complex-container">
-
 	<div id="map"></div>
-
 	<div class="cities-location">
 		<div class="cities col-container">
 			<ul>
-
 				<?php
 				foreach( $cities as $id => $city ):
 					?>
-
 					<li>
 						<a class="city-trigger <?= ( $id == $CitySelected['id'] ) ? 'selected' : '' ?>"
 						   data-id="<?= $id ?>" href=""><?= $city ?></a>
 					</li>
-
 				<?php
 				endforeach;
 				?>
-
 			</ul>
 		</div>
 	</div>
 
 	<div class="complex-info col-container">
-
 		<div class="complex">
-
 			<div class="addresses">
-
 				<?php
 				foreach( $locations as $tmp_location ) :
 					$location = $tmp_location['Location'];
@@ -50,9 +41,7 @@
 							<?php
 							if( count( $gallery ) ){
 								?>
-
 								<img class="cover" src="<?= $gallery['medium'] ?>">
-
 							<?php } ?>
 							<?= $this->Html->link("[:mas-info:]",array('controller'=>'locations','action'=>'view','id'=>$location['id'],'slug'=>Inflector::slug($location['name'],"-")),array('class'=>'btn-primary fwd'));?>
 						</div>

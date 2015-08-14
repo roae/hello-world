@@ -238,9 +238,10 @@ if(!empty($record)){
 				echo $this->I18n->input("cvv",array(
 					'div'=>array('class'=>'input text cvv'),
 					'between'=>$this->Html->tag("span","",'cvv-icon'),
-					'maxlength'=>4,
-					'placeholder'=>'[:cvv-text:]')
-				);
+					'maxlength'=>3,
+					'placeholder'=>'[:cvv-text:]',
+					'type'=>'password',
+				));
 				echo "<hr />";
 				echo $this->I18n->input("email",array('placeholder'=>'[:your-email:]'));
 				echo $this->I18n->input("privacy",array('type'=>'checkbox'));

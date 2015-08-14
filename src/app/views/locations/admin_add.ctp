@@ -17,7 +17,7 @@ echo $this->Form->create("Location");
 				<div class="span6">
 					<?php
 					echo $this->I18n->inputs(array(
-						'vista_code',
+						#'vista_code',
 						'vista_service_url',
 						'legend'=>'[:vista_System:]',
 					));
@@ -49,6 +49,11 @@ echo $this->Form->create("Location");
 					'smart_user',
 					'smart_passwd'=>array('type'=>'password'),
 
+				));
+				echo $this->I18n->inputs(array(
+					'legend'=>'[:location-manager:]',
+					'manager_name',
+					'manager_email',
 				));
 				?>
 				<fieldset>

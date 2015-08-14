@@ -2,7 +2,10 @@
 class ContactsController extends AppController{
 
 	var $name = "Contacts";
-	var $uses = array('Contact');
+	var $uses = array(
+		'Contact',
+		"Location"
+	);
 	var $helpers = array();
 	var $components = array('Captcha','Email');
 	var $paginate = array();
@@ -51,8 +54,14 @@ class ContactsController extends AppController{
 				if($this->Contact->save($this->data,false)){
 					# Mail interno
 					//$this->Email->layout="notifications";
-					$this->Email->to = Configure::read("AppConfig.contact_email");
-					$this->Email->bcc = explode(",",Configure::read('AppConfig.contact_email_cc'));
+					$to = Configure::read("AppConfig.contact_email");
+					$bcc = explode(",",Configure::read('AppConfig.contact_email_cc'));
+					if(!empty($this->data['Contact']['manager'])){
+						$to = $this->data['Contact']['manager'];
+						$bcc[] = Configure::read("AppConfig.contact_email");
+					}
+					$this->Email->to = $to;
+					$this->Email->bcc = $bcc;
 					$this->Email->subject = "Contacto";
 					$this->Email->from = $this->data['Contact']['name']." <".$this->data['Contact']['email'].">";
 					#$this->Email->from = "erochin@h1webstudio.com";
@@ -71,9 +80,9 @@ class ContactsController extends AppController{
 					/**/
 					if($this->Email->send()){
 						$this->redirect($this->Interpreter->process("/[:thanks_url:]/"));
-					}/*else{
-						pr($this->Email->smtpError);
-					}*/
+					}else{
+						#pr($this->Email->smtpError);
+					}
 					#$this->Notifier->success("sended");
 
 				}
@@ -84,6 +93,10 @@ class ContactsController extends AppController{
 
 			}
 		}
+		$this->set("managers",$this->Location->find("list",array(
+			'fields'=>array('Location.manager_email','Location.name'),
+			'conditions'=>array('Location.manager_email IS NOT NULL','Location.status'=>1,'Location.trash'=>0),
+		)));
 	}
 
 	function captcha($session=null){

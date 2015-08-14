@@ -49,6 +49,11 @@ echo $this->Form->hidden("id");
 				'smart_serialpos',
 				'smart_user',
 			));
+			echo $this->I18n->inputs(array(
+				'legend'=>'[:location-manager:]',
+				'manager_name',
+				'manager_email',
+			));
 			?>
 			<fieldset>
 				<legend>[:select_location_services:]</legend>

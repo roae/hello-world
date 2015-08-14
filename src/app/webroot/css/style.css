@@ -9054,6 +9054,67 @@ select {
     clear: left;
   }
 }
+@media only screen and (max-width: 854px) {
+  /* line 4, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container .ContactForm {
+    width: 42.22222%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+  }
+  /* line 7, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container aside {
+    width: 42.22222%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+    margin-left: 12.22222%;
+  }
+}
+@media only screen and (max-width: 854px) {
+  /* line 18, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container .ContactForm {
+    width: 53.33333%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+  }
+  /* line 21, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container aside {
+    width: 31.11111%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+    margin-left: 12.22222%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  /* line 32, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container .ContactForm {
+    clear: both;
+    width: 97.77778%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+  }
+  /* line 34, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container .ContactForm .min {
+    clear: both;
+    width: 97.77778%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+  }
+  /* line 38, sass/modules/base/responsive/_r_contacts.scss */
+  #Contact-container aside {
+    margin-top: 50px;
+    clear: both;
+    width: 97.77778%;
+    float: left;
+    margin-left: 1.11111%;
+    margin-right: 1.11111%;
+  }
+}
 @media only screen and (max-width: 375px) {
   /* line 3, sass/modules/base/responsive/_r_error-404.scss */
   #error404 .error404 {

@@ -1,0 +1,44 @@
+@media only screen and (max-width: 854px) {
+	@include with-layout(9){
+		#Contact-container{
+			.ContactForm{
+				@include span(4);
+			}
+			aside{
+				@include span(4);
+				@include push(1);
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 854px) {
+	@include with-layout(9){
+		#Contact-container{
+			.ContactForm{
+				@include span(5);
+			}
+			aside{
+				@include span(3);
+				@include push(1);
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	@include with-layout(9){
+		#Contact-container{
+			.ContactForm{
+				@include full;
+				.min{
+					@include full;
+				}
+			}
+			aside{
+				margin-top: 50px;
+				@include full;
+			}
+		}
+	}
+}

@@ -7,7 +7,7 @@
 					<td bgcolor="#00cc67" style="padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;">
 						<?= $this->Html->image("check.png",array('class'=>'img_fix'));?>
 					</td>
-					<td bgcolor="#00cc67" align="center" valign="middle" style="padding-right: 20px;color:#fff;font-size:24px;line-height: 1em;">
+					<td bgcolor="#00cc67" align="center" valign="middle" style="padding:5px 20px 5px 0px;color:#fff;font-size:24px;line-height: 1em;">
 						Confirmaci&oacute;n de la compra y reservaci&oacute;n de boletos
 					</td>
 				</tr>
@@ -23,8 +23,8 @@
 						<p style="color:#9b9b9b;margin-bottom: 20px;font-size:12px;">Estimado cliente, gracias por usar el servicio en linea de Citicinemas®. Los datos de su compra est&aacute;n indicados a continuación. Que disfrute su funci&oacute;n.</p>
 						<table width="100%" cellpadding="0" cellspacing="0" border="0" style="color:#464646;">
 							<tr>
-								<td width="145px">
-									<?= $this->Html->image( $this->Uploader->generatePath($record['Poster'],'medium'), array( 'alt' => '[:logo_alt:]','style'=>'width:125px;' ) ) ?>
+								<td width="100px">
+									<?= $this->Html->image( $this->Uploader->generatePath($record['Poster'],'medium'), array( 'alt' => '[:logo_alt:]','style'=>'width:85px;' ) ) ?>
 								</td>
 								<td valign="top">
 									<table width="100%" cellpadding="0" cellspacing="1" border="0" style="line-height: 1.4em;">
@@ -32,7 +32,7 @@
 											<td colspan="2" style="font-size: 26px;line-height: 1em;padding-bottom: 5px;"><?= h($record['Movie']['title'])?></td>
 										</tr>
 										<tr>
-											<td>[:clasification:]</td>
+											<td width="100px;">[:clasification:]</td>
 											<td><?= $record['Movie']['clasification'] ?></td>
 										</tr>
 										<tr>
@@ -54,28 +54,30 @@
 												?>
 											</td>
 										</tr>
-										<tr>
-											<td>[:sala:]</td>
-											<td>
-												<?= $record['Buy']['screen_name'] ?>
-												<?php
-												if(strpos($record['Buy']['room_type'],"premier") !== false){
-													echo $this->Html->tag("span","[:sala-prermier:]",array('style'=>'background:#E6C845; font-size: 10px; padding-top:3px; padding-bottom:2px;padding-left:5px;padding-right:5px;'));
-												}
-												?>
-											</td>
-										</tr>
-										<tr>
-											<td>[:fecha:]</td>
-											<td><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Buy']['schedule']); ?></td>
-										</tr>
-										<tr>
-											<td>[:function:]</td>
-											<td><?= $this->Time->format("h:i a",$record['Buy']['schedule']); ?></td>
-										</tr>
 									</table>
 
 								</td>
+							</tr>
+						</table>
+						<table width="100%">
+							<tr>
+								<td></td>
+								<td style="width: 300px;">
+									<div style="background: #00cc67; padding: 10px; margin-top: 20px; color:#fff;border-radius:4px;">
+										<span style="color: #042;font-size:16px;display:block;text-align:center;margin-bottom: 10px;"><?= $this->Time->format("[:l:] d \d\e [:F:]",$record['Buy']['schedule']); ?></span>
+										<span style="font-size:30px;line-height: 30px;display:block;text-align:center;margin-bottom: 10px;"><?= $this->Time->format("h:i a",$record['Buy']['schedule']); ?></span>
+										<span style="color: #042;font-size:16px;display:block;text-align:center;">
+											<?php
+											echo $record['Buy']['screen_name'];
+
+											if(strpos($record['Buy']['room_type'],"premier") !== false){
+												echo $this->Html->tag("span","[:sala-prermier:]",array('style'=>'background:#E6C845;color:#000; font-size: 10px; padding-top:3px; padding-bottom:2px;padding-left:5px;padding-right:5px;'));
+											}
+											?>
+										</span>
+									</div>
+								</td>
+								<td></td>
 							</tr>
 						</table>
 						<table width="100%" cellpadding="0" cellspacing="1" border="0" style="line-height: 1.4em;color:#464646;padding-top:30px; ">
@@ -121,7 +123,7 @@
 								?>
 								<tr>
 									<td><?= sprintf("%s %s (%s)",$ticket['qty'],$ticket['description'], $this->Number->currency($ticket['price']/100)); ?></td>
-									<td><?= implode(",",$seats); ?></td>
+									<td style="color:#00cc67;font-weight: bold;"><?= implode(",",$seats); ?></td>
 									<td class="subtotal" style="text-align: center;"><?= $this->Number->currency($price) ?></td>
 								</tr>
 							<?php endforeach; ?>

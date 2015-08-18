@@ -1,0 +1,62 @@
+@media only screen and (max-width: 1440px) {
+	#complex-container{
+		#map{
+			height: 460px;
+		}
+	}
+}
+
+@media only screen and (max-width: 854px) {
+	#complex-container{
+		#map{
+			height: 270px;
+		}
+		@include with-layout(8){
+			.complex{
+				@include full;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 736px) {
+	#complex-container{
+		#map{
+			height: 220px;
+		}
+		.cities{
+			a{
+				padding: 10px 25px;
+			}
+
+		}
+		@include with-layout(8){
+			.complex{
+				@include full;
+				.cover{
+					@include full;
+				}
+				.text{
+					@include full;
+				}
+			}
+		}
+
+	}
+}
+
+/*@media only screen and (max-width: 568px) {
+	#complex-container{
+		#map{
+			height: 220px;
+		}
+	}
+}*/
+
+@media only screen and (max-height: 375px) {
+	#complex-container{
+		#map{
+			height: 190px;
+		}
+	}
+}

@@ -71,7 +71,7 @@
 											echo $record['Buy']['screen_name'];
 
 											if(strpos($record['Buy']['room_type'],"premier") !== false){
-												echo $this->Html->tag("span","[:sala-prermier:]",array('style'=>'background:#E6C845;color:#000; font-size: 10px; padding-top:3px; padding-bottom:2px;padding-left:5px;padding-right:5px;'));
+												echo $this->Html->tag("span","[:sala-prermier:]",array('style'=>'background:#E6C845;color:#000; font-size: 10px; padding-top:3px; padding-bottom:2px;padding-left:5px;padding-right:5px;margin-left: 5px;'));
 											}
 											?>
 										</span>

@@ -89,12 +89,13 @@
 		}
 
 		.pagination-container {
-			position: relative;
-			height: 100%;
+			//position: relative;
+			//height: 100%;
 			z-index: 3;
 		}
 
 		.pagination {
+			z-index: 3;
 			position: absolute;
 			left: span(8)+gutter();
 			bottom: 0;

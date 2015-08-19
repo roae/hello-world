@@ -438,7 +438,7 @@ class AppController extends Controller{
 
 		#se agregan las urls del menu al tab de traducciones
 
-		if(!$this->params['isAjax'] && $this->params['controller']!="js" && !isset($this->params['requested'])){
+		if(isset($this->params['isAjax']) && !$this->params['isAjax'] && $this->params['controller']!="js" && !isset($this->params['requested'])){
 			# Asigna el layout dependiendo del prefijo si viene vacio se pone el layout default
 
 			if(!$this->params['isAjax'] && empty($this->layout)){
@@ -634,6 +634,49 @@ class AppController extends Controller{
 		if(!empty($this->data) && in_array($this->params['action'], $actions)){
 			clearCache();
 		}
+	}
+
+	function __dump_sql(){
+		$sql_dump = '';
+
+		if (!class_exists('ConnectionManager') || Configure::read('debug') < 2)
+			return false;
+
+		$noLogs = !isset($logs);
+		if ($noLogs)
+		{
+			$sources = ConnectionManager::sourceList();
+
+			$logs = array();
+			foreach ($sources as $source):
+				$db =& ConnectionManager::getDataSource($source);
+				if (!$db->isInterfaceSupported('getLog')):
+					continue;
+				endif;
+				$logs[$source] = $db->getLog();
+			endforeach;
+		}
+
+		if ($noLogs || isset($_forced_from_dbo_))
+		{
+			foreach ($logs as $source => $logInfo)
+			{
+				$text = $logInfo['count'] > 1 ? 'queries' : 'query';
+				$sql_dump .= "\ncakeSqlLog_" . preg_replace('/[^A-Za-z0-9_]/', '_', uniqid(time(), true));
+				$sql_dump .="\n(".$source.") ". $logInfo['count'] ." ".$text. " took ".$logInfo['time'].' ms';
+				$sql_dump .="\nNr Query Error Affected Num. rows Took (ms)!";
+
+				foreach ($logInfo['log'] as $k => $i)
+				{
+					$sql_dump .= "\n".$i['query'];
+				}
+			}
+		}
+		else
+		{
+			$sql_dump= 'Encountered unexpected $logs cannot generate SQL log';
+		}
+		return $sql_dump;
 	}
 
 }

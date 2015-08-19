@@ -95,7 +95,7 @@ class RemoveTransactionsShell extends Shell{
 		}
 		#print_r($buysToRemove);
 		if(!empty($buysToRemove)){
-			$this->log("delete");
+			$this->out("delete");
 			print_r($buysToRemove);
 			#$this->Buy->deleteAll(array('Buy.id'=>$buysToRemove));
 		}
@@ -106,8 +106,7 @@ class RemoveTransactionsShell extends Shell{
 
 	}
 
-	function dump_sql()
-	{
+	function dump_sql(){
 		$sql_dump = '';
 
 		if (!class_exists('ConnectionManager') || Configure::read('debug') < 2)

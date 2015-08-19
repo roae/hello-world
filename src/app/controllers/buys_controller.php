@@ -34,6 +34,9 @@ class BuysController extends AppController{
 			));
 			$this->Buy->id = $id;
 			$record = $this->Buy->read();
+			if(empty($record)){
+				$this->cakeError("error404");
+			}
 			$route = Router::parse($this->referer());
 			$this->set("showMessage",$route['controller'] == "shows");
 			$this->set("referer",$this->referer());
@@ -53,7 +56,7 @@ class BuysController extends AppController{
 	}
 
 	function __sendBuyConfirmation($record){
-		$this->log("Enviando Confirmacion","SmartConnector");
+		$this->log("Enviando Confirmacion BuysContoller","SmartConnector");
 		$this->Email->reset();
 		$this->Email->to = $record['Buy']['email'];
 		$this->Email->from = "Citicinemas Móvil<noreply@citicinemas.com>";

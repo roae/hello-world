@@ -36,7 +36,7 @@ $this->Html->script("admin/locations.min",false);
 			<div class="checkbox">
 				<label for="MovieLocation<?= $index ?>LocationId">
 					<input type="hidden" value="0" name="data[MovieLocation][<?= $index ?>][location_id]" />
-					<input type="checkbox" id="MovieLocation<?= $index ?>LocationId" value="<?= $id ?>" name="data[MovieLocation][<?= $index ?>][location_id]" class="locationCheckbox" <?= (isset($this->data['MovieLocation'][$index]['location_id']) && $this->data['MovieLocation'][$index]['location_id'] ==1 )? "checked" : ""?>/>
+					<input type="checkbox" id="MovieLocation<?= $index ?>LocationId" value="<?= $id ?>" name="data[MovieLocation][<?= $index ?>][location_id]" class="locationCheckbox" <?= (isset($this->data['MovieLocation'][$index]['location_id']) && $this->data['MovieLocation'][$index]['location_id'] !=0 )? "checked" : ""?>/>
 					<?= $location?>
 				</label>
 			</div>

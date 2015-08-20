@@ -320,7 +320,7 @@ class MoviesController extends AppController{
 	}
 
 	function premiere(){
-		$conditions = array();
+		$conditions = array('Movie.status'=>1,'Movie.trash'=>0);
 		$LocationsSelected = Configure::read("LocationsSelected");
 		if(!empty($LocationsSelected)){
 			$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
@@ -329,17 +329,32 @@ class MoviesController extends AppController{
 		return $this->Movie->MovieLocation->find("all",array(
 			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),
 			#'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
-			'order'=>array('MovieLocation.premiere_date'=>'DESC','Movie.title'),
-			'contain'=>array(
-				'Movie'=>array(
-					'Poster',
-					/*'Show'=>array(
-						'conditions'=>array(
-							'Show.location_id'=>array_keys($LocationsSelected),
-							//'Show.movie_id'=>'Movie.id'
-						),
-						'limit'=>1
-					)*/
+			'order'=>array('MovieLocation.premiere_date'=>'ASC','Movie.title'),
+			'fields'=>array(
+				'MovieLocation.*',
+				'Movie.*',
+				'Poster.*'
+			),
+			'joins'=>array(
+				array(
+					'type'=>'INNER',
+					'table'=>'movies',
+					'alias'=>'Movie',
+					'conditions'=>array(
+						'Movie.id = MovieLocation.movie_id',
+						'Movie.status'=>1,
+						'Movie.trash'=>0,
+					)
+				),
+				array(
+					'type'=>'LEFT',
+					'table'=>'media_mediums',
+					'alias'=>'Poster',
+					'conditions'=>array(
+						'Poster.foreign_key = Movie.id',
+						'Poster.model'=>'Movie',
+						'Poster.alias'=>'Poster',
+					)
 				)
 			),
 			'group'=>'MovieLocation.movie_id'

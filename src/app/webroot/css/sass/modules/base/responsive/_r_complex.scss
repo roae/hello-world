@@ -33,12 +33,6 @@
 		@include with-layout(8){
 			.complex{
 				@include full;
-				.cover{
-					@include full;
-				}
-				.text{
-					@include full;
-				}
 			}
 		}
 
@@ -52,7 +46,27 @@
 		}
 	}
 }*/
-
+@media only screen and (max-width: 480px) {
+	#complex-container{
+		.complex{
+			@include full;
+			.address{
+				.title{
+					text-align: center;
+				}
+			}
+			.cover{
+				width: auto;
+				margin: 0 auto;
+				max-width: 280px;
+				float: none;
+			}
+			.text{
+				@include full;
+			}
+		}
+	}
+}
 @media only screen and (max-height: 375px) {
 	#complex-container{
 		#map{

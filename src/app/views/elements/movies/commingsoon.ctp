@@ -10,7 +10,18 @@ if(isset($LocationsSelected) && !empty($LocationsSelected)){
 
 $premiere = $this->requestAction(array('controller'=>'movies','action'=>'premiere'));
 if(!empty($premiere)){
-?>
+	$_premieres = array();
+	foreach( $premiere as $index => $item ){
+		if($item['MovieLocation']['premiere_date'] == "0000-00-00"){
+			$_premieres[] = $item;
+			unset($premiere[$index]);
+		}
+	}
+	foreach($_premieres as $item){
+		$premiere[] = $item;
+	}
+
+	?>
 <section class="next-premieres">
 
 	<header class="col-container">

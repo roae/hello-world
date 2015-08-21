@@ -155,7 +155,7 @@
 				&:hover { border-color: lighten($green, 15%); }
 
 				&:active {
-					position: relative;
+					position: absolute;
 					top: 1px;
 				}
 			}

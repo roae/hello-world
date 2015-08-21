@@ -8066,7 +8066,7 @@ select {
   }
   /* line 157, sass/modules/base/responsive/_r_movie_details.scss */
   .movie-detail-container .movie-information .watch-trailer:active {
-    position: relative;
+    position: absolute;
     top: 1px;
   }
   /* line 163, sass/modules/base/responsive/_r_movie_details.scss */

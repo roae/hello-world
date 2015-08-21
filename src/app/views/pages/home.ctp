@@ -1,8 +1,9 @@
 <?php /* @var $this View */?>
 <?= $this->element("movies/home_slide");?>
-<section class="top-promo">
-  <!--<a href="">¡Palomitas 2X1 los Martes y Jueves!</a>-->
+<!--<section class="top-promo">
+	  <a href="">¡Palomitas 2X1 los Martes y Jueves!</a>
 </section>
+-->
 
 <section class="billboard">
   <div class="col-container">

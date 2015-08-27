@@ -10,7 +10,7 @@
 		$class = 'image-not-founded';
 	}
 	?>
-
+	<?= $this->Session->flash(); ?>
 	<div class="big-cover <?= $class ?>">
 		<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 		<div class="col-container">
@@ -176,6 +176,7 @@
 				echo "&nbsp";
 				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
 			}
+			echo $this->Html->link("[:send-confirmation:]",$this->Html->url()."send:1",array('class'=>'btn'))
 			?>
 		</div>
 	</div>
@@ -185,6 +186,7 @@
 <?php
 $this->I18n->addMissing('buy-principal-message',array('desc'=>'Mensaje que aparece cuando se realiza la compra con exito','tab'=>'modulo'));
 $this->I18n->addMissing('buy-second-messages',array('desc'=>'Mensaje que aparece cuando se realiza la compra con exito','tab'=>'modulo'));
+$this->I18n->addMissing('confirmation-sended',array('desc'=>'Mensaje flash que aparece cuando se envia de nuevo la confirmacion por correo','tab'=>'modulo'));
 
 $this->Html->script( array(
 	'ext/images-loaded.min.js',

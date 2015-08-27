@@ -13,8 +13,8 @@ class BuysController extends AppController{
 		'Email'
 	);
 
-	function view($id = null){
-		if($id){
+	function view($confirmation_number = null){
+		if($confirmation_number){
 			$this->Buy->contain(array(
 				'Movie'=>array(
 					'Poster',
@@ -32,8 +32,22 @@ class BuysController extends AppController{
 					'Profile'
 				)
 			));
-			$this->Buy->id = $id;
-			$record = $this->Buy->read();
+			$conditions = array('Buy.buyer'=>$this->loggedUser['User']['id'],'Buy.confirmation_number'=>$confirmation_number);
+			$buys = $this->Cookie->read("Buys");
+			if($this->loggedUser['User']['group_id'] == Configure::read("Group.Anonymous")){
+				if(!in_array($confirmation_number,$buys)){
+					$this->cakeError("error404");
+				}else{
+					$conditions = array(
+						'Buy.confirmation_number'=>$confirmation_number,
+						'ADDTIME(`Buy`.`schedule`,"0 1:0:0") > NOW()'
+					);
+				}
+			}
+
+			//$this->Buy->id = $id;
+			$record = $this->Buy->find("first",array('conditions'=>$conditions));
+
 			if(empty($record)){
 				$this->cakeError("error404");
 			}
@@ -50,6 +64,10 @@ class BuysController extends AppController{
 			if($route['controller'] == "shows"){
 				$this->__sendBuyConfirmation($record);
 			}
+			if(isset($this->params['named']['send'])){
+				$this->__sendBuyConfirmation($record);
+				$this->Notifier->success("[:confirmation-sended:]");
+			}
 		}else{
 			$this->cakeError('error404');
 		}
@@ -60,6 +78,7 @@ class BuysController extends AppController{
 		$this->Email->reset();
 		$this->Email->to = $record['Buy']['email'];
 		$this->Email->from = "Citicinemas Móvil<noreply@citicinemas.com>";
+		#$this->Email->from = "erochin@h1webstudio.com";
 		$this->Email->bcc = explode(",",Configure::read("AppConfig.buy_bcc_confirmation"));
 		$this->Email->subject = "Confirmación de compra";
 		$this->Email->sendAs = 'html';

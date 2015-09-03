@@ -1,0 +1,22 @@
+#maintenance{
+	text-align: center;
+	padding:40px !important;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include translate(-50%,-50%);
+	#logo{
+		margin:40px 0;
+		display: inline-block;
+	}
+
+	.website-maintenance{
+		color:$gray;
+		font-size: 30px;
+		text-align: center;
+		margin-top: 40px;
+		.btn{
+			margin-top:40px;
+		}
+	}
+}

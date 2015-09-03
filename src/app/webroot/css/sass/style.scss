@@ -24,12 +24,14 @@
 
 /* LAYOUTS */
 
+
 @import "modules/layouts/grid";
 @import "modules/layouts/header";
 @import "modules/layouts/footer";
 @import "modules/layouts/forms";
 
 /* PAGES */
+
 
 @import "modules/pages/home";
 @import "modules/pages/billboard";
@@ -44,6 +46,7 @@
 @import "modules/pages/profile";
 @import "modules/pages/contact";
 @import "modules/pages/error-404";
+@import "modules/pages/maintenance";
 
 //@import "modules/base/responsive";
 
@@ -57,6 +60,7 @@
 @import "modules/base/responsive/r_contacts";
 @import "modules/base/responsive/r_complex";
 @import "modules/base/responsive/r_error-404";
+
 //@import "modules/base/responsive/r_detail";
 
 

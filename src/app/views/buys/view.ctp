@@ -15,11 +15,11 @@
 		<div class="bg" style="background-image: url(<?= $bg_url ?>)"></div>
 		<div class="col-container">
 			<?php if($showMessage){ ?>
-			<div class="message">
-				<span class="icon"></span>
-				<span class="principal-text">[:buy-principal-message:]</span>
-				<div class="second-text">[:buy-second-messages:]</div>
-			</div>
+				<div class="message">
+					<span class="icon"></span>
+					<span class="principal-text">[:buy-principal-message:]</span>
+					<div class="second-text">[:buy-second-messages:]</div>
+				</div>
 			<?php } ?>
 			<div class="show-information">
 				<span class="section-title">[:show-details-title:]</span>
@@ -101,39 +101,39 @@
 					</tr>
 					</thead>
 					<tbody>
-						<?php
-						$index_seat = 0;
-						$total =0 ;
-						foreach($record['BuyTicket'] as $ticket):
-							$seats = array();
-							for($i=1; $i<=$ticket['qty']; $i++){
-								$seats[]=$record['BuySeat'][$index_seat]['row_physical'].$record['BuySeat'][$index_seat]['column_physical'];
-								$index_seat++;
-							}
-							$price = $ticket['price']/100*$ticket['qty'];
-							$total +=$price;
+					<?php
+					$index_seat = 0;
+					$total =0 ;
+					foreach($record['BuyTicket'] as $ticket):
+						$seats = array();
+						for($i=1; $i<=$ticket['qty']; $i++){
+							$seats[]=$record['BuySeat'][$index_seat]['row_physical'].$record['BuySeat'][$index_seat]['column_physical'];
+							$index_seat++;
+						}
+						$price = $ticket['price']/100*$ticket['qty'];
+						$total +=$price;
 						?>
-							<tr>
-								<td><?= sprintf("%s %s ($%s)",$ticket['qty'],$ticket['description'],$ticket['price']/100); ?></td>
-								<td><?= implode(",",$seats); ?></td>
-								<td class="subtotal">$<?= $price ?></td>
-							</tr>
-						<?php endforeach; ?>
+						<tr>
+							<td><?= sprintf("%s %s ($%s)",$ticket['qty'],$ticket['description'],$ticket['price']/100); ?></td>
+							<td><?= implode(",",$seats); ?></td>
+							<td class="subtotal">$<?= $price ?></td>
+						</tr>
+					<?php endforeach; ?>
 					</tbody>
 					<tfoot>
-						<tr>
-							<th></th>
-							<th>[:total-pagado:]</th>
-							<th class="total">
-								<span class="value">$<?= $total ?></span>
-								[:incluye-iva:]
-							</th>
-						</tr>
+					<tr>
+						<th></th>
+						<th>[:total-pagado:]</th>
+						<th class="total">
+							<span class="value">$<?= $total ?></span>
+							[:incluye-iva:]
+						</th>
+					</tr>
 					</tfoot>
 				</table>
 				<?php
 				if(!$record['Buy']['payment_method']){
-				?>
+					?>
 					<div class="paymentInfo">
 						[:pago-con-tarjeta:]
 						<div class="info">
@@ -176,7 +176,7 @@
 				echo "&nbsp";
 				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
 			}
-			echo $this->Html->link("[:send-confirmation:]",$this->Html->url()."send:1",array('class'=>'btn'))
+			echo $this->Html->link("[:send-confirmation:]",$this->Html->url(array('controller'=>'buys','action'=>'view',$record['Buy']['confirmation_number']))."send:1/",array('class'=>'btn'));
 			?>
 		</div>
 	</div>

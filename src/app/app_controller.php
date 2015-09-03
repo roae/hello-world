@@ -398,6 +398,26 @@ class AppController extends Controller{
 
 		Configure::write("AppConfig", $this->Setting->getConfig());
 
+		if(Configure::read("AppConfig.website_maintenance") &&
+			$this->loggedUser['User']['group_id'] != Configure::read('Group.Admin') &&
+				$this->loggedUser['User']['group_id'] != Configure::read('Group.System') &&
+					!isset($_COOKIE['testing'])){
+
+			if(isset($this->params['pass'][0]) && $this->params['pass'][0] == 'maintenance' ){
+				$this->layout = "maintenance";
+			}else if(!isset($this->params['admin'])){
+				#pr($this->params);
+				$this->redirect(array('controller'=>'pages','action'=>'display','maintenance','admin'=>false),302);
+
+			}
+		}else if(isset($this->params['pass'][0]) && $this->params['pass'][0] == 'maintenance' ){
+			if(!Configure::read("AppConfig.website_maintenance")){
+				$this->redirect("/");
+			}else{
+				$this->layout = "maintenance";
+			}
+		}
+
 	}
 
 	function __userManagement(){

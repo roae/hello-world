@@ -34,8 +34,11 @@ class BuysController extends AppController{
 			));
 			$conditions = array('Buy.buyer'=>$this->loggedUser['User']['id'],'Buy.confirmation_number'=>$confirmation_number);
 			$buys = $this->Cookie->read("Buys");
+
 			if($this->loggedUser['User']['group_id'] == Configure::read("Group.Anonymous")){
-				if(!in_array($confirmation_number,$buys)){
+				#pr($confirmation_number);
+				if(!is_array($buys) || (is_array($buys) && !in_array($confirmation_number,$buys))){
+
 					$this->cakeError("error404");
 				}else{
 					$conditions = array(
@@ -43,6 +46,9 @@ class BuysController extends AppController{
 						'ADDTIME(`Buy`.`schedule`,"0 1:0:0") > NOW()'
 					);
 				}
+			}else if($this->loggedUser['User']['group_id'] == Configure::read("Group.Admin") &&
+						$this->loggedUser['User']['group_id'] == Configure::read("Group.System")){
+				$conditions = array('Buy.confirmation_number'=>$confirmation_number);
 			}
 
 			//$this->Buy->id = $id;
@@ -61,12 +67,11 @@ class BuysController extends AppController{
 				return $this->render('/elements/email/html/buy_confirm');
 			}
 
-			if($route['controller'] == "shows"){
+			if($route['controller'] == "shows" || isset($this->params['named']['send'])){
 				$this->__sendBuyConfirmation($record);
-			}
-			if(isset($this->params['named']['send'])){
-				$this->__sendBuyConfirmation($record);
-				$this->Notifier->success("[:confirmation-sended:]");
+				if(isset($this->params['named']['send'])){
+					$this->Notifier->success("[:confirmation-sended:]");
+				}
 			}
 		}else{
 			$this->cakeError('error404');

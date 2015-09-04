@@ -16,7 +16,7 @@ header("Content-Language: en, es");
 	<?php echo $this->Html->charset(); ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>[:error404_title:] | [:project_title:]</title>
+	<title>Sitio en Mantenimiento | [:project_title:]</title>
 	<?php
 	echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon'));
 	?>

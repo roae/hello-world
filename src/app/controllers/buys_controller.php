@@ -35,6 +35,7 @@ class BuysController extends AppController{
 			$conditions = array('Buy.buyer'=>$this->loggedUser['User']['id'],'Buy.confirmation_number'=>$confirmation_number);
 			$buys = $this->Cookie->read("Buys");
 
+
 			if($this->loggedUser['User']['group_id'] == Configure::read("Group.Anonymous")){
 				#pr($confirmation_number);
 				if(!is_array($buys) || (is_array($buys) && !in_array($confirmation_number,$buys))){
@@ -47,7 +48,7 @@ class BuysController extends AppController{
 					);
 				}
 			}else if($this->loggedUser['User']['group_id'] == Configure::read("Group.Admin") &&
-						$this->loggedUser['User']['group_id'] == Configure::read("Group.System")){
+				$this->loggedUser['User']['group_id'] == Configure::read("Group.System")){
 				$conditions = array('Buy.confirmation_number'=>$confirmation_number);
 			}
 
@@ -79,32 +80,45 @@ class BuysController extends AppController{
 	}
 
 	function __sendBuyConfirmation($record){
-		$this->log("Enviando Confirmacion BuysContoller","SmartConnector");
-		$this->Email->reset();
-		$this->Email->to = $record['Buy']['email'];
-		$this->Email->from = "Citicinemas Móvil<noreply@citicinemas.com>";
-		#$this->Email->from = "erochin@h1webstudio.com";
-		$this->Email->bcc = explode(",",Configure::read("AppConfig.buy_bcc_confirmation"));
-		$this->Email->subject = "Confirmación de compra";
-		$this->Email->sendAs = 'html';
-		#$this->set("record",$record);
-		$this->Email->template = "buy_confirm";
-		#pr(explode(",",Configure::read("AppConfig.buy_bcc_confirmation")));
-		/* Opciones SMTP *
-		$this->Email->smtpOptions = array(
-			'port'=>'25',
-			'timeout'=>'30',
-			'host' => 'mail.h1webstudio.com',
-			'username'=>'erochin@h1webstudio.com',
-			'password'=>'Rochin12!-');
+		$confirmations = $this->Session->read("ConfirmationSended");
+		if(!is_array($confirmations) || (is_array($confirmations) && !in_array($record['Buy']['confirmation_number'],$confirmations))){
+			$this->log("Enviando Confirmacion BuysContoller","SmartConnector");
+			$this->Email->reset();
+			$this->Email->to = $record['Buy']['email'];
+			$this->Email->from = "Citicinemas Móvil<noreply@citicinemas.com>";
+			#$this->Email->from = "erochin@h1webstudio.com";
+			$this->Email->bcc = explode(",",Configure::read("AppConfig.buy_bcc_confirmation"));
+			$this->Email->subject = "Confirmación de compra";
+			$this->Email->sendAs = 'html';
+			#$this->set("record",$record);
+			$this->Email->template = "buy_confirm";
+			#pr(explode(",",Configure::read("AppConfig.buy_bcc_confirmation")));
+			/* Opciones SMTP *
+			$this->Email->smtpOptions = array(
+				'port'=>'25',
+				'timeout'=>'30',
+				'host' => 'mail.h1webstudio.com',
+				'username'=>'erochin@h1webstudio.com',
+				'password'=>'Rochin12!-');
 
-		$this->Email->delivery = 'smtp';
-		/**/
-		if($this->Email->send()){
-			$this->log("Email de confirmación enviada con exito al email ".$this->data['Buy']['email'],"SmartConnector");
-		}else{
-			$this->log("Error al enviar el correo de confirmación: ".$this->Email->smtpError,"SmartConnector");
+			$this->Email->delivery = 'smtp';
+			/**/
+			if($this->Email->send()){
+				$this->log("Email de confirmación enviada con exito al email ".$this->data['Buy']['email'],"SmartConnector");
+				//$confirmations[] = $record['Buy']['confirmation_number'];
+				if(is_array($confirmations)){
+					$confirmations[] = $record['Buy']['confirmation_number'];
+				}else{
+					$confirmations = array(
+						$record['Buy']['confirmation_number']
+					);
+				}
+				$this->Session->write("ConfirmationSended",$confirmations);
+			}else{
+				$this->log("Error al enviar el correo de confirmación: ".$this->Email->smtpError,"SmartConnector");
+			}
 		}
+
 	}
 
 	function get(){

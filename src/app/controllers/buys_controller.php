@@ -32,14 +32,13 @@ class BuysController extends AppController{
 					'Profile'
 				)
 			));
+
 			$conditions = array('Buy.buyer'=>$this->loggedUser['User']['id'],'Buy.confirmation_number'=>$confirmation_number);
 			$buys = $this->Cookie->read("Buys");
 
 
 			if($this->loggedUser['User']['group_id'] == Configure::read("Group.Anonymous")){
-				#pr($confirmation_number);
 				if(!is_array($buys) || (is_array($buys) && !in_array($confirmation_number,$buys))){
-
 					$this->cakeError("error404");
 				}else{
 					$conditions = array(
@@ -47,11 +46,11 @@ class BuysController extends AppController{
 						'ADDTIME(`Buy`.`schedule`,"0 1:0:0") > NOW()'
 					);
 				}
-			}else if($this->loggedUser['User']['group_id'] == Configure::read("Group.Admin") &&
+			}else if($this->loggedUser['User']['group_id'] == Configure::read("Group.Admin") ||
 				$this->loggedUser['User']['group_id'] == Configure::read("Group.System")){
 				$conditions = array('Buy.confirmation_number'=>$confirmation_number);
 			}
-
+			#$conditions = array('Buy.confirmation_number'=>$confirmation_number);
 			//$this->Buy->id = $id;
 			$record = $this->Buy->find("first",array('conditions'=>$conditions));
 
@@ -72,6 +71,8 @@ class BuysController extends AppController{
 				$this->__sendBuyConfirmation($record);
 				if(isset($this->params['named']['send'])){
 					$this->Notifier->success("[:confirmation-sended:]");
+					$this->params['named'] = array();
+					$this->redirect(array('controller'=>'buys','action'=>'view',$confirmation_number));
 				}
 			}
 		}else{
@@ -81,8 +82,8 @@ class BuysController extends AppController{
 
 	function __sendBuyConfirmation($record){
 		$confirmations = $this->Session->read("ConfirmationSended");
-		if(!is_array($confirmations) || (is_array($confirmations) && !in_array($record['Buy']['confirmation_number'],$confirmations))){
-			$this->log("Enviando Confirmacion BuysContoller","SmartConnector");
+		if(!is_array($confirmations) || (is_array($confirmations) && !in_array($record['Buy']['confirmation_number'],$confirmations)) || isset($this->params['named']['send'])){
+			$this->log("Enviando Confirmacion a ".$record['Buy']['email'],"SmartConnector");
 			$this->Email->reset();
 			$this->Email->to = $record['Buy']['email'];
 			$this->Email->from = "Citicinemas Móvil<noreply@citicinemas.com>";

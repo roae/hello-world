@@ -25,7 +25,7 @@ class Movie extends AppModel {
 			'Poster' => array(
 				'copies' => array(
 					'mini' => array('width' => 95,'height'=>136,'image_ratio_crop' => true),
-					'medium' => array('width' => 190,'height'=>272,'image_ratio_crop' => true),
+					'medium' => array('width' => 266,'height'=>382,'image_ratio_crop' => true),
 					'big' => array('width' => 280,'height'=>544,'image_ratio_crop' => true,),
 				),
 				'limit' => 1,

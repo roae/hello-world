@@ -20,7 +20,7 @@
 				<tr>
 					<td style="padding-left: 10px;padding-right: 10px;padding-top: 30px; font-size:14px;" bgcolor="#ffffff">
 						<span style="color:#cc0017;font-size:24px;">Datos de la orden</span>
-						<p style="color:#9b9b9b;margin-bottom: 20px;font-size:12px;">Estimado cliente, gracias por usar el servicio en linea de Citicinemas®. Los datos de su compra est&aacute;n indicados a continuación. Que disfrute su funci&oacute;n.</p>
+						<p style="color:#9b9b9b;margin-bottom: 20px;font-size:12px;">Estimado cliente, gracias por usar el servicio en linea de Citicinemas®. Los datos de su compra est&aacute;n indicados a continuaci&oacute;n. Que disfrute su funci&oacute;n.</p>
 						<table width="100%" cellpadding="0" cellspacing="0" border="0" style="color:#464646;">
 							<tr>
 								<td width="100px">
@@ -168,11 +168,11 @@
 				</tr>
 				<tr>
 					<td style="color:#616161; font-size:10px !important;">
-						<p>- Sólo el titular de la tarjeta de crédito puede recoger los boletos, llevando consigo la tarjeta de crédito, identificación oficial y firmando el voucher correspondiente en compras mayores a $250.00 pesos.</p>
-						<p>- Boletos comprados: son todos aquellos boletos que se compran en línea con tarjeta de crédito (VISA, Mastercard), desde el momento que compra sus boletos, sus lugares están asegurados y puede recogerlos hasta 10 minutos antes de iniciar la función.</p>
-						<p>- Sus boletos los pagó en línea al momento de realizar su compra y solamente le recomendamos formarse en la FILA ESPECIAL al accesar a la sala.</p>
-						<p>- Le recordamos llevar una identificación y su tarjeta de crédito para firmar el voucher correspondiente.</p>
-						<p>- No existen cambios de funciones o número de personas sobre los boletos en linea, por lo que es muy importante hacer la compra o reservación con el número de personas exacto que asistirá a la función. Si tiene algún problema con su función comuníquese al complejo.</p>
+						<p>- S&oacute;lo el titular de la tarjeta de cr&eacute;dito puede recoger los boletos, llevando consigo la tarjeta de cr&eacute;dito, identificaci&oacute;n oficial y firmando el voucher correspondiente en compras mayores a $250.00 pesos.</p>
+						<p>- Boletos comprados: son todos aquellos boletos que se compran en l&iacute;nea con tarjeta de cr&eacute;dito (VISA, Mastercard), desde el momento que compra sus boletos, sus lugares est&aacute;n asegurados y puede recogerlos hasta 10 minutos antes de iniciar la funci&oacute;n.</p>
+						<p>- Sus boletos los pag&oacute; en l&iacute;nea al momento de realizar su compra y solamente le recomendamos formarse en la FILA ESPECIAL al accesar a la sala.</p>
+						<p>- Le recordamos llevar una identificaci&oacute;n y su tarjeta de cr&eacute;dito para firmar el voucher correspondiente.</p>
+						<p>- No existen cambios de funciones o n&uacute;mero de personas sobre los boletos en l&iacute;nea, por lo que es muy importante hacer la compra o reservaci&oacute;n con el n&uacute;mero de personas exacto que asistir&aacute; a la funci&oacute;n. Si tiene alg&uacute;n problema con su funci&oacute;n comun&iacute;quese al complejo.</p>
 					</td>
 				</tr>
 			</table>

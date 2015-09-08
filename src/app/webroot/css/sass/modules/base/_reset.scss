@@ -34,7 +34,9 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 input[type="submit"],
-input[type="button"]{
+input[type="button"],
+input[type="text"],
+input[type="password"]{
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }

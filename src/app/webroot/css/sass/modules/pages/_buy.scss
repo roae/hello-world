@@ -73,6 +73,11 @@
 			.btn-primary{
 				margin: 0 10px;
 			}
+			.btn,
+			.btn-primary{
+				display: inline-block;
+				white-space: nowrap;
+			}
 		}
 
 	}

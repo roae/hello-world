@@ -172,7 +172,7 @@
 						<p>- Boletos comprados: son todos aquellos boletos que se compran en línea con tarjeta de crédito (VISA, Mastercard), desde el momento que compra sus boletos, sus lugares están asegurados y puede recogerlos hasta 10 minutos antes de iniciar la función.</p>
 						<p>- Sus boletos los pagó en línea al momento de realizar su compra y solamente le recomendamos formarse en la FILA ESPECIAL al accesar a la sala.</p>
 						<p>- Le recordamos llevar una identificación y su tarjeta de crédito para firmar el voucher correspondiente.</p>
-						<p>- No existen cambios de funciones o número de personas sobre los boletos en linea, por lo que es muy importante hacer la compra o reservación con el número de personas exacto que asistirá a la función. Si tiene algún problema con su función comuníquese al 12313112212</p>
+						<p>- No existen cambios de funciones o número de personas sobre los boletos en linea, por lo que es muy importante hacer la compra o reservación con el número de personas exacto que asistirá a la función. Si tiene algún problema con su función comuníquese al complejo.</p>
 					</td>
 				</tr>
 			</table>

@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 .idea/*
+.svn
 
 src/sync_manual
 src/sync_auto
@@ -17,4 +18,7 @@ docs/*
 recursos/*
 *.annotated.js
 *buy.min.js
-src/app/webroot/css/style.min.css
+src/app/webroot/css/style.min.cs
+
+src/reverse_cron
+src/transaction_removed

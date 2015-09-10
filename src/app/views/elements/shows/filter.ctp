@@ -30,7 +30,12 @@ if(!empty($CitySelected)){
 	#pr($dates);
 
 	$locations = Configure::read("LocationsList");
-	$this->data['Filter']['city'] = $this->Html->url(array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug']));
+	#pr($locations);
+	#pr($this->data);
+	if(!isset($this->data['Filter']['city']) && empty($this->data['Filter']['city'])){
+		$this->data['Filter']['city'] = $this->Html->url(array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug']));
+	}
+	#pr($this->data);
 }
 $citiesList = Configure::read("CitiesList");
 foreach($citiesList as $city){

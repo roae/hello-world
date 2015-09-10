@@ -303,7 +303,8 @@ class MoviesController extends AppController{
 				'slug'=>$slug,
 			));
 			//pr($this->data);
-			$CitySelected = $this->Cookie->read("CitySelected");
+			$CitySelected = $this->Session->read("CitySelected");
+			#pr($CitySelected);
 			if($CitySelected['id'] != $City['id'] || !isset($this->data['Filter']['Location'])){
 				$locationsSelected = $this->Session->read("LocationsList");
 				foreach($locationsSelected as $id => $location){

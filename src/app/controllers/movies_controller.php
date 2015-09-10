@@ -292,8 +292,10 @@ class MoviesController extends AppController{
 		if(!empty($City) || $slug){
 
 			$dates = $this->requestAction("/shows/get_date/".$id);
-			if($dates){
-				$this->data['Filter']['date'] = array_shift($dates);
+			if(!isset($this->data['Filter']['date']) || empty($this->data['Filter']['date'])){
+				if($dates){
+					$this->data['Filter']['date'] = array_shift($dates);
+				}
 			}
 
 			$billboard = $this->requestAction(array(

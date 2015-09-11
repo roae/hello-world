@@ -1,15 +1,12 @@
 <?php
 if(!empty($CitySelected)){
 
-	/*$dates = $this->requestAction(array(
-		'controller'=>'shows',
-		'action'=>'get_date',
-		(isset($movie_id)? $movie_id : null)
-	));*/
 	if(!isset($dates)){
-		$dates = $this->requestAction("/shows/get_date/".(isset($movie_id)? $movie_id : null));
+		$dates = $this->requestAction(
+			"/shows/get_date/".(isset($movie_id)? $movie_id : null),
+			array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")))
+		);
 	}
-	//pr($dates);
 	$day = "";
 	$today = date("Y-m-d");
 	#pr($dates);
@@ -30,8 +27,6 @@ if(!empty($CitySelected)){
 	#pr($dates);
 
 	$locations = Configure::read("LocationsList");
-	#pr($locations);
-	#pr($this->data);
 	if(!isset($this->data['Filter']['city']) && empty($this->data['Filter']['city'])){
 		$this->data['Filter']['city'] = $this->Html->url(array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug']));
 	}
@@ -48,7 +43,6 @@ foreach($citiesList as $city){
 
 //pr($this->data);
 ?>
-
 <?php echo $this->Ajax->div("FilterBillboard",array('class'=>'filter'));$this->I18n->start();?>
 	<?= $this->Form->create("Filter",array('url'=>$this->Html->url(),'id'=>'BillboardFilter')); ?>
 		<div class="filter-select">

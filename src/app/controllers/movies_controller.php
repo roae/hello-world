@@ -289,21 +289,47 @@ class MoviesController extends AppController{
 
 		$City = Configure::read("CitySelected");
 		$billboard = $CitySelected = array();
+
 		if(!empty($City) || $slug){
 
-			$dates = $this->requestAction("/shows/get_date/".$id);
-			if(!isset($this->data['Filter']['date']) || empty($this->data['Filter']['date'])){
-				if($dates){
-					$this->data['Filter']['date'] = array_shift($dates);
-				}
-			}
-
+			/**/
 			$billboard = $this->requestAction(array(
 				'controller'=>'shows',
 				'action'=>'get_movie_schedule',
 				'movie_id'=>$id,'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
 				'slug'=>$slug,
 			));
+			/**
+			$dates = $this->requestAction(
+				"/shows/get_date/".$id,
+				array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")))
+			);
+			/**/
+
+			App::import('Controller', 'Shows');
+			$Shows = new ShowsController;
+			$Shows->constructClasses();
+			/**
+			$Shows->params =array(
+				'movie_id'=>$id,
+				'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
+				'slug'=>$slug,
+			);
+			$billboard = $Shows->get_movie_schedule();
+
+			/**/
+			$Shows->params = array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")));
+			$dates = $Shows->get_date($id);
+			//pr($dates);
+			/**/
+
+			if(!isset($this->data['Filter']['date']) || empty($this->data['Filter']['date'])){
+				if($dates){
+					$this->data['Filter']['date'] = array_shift($dates);
+				}
+			}
+
+
 			//pr($this->data);
 			$CitySelected = $this->Session->read("CitySelected");
 			#pr($CitySelected);

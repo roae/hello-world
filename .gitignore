@@ -13,6 +13,8 @@ src/app/config/database.php
 #src/app/webroot/media/*
 src/app/webroot/.sass-cache
 src/app/webroot/node_modules
+src/app/webroot/css/css
+src/app/webroot/css/modules
 
 docs/*
 recursos/*
@@ -22,3 +24,5 @@ src/app/webroot/css/style.min.cs
 
 src/reverse_cron
 src/transaction_removed
+src/reverse_transactions
+sync_log

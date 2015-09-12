@@ -275,9 +275,16 @@ class MoviesController extends AppController{
 		}else{
 			$id = $slug;
 			$record = $this->Movie->find("first",array('conditions'=>array('Movie.trash'=>0,'Movie.status'=>1,'Movie.id'=>$id)));
-
 			if(empty($record)){
 				$this->cakeError("error404");
+			}
+			if(isset($this->params['named']['city'])){
+				$_location = $this->Movie->MovieLocation->Location->findById($id);
+				$slug = $_location['Location']['slug'];
+				$this->data['Filter']['city'] = $slug;
+			}
+			if(isset($this->params['named']['locations'])){
+				$this->data['Filter']['Location'] = explode("-",$this->params['named']['locations']);
 			}
 		}
 		$slug = null;
@@ -292,36 +299,19 @@ class MoviesController extends AppController{
 
 		if(!empty($City) || $slug){
 
-			/**/
 			$billboard = $this->requestAction(array(
 				'controller'=>'shows',
 				'action'=>'get_movie_schedule',
-				'movie_id'=>$id,'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
+				'movie_id'=>$id,
+				'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
 				'slug'=>$slug,
 			));
-			/**
-			$dates = $this->requestAction(
-				"/shows/get_date/".$id,
-				array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")))
-			);
-			/**/
 
 			App::import('Controller', 'Shows');
 			$Shows = new ShowsController;
 			$Shows->constructClasses();
-			/**
-			$Shows->params =array(
-				'movie_id'=>$id,
-				'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
-				'slug'=>$slug,
-			);
-			$billboard = $Shows->get_movie_schedule();
-
-			/**/
 			$Shows->params = array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")));
 			$dates = $Shows->get_date($id);
-			//pr($dates);
-			/**/
 
 			if(!isset($this->data['Filter']['date']) || empty($this->data['Filter']['date'])){
 				if($dates){

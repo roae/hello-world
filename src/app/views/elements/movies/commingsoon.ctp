@@ -8,7 +8,7 @@ if(isset($LocationsSelected) && !empty($LocationsSelected)){
 	$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
 }
 
-$premiere = $this->requestAction(array('controller'=>'movies','action'=>'premiere'));
+$premiere = $this->requestAction(array('controller'=>'movies','action'=>'premiere','conditions'=>$conditions));
 if(!empty($premiere)){
 	$_premieres = array();
 	foreach( $premiere as $index => $item ){

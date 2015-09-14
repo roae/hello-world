@@ -350,10 +350,16 @@ class MoviesController extends AppController{
 
 	function premiere(){
 		$conditions = array('Movie.status'=>1,'Movie.trash'=>0);
-		$LocationsSelected = Configure::read("LocationsSelected");
-		if(!empty($LocationsSelected)){
-			$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
+		if(isset($this->params['conditions'])){
+			$LocationsSelected = $this->params['conditions'];
+			$conditions = $this->params['conditions'];
+		}else{
+			$LocationsSelected = Configure::read("LocationsSelected");
+			if(!empty($LocationsSelected)){
+				$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
+			}
 		}
+
 
 		return $this->Movie->MovieLocation->find("all",array(
 			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),

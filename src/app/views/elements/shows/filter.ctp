@@ -1,6 +1,5 @@
 <?php
 if(!empty($CitySelected)){
-
 	if(!isset($dates)){
 		$dates = $this->requestAction(
 			"/shows/get_date/".(isset($movie_id)? $movie_id : null),

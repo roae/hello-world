@@ -341,11 +341,15 @@ class MoviesController extends AppController{
 	function premiere(){
 		$conditions = array('Movie.status'=>1,'Movie.trash'=>0);
 		$LocationsSelected = Configure::read("LocationsSelected");
+		if(isset($this->params['named']['city'])){
+			$LocationsSelected = $this->Movie->MovieLocation->Location->find("list",array('conditions'=>array('Location.city_id'=>$this->params['named']['city'])));
+			//pr($locations);
+		}
 		if(!empty($LocationsSelected)){
 			$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));
 		}
 
-		return $this->Movie->MovieLocation->find("all",array(
+		$movies = $this->Movie->MovieLocation->find("all",array(
 			'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'or'=>array('MovieLocation.premiere_date >'=>date("Y-m-d"),'MovieLocation.premiere_date'=>'000-00-00'))),
 			#'conditions'=>am($conditions,array('MovieLocation.comming_soon'=>1,'MovieLocation.premiere_date >'=>date("Y-m-d"))),
 			'order'=>array('MovieLocation.premiere_date'=>'ASC','Movie.title'),
@@ -379,6 +383,10 @@ class MoviesController extends AppController{
 			'group'=>'MovieLocation.movie_id'
 
 		));
+		if(isset($this->params['requested'])){
+			return $movies;
+		}
+		$this->set("recordset",$movies);
 	}
 
 }

@@ -1,0 +1,1 @@
+<?= $this->Javascript->object($recordset) ?>

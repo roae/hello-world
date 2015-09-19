@@ -7,7 +7,6 @@ if(!empty($record)){
 	?>
 	<div class="session-buy-container" id="SessionCheckout">
 		<?php
-		if(!isset($this->params['url']['mobile'])){
 			$bg_url = '';
 			$class = '';
 
@@ -72,12 +71,15 @@ if(!empty($record)){
 						<div class="schedule">
 							<div class="title">[:function:]</div>
 							<span class="value"><?= $this->Time->format("h:i a",$record['Show']['schedule']); ?></span>
-							<?= $this->Html->link("[:cambiar-horario:]",array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug'],'#'=>$record['Movie']['slug']),array('class'=>'btn')); ?>
+							<?php
+							if(!isset($this->params['url']['mobile'])){
+								$this->Html->link("[:cambiar-horario:]",array('controller'=>'shows','action'=>'index','slug'=>$CitySelected['slug'],'#'=>$record['Movie']['slug']),array('class'=>'btn'));
+							}
+							?>
 						</div>
 					</div>
 				</div>
 			</div>
-		<?php } ?>
 		<?= $this->Session->flash(); ?>
 		<a name="tickets" id="ticketsAnchor"></a>
 		<section class="ticketsSelection col-container">

@@ -304,6 +304,7 @@ class MoviesController extends AppController{
 				array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")))
 			);
 			$this->set("dates",$dates);
+			#pr($dates);
 			/**/
 			/**
 			App::import('Controller', 'Shows');

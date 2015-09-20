@@ -287,6 +287,7 @@ class MoviesController extends AppController{
 				$this->data['Filter']['Location'] = explode("-",$this->params['named']['locations']);
 			}
 		}
+		//pr($this->data);
 		$slug = null;
 		if(isset($this->data['Filter']['city']) && is_string($this->data['Filter']['city'])){
 			$route = Router::parse($this->data['Filter']['city']);
@@ -305,15 +306,7 @@ class MoviesController extends AppController{
 			);
 			$this->set("dates",$dates);
 			#pr($dates);
-			/**/
-			/**
-			App::import('Controller', 'Shows');
-			$Shows = new ShowsController;
-			$Shows->constructClasses();
-			$Shows->params = array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")));
-			$dates = $Shows->get_date($id);
-			#pr($dates);
-			/**/
+
 			if(!isset($this->data['Filter']['date']) || empty($this->data['Filter']['date'])){
 				if($dates){
 					$this->data['Filter']['date'] = array_shift($dates);
@@ -321,22 +314,11 @@ class MoviesController extends AppController{
 			}
 
 			$billboard = $this->requestAction(array(
-				'controller'=>'shows',
-				'action'=>'get_movie_schedule',
-				'movie_id'=>$id,'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
-				'slug'=>$slug,
-			));
-
-			/**
-			$Shows->params =array(
+				'controller'=>'shows','action'=>'get_movie_schedule',
 				'movie_id'=>$id,
 				'filter'=>isset($this->data['Filter'])? $this->data['Filter']:array(),
 				'slug'=>$slug,
-			);
-			$billboard = $Shows->get_movie_schedule();
-
-			/**/
-
+			));
 
 			//pr($this->data);
 			$CitySelected = $this->Session->read("CitySelected");
@@ -362,7 +344,7 @@ class MoviesController extends AppController{
 		}else{
 			$LocationsSelected = Configure::read("LocationsSelected");
 			if(isset($this->params['named']['city'])){
-				$locations = $this->Movie->MovieLocation->Location->find("list",array('conditions'=>array('Location.city_id'=>$this->params['named']['city'])));
+				$LocationsSelected = $this->Movie->MovieLocation->Location->find("list",array('conditions'=>array('Location.city_id'=>$this->params['named']['city'])));
 				#pr($locations);
 			}
 			if(!empty($LocationsSelected)){

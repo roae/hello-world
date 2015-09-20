@@ -164,6 +164,8 @@ Router::connect( '/billboard/*', array( 'controller' => 'shows', 'action' => 're
 Router::connect( '/billboard-full/*', array( 'controller' => 'shows', 'action' => 'rest_schedules') );
 
 Router::connect( '/movie/*',  array( 'controller' => 'movies', 'action' => 'view') );
+Router::connect( '/commingsoon/*',  array( 'controller' => 'movies', 'action' => 'premiere') );
+Router::connect( '/dates/*',  array( 'controller' => 'shows', 'action' => 'get_date') );
 /*
  * Carga todos los archivos routes de los plugins
  */

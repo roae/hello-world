@@ -418,6 +418,10 @@ class AppController extends Controller{
 			}
 		}
 
+		if  ($this->RequestHandler->isXml() || $this->RequestHandler->ext == 'json' && Configure::read("debug") > 1) { // Allow a json request to specify XML formatting
+			Configure::write("debug",1);
+		}
+
 	}
 
 	function __userManagement(){
@@ -493,6 +497,7 @@ class AppController extends Controller{
 			$this->set('requestError','true');
 			$this->layout="error";
 		}
+
 		#pr($this->layout);
 	}
 

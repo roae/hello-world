@@ -16,7 +16,10 @@ class BuysController extends AppController{
 	function index($device_id=null){
 		if($device_id){
 			$this->set("recordset",$this->Buy->find("all",array(
-				'conditions'=>array('Buy.device'=>$device_id),
+				'conditions'=>array(
+					'Buy.device'=>$device_id,
+					'Buy.confirmation_number <>'=>"-"
+				),
 				'contain'=>array(
 					'Movie'=>array(
 						'Poster'

@@ -91,6 +91,10 @@ I18nRouter::connect( "/[buy_url]/*",
 	array( 'controller' => 'buys', 'action' => 'view' )
 );
 
+I18nRouter::connect( "/comprasmobile/*",
+	array( 'controller' => 'buys', 'action' => 'index' )
+);
+
 I18nRouter::connect( "/[login_url]/*",
 	array( 'controller' => 'users', 'action' => 'login' )
 );

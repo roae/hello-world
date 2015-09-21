@@ -422,6 +422,7 @@ class AppController extends Controller{
 			Configure::write("debug",1);
 		}
 
+
 	}
 
 	function __userManagement(){

@@ -13,6 +13,24 @@ class BuysController extends AppController{
 		'Email'
 	);
 
+	function index($device_id=null){
+		if($device_id){
+			$this->set("recordset",$this->Buy->find("all",array(
+				'conditions'=>array('Buy.device'=>$device_id),
+				'contain'=>array(
+					'Movie'=>array(
+						'Poster'
+					),
+					'Location',
+					'Projection'
+				)
+			)));
+			$this->params['url']['mobile'] = $device_id;
+		}else{
+			$this->cakeError("error404");
+		}
+	}
+
 	function view($confirmation_number = null){
 		if($confirmation_number){
 			$this->Buy->contain(array(
@@ -38,13 +56,15 @@ class BuysController extends AppController{
 
 
 			if($this->loggedUser['User']['group_id'] == Configure::read("Group.Anonymous")){
-				if(!is_array($buys) || (is_array($buys) && !in_array($confirmation_number,$buys))){
+				if( (!is_array($buys) || (is_array($buys) && !in_array($confirmation_number,$buys))) && !isset($this->params['url']['mobile']) ){
 					$this->cakeError("error404");
 				}else{
-					$conditions = array(
-						'Buy.confirmation_number'=>$confirmation_number,
-						'ADDTIME(`Buy`.`schedule`,"0 1:0:0") > NOW()'
-					);
+					if(!isset($this->params['url']['mobile'])){
+						$conditions = array(
+							'Buy.confirmation_number'=>$confirmation_number,
+							'ADDTIME(`Buy`.`schedule`,"0 1:0:0") > NOW()'
+						);
+					}
 				}
 			}else if($this->loggedUser['User']['group_id'] == Configure::read("Group.Admin") ||
 				$this->loggedUser['User']['group_id'] == Configure::read("Group.System")){
@@ -76,7 +96,7 @@ class BuysController extends AppController{
 				}
 			}
 		}else{
-			$this->cakeError('error404');
+			//$this->cakeError('error404');
 		}
 	}
 

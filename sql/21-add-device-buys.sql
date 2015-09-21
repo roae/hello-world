@@ -1,0 +1,1 @@
+ALTER TABLE `buys` ADD `device` VARCHAR(100)  NULL  DEFAULT NULL  AFTER `created`;

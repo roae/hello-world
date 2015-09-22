@@ -7709,7 +7709,7 @@ select {
   /* line 869, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination {
     bottom: 20px;
-    padding: 10px 0;
+    padding: 10px 10px;
   }
   /* line 879, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {

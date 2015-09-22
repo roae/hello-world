@@ -9342,9 +9342,17 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
+  /* line 132, sass/modules/base/responsive/_r_complex.scss */
+  .location-detail-container .services li {
+    clear: both;
+    width: 98.75%;
+    float: left;
+    margin-left: 0.625%;
+    margin-right: 0.625%;
+  }
 }
 @media only screen and (max-height: 375px) {
-  /* line 135, sass/modules/base/responsive/_r_complex.scss */
+  /* line 140, sass/modules/base/responsive/_r_complex.scss */
   #complex-container #map {
     height: 190px;
   }

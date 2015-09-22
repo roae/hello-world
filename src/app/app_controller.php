@@ -652,7 +652,14 @@ class AppController extends Controller{
 	 */
 
 	function redirect($url,$status=null){
-		parent::redirect($this->Xpagin->beforeRedirect($this,$url),$status);
+		$params = Router::getParams();
+		if(isset($params['url']['mobile'])){
+			$params = "?mobile=".$params['url']['mobile'];
+		}else{
+			$params = "";
+		}
+		$url = $this->Xpagin->beforeRedirect($this,$url).$params;
+		parent::redirect($url,$status);
 	}
 
 	function afterFilter() {

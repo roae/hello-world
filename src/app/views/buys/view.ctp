@@ -1,5 +1,7 @@
 <div class="buy-detail-container">
-	<iframe height="0" width="0" name="email" id="print" src="<?= $this->Html->url()?>print:true"> </iframe>
+	<?php if(!isset($this->params['url']['mobile'])){ ?>
+		<iframe height="0" width="0" name="email" id="print" src="<?= $this->Html->url()?>print:true"> </iframe>
+	<?php } ?>
 	<?php
 	$bg_url = '';
 	$class = '';
@@ -165,20 +167,22 @@
 			</div>
 
 		</div>
-		<div class="buttons">
-			<?php
-			if($showMessage){
-				echo $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));
-				echo "&nbsp";
-				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
-			}else{
-				echo $this->Html->link("[:back-to-profile:]",$referer,array('class'=>'btn'));
-				echo "&nbsp";
-				echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
-			}
-			echo $this->Html->link("[:send-confirmation:]",$this->Html->url(array('controller'=>'buys','action'=>'view',$record['Buy']['confirmation_number']))."send:1/",array('class'=>'btn'));
-			?>
-		</div>
+		<?php if(!isset($this->params['url']['mobile'])){ ?>
+			<div class="buttons">
+				<?php
+				if($showMessage){
+					echo $this->Html->link("[:ir-inicio:]","/",array('class'=>'btn'));
+					echo "&nbsp";
+					echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
+				}else{
+					echo $this->Html->link("[:back-to-profile:]",$referer,array('class'=>'btn'));
+					echo "&nbsp";
+					echo $this->Html->link("[:print-ticket:]","#",array('class'=>'btn-primary','onclick'=>'$("#print")[0].contentWindow.print();return false;'));
+				}
+				echo $this->Html->link("[:send-confirmation:]",$this->Html->url(array('controller'=>'buys','action'=>'view',$record['Buy']['confirmation_number']))."send:1/",array('class'=>'btn'));
+				?>
+			</div>
+		<?php } ?>
 	</div>
 </div>
 </div>

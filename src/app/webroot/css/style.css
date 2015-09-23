@@ -4750,6 +4750,10 @@ select {
   font-size: 14px;
 }
 /* line 4, sass/modules/pages/_buy.scss */
+.buy-detail-container iframe {
+  display: none;
+}
+/* line 8, sass/modules/pages/_buy.scss */
 .buy-detail-container #Notifier .success {
   background: #51b347;
   color: #fff;
@@ -4757,7 +4761,7 @@ select {
   text-align: center;
   font-size: 16px;
 }
-/* line 12, sass/modules/pages/_buy.scss */
+/* line 16, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover {
   height: auto;
   position: relative;
@@ -4765,28 +4769,28 @@ select {
   background-color: #363636;
   padding: 100px 0;
 }
-/* line 19, sass/modules/pages/_buy.scss */
+/* line 23, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover.image-not-founded {
   background-color: #f1f1f1;
   color: #272b2e;
 }
-/* line 24, sass/modules/pages/_buy.scss */
+/* line 28, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover.image-not-founded .tickets thead th {
   border-bottom: 1px solid #e1e1e1;
 }
-/* line 27, sass/modules/pages/_buy.scss */
+/* line 31, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover.image-not-founded .tickets tfoot th {
   border-top: 1px solid #e1e1e1;
 }
-/* line 32, sass/modules/pages/_buy.scss */
+/* line 36, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover.image-not-founded:before, .buy-detail-container .big-cover.image-not-founded:after {
   background: transparent;
 }
-/* line 37, sass/modules/pages/_buy.scss */
+/* line 41, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover.image-not-founded .bg {
   display: none;
 }
-/* line 41, sass/modules/pages/_buy.scss */
+/* line 45, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover.image-not-founded .buy-information {
   background: #fff;
   padding: 10px;
@@ -4794,7 +4798,7 @@ select {
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 48, sass/modules/pages/_buy.scss */
+/* line 52, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .bg {
   height: 100%;
   position: absolute;
@@ -4812,35 +4816,35 @@ select {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
   opacity: 0.1;
 }
-/* line 65, sass/modules/pages/_buy.scss */
+/* line 69, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .col-container {
   position: relative;
   z-index: 2;
 }
-/* line 69, sass/modules/pages/_buy.scss */
+/* line 73, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .buttons {
   text-align: center;
   padding: 20px 0;
   margin-top: 50px;
 }
-/* line 73, sass/modules/pages/_buy.scss */
+/* line 77, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .buttons .btn-primary {
   margin: 0 10px;
 }
-/* line 76, sass/modules/pages/_buy.scss */
+/* line 80, sass/modules/pages/_buy.scss */
 .buy-detail-container .big-cover .buttons .btn,
 .buy-detail-container .big-cover .buttons .btn-primary {
   display: inline-block;
   white-space: nowrap;
 }
-/* line 85, sass/modules/pages/_buy.scss */
+/* line 89, sass/modules/pages/_buy.scss */
 .buy-detail-container .message {
   font-size: 14px;
   font-weight: 200;
   overflow: hidden;
   margin: 0 50px 50px;
 }
-/* line 90, sass/modules/pages/_buy.scss */
+/* line 94, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .icon {
   background: url(web/checkbuy.png) no-repeat;
   width: 86px;
@@ -4848,22 +4852,22 @@ select {
   float: left;
   margin-right: 20px;
 }
-/* line 97, sass/modules/pages/_buy.scss */
+/* line 101, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .principal-text {
   margin-left: 106px;
   font-size: 36px;
   display: block;
 }
-/* line 102, sass/modules/pages/_buy.scss */
+/* line 106, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .second-text {
   margin-left: 106px;
 }
-/* line 104, sass/modules/pages/_buy.scss */
+/* line 108, sass/modules/pages/_buy.scss */
 .buy-detail-container .message .second-text b, .buy-detail-container .message .second-text strong {
   font-weight: 500;
   color: #00CC67;
 }
-/* line 110, sass/modules/pages/_buy.scss */
+/* line 114, sass/modules/pages/_buy.scss */
 .buy-detail-container .section-title {
   color: #cc0017;
   font-size: 26px;
@@ -4871,14 +4875,14 @@ select {
   display: block;
   margin-bottom: 1em;
 }
-/* line 118, sass/modules/pages/_buy.scss */
+/* line 122, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 122, sass/modules/pages/_buy.scss */
+/* line 126, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information figure {
   width: 35%;
   float: left;
@@ -4890,12 +4894,12 @@ select {
   -ms-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 126, sass/modules/pages/_buy.scss */
+/* line 130, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information figure img {
   display: block;
   width: 100%;
 }
-/* line 131, sass/modules/pages/_buy.scss */
+/* line 135, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information .details {
   width: 60%;
   float: left;
@@ -4903,90 +4907,90 @@ select {
   margin-right: 1.25%;
   margin-top: 10px;
 }
-/* line 134, sass/modules/pages/_buy.scss */
+/* line 138, sass/modules/pages/_buy.scss */
 .buy-detail-container .show-information .details h2 {
   margin-bottom: 10px;
 }
-/* line 141, sass/modules/pages/_buy.scss */
+/* line 145, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information {
   width: 48.75%;
   float: left;
   margin-left: 0.625%;
   margin-right: 0.625%;
 }
-/* line 145, sass/modules/pages/_buy.scss */
+/* line 149, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .buy-details {
   width: 60%;
   float: left;
   margin-left: 1.25%;
   margin-right: 1.25%;
 }
-/* line 148, sass/modules/pages/_buy.scss */
+/* line 152, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information figure {
   width: 35%;
   float: left;
   margin-left: 1.25%;
   margin-right: 1.25%;
 }
-/* line 150, sass/modules/pages/_buy.scss */
+/* line 154, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information figure img {
   border: 3px solid #fff;
 }
-/* line 156, sass/modules/pages/_buy.scss */
+/* line 160, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .info strong {
   width: 150px;
 }
-/* line 160, sass/modules/pages/_buy.scss */
+/* line 164, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets {
   margin: 20px 0;
   width: 100%;
   font-size: 16px;
 }
-/* line 164, sass/modules/pages/_buy.scss */
+/* line 168, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets th {
   text-align: left;
 }
-/* line 168, sass/modules/pages/_buy.scss */
+/* line 172, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets thead th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
-/* line 173, sass/modules/pages/_buy.scss */
+/* line 177, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets tfoot th {
   border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
-/* line 177, sass/modules/pages/_buy.scss */
+/* line 181, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets tfoot .total {
   text-align: center;
   font-size: 12px;
 }
-/* line 180, sass/modules/pages/_buy.scss */
+/* line 184, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets tfoot .total .value {
   color: #00CC67;
   display: block;
   font-size: 26px;
 }
-/* line 187, sass/modules/pages/_buy.scss */
+/* line 191, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets td {
   padding: 5px;
 }
-/* line 189, sass/modules/pages/_buy.scss */
+/* line 193, sass/modules/pages/_buy.scss */
 .buy-detail-container .buy-information .tickets td.subtotal {
   text-align: center;
 }
-/* line 196, sass/modules/pages/_buy.scss */
+/* line 200, sass/modules/pages/_buy.scss */
 .buy-detail-container .info {
   margin-top: 5px;
 }
-/* line 198, sass/modules/pages/_buy.scss */
+/* line 202, sass/modules/pages/_buy.scss */
 .buy-detail-container .info strong {
   display: inline-block;
   width: 100px;
 }
-/* line 202, sass/modules/pages/_buy.scss */
+/* line 206, sass/modules/pages/_buy.scss */
 .buy-detail-container .info .value {
   font-weight: 200;
 }
-/* line 205, sass/modules/pages/_buy.scss */
+/* line 209, sass/modules/pages/_buy.scss */
 .buy-detail-container .info .mega {
   background: #F18932;
   color: #FFF;
@@ -4997,7 +5001,7 @@ select {
   border-radius: 3px;
   font-size: 10px;
 }
-/* line 212, sass/modules/pages/_buy.scss */
+/* line 216, sass/modules/pages/_buy.scss */
 .buy-detail-container .info .premier {
   background: #E5C90C;
   padding: 1px 5px;
@@ -5007,6 +5011,79 @@ select {
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   border-radius: 3px;
+}
+
+/* line 226, sass/modules/pages/_buy.scss */
+#MobileBuys {
+  margin: 10px;
+}
+/* line 228, sass/modules/pages/_buy.scss */
+#MobileBuys .title {
+  font-size: 24px;
+  font-weight: 200;
+  margin-bottom: 30px;
+  display: block;
+  color: #818386;
+}
+/* line 235, sass/modules/pages/_buy.scss */
+#MobileBuys .movie {
+  overflow: hidden;
+  color: #808080;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #dee8ee;
+}
+/* line 243, sass/modules/pages/_buy.scss */
+#MobileBuys figure {
+  width: 70px;
+  float: left;
+  margin-right: 10px;
+  overflow: hidden;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 249, sass/modules/pages/_buy.scss */
+#MobileBuys figure img {
+  display: block;
+  width: 100%;
+}
+/* line 254, sass/modules/pages/_buy.scss */
+#MobileBuys .movie-title {
+  font-size: 18px;
+  color: #2b2b2b;
+  font-weight: 200;
+  display: block;
+  margin-bottom: 5px;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #cc0017;
+}
+/* line 265, sass/modules/pages/_buy.scss */
+#MobileBuys .data {
+  display: block;
+}
+/* line 268, sass/modules/pages/_buy.scss */
+#MobileBuys .value {
+  color: #272b2e;
+}
+/* line 271, sass/modules/pages/_buy.scss */
+#MobileBuys .btn {
+  padding: 2p 3px;
+  font-size: 12px;
+  margin-top: 5px;
+  float: right;
+}
+/* line 281, sass/modules/pages/_buy.scss */
+#MobileBuys .noBuys {
+  font-size: 24px;
+  color: #808080;
+  text-align: center;
+  margin-top: 100px;
+  font-weight: 200;
 }
 
 /* line 2, sass/modules/pages/_articles.scss */

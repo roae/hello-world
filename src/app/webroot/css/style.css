@@ -2099,15 +2099,16 @@ select {
   background-image: -o-linear-gradient(left, #eff4f7, rgba(239, 244, 247, 0));
   background-image: linear-gradient(to right, #eff4f7, rgba(239, 244, 247, 0));
   background-repeat: repeat-x;
-  width: 50px;
+  width: 20px;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   content: " ";
   display: block;
+  z-index: 2;
 }
-/* line 385, sass/modules/pages/_home.scss */
+/* line 386, sass/modules/pages/_home.scss */
 .next-premieres .movies:after {
   background-image: -moz-linear-gradient(left, rgba(239, 244, 247, 0), #eff4f7);
   background-image: -webkit-gradient(linear, 0 0, 100% 0, left, right);
@@ -2115,28 +2116,29 @@ select {
   background-image: -o-linear-gradient(left, rgba(239, 244, 247, 0), #eff4f7);
   background-image: linear-gradient(to right, rgba(239, 244, 247, 0), #eff4f7);
   background-repeat: repeat-x;
-  width: 50px;
+  width: 20px;
   height: 100%;
   position: absolute;
   top: 0;
   right: 0;
   content: " ";
   display: block;
+  z-index: 2;
 }
-/* line 397, sass/modules/pages/_home.scss */
+/* line 399, sass/modules/pages/_home.scss */
 .next-premieres .movies-list {
   vertical-align: top;
   display: inline-block;
   text-align: center;
   overflow: hidden;
 }
-/* line 404, sass/modules/pages/_home.scss */
+/* line 406, sass/modules/pages/_home.scss */
 .next-premieres .antiscroll-wrap {
   position: relative;
   overflow: hidden;
   overflow-x: auto;
 }
-/* line 410, sass/modules/pages/_home.scss */
+/* line 412, sass/modules/pages/_home.scss */
 .next-premieres .movie {
   padding: 0 15px;
   float: left;
@@ -2144,11 +2146,11 @@ select {
   vertical-align: top;
   width: 190px;
 }
-/* line 417, sass/modules/pages/_home.scss */
+/* line 419, sass/modules/pages/_home.scss */
 .next-premieres .movie .image-container {
   position: relative;
 }
-/* line 421, sass/modules/pages/_home.scss */
+/* line 423, sass/modules/pages/_home.scss */
 .next-premieres .movie img {
   width: 100%;
   display: block;
@@ -2157,30 +2159,30 @@ select {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 427, sass/modules/pages/_home.scss */
+/* line 429, sass/modules/pages/_home.scss */
 .next-premieres .movie h2 {
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: normal;
 }
-/* line 433, sass/modules/pages/_home.scss */
+/* line 435, sass/modules/pages/_home.scss */
 .next-premieres .movie span {
   display: block;
   text-align: left;
   font-size: 13px;
   color: #818386;
 }
-/* line 440, sass/modules/pages/_home.scss */
+/* line 442, sass/modules/pages/_home.scss */
 .next-premieres .movie a {
   font-size: 14px;
   color: #818386;
   line-height: 1.5;
 }
-/* line 446, sass/modules/pages/_home.scss */
+/* line 448, sass/modules/pages/_home.scss */
 .next-premieres .movie .date {
   color: #CC0017;
 }
-/* line 450, sass/modules/pages/_home.scss */
+/* line 452, sass/modules/pages/_home.scss */
 .next-premieres .movie .presale {
   background: #FECC00;
   padding: 3px 10px;
@@ -7786,7 +7788,7 @@ select {
   /* line 869, sass/modules/base/responsive/_r_homepage.scss */
   .home .home-highlights .pagination {
     bottom: 20px;
-    padding: 10px 0;
+    padding: 10px 10px;
   }
   /* line 879, sass/modules/base/responsive/_r_homepage.scss */
   .home .billboard .movie {
@@ -9417,9 +9419,17 @@ select {
     margin-left: 0.625%;
     margin-right: 0.625%;
   }
+  /* line 132, sass/modules/base/responsive/_r_complex.scss */
+  .location-detail-container .services li {
+    clear: both;
+    width: 98.75%;
+    float: left;
+    margin-left: 0.625%;
+    margin-right: 0.625%;
+  }
 }
 @media only screen and (max-height: 375px) {
-  /* line 135, sass/modules/base/responsive/_r_complex.scss */
+  /* line 140, sass/modules/base/responsive/_r_complex.scss */
   #complex-container #map {
     height: 190px;
   }

@@ -374,23 +374,25 @@
 		position: relative;
 		&:before{
 			@include gradientHorizontal(#eff4f7,rgba(#eff4f7,0));
-			width: 50px;
+			width: 20px;
 			height: 100%;
 			position: absolute;
 			top:0;
 			left:0;
 			content: " ";
 			display: block;
+			z-index:2;
 		}
 		&:after{
 			@include gradientHorizontal(rgba(#eff4f7,0),#eff4f7);
-			width: 50px;
+			width: 20px;
 			height: 100%;
 			position: absolute;
 			top:0;
 			right:0;
 			content: " ";
 			display: block;
+			z-index:2;
 		}
 	}
 

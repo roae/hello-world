@@ -1,3 +1,4 @@
+<?php /* @var $this View */ ?>
 <article id="article-detail">
 	<div class="article-banner <?= ( isset( $record['Foto']['id'] ) ) ? 'with-image' : '' ?>"
 	     style="<?= ( isset( $record['Foto']['id'] ) ) ? 'background-image: url('.$record['Foto']['url'].')' : '' ?>">
@@ -60,13 +61,13 @@
 
 			<ul>
 				<li>
-					<a class="tw red" href="http://twitter.com/home?status=<?= rawurlencode( $record['Article']['titulo']."+".$this->Html->url() ) ?>">Twitter</a>
+					<a class="tw red" href="http://twitter.com/home?status=<?= rawurlencode( $record['Article']['titulo']."+".$this->Html->url(null,true) ) ?>">Twitter</a>
 				</li>
 				<li>
-					<a class="fb red" href="http://www.facebook.com/share.php?u=<?= rawurlencode( $record['Article']['titulo'] )."&title=".rawurlencode( $this->Html->url() ) ?>">Facebook</a>
+					<a class="fb red" href="http://www.facebook.com/share.php?u=<?= rawurlencode( $record['Article']['titulo'] )."&title=".rawurlencode( $this->Html->url(null,true) ) ?>">Facebook</a>
 				</li>
 				<li>
-					<a class="gp red" href="https://plus.google.com/share?url=<?= rawurlencode($this->Html->url())?>">G+</a>
+					<a class="gp red" href="https://plus.google.com/share?url=<?= rawurlencode($this->Html->url(null,true))?>">G+</a>
 				</li>
 			</ul>
 		</div>

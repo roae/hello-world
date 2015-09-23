@@ -64,7 +64,7 @@
 					<a class="tw red" href="http://twitter.com/home?status=<?= rawurlencode( $record['Article']['titulo']."+".$this->Html->url(null,true) ) ?>">Twitter</a>
 				</li>
 				<li>
-					<a class="fb red" href="http://www.facebook.com/share.php?u=<?= rawurlencode( $record['Article']['titulo'] )."&title=".rawurlencode( $this->Html->url(null,true) ) ?>">Facebook</a>
+					<a class="fb red" href="http://www.facebook.com/share.php?u=<?= rawurlencode( $this->Html->url(null,true)."&title=".rawurlencode( $record['Article']['titulo'] ) ) ?>">Facebook</a>
 				</li>
 				<li>
 					<a class="gp red" href="https://plus.google.com/share?url=<?= rawurlencode($this->Html->url(null,true))?>">G+</a>

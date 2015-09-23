@@ -5,8 +5,10 @@
 	</div>
 	<div class="inf">
 		[:404_error_text:]
-		<?= $this->Html->link("[:ir-al-inicio:]","/",array('class'=>'btn'));?>
 		<?php
+		if(!isset($this->params['url']['mobile'])){
+			echo $this->Html->link("[:ir-al-inicio:]","/",array('class'=>'btn'));
+		}
 		/*
 		echo $this->Navigation->menu($defaultMenu['menu_footer'],array('id'=>'footermenu'));
 		echo "[:404_search_form_text:]";

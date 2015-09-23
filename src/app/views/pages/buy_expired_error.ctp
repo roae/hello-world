@@ -4,6 +4,10 @@
 			[:session-buy-expired-title:]
 		</div>
 		[:session-buy-expired-error-message:]
-		<?= $this->Html->link("[:back-billboard:]",array( 'controller' => 'shows','action' => 'index','slug' => Inflector::slug( low( $CitySelected['name'] ), '-' )),array('class'=>'btn btn-primary'));?>
+		<?php
+		if(!isset($this->params['url']['mobile'])){
+			echo $this->Html->link("[:back-billboard:]",array( 'controller' => 'shows','action' => 'index','slug' => Inflector::slug( low( $CitySelected['name'] ), '-' )),array('class'=>'btn btn-primary'));
+		}
+		?>
 	</div>
 </div>

@@ -4,7 +4,8 @@ $movies = $this->requestAction(array('controller'=>'movies','action'=>'get','typ
 	'conditions'=>array('Movie.home'=>1,'Movie.status'=>1,'Movie.trash'=>0),
 	'contain'=>array(
 		'Gallery'=>array('limit'=>1)
-	)
+	),
+	'order'=>array('RAND()')
 )));
 #pr($movies);
 ?>

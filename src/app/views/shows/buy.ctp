@@ -3,7 +3,7 @@ if(!empty($record)){
 	#$this->Html->script("ext/jquery.touchSwipe.min.js",array('inline'=>false));
 	$this->Html->script("ext/pinchzoom.min.js",array('inline'=>false));
 	$this->Html->script("buy.min.js",array('inline'=>false));
-	$action = $this->Html->url().(isset($this->params['url']['mobile'])? "?mobile=".$this->params['url']['mobile'] : "");
+	$action = $this->Html->url();
 	echo $this->Form->create("Buy",array('url'=>$action,'id'=>'BuyForm'));
 	?>
 	<div class="session-buy-container" id="SessionCheckout">

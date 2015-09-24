@@ -21,6 +21,7 @@ recursos/*
 *.annotated.js
 *buy.min.js
 src/app/webroot/css/style.min.css
+src/app/webroot/css/style.css
 
 src/reverse_cron
 src/transaction_removed

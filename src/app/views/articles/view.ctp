@@ -2,6 +2,7 @@
 <article id="article-detail">
 	<div class="article-banner <?= ( isset( $record['Foto']['id'] ) ) ? 'with-image' : '' ?>"
 	     style="<?= ( isset( $record['Foto']['id'] ) ) ? 'background-image: url('.$record['Foto']['url'].')' : '' ?>">
+		<?php if(!isset($this->params['url']['mobile'])){ ?>
 		<div class="crumb ">
 			<div class="col-container">
 				<span class="crumbTitle">[:estas-aqui:]</span>
@@ -12,7 +13,7 @@
 				<span><?= h($record['Article']['titulo']) ?></span>
 			</div>
 		</div>
-
+		<?php } ?>
 		<div class="title">
 			<div class="col-container">
 				<div class="info">

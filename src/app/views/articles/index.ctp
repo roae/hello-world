@@ -9,6 +9,7 @@ $this->Paginator->options(array('url' => am(array('controller' => 'articles','ac
 			<?php if(isset($category['Term'])){?>
 				<h1><?= $category['Term']['nombre'] ?></h1>
 				<?= $category['Term']['descripcion'] ?>
+				<?php if(!isset($this->params['url']['mobile'])){ ?>
 				<div class="crumb">
 					<?= $this->Html->link("[:home_crumb:]","/");?>
 					/
@@ -16,24 +17,29 @@ $this->Paginator->options(array('url' => am(array('controller' => 'articles','ac
 					/
 					<span>[:category:]: <?= h($category['Term']['nombre'])?></span>
 				</div>
+				<?php } ?>
 			<?php }else if(isset($tag['Term'])){?>
 				<h1><?= $tag['Term']['nombre'] ?></h1>
 				<?= $tag['Term']['descripcion'] ?>
-				<div class="crumb">
-					<?= $this->Html->link("[:home_crumb:]","/");?>
-					/
-					<?= $this->Html->link("[:blog_crumb:]",array('action'=>'index'));?>
-					/
-					<span>[:tag:]: <?= h($tag['Term']['nombre'])?></span>
-				</div>
+				<?php if(!isset($this->params['url']['mobile'])){ ?>
+					<div class="crumb">
+						<?= $this->Html->link("[:home_crumb:]","/");?>
+						/
+						<?= $this->Html->link("[:blog_crumb:]",array('action'=>'index'));?>
+						/
+						<span>[:tag:]: <?= h($tag['Term']['nombre'])?></span>
+					</div>
+				<?php } ?>
 			<?php }else{ ?>
 				<h1>[:Blog-principal-title:]</h1>
 				[:welcome-to-our-blog:]
+				<?php if(!isset($this->params['url']['mobile'])){ ?>
 				<div class="crumb">
 					<?= $this->Html->link("[:home_crumb:]","/");?>
 					/
 					<span>[:blog_crumb:]</span>
 				</div>
+				<?php } ?>
 			<?php } ?>
 		</div>
 	</div>

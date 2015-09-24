@@ -9,7 +9,10 @@ class AppHelper extends Helper{
 			$params = "";
 		}
 		if(is_string($url)){
-			return Router::url($url, $full).$params;
+			if(!preg_match('/\?mobile/',$url)){
+				return Router::url($url, $full).$params;
+			}
+			return  Router::url($url, $full);
 		}
 		$url=Router::url($url, $full);
 

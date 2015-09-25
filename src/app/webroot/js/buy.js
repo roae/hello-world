@@ -14,6 +14,7 @@ var $container;
 
 
 $(document).on("ready",function(){
+	var $window = $(window);
 
 	$("#BuyForm" ).on("submit",function(event){
 		$("#SendingBuy" ).css({display:'block'});
@@ -81,7 +82,20 @@ $(document).on("ready",function(){
 			$("#SeatLayout .layout" ).each(function(){
 				new RTP.PinchZoom($(this), {
 				});
-			})
+			});
+			$zoom = $("<div></div>");
+			$("#SeatLayout" ).append($zoom);
+			$window.on("scroll",function(event){
+				if($zoom.visible() && !$zoom.hasClass("zoom")){
+					$zoom.addClass("zoom");
+				}
+			});
+
+
+			if($zoom.visible(true)){
+				console.log("rochin")
+				$zoom.addClass("zoom");
+			}
 
 			seatSelection();
 			setSeatsSelected();

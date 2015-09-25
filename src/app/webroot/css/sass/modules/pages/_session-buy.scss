@@ -608,41 +608,47 @@
 			.instructions {
 				padding: 20px 0;
 				font-weight: 100;
-				vertical-align: middle;
+				vertical-align: baseline;
 				line-height: 20px;
 				.available {
 					margin-right: 30px;
+					vertical-align: top;
 					&:before {
 						content: " ";
-						width: 20px;
-						height: 20px;
+						vertical-align: top;
+						width: 25px;
+						height: 25px;
 						margin-right: 20px;
-						background: #C8C8C8;
-						@include border-radius(50%);
+						background: url("../img/seat-0.png") center no-repeat;
+						background-size: 100% auto;
 						display: inline-block;
 					}
 				}
 				.unavailable {
 					margin-right: 30px;
+					vertical-align: top;
 					&:before {
 						content: " ";
-						width: 20px;
-						height: 20px;
+						vertical-align: top;
+						width: 25px;
+						height: 25px;
 						margin-right: 20px;
-						background: #F50A29;
-						@include border-radius(50%);
+						background: url("../img/seat-1.png") center no-repeat;
+						background-size: 100% auto;
 						display: inline-block;
 					}
 				}
 				.yourseats {
 					margin-right: 30px;
+					vertical-align: top;
 					&:before {
 						content: " ";
-						width: 20px;
-						height: 20px;
+						vertical-align: top;
+						width: 25px;
+						height: 25px;
 						margin-right: 20px;
-						background: #EFBA62;
-						@include border-radius(50%);
+						background: url("../img/seat-selected.png") center no-repeat;
+						background-size: 100% auto;
 						display: inline-block;
 					}
 				}

@@ -267,9 +267,13 @@
 				float: right;
 				margin-top: -6px;
 				a,
-				table{
+				.ssl{
 					display: inline-block;
 					vertical-align: top;
+				}
+				.ssl{
+					margin-top: 10px;
+					height: 40px;
 				}
 			}
 		}

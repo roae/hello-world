@@ -163,6 +163,7 @@ if(!empty($record)){
 						<i class="icon-loading"></i>
 						<div>[:cargando-asientos:]</div>
 					</div>
+
 				</div>
 
 				<div class="message">
@@ -189,6 +190,7 @@ if(!empty($record)){
 			<div id="seatsInputs">
 
 			</div>
+
 		</section>
 	<?php
 	}

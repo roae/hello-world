@@ -152,7 +152,7 @@
 						</div>
 						<div class="info">
 							<strong>[:buy-created:]:</strong>
-							<span class="value"><?= $this->Time->format("[:l:] d \d\e [:F:] h:i a",$record['Buy']['schedule']); ?></span>
+							<span class="value"><?= $this->Time->format("[:D:] d \d\e [:M:] h:i a",$record['Buy']['schedule']); ?></span>
 						</div>
 						<?php /*
 						<div class="info">

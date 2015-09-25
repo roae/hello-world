@@ -108,6 +108,15 @@
 			.tickets{
 				font-size: 14px;
 			}
+			.buy-details{
+				@include full;
+			}
+			.barras{
+				@include full;
+				text-align: center;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
 		}
 	}
 }
@@ -128,20 +137,16 @@
 			}
 		}
 		.info{
-			font-size: 12px;
+			//font-size: 12px;
 		}
 		.buy-information{
 			.tickets{
-				font-size: 12px;
+				//font-size: 12px;
 			}
-			.buy-details{
-				@include full;
-			}
-			.barras{
-				@include full;
-				text-align: center;
-				margin-top: 20px;
-				margin-bottom: 20px;
+			.info{
+				strong{
+					width: 130px;
+				}
 			}
 		}
 	}

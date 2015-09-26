@@ -26,7 +26,7 @@ header("Content-Language: en, es");
 		if (Configure::read('debug') > 0) {
 			echo $this->Html->css('cake.generic');
 		}
-		echo $this->Html->css(array('style'));
+		echo $this->Html->css(array('style.min'));
 		?>
 	</head>
 	<body id ="error404">

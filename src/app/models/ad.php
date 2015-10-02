@@ -20,6 +20,7 @@ Class Ad extends AppModel{
 				'image_ratio_crop' => true,
 				'allowed' => array('images'),
 				'max_file_size'=>2,// MB
+				#'jpeg_quality'=>100,
 			),
 			'Vertical'=>array(
 				/*'copies' => array(
@@ -33,6 +34,7 @@ Class Ad extends AppModel{
 				'image_ratio_crop' => true,
 				'allowed' => array('images'),
 				'max_file_size'=>2,// MB
+				'jpeg_quality'=>100,
 			),
 			'VerticalMini'=>array(
 				/*'copies' => array(
@@ -46,6 +48,7 @@ Class Ad extends AppModel{
 				'image_ratio_crop' => true,
 				'allowed' => array('images'),
 				'max_file_size'=>2,// MB
+				#'jpeg_quality'=>100,
 			),
 			'Cuadro'=>array(
 				/*'copies' => array(
@@ -59,6 +62,7 @@ Class Ad extends AppModel{
 				'image_ratio_crop' => true,
 				'allowed' => array('images'),
 				'max_file_size'=>2,// MB
+				#'jpeg_quality'=>100,
 			)
 		)
 	);

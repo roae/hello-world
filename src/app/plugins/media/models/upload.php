@@ -151,6 +151,7 @@ class Upload extends MediaAppModel{
 				$this->Uploader->image_y = $settings['height'];
 			}
 			$this->Uploader->image_ratio = true;
+			$this->Uploader->jpeg_quality = $settings['jpeg_quality'];
 			#$this->Uploader->image_ratio_crop= isset($settings['image_ratio_crop'])?$settings['image_ratio_crop']:false ;
 			#$this->Uploader->image_ratio_no_zoom_out=isset($settings['image_ratio_no_zoom_out'])?$settings['image_ratio_no_zoom_out']: false ;
 			#$this->Uploader->image_ratio_no_zoom_out=isset($settings['image_ratio_no_zoom_in'])?$settings['image_ratio_no_zoom_in']: false ;
@@ -218,12 +219,12 @@ class Upload extends MediaAppModel{
 				'created_by' => Configure::read("loggedUser.User.id"),
 				'modified_by' => Configure::read("loggedUser.User.id"),
 			));
-			
+
 			$settings = normalizeAllowedConfig(Configure::read('Media.Upload.config'));
 			#$this->log($settings,'debug');
 			$this->validate['mime']['is-allowed']['rule'][1] = $settings['allowed'];
 			$this->validate['size']['max_file_size']['rule'][2] = $settings['max_file_size']*1048576;
-		
+
 			return true;
 		}else{
 			unset($this->validate['mime']);
@@ -278,7 +279,7 @@ class Upload extends MediaAppModel{
 				# se crea el folder fisicamente
 				$folder = &new Folder(WWW_ROOT . Configure::read("Media.Upload.dir").$this->data['Upload']['path'], true, 0777);
 			}else{
-				
+
 			}
 		}
 	}

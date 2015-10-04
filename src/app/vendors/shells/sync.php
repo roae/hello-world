@@ -225,7 +225,7 @@ class SyncShell extends Shell{
 			'TransIdTemp'=>"".rand(0,10000000),
 			'CmdName'=>'GetSellingDataXMLStream',
 			'Param1'=>"PRICES|FILMS", # PRICES es el bueno
-			'Param2'=>"".(30*24), #TODO: poner la variable de configuracion de los dias
+			'Param2'=>"".(60*24), #TODO: poner la variable de configuracion de los dias
 			'Param3'=>"",
 			'Param4'=>"",
 			'Param5'=>"",

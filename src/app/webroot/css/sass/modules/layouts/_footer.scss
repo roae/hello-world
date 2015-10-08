@@ -44,8 +44,7 @@
 		.actions {
 			li {
 				display: inline-block;
-
-				&.google-play { margin-right: 15px; }
+				margin: 0 10px;
 
 				a {
 					transition: opacity 0.2s ease-in-out;

@@ -56,7 +56,7 @@ class ContactsController extends AppController{
 					//$this->Email->layout="notifications";
 					$to = Configure::read("AppConfig.contact_email");
 					$bcc = explode(",",Configure::read('AppConfig.contact_email_cc'));
-					if(!empty($this->data['Contact']['manager'])){
+					if(!empty($this->data['Contact']['manager']) && $this->data['Contact']['manager'] != "-1"){
 						$to = $this->data['Contact']['manager'];
 						$bcc[] = Configure::read("AppConfig.contact_email");
 					}

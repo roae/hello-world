@@ -1,3 +1,13 @@
+<?php
+$para = "Corporativo";
+if(!empty($datos['Contact']['manager'])){
+	if($datos['Contact']['manager'] != "-1"){
+		$para = "Bolsa de trabajo";
+	}else{
+		$para = $datos['Contact']['manager'];
+	}
+}
+?>
 <br />
 <br />
 <table bgcolor="#ffffff" width="100%">
@@ -11,9 +21,11 @@
 		<td>
 			<p><strong style="display:block;">E-mail: </strong> <?php echo $datos['Contact']['email'];?></p>
 			<p><strong style="display:block;">Asunto: </strong> <?php echo $datos['Contact']['subject'];?></p>
+			<p><strong style="display:block;">Para: </strong> <?php echo $para;?></p>
 		</td>
 		<td style="width:30px;"></td>
 	</tr>
+
 	<tr>
 		<td style="width:30px;"></td>
 		<td colspan="2">

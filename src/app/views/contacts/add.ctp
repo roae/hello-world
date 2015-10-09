@@ -1,5 +1,6 @@
 <?php /* @var $this View */
 $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>false));
+$managers = am(array('-1'=>'Bolsa de trabajo'),$managers);
 ?>
 <div id="Contact-container">
 	<div class="top-message">
@@ -17,7 +18,7 @@ $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>fa
 				echo $this->I18n->inputs(array(
 					'name'=>array('div'=>array('class'=>'input text min')),
 					'email'=>array('div'=>array('class'=>'input text min')),
-					'manager'=>array('empty'=>'Corporativo'),
+					'manager'=>array('empty'=>'Corporativo','options'=>$managers),
 					'subject',
 					'legend'=>false,'fieldset'=>false
 				));

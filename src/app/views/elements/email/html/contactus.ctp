@@ -1,11 +1,7 @@
 <?php
 $para = "Corporativo";
 if(!empty($datos['Contact']['manager'])){
-	if($datos['Contact']['manager'] == "-1"){
-		$para = "Bolsa de trabajo";
-	}else{
-		$para = $datos['Contact']['manager'];
-	}
+	$para = $datos['Contact']['manager'];
 }
 ?>
 <br />

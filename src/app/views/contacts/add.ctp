@@ -1,6 +1,6 @@
 <?php /* @var $this View */
 $this->Html->script("https://www.google.com/recaptcha/api.js",array('inline'=>false));
-$managers['-1'] = "Bolsa de trabajo";
+$managers['empleo@citicinemas.com'] = "Bolsa de trabajo";
 ?>
 	<div id="Contact-container">
 		<div class="top-message">

@@ -79,23 +79,28 @@ $(document).on("ready",function(){
 			$("#SeatLayout" ).html(html);
 			//$("#SeatLayout" ).width($("#SeatLayout .layout" ).width());
 			//$("#SeatLayout" ).height($("#SeatLayout .layout" ).height());
-			$("#SeatLayout .layout" ).each(function(){
-				new RTP.PinchZoom($(this), {
+
+			// Si es un dispositivo touche se ponen las funciones para hacer zoom en la sala
+			if($(".touch #SeatLayout" ).length){
+				console.log("rochin");
+				$("#SeatLayout .layout" ).each(function(){
+					new RTP.PinchZoom($(this), {
+					});
 				});
-			});
-			$zoom = $("<div></div>");
-			$("#SeatLayout" ).append($zoom);
-			$window.on("scroll",function(event){
-				if($zoom.visible() && !$zoom.hasClass("zoom")){
+				$zoom = $("<div></div>");
+				$("#SeatLayout" ).append($zoom);
+				$window.on("scroll",function(event){
+					if($zoom.visible() && !$zoom.hasClass("zoom")){
+						$zoom.addClass("zoom");
+					}
+				});
+
+
+				if($zoom.visible(true)){
 					$zoom.addClass("zoom");
 				}
-			});
-
-
-			if($zoom.visible(true)){
-				console.log("rochin")
-				$zoom.addClass("zoom");
 			}
+
 
 			seatSelection();
 			setSeatsSelected();

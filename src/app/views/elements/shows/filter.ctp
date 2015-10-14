@@ -1,4 +1,5 @@
 <?php
+$CitySelected = Configure::read("CitySelected");
 if(!empty($CitySelected)){
 	if(!isset($dates)){
 		$dates = $this->requestAction(
@@ -43,23 +44,23 @@ foreach($citiesList as $city){
 //pr($this->data);
 ?>
 <?php echo $this->Ajax->div("FilterBillboard",array('class'=>'filter'));$this->I18n->start();?>
-	<?= $this->Form->create("Filter",array('url'=>$this->Html->url(),'id'=>'BillboardFilter')); ?>
-		<div class="filter-select">
-			<?= !empty($CitySelected)?$this->Form->input("date",array('type'=>'select','options'=>$dates,'label'=>"[:day-to-show:]")): "";?>
-			<?= $this->Form->input("city",array(
-				'type'=>'select',
-				'options'=>$cities,
-				'label'=>"[:city-to-show:]",
-				'value'=>isset($this->data['Filter']['city']) ? $this->data['Filter']['city'] : "",
-				'div'=>array('class'=>empty($CitySelected)? "input select center":"input select"),
-				'empty'=>empty($CitySelected)? "Selecciona tu ciudad" : null,
-			));?>
-		</div>
-		<?php if(!empty($CitySelected)){ ?>
-		<div class="filter-complex">
-			<span class="label">[:select-complex:]</span>
-			<?= $this->Form->input("Location",array('label'=>false,'options'=>$locations,'multiple'=>'checkbox')); ?>
-		</div>
-		<?php } ?>
-	<?= $this->Form->end(); ?>
+<?= $this->Form->create("Filter",array('url'=>$this->Html->url(),'id'=>'BillboardFilter')); ?>
+	<div class="filter-select">
+		<?= !empty($CitySelected)?$this->Form->input("date",array('type'=>'select','options'=>$dates,'label'=>"[:day-to-show:]")): "";?>
+		<?= $this->Form->input("city",array(
+			'type'=>'select',
+			'options'=>$cities,
+			'label'=>"[:city-to-show:]",
+			'value'=>isset($this->data['Filter']['city']) ? $this->data['Filter']['city'] : "",
+			'div'=>array('class'=>empty($CitySelected)? "input select center":"input select"),
+			'empty'=>empty($CitySelected)? "Selecciona tu ciudad" : null,
+		));?>
+	</div>
+<?php if(!empty($CitySelected)){ ?>
+	<div class="filter-complex">
+		<span class="label">[:select-complex:]</span>
+		<?= $this->Form->input("Location",array('label'=>false,'options'=>$locations,'multiple'=>'checkbox')); ?>
+	</div>
+<?php } ?>
+<?= $this->Form->end(); ?>
 <?php echo $this->I18n->end().$this->Ajax->divEnd("FilterBillboard"); ?>

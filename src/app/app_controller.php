@@ -76,10 +76,10 @@ class AppController extends Controller{
 		'Notifier'
 	);
 
-    /**
-     * Datos del usuario logeado
-     *
-     */
+	/**
+	 * Datos del usuario logeado
+	 *
+	 */
 	public $loggedUser = null;
 
 	/**
@@ -88,7 +88,7 @@ class AppController extends Controller{
 	 */
 	public $loggedProfile = null;
 
-    /**
+	/**
 	 * Determina si el usuario puede usar remember me en el login
 	 */
 	public $allowCookie = FALSE;
@@ -321,7 +321,7 @@ class AppController extends Controller{
 
 	function beforeFilter() {
 		$this->set("date",date("Y-m-d h:i:s"));
-        $cookie = null;
+		$cookie = null;
 		$this->params['isAjax']=$this->RequestHandler->isAjax();
 
 		if((isset($this->params['restricted']) && $this->params['restricted']==false) || ($this->name=="Pages" && (isset($this->params['prefix']) && $this->params['prefix']!="admin"))){
@@ -366,26 +366,7 @@ class AppController extends Controller{
 		Configure::write("CitiesList",$citiesList);
 
 
-		Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
-		$this->set("CitySelected",$this->Cookie->read("CitySelected"));
-
-		$LocationsSelected = $this->Cookie->read("LocationsSelected");
-		if(is_string($LocationsSelected)){
-			$first = substr($LocationsSelected, 0, 1);
-			if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
-				$LocationsSelected = json_decode(stripcslashes($LocationsSelected), true);
-			}
-		}
-
-		Configure::write("LocationsSelected",$LocationsSelected);
-		$this->set("LocationsSelected",$LocationsSelected);
-
-		$locationsList = $this->Session->read("LocationsList");
-		if(!$locationsList){
-			$locationsList = $this->City->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0,'city_id'=>Configure::read("CitySelected.id"))));
-			$this->Session->write("LocationsList",$locationsList);
-		}
-		Configure::write("LocationsList",$locationsList);
+		$this->__setCityLocationsSelected();
 
 
 		if  ($this->RequestHandler->isXml()) { // Allow a json request to specify XML formatting
@@ -400,8 +381,8 @@ class AppController extends Controller{
 
 		if(Configure::read("AppConfig.website_maintenance") &&
 			$this->loggedUser['User']['group_id'] != Configure::read('Group.Admin') &&
-				$this->loggedUser['User']['group_id'] != Configure::read('Group.System') &&
-					!isset($_COOKIE['testing'])){
+			$this->loggedUser['User']['group_id'] != Configure::read('Group.System') &&
+			!isset($_COOKIE['testing'])){
 
 			if(isset($this->params['pass'][0]) && $this->params['pass'][0] == 'maintenance' ){
 				$this->layout = "maintenance";
@@ -421,7 +402,6 @@ class AppController extends Controller{
 		if  ($this->RequestHandler->isXml() || $this->RequestHandler->ext == 'json' && Configure::read("debug") > 1) { // Allow a json request to specify XML formatting
 			Configure::write("debug",1);
 		}
-
 
 	}
 
@@ -502,6 +482,37 @@ class AppController extends Controller{
 		#pr($this->layout);
 	}
 
+	function __setCityLocationsSelected(){
+
+		if($this->Session->check("CitySelected")){
+			Configure::write("CitySelected",$this->Session->read("CitySelected"));
+		}else{
+			Configure::write("CitySelected",$this->Cookie->read("CitySelected"));
+		}
+
+		#pr("appController");
+		#pr(Configure::read("CitySelected"));
+		$this->set("CitySelected",Configure::read("CitySelected"));
+
+		$LocationsSelected = $this->Cookie->read("LocationsSelected");
+		if(is_string($LocationsSelected)){
+			$first = substr($LocationsSelected, 0, 1);
+			if ($first !== false && ($first === '{' || $first === '[') && function_exists('json_decode')) {
+				$LocationsSelected = json_decode(stripcslashes($LocationsSelected), true);
+			}
+		}
+
+		Configure::write("LocationsSelected",$LocationsSelected);
+		$this->set("LocationsSelected",$LocationsSelected);
+
+		$locationsList = $this->Session->read("LocationsList");
+		if(!$locationsList){
+			$locationsList = $this->City->Location->find("list",array('conditions'=>array('Location.status'=>1,'Location.trash'=>0,'city_id'=>Configure::read("CitySelected.id"))));
+			$this->Session->write("LocationsList",$locationsList);
+		}
+		Configure::write("LocationsList",$locationsList);
+	}
+
 	function __breadCrumb(){
 		if($this->name!='CakeError'){
 			$breadCrumb=$this->Session->read("BreadCrumb");
@@ -511,16 +522,16 @@ class AppController extends Controller{
 				'created'=>date("Y-m-d h:i:s"),
 				'referer'=>$this->referer()
 			);
-		$this->Session->write("BreadCrumb",$breadCrumb);
+			$this->Session->write("BreadCrumb",$breadCrumb);
 		}
 		#pr($breadCrumb);
 	}
 
-    /**
-     * Establece un valor para el usuario actual que se loggea
-     * @returns boolean TRUE if there is a logged user FALSE if no user is logged in.
-     */
-    function __isLogged(){
+	/**
+	 * Establece un valor para el usuario actual que se loggea
+	 * @returns boolean TRUE if there is a logged user FALSE if no user is logged in.
+	 */
+	function __isLogged(){
 
 		$this->loggedUser = $this->Auth->user();
 		if(isset($this->loggedUser['User']['group_id'])){
@@ -530,11 +541,11 @@ class AppController extends Controller{
 		return false;
 	}
 
-    /**
-     * Construye el menu agregando los links a los que tiene acceso el usuario.
-     * @access private
-     * @returns null
-     */
+	/**
+	 * Construye el menu agregando los links a los que tiene acceso el usuario.
+	 * @access private
+	 * @returns null
+	 */
 	function __buildMenu($name){
 		if(isset($this->menus[$name])){
 			#Si es ajax o un RequestAction no se construye el menu
@@ -667,6 +678,9 @@ class AppController extends Controller{
 		if(!empty($this->data) && in_array($this->params['action'], $actions)){
 			clearCache();
 		}
+
+		$this->__setCityLocationsSelected();
+
 	}
 
 	function __dump_sql(){

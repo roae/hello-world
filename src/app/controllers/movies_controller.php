@@ -300,9 +300,13 @@ class MoviesController extends AppController{
 
 		if(!empty($City) || $slug){
 			/**/
+			$dates_conditions = array();
+			if(is_array(Configure::read("LocationsSelected"))){
+				$dates_conditions = array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")));
+			}
 			$dates = $this->requestAction(
 				"/shows/get_date/".(isset($record['Movie']['id'])? $record['Movie']['id'] : null),
-				array('locationsSelected'=>array_keys(Configure::read("LocationsSelected")))
+				$dates_conditions
 			);
 			$this->set("dates",$dates);
 			#pr($dates);

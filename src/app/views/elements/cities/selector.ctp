@@ -14,6 +14,7 @@ $this->set("cities",$cities);*/
 $cities = Configure::read("CitiesList");
 #pr($cities);
 #pr(Configure::read("CitySelected"));
+#$CitySelected = Configure::read("CitySelected");
 
 $places_label = 'Selecciona tu ciudad';
 $places_url = '#';

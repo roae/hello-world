@@ -1,12 +1,6 @@
 <?php
 /* @var $this View */
-$movies = $this->requestAction(array('controller'=>'movies','action'=>'get','type'=>'all','query'=>array(
-	'conditions'=>array('Movie.home'=>1,'Movie.status'=>1,'Movie.trash'=>0),
-	'contain'=>array(
-		'Gallery'=>array('limit'=>1)
-	),
-	'order'=>array('RAND()')
-)));
+$movies = $this->requestAction(array('controller'=>'movies','action'=>'slideshow'));
 #pr($movies);
 ?>
 <section class="home-highlights" id="main-slider">

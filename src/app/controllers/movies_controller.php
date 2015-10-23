@@ -397,5 +397,19 @@ class MoviesController extends AppController{
 		$this->set("recordset",$movies);
 	}
 
+	function slideshow(){
+		$movies = $this->Movie->find("all",array(
+			'conditions'=>array('Movie.home'=>1,'Movie.status'=>1,'Movie.trash'=>0),
+			'contain'=>array(
+				'Gallery'=>array('limit'=>1)
+			),
+			'order'=>array('RAND()')
+		));
+		if(isset($this->params['requested'])){
+			return $movies;
+		}
+		$this->set("recordset",$movies);
+	}
+
 }
 ?>

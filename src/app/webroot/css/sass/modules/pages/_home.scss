@@ -48,6 +48,9 @@
 				.title {
 					font-size: 58px;
 					margin-bottom: 20px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 
 				p {
@@ -407,6 +410,7 @@
 		position: relative;
 		overflow: hidden;
 		overflow-x: auto;
+		padding-bottom: 15px;
 	}
 
 	.movie {

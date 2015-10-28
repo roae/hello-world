@@ -2,7 +2,8 @@
 /* @var $this View */
 if(!isset($this->params['url']['mobile'])){
 	$this->Html->script(array(
-		'ext/perfect-scrollbar.jquery.min.js'
+		'ext/perfect-scrollbar.jquery.min.js',
+		'ext/jquery.scrollTo-min.js'
 	),array('inline'=>false));
 	$conditions = array();
 	if(isset($LocationsSelected) && !empty($LocationsSelected)){
@@ -30,45 +31,42 @@ if(!isset($this->params['url']['mobile'])){
 			</header>
 
 			<div class="movies">
-				<div class="antiscroll-wrap">
-					<div class="movies-list box">
-						<div class="antiscroll-inner">
-							<div class="box-inner">
-								<?php foreach($premiere as $item) { ?>
-									<div class="movie link">
-										<div class="image-container">
-											<?= $this->Html->image($this->Uploader->generatePath($item['Poster'],'medium'));?>
-											<?php
-											if(isset($item['MovieLocation']['presale']) && $item['MovieLocation']['presale']){
-												echo $this->Html->tag("span","[:presale:]",'presale');
-											}
-											?>
+				<div class="wrapper">
+					<div class="movies-list">
+						<?php foreach($premiere as $item) { ?>
+							<div class="movie link">
+								<div class="image-container">
+									<?= $this->Html->image($this->Uploader->generatePath($item['Poster'],'medium'));?>
+									<?php
+									if(isset($item['MovieLocation']['presale']) && $item['MovieLocation']['presale']){
+										echo $this->Html->tag("span","[:presale:]",'presale');
+									}
+									?>
 
-										</div>
+								</div>
 
-										<div class="info">
-											<h2>
-												<?= $this->Html->link($item['Movie']['title'], array("controller" => "movies", "action" => "view", "slug" => $item["Movie"]["slug"]),array('class'=>'fwd')) ?>
-											</h2>
-											<?php
-											if($item['MovieLocation']['premiere_date'] != "0000-00-00"){
-												?>
-												<span class="date"><?= $this->Time->format("d / [:M:] / Y",$item['MovieLocation']['premiere_date']);?></span>
-											<?php
-											}
-											?>
+								<div class="info">
+									<h2>
+										<?= $this->Html->link($item['Movie']['title'], array("controller" => "movies", "action" => "view", "slug" => $item["Movie"]["slug"]),array('class'=>'fwd')) ?>
+									</h2>
+									<?php
+									if($item['MovieLocation']['premiere_date'] != "0000-00-00"){
+										?>
+										<span class="date"><?= $this->Time->format("d / [:M:] / Y",$item['MovieLocation']['premiere_date']);?></span>
+									<?php
+									}
+									?>
 
 
-										</div>
+								</div>
 
-									</div>
-
-								<?php } ?>
 							</div>
-						</div>
+						<?php } ?>
 					</div>
-					<!--</div>-->
 				</div>
+				<span class="left"></span>
+				<span class="right"></span>
+			</div>
 		</section>
 	<?
 	}

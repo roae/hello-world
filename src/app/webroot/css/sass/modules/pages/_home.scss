@@ -375,27 +375,79 @@
 
 	.movies {
 		position: relative;
-		&:before{
-			@include gradientHorizontal(#eff4f7,rgba(#eff4f7,0));
-			width: 20px;
+		&:before,
+		&:after{
+			width: 80px;
 			height: 100%;
 			position: absolute;
 			top:0;
-			left:0;
 			content: " ";
-			display: block;
+			display: none;
 			z-index:2;
+		}
+		&:before{
+			@include gradientHorizontal(#eff4f7,rgba(#eff4f7,0));
+			left:0;
 		}
 		&:after{
 			@include gradientHorizontal(rgba(#eff4f7,0),#eff4f7);
-			width: 20px;
-			height: 100%;
-			position: absolute;
-			top:0;
 			right:0;
-			content: " ";
-			display: block;
-			z-index:2;
+		}
+
+		.left,
+		.right{
+			display: none;
+			position: absolute;
+			width: 80px;
+			height: 100%;
+			top:0;
+			z-index:3;
+			@include background-size(50px 100px);
+			background-repeat: no-repeat;
+			background-position-y: center;
+			cursor: pointer;
+		}
+		.right{
+			background-image: url(web/next-commingsoon.png);
+			background-position-x: right;
+			right: -50px;
+			@include transition(right 0.2s ease-in-out);
+			&:hover{
+				right:-3px;
+			}
+		}
+		.left{
+			background-image: url(web/prev-commingsoon.png);
+			background-position-x: left;
+			@include transition(left 0.2s ease-in-out);
+			left: -50px;
+			&:hover{
+				left:-3px;
+			}
+		}
+		&.show-right{
+			.right{
+				display: block;
+			}
+			&:after{
+				display: block;
+			}
+		}
+		&.show-left{
+			.left{
+				display: block;
+			}
+			&:before{
+				display: block;
+			}
+		}
+		&:hover{
+			.right{
+				right: 0;
+			}
+			.left{
+				left: 0;
+			}
 		}
 	}
 
@@ -406,7 +458,7 @@
 		text-align: center;
 		overflow: hidden;
 	}
-	.antiscroll-wrap{
+	.wrapper{
 		position: relative;
 		overflow: hidden;
 		overflow-x: auto;
@@ -460,6 +512,21 @@
 			top: 7px;
 			left: 0px;
 			color: #353637;
+		}
+	}
+}
+.touch{
+	.next-premieres{
+		.movies{
+			&:before,
+			&:after{
+				display:block;
+				width: 20px;
+			}
+			.right,
+			.left{
+				display: none;
+			}
 		}
 	}
 }

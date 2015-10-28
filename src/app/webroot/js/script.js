@@ -851,10 +851,39 @@ function nextSlide(){
 	var gutter8 = 0.625;
 	var $premieresContainer = $('.next-premieres' );
 	if($premieresContainer.length){
-		$movies = $(".movie",$premieresContainer);
-		$(".movies-list",$premieresContainer ).width($movies.eq(0).outerWidth() * $movies.length);
-		//$(".antiscroll-wrap",$premieresContainer ).antiscroll().data('antiscroll');
-		$('.antiscroll-wrap',$premieresContainer).perfectScrollbar();
+		$moviesContainer = $(".movies",$premieresContainer);
+		$movie = $(".movie",$premieresContainer);
+		$wrapper = $('.wrapper',$premieresContainer);
+		var moviesWidth = $movie.eq(0).outerWidth() * $movie.length;
+		$(".movies-list",$premieresContainer ).width(moviesWidth);
+		$wrapper.perfectScrollbar();
+		if(!Modernizr.touch){
+			$wrapper.on("scroll",function(){
+				if($(this).scrollLeft()>0){
+					$moviesContainer.addClass("show-left");
+				}else{
+					$moviesContainer.removeClass("show-left");
+				}
+				if(moviesWidth - $moviesContainer.outerWidth() > $(this).scrollLeft()){
+					$moviesContainer.addClass("show-right");
+				}else{
+					$moviesContainer.removeClass("show-right");
+				}
+			});
+			if($('.wrapper',$premieresContainer).hasClass("ps-active-x")){
+				$moviesContainer.addClass("show-right");
+			}
+			$(".right",$premieresContainer).on("click",function(){
+				$wrapper.scrollTo("+="+$movie.eq(0).outerWidth(),500,function(){
+					$(this).perfectScrollbar('update');
+				})
+			});
+			$(".left",$premieresContainer).on("click",function(){
+				$wrapper.scrollTo("-="+$movie.eq(0).outerWidth(),500,function(){
+					$(this).perfectScrollbar('update');
+				})
+			});
+		}
 	}
 
 	if($('.billboard .sinopsis' ).length){

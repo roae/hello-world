@@ -6,3 +6,52 @@
 body{
   font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.phone{
+	body{
+		padding-bottom: 60px;
+	}
+}
+.mobile-apps-phone{
+	@include box-sizing(border-box);
+	width: 100%;
+	position: fixed;
+	bottom:0;
+	padding: 5px;
+	background: $red;
+	@include box-shadow(0 -1px 1px rgba(#000,.4));
+	font-size: 16px;
+	color:#fff;
+	.icon{
+		width: 56px;
+		float: left;
+		margin-right: 10px;
+	}
+	.close{
+		color:#fff;
+		line-height: 26px;
+		background: darken($red,10);
+		@include border-radius(3px);
+		text-align: center;
+		display: block;
+		padding: 1px 8px;
+	}
+	.download{
+		color:$dark_gray;
+		background: darken($yellow,10);
+		line-height: 26px;
+		@include border-radius(3px);
+		text-align: center;
+		display: block;
+		padding: 1px 8px;
+		margin-bottom: 4px;
+	}
+	.texto{
+		margin-top: 4px;
+	}
+
+	.buttons{
+		float: right;
+		font-size: 12px;
+	}
+
+}

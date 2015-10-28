@@ -31,6 +31,10 @@ var intervalSlider;
 
 $(function(){
 
+	$(document).on("click",".mobile-apps-phone .close",function(){
+		$(".mobile-apps-phone").css({display:'none'});
+	});
+
 	// Cache the Window object
 	$window = $(window);
 

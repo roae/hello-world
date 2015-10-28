@@ -39,6 +39,7 @@ class AppController extends Controller{
 		'Ajax',
 		'Template',
 		"Media.Uploader",
+		'MobileDetect',
 	);
 
 	var $uses=array(
@@ -73,7 +74,8 @@ class AppController extends Controller{
 		'Acl',
 		'RequestHandler',
 		'Xpagin',
-		'Notifier'
+		'Notifier',
+		'MobileDetect',
 	);
 
 	/**

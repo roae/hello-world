@@ -70,6 +70,7 @@ class MoviesController extends AppController{
 	function admin_edit($id = null){
 		if(!empty($id)){
 			if(!empty($this->data)){
+				#pr($this->data);exit;
 				$this->Movie->set($this->data);
 				$transaction = $this->Movie->save();
 				if ( $transaction == 1 ) {
@@ -86,7 +87,9 @@ class MoviesController extends AppController{
 					"Poster",
 					"Gallery",
 					"Projection",
-					'MovieLocation',
+					'MovieLocation'=>array(
+						'conditions'=>array('MovieLocation.location_id >'=>0)
+					),
 				));
 				$this->data = $this->Movie->read(null, $id);
 				if(empty($this->data) || ($this->data['Movie']['trash'] && !$this->access['trash'])){

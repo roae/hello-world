@@ -83,7 +83,7 @@ class Movie extends AppModel {
 		$validationErrors = array();
 		# Si la pelicula se guarda correctamente se agrega la relacion de complejos
 		foreach(isset($data['MovieLocation'])? $data['MovieLocation']: array() as $index => $MovieLocation){
-			if(isset($MovieLocation['location_id'])){
+			if(isset($MovieLocation['location_id']) && $MovieLocation['location_id'] > 0){
 				$MovieLocation['movie_id'] = $movie_id;
 
 				if(!isset($MovieLocation['premiere'])){

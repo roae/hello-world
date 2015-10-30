@@ -18,6 +18,7 @@ class MovieLocation extends AppModel {
 	var $validate = array(
 		'location_id'=>array(
 			'requerido' => array('rule' =>'notEmpty','required' => true,'allowEmpty' => false,'message' => '[:required_field:]'),
+			#'no_cero'=>array('rule'=>'comparison','>=',0),
 		),
 		/*'premiere_end'=>array(
 			#'requerido'=>array('rule'=>'notEmpty','required'=>true,'allowEmpty'=>false,'message'=>'[:required_field:]'),

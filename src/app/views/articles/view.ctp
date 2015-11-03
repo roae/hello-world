@@ -98,4 +98,4 @@
 		</div>
 	</div>
 </article>
-<?= $this->element("movies/commingsoon"); ?>
+<?= $this->element("movies/commingsoon",array('cache' => array('key' => isset($CitySelected['name']) ? $CitySelected['name'] : "", 'time' => '+1 hour'))); ?>

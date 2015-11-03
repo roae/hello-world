@@ -33,7 +33,7 @@ $managers['empleo@citicinemas.com'] = "Bolsa de trabajo";
 
 			</diV>
 			<aside>
-				<?= $this->element("locations/list");?>
+				<?= $this->element("locations/list",array('cache'=>array('key'=>'contact','time'=>'+1 week')));?>
 			</aside>
 		</div>
 	</div>

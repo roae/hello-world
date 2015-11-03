@@ -39,7 +39,7 @@
 
 	</div>
 </div>
-<?= $this->element("movies/commingsoon"); ?>
+<?= $this->element("movies/commingsoon",array('cache' => array('key' => isset($CitySelected['name']) ? $CitySelected['name'] : "", 'time' => '+1 hour'))); ?>
 <?php
 $this->Html->script( array(
 	'ext/images-loaded.min.js',

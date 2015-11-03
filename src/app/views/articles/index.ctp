@@ -119,8 +119,8 @@ $this->Paginator->options(array('url' => am(array('controller' => 'articles','ac
 		</div>
 	<?php } ?>
 	<section class="horizontal-banner">
-		<?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
+		<?= $this->element("ads/show",array('type'=>'HORIZONTAL','cache' => array('key' => 'horizontal', 'time' => '+1 day'))); ?>
 	</section>
 
 </div>
-<?= $this->element("movies/commingsoon"); ?>
+<?= $this->element("movies/commingsoon",array('cache' => array('key' => isset($CitySelected['name']) ? $CitySelected['name'] : "", 'time' => '+1 hour'))); ?>

@@ -19,16 +19,16 @@
     <?php //$this->element("locations/select");?>
     <div class="movies">
       <h2 class="titleBillboard">En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h2>
-       <?= $this->element("shows/billboard"); ?>
+       <?= $this->element("shows/billboard",array('cache' => array('key' => 'home', 'time' => '+1 hour'))); ?>
     </div>
   </div>
 
   <section class="horizontal-banner">
-   <?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
+   <?= $this->element("ads/show",array('type'=>'HORIZONTAL','cache' => array('key' => 'horizontal', 'time' => '+1 day'))); ?>
   </section>
 </section>
 
-<?= $this->element("movies/commingsoon"); ?>
+<?= $this->element("movies/commingsoon",array('cache' => array('key' => isset($CitySelected['name']) ? $CitySelected['name'] : "", 'time' => '+1 hour'))); ?>
 
 <?php
 $this->I18n->addMissing("[:username-or-email:]","Label del campo username en el formulario de login","extras");

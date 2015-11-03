@@ -22,7 +22,7 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 				<?= $this->element("shows/filter"); ?>
 
 				<div class="vertical-banner">
-					<?= $this->element("ads/show",array('type'=>'VERTICAL'));?>
+					<?= $this->element("ads/show",array('type'=>'VERTICAL','cache' => array('key' => 'vertical', 'time' => '+1 day')));?>
 				</div>
 			</div>
 			<?php
@@ -168,10 +168,10 @@ $this->Html->script(array('ext/jquery.history.js','ext/jquery.history.html45.js'
 
 		</div>
 		<section class="horizontal-banner">
-			<?= $this->element("ads/show",array('type'=>'HORIZONTAL'));?>
+			<?= $this->element("ads/show",array('type'=>'HORIZONTAL','cache' => array('key' => 'horizontal', 'time' => '+1 day'))); ?>
 		</section>
 
 	</div>
 </section>
-<?= $this->element("movies/commingsoon"); ?>
+<?= $this->element("movies/commingsoon",array('cache' => array('key' => isset($CitySelected['name']) ? $CitySelected['name'] : "", 'time' => '+1 hour'))); ?>
 

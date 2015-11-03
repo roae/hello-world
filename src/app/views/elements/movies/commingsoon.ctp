@@ -1,10 +1,6 @@
 <?php
 /* @var $this View */
 if(!isset($this->params['url']['mobile'])){
-	$this->Html->script(array(
-		'ext/perfect-scrollbar.jquery.min.js',
-		'ext/jquery.scrollTo-min.js'
-	),array('inline'=>false));
 	$conditions = array();
 	if(isset($LocationsSelected) && !empty($LocationsSelected)){
 		$conditions = array('MovieLocation.location_id'=>array_keys($LocationsSelected));

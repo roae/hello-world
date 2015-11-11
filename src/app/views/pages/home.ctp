@@ -18,8 +18,8 @@
 
     <?php //$this->element("locations/select");?>
     <div class="movies">
-      <h2 class="titleBillboard">En cartelera <strong><?php Configure::read("LocationSelected.name")?></strong></h2>
-       <?= $this->element("shows/billboard",array('cache' => array('key' => 'home', 'time' => '+1 hour'))); ?>
+      <h2 class="titleBillboard">En cartelera <strong><?= isset($CitySelected['name']) ? $CitySelected['name'] : ""?></strong></h2>
+       <?= $this->element("shows/billboard",array('cache' => array('key' => 'home_'.isset($CitySelected['name']) ? $CitySelected['name'] : "", 'time' => '+1 hour'))); ?>
     </div>
   </div>
 

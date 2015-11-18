@@ -86,28 +86,28 @@ AddType text/x-vcard                   vcf
 
   # HTML, TXT, CSS, JavaScript, JSON, XML, HTC:
   <IfModule filter_module>
-    <IfVersion >= 2.4>
-      FilterDeclare   COMPRESS
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/html'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/css'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/plain'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/xml'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/x-component'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/javascript'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/json'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/xml'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/xhtml+xml'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/rss+xml'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/atom+xml'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/vnd.ms-fontobject'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'image/svg+xml'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'image/x-icon'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/x-font-ttf'"
-      FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'font/opentype'"
-      FilterChain     COMPRESS
-      FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
-    </IfVersion>
-    <IfVersion <= 2.2>
+    #<IfVersion >= 2.4>
+     # FilterDeclare   COMPRESS
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/html'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/css'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/plain'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/xml'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'text/x-component'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/javascript'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/json'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/xml'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/xhtml+xml'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/rss+xml'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/atom+xml'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/vnd.ms-fontobject'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'image/svg+xml'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'image/x-icon'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'application/x-font-ttf'"
+     # FilterProvider  COMPRESS  DEFLATE "%{CONTENT_TYPE} = 'font/opentype'"
+     # FilterChain     COMPRESS
+     # FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
+    #</IfVersion>
+    #<IfVersion >= 2.2>
       FilterDeclare   COMPRESS
       FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/html
       FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/css
@@ -127,7 +127,7 @@ AddType text/x-vcard                   vcf
       FilterProvider  COMPRESS  DEFLATE resp=Content-Type $font/opentype
       FilterChain     COMPRESS
       FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
-    </IfVersion>
+    #</IfVersion>
   </IfModule>
 
   <IfModule !mod_filter.c>
@@ -214,8 +214,10 @@ AddType text/x-vcard                   vcf
 
 	# se agrega el www. antes del dominio siempre
 	RewriteCond %{HTTPS} !=on
-	RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+	#RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+  #RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  #RewriteCond %{HTTPS} off
+  #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
     Redirect /forcefest https://www.eventbrite.es/e/entradas-force-fest-19322513157
 

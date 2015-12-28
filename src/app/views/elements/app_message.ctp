@@ -9,7 +9,7 @@
 
 			<ul class="actions">
 				<li class="google-play">
-					<a href="https://play.google.com/store/apps/details?id=com.citicinemas.citicinemas" rel="nofollow">
+					<a href="https://play.google.com/store/apps/details?id=com.citicinemas.citicinemasapp" rel="nofollow">
 						<?= $this->Html->image("google-play-button.png",array('alt'=>'[:google-play-alt:]')) ?>
 					</a>
 				</li>
@@ -27,11 +27,11 @@
 	<section class="mobile-apps-phone">
 		<?= $this->Html->image("icon-app.png",array('alt'=>'Icono App Citicinemas','class'=>'icon'));?>
 		<div class="buttons">
-			<?php 
+			<?php
 			if($this->MobileDetect->detect("isiOs")){
 				echo $this->Html->link("Descargar","https://appsto.re/mx/gCy59.i",array('class'=>'download','rel'=>'nofollow'));
 			}else if($this->MobileDetect->detect("isAndroidOS")){
-				echo $this->Html->link("Descargar","https://play.google.com/store/apps/details?id=com.citicinemas.citicinemas",array('class'=>'download','rel'=>'nofollow')); 	
+				echo $this->Html->link("Descargar","https://play.google.com/store/apps/details?id=com.citicinemas.citicinemasapp",array('class'=>'download','rel'=>'nofollow'));
 			}
 			?>
 			<span class="close">Cerrar</span>

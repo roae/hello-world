@@ -95,7 +95,7 @@
 									</table>
 								</td>
 								<td align="right">
-									<?= $this->Html->image($this->Html->url(array('action'=>'barcode',$record['Buy']['confirmation_number'])));?>
+									<?= $this->Html->image($this->Html->url(array('action'=>'barcode',$record['Buy']['confirmation_number']),array('style'=>'width:100%; display:block;')));?>
 								</td>
 							</tr>
 						</table>

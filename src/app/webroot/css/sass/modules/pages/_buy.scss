@@ -153,6 +153,8 @@
 				@include span(3);
 				img{
 					border: 3px solid #fff;
+					width: 100%;
+					display: block;
 				}
 			}
 		}

@@ -162,7 +162,7 @@ class BuysController extends AppController{
 		$drawException = null;
 		try {
 			$code = new BCGcode128();
-			$code->setScale(1); // Resolution
+			$code->setScale(2); // Resolution
 			$code->setThickness(30); // Thickness
 			$code->setForegroundColor($color_black); // Color of bars
 			$code->setBackgroundColor($color_white); // Color of spaces
